@@ -4,6 +4,134 @@
 
 <ul>
   <li><a href="#part-1-the-javascript-language">Part 1: The JavaScript Language</a></li>
+   <ul>
+    <li><a href="#chapter-1-an-introduction">Chapter 1: An Introduction</a></li>
+    <ul >
+        <li><a href="#1-an-introduction-to-javaScript">1.1 An Introduction to JavaScript</a></li>
+        <ul>
+            <li><a href="#what-is-javascript">What Is JavaScript</a></li>
+            <li><a href="#javascript-history">JavaScript History</a></li>
+            <li><a href="#why-did-javascript-need-a-standard-version">Why Did JavaScript Need a Standard Version</a></li>
+            <li><a href="#javascript-engines">JavaScript Engines</a></li>
+        </ul>
+    </ul>
+  </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
 </ul>
+<hr>
+
+<!-- part 1: -->
+<h1 id="#part-1-the-javascript-language" align="center">Part 1: The JavaScript Language</h1>
+
+<!-- chapter 1: -->
+<h2 id="chapter-1-an-introduction" align="center">Chapter 1: An Introduction</h2>
+
+<!-- 1. -->
+<h3 id="1-an-introduction-to-javaScript" align="center">1.1 An Introduction to JavaScript</h3>
+
+<h3 id="what-is-javascript">What is JavaScript:</h3>
+<p>JavaScript is a programming language for the web. The programs in JavaScript are called scripts because they are small, dynamic, and interpreted pieces of code designed to run in the browser without compiling the entire program.</p>
+<p>JavaScript code is written and send to the browser as plain text, not compiled machine code. Unlike some other programming languages (such as C, C++, or Java) that require compilation of the whole program before running, JavaScript is interpreted and just-in-time compiled in the browser at runtime. In this way, JavaScript is fundamentally different from compiled languages like C, C++, and Java, which need to be processed by a compiler before running.</p>
+
+<h3 id="javascript-history">JavaScript History:</h3>
+<p>In 1995, Brendan Eich, a developer at Netscape Communications Corporation, created JavaScript. Eich initially joined Netscape with the intention of implementing the Scheme programming language in the browser. However, Netscape’s management wanted the Scheme language syntax resemble and look similar to Java. As a result, Eich decided to designed a new language that combined:</p>
+<ul>
+  <li>The functionality of Scheme programming language</li>
+  <li>The object-orientation of Self programming language</li>
+  <li>And The syntax of Java programming language</li>
+</ul>
+<p>He completed the first version of the language called Mocha (the internal name during early development by Brendan Eich at Netscape; it was never officially released under this name) in just 10 days in May 1995.</p>
+<ul>
+  <li><strong>LiveScript (September 1995)</strong> – The first version of the language released to the public was called LiveScript, included with the beta version of Netscape Navigator 2.0 Browser.</li>
+  <p><strong>Note:</strong> Alongside the language, Eich also built the first JavaScript engine, called SpiderMonkey, written in C, to run LiveScript in the Navigator browser.</p>
+</ul>
+<ul>
+  <li><strong>JavaScript (December 1995)</strong> – The final name, officially announced in collaboration with Sun Microsystems</li>
+  <li><strong>ES1 (1997)</strong> - First official standardized version of JavaScript</li>
+</ul>
+<p><strong>Note:</strong><br>
+In June 1997 JavaScript was submitted to ECMA (European Computer Manufacturers Association) International to create a standard version of the language, so all browsers could implement it consistently.<br>
+So, ECMAScript is the official name of the JavaScript standard and ES1, ES2, ES6 etc. are its version numbers.</p>
+
+<h3 id="why-did-javascript-need-a-standard-version">Why Did JavaScript Need a Standard Version:</h3>
+<p>When JavaScript was first created in 1995 by Netscape, it was only implemented in their browser Netscape Navigator. Shortly, Microsoft launched its own browser, Internet Explorer, and included its own version of JavaScript called JScript. As a result, two distinct versions of JavaScript were emerged in the market:</p>
+<ul>
+  <li>JavaScript in Netscape Navigator</li>
+  <li>JScript in Internet Explorer</li>
+</ul>
+<p><strong>The Problems:</strong></p>
+<ul>
+  <li>Different browsers had slightly different implementations of JavaScript.</li>
+  <li>Some features worked in one browser but not in another.</li>
+  <li>This caused a lot of bugs and confusion for web developers.</li>
+  <li>Developers had to write browser-specific code, which made websites harder to build and maintain.</li>
+</ul>
+<p><strong>The Solution:</strong><br>
+To solve this problem, Netscape submitted JavaScript to ECMA International in June 1997, so they could create a standardized specification of the language. This standard was named ECMAScript.</p>
+<p><strong>Purpose of ECMAScript:</strong></p>
+<ul>
+  <li>Make sure all browsers follow the same rules for JavaScript.</li>
+  <li>Allow developers to write code that works consistently across all browsers.</li>
+  <li>Ensure the future growth and evolution of the language.</li>
+</ul>
+
+<h3 id="javascript-engines">JavaScript Engines:</h3>
+<p>A JavaScript engine is a program built into web browsers (and platforms like Node.js) that is responsible for executing JavaScript code.</p>
+<p>It takes the JavaScript you write, then:</p>
+<ol>
+  <li>Parse (JavaScript engine turns your code into an AST)</li>
+  <li>Compile to Bytecode (The AST is compiled into bytecode, an intermediate form between your original JavaScript code and the machine code your computer’s CPU understands.)</li>
+  <li>Interpret (The engine executes the bytecode step-by-step using an interpreter.)</li>
+  <li>JIT Compilation (The engine detects frequently executed “hot” code and compiles it into machine code. On subsequent runs, it skips parsing and interpreting these parts, running the machine code directly for much faster execution.)</li>
+</ol>
+
+<p><strong>Key Concepts:</strong></p>
+<ul>
+  <li><strong>Abstract Syntax Tree (AST):</strong><br>
+  An AST is a tree-like structure that represents the syntax and structure of your code.<br>
+  Each part of your code becomes a node, and all nodes are connected to each other in a hierarchy — just like branches in a tree.</li>
+</ul>
+
+<p><strong>Example:</strong></p>
+<p><strong>JS Code:</strong><br>
+<code>let x = 5 + 3;</code></p>
+
+<p><strong>Abstract Syntax Tree (AST):</strong></p>
+<pre>
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "kind": "let",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "x"
+          },
+          "init": {
+            "type": "BinaryExpression",
+            "operator": "+",
+            "left": {
+              "type": "Literal",
+              "value": 5,
+              "raw": "5"
+            },
+            "right": {
+              "type": "Literal",
+              "value": 3,
+              "raw": "3"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "script"
+}
+</pre>
+
+<p>Here, every "type" in the AST (e.g., "Program", "VariableDeclaration", "Literal") is a node.</p>

@@ -15,6 +15,13 @@
             <li><a href="#javascript-engines">JavaScript Engines</a></li>
         </ul>
     </ul>
+   <li><a href="#chapter-2-javascript-fundamentals">Chapter 2: JavaScript Fundamentals</a></li>
+   <ul >
+        <li><a href="#2.1-hello-world">2.1 Hello, world!</a></li>
+        <ul>
+            <li><a href="#whats-happened-behind-the-code">What’s happened behind the code</a></li>
+        </ul>
+    </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -135,3 +142,33 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
 </pre>
 
 <p>Here, every "type" in the AST (e.g., "Program", "VariableDeclaration", "Literal") is a node.</p>
+<hr>
+
+<!-- chapter 2 -->
+<h2 id="chapter-2-javascript-fundamentals" align="center">Chapter 2: JavaScript Fundamentals</h2>
+
+<!-- 2.1 -->
+<h3 id="2.1-hello-world" align="center">2.1: Hello, world!</h3>
+
+<pre><code>console.log("Hello World");
+</code></pre>
+
+<h3 id="whats-happened-behind-the-code">What’s happed behind the code:</h3>
+<ol>
+  <li>The statement sends to the JavaScript Engine</li>
+  <li>Parsing</li>
+  <li>Compiling AST to Bytecode</li>
+  <li>Interpretation (The engine executes the bytecode step-by-step using an interpreter.)</li>
+  <li>JIT Compilation</li>
+  <li>Calling the <code>log()</code> function:
+    <ul>
+      <li><code>console</code> is a global object</li>
+      <li><code>log</code> is a property of the <code>console</code> object, and its value is a function.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>So, <code>console.log("Hello World")</code> is a function call with the string <code>"Hello World"</code> as an argument.</p>
+
+<p>The <code>log()</code> function takes the argument and tells the engine to print it to the DevTools console or the Node.js terminal.</p>
+

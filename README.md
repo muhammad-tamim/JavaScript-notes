@@ -31,6 +31,10 @@
             <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
             <li><a href="#var-hoisting-issue">var hoisting issue</a></li>
         </ul>
+         <li><a href="#2.4-data-types">2.4: Data Types</a></li>
+         <ul>
+            <li><a href="#the-typeof-operator">The Typeof Operator</a></li>
+        </ul>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -380,3 +384,107 @@ sayHi(); // Output: undefined
   phrase = "Hello";     // Assignment happens here
 } 
  */</code></pre>
+
+<hr>
+
+
+<!-- 2.4 -->
+<h3 id="2.4-data-types" align="center">2.4: Data Types</h3>
+
+<p>A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)</p>
+<p>JavaScript is a <strong>dynamically typed language</strong>, which means:</p>
+<ul>
+  <li>You don’t have to declare the type of a variable.</li>
+  <li>The type is determined automatically based on the value you assign.</li>
+</ul>
+
+<pre><code>let message = "hello"; // string
+message = 123456;      // number
+</code></pre>
+
+<p>There are 8 data types in JavaScript:</p>
+
+<ul>
+  <li><strong>7 primitive data types:</strong></li>
+  <ul>
+    <li><strong>number</strong> – Represents both integers and floating-point numbers.<br>
+      Example: <code>let age = 25;</code>
+    </li>
+    <li><strong>bigint</strong> – Used for integers larger than <code>2<sup>53</sup> - 1</code>.<br>
+      Example: <code>let big = 12345678901234567890n;</code>
+    </li>
+    <li><strong>string</strong> – Represents text, enclosed in single or double quotes.<br>
+      Example: <code>let name = "Tamim";</code>
+    </li>
+    <li><strong>boolean</strong> – Represents true or false.<br>
+      Example: <code>let isLoggedIn = true;</code>
+    </li>
+    <li><strong>null</strong> – Represents intentional "no value".<br>
+      Example: <code>let data = null;</code>
+    </li>
+    <li><strong>undefined</strong> – A variable declared but not assigned any value.<br>
+      Example: <code>let result;</code>
+    </li>
+    <li><strong>symbol</strong> – Represents a unique and immutable value, mainly used as object property keys.<br>
+      Example: <code>let id = Symbol("userID");</code>
+    </li>
+  </ul>
+
+<li><strong>1 non-primitive data type:</strong>
+  <ul>
+    <li><strong>object</strong> – In JavaScript, any data that is not a primitive (like numbers or strings) is treated as an object. Objects can hold multiple values and provide more flexibility. It includes:
+      <ul>
+        <li><strong>Object Literals</strong>: Used to store related data as key-value pairs. This is the most common way to define objects.<br>
+          Example: <code>let user = { name: "Tamim", age: 20 };</code>
+        </li>
+        <li><strong>Arrays</strong>: A special type of object that stores ordered collections of values using numeric indexes. It comes with built-in methods like <code>push()</code>, <code>pop()</code>, <code>length</code>, etc.<br>
+          Example: <code>let colors = ["red", "green", "blue"];</code>
+        </li>
+        <li><strong>Functions</strong>: Functions in JavaScript are objects that can be executed (called). They can also have properties and be passed as arguments.<br>
+          Example: <code>function greet() { console.log("Hello"); }</code>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<h3 id="the-typeof-operator">The typeof operator:</h3>
+<small>operator: An operator is a special symbol or keyword that performs an operation on one or more values.<br>
+Example: +, -, !, typeof
+</small>
+<pre>
+<code>
+console.log(typeof undefined); // "undefined"
+
+console.log(typeof 0); // "number"
+
+console.log(typeof 10n); // "bigint"
+
+console.log(typeof true); // "boolean"
+
+console.log(typeof "foo"); // "string"
+
+console.log(typeof Symbol("id")); // "symbol"
+
+console.log(typeof Math); // "object"  
+
+console.log(typeof null); // "object"  
+
+console.log(typeof alert); 
+/*
+you will get "function" as output 
+if you use browser console, in node 
+you will get "undefined"
+*/  
+</code>
+</pre>
+
+<p><strong>Note:</strong></p>
+<ul>
+  <li>typeof null return "object", but null is a primitive data type.
+  </li>
+  <li>typeof alert returns "function", but functions are technically objects. 
+  </li>
+</ul>
+<hr>
+

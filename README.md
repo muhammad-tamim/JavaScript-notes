@@ -21,6 +21,11 @@
         <ul>
             <li><a href="#whats-happened-behind-the-code">What’s happened behind the code</a></li>
         </ul>
+        <li><a href="#2.2-code-structure">2.2: Code structure</a></li>
+        <ul>
+            <li><a href="#what-is-the-difference-between-statement-program-and-code">What is the difference between statement, program and code</a></li>
+            <li><a href="#semicolons">Semicolons</a></li>
+        </ul>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -172,3 +177,49 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
 
 <p>The <code>log()</code> function takes the argument and tells the engine to print it to the DevTools console or the Node.js terminal.</p>
 
+<hr>
+
+
+<!-- 2.2 -->
+<h3 id="2.2-code-structure" align="center">2.2: Code structure</h3>
+
+<h3 id="what-is-the-difference-between-statement-program-and-code">What is the difference between statement, program and code:</h3>
+
+<ul>
+  <li><strong>statement:</strong> A single instruction in a programming language that performs an action.</li>
+  <li><strong>code:</strong> Any written instructions in a programming language, from one line to many.</li>
+  <li><strong>program:</strong> A complete set of code written in a programming language to solve a problem or perform a task.</li>
+</ul>
+
+<h3 id="semicolons">Semicolons:</h3>
+<p>In most cases, semicolons are optional in JavaScript because the language uses a feature called Automatic Semicolon Insertion (ASI) to handle missing semicolons.</p>
+
+<p>For example, this code works perfectly fine without them:</p>
+
+<pre><code>console.log('Hello')
+console.log('World')
+</code></pre>
+
+<p>But there are cases where ASI fails, which can lead to unexpected behavior or even errors.<br>
+Take this example:</p>
+
+<pre><code>console.log("Hello")
+[1, 2].map(n => console.log(n));
+</code></pre>
+
+<p>This code shows an error like this: </p>
+<img src="images/image1.png" alt="semicolons missing error image">
+
+<p>The reason we got an error because without a semicolon after <code>console.log("Hello")</code> statement, JavaScript merges the next line into the same statement, like this:</p>
+
+<pre><code>console.log("Hello")[1, 2].map(n => console.log(n));
+</code></pre>
+
+<p>and this is not a valid statement in JavaScript, but if you used proper semicolon after <code>console.log("hello")</code>, it will work completely fine as expected:</p>
+
+<pre><code>console.log("Hello");
+[1, 2].map(n => console.log(n));
+</code></pre>
+<img src="images/image2.png" alt="output image">
+
+<hr>

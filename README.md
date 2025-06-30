@@ -26,6 +26,11 @@
             <li><a href="#what-is-the-difference-between-statement-program-and-code">What is the difference between statement, program and code</a></li>
             <li><a href="#semicolons">Semicolons</a></li>
         </ul>
+         <li><a href="#2-3-variables">2.3: variables</a></li>
+         <ul>
+            <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
+            <li><a href="#var-hoisting-issue">var hoisting issue</a></li>
+        </ul>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -223,3 +228,155 @@ Take this example:</p>
 <img src="images/image2.png" alt="output image">
 
 <hr>
+
+<!-- 2.3 -->
+<h3 id="2-3-variables" align="center">2.3: Variables</h3>
+
+<p>A variable is a “named storage” for data. We can declare variables to store data by using the keywords (A keyword is a reserved word that has a special meaning in the language):</p>
+
+<ul>
+  <li>var: the old way to declare variables (function-scoped or global-scoped if not function-scoped, can be redeclared and updated in the same scope).</li>
+  <li>let: the modern way to declare variables (block-scoped, can be updated but not redeclared in the same scope).</li>
+  <li>const: declares constant variables (block-scoped, cannot be reassigned or redeclared; must be initialized at the time of declaration).</li>
+</ul>
+
+<p><strong>Variable Declaration:</strong></p>
+<pre><code>let message;
+</code></pre>
+
+<p><strong>Variable Initialization:</strong></p>
+<pre><code>let message = 'Hello World';
+</code></pre>
+
+<p><strong>Variable assignment:</strong></p>
+<pre><code>let message = 'Hello World';
+message = 'Hello Universe'
+</code></pre>
+
+<p><strong>Note:</strong> initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.</p>
+
+<h3 id="difference-between-var-and-let">Difference between <code>var</code> and <code>let</code>:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><code>var</code></th>
+      <th><code>let</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        var is function scope:<br><br>
+        It means a variable declared with var is accessible anywhere inside the same function, no matter which block it was declared in.
+        <pre><code>function testScope() {
+    if (true) {
+        var x = 10;
+    }
+    console.log(x); // output: 10 
+}
+testScope();</code></pre>
+      </td>
+      <td>
+        let is block-scoped:<br><br>
+        It means a variable declared with let is accessible only inside the block {} where it is declared.
+        <pre><code>function testScope() {
+    if (true) {
+        let x = 10;
+    }
+    console.log(x); // output: Error
+}
+testScope();</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Global-scoped (if not in a function):<br><br>
+        If you declare a variable using var outside any function, even inside a block (like if, for), it becomes globally scoped.
+        <pre><code>if (true) {
+    var test = true; 
+}
+console.log(test); // output: true</code></pre>
+      </td>
+      <td>
+        Still block-scoped:<br><br>
+        let remains limited to the block, even when declared outside any function.
+        <pre><code>if (true) {
+    let test = true;
+}
+console.log(test); // output: error</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Allows redeclaration:
+        <pre><code>var user = 'tamim';
+var user;
+user = 'Muhammad Tamim'
+console.log(user) // Output: Muhammad Tamim</code></pre>
+      </td>
+      <td>
+        Does not allow redeclaration:
+        <pre><code>let user;
+let user; // SyntaxError:</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="var-hoisting-issue">var hoisting issue:</h3>
+
+<p>In JavaScript, var declarations are hoisted — this means the declaration is moved to the top of the function (or top of the global scope if outside a function) during the JavaScript parsing phase.</p>
+
+<h4>Example 1:</h4>
+
+<pre><code>function sayHi() {
+    phrase = "Hello";
+    console.log(phrase);
+
+    var phrase;
+}
+sayHi(); // Output: "Hello"
+</code></pre>
+
+<pre><code>/**
+ * Behind the scene:
+ function sayHi() {
+  var phrase;         // Declaration is hoisted
+  phrase = "Hello";   // Assignment stays in place
+  console.log(phrase);
+}
+ */</code></pre>
+
+<h4>Example 2:</h4>
+
+<pre><code>function sayHi() {
+    phrase = "Hello"; 
+
+    if (false) {
+        var phrase; 
+    }
+
+    console.log(phrase);
+}
+sayHi(); // ✅ Output: "Hello"
+</code></pre>
+
+<h4>Example 3:</h4>
+
+<pre><code>function sayHi() {
+    console.log(phrase);
+
+    var phrase = "Hello";
+}
+sayHi(); // Output: undefined
+</code></pre>
+
+<pre><code>/**
+ *Behind the scene:
+ function sayHi() {
+  var phrase;           // Hoisted declaration
+  console.log(phrase);  //  undefined (no value yet)
+  phrase = "Hello";     // Assignment happens here
+} 
+ */</code></pre>

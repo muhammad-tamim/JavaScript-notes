@@ -8,33 +8,13 @@
     <li><a href="#chapter-1-an-introduction">Chapter 1: An Introduction</a></li>
     <ul >
         <li><a href="#1-an-introduction-to-javaScript">1.1 An Introduction to JavaScript</a></li>
-        <ul>
-            <li><a href="#what-is-javascript">What Is JavaScript</a></li>
-            <li><a href="#javascript-history">JavaScript History</a></li>
-            <li><a href="#why-did-javascript-need-a-standard-version">Why Did JavaScript Need a Standard Version</a></li>
-            <li><a href="#javascript-engines">JavaScript Engines</a></li>
-        </ul>
     </ul>
    <li><a href="#chapter-2-javascript-fundamentals">Chapter 2: JavaScript Fundamentals</a></li>
-   <ul >
+   <ul>
         <li><a href="#2.1-hello-world">2.1 Hello, world!</a></li>
-        <ul>
-            <li><a href="#whats-happened-behind-the-code">What’s happened behind the code</a></li>
-        </ul>
         <li><a href="#2.2-code-structure">2.2: Code structure</a></li>
-        <ul>
-            <li><a href="#what-is-the-difference-between-statement-program-and-code">What is the difference between statement, program and code</a></li>
-            <li><a href="#semicolons">Semicolons</a></li>
-        </ul>
-         <li><a href="#2-3-variables">2.3: variables</a></li>
-         <ul>
-            <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
-            <li><a href="#var-hoisting-issue">var hoisting issue</a></li>
-        </ul>
-         <li><a href="#2.4-data-types">2.4: Data Types</a></li>
-         <ul>
-            <li><a href="#the-typeof-operator">The Typeof Operator</a></li>
-        </ul>
+        <li><a href="#2-3-variables">2.3: variables</a></li>
+        <li><a href="#2.4-data-types">2.4: Data Types</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -449,9 +429,6 @@ message = 123456;      // number
 </li>
 
 <h3 id="the-typeof-operator">The typeof operator:</h3>
-<small>operator: An operator is a special symbol or keyword that performs an operation on one or more values.<br>
-Example: +, -, !, typeof
-</small>
 <pre>
 <code>
 console.log(typeof undefined); // "undefined"

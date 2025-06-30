@@ -15,6 +15,7 @@
         <li><a href="#2.2-code-structure">2.2: Code structure</a></li>
         <li><a href="#2-3-variables">2.3: variables</a></li>
         <li><a href="#2.4-data-types">2.4: Data Types</a></li>
+        <li><a href="#2.5-basic-operators">2.5: Basic Operator</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -465,3 +466,162 @@ you will get "undefined"
 </ul>
 <hr>
 
+
+<!-- 2.5 -->
+<h3 id="2.5-basic-operators" align="center">2.4: Basic operators</h3>
+
+<p><strong>operator:</strong> An operator is a special symbol or keyword that performs an operation on one or more values.<br>
+Example: +, -, !, typeof
+</p>
+
+
+<h3>** (Exponentiation) Operator:</h3>
+<p>a ** b = a<sup> b</sup></p>
+
+<p>Example:</p>
+<pre>
+<code>console.log(2 ** 2); // 2² = 4
+console.log(2 ** 3); // 2³ = 8
+console.log(2 ** 4); // 2⁴ = 16
+console.log(4 ** (1 / 2)); // 2 (power of 1/2 is the same as a square root)
+console.log(8 ** (1 / 3)); // 2 (power of 1/3 is the same as a cubic root)
+</code>
+</pre>
+
+<h3>String concatenation with + operator</h3>
+<pre>
+<code>let s = "my" + "string";
+console.log(s); // mystring
+</code>
+</pre>
+
+<p><strong>Note:</strong> if any of the operands is a string, then the other one is converted to a string too.</br>
+<small><strong>operand : </strong>An operand is the value that an operator works on. For example, in 5 * 2, the operands are 5 and 2.</small>
+</p>
+
+<pre>
+<code>console.log('1' + 2); // "12"
+console.log(2 + '1'); // "21"
+console.log(2 + 2 + '1'); // "41" and not "221"
+console.log('1' + 2 + 2); // "122" and not "14"
+</code>
+</pre>
+
+
+<p><strong>Note: </strong>The + is the only operator that supports strings concatenation. Other arithmetic operators work only with numbers and always convert their operands to numbers.</p>
+
+<pre>
+<code>console.log(6 - '2'); // 4, converts '2' to a number
+console.log('6' / '2'); // 3, converts both operands to numbers
+</code>
+</pre>
+
+<h3>Pre Increment / Decrement:</h3>
+<pre>
+<code>let i = 10;
+let x = ++i;
+console.log(i); // 11
+console.log(x); // 11
+</code>
+</pre>
+<p>Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.</p>
+
+
+<h3>post Increment / Decrement:</h3>
+<pre>
+<code>let i = 10;
+let x = i++;
+console.log(i); // 11
+console.log(x); // 10
+</code>
+</pre>
+<p>Explanation: here, First, the value of i (which is 10) is assigned to the variable x. After that, i is incremented, so i becomes 11.</p>
+
+<p><strong>Note:</strong></p>
+<ul>
+<li>Pre-increment (++i): First increments the value of i, then assigns it.</li>
+<li>Post-increment (i++): First assigns the value, then increments it.</li>
+</ul>
+
+<h3>String comparison:</h3>
+<p>To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.</p>
+
+<p>How lexicographical algorithm works:</p>
+<ol>
+  <li>Strings are compared character by character from left to right.</li>
+  <li>Each character is compared based on its Unicode value.</li>
+  <li>The first difference determines the result.</li>
+  <li>If all characters are equal and lengths differ, the shorter string is considered smaller.</li>
+</ol>
+
+<pre><code>console.log('Z' > 'A'); // true
+console.log('hello' == 'hello'); // true
+console.log('Glow' > 'Glee'); // true
+console.log('Be' < 'Bee'); // true
+</code></pre>
+
+
+<h3>Difference between == and === :</h3>
+<pre><code>console.log(0 == false); // 0 == 0 true
+console.log('' == false); // 0 == 0 true
+</code></pre>
+
+<p>In both cases, JavaScript uses type conversion to convert different data types (string/boolean) into numbers before comparing with ==.</p>
+
+<p><strong>Solution:</strong> === strictly checks both value and data type. If one of them missing, it immediately returns false.</p>
+
+<pre><code>console.log(0 === false); // false
+console.log('' === false); // false
+console.log(0 === 0); // true
+console.log('' === ''); // true
+</code></pre>
+
+
+<h3>Comparison with null and undefined:</h3>
+<pre><code>console.log(null === undefined); // false
+console.log(null >= undefined); // false
+console.log(null < undefined); // false
+console.log(null == undefined); // true
+// this is a special rule. If you use ==, null and undefined are considered equal.
+</code></pre>
+
+
+<h3>null vs 0:</h3>
+ <pre><code>console.log(null > 0);  // false
+console.log(null == 0); // false because == has special rules for null: null only equals for undefined, not anything else.
+console.log(null >= 0); // true , because == and >= are not same.
+</code></pre>
+
+
+<h3>undefined vs 0:</h3>
+ <pre><code>console.log(undefined > 0); // false 
+console.log(undefined < 0); // false 
+console.log(undefined == 0); // false
+// undefined is converted to NaN in numeric comparisons
+</code></pre>
+
+
+<h3>Ternary operator(? :):</h3>
+<p>syntax:</p>
+<pre><code>condition ? true part : false part</code></pre>
+
+<p>Example:</p>
+<pre><code>// with conditional statement
+let age = 18;
+let message;
+
+if (age >= 18) {
+    message = "You are an adult";
+} else {
+    message = "You are a minor";
+}
+console.log(message);
+</code></pre>
+
+<pre><code>// with ternary operator
+let age = 18;
+let message = (age >= 18) ? "You are an adult" : "You are a minor";
+console.log(message);
+</code></pre>
+
+<hr>

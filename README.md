@@ -26,6 +26,7 @@
     <li><a href="#chapter-4-objects-the-basics">Chapter 4: Objects: the basics</a></li>
     <ul>
         <li><a href="#4.1-objects">4.1: Objects</a></li>
+        <li><a href="#4.2-objects-references-and-copying">4.2: Object references and copying</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -959,3 +960,166 @@ for (let key in user) {
     console.log(user[key]); // John, 30, true
 }
 </code></pre>
+<hr>
+
+
+<!-- 4.2 -->
+<h3 id="4.2-objects-references-and-copying" align="center">4.2: Objects References and Copying</h3>
+
+<p>One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.</p>
+
+<p>That’s easy to understand if we look a bit under the hood of what happens when we copy a value. Let’s start with a primitive, such as a string.
+<br>
+Here we put a copy of message into phrase:</p>
+
+<pre><code>let message = "Hello!";
+let phrase = message;
+</code></pre>
+<p>As a result we have two independent variables, each one storing the string "Hello!".</p>
+<img src="images/image5.png" alt="string copy image">
+
+<p>A variable doesn’t hold the object directly. It just holds a reference (or pointer) to where the object is stored in memory.</p>
+<p>Let’s look at an example of such a variable:</p>
+<pre><code>let user = {
+  name: "John"
+};</code></pre>
+
+<img src="images/image6.png" alt="object image">
+<p>The object is stored somewhere in memory (at the right of the picture), while the user variable (at the left) has a “reference” to it.</p>
+
+<p><strong>When an object variable is copied, the reference is copied, but the object itself is not duplicated:</strong></p>
+
+<pre><code>let user = { name: "John" };
+
+let admin = user; // copy the reference</code></pre>
+
+<p>Now we have two variables, each storing a reference to the same object:</p>
+<img src="images/image7.png" alt="object image">
+
+<p>As you can see, there’s still one object, but now with two variables that reference it.
+<br>
+We can use either variable to access the object and modify its contents:</p>
+
+<pre><code>let user = { name: 'John' };
+
+let admin = user;
+
+admin.name = 'Pete'; // changed by the "admin" reference
+
+console.log(user.name); // 'Pete', 
+console.log(admin.name); // 'Pete', </code></pre>
+
+<h3>Const objects can be modified?</h3>
+<p>An important side effect of storing objects as references is that an object declared as const can be modified.</p>
+
+<pre><code>const user = {
+    name: "John"
+};
+
+user.name = "Pete";
+
+console.log(user.name); // Pete
+</code></pre>
+
+<h3>Cloning and merging and Object.assign:</h3>
+
+<p>So, copying an object variable creates one more reference to the same object.
+<br>
+But what if we need to duplicate an object?
+<br>
+We can create a new object and replicate the structure of the existing one, by iterating over its properties and copying them on the primitive level.
+<br>
+Like this:</p>
+
+<pre><code>let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+    clone[key] = user[key];
+}
+
+// now clone is a fully independent object with the same content
+clone.name = "Pete"; // changed the data in it
+
+console.log(user.name); // still John in the original object
+console.log(clone.name); // but Pete in the clone
+</code></pre>
+
+<p>We can also use the method <strong>Object.assign</strong>:</p>
+
+<p>The syntax is:</p>
+<pre><code>Object.assign(dest, ...sources)</code></pre>
+<ul>
+  <li>The first argument dest is a target object.</li>
+  <li>Further arguments is a list of source objects.</li>
+</ul>
+<p>It copies the properties of all source objects into the target dest, and then returns it as the result.</p>
+
+<pre><code>let user = { name: "John" };
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: "John", canView: true, canEdit: true }
+console.log(user.name); // John
+console.log(user.canView); // true
+console.log(user.canEdit); // true
+</code></pre>
+
+<p>We also can use Object.assign to perform a simple object cloning:</p>
+
+<pre><code>let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = Object.assign({}, user);
+
+console.log(clone.name); // John
+console.log(clone.age); // 30
+</code></pre>
+
+<h3>Nested cloning:</h3>
+
+<pre><code>let user = {
+    name: "John",
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+let clone = Object.assign({}, user);
+
+console.log(user.sizes === clone.sizes); // true, same object
+
+user.sizes.width = 60;   // Modify the original object
+console.log(clone.sizes.width); // 60, get the result from the other one
+</code></pre>
+
+<p>To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “structured cloning”.The call structuredClone(object) clones the object with all nested properties:</p>
+
+<pre><code>let user = {
+    name: "John",
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+let clone = structuredClone(user);
+
+console.log(user.sizes === clone.sizes); // false, different objects
+
+user.sizes.width = 60;    // change a property from one place
+console.log(clone.sizes.width); // 50, not related
+</code></pre>
+
+<hr>

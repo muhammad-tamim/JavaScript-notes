@@ -17,6 +17,7 @@
         <li><a href="#2.4-data-types">2.4: Data Types</a></li>
         <li><a href="#2.5-basic-operators">2.5: Basic Operator</a></li>
         <li><a href="#2.6-function">2.6: Function</a></li>
+        <li><a href="#2.7-arrow-function">2.7: Arrow Function</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -760,3 +761,39 @@ function handleUserRegistration(user) {
 }
 </code></pre>
 <hr/>
+
+
+<h3 id="2.7-arrow-function" align="center">2.7: Arrow Function</h3>
+<p>Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6 (2015).</p>
+
+<p>Examples:</p>
+<p><strong>No Parameter, No Return:</strong></p>
+<pre><code>const greet = () => console.log("Hello!");
+
+greet(); // Output: Hello!
+
+// or
+
+const greet2 = () => {
+    console.log("Hello!");
+};
+greet2(); // Output: Hello!
+</code></pre>
+
+<p><strong>Single Parameter, Single Line, No Return:</strong><br>
+<small>(Parentheses are optional for single parameter)</small>
+</p>
+<pre><code>const square = x => x * x;
+console.log(square(5)); // Output: 25
+</code></pre>
+
+<p><strong>Multiple Parameter and statement:</strong><br>
+<small>( {} required for return )</small>
+</p>
+<pre><code>const multiply = (a, b) => {
+  const result = a * b;
+  return result;
+};
+console.log(multiply(3, 4)); // Output: 12
+</code></pre>
+<hr>

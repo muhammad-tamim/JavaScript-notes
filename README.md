@@ -16,6 +16,7 @@
         <li><a href="#2-3-variables">2.3: variables</a></li>
         <li><a href="#2.4-data-types">2.4: Data Types</a></li>
         <li><a href="#2.5-basic-operators">2.5: Basic Operator</a></li>
+        <li><a href="#2.6-function">2.6: Function</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -625,3 +626,137 @@ console.log(message);
 </code></pre>
 
 <hr>
+
+
+<!-- 2.6 -->
+<h3 id="2.6-function" align="center">2.6: Function</h3>
+
+<p>A Function is a block of reusable code that perform a specific task when it is called.</p>
+
+<pre><code>function calcSum(a, b) {
+    console.log(a + b);
+}
+
+calcSum(1, 2); // 3
+</code></pre>    
+
+<p><strong>Note:</strong></p>
+<ul>
+  <li>1, 2 are arguments</li>
+  <li>a, b are parameters</li>
+</ul>
+
+<h3>What is the difference between return and no return in a function?</h3>
+<pre><code>function calcSum(a, b) {
+    const result = a + b;
+}
+
+console.log(calcSum(1, 2)); // undefined
+</code></pre>    
+
+
+<p>In this example, the function calculates something, but it doesn't return anything.
+So when we call sum(1, 2), the calculation happens inside the function, but we can’t access or use the result outside.
+You just call the function, and that’s all — no control or output comes back.</p>
+
+<pre><code>function calcSum(a, b) {
+    const result = a + b;
+    return result;
+}
+
+console.log(calcSum(1, 2)); // 3
+const functionResult = calcSum(3, 4);
+console.log(functionResult + 5); // 12
+
+</code></pre>    
+
+<p>In this example, the function not only does the work, but it also returns the result to us. This means we can store it, reuse it, or do more operations with it.</p>
+
+<p>You can think of it like this:</p>
+
+<p>We order a coffee from a robot. The robot’s job is to make the coffee. But the robot’s owner teaches it something special, When someone orders coffee, don’t just make it — also serve it on the table.</p>
+
+<p>That’s how <code>return</code> works in a function.</p>
+
+<ul>
+  <li>Without <code>return</code>, the robot just makes the coffee — but you don’t get it.</li>
+  <li>With <code>return</code>, the robot <strong>makes</strong> the coffee and <strong>gives it to you</strong>.</li>
+</ul>
+
+<h3>Default Parameter:</h3>
+<p>In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.</p>
+<pre><code>function showGreet(name = "Guest") {
+  console.log("Hello, " + name + "!");
+}
+showGreet("Tamim"); // Output: Hello, Tamim!
+showGreet();        // Output: Hello, Guest!
+</code></pre>
+
+<h3>Naming a function:</h3>
+<p>Functions are actions. So their name is usually a verb. It should be brief, as accurate as possible and describe what the function does, so that someone reading the code gets an indication of what the function does.</p>
+<pre><code>showMessage()     // shows a message
+getAge()          // returns the age (gets it somehow)
+calcSum()         // calculates a sum and returns the result
+createForm()      // creates a form (and usually returns it)
+checkPermission() // checks a permission, returns true/false
+</code></pre>
+
+<h3>One function – one action rules:</h3>
+<p>A function should do exactly what is suggested by its name, no more.</p>
+<p>Two independent actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function that calls those two).</p>
+
+<pre><code>// Bad example:
+
+function handleUserRegistration(user) {
+  // Validate user input
+  if (!user.username || !user.email || !user.password) {
+    throw new Error("Missing required fields");
+  }
+
+  // Hash password
+  const hashedPassword = hashFunction(user.password);
+
+  // Save user to database
+  database.insert({ ...user, password: hashedPassword });
+
+  // Log registration event
+  logger.log(`User ${user.username} registered at ${new Date()}`);
+
+  // Send confirmation email
+  emailService.sendConfirmation(user.email, user.username);
+}</code></pre>
+
+<pre><code>// Good example:
+
+function validateUserInput(user) {
+  if (!user.username || !user.email || !user.password) {
+    throw new Error("Missing required fields");
+  }
+}
+
+function hashPassword(password) {
+  return hashFunction(password);
+}
+
+function saveUser(user, hashedPassword) {
+  database.insert({ ...user, password: hashedPassword });
+}
+
+function logRegistration(username) {
+  logger.log(`User ${username} registered at ${new Date()}`);
+}
+
+function sendConfirmationEmail(email, username) {
+  emailService.sendConfirmation(email, username);
+}
+
+// Orchestrating function
+function handleUserRegistration(user) {
+  validateUserInput(user);
+  const hashedPassword = hashPassword(user.password);
+  saveUser(user, hashedPassword);
+  logRegistration(user.username);
+  sendConfirmationEmail(user.email, user.username);
+}
+</code></pre>
+<hr/>

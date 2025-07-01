@@ -19,6 +19,10 @@
         <li><a href="#2.6-function">2.6: Function</a></li>
         <li><a href="#2.7-arrow-function">2.7: Arrow Function</a></li>
     </ul>
+    <li><a href="#chapter-3-code-quality">Chapter 3: Code Quality</a></li>
+    <ul>
+        <li><a href="#3.1-coding-style">3.1: Coding Style</a></li>
+    </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -797,3 +801,58 @@ console.log(square(5)); // Output: 25
 console.log(multiply(3, 4)); // Output: 12
 </code></pre>
 <hr>
+
+
+<!-- chapter 3: -->
+<h2 id="chapter-3-code-quality" align="center">Code Quality</h2>
+
+<!-- 3.1 -->
+<h3 id="3.1-coding-style" align="center">3.1 Coding Style</h3>
+<img src="images/image3.png" alt="coding style image">
+
+<h3>Curly Braces:</h3>
+<p>In most JavaScript projects curly braces are written in “Egyptian” style with the opening brace on the same line as the corresponding keyword – not on a new line. There should also be a space before the opening bracket, like this:</p>
+<pre><code>if (10 > 5) {
+    console.log("10 is greater than 5");
+}</code></pre>
+
+<p>Bad Curly Braces code:</p>
+
+<pre><code>if (10 > 5) { console.log("10 is greater than 5"); }
+
+// or
+
+if (10 > 5)
+console.log("10 is greater than 5");</code></pre>
+
+<h3>Indents:</h3>
+<p>Use proper line break where needed</p>
+<pre><code>function pow(x, n) {
+    let result = 1;
+    //              <--
+    for (let i = 0; i < n; i++) {
+        result *= x;
+    }
+    //              <--
+    return result;
+}</code></pre>
+
+<h3>Function Placement:</h3>
+<p>If you are writing several “helper” functions then follow the "Code first, then functions" style. That’s because when reading code, we first want to know what it does. If the code goes first, then it becomes clear from the start. Then, maybe we won’t need to read the functions at all, especially if their names are descriptive of what they actually do. </p>
+<pre><code>// the code which uses the functions
+let elem = createElement();
+setHandler(elem);
+walkAround();
+
+// --- helper functions ---
+function createElement() {
+  ...
+}
+
+function setHandler(elem) {
+  ...
+}
+
+function walkAround() {
+  ...
+  }</code></pre>

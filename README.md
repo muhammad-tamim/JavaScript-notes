@@ -23,6 +23,10 @@
     <ul>
         <li><a href="#3.1-coding-style">3.1: Coding Style</a></li>
     </ul>
+    <li><a href="#chapter-4-objects-the-basics">Chapter 4: Objects: the basics</a></li>
+    <ul>
+        <li><a href="#4.1-objects">4.1: Objects</a></li>
+    </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -856,3 +860,102 @@ function setHandler(elem) {
 function walkAround() {
   ...
   }</code></pre>
+
+
+<!-- chapter 4: -->
+<h2 id="chapter-4-objects-the-basics" align="center">Chapter 4: Objects: the basics</h2>
+
+<!-- 4.1 -->
+<h3 id="4.1-objects" align="center">4.1: Objects</h3>
+
+<p>An object is a collection of key-value pairs called properties. where key is a string (also called a “property name”), and value can be anything.</p>
+
+<pre><code>let user = {   
+  name: "John",  
+  age: 30        
+}
+</code></pre>
+
+<p>In the user object, there are two properties:</p>
+<ol>
+  <li>The first property has the key "name" and the value "John".</li>
+  <li>The second one has the key "age" and the value 30.</li>
+</ol>
+
+<p>The user object can be imagined as a cabinet with two signed files labeled “name” and “age”:</p>
+<img src="images/image4.png" alt="object image">
+
+<p>We can add, remove and read files from it at any time by the using of dot or bracket notation:</p>
+
+<pre><code>let user = {
+    name: "John",
+    age: 30
+}
+console.log(user.name); // John
+console.log(user.age); // 30
+user.location = "USA";
+console.log(user.location); // USA
+delete user.location;
+console.log(user.location); // undefined
+</code></pre>
+
+<p>We can also use multi-word property names, but then they must be quoted and when read the peppery value we need to use bracket notation.</p>
+
+<pre><code>let user = {
+    name: "John",
+    age: 30,
+    "like birds": true,
+}
+console.log(user["like birds"]); // true
+</code></pre>
+
+<p>In real code, we often use existing variables as values for property names:</p>
+
+<pre><code>function makeUser(name, age) {
+    return {
+        name: name,
+        age: age,
+    };
+}
+
+let user = makeUser("John", 30);
+console.log(user.name); // John
+</code></pre>
+
+<p>In the example above, properties have the same names as variables. so in this case we can use shorthand technique:</p>
+
+<pre><code>function makeUser(name, age) {
+    return {
+        name,
+        age
+    };
+}
+
+let user = makeUser("John", 30);
+console.log(user.name); // John
+</code></pre>
+
+<h3>Property existence test, “in” operator:</h3>
+
+<pre><code>let user = {
+    name: "John",
+    age: 30,
+}
+
+console.log("age" in user); // true, user.age exists
+console.log("location" in user); // false, user.location doesn't exist
+</code></pre>
+
+<h3>The "for..in" loop</h3>
+
+<pre><code>let user = {
+    name: "John",
+    age: 30,
+    isAdmin: true
+};
+
+for (let key in user) {
+    console.log(key);  // name, age, isAdmin
+    console.log(user[key]); // John, 30, true
+}
+</code></pre>

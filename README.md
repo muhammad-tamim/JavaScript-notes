@@ -27,6 +27,7 @@
     <ul>
         <li><a href="#4.1-objects">4.1: Objects</a></li>
         <li><a href="#4.2-objects-references-and-copying">4.2: Object references and copying</a></li>
+        <li><a href="#4.3-object-methods">4.3: Object Methods</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -1120,6 +1121,73 @@ console.log(user.sizes === clone.sizes); // false, different objects
 
 user.sizes.width = 60;    // change a property from one place
 console.log(clone.sizes.width); // 50, not related
+</code></pre>
+
+<hr>
+
+
+<!-- 4.3 -->
+<h3 id="4.3-object-methods" align="center">4.3: Object Methods</h3>
+
+<p>A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.</p>
+
+<p>Example:</p>
+<pre><code>let user = {
+    name: "Tamim",
+    // Method shorthand (recommended)
+    sayHello() {
+        console.log("Hello, I'm " + this.name);
+    },
+    // method without shorthand
+    sayHi: function () {
+        console.log("Hi, I'm " + this.name);
+    }
+};
+user.sayHello(); // Output: Hello, I'm Tamim
+user.sayHi(); // Output: Hi, I'm Tamim
+</code></pre>
+
+<ul>
+  <li>sayHello ia a method of user object</li>
+  <li>It uses this.name to access the object’s own data.</li>
+</ul>
+
+<p>Technically, it’s also possible to access the object without this: </p>
+
+<pre><code>let user = {
+    name: "Tamim",
+    sayHello() {
+        console.log("Hello, I'm " + user.name);
+    },
+
+};
+user.sayHello(); // Output: Hello, I'm Tamim</code></pre>
+
+<p>But such code is unreliable. If we decide to copy user to another variable, e.g. admin = user and overwrite user with something else, then it will access the wrong object:</p>
+
+<pre><code>let user = {
+    name: "Tamim",
+    sayHello() {
+        console.log(user.name);
+    },
+};
+
+let admin = user;
+user = null;
+admin.sayHello(); // Cannot read properties of null (reading 'sayHello')</code></pre>
+
+<p>If we used this.name instead of user.name inside the alert, then the code would work:</p>
+
+<pre><code>let user = {
+    name: "Tamim",
+    sayHello() {
+        console.log(this.name);
+    },
+};
+
+let admin = user;
+user = null;
+admin.sayHello(); // Tamim
 </code></pre>
 
 <hr>

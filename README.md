@@ -28,6 +28,7 @@
         <li><a href="#4.1-objects">4.1: Objects</a></li>
         <li><a href="#4.2-objects-references-and-copying">4.2: Object references and copying</a></li>
         <li><a href="#4.3-object-methods">4.3: Object Methods</a></li>
+        <li><a href="#4.4-constructor-function-and-new-operator">4.4: Constructor Function and "new" Operator</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -1191,3 +1192,63 @@ admin.sayHello(); // Tamim
 </code></pre>
 
 <hr>
+
+
+<h3 id="4.4-constructor-function-and-new-operator" align="center">4.4: Constructor function and "new" operator</h3>
+
+<p>A constructor function is a regular function used to create multiple objects with the same structure and behavior. By convention, the name of a constructor function starts with a capital letter to distinguish it from regular functions.</p>
+
+<pre><code>function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}</code></pre>
+
+<ul>
+  <li>Person is a constructor function.</li>
+  <li>Inside it, this refers to the new object being created.</li>
+</ul>
+
+<p>You call a constructor function using the new operator:</p>
+
+<pre><code>const p1 = new Person("Tamim", 20);
+const p2 = new Person("Asha", 19);
+
+console.log(p1.name); // Tamim
+console.log(p2.age);  // 19
+</code></pre>
+
+<p><strong>What new Does Behind the Scenes:</strong></p>
+<p>When you do new Person("Tamim", 20):</p>
+<ul>
+  <li>A new empty object is created: {}</li>
+  <li>this inside the constructor is set to that new object</li>
+  <li>Properties are added to this</li>
+  <li>The object is returned automatically</li>
+</ul>
+
+<h3>When do we need a Constructor Function?</h3>
+<p>Instead of writing the same object structure again and again, you use a constructor function to make it easier and cleaner.</p>
+
+<p><strong>Without Constructor:</strong></p>
+<pre><code>const user1 = {
+  name: "Tamim",
+  age: 20
+
+};
+
+const user2 = {
+  name: "Asha",
+  age: 19
+};
+// Repeat, repeat, repeat...</code></pre>
+
+<p><strong>Without Constructor Function and New operator:</strong></p>
+
+<pre><code>function User(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const user1 = new User("Tamim", 20);
+const user2 = new User("Asha", 19);
+</code></pre>

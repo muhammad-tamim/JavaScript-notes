@@ -29,6 +29,7 @@
         <li><a href="#4.2-objects-references-and-copying">4.2: Object references and copying</a></li>
         <li><a href="#4.3-object-methods">4.3: Object Methods</a></li>
         <li><a href="#4.4-constructor-function-and-new-operator">4.4: Constructor Function and "new" Operator</a></li>
+        <li><a href="#4.5-optional-chaining">4.5: Optional Chaining</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -1252,3 +1253,33 @@ const user2 = {
 const user1 = new User("Tamim", 20);
 const user2 = new User("Asha", 19);
 </code></pre>
+<hr>
+
+
+<h3 id="4.5-optional-chaining" align="center">4.5: Optional Chaining (?.)</h3>
+
+<p>Optional Chaining(?.) is a safe way to access deeply nested properties without getting an error if something is undefined or null.</p>
+
+<p>Without Optional Chaining:</p>
+<pre><code>const user = {};
+console.log(user.address.city); // error: Cannot read properties of undefined (reading 'city')</code></pre>
+
+<p>With Optional Chaining:</p>
+<pre><code>const user = {};
+console.log(user.address?.city); // undefined
+</code></pre>
+
+<p>if address is undefined or null optional chaining stops accessing .city and returns undefined instead of throwing an error.</p>
+
+<p>we can also use optional chaining for calling method:</p>
+
+<pre><code>const user = {
+    sayHi() {
+        console.log("Hi!");
+    }
+};
+
+user.sayHi?.();     // Hi!
+user.sayBye?.();    // Nothing happens, no error or undefined
+</code></pre>
+<hr>

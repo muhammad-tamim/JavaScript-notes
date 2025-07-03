@@ -31,6 +31,10 @@
         <li><a href="#4.4-constructor-function-and-new-operator">4.4: Constructor Function and "new" Operator</a></li>
         <li><a href="#4.5-optional-chaining">4.5: Optional Chaining</a></li>
     </ul>
+    <li><a href="#chapter-5-data-types">Chapter 5: Data types</a></li>
+     <ul>
+        <li><a href="#5.1-numbers">5.1: Numbers</a></li>
+    </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -1283,3 +1287,34 @@ user.sayHi?.();     // Hi!
 user.sayBye?.();    // Nothing happens, no error or undefined
 </code></pre>
 <hr>
+
+
+<!-- chapter 5: -->
+<h2 id="chapter-5-data-types" align="center">Chapter 5: Data types</h2>
+
+<!-- 5.1 -->
+<h3 id="5.1-numbers" align="center">5.1 Numbers</h3>
+
+<h3>Math Properties:</h3>
+<pre><code>console.log(Math.PI);       // 3.141592653589793</code></pre>
+
+<h3>Math Methods:</h3>
+
+<pre><code>console.log(Math.round(4.5)); // 5 
+/*
+Rounds to the nearest integer:
+if number >= 0.5, it rounds up to the next integer
+if number < 0.5, it rounds down to the previous integer
+*/
+console.log(Math.floor(4.9));   // 4 → Rounds down
+console.log(Math.ceil(4.1));    // 5 → Rounds up
+console.log(Math.trunc(4.9));   // 4 → Removes decimal part (not supported IE)
+
+
+console.log(Math.pow(2, 3));    // 8 → 2 to the power of 3
+console.log(Math.sqrt(25));     // 5 → Square root of 25
+console.log(Math.abs(-7));      // 7 → remove negative sign
+
+console.log(Math.min(3, 1, 7)); // 1 → Smallest number
+console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
+

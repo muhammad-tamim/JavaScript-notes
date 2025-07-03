@@ -34,6 +34,7 @@
     <li><a href="#chapter-5-data-types">Chapter 5: Data types</a></li>
      <ul>
         <li><a href="#5.1-numbers">5.1: Numbers</a></li>
+        <li><a href="#5.2-strings">5.2: Strings</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -1317,4 +1318,154 @@ console.log(Math.abs(-7));      // 7 → remove negative sign
 
 console.log(Math.min(3, 1, 7)); // 1 → Smallest number
 console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
+<hr>
+
+<!-- 5.2 -->
+<h3 id="5.2-strings" align="center">5.2: Strings</h3>
+
+<h3>Quotes:</h3>
+<p>JavaScript supports three types of quotes for working with strings.</p>
+
+<ol>
+  <li>Single Quotes ('...'):</li>
+
+  <pre><code>const name = 'Tamim';
+console.log(name); // Tamim</code></pre>
+  
+  <li>Double Quotes ("..."):</li>
+
+  <pre><code>const language = "JavaScript";
+console.log(language); // JavaScript</code></pre>
+
+  <li>Backticks (`...`):</li>
+  <p>Backticks are more powerful than single/double quotes. They were introduced in ES6 (2015) and allow for:</p>
+  <ul>
+    <li>Multiline Strings (<small>No need for \n</small>):</li>
+    
+  <pre><code>const multiline = `This is line 1
+This is line 2
+This is line 3`;
+console.log(multiline);
+</code></pre>
+    
+  <li>String Interpolation (Insert Variables Directly):</li>
+  
+  <pre><code>const name = "Tamim";
+const age = 20;
+
+const info = `My name is ${name} and I am ${age} years old.`;
+console.log(info);
+// My name is Tamim and I am 20 years old.
+</code></pre>
+  
+  <li>Expression Evaluation:</li>  
+  <pre><code>console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12</code></pre>
+  </ul>
+</ol>
+
+<h3>String Property: </h3>
+<p>.length is the only string property, and it’s very commonly used.</p>
+
+<pre><code>const str = "JavaScript";
+console.log(str.length); // 10
+</code></pre>
+
+<h3>String Methods:</h3>
+
+<p><strong>Case Conversion:</strong><p>
+
+<pre><code>console.log("hello".toUpperCase()); // "HELLO"
+console.log("WORLD".toLowerCase()); // "world"
+</code></pre>
+
+<p><strong> Searching in Strings:</strong></p>
+
+<pre><code>console.log("JavaScript".includes("Script")); // true
+console.log("JavaScript".startsWith("Java")); // true
+console.log("JavaScript".endsWith("Script")); // true
+console.log("hello world".indexOf("world")); // 6
+</code></pre>
+
+<p>Note: indexOf() method searches a string for a specific substring and returns the index (position) of the first match of found and -1 if nothing can be found.</p>
+<p>syntax:</p>
+<pre><code>string.indexOf(searchValue, startIndex);</code></pre>
+
+<ul>
+  <li>searchValue – the substring to find</li>
+  <li>startIndex (optional) – where to start the search (default is 0)</li>
+</ul>
+
+<p>More Examples: </p>
+
+<pre><code>console.log("banana".indexOf("a"));      // 1 → first "a"
+console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
+console.log("banana".indexOf("z"));      // -1 → not found
+</code></pre>
+
+<h3>Extracting Part of a String: </h3>
+
+<p>slice(start, end): </p>
+
+<p>The slice() method returns a part of the string, starting from the given start index and ending just before the end index (the end index is not included). If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.</p>
+
+<pre><code>const text = "JavaScript";
+
+console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
+console.log(text.slice(4))        // "Script" (from index 4 to the end)
+console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)</code></pre>
+
+<h3>Replacing and Repeating:</h3>
+
+<pre><code>console.log("I like cats".replace("cats", "dogs")); // "I like dogs"
+console.log("ha".repeat(3)); // "hahaha"
+</code></pre>
+
+<h3>Joining and Splitting:</h3>
+
+<pre><code>const sentence = "I love JavaScript";
+const words = sentence.split(" "); // ["I", "love", "JavaScript"]
+console.log(words.join("-"));      // "I-love-JavaScript"
+</code></pre>
+
+<h3>Removing Extra Spaces: </h3>
+
+<pre><code>console.log("  hello world  ".trim()); // "hello world"
+</code></pre>
+
+<h3>Changing the case:</h3>
+
+<pre><code>console.log('Interface'.toUpperCase()); // INTERFACE
+console.log('Interface'.toLowerCase()); // interface
+console.log('Interface'[0].toLowerCase()); // 'i'</code></pre>
+
+<h3>includes, startsWith, endsWith: </h3>
+
+<pre><code>const message = "Hello, Tamim!";
+console.log(message.includes("Tamim")); // true
+console.log(message.includes("hello")); // false (case-sensitive)
+
+const greeting = "JavaScript is fun!";
+console.log(greeting.startsWith("Java"));   // true
+console.log(greeting.startsWith("Script")); // false
+console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
+
+const fileName = "report.pdf";
+console.log(fileName.endsWith(".pdf"));  // true
+console.log(fileName.endsWith(".txt"));  // false
+console.log("JavaScript".endsWith("Script", 10)); // true
+console.log("JavaScript".endsWith("Java", 4));    // true</code></pre>
+
+<h3>Strings are immutable:</h3>
+<p>That's mean you can't change characters directly: </p>
+
+<pre><code>let str = "Hello";
+str[0] = "Y";
+console.log(str); // "Hello" (not "Yello")
+</code></pre>
+
+<p> You must create a new string instead: </p>
+<pre><code>let str = "Hello";
+let newStr = "Y" + str.slice(1);
+console.log(newStr); // "Yello"
+</code></pre>
 

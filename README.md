@@ -13,6 +13,15 @@
         <li><a href="#1.4-data-types">1.4: Data Types</a></li>
         <ul>
           <li><a href="#7-primitive-data-types">7 Primitive Data Types</a></li>
+          <ul>
+            <li><a href="#number">Number</a></li>
+            <li><a href="#bigint">BigInt</a></li>
+            <li><a href="#string">String</a></li>
+            <li><a href="#boolean">Boolean</a></li>
+            <li><a href="#null">Null</a></li>
+            <li><a href="#undefined">Undefined</a></li>
+            <li><a href="#symbol">Symbol</a></li>
+          </ul>
           <li><a href="#1-non-primitive-data-types">1 Non-primitive data types (Object)</a></li>
           <ul>
             <li><a href="#object">Object</a></li>

@@ -7,34 +7,26 @@
    <ul>
     <li><a href="#chapter-1-an-introduction">Chapter 1: An Introduction</a></li>
     <ul >
-        <li><a href="#1-an-introduction-to-javaScript">1.1 An Introduction to JavaScript</a></li>
-    </ul>
-   <li><a href="#chapter-2-javascript-fundamentals">Chapter 2: JavaScript Fundamentals</a></li>
-   <ul>
-        <li><a href="#2.1-hello-world">2.1 Hello, world!</a></li>
-        <li><a href="#2.2-code-structure">2.2: Code structure</a></li>
-        <li><a href="#2-3-variables">2.3: variables</a></li>
-        <li><a href="#2.4-data-types">2.4: Data Types</a></li>
-        <li><a href="#2.5-basic-operators">2.5: Basic Operator</a></li>
-        <li><a href="#2.6-function">2.6: Function</a></li>
-        <li><a href="#2.7-arrow-function">2.7: Arrow Function</a></li>
-    </ul>
-    <li><a href="#chapter-3-code-quality">Chapter 3: Code Quality</a></li>
-    <ul>
-        <li><a href="#3.1-coding-style">3.1: Coding Style</a></li>
-    </ul>
-    <li><a href="#chapter-4-objects-the-basics">Chapter 4: Objects: the basics</a></li>
-    <ul>
-        <li><a href="#4.1-objects">4.1: Objects</a></li>
-        <li><a href="#4.2-objects-references-and-copying">4.2: Object references and copying</a></li>
-        <li><a href="#4.3-object-methods">4.3: Object Methods</a></li>
-        <li><a href="#4.4-constructor-function-and-new-operator">4.4: Constructor Function and "new" Operator</a></li>
-        <li><a href="#4.5-optional-chaining">4.5: Optional Chaining</a></li>
+        <li><a href="#1.1-an-introduction-to-javaScript">1.1 An Introduction to JavaScript</a></li>
+        <li><a href="#1.2-hello-world">1.2 Hello, world!</a></li>
+        <li><a href="#1-3-variables">1.3: variables</a></li>
+        <li><a href="#1.4-data-types">1.4: Data Types</a></li>
+        <ul>
+          <li><a href="#7-primitive-data-types">7 Primitive Data Types</a></li>
+          <li><a href="#1-non-primitive-data-types">1 Non-primitive data types (Object)</a></li>
+          <ul>
+            <li><a href="#object">Object</a></li>
+            <li><a href="#function">Function</a></li>
+            <li><a href="#function">Array</a></li>
+          </ul>
+        </ul>
+        <li><a href="#2.4-basic-operators">2.4: Basic Operator</a></li>
     </ul>
     <li><a href="#chapter-5-data-types">Chapter 5: Data types</a></li>
      <ul>
         <li><a href="#5.1-numbers">5.1: Numbers</a></li>
         <li><a href="#5.2-strings">5.2: Strings</a></li>
+        <li><a href="#5.3-arrays">5.3: Arrays</a></li>
     </ul>
   </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -48,12 +40,12 @@
 <!-- chapter 1: -->
 <h2 id="chapter-1-an-introduction" align="center">Chapter 1: An Introduction</h2>
 
-<!-- 1. -->
-<h3 id="1-an-introduction-to-javaScript" align="center">1.1 An Introduction to JavaScript</h3>
+<!-- 1.1 -->
+<h3 id="1.1-an-introduction-to-javaScript" align="center">1.1 An Introduction to JavaScript</h3>
 
 <h3 id="what-is-javascript">What is JavaScript:</h3>
-<p>JavaScript is a programming language for the web. The programs in JavaScript are called scripts because they are small, dynamic, and interpreted pieces of code designed to run in the browser without compiling the entire program.</p>
-<p>JavaScript code is written and send to the browser as plain text, not compiled machine code. Unlike some other programming languages (such as C, C++, or Java) that require compilation of the whole program before running, JavaScript is interpreted and just-in-time compiled in the browser at runtime. In this way, JavaScript is fundamentally different from compiled languages like C, C++, and Java, which need to be processed by a compiler before running.</p>
+<p>JavaScript is a programming language for the web. The programs in JavaScript are called scripts because they are small, dynamic, and <a href="#interpreter">interpreted</a> pieces of code designed to run in the browser without <a href="#compiler">compiling</a> the entire program.</p>
+<p>JavaScript code is written and send to the browser as plain text, not compiled machine code. Unlike some other programming languages (such as C, C++, or Java) that require compilation of the whole program before running, JavaScript is <a href="#interpreter">interpreted</a> and <a href="#just-in-time-compiled">just-in-time compiled</a> in the browser at <a href="#runtime">runtime</a>. In this way, JavaScript is fundamentally different from compiled languages like C, C++, and Java, which need to be processed by a <a href="#compiler">compiler</a> before running.</p>
 
 <h3 id="javascript-history">JavaScript History:</h3>
 <p>In 1995, Brendan Eich, a developer at Netscape Communications Corporation, created JavaScript. Eich initially joined Netscape with the intention of implementing the Scheme programming language in the browser. However, Netscape’s management wanted the Scheme language syntax resemble and look similar to Java. As a result, Eich decided to designed a new language that combined:</p>
@@ -62,18 +54,27 @@
   <li>The object-orientation of Self programming language</li>
   <li>And The syntax of Java programming language</li>
 </ul>
-<p>He completed the first version of the language called Mocha (the internal name during early development by Brendan Eich at Netscape; it was never officially released under this name) in just 10 days in May 1995.</p>
+<p>He completed the first version of the language called <a href="#mocha">Mocha</a> in just 10 days in May 1995.</p>
 <ul>
   <li><strong>LiveScript (September 1995)</strong> – The first version of the language released to the public was called LiveScript, included with the beta version of Netscape Navigator 2.0 Browser.</li>
   <p><strong>Note:</strong> Alongside the language, Eich also built the first JavaScript engine, called SpiderMonkey, written in C, to run LiveScript in the Navigator browser.</p>
 </ul>
 <ul>
   <li><strong>JavaScript (December 1995)</strong> – The final name, officially announced in collaboration with Sun Microsystems</li>
-  <li><strong>ES1 (1997)</strong> - First official standardized version of JavaScript</li>
+  <p><strong>Why netscape collaborate with Sun Microsystems?</strong></p>
+  <p>The main reason is Marketing and Branding:</p>
+  <ul>
+    <li>
+    Sun Microsystems was the creator of the Java programming language, which was very popular and highly hyped at the time. To take advantage of this popularity, Netscape wanted their new scripting language (originally called Mocha, later renamed LiveScript) to gain more attention. So, they partnered with Sun Microsystems and renamed their language to JavaScript, even though Java and JavaScript are completely different languages with different purposes and designs.
+</li>
 </ul>
+  <li>
+    <strong>ES1 (1997)</strong> - First official standardized version of JavaScript
+  </li>
 <p><strong>Note:</strong><br>
 In June 1997 JavaScript was submitted to ECMA (European Computer Manufacturers Association) International to create a standard version of the language, so all browsers could implement it consistently.<br>
 So, ECMAScript is the official name of the JavaScript standard and ES1, ES2, ES6 etc. are its version numbers.</p>
+</ul>
 
 <h3 id="why-did-javascript-need-a-standard-version">Why Did JavaScript Need a Standard Version:</h3>
 <p>When JavaScript was first created in 1995 by Netscape, it was only implemented in their browser Netscape Navigator. Shortly, Microsoft launched its own browser, Internet Explorer, and included its own version of JavaScript called JScript. As a result, two distinct versions of JavaScript were emerged in the market:</p>
@@ -90,36 +91,37 @@ So, ECMAScript is the official name of the JavaScript standard and ES1, ES2, ES6
 </ul>
 <p><strong>The Solution:</strong><br>
 To solve this problem, Netscape submitted JavaScript to ECMA International in June 1997, so they could create a standardized specification of the language. This standard was named ECMAScript.</p>
-<p><strong>Purpose of ECMAScript:</strong></p>
-<ul>
-  <li>Make sure all browsers follow the same rules for JavaScript.</li>
-  <li>Allow developers to write code that works consistently across all browsers.</li>
-  <li>Ensure the future growth and evolution of the language.</li>
-</ul>
 
 <h3 id="javascript-engines">JavaScript Engines:</h3>
 <p>A JavaScript engine is a program built into web browsers (and platforms like Node.js) that is responsible for executing JavaScript code.</p>
 <p>It takes the JavaScript you write, then:</p>
 <ol>
-  <li>Parse (JavaScript engine turns your code into an AST)</li>
-  <li>Compile to Bytecode (The AST is compiled into bytecode, an intermediate form between your original JavaScript code and the machine code your computer’s CPU understands.)</li>
-  <li>Interpret (The engine executes the bytecode step-by-step using an interpreter.)</li>
-  <li>JIT Compilation (The engine detects frequently executed “hot” code and compiles it into machine code. On subsequent runs, it skips parsing and interpreting these parts, running the machine code directly for much faster execution.)</li>
+  <li><a href="#parsing">Parsing</a></li>
+  <li>Compiling the <a href="#AST">AST</a> to <a href="#bytecode">Bytecode</a></li>
+  <li ><a href="#interpreter">Interpreting</a></li>
+  <li id="just-in-time-compiled"><a href="#jit-compilation">JIT Compilation</a></li>
 </ol>
 
-<p><strong>Key Concepts:</strong></p>
-<ul>
-  <li><strong>Abstract Syntax Tree (AST):</strong><br>
-  An AST is a tree-like structure that represents the syntax and structure of your code.<br>
-  Each part of your code becomes a node, and all nodes are connected to each other in a hierarchy — just like branches in a tree.</li>
-</ul>
+
+<h3>Q&A:</h3>
+<ol>
+<li id="runtime"><strong>Runtime:</strong> Browser runtime refers to the environment provided by the web browser where JavaScript code is executed using a JavaScript engine.</li>
+<li id="compiler"><strong>Compiler: </strong>A compiler is a special program that performs compilation — it takes your source code and translates it into machine code</li>
+<li id="mocha"><strong>Mocha:</strong> The internal name during early development by Brendan Eich at Netscape; it was never officially released under this name.</li>
+<li>
+  <p id="parsing"><strong>Parsing: </strong>Parsing is the process where the JavaScript engine reads your code and breaks it down into a structured format (called an AST – Abstract Syntax Tree) so it can understand and execute it.</p>
+</li>
+<li id="AST">
+  <p><strong>Abstract Syntax Tree (AST):</strong><br>
+  An AST is a tree-like structure that represents the syntax and structure of your code.
+  Each part of your code becomes a node, and all nodes are connected to each other.</p>
 
 <p><strong>Example:</strong></p>
 <p><strong>JS Code:</strong><br>
 <code>let x = 5 + 3;</code></p>
 
-<p><strong>Abstract Syntax Tree (AST):</strong></p>
-<pre>
+<p><strong>AST format:</strong></p>
+<pre><code>
 {
   "type": "Program",
   "body": [
@@ -153,90 +155,59 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
   ],
   "sourceType": "script"
 }
-</pre>
+</code></pre>
 
 <p>Here, every "type" in the AST (e.g., "Program", "VariableDeclaration", "Literal") is a node.</p>
+</li>
+<li id="bytecode">
+  <p><strong>Bytecode: </strong>Is an intermediate from between your original JavaScript code and the machine.</p>
+</li>
+<li>
+  <p id="interpreter"><strong>Interpreting:</strong> Is a process where the JS engine executes the bytecode step-by-step using an interpreter.</p>
+</li>
+<li>
+  <p id="jit-compilation"><strong>JIT (Just In time) Compilation: </strong>Is a process where the JS engine detects frequently executed “hot” code and compiles it into machine code. On future runs, the engines skips parsing, compiling AST to Bytecode, interpreting and running the machine code directly for faster execution.</p>
+</li>
+</ol>
 <hr>
 
-<!-- chapter 2 -->
-<h2 id="chapter-2-javascript-fundamentals" align="center">Chapter 2: JavaScript Fundamentals</h2>
 
-<!-- 2.1 -->
-<h3 id="2.1-hello-world" align="center">2.1: Hello, world!</h3>
+<!-- 1.2 -->
+<h3 id="1.2-hello-world" align="center">1.2: Hello, world!</h3>
 
 <pre><code>console.log("Hello World");
 </code></pre>
 
-<h3 id="whats-happened-behind-the-code">What’s happed behind the code:</h3>
+<h3 id="whats-happened-behind-the-code">What’s happened behind the code:</h3>
 <ol>
-  <li>The statement sends to the JavaScript Engine</li>
+  <li>The <a href="#statement">statement</a> sends to the JavaScript Engine</li>
   <li>Parsing</li>
   <li>Compiling AST to Bytecode</li>
-  <li>Interpretation (The engine executes the bytecode step-by-step using an interpreter.)</li>
+  <li>Interpretation</li>
   <li>JIT Compilation</li>
-  <li>Calling the <code>log()</code> function:
+  <li>Calling the <code>log()</code> <a href="#method">method</a> inside the console object.
     <ul>
-      <li><code>console</code> is a global object</li>
-      <li><code>log</code> is a property of the <code>console</code> object, and its value is a function.</li>
+      <li><code>console</code> is a global object provided by the environment (browser or Node.js)</li>
+      <li><code>log</code> is a method of the <code>console</code> object.</li>
+      <p>So, <code>console.log("Hello World")</code> is a method call with <code>"Hello World"</code> as its argument.</p>
     </ul>
   </li>
 </ol>
 
-<p>So, <code>console.log("Hello World")</code> is a function call with the string <code>"Hello World"</code> as an argument.</p>
-
-<p>The <code>log()</code> function takes the argument and tells the engine to print it to the DevTools console or the Node.js terminal.</p>
-
-<hr>
-
-
-<!-- 2.2 -->
-<h3 id="2.2-code-structure" align="center">2.2: Code structure</h3>
-
-<h3 id="what-is-the-difference-between-statement-program-and-code">What is the difference between statement, program and code:</h3>
-
-<ul>
-  <li><strong>statement:</strong> A single instruction in a programming language that performs an action.</li>
+<h3>Q&A:</h3>
+<ol>
+  <li id="statement"><strong>statement:</strong> A single instruction in a programming language that performs an action.</li>
   <li><strong>code:</strong> Any written instructions in a programming language, from one line to many.</li>
   <li><strong>program:</strong> A complete set of code written in a programming language to solve a problem or perform a task.</li>
-</ul>
-
-<h3 id="semicolons">Semicolons:</h3>
-<p>In most cases, semicolons are optional in JavaScript because the language uses a feature called Automatic Semicolon Insertion (ASI) to handle missing semicolons.</p>
-
-<p>For example, this code works perfectly fine without them:</p>
-
-<pre><code>console.log('Hello')
-console.log('World')
-</code></pre>
-
-<p>But there are cases where ASI fails, which can lead to unexpected behavior or even errors.<br>
-Take this example:</p>
-
-<pre><code>console.log("Hello")
-[1, 2].map(n => console.log(n));
-</code></pre>
-
-<p>This code shows an error like this: </p>
-<img src="images/image1.png" alt="semicolons missing error image">
-
-<p>The reason we got an error because without a semicolon after <code>console.log("Hello")</code> statement, JavaScript merges the next line into the same statement, like this:</p>
-
-<pre><code>console.log("Hello")[1, 2].map(n => console.log(n));
-</code></pre>
-
-<p>and this is not a valid statement in JavaScript, but if you used proper semicolon after <code>console.log("hello")</code>, it will work completely fine as expected:</p>
-
-<pre><code>console.log("Hello");
-[1, 2].map(n => console.log(n));
-</code></pre>
-<img src="images/image2.png" alt="output image">
-
+  <li id="method"><strong>Method: </strong>when a function is stored as a property of an object, it’s called a method.</li>
+</ol>
 <hr>
 
-<!-- 2.3 -->
-<h3 id="2-3-variables" align="center">2.3: Variables</h3>
 
-<p>A variable is a “named storage” for data. We can declare variables to store data by using the keywords (A keyword is a reserved word that has a special meaning in the language):</p>
+<!-- 1.3 -->
+<h3 id="1-3-variables" align="center">1.3: Variables</h3>
+
+<p>A variable is a “named storage” for data. We can declare variables to store data by using the <a href="#keyword">keywords</a>:</p>
 
 <ul>
   <li>var: the old way to declare variables (function-scoped or global-scoped if not function-scoped, can be redeclared and updated in the same scope).</li>
@@ -312,15 +283,13 @@ console.log(test); // output: error</code></pre>
       </td>
     </tr>
     <tr>
-      <td>
-        Allows redeclaration:
+      <td>Allows redeclaration:
         <pre><code>var user = 'tamim';
 var user;
 user = 'Muhammad Tamim'
 console.log(user) // Output: Muhammad Tamim</code></pre>
       </td>
-      <td>
-        Does not allow redeclaration:
+      <td>Does not allow redeclaration:
         <pre><code>let user;
 let user; // SyntaxError:</code></pre>
       </td>
@@ -363,7 +332,7 @@ sayHi(); // Output: "Hello"
 
     console.log(phrase);
 }
-sayHi(); // ✅ Output: "Hello"
+sayHi(); // Output: "Hello"
 </code></pre>
 
 <h4>Example 3:</h4>
@@ -385,11 +354,26 @@ sayHi(); // Output: undefined
 } 
  */</code></pre>
 
+<h3>Q&A</h3>
+<ol>
+  <li id="keyword">A keyword is a reserved word that has a special meaning in the language.</li>
+  <h4>Official Keywords (ES2024):</h4>
+<pre><code>
+await      break      case       catch      class
+const      continue   debugger   default    delete
+do         else       enum       export     extends
+false      finally    for        function   if
+import     in         instanceof new        null
+return     super      switch     this       throw
+true       try        typeof     var        void
+while      with       yield
+</code></pre>
+</ol>
 <hr>
 
 
-<!-- 2.4 -->
-<h3 id="2.4-data-types" align="center">2.4: Data Types</h3>
+<!-- 1.4 -->
+<h3 id="1.4-data-types" align="center">1.4: Data Types</h3>
 
 <p>A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)</p>
 <p>JavaScript is a <strong>dynamically typed language</strong>, which means:</p>
@@ -404,478 +388,238 @@ message = 123456;      // number
 
 <p>There are 8 data types in JavaScript:</p>
 
-<ul>
-  <li><strong>7 primitive data types:</strong></li>
-  <ul>
-    <li><strong>number</strong> – Represents both integers and floating-point numbers.<br>
-      Example: <code>let age = 25;</code>
-    </li>
-    <li><strong>bigint</strong> – Used for integers larger than <code>2<sup>53</sup> - 1</code>.<br>
-      Example: <code>let big = 12345678901234567890n;</code>
-    </li>
-    <li><strong>string</strong> – Represents text, enclosed in single or double quotes.<br>
-      Example: <code>let name = "Tamim";</code>
-    </li>
-    <li><strong>boolean</strong> – Represents true or false.<br>
-      Example: <code>let isLoggedIn = true;</code>
-    </li>
-    <li><strong>null</strong> – Represents intentional "no value".<br>
-      Example: <code>let data = null;</code>
-    </li>
-    <li><strong>undefined</strong> – A variable declared but not assigned any value.<br>
-      Example: <code>let result;</code>
-    </li>
-    <li><strong>symbol</strong> – Represents a unique and immutable value, mainly used as object property keys.<br>
-      Example: <code>let id = Symbol("userID");</code>
-    </li>
-  </ul>
+<h3 id="7-primitive-data-types" align="center">7 primitive data types</h3>
 
-<li><strong>1 non-primitive data type:</strong>
-  <ul>
-    <li><strong>object</strong> – In JavaScript, any data that is not a primitive (like numbers or strings) is treated as an object. Objects can hold multiple values and provide more flexibility. It includes:
-      <ul>
-        <li><strong>Object Literals</strong>: Used to store related data as key-value pairs. This is the most common way to define objects.<br>
-          Example: <code>let user = { name: "Tamim", age: 20 };</code>
-        </li>
-        <li><strong>Arrays</strong>: A special type of object that stores ordered collections of values using numeric indexes. It comes with built-in methods like <code>push()</code>, <code>pop()</code>, <code>length</code>, etc.<br>
-          Example: <code>let colors = ["red", "green", "blue"];</code>
-        </li>
-        <li><strong>Functions</strong>: Functions in JavaScript are objects that can be executed (called). They can also have properties and be passed as arguments.<br>
-          Example: <code>function greet() { console.log("Hello"); }</code>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</li>
+<h3 id="number" align="center">Number</h3>
+<p><strong>number</strong> – Represents both integers and floating-point numbers.<br>
+      Example: 
+      <pre><code>let age = 25;
+let money = 25.5;</code></pre>
+    </p>
 
-<h3 id="the-typeof-operator">The typeof operator:</h3>
-<pre>
-<code>
-console.log(typeof undefined); // "undefined"
+<h3>Math Properties:</h3>
+<pre><code>console.log(Math.PI);       // 3.141592653589793</code></pre>
 
-console.log(typeof 0); // "number"
+<h3>Math Methods:</h3>
 
-console.log(typeof 10n); // "bigint"
-
-console.log(typeof true); // "boolean"
-
-console.log(typeof "foo"); // "string"
-
-console.log(typeof Symbol("id")); // "symbol"
-
-console.log(typeof Math); // "object"  
-
-console.log(typeof null); // "object"  
-
-console.log(typeof alert); 
+<pre><code>console.log(Math.round(4.5)); // 5 
 /*
-you will get "function" as output 
-if you use browser console, in node 
-you will get "undefined"
-*/  
-</code>
-</pre>
+Rounds to the nearest integer:
+if number >= 0.5, it rounds up to the next integer
+if number < 0.5, it rounds down to the previous integer
+*/
+console.log(Math.floor(4.9));   // 4 → Rounds down
+console.log(Math.ceil(4.1));    // 5 → Rounds up
+console.log(Math.trunc(4.9));   // 4 → Removes decimal part (not supported IE)
 
-<p><strong>Note:</strong></p>
-<ul>
-  <li>typeof null return "object", but null is a primitive data type.
-  </li>
-  <li>typeof alert returns "function", but functions are technically objects. 
-  </li>
-</ul>
+
+console.log(Math.pow(2, 3));    // 8 → 2 to the power of 3
+console.log(Math.sqrt(25));     // 5 → Square root of 25
+console.log(Math.abs(-7));      // 7 → remove negative sign
+
+console.log(Math.min(3, 1, 7)); // 1 → Smallest number
+console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
 <hr>
 
 
-<!-- 2.5 -->
-<h3 id="2.5-basic-operators" align="center">2.4: Basic operators</h3>
-
-<p><strong>operator:</strong> An operator is a special symbol or keyword that performs an operation on one or more values.<br>
-Example: +, -, !, typeof
-</p>
-
-
-<h3>** (Exponentiation) Operator:</h3>
-<p>a ** b = a<sup> b</sup></p>
-
-<p>Example:</p>
-<pre>
-<code>console.log(2 ** 2); // 2² = 4
-console.log(2 ** 3); // 2³ = 8
-console.log(2 ** 4); // 2⁴ = 16
-console.log(4 ** (1 / 2)); // 2 (power of 1/2 is the same as a square root)
-console.log(8 ** (1 / 3)); // 2 (power of 1/3 is the same as a cubic root)
-</code>
-</pre>
-
-<h3>String concatenation with + operator</h3>
-<pre>
-<code>let s = "my" + "string";
-console.log(s); // mystring
-</code>
-</pre>
-
-<p><strong>Note:</strong> if any of the operands is a string, then the other one is converted to a string too.</br>
-<small><strong>operand : </strong>An operand is the value that an operator works on. For example, in 5 * 2, the operands are 5 and 2.</small>
-</p>
-
-<pre>
-<code>console.log('1' + 2); // "12"
-console.log(2 + '1'); // "21"
-console.log(2 + 2 + '1'); // "41" and not "221"
-console.log('1' + 2 + 2); // "122" and not "14"
-</code>
-</pre>
-
-
-<p><strong>Note: </strong>The + is the only operator that supports strings concatenation. Other arithmetic operators work only with numbers and always convert their operands to numbers.</p>
-
-<pre>
-<code>console.log(6 - '2'); // 4, converts '2' to a number
-console.log('6' / '2'); // 3, converts both operands to numbers
-</code>
-</pre>
-
-<h3>Pre Increment / Decrement:</h3>
-<pre>
-<code>let i = 10;
-let x = ++i;
-console.log(i); // 11
-console.log(x); // 11
-</code>
-</pre>
-<p>Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.</p>
-
-
-<h3>post Increment / Decrement:</h3>
-<pre>
-<code>let i = 10;
-let x = i++;
-console.log(i); // 11
-console.log(x); // 10
-</code>
-</pre>
-<p>Explanation: here, First, the value of i (which is 10) is assigned to the variable x. After that, i is incremented, so i becomes 11.</p>
-
-<p><strong>Note:</strong></p>
 <ul>
-<li>Pre-increment (++i): First increments the value of i, then assigns it.</li>
-<li>Post-increment (i++): First assigns the value, then increments it.</li>
-</ul>
+<h3 id="bigint" align="center">BigInt</h3>
+    <p><strong>bigint</strong> – Used for integers larger than <code>2<sup>53</sup> - 1</code>.<br>
+      Example: <code>let big = 12345678901234567890n;</code>
+    </p>
 
-<h3>String comparison:</h3>
-<p>To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.</p>
 
-<p>How lexicographical algorithm works:</p>
+<h3 id="string" align="center">String</h3>
+    <p><strong>string</strong> – Represents text, enclosed in single or double quotes.<br>
+      Example: 
+      <pre><code>let name = "Tamim";
+let myName = 'tamim';</code></pre>
+    </p>
+
+<h3>Quotes:</h3>
+<p>JavaScript supports three types of quotes for working with strings.</p>
+
 <ol>
-  <li>Strings are compared character by character from left to right.</li>
-  <li>Each character is compared based on its Unicode value.</li>
-  <li>The first difference determines the result.</li>
-  <li>If all characters are equal and lengths differ, the shorter string is considered smaller.</li>
+  <li>Single Quotes ('...'):</li>
+
+  <pre><code>const name = 'Tamim';
+console.log(name); // Tamim</code></pre>
+  
+  <li>Double Quotes ("..."):</li>
+
+  <pre><code>const language = "JavaScript";
+console.log(language); // JavaScript</code></pre>
+
+  <li>Backticks (`...`):</li>
+  <p>Backticks are more powerful than single/double quotes. They were introduced in ES6 (2015) and allow for:</p>
+  <ul>
+    <li>Multiline Strings (<small>No need for \n</small>):</li>
+    
+  <pre><code>const multiline = `This is line 1
+This is line 2
+This is line 3`;
+console.log(multiline);
+</code></pre>
+    
+  <li>String Interpolation (Insert Variables Directly):</li>
+  
+  <pre><code>const name = "Tamim";
+const age = 20;
+
+const info = `My name is ${name} and I am ${age} years old.`;
+console.log(info);
+// My name is Tamim and I am 20 years old.
+</code></pre>
+  
+  <li>Expression Evaluation:</li>  
+  <pre><code>console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12</code></pre>
+  </ul>
 </ol>
 
-<pre><code>console.log('Z' > 'A'); // true
-console.log('hello' == 'hello'); // true
-console.log('Glow' > 'Glee'); // true
-console.log('Be' < 'Bee'); // true
+<h3>String Property: </h3>
+<p>.length is the only string property, and it’s very commonly used.</p>
+
+<pre><code>const str = "JavaScript";
+console.log(str.length); // 10
 </code></pre>
 
+<h3>String Methods:</h3>
 
-<h3>Difference between == and === :</h3>
-<pre><code>console.log(0 == false); // 0 == 0 true
-console.log('' == false); // 0 == 0 true
+<p><strong>Case Conversion:</strong><p>
+
+<pre><code>console.log("hello".toUpperCase()); // "HELLO"
+console.log("WORLD".toLowerCase()); // "world"
+console.log('Interface'[0].toLowerCase()); // 'i'
 </code></pre>
 
-<p>In both cases, JavaScript uses type conversion to convert different data types (string/boolean) into numbers before comparing with ==.</p>
+<p><strong> Searching in Strings:</strong></p>
 
-<p><strong>Solution:</strong> === strictly checks both value and data type. If one of them missing, it immediately returns false.</p>
-
-<pre><code>console.log(0 === false); // false
-console.log('' === false); // false
-console.log(0 === 0); // true
-console.log('' === ''); // true
+<pre><code>console.log("JavaScript".includes("Script")); // true
+console.log("JavaScript".startsWith("Java")); // true
+console.log("JavaScript".endsWith("Script")); // true
+console.log("hello world".indexOf("world")); // 6
 </code></pre>
 
-
-<h3>Comparison with null and undefined:</h3>
-<pre><code>console.log(null === undefined); // false
-console.log(null >= undefined); // false
-console.log(null < undefined); // false
-console.log(null == undefined); // true
-// this is a special rule. If you use ==, null and undefined are considered equal.
-</code></pre>
-
-
-<h3>null vs 0:</h3>
- <pre><code>console.log(null > 0);  // false
-console.log(null == 0); // false because == has special rules for null: null only equals for undefined, not anything else.
-console.log(null >= 0); // true , because == and >= are not same.
-</code></pre>
-
-
-<h3>undefined vs 0:</h3>
- <pre><code>console.log(undefined > 0); // false 
-console.log(undefined < 0); // false 
-console.log(undefined == 0); // false
-// undefined is converted to NaN in numeric comparisons
-</code></pre>
-
-
-<h3>Ternary operator(? :):</h3>
+<p>Note: indexOf() method searches a string for a specific substring and returns the index (position) of the first match of found and -1 if nothing can be found.</p>
 <p>syntax:</p>
-<pre><code>condition ? true part : false part</code></pre>
-
-<p>Example:</p>
-<pre><code>// with conditional statement
-let age = 18;
-let message;
-
-if (age >= 18) {
-    message = "You are an adult";
-} else {
-    message = "You are a minor";
-}
-console.log(message);
-</code></pre>
-
-<pre><code>// with ternary operator
-let age = 18;
-let message = (age >= 18) ? "You are an adult" : "You are a minor";
-console.log(message);
-</code></pre>
-
-<hr>
-
-
-<!-- 2.6 -->
-<h3 id="2.6-function" align="center">2.6: Function</h3>
-
-<p>A Function is a block of reusable code that perform a specific task when it is called.</p>
-
-<pre><code>function calcSum(a, b) {
-    console.log(a + b);
-}
-
-calcSum(1, 2); // 3
-</code></pre>    
-
-<p><strong>Note:</strong></p>
-<ul>
-  <li>1, 2 are arguments</li>
-  <li>a, b are parameters</li>
-</ul>
-
-<h3>What is the difference between return and no return in a function?</h3>
-<pre><code>function calcSum(a, b) {
-    const result = a + b;
-}
-
-console.log(calcSum(1, 2)); // undefined
-</code></pre>    
-
-
-<p>In this example, the function calculates something, but it doesn't return anything.
-So when we call sum(1, 2), the calculation happens inside the function, but we can’t access or use the result outside.
-You just call the function, and that’s all — no control or output comes back.</p>
-
-<pre><code>function calcSum(a, b) {
-    const result = a + b;
-    return result;
-}
-
-console.log(calcSum(1, 2)); // 3
-const functionResult = calcSum(3, 4);
-console.log(functionResult + 5); // 12
-
-</code></pre>    
-
-<p>In this example, the function not only does the work, but it also returns the result to us. This means we can store it, reuse it, or do more operations with it.</p>
-
-<p>You can think of it like this:</p>
-
-<p>We order a coffee from a robot. The robot’s job is to make the coffee. But the robot’s owner teaches it something special, When someone orders coffee, don’t just make it — also serve it on the table.</p>
-
-<p>That’s how <code>return</code> works in a function.</p>
+<pre><code>string.indexOf(searchValue, startIndex);</code></pre>
 
 <ul>
-  <li>Without <code>return</code>, the robot just makes the coffee — but you don’t get it.</li>
-  <li>With <code>return</code>, the robot <strong>makes</strong> the coffee and <strong>gives it to you</strong>.</li>
+  <li>searchValue – the substring to find</li>
+  <li>startIndex (optional) – where to start the search (default is 0)</li>
 </ul>
 
-<h3>Default Parameter:</h3>
-<p>In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.</p>
-<pre><code>function showGreet(name = "Guest") {
-  console.log("Hello, " + name + "!");
-}
-showGreet("Tamim"); // Output: Hello, Tamim!
-showGreet();        // Output: Hello, Guest!
+<p>More Examples: </p>
+
+<pre><code>console.log("banana".indexOf("a"));      // 1 → first "a"
+console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
+console.log("banana".indexOf("z"));      // -1 → not found
 </code></pre>
 
-<h3>Naming a function:</h3>
-<p>Functions are actions. So their name is usually a verb. It should be brief, as accurate as possible and describe what the function does, so that someone reading the code gets an indication of what the function does.</p>
-<pre><code>showMessage()     // shows a message
-getAge()          // returns the age (gets it somehow)
-calcSum()         // calculates a sum and returns the result
-createForm()      // creates a form (and usually returns it)
-checkPermission() // checks a permission, returns true/false
+<h3>Extracting Part of a String: </h3>
+
+<p>slice(start, end): </p>
+
+<p>The slice() method returns a part of the string, starting from the given start index and ending just before the end index (the end index is not included). If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.</p>
+
+<pre><code>const text = "JavaScript";
+
+console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
+console.log(text.slice(4))        // "Script" (from index 4 to the end)
+console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)</code></pre>
+
+<h3>Replacing and Repeating:</h3>
+
+<pre><code>console.log("I like cats".replace("cats", "dogs")); // "I like dogs"
+console.log("ha".repeat(3)); // "hahaha"
 </code></pre>
 
-<h3>One function – one action rules:</h3>
-<p>A function should do exactly what is suggested by its name, no more.</p>
-<p>Two independent actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function that calls those two).</p>
+<h3>Joining and Splitting:</h3>
 
-<pre><code>// Bad example:
-
-function handleUserRegistration(user) {
-  // Validate user input
-  if (!user.username || !user.email || !user.password) {
-    throw new Error("Missing required fields");
-  }
-
-  // Hash password
-  const hashedPassword = hashFunction(user.password);
-
-  // Save user to database
-  database.insert({ ...user, password: hashedPassword });
-
-  // Log registration event
-  logger.log(`User ${user.username} registered at ${new Date()}`);
-
-  // Send confirmation email
-  emailService.sendConfirmation(user.email, user.username);
-}</code></pre>
-
-<pre><code>// Good example:
-
-function validateUserInput(user) {
-  if (!user.username || !user.email || !user.password) {
-    throw new Error("Missing required fields");
-  }
-}
-
-function hashPassword(password) {
-  return hashFunction(password);
-}
-
-function saveUser(user, hashedPassword) {
-  database.insert({ ...user, password: hashedPassword });
-}
-
-function logRegistration(username) {
-  logger.log(`User ${username} registered at ${new Date()}`);
-}
-
-function sendConfirmationEmail(email, username) {
-  emailService.sendConfirmation(email, username);
-}
-
-// Orchestrating function
-function handleUserRegistration(user) {
-  validateUserInput(user);
-  const hashedPassword = hashPassword(user.password);
-  saveUser(user, hashedPassword);
-  logRegistration(user.username);
-  sendConfirmationEmail(user.email, user.username);
-}
-</code></pre>
-<hr/>
-
-
-<h3 id="2.7-arrow-function" align="center">2.7: Arrow Function</h3>
-<p>Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6 (2015).</p>
-
-<p>Examples:</p>
-<p><strong>No Parameter, No Return:</strong></p>
-<pre><code>const greet = () => console.log("Hello!");
-
-greet(); // Output: Hello!
-
-// or
-
-const greet2 = () => {
-    console.log("Hello!");
-};
-greet2(); // Output: Hello!
+<pre><code>const sentence = "I love JavaScript";
+const words = sentence.split(" "); // ["I", "love", "JavaScript"]
+console.log(words.join("-"));      // "I-love-JavaScript"
 </code></pre>
 
-<p><strong>Single Parameter, Single Line, No Return:</strong><br>
-<small>(Parentheses are optional for single parameter)</small>
-</p>
-<pre><code>const square = x => x * x;
-console.log(square(5)); // Output: 25
+<h3>Removing Extra Spaces: </h3>
+
+<pre><code>console.log("  hello world  ".trim()); // "hello world"
 </code></pre>
 
-<p><strong>Multiple Parameter and statement:</strong><br>
-<small>( {} required for return )</small>
-</p>
-<pre><code>const multiply = (a, b) => {
-  const result = a * b;
-  return result;
-};
-console.log(multiply(3, 4)); // Output: 12
+
+<h3>includes, startsWith, endsWith: </h3>
+
+<pre><code>const message = "Hello, Tamim!";
+console.log(message.includes("Tamim")); // true
+console.log(message.includes("hello")); // false (case-sensitive)
+
+const greeting = "JavaScript is fun!";
+console.log(greeting.startsWith("Java"));   // true
+console.log(greeting.startsWith("Script")); // false
+console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
+
+const fileName = "report.pdf";
+console.log(fileName.endsWith(".pdf"));  // true
+console.log(fileName.endsWith(".txt"));  // false
+console.log("JavaScript".endsWith("Script", 10)); // true
+console.log("JavaScript".endsWith("Java", 4));    // true</code></pre>
+
+<h3>Strings are immutable:</h3>
+<p>That's mean you can't change characters directly: </p>
+
+<pre><code>let str = "Hello";
+str[0] = "Y";
+console.log(str); // "Hello" (not "Yello")
+</code></pre>
+
+<p> You must create a new string instead: </p>
+<pre><code>let str = "Hello";
+let newStr = "Y" + str.slice(1);
+console.log(newStr); // "Yello"
 </code></pre>
 <hr>
 
 
-<!-- chapter 3: -->
-<h2 id="chapter-3-code-quality" align="center">Code Quality</h2>
-
-<!-- 3.1 -->
-<h3 id="3.1-coding-style" align="center">3.1 Coding Style</h3>
-<img src="images/image3.png" alt="coding style image">
-
-<h3>Curly Braces:</h3>
-<p>In most JavaScript projects curly braces are written in “Egyptian” style with the opening brace on the same line as the corresponding keyword – not on a new line. There should also be a space before the opening bracket, like this:</p>
-<pre><code>if (10 > 5) {
-    console.log("10 is greater than 5");
-}</code></pre>
-
-<p>Bad Curly Braces code:</p>
-
-<pre><code>if (10 > 5) { console.log("10 is greater than 5"); }
-
-// or
-
-if (10 > 5)
-console.log("10 is greater than 5");</code></pre>
-
-<h3>Indents:</h3>
-<p>Use proper line break where needed</p>
-<pre><code>function pow(x, n) {
-    let result = 1;
-    //              <--
-    for (let i = 0; i < n; i++) {
-        result *= x;
-    }
-    //              <--
-    return result;
-}</code></pre>
-
-<h3>Function Placement:</h3>
-<p>If you are writing several “helper” functions then follow the "Code first, then functions" style. That’s because when reading code, we first want to know what it does. If the code goes first, then it becomes clear from the start. Then, maybe we won’t need to read the functions at all, especially if their names are descriptive of what they actually do. </p>
-<pre><code>// the code which uses the functions
-let elem = createElement();
-setHandler(elem);
-walkAround();
-
-// --- helper functions ---
-function createElement() {
-  ...
-}
-
-function setHandler(elem) {
-  ...
-}
-
-function walkAround() {
-  ...
-  }</code></pre>
+<h3 id="boolean" align="center">Boolean</h3>
+    <p><strong>boolean</strong> – Represents true or false.<br>
+      Example: 
+      <pre><code>let isMarried = false;
+let isSingle = true;</code></pre>
+    </p>
 
 
-<!-- chapter 4: -->
-<h2 id="chapter-4-objects-the-basics" align="center">Chapter 4: Objects: the basics</h2>
+<h3 id="null" align="center">Null</h3>
+    <p><strong>null</strong> – Represents intentional "no value".<br>
+      Example: <code>let data = null;</code>
+    </p>
 
-<!-- 4.1 -->
-<h3 id="4.1-objects" align="center">4.1: Objects</h3>
+
+<h3 id="undefined" align="center">Undefined</h3>    
+    <p><strong>undefined</strong> – A variable declared but not assigned.<br>
+      Example: <pre><code>let result;
+console.log(result) // undefined 
+/* you declared a variable, but didn't assign a value. so js sets it to undefined by default. */</code></pre>
+    </p>
+
+
+<h3 id="symbol" align="center">Symbol</h3>
+    <p><strong>symbol</strong> – Represents a unique and immutable value, mainly used to create unique identifiers for object properties.<br>
+      Example: <pre><code>let id = Symbol();
+
+console.log(typeof id); // "symbol"
+
+let a = Symbol("id");
+let b = Symbol("id");
+console.log(a === b); // false</code></pre>
+    </p>
+  
+  </ul>
+
+<h3 id="1-non-primitive-data-types" align="center">1 Non-Primitive Data Types (Object)</h3>
+<p>In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array):</p> 
+
+
+<h3 id="object" align="center">Objects:</h3>
 
 <p>An object is a collection of key-value pairs called properties. where key is a string (also called a “property name”), and value can be anything.</p>
 
@@ -968,11 +712,9 @@ for (let key in user) {
     console.log(user[key]); // John, 30, true
 }
 </code></pre>
-<hr>
 
 
-<!-- 4.2 -->
-<h3 id="4.2-objects-references-and-copying" align="center">4.2: Objects References and Copying</h3>
+<h3>Objects References and Copying:</h3>
 
 <p>One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.</p>
 
@@ -1130,12 +872,8 @@ user.sizes.width = 60;    // change a property from one place
 console.log(clone.sizes.width); // 50, not related
 </code></pre>
 
-<hr>
 
-
-<!-- 4.3 -->
-<h3 id="4.3-object-methods" align="center">4.3: Object Methods</h3>
-
+<h3>Object Methods</h3>
 <p>A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.</p>
 
 <p>Example:</p>
@@ -1197,11 +935,8 @@ user = null;
 admin.sayHello(); // Tamim
 </code></pre>
 
-<hr>
 
-
-<h3 id="4.4-constructor-function-and-new-operator" align="center">4.4: Constructor function and "new" operator</h3>
-
+<h3>Constructor function and "new" operator</h3>
 <p>A constructor function is a regular function used to create multiple objects with the same structure and behavior. By convention, the name of a constructor function starts with a capital letter to distinguish it from regular functions.</p>
 
 <pre><code>function Person(name, age) {
@@ -1248,7 +983,7 @@ const user2 = {
 };
 // Repeat, repeat, repeat...</code></pre>
 
-<p><strong>Without Constructor Function and New operator:</strong></p>
+<p><strong>With Constructor Function and New operator:</strong></p>
 
 <pre><code>function User(name, age) {
   this.name = name;
@@ -1261,7 +996,7 @@ const user2 = new User("Asha", 19);
 <hr>
 
 
-<h3 id="4.5-optional-chaining" align="center">4.5: Optional Chaining (?.)</h3>
+<h3>Optional Chaining (?.)</h3>
 
 <p>Optional Chaining(?.) is a safe way to access deeply nested properties without getting an error if something is undefined or null.</p>
 
@@ -1287,185 +1022,299 @@ console.log(user.address?.city); // undefined
 user.sayHi?.();     // Hi!
 user.sayBye?.();    // Nothing happens, no error or undefined
 </code></pre>
+
 <hr>
 
+<h3 id="function" align="center">Function</h3>
+<p>A Function is a block of reusable code that perform a specific task when it is called.</p>
 
-<!-- chapter 5: -->
-<h2 id="chapter-5-data-types" align="center">Chapter 5: Data types</h2>
+<pre><code>function calcSum(a, b) {
+    console.log(a + b);
+}
 
-<!-- 5.1 -->
-<h3 id="5.1-numbers" align="center">5.1 Numbers</h3>
+calcSum(1, 2); // 3
+</code></pre>    
 
-<h3>Math Properties:</h3>
-<pre><code>console.log(Math.PI);       // 3.141592653589793</code></pre>
-
-<h3>Math Methods:</h3>
-
-<pre><code>console.log(Math.round(4.5)); // 5 
-/*
-Rounds to the nearest integer:
-if number >= 0.5, it rounds up to the next integer
-if number < 0.5, it rounds down to the previous integer
-*/
-console.log(Math.floor(4.9));   // 4 → Rounds down
-console.log(Math.ceil(4.1));    // 5 → Rounds up
-console.log(Math.trunc(4.9));   // 4 → Removes decimal part (not supported IE)
-
-
-console.log(Math.pow(2, 3));    // 8 → 2 to the power of 3
-console.log(Math.sqrt(25));     // 5 → Square root of 25
-console.log(Math.abs(-7));      // 7 → remove negative sign
-
-console.log(Math.min(3, 1, 7)); // 1 → Smallest number
-console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
-<hr>
-
-<!-- 5.2 -->
-<h3 id="5.2-strings" align="center">5.2: Strings</h3>
-
-<h3>Quotes:</h3>
-<p>JavaScript supports three types of quotes for working with strings.</p>
-
-<ol>
-  <li>Single Quotes ('...'):</li>
-
-  <pre><code>const name = 'Tamim';
-console.log(name); // Tamim</code></pre>
-  
-  <li>Double Quotes ("..."):</li>
-
-  <pre><code>const language = "JavaScript";
-console.log(language); // JavaScript</code></pre>
-
-  <li>Backticks (`...`):</li>
-  <p>Backticks are more powerful than single/double quotes. They were introduced in ES6 (2015) and allow for:</p>
-  <ul>
-    <li>Multiline Strings (<small>No need for \n</small>):</li>
-    
-  <pre><code>const multiline = `This is line 1
-This is line 2
-This is line 3`;
-console.log(multiline);
-</code></pre>
-    
-  <li>String Interpolation (Insert Variables Directly):</li>
-  
-  <pre><code>const name = "Tamim";
-const age = 20;
-
-const info = `My name is ${name} and I am ${age} years old.`;
-console.log(info);
-// My name is Tamim and I am 20 years old.
-</code></pre>
-  
-  <li>Expression Evaluation:</li>  
-  <pre><code>console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12</code></pre>
-  </ul>
-</ol>
-
-<h3>String Property: </h3>
-<p>.length is the only string property, and it’s very commonly used.</p>
-
-<pre><code>const str = "JavaScript";
-console.log(str.length); // 10
-</code></pre>
-
-<h3>String Methods:</h3>
-
-<p><strong>Case Conversion:</strong><p>
-
-<pre><code>console.log("hello".toUpperCase()); // "HELLO"
-console.log("WORLD".toLowerCase()); // "world"
-</code></pre>
-
-<p><strong> Searching in Strings:</strong></p>
-
-<pre><code>console.log("JavaScript".includes("Script")); // true
-console.log("JavaScript".startsWith("Java")); // true
-console.log("JavaScript".endsWith("Script")); // true
-console.log("hello world".indexOf("world")); // 6
-</code></pre>
-
-<p>Note: indexOf() method searches a string for a specific substring and returns the index (position) of the first match of found and -1 if nothing can be found.</p>
-<p>syntax:</p>
-<pre><code>string.indexOf(searchValue, startIndex);</code></pre>
-
+<p><strong>Note:</strong></p>
 <ul>
-  <li>searchValue – the substring to find</li>
-  <li>startIndex (optional) – where to start the search (default is 0)</li>
+  <li>1, 2 are arguments</li>
+  <li>a, b are parameters</li>
 </ul>
 
-<p>More Examples: </p>
+<h3>What is the difference between return and no return in a function?</h3>
+<pre><code>function calcSum(a, b) {
+    const result = a + b;
+}
 
-<pre><code>console.log("banana".indexOf("a"));      // 1 → first "a"
-console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
-console.log("banana".indexOf("z"));      // -1 → not found
+console.log(calcSum(1, 2)); // undefined
+</code></pre>    
+
+
+<p>In this example, the function calculates something, but it doesn't return anything.
+So when we call sum(1, 2), the calculation happens inside the function, but we can’t access or use the result outside.
+we just call the function, and that’s all — no control or output comes back.</p>
+
+<pre><code>function calcSum(a, b) {
+    const result = a + b;
+    return result;
+}
+
+console.log(calcSum(1, 2)); // 3
+const functionResult = calcSum(3, 4);
+console.log(functionResult + 5); // 12
+
+</code></pre>    
+
+<p>In this example, the function not only does the work, but it also returns the result to us. This means we can store it, reuse it, or do more operations with it.</p>
+
+<p>You can think of it like this:</p>
+
+<p>We order a coffee from a robot. The robot’s job is to make the coffee. But the robot’s owner teaches it something special, When someone orders coffee, don’t just make it — also serve it on the table.</p>
+
+<p>That’s how <code>return</code> works in a function.</p>
+
+<ul>
+  <li>Without <code>return</code>, the robot just makes the coffee — but you don’t get it.</li>
+  <li>With <code>return</code>, the robot <strong>makes</strong> the coffee and <strong>gives it to you</strong>.</li>
+</ul>
+
+<h3>Default Parameter:</h3>
+<p>In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.</p>
+<pre><code>function showGreet(name = "Guest") {
+  console.log("Hello, " + name + "!");
+}
+showGreet("Tamim"); // Output: Hello, Tamim!
+showGreet();        // Output: Hello, Guest!
+</code></pre>
+<hr/>
+
+<h3>Arrow Function:</h3>
+<p>Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6 (2015).</p>
+
+<p>Examples:</p>
+
+<pre><code>const greet = () => console.log("Hello!");
+greet(); // Output: Hello!
+
+
+
+const greet2 = () => {
+    console.log("Hello!");
+};
+greet2(); // Output: Hello!
+
+
+
+const square = x => x * x;
+console.log(square(5)); // Output: 25
+
+
+
+const multiply = (a, b) => {
+    const result = a * b;
+    return result;
+};
+console.log(multiply(3, 4)); // Output: 12</code></pre>
+<hr>
+
+
+<h3 id="array" align="center">Array:</h3>
+
+
+<!-- 2.4 -->
+<h3 id="2.4-basic-operators" align="center">2.4: Basic operators</h3>
+
+<p><strong>Operator:</strong> An Operator is a special symbol or keyword that performs an operation on one or more values.<br>
+Example: +, -, !, typeof
+</p>
+
+<h3 id="the-typeof-operator">typeof operator:</h3>
+<pre>
+<code>
+console.log(typeof undefined); // "undefined"
+
+console.log(typeof 0); // "number"
+
+console.log(typeof 10n); // "bigint"
+
+console.log(typeof true); // "boolean"
+
+console.log(typeof "foo"); // "string"
+
+console.log(typeof Symbol("id")); // "symbol"
+
+console.log(typeof Math); // "object"  
+
+console.log(typeof null); // "object"  
+
+console.log(typeof alert); 
+/*
+you will get "function" as output 
+if you use browser console, in node 
+you will get "undefined"
+*/  
+</code>
+</pre>
+
+<p><strong>Note:</strong></p>
+<ul>
+  <li>typeof null return "object", but null is a primitive data type.
+  </li>
+  <li>typeof alert returns "function", but functions are technically objects. 
+  </li>
+</ul>
+
+<h3>** (Exponentiation) Operator:</h3>
+<p>a ** b = a<sup> b</sup></p>
+
+<p>Example:</p>
+<pre>
+<code>console.log(2 ** 2); // 2² = 4
+console.log(2 ** 3); // 2³ = 8
+console.log(2 ** 4); // 2⁴ = 16
+console.log(4 ** (1 / 2)); // 2 (power of 1/2 is the same as a square root)
+console.log(8 ** (1 / 3)); // 2 (power of 1/3 is the same as a cubic root)
+</code>
+</pre>
+
+<h3>String concatenation with + operator</h3>
+<pre>
+<code>let s = "my" + "string";
+console.log(s); // mystring
+</code>
+</pre>
+
+<p><strong>Note:</strong> If any of the <a href="#operands">operands</a> is a string, then the other one is converted to a string too.</br>
+</p>
+
+<pre>
+<code>console.log('1' + 2); // "12"
+console.log(2 + '1'); // "21"
+console.log(2 + 2 + '1'); // "41" and not "221"
+console.log('1' + 2 + 2); // "122" and not "14"
+</code>
+</pre>
+
+
+<p><strong>Note: </strong>The + is the only operator that supports strings concatenation. Other arithmetic operators work only with numbers and always convert their operands to numbers.</p>
+
+<pre>
+<code>console.log(6 - '2'); // 4, converts '2' to a number
+console.log('6' / '2'); // 3, converts both operands to numbers
+</code>
+</pre>
+
+<h3>Pre Increment / Decrement:</h3>
+<pre>
+<code>let i = 10;
+let x = ++i;
+console.log(i); // 11
+console.log(x); // 11
+</code>
+</pre>
+<p>Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.</p>
+
+
+<h3>post Increment / Decrement:</h3>
+<pre>
+<code>let i = 10;
+let x = i++;
+console.log(i); // 11
+console.log(x); // 10
+</code>
+</pre>
+<p>Explanation: here, First, the value of i (which is 10) is assigned to the variable x. After that, i is incremented, so i becomes 11.</p>
+
+<p><strong>Note:</strong></p>
+<ul>
+<li>Pre-increment (++i): First increments the value of i, then assigns it.</li>
+<li>Post-increment (i++): First assigns the value, then increments it.</li>
+</ul>
+
+<h3>String comparison:</h3>
+<p>To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.</p>
+
+<p>How lexicographical algorithm works:</p>
+<ol>
+  <li>Strings are compared character by character from left to right.</li>
+  <li>Each character is compared based on its Unicode value.</li>
+  <li>The first difference determines the result.</li>
+  <li>If all characters are equal and lengths differ, the shorter string is considered smaller.</li>
+</ol>
+
+<pre><code>console.log('Z' > 'A'); // true
+console.log('hello' == 'hello'); // true
+console.log('Glow' > 'Glee'); // true
+console.log('Be' < 'Bee'); // true
 </code></pre>
 
-<h3>Extracting Part of a String: </h3>
 
-<p>slice(start, end): </p>
-
-<p>The slice() method returns a part of the string, starting from the given start index and ending just before the end index (the end index is not included). If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.</p>
-
-<pre><code>const text = "JavaScript";
-
-console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
-console.log(text.slice(4))        // "Script" (from index 4 to the end)
-console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)</code></pre>
-
-<h3>Replacing and Repeating:</h3>
-
-<pre><code>console.log("I like cats".replace("cats", "dogs")); // "I like dogs"
-console.log("ha".repeat(3)); // "hahaha"
+<h3>Difference between == and === :</h3>
+<pre><code>console.log(0 == false); // 0 == 0 true
+console.log('' == false); // 0 == 0 true
 </code></pre>
 
-<h3>Joining and Splitting:</h3>
+<p>In both cases, JavaScript uses type conversion to convert different data types (string/boolean) into numbers before comparing with ==.</p>
 
-<pre><code>const sentence = "I love JavaScript";
-const words = sentence.split(" "); // ["I", "love", "JavaScript"]
-console.log(words.join("-"));      // "I-love-JavaScript"
+<p><strong>Solution:</strong> === strictly checks both value and data type. If one of them missing, it immediately returns false.</p>
+
+<pre><code>console.log(0 === false); // false
+console.log('' === false); // false
+console.log(0 === 0); // true
+console.log('' === ''); // true
 </code></pre>
 
-<h3>Removing Extra Spaces: </h3>
 
-<pre><code>console.log("  hello world  ".trim()); // "hello world"
+<h3>Comparison with null and undefined:</h3>
+<pre><code>console.log(null === undefined); // false
+console.log(null >= undefined); // false
+console.log(null < undefined); // false
+console.log(null == undefined); // true
+// this is a special rule. If you use ==, null and undefined are considered equal.
 </code></pre>
 
-<h3>Changing the case:</h3>
 
-<pre><code>console.log('Interface'.toUpperCase()); // INTERFACE
-console.log('Interface'.toLowerCase()); // interface
-console.log('Interface'[0].toLowerCase()); // 'i'</code></pre>
-
-<h3>includes, startsWith, endsWith: </h3>
-
-<pre><code>const message = "Hello, Tamim!";
-console.log(message.includes("Tamim")); // true
-console.log(message.includes("hello")); // false (case-sensitive)
-
-const greeting = "JavaScript is fun!";
-console.log(greeting.startsWith("Java"));   // true
-console.log(greeting.startsWith("Script")); // false
-console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
-
-const fileName = "report.pdf";
-console.log(fileName.endsWith(".pdf"));  // true
-console.log(fileName.endsWith(".txt"));  // false
-console.log("JavaScript".endsWith("Script", 10)); // true
-console.log("JavaScript".endsWith("Java", 4));    // true</code></pre>
-
-<h3>Strings are immutable:</h3>
-<p>That's mean you can't change characters directly: </p>
-
-<pre><code>let str = "Hello";
-str[0] = "Y";
-console.log(str); // "Hello" (not "Yello")
+<h3>null vs 0:</h3>
+ <pre><code>console.log(null > 0);  // false
+console.log(null == 0); // false because == has special rules for null: null only equals for undefined, not anything else.
+console.log(null >= 0); // true , because == and >= are not same.
 </code></pre>
 
-<p> You must create a new string instead: </p>
-<pre><code>let str = "Hello";
-let newStr = "Y" + str.slice(1);
-console.log(newStr); // "Yello"
+
+<h3>undefined vs 0:</h3>
+ <pre><code>console.log(undefined > 0); // false 
+console.log(undefined < 0); // false 
+console.log(undefined == 0); // false
+// undefined is converted to NaN in numeric comparisons
 </code></pre>
 
+
+<h3>Ternary operator(? :):</h3>
+<p>syntax:</p>
+<pre><code>condition ? true part : false part</code></pre>
+
+<p>Example:</p>
+<pre><code>// with conditional statement
+let age = 18;
+let message;
+
+if (age >= 18) {
+    message = "You are an adult";
+} else {
+    message = "You are a minor";
+}
+console.log(message);
+</code></pre>
+
+<pre><code>// with ternary operator
+let age = 18;
+let message = (age >= 18) ? "You are an adult" : "You are a minor";
+console.log(message);
+</code></pre>
+
+
+<h3>Q&A:</h3>
+<ol>
+  <li id="operands">Operand : </strong>An operand is the value that an operator works on. For example, in 5 * 2, the operands are 5 and 2.</li>
+</ol>
+<hr>

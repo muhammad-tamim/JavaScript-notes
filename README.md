@@ -1836,6 +1836,31 @@ country Bangladesh
  */
 </code></pre>
 </li>
+<h4>For looping over a map, there are 3 methods:</h4>
+<li>map.keys() – returns an iterable for keys,<li>
+<li>map.values() – returns an iterable for values,<li>
+<li>map.entries() – returns an iterable for entries [key, value], it’s used by default in for..of.<li>
+<pre><code>
+let recipeMap = new Map([
+  ['cucumber', 500],
+  ['tomatoes', 350],
+  ['onion',    50]
+]);
+
+// iterate over keys (vegetables)
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
+}
+
+// iterate over values (amounts)
+for (let amount of recipeMap.values()) {
+  alert(amount); // 500, 350, 50
+}
+
+// iterate over [key, value] entries
+for (let entry of recipeMap) { // the same as of recipeMap.entries()
+  alert(entry); // cucumber,500 (and so on)
+}</code></pre>
 </ul>
 
 

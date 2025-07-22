@@ -11,7 +11,8 @@
         <li><a href="#1.2-hello-world">1.2 Hello, world!</a></li>
         <li><a href="#1-3-variables">1.3: variables</a></li>
            <li><a href="#1.4-basic-operators">1.4: Operator</a></li>
-        <li><a href="#1.5-data-types">1.5: Data Types</a></li>
+              <li><a href="#1.5-loops">1.5: Loops</a></li>
+        <li><a href="#1.6-data-types">1.6: Data Types</a></li>
         <ul>
           <li><a href="#7-primitive-data-types">7 Primitive Data Types</a></li>
           <ul>
@@ -32,7 +33,7 @@
             <li><a href="#set">Set</a></li>
           </ul>
         </ul>
-        <li><a href="#1.6-loops">1.6: Loops</a></li>
+        <li><a href="#1.7-destructuring">1.7: Destructuring</a></li>
     </ul>
     <li><a href="#chapter-5-data-types">Chapter 5: Data types</a></li>
      <ul>
@@ -645,7 +646,97 @@ switch (color) {
 <hr>
 
 <!-- 1.5 -->
-<h3 id="1.5-data-types" align="center">1.5: Data Types</h3>
+<h3 id="1.5-loops" align="center">1.5: Loops</h3>
+
+<h4>for loop:</h4>
+<pre><code>
+for (let i = 0; i < 5; i++) {
+    console.log(i); // 0 1 2 3 4
+}
+</code></pre>
+
+<h4>while loop:</h4>
+<pre><code>
+let i = 0;
+while (i < 5) {
+    console.log(i); // 0 1 2 3 4
+    i++;
+}
+</code></pre>
+
+
+<h4>do while loop:</h4>
+<pre><code>
+let i = 0;
+do {
+    console.log(i); // 0 1 2 3 4
+    i++;
+} while (i < 5);
+</code></pre>
+
+
+<h4>for..of loop ( for <a href="#iterable">iterables</a>(array & string) ) :</h4>
+<pre><code>
+// with array
+const arr = ['a', 'b', 'c'];
+
+for (const element of arr) {
+    console.log(element); //  a b c
+}
+
+// with string
+const str = 'hello';
+
+for (const value of str) {
+    console.log(value); // h e l l o
+}
+</code></pre>
+
+<h4>forEach method (only for array):</h4>
+<pre><code>
+
+const nums = [1, 2, 3];
+nums.forEach(function (num) {
+    console.log(num); // 1 2 3
+});
+
+// or
+
+const num2 = [4, 5, 6];
+num2.forEach(num2 => console.log(num2)) // 4 5 6
+</code></pre>
+<p>Note: It does not support break or continue.</p>
+
+<h4>for..in loop (for objects): </h4>
+
+<pre><code>
+const obj = {
+    a: 1,
+    b: 2
+};
+
+for (const key in obj) {
+    console.log(key, obj[key]);
+}
+/*
+a 1
+b 2
+*/
+</code></pre>
+
+<h3>Q&A:</h3>
+<ul>
+  <li id="iterable"><p><strong>Iterable: </strong>An iterable(array, string) is something that you can use in a for...of loop to get values one by one.</p></li>
+  <p>Or you can say:</p>
+  <p>If we use a for...of loop on arrays or strings, we get one value at a time —
+That’s because arrays and strings are iterables,
+and the act of looping one-by-one is called iteration.</p>
+</ul>
+<hr>
+
+
+<!-- 1.5 -->
+<h3 id="1.6-data-types" align="center">1.6: Data Types</h3>
 
 <p>A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)</p>
 <p>JavaScript is a <strong>dynamically typed language</strong>, which means:</p>
@@ -2058,91 +2149,150 @@ console.log(uniqueNums); // [1, 2, 3, 4]
 <img src="images/image9.png" alt="set vs map vs array vs object">
 <hr>
 
-<!-- 1.6 -->
-<h3 id="1.6-loops" align="center">1.6: Loops</h3>
-
-<h4>for loop:</h4>
+<h3 id="1.7-destructuring" align="center">1.7: Destructuring</h3>
+<p>Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.</p>
+<ul>
+<li><h3>Array Destructuring</h3></li>
+<h4>Basic Syntax:</h4>
 <pre><code>
-for (let i = 0; i < 5; i++) {
-    console.log(i); // 0 1 2 3 4
-}
+const arr = [1, 2, 3];
+
+const [a, b, c] = arr;
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
 </code></pre>
 
-<h4>while loop:</h4>
+<h4>Skip Items:</h4>
 <pre><code>
-let i = 0;
-while (i < 5) {
-    console.log(i); // 0 1 2 3 4
-    i++;
-}
-</code></pre>
+const colors = ["red", "green", "blue"];
 
+const [first, , third] = colors;
 
-<h4>do while loop:</h4>
-<pre><code>
-let i = 0;
-do {
-    console.log(i); // 0 1 2 3 4
-    i++;
-} while (i < 5);
+console.log(first); // red
+console.log(third); // blue
 </code></pre>
 
 
-<h4>for..of loop ( for <a href="#iterable">iterables</a>(array & string) ) :</h4>
+<h4>Default Values:</h4>
 <pre><code>
-// with array
-const arr = ['a', 'b', 'c'];
+const arr = [10];
 
-for (const element of arr) {
-    console.log(element); //  a b c
-}
+const [x, y = 100] = arr;
 
-// with string
-const str = 'hello';
-
-for (const value of str) {
-    console.log(value); // h e l l o
-}
+console.log(x); // 10
+console.log(y); // 100
 </code></pre>
 
-<h4>forEach method (only for array):</h4>
+<h4>Swap Variables :</h4>
 <pre><code>
+let a = 1;
+let b = 2;
 
-const nums = [1, 2, 3];
-nums.forEach(function (num) {
-    console.log(num); // 1 2 3
-});
+[a, b] = [b, a];
 
-// or
-
-const num2 = [4, 5, 6];
-num2.forEach(num2 => console.log(num2)) // 4 5 6
+console.log(a); // 2
+console.log(b); // 1
 </code></pre>
-<p>Note: It does not support break or continue.</p>
 
-<h4>for..in loop (for objects): </h4>
-
+<h4>rest Operator (...):</h4>
 <pre><code>
-const obj = {
-    a: 1,
-    b: 2
+const nums = [1, 2, 3, 4];
+
+const [first, ...rest] = nums;
+
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4]
+</code></pre>
+<li><h3>Object Destructuring</h3></li>
+
+<h4>Basic Syntax:</h4>
+<pre><code>
+const person = {
+  name: "Tamim",
+  age: 21
 };
 
-for (const key in obj) {
-    console.log(key, obj[key]);
-}
-/*
-a 1
-b 2
-*/
+const { name, age } = person;
+
+console.log(name); // Tamim
+console.log(age);  // 21
 </code></pre>
 
-<h3>Q&A:</h3>
-<ul>
-  <li id="iterable"><p><strong>Iterable: </strong>An iterable(array, string) is something that you can use in a for...of loop to get values one by one.</p></li>
-  <p>Or you can say:</p>
-  <p>If we use a for...of loop on arrays or strings, we get one value at a time —
-That’s because arrays and strings are iterables,
-and the act of looping one-by-one is called iteration.</p>
+<h4>Rename Variables:</h4>
+<pre><code>
+const person = {
+  name: "Tamim",
+  age: 21
+};
+
+const { name: fullName, age: years } = person;
+
+console.log(fullName); // Tamim
+console.log(years);    // 21
+</code></pre>
+
+<h4>Default Values:</h4>
+<pre><code>
+const person = {
+  name: "Tamim"
+};
+
+const { name, age = 20 } = person;
+
+console.log(name); // Tamim
+console.log(age);  // 20
+</code></pre>
+
+<h4>Nested Destructuring:</h4>
+<pre><code>
+const user = {
+  id: 1,
+  profile: {
+    username: "tamim",
+    email: "tamim@example.com"
+  }
+};
+
+const {
+  profile: { username, email }
+} = user;
+
+console.log(username); // tamim
+</code></pre>
+
+<h4>Rest Operator in Object:</h4>
+<pre><code>
+const user = {
+  name: "Tamim",
+  age: 21,
+  country: "BD"
+};
+
+const { name, ...others } = user;
+
+console.log(name);   // Tamim
+console.log(others); // { age: 21, country: "BD" }
+</code></pre>
+
+<li>Destructuring in Function Parameters</li>
+
+<h4>Array Parameters:</h4>
+<pre><code>
+function greet([first, second]) {
+  console.log("Hello", first, second);
+}
+
+greet(["Tamim", "Ahmed"]);
+</code></pre>
+
+<h4>Object Parameters:</h4>
+<pre><code>
+function displayUser({ name, age }) {
+  console.log(`${name} is ${age} years old.`);
+}
+
+displayUser({ name: "Tamim", age: 21 });
+</code></pre>
 </ul>
 <hr>

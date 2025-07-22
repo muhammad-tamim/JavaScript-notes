@@ -4,15 +4,13 @@
 
 <ul>
   <li><a href="#part-1-the-javascript-language">Part 1: The JavaScript Language</a></li>
-   <ul>
-    <li><a href="#chapter-1-an-introduction">Chapter 1: An Introduction</a></li>
     <ul >
-        <li><a href="#1.1-an-introduction-to-javaScript">1.1 An Introduction to JavaScript</a></li>
-        <li><a href="#1.2-hello-world">1.2 Hello, world!</a></li>
-        <li><a href="#1-3-variables">1.3: variables</a></li>
-           <li><a href="#1.4-basic-operators">1.4: Operator</a></li>
-              <li><a href="#1.5-loops">1.5: Loops</a></li>
-        <li><a href="#1.6-data-types">1.6: Data Types</a></li>
+        <li><a href="#an-introduction-to-javaScript">An Introduction to JavaScript</a></li>
+        <li><a href="#hello-world">Hello, world!</a></li>
+        <li><a href="#variables">variables</a></li>
+           <li><a href="#basic-operators">Operator</a></li>
+              <li><a href="#loops">Loops</a></li>
+        <li><a href="#data-types">Data Types</a></li>
         <ul>
           <li><a href="#7-primitive-data-types">7 Primitive Data Types</a></li>
           <ul>
@@ -33,15 +31,9 @@
             <li><a href="#set">Set</a></li>
           </ul>
         </ul>
-        <li><a href="#1.7-destructuring">1.7: Destructuring</a></li>
+        <li><a href="#destructuring">Destructuring</a></li>
+        <li><a href="#json">JSON</a></li>
     </ul>
-    <li><a href="#chapter-5-data-types">Chapter 5: Data types</a></li>
-     <ul>
-        <li><a href="#5.1-numbers">5.1: Numbers</a></li>
-        <li><a href="#5.2-strings">5.2: Strings</a></li>
-        <li><a href="#5.3-arrays">5.3: Arrays</a></li>
-    </ul>
-  </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
 </ul>
@@ -50,11 +42,7 @@
 <!-- part 1: -->
 <h1 id="#part-1-the-javascript-language" align="center">Part 1: The JavaScript Language</h1>
 
-<!-- chapter 1: -->
-<h2 id="chapter-1-an-introduction" align="center">Chapter 1: An Introduction</h2>
-
-<!-- 1.1 -->
-<h3 id="1.1-an-introduction-to-javaScript" align="center">1.1 An Introduction to JavaScript</h3>
+<h3 id="an-introduction-to-javaScript" align="center">An Introduction to JavaScript</h3>
 
 <h3 id="what-is-javascript">What is JavaScript:</h3>
 <p>JavaScript is a programming language for the web. The programs in JavaScript are called scripts because they are small, dynamic, and <a href="#interpreter">interpreted</a> pieces of code designed to run in the browser without <a href="#compiler">compiling</a> the entire program.</p>
@@ -185,8 +173,10 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
 <hr>
 
 
-<!-- 1.2 -->
-<h3 id="1.2-hello-world" align="center">1.2: Hello, world!</h3>
+
+
+
+<h3 id="hello-world" align="center">Hello, world!</h3>
 
 <pre><code>console.log("Hello World");
 </code></pre>
@@ -217,8 +207,9 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
 <hr>
 
 
-<!-- 1.3 -->
-<h3 id="1-3-variables" align="center">1.3: Variables</h3>
+
+
+<h3 id="variables" align="center">Variables</h3>
 
 <p>A variable is a “named storage” for data. We can declare variables to store data by using the <a href="#keyword">keywords</a>:</p>
 
@@ -385,8 +376,10 @@ while      with       yield
 <hr>
 
 
-<!-- 1.5 -->
-<h3 id="1.4-basic-operators" align="center">1.4: operators</h3>
+
+
+
+<h3 id="basic-operators" align="center">Operators</h3>
 
 <p><strong>Operator:</strong> An Operator is a special symbol or keyword that performs an operation on one or more values.<br>
 Example: +, -, !, typeof
@@ -645,8 +638,11 @@ switch (color) {
 </ol>
 <hr>
 
-<!-- 1.5 -->
-<h3 id="1.5-loops" align="center">1.5: Loops</h3>
+
+
+
+
+<h3 id="loops" align="center">Loops</h3>
 
 <h4>for loop:</h4>
 <pre><code>
@@ -735,8 +731,10 @@ and the act of looping one-by-one is called iteration.</p>
 <hr>
 
 
-<!-- 1.5 -->
-<h3 id="1.6-data-types" align="center">1.6: Data Types</h3>
+
+
+
+<h3 id="data-types" align="center">Data Types</h3>
 
 <p>A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)</p>
 <p>JavaScript is a <strong>dynamically typed language</strong>, which means:</p>
@@ -2183,7 +2181,11 @@ console.log(uniqueNums); // [1, 2, 3, 4]
 <img src="images/image9.png" alt="set vs map vs array vs object">
 <hr>
 
-<h3 id="1.7-destructuring" align="center">1.7: Destructuring</h3>
+
+
+
+
+<h3 id="destructuring" align="center">Destructuring</h3>
 <p>Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.</p>
 <ul>
 <li><h3>Array Destructuring</h3></li>
@@ -2329,4 +2331,36 @@ function displayUser({ name, age }) {
 displayUser({ name: "Tamim", age: 21 });
 </code></pre>
 </ul>
+<hr>
+
+
+
+
+
+<h3 id="#json" align="center">JSON</h3>
+<p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
+
+<h4>JSON.stringify() — Convert JS → JSON string:</h4>
+<pre><code>
+
+const user = {
+    name: "Tamim",
+    age: 21
+};
+
+const jsonString = JSON.stringify(user);
+console.log(jsonString); // {"name":"Tamim","age":21}
+console.log(typeof jsonString); // string 
+</code></pre>
+
+<h4>JSON.parse() — Convert JSON string → JS object:</h4>
+<pre><code>
+
+const jsonStr = '{"name":"Tamim","age":21}';
+
+
+const obj = JSON.parse(jsonStr);
+console.log(obj); // { name: 'Tamim', age: 21 }
+console.log(typeof obj); // object 
+</code></pre>
 <hr>

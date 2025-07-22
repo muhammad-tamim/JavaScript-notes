@@ -1386,6 +1386,40 @@ user.sayHi?.();     // Hi!
 user.sayBye?.();    // Nothing happens, no error or undefined
 </code></pre>
 
+
+<h3>Date:</h3>
+<p>Date is a built-in object in JavaScript that represents a single moment in time — down to the millisecond. Under the hood, it stores time as the number of milliseconds since January 1, 1970 (UTC) (called the Unix Epoch).</p>
+
+<ul>
+<li>Current Date & Time:</li>
+<pre><code>const now = new Date();
+console.log(now); // 2025-07-22T05:57:06.058Z
+</code></pre>
+<li>Get Parts of a Date:</li>
+<pre><code>const date = new Date();
+
+console.log(date.getFullYear()); // 2025
+console.log(date.getMonth());    // 6 (July) → Month is 0-based
+console.log(date.getDate());     // 21
+console.log(date.getDay());      // 1 (Monday) → 0 = Sunday
+console.log(date.getHours());    // 23
+console.log(date.getMinutes());  // 5
+console.log(date.getSeconds());  // 30
+console.log(date.getMilliseconds()); // 123
+</code></pre>
+
+<li>Date Formatting (Readable Strings):</li>
+<pre><code>const date = new Date();
+
+console.log(date.toString());      // Full string with time zone
+console.log(date.toDateString());  // Only date
+console.log(date.toTimeString());  // Only time
+console.log(date.toISOString());   // ISO format (for JSON, API)
+console.log(date.toUTCString());   // UTC time
+console.log(date.toLocaleDateString()); // Local format (BD: 21/7/2025)
+console.log(date.toLocaleTimeString()); // Local time
+</code></pre>
+</ul>
 <hr>
 
 <h3 id="function" align="center">Function</h3>

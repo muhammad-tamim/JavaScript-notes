@@ -29,6 +29,7 @@
             <li><a href="#function">Function</a></li>
             <li><a href="#array">Array</a></li>
             <li><a href="#map">map</a></li>
+            <li><a href="#set">Set</a></li>
           </ul>
         </ul>
         <li><a href="#1.6-loops">1.6: Loops</a></li>
@@ -1910,8 +1911,126 @@ b 2
 */
 </code></pre>
 </li>
-
 </ul>
+
+<h3>Map Keys Can Be Anything!</h3>
+<pre><code>const myMap = new Map([
+    ["name", "Tamim"],
+    ["age", 21],
+    ["country", "Bangladesh"]
+]);
+
+const objKey = { id: 1 };
+const funcKey = function () { };
+
+myMap.set(objKey, "Object as key");
+myMap.set(funcKey, "Function as key");
+console.log(myMap.get(objKey));    // "Object as key"
+console.log(myMap.get(funcKey));   // "Function as key"
+</code></pre>
+<hr>
+
+<h3 id="set" align="center">Set</h3>
+<p>A Set is a built-in object in JavaScript that stores a collection of unique values.</p>
+
+<h4>Set Declaration:</h4>
+<pre><code>const mySet = new Set();</code></pre>
+
+<h4>Set Initialization:</h4>
+<pre><code>const mySet = new Set([1, 2, 3, 3, 4]);
+console.log(mySet); // Set(4) {1, 2, 3, 4}
+</code></pre>
+
+<h4>Key Features:</h4>
+<ul>
+<li>No duplicates allowed </li>
+<li>Can hold any type of value (number, string, object, etc.) </li>
+</ul>
+
+<h3>Looping through a Sat:</h3>
+<ul>
+<li>
+<h3>for...of:</h3>
+<pre><code>const letters = new Set(["a", "b", "c", "c"]);
+for (const letter of letters) {
+    console.log(letter); // a b c
+}</code></pre>
+</li>
+<li>
+<h3>forEach():</h3>
+<pre><code>const letters = new Set(["a", "b", "c", "c"]);
+
+letters.forEach((value) => {
+    console.log(value); // a b c
+});
+</code></pre>
+</li>
+</ul>
+
+<h3>Basic set methods:</h3>
+<ul>
+<li>
+  <h4>.add(value) – Adds a value to the Set:</h4>
+  <code>mySet.add("hello");</code>
+</li>
+<li>
+  <h4>.has(value) – Checks if a value exists:</h4>
+  <code>console.log(mySet.has("hello")); // true</code>
+</li>
+<li>
+  <h4>.delete(value) – Removes a value:</h4>
+  <code>mySet.delete(2);</code>
+</li>
+<li>
+  <h4>.clear() – Removes all values:</h4>
+  <code>mySet.clear();</code>
+</li>
+<li>
+  <h4>.size – Returns number of items:</h4>
+  <code>console.log(mySet.size); // 0 (after clear)</code>
+</li>
+</ul>
+
+<h3>Converting: </h3>
+<ul>
+<li>
+<h4>Convert Set to Array:</h4>
+<pre><code>const mySet = new Set([1, 2, 3, 3, 4]);
+
+const arr = Array.from(mySet);
+// or
+const arr2 = [...mySet];
+console.log(mySet) // Set(4) { 1, 2, 3, 4 }
+console.log(arr) // [ 1, 2, 3, 4 ]
+console.log(arr2) // [ 1, 2, 3, 4 ]</code></pre>
+</li>
+
+<li>
+<h4>Convert Array to Set:</h4>
+<pre><code>const set = new Set([1, 2, 2, 3]);</code></pre>
+</li>
+</ul>
+
+<h4>Set can store Any Type:</h4>
+<pre><code>const mySet = new Set();
+
+mySet.add(1);
+mySet.add("1");
+mySet.add({ name: "Tamim" });
+mySet.add([1, 2, 3])
+
+console.log(mySet);
+// Set(4) { 1, '1', { name: 'Tamim' }, [ 1, 2, 3 ] }
+</code></pre>
+
+<h4>Example: Remove Duplicates from Array</h3>
+<pre><code>const nums = [1, 2, 2, 3, 3, 4];
+const uniqueNums = [...new Set(nums)];
+console.log(uniqueNums); // [1, 2, 3, 4]
+</code></pre>
+
+<h4>Set vs Map vs Array vs Object:<h4>
+<img src="images/image9.png" alt="set vs map vs array vs object">
 <hr>
 
 <!-- 1.6 -->

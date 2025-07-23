@@ -6,6 +6,13 @@
   <li><a href="#part-1-the-javascript-language">Part 1: The JavaScript Language</a></li>
     <ul >
         <li><a href="#an-introduction-to-javaScript">An Introduction to JavaScript</a></li>
+        <ul>
+          <li><a href="#what-is-javaScript">What is JavaScript</a></li>
+          <li><a href="#javascript-history">JavaScript History</a></li>
+          <li><a href="#why-did-javascript-need-a-standard-version">Why did javascript need a standard version.</a></li>
+          <li><a href="#javascript-engines">Javascript Engines</a></li>
+          <li><a href="#netscape-mozila-firefox-transition">Netscape - Mozilla - Firefox: The Transition</a></li>
+        </ul>
         <li><a href="#hello-world">Hello, world!</a></li>
         <li><a href="#variables">variables</a></li>
            <li><a href="#basic-operators">Operator</a></li>
@@ -40,11 +47,15 @@
 <hr>
 
 <!-- part 1: -->
-<h1 id="#part-1-the-javascript-language" align="center">Part 1: The JavaScript Language</h1>
+<h1 id="#part-1-the-javascript-language" align="center">Part 1:<br>The JavaScript Language</h1>
 
-<h3 id="an-introduction-to-javaScript" align="center">An Introduction to JavaScript</h3>
 
-<h3 id="what-is-javascript">What is JavaScript:</h3>
+
+
+
+<h3 id="an-introduction-to-javaScript" align="center">An Introduction to JavaScript:</h3>
+
+<h3 id="what-is-javaScript">What is JavaScript:</h3>
 <p>JavaScript is a programming language for the web. The programs in JavaScript are called scripts because they are small, dynamic, and <a href="#interpreter">interpreted</a> pieces of code designed to run in the browser without <a href="#compiler">compiling</a> the entire program.</p>
 <p>JavaScript code is written and send to the browser as plain text, not compiled machine code. Unlike some other programming languages (such as C, C++, or Java) that require compilation of the whole program before running, JavaScript is <a href="#interpreter">interpreted</a> and <a href="#just-in-time-compiled">just-in-time compiled</a> in the browser at <a href="#runtime">runtime</a>. In this way, JavaScript is fundamentally different from compiled languages like C, C++, and Java, which need to be processed by a <a href="#compiler">compiler</a> before running.</p>
 
@@ -58,7 +69,9 @@
 <p>He completed the first version of the language called <a href="#mocha">Mocha</a> in just 10 days in May 1995.</p>
 <ul>
   <li><strong>LiveScript (September 1995)</strong> – The first version of the language released to the public was called LiveScript, included with the beta version of Netscape Navigator 2.0 Browser.</li>
-  <p><strong>Note:</strong> Alongside the language, Eich also built the first JavaScript engine, called SpiderMonkey, written in C, to run LiveScript in the Navigator browser.</p>
+  
+<p><strong>Note:</strong> Alongside the language, Eich also built the first JavaScript engine written in C, to run LiveScript in the Navigator browser.
+</p>
 </ul>
 <ul>
   <li><strong>JavaScript (December 1995)</strong> – The final name, officially announced in collaboration with Sun Microsystems</li>
@@ -76,6 +89,7 @@
 In June 1997 JavaScript was submitted to ECMA (European Computer Manufacturers Association) International to create a standard version of the language, so all browsers could implement it consistently.<br>
 So, ECMAScript is the official name of the JavaScript standard and ES1, ES2, ES6 etc. are its version numbers.</p>
 </ul>
+<img src="images/JS-history.png" alt="JS-History.png">
 
 <h3 id="why-did-javascript-need-a-standard-version">Why Did JavaScript Need a Standard Version:</h3>
 <p>When JavaScript was first created in 1995 by Netscape, it was only implemented in their browser Netscape Navigator. Shortly, Microsoft launched its own browser, Internet Explorer, and included its own version of JavaScript called JScript. As a result, two distinct versions of JavaScript were emerged in the market:</p>
@@ -102,6 +116,21 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
   <li ><a href="#interpreter">Interpreting</a></li>
   <li id="just-in-time-compiled"><a href="#jit-compilation">JIT Compilation</a></li>
 </ol>
+
+
+
+<h3 id="netscape-mozila-firefox-transition">Netscape - Mozilla - Firefox: The Transition</h3>
+<p>
+In the early 1990s, Netscape Navigator was one of the first widely used web browsers. It played a major role in popularizing JavaScript, which was originally built to run inside this browser.
+
+However, by the late 1990s, Netscape began to lose market share due to intense competition from Microsoft’s Internet Explorer, which was bundled for free with Windows. As Internet Explorer dominated the browser market, Netscape couldn't keep up.
+
+So, in 1998, Netscape open-sourced its browser code for the community to build a better browser based on Netscape’s technology. This open-source version was called Mozilla.
+However, the early Mozilla browser was slow and bloated, as it still relied heavily on legacy Netscape code.
+
+As a solution, in 2004 Mozilla developers created a lighter, faster, standalone browser called Firefox.
+</p>
+<img src="images/Netscape-Mozilla-Firefox_TheTransition-visualselection.png" alt="Netscape-Mozilla-Firefox_TheTransition-visualselection.png">
 
 
 <h3>Q&A:</h3>

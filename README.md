@@ -19,7 +19,15 @@
           <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
            <li><a href="#var-hoisting-issue">var Hoisting Issue</a></li>
         </ul>
-           <li><a href="#basic-operators">Operator</a></li>
+           <li><a href="#operators">Operator</a></li>
+           <ul>
+            <li><a href="#assignment-operator">Assignment Operator</a></li>
+            <li><a href="#increment-decrement-operator">Increment/Decrement Operator</a></li>
+            <li><a href="#comparison-operator">Comparison Operator</a></li>
+            <li><a href="#logical-operator">Logical Operator</a></li>
+            <li><a href="#conditional-operator">Conditional Operator</a></li>
+            <li><a href="#others-operator">Others Operator</a></li>
+           </ul>
               <li><a href="#loops">Loops</a></li>
         <li><a href="#data-types">Data Types</a></li>
         <ul>
@@ -412,49 +420,31 @@ while      with       yield
 
 
 
-<h3 id="basic-operators" align="center">Operators</h3>
+<h3 id="operators" align="center">Operators</h3>
 
-<p><strong>Operator:</strong> An Operator is a special symbol or keyword that performs an operation on one or more values.<br>
-Example: +, -, !, typeof
-</p>
+<p><strong>Operator:</strong> An Operator is a special symbol or keyword that performs an operation on one or more values.</p>
 
-<h3 id="the-typeof-operator">typeof operator:</h3>
-<pre>
-<code>
-console.log(typeof undefined); // "undefined"
+<img src="images/Operators.png" alt="operators">
 
-console.log(typeof 0); // "number"
-
-console.log(typeof 10n); // "bigint"
-
-console.log(typeof true); // "boolean"
-
-console.log(typeof "foo"); // "string"
-
-console.log(typeof Symbol("id")); // "symbol"
-
-console.log(typeof Math); // "object"  
-
-console.log(typeof null); // "object"  
-
-console.log(typeof alert); 
-/*
-you will get "function" as output 
-if you use browser console, in node 
-you will get "undefined"
-*/  
-</code>
-</pre>
-
-<p><strong>Note:</strong></p>
+<h3>Different types of Operators:</h3>
 <ul>
-  <li>typeof null return "object", but null is a primitive data type.
-  </li>
-  <li>typeof alert returns "function", but functions are technically objects. 
-  </li>
-</ul>
+<li>                                                              
+  <h3 id="arithmetic-operator">Arithmetic Operators (+, -, *, /, %, **):</h3>
+  <pre><code>
 
-<h3>** (Exponentiation) Operator:</h3>
+console.log(2 + 3); // 5
+console.log(5 - 2); // 3
+console.log(4 * 2); // 8
+
+
+console.log(10 / 50); // 0.2
+console.log(10 % 50) // 10
+console.log(50 / 10) // 5
+console.log(50 % 10) // 0
+// Note: For a perfect division, the dividend > divisor.
+  </code></pre>
+  
+<h3>** (Exponentiation):</h3>
 <p>a ** b = a<sup> b</sup></p>
 
 <p>Example:</p>
@@ -467,7 +457,8 @@ console.log(8 ** (1 / 3)); // 2 (power of 1/3 is the same as a cubic root)
 </code>
 </pre>
 
-<h3>String concatenation with + operator</h3>
+
+<h3>String concatenation with +:</h3>
 <pre>
 <code>let s = "my" + "string";
 console.log(s); // mystring
@@ -493,8 +484,20 @@ console.log('1' + 2 + 2); // "122" and not "14"
 console.log('6' / '2'); // 3, converts both operands to numbers
 </code>
 </pre>
+</li>
 
-<h3>Pre Increment / Decrement:</h3>
+  <h3 id="assignment-operator">Assignment Operators (=, +=, -=, *=, /=):</h3>
+  <pre><code>
+let x = 10;
+x += 5;  // x = x + 5
+x -= 2;  // x = x - 2
+x *= 3;  // x = x * 3
+x /= 2;  // x = x / 2
+  </code></pre>
+
+
+  <h3 id="increment-decrement-operator">Increment / Decrement Operators (--, ++):</h3>
+<h4>Pre Increment / Decrement:</h4>
 <pre>
 <code>let i = 10;
 let x = ++i;
@@ -505,7 +508,7 @@ console.log(x); // 11
 <p>Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.</p>
 
 
-<h3>post Increment / Decrement:</h3>
+<h4>post Increment / Decrement:</h4>
 <pre>
 <code>let i = 10;
 let x = i++;
@@ -520,6 +523,20 @@ console.log(x); // 10
 <li>Pre-increment (++i): First increments the value of i, then assigns it.</li>
 <li>Post-increment (i++): First assigns the value, then increments it.</li>
 </ul>
+</li>
+
+<li>
+  <h3 id="comparison-operator"> Comparison Operator (>, <, >=, <=, ==, ===, !=, !==):</h3>
+  <pre><code>
+console.log(5 > 3);     // true
+console.log(5 < 3);     // false
+console.log(5 >= 5);    // true
+console.log(3 <= 2);    // false
+console.log(5 == '5');  // true
+console.log(5 === '5'); // false
+console.log(5 != '5');  // false
+console.log(5 !== '5'); // true
+  </code></pre>
 
 <h3>String comparison:</h3>
 <p>To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.</p>
@@ -539,7 +556,7 @@ console.log('Be' < 'Bee'); // true
 </code></pre>
 
 
-<h3>Difference between == and === :</h3>
+<h4>Difference between == and === :</h4>
 <pre><code>console.log(0 == false); // 0 == 0 true
 console.log('' == false); // 0 == 0 true
 </code></pre>
@@ -555,7 +572,7 @@ console.log('' === ''); // true
 </code></pre>
 
 
-<h3>Comparison with null and undefined:</h3>
+<h4>Comparison with null and undefined:</h4>
 <pre><code>console.log(null === undefined); // false
 console.log(null >= undefined); // false
 console.log(null < undefined); // false
@@ -564,21 +581,44 @@ console.log(null == undefined); // true
 </code></pre>
 
 
-<h3>null vs 0:</h3>
+<h4>null vs 0:</h4>
  <pre><code>console.log(null > 0);  // false
-console.log(null == 0); // false because == has special rules for null: null only equals for undefined, not anything else.
-console.log(null >= 0); // true , because == and >= are not same.
+console.log(null == 0); // false
+console.log(null >= 0); // true 
 </code></pre>
 
 
-<h3>undefined vs 0:</h3>
+<h4>undefined vs 0:</h4>
  <pre><code>console.log(undefined > 0); // false 
 console.log(undefined < 0); // false 
 console.log(undefined == 0); // false
 // undefined is converted to NaN in numeric comparisons
 </code></pre>
+</li>
 
-<h3>Conditional Operators (if, else, else if):</h3>
+<li>
+  <h3 id="logical-operator">Logical Operators (&&, ||, !)</h3>
+<pre><code>
+
+let age = 25;
+if (age > 18 && age < 30) {
+  console.log("Young Adult");
+}
+
+let day = "Saturday";
+if (day === "Saturday" || day === "Sunday") {
+  console.log("Weekend");
+}
+
+let loggedIn = false;
+if (!loggedIn) {
+  console.log("Please log in");
+}
+</code></pre>
+</li>
+
+<li>
+<h3 id="conditional-operator">Conditional Operators (if, else, else if, ? :, switch, case):</h3>
 <pre><code>
 
 let age = 20;
@@ -591,6 +631,7 @@ if (age < 18) {
   console.log("Adult");
 }
 </code></pre>
+</li>
 
 <h3>Ternary operator(? :):</h3>
 <p>syntax:</p>
@@ -615,34 +656,6 @@ let message = (age >= 18) ? "You are an adult" : "You are a minor";
 console.log(message);
 </code></pre>
 
-
-<h3>Logical operators(&&, ||, !) :</h3>
-<pre><code>
-
-let age = 25;
-if (age > 18 && age < 30) {
-  console.log("Young Adult");
-}
-
-let day = "Saturday";
-if (day === "Saturday" || day === "Sunday") {
-  console.log("Weekend");
-}
-
-let loggedIn = false;
-if (!loggedIn) {
-  console.log("Please log in");
-}
-</code></pre>
-
-<h3>Nullish coalescing operator(??) :</h3>
-<pre><code>
-let name = null;
-let displayName = name ?? "Guest";
-console.log(displayName); // "Guest"
-</code></pre>
-
-
 <h3> switch...case:</h3>
 <pre><code>
 
@@ -663,6 +676,52 @@ switch (color) {
 }
 // switch checks one variable against multiple cases and runs the matched block.
 </code></pre>
+
+</li>
+<li>
+  <h3 id="others-operator">Others Operators</h3>
+
+<h4 id="the-typeof-operator">typeof operator:</h4>
+<pre>
+<code>
+
+console.log(typeof undefined); // "undefined"
+
+console.log(typeof 0); // "number"
+
+console.log(typeof 10n); // "bigint"
+
+console.log(typeof true); // "boolean"
+
+console.log(typeof "foo"); // "string"
+
+console.log(typeof Symbol("id")); // "symbol"
+
+console.log(typeof Math); // "object"  
+
+console.log(typeof null); // "object"  
+
+console.log(typeof alert); 
+/*
+you will get "function" as output 
+if you use browser console, in node 
+you will get "undefined"
+*/  
+</code>
+</pre>
+<p><strong>Note:</strong></p>
+<ul>
+  <li>typeof null return "object", but null is a primitive data type.
+  </li>
+  <li>typeof alert returns "function", but functions are technically objects. 
+  </li>
+</ul>
+
+
+</li>
+</ul>
+
+
 
 
 <h3>Q&A:</h3>

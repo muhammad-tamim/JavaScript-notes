@@ -15,6 +15,10 @@
         </ul>
         <li><a href="#hello-world">Hello, world!</a></li>
         <li><a href="#variables">variables</a></li>
+        <ul>
+          <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
+           <li><a href="#var-hoisting-issue">var Hoisting Issue</a></li>
+        </ul>
            <li><a href="#basic-operators">Operator</a></li>
               <li><a href="#loops">Loops</a></li>
         <li><a href="#data-types">Data Types</a></li>

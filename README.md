@@ -142,7 +142,7 @@ However, the early Mozilla browser was slow and bloated, as it still relied heav
 
 As a solution, in 2004 Mozilla developers created a lighter, faster, standalone browser called Firefox.
 </p>
-<img src="images/Netscape-Mozilla-Firefox_TheTransition-visualselection.png" alt="Netscape-Mozilla-Firefox_TheTransition-visualselection.png">
+<img src="images/netscape-to-firefox.png" alt="netsCape to firefox">
 
 
 <h3>Q&A:</h3>

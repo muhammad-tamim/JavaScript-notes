@@ -29,6 +29,14 @@
             <li><a href="#others-operator">Others Operator</a></li>
            </ul>
               <li><a href="#loops">Loops</a></li>
+              <ul>
+                <li><a href="#for-loop">for Loop</a></li>
+                <li><a href="#while-loop">while Loop</a></li>
+                <li><a href="#do-while-loop">do-while Loop</a></li>
+                <li><a href="#for-of-loop">for-of Loop</a></li>
+                <li><a href="#for-each-method">fo-each Method</a></li>
+                <li><a href="#for-in-loop">for-in Loop</a></li>
+              </ul>
         <li><a href="#data-types">Data Types</a></li>
         <ul>
           <li><a href="#7-primitive-data-types">7 Primitive Data Types</a></li>
@@ -429,20 +437,19 @@ while      with       yield
 <h3>Different types of Operators:</h3>
 <ul>
 <li>                                                              
-  <h3 id="arithmetic-operator">Arithmetic Operators (+, -, *, /, %, **):</h3>
-  <pre><code>
+<h3 id="arithmetic-operator">Arithmetic Operators (+, -, *, /, %, **):</h3>
 
+<pre><code>
 console.log(2 + 3); // 5
 console.log(5 - 2); // 3
 console.log(4 * 2); // 8
-
 
 console.log(10 / 50); // 0.2
 console.log(10 % 50) // 10
 console.log(50 / 10) // 5
 console.log(50 % 10) // 0
 // Note: For a perfect division, the dividend > divisor.
-  </code></pre>
+</code></pre>
   
 <h3>** (Exponentiation):</h3>
 <p>a ** b = a<sup> b</sup></p>
@@ -486,16 +493,18 @@ console.log('6' / '2'); // 3, converts both operands to numbers
 </pre>
 </li>
 
-  <h3 id="assignment-operator">Assignment Operators (=, +=, -=, *=, /=):</h3>
-  <pre><code>
+<li>
+<h3 id="assignment-operator">Assignment Operators (=, +=, -=, *=, /=):</h3>
+<pre><code>
 let x = 10;
 x += 5;  // x = x + 5
 x -= 2;  // x = x - 2
 x *= 3;  // x = x * 3
 x /= 2;  // x = x / 2
-  </code></pre>
+</code></pre>
+</li>
 
-
+<li>
   <h3 id="increment-decrement-operator">Increment / Decrement Operators (--, ++):</h3>
 <h4>Pre Increment / Decrement:</h4>
 <pre>
@@ -523,6 +532,7 @@ console.log(x); // 10
 <li>Pre-increment (++i): First increments the value of i, then assigns it.</li>
 <li>Post-increment (i++): First assigns the value, then increments it.</li>
 </ul>
+
 </li>
 
 <li>
@@ -598,8 +608,8 @@ console.log(undefined == 0); // false
 
 <li>
   <h3 id="logical-operator">Logical Operators (&&, ||, !)</h3>
-<pre><code>
 
+<pre><code>
 let age = 25;
 if (age > 18 && age < 30) {
   console.log("Young Adult");
@@ -619,8 +629,8 @@ if (!loggedIn) {
 
 <li>
 <h3 id="conditional-operator">Conditional Operators (if, else, else if, ? :, switch, case):</h3>
-<pre><code>
 
+<pre><code>
 let age = 20;
 
 if (age < 18) {
@@ -638,6 +648,7 @@ if (age < 18) {
 <pre><code>condition ? true part : false part</code></pre>
 
 <p>Example:</p>
+
 <pre><code>
 let age = 18;
 let message;
@@ -657,8 +668,8 @@ console.log(message);
 </code></pre>
 
 <h3> switch...case:</h3>
-<pre><code>
 
+<pre><code>
 let color = "green";
 
 switch (color) {
@@ -682,9 +693,8 @@ switch (color) {
   <h3 id="others-operator">Others Operators</h3>
 
 <h4 id="the-typeof-operator">typeof operator:</h4>
-<pre>
-<code>
 
+<pre><code>
 console.log(typeof undefined); // "undefined"
 
 console.log(typeof 0); // "number"
@@ -707,8 +717,8 @@ you will get "function" as output
 if you use browser console, in node 
 you will get "undefined"
 */  
-</code>
-</pre>
+</code></pre>
+
 <p><strong>Note:</strong></p>
 <ul>
   <li>typeof null return "object", but null is a primitive data type.
@@ -736,14 +746,14 @@ you will get "undefined"
 
 <h3 id="loops" align="center">Loops</h3>
 
-<h4>for loop:</h4>
+<h4 id="for-loop">for loop:</h4>
 <pre><code>
 for (let i = 0; i < 5; i++) {
     console.log(i); // 0 1 2 3 4
 }
 </code></pre>
 
-<h4>while loop:</h4>
+<h4 id="while-loop">while loop:</h4>
 <pre><code>
 let i = 0;
 while (i < 5) {
@@ -753,7 +763,7 @@ while (i < 5) {
 </code></pre>
 
 
-<h4>do while loop:</h4>
+<h4 id="do-while-loop">do while loop:</h4>
 <pre><code>
 let i = 0;
 do {
@@ -763,7 +773,7 @@ do {
 </code></pre>
 
 
-<h4>for..of loop ( for <a href="#iterable">iterables</a>(array & string) ) :</h4>
+<h4 id="for-of-loop">for..of loop ( for <a href="#iterable">iterables</a>(array & string) ) :</h4>
 <pre><code>
 // with array
 const arr = ['a', 'b', 'c'];
@@ -780,7 +790,7 @@ for (const value of str) {
 }
 </code></pre>
 
-<h4>forEach method (only for array):</h4>
+<h4 id="for-each-method">forEach method (only for array):</h4>
 <pre><code>
 
 const nums = [1, 2, 3];
@@ -795,7 +805,7 @@ num2.forEach(num2 => console.log(num2)) // 4 5 6
 </code></pre>
 <p>Note: It does not support break or continue.</p>
 
-<h4>for..in loop (for objects): </h4>
+<h4 id="for-in-loop">for..in loop (for objects): </h4>
 
 <pre><code>
 const obj = {

@@ -42,8 +42,14 @@
           <li><a href="#7-primitive-data-types">7 Primitive Data Types</a></li>
           <ul>
             <li><a href="#number">Number</a></li>
+            <ul>
+              <li><a href="#math-methods">Math Methods</a></li>
+            </ul>
             <li><a href="#bigint">BigInt</a></li>
             <li><a href="#string">String</a></li>
+            <ul>
+              <li><a href="#string-methods">String Methods</a></li>
+            </ul>
             <li><a href="#boolean">Boolean</a></li>
             <li><a href="#null">Null</a></li>
             <li><a href="#undefined">Undefined</a></li>
@@ -774,6 +780,7 @@ do {
 
 
 <h4 id="for-of-loop">for..of loop ( for <a href="#iterable">iterables</a>(array & string) ) :</h4>
+
 <pre><code>
 // with array
 const arr = ['a', 'b', 'c'];
@@ -791,8 +798,8 @@ for (const value of str) {
 </code></pre>
 
 <h4 id="for-each-method">forEach method (only for array):</h4>
-<pre><code>
 
+<pre><code>
 const nums = [1, 2, 3];
 nums.forEach(function (num) {
     console.log(num); // 1 2 3
@@ -863,7 +870,7 @@ let money = 25.5;</code></pre>
 <h3>Math Properties:</h3>
 <pre><code>console.log(Math.PI);       // 3.141592653589793</code></pre>
 
-<h3>Math Methods:</h3>
+<h3 id="math-methods">Math Methods:</h3>
 
 <pre><code>console.log(Math.round(4.5)); // 5 
 /*
@@ -946,15 +953,19 @@ console.log(info);
 console.log(str.length); // 10
 </code></pre>
 
-<h3>String Methods:</h3>
+<h3 id="string-methods">String Methods:</h3>
 
+<ul>
+<li>
 <p><strong>Case Conversion:</strong><p>
 
 <pre><code>console.log("hello".toUpperCase()); // "HELLO"
 console.log("WORLD".toLowerCase()); // "world"
 console.log('Interface'[0].toLowerCase()); // 'i'
 </code></pre>
+</li>
 
+<li>
 <p><strong> Searching in Strings:</strong></p>
 
 <pre><code>console.log("JavaScript".includes("Script")); // true
@@ -978,38 +989,44 @@ console.log("hello world".indexOf("world")); // 6
 console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
 console.log("banana".indexOf("z"));      // -1 → not found
 </code></pre>
-
-<h3>Extracting Part of a String: </h3>
+</li>
+<li>
+<h4>Extracting Part of a String: </h4>
 
 <p>slice(start, end): </p>
 
-<p>The slice() method returns a part of the string, starting from the given start index and ending just before the end index (the end index is not included). If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.</p>
+<p>The slice() method returns a part of the string, starting from the given start index and ending just before the end index. If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.</p>
 
 <pre><code>const text = "JavaScript";
 
 console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
 console.log(text.slice(4))        // "Script" (from index 4 to the end)
 console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)</code></pre>
-
-<h3>Replacing and Repeating:</h3>
+</li>
+<li>
+<h4>Replacing and Repeating:</h4>
 
 <pre><code>console.log("I like cats".replace("cats", "dogs")); // "I like dogs"
 console.log("ha".repeat(3)); // "hahaha"
 </code></pre>
-
-<h3>Joining and Splitting:</h3>
+</li>
+<li>
+<h4>Joining and Splitting:</h4>
 
 <pre><code>const sentence = "I love JavaScript";
 const words = sentence.split(" "); // ["I", "love", "JavaScript"]
 console.log(words.join("-"));      // "I-love-JavaScript"
 </code></pre>
+</li>
 
-<h3>Removing Extra Spaces: </h3>
+<li>
+<h4>Removing Extra Spaces: </h4>
 
 <pre><code>console.log("  hello world  ".trim()); // "hello world"
 </code></pre>
+</li>
 
-
+<li>
 <h3>includes, startsWith, endsWith: </h3>
 
 <pre><code>const message = "Hello, Tamim!";
@@ -1026,6 +1043,8 @@ console.log(fileName.endsWith(".pdf"));  // true
 console.log(fileName.endsWith(".txt"));  // false
 console.log("JavaScript".endsWith("Script", 10)); // true
 console.log("JavaScript".endsWith("Java", 4));    // true</code></pre>
+</li>
+</ul>
 
 <h3>Strings are immutable:</h3>
 <p>That's mean you can't change characters directly: </p>

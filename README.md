@@ -58,6 +58,17 @@
           <li><a href="#1-non-primitive-data-types">1 Non-primitive data types (Object)</a></li>
           <ul>
             <li><a href="#object">Object</a></li>
+            <ul>
+            <li><a href="#in-operator">in Operator</a></li>
+            <li><a href="#for-in">for-in Loop</a></li>
+            <li><a href="#object-reference-and-copying">Object References and Coping</a></li>
+            <li><a href="#cloning-and-merging-and-object.assign">Cloning and Merging and object.assign</a></li>
+            <li><a href="#object-methods">Object Methods</a></li>
+            <li><a href="#constructor-function-and-new-operator">Constructor function and new operator</a></li>
+            <li><a href="#">for-in Loop</a></li>
+            <li><a href="#optional-chaining">Optional Chaining</a></li>
+            <li><a href="#date">Date</a></li>
+            </ul>
             <li><a href="#function">Function</a></li>
             <li><a href="#array">Array</a></li>
             <li><a href="#map">map</a></li>
@@ -1086,16 +1097,17 @@ console.log(result) // undefined
 
 <h3 id="symbol" align="center">Symbol</h3>
     <p><strong>symbol</strong> – Represents a unique and immutable value, mainly used to create unique identifiers for object properties.<br>
-      Example: <pre><code>let id = Symbol();
+      Example: </p>
+<pre><code>
+let id = Symbol();
 
 console.log(typeof id); // "symbol"
 
 let a = Symbol("id");
 let b = Symbol("id");
-console.log(a === b); // false</code></pre>
-    </p>
-  
-  </ul>
+console.log(a === b); // false
+</code></pre>
+    
 
 <h3 id="1-non-primitive-data-types" align="center">1 Non-Primitive Data Types (Object)</h3>
 <p>In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array):</p> 
@@ -1122,10 +1134,12 @@ console.log(a === b); // false</code></pre>
 
 <p>We can add, remove and read files from it at any time by the using of dot or bracket notation:</p>
 
-<pre><code>let user = {
+<pre><code>
+let user = {
     name: "John",
     age: 30
 }
+
 console.log(user.name); // John
 console.log(user.age); // 30
 user.location = "USA";
@@ -1170,7 +1184,7 @@ let user = makeUser("John", 30);
 console.log(user.name); // John
 </code></pre>
 
-<h3>Property existence test, “in” operator:</h3>
+<h3 id="in-operator">Property existence test, “in” operator:</h3>
 
 <pre><code>let user = {
     name: "John",
@@ -1181,7 +1195,7 @@ console.log("age" in user); // true, user.age exists
 console.log("location" in user); // false, user.location doesn't exist
 </code></pre>
 
-<h3>The "for..in" loop</h3>
+<h3 id="for-in">The "for..in" loop</h3>
 
 <pre><code>let user = {
     name: "John",
@@ -1196,7 +1210,7 @@ for (let key in user) {
 </code></pre>
 
 
-<h3>Objects References and Copying:</h3>
+<h3 id="object-reference-and-copying">Objects References and Copying:</h3>
 
 <p>One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.</p>
 
@@ -1241,7 +1255,7 @@ admin.name = 'Pete'; // changed by the "admin" reference
 console.log(user.name); // 'Pete', 
 console.log(admin.name); // 'Pete', </code></pre>
 
-<h3>Const objects can be modified?</h3>
+<h4>Const objects can be modified?</h4>
 <p>An important side effect of storing objects as references is that an object declared as const can be modified.</p>
 
 <pre><code>const user = {
@@ -1253,7 +1267,7 @@ user.name = "Pete";
 console.log(user.name); // Pete
 </code></pre>
 
-<h3>Cloning and merging and Object.assign:</h3>
+<h3 id="cloning-and-merging-and-object.assign">Cloning and merging and Object.assign:</h3>
 
 <p>So, copying an object variable creates one more reference to the same object.
 <br>
@@ -1263,7 +1277,8 @@ We can create a new object and replicate the structure of the existing one, by i
 <br>
 Like this:</p>
 
-<pre><code>let user = {
+<pre><code>
+let user = {
     name: "John",
     age: 30
 };
@@ -1271,15 +1286,20 @@ Like this:</p>
 let clone = {}; // the new empty object
 
 // let's copy all user properties into it
-for (let key in user) {
-    clone[key] = user[key];
+for (let property in user) {
+    clone[property] = user[property];
 }
 
-// now clone is a fully independent object with the same content
+console.log(clone); // { name: "John", age: 30 }
+console.log(user); // { name: "John", age: 30 } 
+
 clone.name = "Pete"; // changed the data in it
 
 console.log(user.name); // still John in the original object
 console.log(clone.name); // but Pete in the clone
+
+console.log(clone); // { name: "Pete", age: 30 }
+console.log(user); // { name: "John", age: 30 }
 </code></pre>
 
 <p>We can also use the method <strong>Object.assign</strong>:</p>
@@ -1336,7 +1356,7 @@ user.sizes.width = 60;   // Modify the original object
 console.log(clone.sizes.width); // 60, get the result from the other one
 </code></pre>
 
-<p>To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “structured cloning”.The call structuredClone(object) clones the object with all nested properties:</p>
+<p>To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “structured cloning”.The call <strong>structuredClone(object)</strong> clones the object with all nested properties:</p>
 
 <pre><code>let user = {
     name: "John",
@@ -1355,7 +1375,7 @@ console.log(clone.sizes.width); // 50, not related
 </code></pre>
 
 
-<h3>Object Methods</h3>
+<h3 id="object-methods">Object Methods</h3>
 <p>A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.</p>
 
 <p>Example:</p>
@@ -1418,7 +1438,7 @@ admin.sayHello(); // Tamim
 </code></pre>
 
 
-<h3>Constructor function and "new" operator</h3>
+<h3 id="constructor-function-and-new-operator">Constructor function and "new" operator</h3>
 <p>A constructor function is a regular function used to create multiple objects with the same structure and behavior. By convention, the name of a constructor function starts with a capital letter to distinguish it from regular functions.</p>
 
 <pre><code>function Person(name, age) {
@@ -1478,7 +1498,7 @@ const user2 = new User("Asha", 19);
 <hr>
 
 
-<h3>Optional Chaining (?.)</h3>
+<h3 id="optional-chaining">Optional Chaining (?.)</h3>
 
 <p>Optional Chaining(?.) is a safe way to access deeply nested properties without getting an error if something is undefined or null.</p>
 
@@ -1506,7 +1526,7 @@ user.sayBye?.();    // Nothing happens, no error or undefined
 </code></pre>
 
 
-<h3>Date:</h3>
+<h3 id="date">Date:</h3>
 <p>Date is a built-in object in JavaScript that represents a single moment in time — down to the millisecond. Under the hood, it stores time as the number of milliseconds since January 1, 1970 (UTC) (called the Unix Epoch).</p>
 
 <ul>

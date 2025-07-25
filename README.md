@@ -70,6 +70,11 @@
             <li><a href="#date">Date</a></li>
             </ul>
             <li><a href="#function">Function</a></li>
+            <ul>
+            <li><a href="#what-is-the-difference-between-return-and-no-return">What is the difference between return and no return</a></li>
+            <li><a href="#default-parameter">Default parameter</a></li>
+            <li><a href="#arrow-function">Arrow function</a></li>
+            </ul>
             <li><a href="#array">Array</a></li>
             <li><a href="#map">map</a></li>
             <li><a href="#set">Set</a></li>
@@ -1423,7 +1428,7 @@ let admin = user;
 user = null;
 admin.sayHello(); // Cannot read properties of null (reading 'sayHello')</code></pre>
 
-<p>If we used this.name instead of user.name inside the alert, then the code would work:</p>
+<p>If we used this.name instead of user.name inside the console, then the code would work:</p>
 
 <pre><code>let user = {
     name: "Tamim",
@@ -1577,7 +1582,7 @@ calcSum(1, 2); // 3
   <li>a, b are parameters</li>
 </ul>
 
-<h3>What is the difference between return and no return in a function?</h3>
+<h3 id="what-is-the-difference-between-return-and-no-return">What is the difference between return and no return in a function?</h3>
 <pre><code>function calcSum(a, b) {
     const result = a + b;
 }
@@ -1614,7 +1619,7 @@ console.log(functionResult + 5); // 12
   <li>With <code>return</code>, the robot <strong>makes</strong> the coffee and <strong>gives it to you</strong>.</li>
 </ul>
 
-<h3>Default Parameter:</h3>
+<h3 id="default-parameter">Default Parameter:</h3>
 <p>In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.</p>
 <pre><code>function showGreet(name = "Guest") {
   console.log("Hello, " + name + "!");
@@ -1624,7 +1629,7 @@ showGreet();        // Output: Hello, Guest!
 </code></pre>
 <hr/>
 
-<h3>Arrow Function:</h3>
+<h3 id="arrow-function">Arrow Function:</h3>
 <p>Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6 (2015).</p>
 
 <p>Examples:</p>

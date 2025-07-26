@@ -177,6 +177,10 @@
           <li><a href="#destructuring-function-parameters">Destructuring function parameters</a></li>
         </ul>
         <li><a href="#json">JSON</a></li>
+        <ul>
+          <li><a href="#JSON.stringify()">JSON.stringify()</a></li>
+          <li><a href="#JSON.parse()">JSON.parse()</a></li>
+        </ul>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -2790,9 +2794,9 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 <h3 id="#json" align="center">JSON</h3>
 <p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
 
-<h4>JSON.stringify() — Convert JS → JSON string:</h4>
-<pre><code>
+<h4 id="JSON.stringify()">JSON.stringify() — Convert JS → JSON string:</h4>
 
+<pre><code>
 const user = {
     name: "Tamim",
     age: 21
@@ -2803,11 +2807,10 @@ console.log(jsonString); // {"name":"Tamim","age":21}
 console.log(typeof jsonString); // string 
 </code></pre>
 
-<h4>JSON.parse() — Convert JSON string → JS object:</h4>
+<h4 id="JSON.parse()">JSON.parse() — Convert JSON string → JS object:</h4>
+
 <pre><code>
-
 const jsonStr = '{"name":"Tamim","age":21}';
-
 
 const obj = JSON.parse(jsonStr);
 console.log(obj); // { name: 'Tamim', age: 21 }

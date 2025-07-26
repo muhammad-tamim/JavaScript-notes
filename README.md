@@ -113,17 +113,37 @@
                       <ul>
                           <li><a href="#some">some</a></li>
                           <li><a href="#every">every</a></li>
-                      </ul>
-                      <ul>
                           <li><a href="#at">at</a></li>
-                      </ul>
-                      <ul>
                           <li><a href="#isArray">isArray</a></li>
                           <li><a href="#fill">Fill</a></li>
                       </ul>
               </ul>
             </ul>
-            <li><a href="#map">map</a></li>
+            <li><a href="#map-data-type">map</a></li>
+            <ul>
+               <li><a href="#looping-through-a-map">Looping through a map</a></li>
+               <ul>
+                 <li><a href="#map-for-of-loop">Using for of loop</a></li>
+                <li><a href="#map-forEach-method">Using for each method</a></li>
+                 <li><a href="#map-build-in-methods-for-keys,values-entries">Using Map build in methods: keys, values,entries</a></li>
+               </ul>
+                <li><a href="#basic-map-methods">Basic Map Methods</a></li>
+                <ul>
+                   <li><a href="#set()">set()</a></li>
+                  <li><a href="#get()">get()</a></li>
+                  <li><a href="#has()">has()</a></li>
+                  <li><a href="#delete()">delete()</a></li>
+                  <li><a href="#clear()">clear()</a></li>
+                  <li><a href="#size">size</a></li>
+                </ul>
+                <li><a href="#converting">Converting</a></li>
+                <ul>
+                   <li><a href="#convert-map-to-array">Convert map to array</a></li>
+                  <li><a href="#convert-map-to-object">Convert map to object</a></li>
+                  <li><a href="#convert-object-to-map">Convert object to map</a></li>
+                </ul>
+                <li><a href="#map-keys-can-be-anything">map-keys-can-be-anything</a></li>
+            </ul>
             <li><a href="#set">Set</a></li>
           </ul>
         </ul>
@@ -2121,7 +2141,7 @@ console.log(arr) // [ 1, 0, 0 ]
 
 <hr>
 
-<h3 id="map" align="center">Map</h3>
+<h3 id="map-data-type" align="center">Map</h3>
 
 <p>A Map is a built-in object in JavaScript that holds key-value pairs like object, but here Keys can be of any type (not just strings!)</p>
 
@@ -2129,6 +2149,7 @@ console.log(arr) // [ 1, 0, 0 ]
 <pre><code>const myMap = new Map();</code></pre>
 
 <h4>Initialized a Map:</h4>
+
 <pre><code>
 const myMap = new Map([
     ['name', 'Tamim'],
@@ -2140,28 +2161,52 @@ console.log(myMap)
 // Map(3) { 'name' => 'Tamim', 'age' => 21, 'country' => 'Bangladesh' }
 </code></pre>
 
-<h3>Looping through a Map:</h3>
+<h3 id="looping-through-a-map">Looping through a Map:</h3>
 <ul>
   <li>
-    <h4>for...of loop:</h4>
-<pre><code>const myMap = new Map([
+    <h4 id="map-for-of-loop">for...of loop:</h4>
+
+<pre><code>
+const myMap = new Map([
     ['name', 'Tamim'],
     ['age', 21],
     ['country', 'Bangladesh']
 ]);
-for (let [key, value] of myMap) {
+
+for (const entry of myMap) {
+    const key = entry[0];
+    const value = entry[1];
     console.log(key, value);
 }
-
-/**
- name Tamim
+/*
+name Tamim
 age 21
-country Bangladesh
- */
+country Bangladesh 
+*/
+
+for (const [key, value] of myMap) {
+    console.log(key, value);
+}
+/*
+name Tamim
+age 21
+country Bangladesh 
+*/
+
+
+/*
+Behind the scenes of destructuring:
+Each entry is an array: ['name', 'Tamim']
+Destructuring splits it like:
+  [key, value] = ['name', 'Tamim'];
+*/
 </code></pre>
+
   </li>
 <li>
-<h4>.forEach() method:</h4>
+
+<h4 id="map-forEach-method">forEach() method:</h4>
+
 <pre><code>
 const myMap = new Map([
     ['name', 'Tamim'],
@@ -2171,16 +2216,25 @@ const myMap = new Map([
 myMap.forEach((value, key) => console.log(key, value))
 
 /**
- name Tamim
+name Tamim
 age 21
 country Bangladesh
  */
 </code></pre>
 </li>
-<h4>For looping over a map, there are 3 methods:</h4>
-<li>map.keys() – returns an iterable for keys,<li>
-<li>map.values() – returns an iterable for values,<li>
-<li>map.entries() – returns an iterable for entries [key, value], it’s used by default in for..of.<li>
+<li>
+
+<h4 id="map-build-in-methods-for-keys,values-entries">3 Built-in Map Methods for Looping Through Keys, Values, and Entries:</h4>
+<ul>
+  <li><code>map.keys()</code> – Returns an iterable of keys.</li>
+  <li><code>map.values()</code> – Returns an iterable of values.</li>
+  <li>
+    <code>map.entries()</code> – Returns an iterable of <code>[key, value]</code> pairs.<br>
+    This is the default behavior when using a <code>for...of</code> loop with a <code>Map</code>, like:<br>
+    <code>for (const [key, value] of myMap)</code>
+  </li>
+</ul>
+
 <pre><code>
 let recipeMap = new Map([
   ['cucumber', 500],
@@ -2202,41 +2256,120 @@ for (let amount of recipeMap.values()) {
 for (let entry of recipeMap) { // the same as of recipeMap.entries()
   alert(entry); // cucumber,500 (and so on)
 }</code></pre>
-</ul>
-
-
-<h3>Basic Map Methods:</h3>
-<ul>
-<li>
-  <h4>.set(key, value) – Add a key-value pair:</h4>
-  <code>myMap.set("language", "JavaScript");</code>
-</li>
-<li>
-  <h4>.get(key) – Get value by key</h4>
-  <code>console.log(myMap.get("language")); // "JavaScript"</code>
-</li>
-<li>
-  <h4>.has(key) – Check if key exists</h4>
-  <code>console.log(myMap.has("age")); // true</code>
-</li>
-<li>
-  <h4>.delete(key) – Remove a key-value pair</h4>
-  <code>myMap.delete("country");</code>
-</li>
-<li>
-  <h4>.clear() – Remove all entries</h4>
-  <code>myMap.clear();</code>
-</li>
-<li>
-  <h4>.size – Number of entries in the Map</h4>
-  <code>console.log(myMap.size); // 0 (after clear)</code>
 </li>
 </ul>
 
-<h3>Converting:</h3>
+
+<h3 id="basic-map-methods">Basic Map Methods:</h3>
 <ul>
 <li>
-<h4>Convert Map to Array:</h4>
+<h4 id="set()">set(key, value) – Add a key-value pair:</h4>
+
+<pre><code>
+const myMap = new Map([
+    ['name', 'Tamim'],
+    ['age', 21],
+    ['country', 'Bangladesh']
+]);
+
+myMap.set("language", "JavaScript");
+
+for (let entry of myMap) {
+    console.log(entry);
+}
+
+/*
+[ 'name', 'Tamim' ]
+[ 'age', 21 ]
+[ 'country', 'Bangladesh' ]
+[ 'language', 'JavaScript' ]
+*/
+</code></pre>
+</li>
+<li>
+  <h4 id="get()">get(key) – Get value by key</h4>
+  
+<pre><code>
+const myMap = new Map([
+    ['name', 'Tamim'],
+    ['age', 21],
+    ['country', 'Bangladesh']
+]);
+
+myMap.set("language", "JavaScript");
+console.log(myMap.get("language")); // "JavaScript"
+</code></pre>
+</li>
+
+<li>
+  <h4 id="has()">has(key) – Check if key exists</h4>
+
+<pre><code>
+const myMap = new Map([
+    ['name', 'Tamim'],
+    ['age', 21],
+    ['country', 'Bangladesh']
+]);
+
+console.log(myMap.has("age")); // true  
+</code></pre>
+</li>
+
+<li>
+  <h4 id="delete()">delete(key) – Remove a key-value pair</h4>
+  
+<pre><code>
+const myMap = new Map([
+    ['name', 'Tamim'],
+    ['age', 21],
+    ['country', 'Bangladesh']
+]);
+
+myMap.delete("country");
+
+for (const entry of myMap) {
+    console.log(entry);
+}
+
+/*
+[ 'name', 'Tamim' ]
+[ 'age', 21 ]
+*/
+</code></pre>
+</li>
+<li>
+  <h4 id="clear()">clear() – Remove all entries</h4>
+
+<pre><code>
+const myMap = new Map([
+    ['name', 'Tamim'],
+    ['age', 21],
+    ['country', 'Bangladesh']
+]);
+
+myMap.clear();
+</code></pre>
+</li>
+<li>
+  <h4 id="size">size – Number of entries in the Map</h4>
+
+<pre><code>
+const myMap = new Map([
+    ['name', 'Tamim'],
+    ['age', 21],
+    ['country', 'Bangladesh']
+]);
+
+console.log(myMap.size); // 3
+</code></pre>
+</li>
+</ul>
+
+<h3 id="converting">Converting:</h3>
+<ul>
+<li>
+<h4 id="convert-map-to-array">Convert Map to Array:</h4>
+
 <pre><code>
 const myMap = new Map([
     ["name", "Tamim"],
@@ -2249,8 +2382,10 @@ console.log(arr);
 // [ [ 'name', 'Tamim' ], [ 'age', 21 ], [ 'country', 'Bangladesh' ] ]
 </code></pre>
 </li>
+
 <li>
-<h4>Convert Map to Object:</h4>
+<h4 id="convert-map-to-object">Convert Map to Object:</h4>
+
 <pre><code>
 const myMap = new Map([
     ["name", "Tamim"],
@@ -2263,7 +2398,9 @@ console.log(mapToObj);
 // { name: 'Tamim', age: 21, country: 'Bangladesh' }
 </code></pre>
 </li>
-<h4>Convert Object to Map:</h4>
+
+<h4 id="convert-object-to-map">Convert Object to Map:</h4>
+
 <pre><code>
 const obj = { a: 1, b: 2 };
 const objToMap = new Map(Object.entries(obj));
@@ -2279,8 +2416,10 @@ b 2
 </li>
 </ul>
 
-<h3>Map Keys Can Be Anything!</h3>
-<pre><code>const myMap = new Map([
+<h3 id="map-keys-can-be-anything">Map Keys Can Be Anything!</h3>
+
+<pre><code>
+const myMap = new Map([
     ["name", "Tamim"],
     ["age", 21],
     ["country", "Bangladesh"]

@@ -76,6 +76,53 @@
             <li><a href="#arrow-function">Arrow function</a></li>
             </ul>
             <li><a href="#array">Array</a></li>
+            <ul>
+              <li><a href="#for-of">for of</a></li>
+              <li><a href="#array-methods">Array Methods</a></li>
+              <ul>
+                  <li><a href="#adding-removing-elements">Adding /
+                  Removing Elements</a></li>
+                  <ul>
+                      <li><a href="#push/pop-and-unshift/shift">Push / pop and unshift / shift</a></li>
+                      <li><a href="#splice">splice</a></li>
+                      <li><a href="#slice">slice</a></li>
+                  </ul>
+                    <li><a href="#searching-location">Searching / Location</a></li>
+                    <ul>
+                        <li><a href="#indexof">indexOf</a></li>
+                        <li><a href="#lastIndexOf">lastIndexOf</a></li>
+                        <li><a href="#includes">Includes</a></li>
+                    </ul>
+                    <li><a href="#iteration-transformation">Iteration / Transformation</a></li>
+                    <ul>
+                            <li><a href="#forEach">forEach</a></li>
+                            <li><a href="#map">map</a></li>
+                            <li><a href="#filter">filter</a></li>
+                            <li><a href="#find">find</a></li>
+                            <li><a href="#findIndex">findIndex</a></li>
+                            <li><a href="#reduce">reduce</a></li>
+                    </ul>
+                      <li><a href="#reordering-combining">Reordering / Combining</a></li>
+                      <ul>
+                          <li><a href="#concat">concat</a></li>
+                          <li><a href="#join">join</a></li>
+                          <li><a href="#reverse">reverse</a></li>
+                          <li><a href="#sort">sort</a></li>
+                      </ul>
+                      <li><a href="#others">Others</a></li>
+                      <ul>
+                          <li><a href="#some">some</a></li>
+                          <li><a href="#every">every</a></li>
+                      </ul>
+                      <ul>
+                          <li><a href="#at">at</a></li>
+                      </ul>
+                      <ul>
+                          <li><a href="#isArray">isArray</a></li>
+                          <li><a href="#fill">Fill</a></li>
+                      </ul>
+              </ul>
+            </ul>
             <li><a href="#map">map</a></li>
             <li><a href="#set">Set</a></li>
           </ul>
@@ -1669,17 +1716,15 @@ In arrays, the variable <code>arr</code> is the object, and the index numbers ar
 
 
 
-<h4>Array Declaration:<h4>
-<pre>
-<code>let fruits = []</code>
-</pre>
+<h4>Array Declaration:</h4>
+<pre><code>let fruits = []</code></pre>
 
-<h4>Array Initialization:<h4>
+<h4>Array Initialization:</h4>
 <pre>
 <code>let fruits = ['apple', 'orange', 'plum']</code>
 </pre>
 
-<h4>Array Assignment:<h4>
+<h4>Array Assignment:</h4>
 <pre>
 <code>let fruits = ['apple', 'orange', 'plum'];
 fruits[2] = 'mango';
@@ -1692,11 +1737,11 @@ console.log(fruits); // [ 'apple', 'orange', 'mango' ]
 <pre><code>let fruits = ["Apple", "Orange", "Plum"];
 console.log(fruits.length); // 3</code></pre>
 
-<h4>Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array.
-They both point to the same memory address:</h4>
-<pre>
+<p>Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array.
+They both point to the same memory address:</p>
 
-<code>let fruits = ["Banana"]
+<pre><code>
+let fruits = ["Banana"]
 
 let arr = fruits; // copy by reference (two variables reference the same array)
 
@@ -1705,14 +1750,13 @@ console.log(arr === fruits); // true
 arr.push("Pear"); // modify the array by reference
 
 console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
-</code>
-</pre>
+</code></pre>
 
 
-<h3>for..of loop</h3>
+<h3 id="for-of">for..of loop</h3>
 <p>One of the oldest ways to cycle array items is the for loop over indexes:</p>
-<pre><code>
 
+<pre><code>
 let arr = ["Apple", "Orange", "Pear"];
 
 for (let i = 0; i < arr.length; i++) {
@@ -1721,8 +1765,8 @@ for (let i = 0; i < arr.length; i++) {
 </code></pre>
 
 <p><strong>With for..of loop</strong></p>
-<pre><code>
 
+<pre><code>
 let fruits = ["Apple", "Orange", "Plum"];
 
 // iterates over array elements
@@ -1732,23 +1776,23 @@ for (let fruit of fruits) {
 </code></pre>
 
 <p>Technically, because arrays are objects, it is also possible to use for..in, but it gives you the keys (like "0", "1", or even custom properties) instead of the actual values.</p>
+
 <pre><code>
 const fruits = ["apple", "banana", "mango"];
 fruits.custom = "extra"; // adding a property to the array
 
 for (const key in fruits) {
     console.log(key); // 0, 1, 2, custom
-}
-</code></pre>
+}</code></pre>
 
 
-<h3>Array Methods</h3>
+<h3 id="array-methods">Array Methods</h3>
 
 <ol>
-  <li>Adding / Removing Elements</li>
+  <li id="adding-removing-elements">Adding / Removing Elements</li>
   <ul>
     <li>
-    <h4>push/pop and unshift/shift:</h4>
+    <h4 id="push/pop-and-unshift/shift">push/pop and unshift/shift:</h4>
 <table>
 <tr>
   <th>Operation</th>
@@ -1778,11 +1822,12 @@ let fruits = ["Apple", "Orange", "Plum"];
 console.log(fruits.push('Mango')) // 4
 console.log(fruits); // [ 'Apple', 'Orange', 'Plum', 'Mango' ]
 console.log(fruits.pop()); // Mango
+console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
 
 console.log(fruits.unshift('Mango')) // 4
 console.log(fruits); // [ 'Mango', 'Apple', 'Orange', 'Plum' ]
 console.log(fruits.shift()); // Mango
-
+console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
 </code></pre>
 
 <h4>Why push/pop run fast and unshift/shift are slow?</h4>
@@ -1793,9 +1838,9 @@ console.log(fruits.shift()); // Mango
 <p>On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.</p>
     </li>
     <li>
-      <h4>splice(start, deleteCount, ...items) – Modify array: remove, add, or replace elements; returns removed items:</h4>
-<pre><code>
+      <h4 id="splice">splice(start, deleteCount, ...items) – Modify array: remove, add, or replace elements; returns removed items:</h4>
 
+<pre><code>
 let arr = ["I", "study", "JavaScript"];
 // from index 1 remove 1 element
 console.log(arr.splice(1, 1));  // [ 'study' ]
@@ -1820,9 +1865,10 @@ let arr4 = [1, 2, 5];
 console.log(arr4.splice(-1, 0, 3, 4));[]
 console.log(arr4); // 1,2,3,4,5
 </code></pre>
-    </li>
+
+  </li>
     <li>
-    <h4>slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:</h4>
+    <h4 id="slice">slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:</h4>
 
 <pre><code>
 let arr = ["t", "e", "s", "t"];
@@ -1831,133 +1877,156 @@ console.log(arr.slice(1, 3)); // [ 'e', 's' ]
 console.log(arr); // [ 't', 'e', 's', 't' ]
 console.log(arr.slice(-2)); // [ 's', 't' ]
 console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
-
 </code></pre>
+
   </li>
   </ul>
 
-  <li>Searching / Location</li>
+  <li id="searching-location">Searching / Location</li>
   <ul>
     <li>
-      <h4>indexOf(item) – Returns the index of the first match, or -1:</h4>
-      <pre><code>
+      <h4 id="indexof">indexOf(item) – Returns the index of the first match, or -1:</h4>
+
+<pre><code>
 let arr = [1, 2, 3];
 
 console.log(arr.indexOf(2)); // 1
 console.log(arr.indexOf(4)); // -1
-      </code></pre>
-    </li>
+</code></pre>
+
+</li>
     <li>
-      <h4>lastIndexOf(item) – Returns the index of the last match, or 1:</h4>
-      <pre><code>
+      <h4 id="lastIndexOf">lastIndexOf(item) – Returns the index of the last match, or -1:</h4>
+
+<pre><code>
 let arr = [1, 2, 2, 3];
 
 console.log(arr.lastIndexOf(2)); // 2
 console.log(arr.lastIndexOf(5)); // -1
-      </code></pre>
-    </li>
+</code></pre>
+  
+  </li>
     <li>
-      <h4>includes(item) – Returns true if array contains item, or false:</h4>
-      <pre><code>
+      <h4 id="includes">includes(item) – Returns true if array contains item, or false:</h4>
+      
+<pre><code>
 let arr = [1, 2, 3];
 
 console.log(arr.includes(2)); // true
 console.log(arr.includes(5)) // false
-      </code></pre>
-    </li>
-  </ul>
-  <li>Iteration / Transformation</li>
+</code></pre>
+
+</li>
+</ul>
+
+<li id="iteration-transformation">Iteration / Transformation</li>
     <ul>
       <li>
-        <h4>forEach(callback) – Executes a function for each element; no return value:</h4>
-        <pre><code>
+        <h4 id="forEach">forEach(callback) – Executes a function for each element; no return value:</h4>
+        
+<pre><code>
 let arr = [1, 2, 3]
-arr.forEach(n => console.log(n * 2)); // 2 4 6
-        </code></pre>
-      </li>
+arr.forEach(n => console.log(n * 2)); // 2 4 6       
+</code></pre>
+      
+</li>
       <li>
-        <h4>map(callback) – return a new array by applying function to each element:</h4>
-        <pre><code>
+        <h4 id="map">map(callback) – return a new array by applying function to each element:</h4>
+
+<pre><code>
 let arr = [1, 2, 3]
 let arr2 = arr.map(n => n * 2);
 console.log(arr) // [ 1, 2, 3 ]
 console.log(arr2) // [ 2, 4, 6 ]
-        </code></pre>
-      </li>
+</code></pre>
+</li>
       <li>
-        <h4>filter(callback) – return a new array with elements that pass the test:</h4>
-        <pre><code>
+        <h4 id="filter">filter(callback) – return a new array with elements that pass the test:</h4>
+       
+<pre><code>
 let arr = [1, 2, 3, 4]
 let arr2 = arr.filter(n => n % 2 === 0);
 console.log(arr) // [ 1, 2, 3, 4 ]
 console.log(arr2) // [ 2, 4 ]
-        </code></pre>
-      </li>
+</code></pre>
+</li>
       <li>
-        <h4>find(callback) – Returns the first element that matches:</h4>
-        <pre><code>
+        <h4 id="find">find(callback) – Returns the first element that matches:</h4>
+
+<pre><code>
 let arr = [1, 2, 3, 4, 5];
 const result = arr.find(n => n > 2);
 console.log(result); // 3
-        </code></pre>
-      </li>
-            <li>
-        <h4>findIndex(callback) – Returns the index of the first element that matches:</h4>
-        <pre><code>
+</code></pre>
+
+</li>
+    <li>
+        <h4 id="findIndex">findIndex(callback) – Returns the index of the first element that matches:</h4>
+
+<pre><code>
 let arr = [1, 2, 3, 4, 5];
 const result = arr.findIndex(n => n > 2);
 console.log(result); // 2
-        </code></pre>
-      </li>
+</code></pre>
+
+</li>
       <li>
-        <h4>reduce()– Reduces array to a single value:</h4>
+        <h4 id="reduce">reduce()– Reduces array to a single value:</h4>
         <p>Syntax:</p>
         <pre><code>reduce((accumulator, currentValue) => ..., initialValue);</code></pre>
-        <pre><code>
+
+<pre><code>
 let arr = [1, 2, 3, 4, 5]
 let result = arr.reduce((sum, element) => sum + element, 0);
 console.log(result) // 15
-        </code></pre>
-      </li>
+</code></pre>
+
+</li>
     </ul>
-  <li>Reordering / Combining</li>
+  <li id="reordering-combining">Reordering / Combining</li>
     <ul>
       <li>
-        <h4>concat(...arrays) – Returns a new array by merging arrays/values:</h4>
-        <pre><code>
+        <h4 id="concat">concat(...arrays) – Returns a new array by merging arrays/values:</h4>
+
+<pre><code>
 let arr = [1, 2];
 const arr2 = arr.concat([3, 4], 5);
 console.log(arr); // [ 1, 2 ]
 console.log(arr2); // [ 1, 2, 3, 4, 5 ]
-        </code></pre>
-      </li>
+</code></pre>
+
+</li>
       <li>
-        <h4>join(separator) – Returns a string with elements joined by the separator:</h4>
-        <pre><code>
+        <h4 id="join">join(separator) – Returns a string with elements joined by the separator:</h4>
+
+<pre><code>
 let arr = ["a", "b", "c"];
 let arr2 = arr.join("-");
 console.log(arr); // [ 'a', 'b', 'c' ]
 console.log(arr2); // a-b-c
-        </code></pre>
-      </li>
+</code></pre>
+</li>
       <li>
-        <h4>reverse() – Reverses the array:</h4>
-        <pre><code>
+        <h4 id="reverse">reverse() – Reverses the array:</h4>
+
+<pre><code>
 let arr = [1, 2, 3];
 console.log(arr.reverse()) // [ 3, 2, 1 ]
-        </code></pre>
-      </li>
-      <li>
-        <h4>sort – return a new sorted array:</h4>
-        <pre><code>
+</code></pre>
 
+</li>
+      <li>
+        <h4 id="sort">sort – return a new sorted array:</h4>
+        
+<pre><code>
 let arr = [3, 1, 2];
 console.log(arr.sort())  // default lexicographic: [1,2,3]
 
 // but in this case default sort fails:
 let arr2 = [1, 2, 15];
 console.log(arr2.sort()) // [ 1, 15, 2 ]
-        </code></pre>
+</code></pre>
+
 <p>The order became 1, 15, 2. Incorrect. But why?</p>
 <p>In JavaScript, the default behavior of sort() is lexicographic (dictionary-like) sorting. This means: </p>
 <ul>
@@ -1971,6 +2040,7 @@ thats why,
 So the result becomes: [1, 15, 2]
 </ul>
 <p>To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.</p>
+
 <pre><code>let arr2 = [1, 2, 15];
 console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
 </code></pre>
@@ -1985,29 +2055,34 @@ console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
 
   </li>
     </ul>
-  <li>Subarray Extraction / Checks</li>
+
+  <li id="others">Others</li>
     <ul>
       <li>
-        <h4>some() –Return true  if any element passes the test, ease false:</h4>
-        <pre><code>
+        <h4 id="some">some() –Return true  if any element passes the test, else false:</h4>
+
+<pre><code>
 let arr = [1, 2, 3];
 const arr2 = arr.some(n => n > 2);
 console.log(arr2) // true
-        </code></pre>
-      </li>
+</code></pre>
+
+</li>
       <li>
-        <h4>every() –Return true  if all element passes the test, ease false:</h4>
-        <pre><code>
+        <h4 id="every">every() –Return true  if all element passes the test, else false:</h4>
+
+<pre><code>
 let arr = [1, 2, 3];
 const arr2 = arr.every(n => n > 2);
 console.log(arr2) // false
-        </code></pre>
-      </li>
+</code></pre>
+      
+</li>
     </ul>
-  <li>Finding by Position</li>
     <ul>
       <li>
-      <h4>at(index) – Returns element at index; supports negative indexing:</h4>
+      <h4 id="at">at(index) – Returns element at index; supports negative indexing:</h4>
+
 <pre><code>// With at method
 let fruits = ["Apple", "Orange", "Plum"];
 
@@ -2017,32 +2092,29 @@ console.log(fruits.at(-1)); // Plum
 let fruits = ["Apple", "Orange", "Plum"];
 console.log(fruits[fruits.length - 1]); // Plum
 </code></pre>
-      </li>
+      
+</li>
     </ul>
-  <li>Utility / Extras</li>
     <ul>
       <li>
-      <h4></h4>
-      </li>
-    </ul>
-  <li>Subarray Extraction / Checks</li>
-    <ul>
-      <li>
-        <h4>Array.isArray(value) – Return true if value is an array, else false:</h4>
-        <pre><code>
+        <h4 id="isArray">Array.isArray(value) – Return true if value is an array, else false:</h4>
+
+<pre><code>
 const arr = [1, 2]
 const result = Array.isArray(arr);
 console.log(result) // true       
-        </code></pre>
-      </li>
+</code></pre>
+  </li>
       <li>
-        <h4>fill(value, start?, end?) – Fills array with value:</h4>
-        <pre><code>
+        <h4 id="fill">fill(value, start?, end?) – Fills array with value:</h4>
+      
+<pre><code>
 const arr = [1, 2, 3]
 arr.fill(0, 1);
-console.log(arr)      
-        </code></pre>
-      </li>
+console.log(arr) // [ 1, 0, 0 ]
+</code></pre>
+
+  </li>
     </ul>
 </lo>
 

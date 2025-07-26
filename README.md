@@ -142,9 +142,32 @@
                   <li><a href="#convert-map-to-object">Convert map to object</a></li>
                   <li><a href="#convert-object-to-map">Convert object to map</a></li>
                 </ul>
-                <li><a href="#map-keys-can-be-anything">map-keys-can-be-anything</a></li>
+                <li><a href="#map-keys-can-be-anything">map keys can be anything</a></li>
             </ul>
             <li><a href="#set">Set</a></li>
+            <ul>
+               <li><a href="#looping-through-a-set">Looping through a set</a></li>
+               <ul>
+                 <li><a href="#using-for-of">Using for of loop</a></li>
+                <li><a href="#using-for-each">Using for each method</a></li>
+               </ul>
+                <li><a href="#basic-set-methods">Basic set Methods</a></li>
+                <ul>
+                   <li><a href="#set-add()">add()</a></li>
+                  <li><a href="#set-has()">has()</a></li>
+                  <li><a href="#set-delete()">delete()</a></li>
+                  <li><a href="#set-clear()">clear()</a></li>
+                  <li><a href="#set-size()">size</a></li>
+                </ul>
+                <li><a href="#set-converting">Converting</a></li>
+                <ul>
+                   <li><a href="#set-converting-set-to-array">Convert set to array</a></li>
+                  <li><a href="#set-converting-array-to-set">Convert array to set</a></li>
+                </ul>
+                <li><a href="#set-can-store-any-type">set can store any types</a></li>
+                <li><a href="#remove-duplicates-from-array">Remove duplicates from array</a></li>
+                <li><a href="#set-vs-map-vs-array-vs-object">Set Vs Map Vs Array Vs Object</a></li>
+            </ul>
           </ul>
         </ul>
         <li><a href="#destructuring">Destructuring</a></li>
@@ -2452,17 +2475,20 @@ console.log(mySet); // Set(4) {1, 2, 3, 4}
 <li>Can hold any type of value (number, string, object, etc.) </li>
 </ul>
 
-<h3>Looping through a Sat:</h3>
+<h3 id="looping-through-a-set">Looping through a Sat:</h3>
 <ul>
 <li>
-<h3>for...of:</h3>
+<h3 id="using-for-of">for...of:</h3>
+
 <pre><code>const letters = new Set(["a", "b", "c", "c"]);
 for (const letter of letters) {
     console.log(letter); // a b c
-}</code></pre>
+}
+</code></pre>
 </li>
 <li>
-<h3>forEach():</h3>
+<h3 id="using-for-each">forEach():</h3>
+
 <pre><code>const letters = new Set(["a", "b", "c", "c"]);
 
 letters.forEach((value) => {
@@ -2472,34 +2498,81 @@ letters.forEach((value) => {
 </li>
 </ul>
 
-<h3>Basic set methods:</h3>
+<h3 id="basic-set-methods">Basic set methods:</h3>
 <ul>
 <li>
-  <h4>.add(value) – Adds a value to the Set:</h4>
-  <code>mySet.add("hello");</code>
+  <h4 id="set-add()">add(value) – Adds a value to the Set:</h4>
+
+<pre><code>
+const mySet = new Set([1, 2, 3, 3, 4]);
+mySet.add("hello");
+
+for (const value of mySet) {
+    console.log(value);
+}
+
+/*
+1
+2
+3
+4
+hello
+*/
+</code></pre>
 </li>
 <li>
-  <h4>.has(value) – Checks if a value exists:</h4>
-  <code>console.log(mySet.has("hello")); // true</code>
+  <h4 id="set-has()">has(value) – Checks if a value exists:</h4>
+  
+<pre><code>
+const mySet = new Set([1, 2, 3, 3, 4]);
+
+console.log(mySet.has("hello")); // false  
+</code></pre>
 </li>
 <li>
-  <h4>.delete(value) – Removes a value:</h4>
-  <code>mySet.delete(2);</code>
+  <h4 id="set-delete()">delete(value) – Removes a value:</h4>
+  
+<pre><code>
+const mySet = new Set([1, 2, 3, 3, 4]);
+mySet.delete(2);
+
+for (const value of mySet) {
+    console.log(value);
+}
+
+/*
+1
+3
+4
+*/
+</code></pre>
 </li>
 <li>
-  <h4>.clear() – Removes all values:</h4>
-  <code>mySet.clear();</code>
+  <h4 id="set-clear()">.clear() – Removes all values:</h4>
+
+<pre><code>
+const mySet = new Set([1, 2, 3, 3, 4]);
+mySet.clear();
+
+console.log(mySet); // Set(0) {}
+</code></pre>
 </li>
 <li>
-  <h4>.size – Returns number of items:</h4>
-  <code>console.log(mySet.size); // 0 (after clear)</code>
+  <h4 id="set-size()">size – Returns number of items:</h4>
+  
+<pre><code>
+const mySet = new Set([1, 2, 3, 3, 4]);
+
+console.log(mySet.size); // 4
+</code></pre>
 </li>
 </ul>
 
-<h3>Converting: </h3>
+<h3 id="set-converting">Converting: </h3>
 <ul>
 <li>
-<h4>Convert Set to Array:</h4>
+<h4 id="set-converting-set-to-array">Convert Set to Array:</h4>
+
 <pre><code>const mySet = new Set([1, 2, 3, 3, 4]);
 
 const arr = Array.from(mySet);
@@ -2511,14 +2584,16 @@ console.log(arr2) // [ 1, 2, 3, 4 ]</code></pre>
 </li>
 
 <li>
-<h4>Convert Array to Set:</h4>
+<h4 id="set-converting-array-to-set">Convert Array to Set:</h4>
+
 <pre><code>const set = new Set([1, 2, 2, 3]);</code></pre>
 </li>
 </ul>
 
-<h4>Set can store Any Type:</h4>
-<pre><code>const mySet = new Set();
+<h3 id="set-can-store-any-type">Set can store Any Type:</h3>
 
+<pre><code>
+const mySet = new Set();
 mySet.add(1);
 mySet.add("1");
 mySet.add({ name: "Tamim" });
@@ -2528,13 +2603,14 @@ console.log(mySet);
 // Set(4) { 1, '1', { name: 'Tamim' }, [ 1, 2, 3 ] }
 </code></pre>
 
-<h4>Example: Remove Duplicates from Array</h3>
+<h4 id="remove-duplicates-from-array">Example: Remove Duplicates from Array</h3>
+
 <pre><code>const nums = [1, 2, 2, 3, 3, 4];
 const uniqueNums = [...new Set(nums)];
 console.log(uniqueNums); // [1, 2, 3, 4]
 </code></pre>
 
-<h4>Set vs Map vs Array vs Object:<h4>
+<h4 id="set-vs-map-vs-array-vs-object">Set vs Map vs Array vs Object:<h4>
 <img src="images/image9.png" alt="set vs map vs array vs object">
 <hr>
 

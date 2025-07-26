@@ -171,6 +171,11 @@
           </ul>
         </ul>
         <li><a href="#destructuring">Destructuring</a></li>
+        <ul>
+          <li><a href="#array-destructuring">Array Destructuring</a></li>
+          <li><a href="#object-destructuring">Object Destructuring</a></li>
+          <li><a href="#destructuring-function-parameters">Destructuring function parameters</a></li>
+        </ul>
         <li><a href="#json">JSON</a></li>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
@@ -2621,8 +2626,9 @@ console.log(uniqueNums); // [1, 2, 3, 4]
 <h3 id="destructuring" align="center">Destructuring</h3>
 <p>Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.</p>
 <ul>
-<li><h3>Array Destructuring</h3></li>
+<li><h3 id="array-destructuring">Array Destructuring</h3></li>
 <h4>Basic Syntax:</h4>
+
 <pre><code>
 const arr = [1, 2, 3];
 
@@ -2633,6 +2639,7 @@ console.log(c); // 3
 </code></pre>
 
 <h4>Skip Items:</h4>
+
 <pre><code>
 const colors = ["red", "green", "blue"];
 
@@ -2644,6 +2651,7 @@ console.log(third); // blue
 
 
 <h4>Default Values:</h4>
+
 <pre><code>
 const arr = [10];
 
@@ -2654,6 +2662,7 @@ console.log(y); // 100
 </code></pre>
 
 <h4>Swap Variables :</h4>
+
 <pre><code>
 let a = 1;
 let b = 2;
@@ -2665,6 +2674,7 @@ console.log(b); // 1
 </code></pre>
 
 <h4>rest Operator (...):</h4>
+
 <pre><code>
 const nums = [1, 2, 3, 4];
 
@@ -2673,9 +2683,10 @@ const [first, ...rest] = nums;
 console.log(first); // 1
 console.log(rest);  // [2, 3, 4]
 </code></pre>
-<li><h3>Object Destructuring</h3></li>
+<li><h3 id="object-destructuring">Object Destructuring</h3></li>
 
 <h4>Basic Syntax:</h4>
+
 <pre><code>
 const person = {
   name: "Tamim",
@@ -2689,6 +2700,7 @@ console.log(age);  // 21
 </code></pre>
 
 <h4>Rename Variables:</h4>
+
 <pre><code>
 const person = {
   name: "Tamim",
@@ -2702,6 +2714,7 @@ console.log(years);    // 21
 </code></pre>
 
 <h4>Default Values:</h4>
+
 <pre><code>
 const person = {
   name: "Tamim"
@@ -2714,6 +2727,7 @@ console.log(age);  // 20
 </code></pre>
 
 <h4>Nested Destructuring:</h4>
+
 <pre><code>
 const user = {
   id: 1,
@@ -2731,6 +2745,7 @@ console.log(username); // tamim
 </code></pre>
 
 <h4>Rest Operator in Object:</h4>
+
 <pre><code>
 const user = {
   name: "Tamim",
@@ -2744,25 +2759,27 @@ console.log(name);   // Tamim
 console.log(others); // { age: 21, country: "BD" }
 </code></pre>
 
-<li>Destructuring in Function Parameters</li>
+<li><h3 id="destructuring-function-parameters">Destructuring in Function Parameters</h3></li>
 
 <h4>Array Parameters:</h4>
+
 <pre><code>
 function greet([first, second]) {
-  console.log("Hello", first, second);
+    console.log("Hello", first, second);
 }
-
-greet(["Tamim", "Ahmed"]);
+greet(["Tamim", "Ahmed"]); // Hello Tamim Ahmed
 </code></pre>
 
 <h4>Object Parameters:</h4>
+
 <pre><code>
 function displayUser({ name, age }) {
-  console.log(`${name} is ${age} years old.`);
+    console.log(`${name} is ${age} years old.`);
 }
 
-displayUser({ name: "Tamim", age: 21 });
+displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 </code></pre>
+
 </ul>
 <hr>
 

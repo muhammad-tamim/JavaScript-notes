@@ -74,6 +74,7 @@
             <li><a href="#what-is-the-difference-between-return-and-no-return">What is the difference between return and no return</a></li>
             <li><a href="#default-parameter">Default parameter</a></li>
             <li><a href="#arrow-function">Arrow function</a></li>
+            <li><a href="#recursion">Recursion</a></li>
             </ul>
             <li><a href="#array">Array</a></li>
             <ul>
@@ -1755,6 +1756,92 @@ const multiply = (a, b) => {
     return result;
 };
 console.log(multiply(3, 4)); // Output: 12</code></pre>
+
+<h3 id="recursion">Recursion</h3>
+
+<p>Recursion is a technique where a function calls itself.</p>
+
+<pre><code>
+function a() {
+    const a = 10;
+    console.log('inside a', a);
+}
+function b() {
+    const b = 20;
+    a();
+    console.log('inside b', b);
+}
+
+function c() {
+    const c = 30;
+    b();
+    console.log('inside c', c);
+}
+c();
+
+/*
+inside a 10
+inside b 20
+inside c 30
+*/
+</code></pre>
+
+<h4>How the Call Stack Works:</h4>
+<p><strong>Call Stack:</strong> A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:</p>
+<ul>
+<li>New Frame Creation: Each function call creates a new "stack frame" containing the function's parameters, local variables, and return address</li>
+
+<li>Stack Growth: These frames pile up on top of each other as the recursion goes deeper</li>
+
+<li>Base Case Reached: When the base case is hit, the recursion stops adding new frames</li>
+
+<li>Stack Unwinding: Functions start returning values and their frames are removed from the stack in reverse order</li>
+</ul> 
+<img src="images/callStack.png" alt="callstack">
+
+<br>
+
+<h4>How the recursion Works:</h4>
+<p>A recursive function typically has two main components:</p>
+<ol>
+<li><p><strong>Base Case:</strong> The part where the recursive function stops the recursion based on a condition. It ensures that the function does not call itself indefinitely, which prevents a <a href="#stack-overFlow">stack overflow.</a></p></li>
+
+<li><p><strong>Recursive Case:</strong> The part where the recursive function calls itself.</p></li>
+</ol>
+
+<h4>Find Factorial Using Recursion:</h4>
+
+<pre><code>
+function factorial(n) {
+  if (n === 0) {
+    return 1; // base case
+  }
+  return n * factorial(n - 1); // recursive case
+}
+
+console.log(factorial(5)); // 120
+</code></pre>
+<p>call stack:</p>
+<img src="images/Call Stack2.png.png" alt="call-stack-2">
+
+
+
+<h4>Q&A:</h4>
+<ul>
+<li id="stack-overFlow">
+<p><strong>Stack OverFlow:</strong> A stack overflow is an error that happens when the call stack gets too full.</p>
+
+<pre><code>
+function greeting() {
+    console.log("Hello, world!");
+    greeting();
+}
+greeting(); // RangeError: Maximum call stack size exceeded
+</code></pre>
+</li>
+</ul>
+
+
 <hr>
 
 
@@ -2817,3 +2904,8 @@ console.log(obj); // { name: 'Tamim', age: 21 }
 console.log(typeof obj); // object 
 </code></pre>
 <hr>
+
+
+
+
+

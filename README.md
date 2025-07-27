@@ -182,6 +182,7 @@
           <li><a href="#JSON.stringify()">JSON.stringify()</a></li>
           <li><a href="#JSON.parse()">JSON.parse()</a></li>
         </ul>
+        <li><a href="#error-handling">Error Handling</a></li>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -2908,4 +2909,73 @@ console.log(typeof obj); // object
 
 
 
+
+<h3 id="error-handling" align="center">Error Handling</h3>
+
+<p>try...catch is used to handle errors in JavaScript so your code doesn't crash. Instead of stopping the program when an error happens, you can catch the error and respond gracefully.</p>
+
+<h4>Without try...catch :</h4>
+
+<pre><code>
+let x = y + 10; // Error: y is not defined
+console.log("This line will not run");
+</code></pre>
+
+<h4>With try...catch :</h4>
+
+<pre><code>
+try {
+    let x = y + 10; // Error here
+} catch (err) {
+    console.log("Something went wrong!");
+}
+console.log("This line will run");
+</code></pre>
+
+<h3>err vs err.message vs err.name</h4>
+
+<pre><code>
+try {
+    let x = y + 10; // Error here
+} catch (err) {
+    console.log(err.name); // ReferenceError
+    console.log(err.message); // y is not defined
+    console.log(err); // full error message
+    console.log(err.stack); // full error message
+}
+console.log("This line will run");
+</code></pre>
+
+<h3>Finally block:</h3>
+<p>finally runs after try and catch, no matter what.</p>
+
+<pre><code>
+try {
+    let result = 10 / 2;
+    console.log(result);
+} catch (err) {
+    console.log("Error:", err.message);
+} finally {
+    console.log("Cleanup: This runs no matter what.");
+}
+/*
+5
+Cleanup: This runs no matter what.
+*/
+</code></pre>
+
+<pre><code>
+try {
+    let result = 10 / y;
+    console.log(result);
+} catch (err) {
+    console.log("Error:", err.message);
+} finally {
+    console.log("Cleanup: This runs no matter what.");
+}
+/*
+Error: y is not defined
+Cleanup: This runs no matter what.
+*/
+</code></pre>
 

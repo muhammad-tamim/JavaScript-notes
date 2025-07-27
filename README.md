@@ -177,6 +177,7 @@
           <li><a href="#object-destructuring">Object Destructuring</a></li>
           <li><a href="#destructuring-function-parameters">Destructuring function parameters</a></li>
         </ul>
+        <li><a href="#rest-and-spread">rest and spread</a></li>
         <li><a href="#json">JSON</a></li>
         <ul>
           <li><a href="#JSON.stringify()">JSON.stringify()</a></li>
@@ -980,9 +981,16 @@ message = 123456;      // number
 <h3 id="number" align="center">Number</h3>
 <p><strong>number</strong> – Represents both integers and floating-point numbers.<br>
       Example: 
-      <pre><code>let age = 25;
-let money = 25.5;</code></pre>
-    </p>
+    </p>  
+
+<pre><code>
+let age = 25;
+let money = 25.5345;
+
+console.log("Age:", age); // Outputs: Age: 25
+console.log("Money:", money.toFixed(2)); // Outputs: Money: 25.53
+</code></pre>
+    
 
 <h3>Math Properties:</h3>
 <pre><code>console.log(Math.PI);       // 3.141592653589793</code></pre>
@@ -2879,7 +2887,7 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 
 
 
-<h3 id="#json" align="center">JSON</h3>
+<h3 id="json" align="center">JSON</h3>
 <p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
 
 <h4 id="JSON.stringify()">JSON.stringify() — Convert JS → JSON string:</h4>

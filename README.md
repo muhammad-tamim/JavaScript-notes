@@ -65,6 +65,7 @@
           <ul>
             <li><a href="#object">Object</a></li>
             <ul>
+             <li><a href="#object.keys-and-object.Values">Object.keys() and Object.Values() method</a></li>
             <li><a href="#in-operator">in Operator</a></li>
             <li><a href="#for-in">for-in Loop</a></li>
             <li><a href="#object-reference-and-copying">Object References and Coping</a></li>
@@ -1454,8 +1455,39 @@ let user = makeUser("John", 30);
 console.log(user.name); // John
 </code></pre>
 
-<h3 id="in-operator">Property existence test, “in” operator:</h3>
+<h3 id="object.keys-and-object.Values">Object.keys(), Object.Values() amd Object.entries() methods:</h3>
 
+<pre><code>
+
+const computer = {
+    brand: 'lenovo',
+    price: 35000,
+    processor: 'intel',
+    ssd: '512gb'
+};
+
+const keys = Object.keys(computer);
+console.log(keys); // [ 'brand', 'price', 'processor', 'ssd' ]
+
+const values = Object.values(computer);
+console.log(values); // [ 'lenovo', 35000, 'intel', '512gb' ]
+
+const entries = Object.entries(computer);
+console.log(entries);
+
+/*
+[
+  [ 'brand', 'lenovo' ],
+  [ 'price', 35000 ],
+  [ 'processor', 'intel' ],
+  [ 'ssd', '512gb' ]
+]
+*/
+</code></pre>
+
+<h3 id="in-operator">Property existence test:</h3>
+
+<h4>With in operator:</h4>
 <pre><code>let user = {
     name: "John",
     age: 30,
@@ -1463,6 +1495,33 @@ console.log(user.name); // John
 
 console.log("age" in user); // true, user.age exists
 console.log("location" in user); // false, user.location doesn't exist
+</code></pre>
+
+<h4>With includes() method:</h4>
+
+<pre><code>
+const profile = {
+    name: "Rahim",
+    age: 28,
+    city: "Dhaka",
+};
+
+const profileKeys = Object.keys(profile);
+const hasName = profileKeys.includes("name");
+console.log(hasName); // Output: true
+</code></pre>
+
+<h4>With hasOwnProperty() method:</h4>
+
+<pre><code>
+const profile = {
+    name: "Rahim",
+    age: 28,
+    city: "Dhaka",
+};
+
+const hasName = profile.hasOwnProperty("name");
+console.log(hasName); // Output: true
 </code></pre>
 
 <h3 id="for-in">The "for..in" loop</h3>

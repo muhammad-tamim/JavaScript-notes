@@ -536,6 +536,14 @@ sayHi(); // Output: undefined
 } 
  */</code></pre>
 
+<h3>Variable naming conventions:</h3>
+<ul>
+<li>Names must start with a letter, underscore _, or dollar sign $</li>
+<li>Names can contain letters, digits, _, and $ — but no spaces or symbols</li>
+<li>Names are Case-sensitive</li>
+<li>Names Cannot contain JavaScript reserved keywords</li>
+</ul>
+
 <h3>Q&A</h3>
 <ol>
   <li id="keyword">A keyword is a reserved word that has a special meaning in the language.</li>

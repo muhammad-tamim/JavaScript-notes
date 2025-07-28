@@ -125,6 +125,7 @@
                           <li><a href="#at">at</a></li>
                           <li><a href="#isArray">isArray</a></li>
                           <li><a href="#fill">Fill</a></li>
+                          <li><a href="#flat">Flat</a></li>
                       </ul>
               </ul>
             </ul>
@@ -2449,12 +2450,30 @@ console.log(result); // 2
         <pre><code>reduce((accumulator, currentValue) => ..., initialValue);</code></pre>
 
 <pre><code>
-let arr = [1, 2, 3, 4, 5]
-let result = arr.reduce((sum, element) => sum + element, 0);
-console.log(result) // 15
-</code></pre>
+const numbers = [1, 2, 3, 4];
 
-</li>
+// without reduce method
+
+let acc = 0;
+for (let i = 0; i < numbers.length; i++) {
+    acc = acc + numbers[i];
+}
+console.log(acc); // Output: 10
+
+// with reduce method
+
+const result = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(result); // Output: 10
+</code></pre>
+<p>Here,</p>
+<ul>
+<li>accumulator = keeps the result</li>
+<li>0 = The staring value of accumulator</li>
+<li>currentValue = the current element of the array</li>
+</ul>
+<img src="images/reduce.png" alt="reduce">
+
+</ul>
     </ul>
   <li id="reordering-combining">Reordering / Combining</li>
     <ul>
@@ -2588,8 +2607,31 @@ console.log(arr) // [ 1, 0, 0 ]
 </code></pre>
 
   </li>
-    </ul>
-</lo>
+<li>
+  <h4 id="flat">flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:</h4>
+
+<pre><code>
+// Default depth (1)
+
+const arr = [1, 2, [3, 4]];
+const flatArr = arr.flat();
+console.log(flatArr); // Output: [1, 2, 3, 4]
+
+// Deeper nesting with depth = 2
+
+const arr = [1, 2, [3, 4, [5, 6]]];
+const flatArr = arr.flat(2);
+console.log(flatArr); // Output: [1, 2, 3, 4, 5, 6]
+
+// Infinite depth (Infinity)
+
+const arr = [1, [2, [3, [4]]]];
+const flatArr = arr.flat(Infinity);
+console.log(flatArr); // Output: [1, 2, 3, 4]
+</code></pre>
+</li>
+</ul>
+</ol>
 
 
 <hr>

@@ -49,6 +49,7 @@
             <li><a href="#number">Number</a></li>
             <ul>
               <li><a href="#math-methods">Math Methods</a></li>
+              <li><a href="#type-conversion-methods">Type Conversion Methods</a></li>
             </ul>
             <li><a href="#bigint">BigInt</a></li>
             <li><a href="#string">String</a></li>
@@ -965,13 +966,34 @@ console.log(merged); // { name: "Tamim", age: 21 }
 <h3 id="loops" align="center">Loops</h3>
 
 <h4 id="for-loop">for loop:</h4>
+
 <pre><code>
 for (let i = 0; i < 5; i++) {
     console.log(i); // 0 1 2 3 4
 }
+
+// With break and continue
+
+for (let i = 1; i <= 10; i++) {
+  if (i % 2 === 0) {
+    continue; // skip even numbers
+  }
+
+  if (i === 7) {
+    break; // stop the loop when i is 7
+  }
+
+  console.log(i);
+}
+/*
+1
+3
+5
+*/
 </code></pre>
 
 <h4 id="while-loop">while loop:</h4>
+
 <pre><code>
 let i = 0;
 while (i < 5) {
@@ -982,6 +1004,7 @@ while (i < 5) {
 
 
 <h4 id="do-while-loop">do while loop:</h4>
+
 <pre><code>
 let i = 0;
 do {
@@ -1109,7 +1132,7 @@ console.log(Math.abs(-7));      // 7 → remove negative sign
 console.log(Math.min(3, 1, 7)); // 1 → Smallest number
 console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
 
-<h3 id="type-conversion-methods">Type conversion methods</h3>
+<h3 id="type-conversion-methods">Type conversion methods: </h3>
 
 <pre><code>
 console.log(parseInt("123"));       // 123

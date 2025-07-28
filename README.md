@@ -188,6 +188,7 @@
           <li><a href="#JSON.parse()">JSON.parse()</a></li>
         </ul>
         <li><a href="#error-handling">Error Handling</a></li>
+        <li><a href="#import-and-export">Js Modules: Import and export</a></li>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -3075,8 +3076,71 @@ Error: y is not defined
 Cleanup: This runs no matter what.
 */
 </code></pre>
+<hr>
 
 
 
 
+
+<h3 id="import-and-export" align="center">JS Modules: Import and Export</h3>
+
+<h3>Export:</h3>
+<p>There are Three main ways to export from a file:</p>
+<ol>
+<li>Named Export: You export multiple values by name</li>
+
+<pre><code>
+// math.js
+export const PI = 3.14;
+export function add(x, y) {
+  return x + y;
+}
+export const multiply = (x, y) => x * y;
+</code></pre>
+<li>Default Export: You export only one default value form a file</li>
+
+<pre><code>
+// greet.js
+export default function greet(name) {
+  return `Hello, ${name}`;
+}
+</code></pre>
+
+
+<li>Name export and default export in a same file:</li>
+
+<pre><code>
+// utils.js
+export const sayHi = () => console.log("Hi!");
+
+export default function sayHello(name) {
+  console.log(`Hello, ${name}`);
+}
+</code></pre>
+<p>Note:  A file can have only one default export.</p>
+</ol>
+
+<h3>Import:</h3>
+
+<pre><code>
+import { PI, add, multiply } from './math.js';
+import greet from './greet.js';
+import sayHello, { sayHi } from './utils.js';
+
+console.log(PI);          // 3.14
+console.log(add(2, 3));   // 5
+console.log(multiply(2, 3)); // 6
+console.log(greet('Tamim')); // Hello, Tamim
+
+sayHi(); // Hi!
+sayHello('Tamim'); // Hello, Tamim
+</code></pre>
+
+<h4>You can Rename imported file name with as:</h4>
+
+<pre><code>
+import {add as sum} from './math.js';
+
+console.log(sum(2, 3));   // 5
+</code></pre>
 

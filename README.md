@@ -27,6 +27,10 @@
             <li><a href="#logical-operator">Logical Operator</a></li>
             <li><a href="#conditional-operator">Conditional Operator</a></li>
             <li><a href="#others-operator">Others Operator</a></li>
+            <ul>
+              <li><a href="#the-typeof-operator">typeof Operator</a></li>
+              <li><a href="#rest-spread">Rest and Spread Operator</a></li>
+            </ul>
            </ul>
               <li><a href="#loops">Loops</a></li>
               <ul>
@@ -852,6 +856,86 @@ you will get "undefined"
 </ul>
 
 
+<h3 id="rest-spread">rest and spread operator</h3>
+
+<ol>
+<li><h3>rest</h3></li>
+<p>Rest gathers values into an array or object. It is used defining things like Function parameters, array destructuring, object destructuring.
+</p>
+
+<h4>In function parameter:</h4>
+
+<pre><code>
+function multiply(multiplier, ...numbers) {
+    console.log(multiplier);
+    console.log(numbers);
+
+}
+
+multiply(2, 1, 2, 3);
+multiply(3, 4, 5, 6);
+
+/*
+2
+[ 1, 2, 3 ]
+3
+[ 4, 5, 6 ]
+*/
+</code></pre>
+
+<h4>In array destructuring:</h4>
+
+<pre><code>
+const [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4]
+</code></pre>
+
+<h4>In object destructuring:</h4>
+
+<pre><code>
+const user = { name: "Tamim", age: 21, country: "BD" };
+const { name, ...rest } = user;
+
+console.log(name); // Tamim
+console.log(rest); // { age: 21, country: "BD" }
+</code></pre>
+
+
+<li><h3>spread</h3></li>
+<p>Spreads (breaks) an array or object into individual values. It is Used in Function calls, array literals and object literals.
+</p>
+
+<h4>In function call:</h4>
+
+<pre><code>
+function greet(a, b, c) {
+    console.log(a, b, c);
+}
+
+const args = [1, 2, 3];
+greet(args); // [ 1, 2, 3 ] undefined undefined
+greet(...args); // 1 2 3
+</code></pre>
+
+<h4>In Arrays</h4>
+
+<pre><code>
+const nums1 = [1, 2];
+const nums2 = [3, 4];
+const all = [...nums1, ...nums2];
+console.log(all); // [1, 2, 3, 4]
+</code></pre>
+
+
+<h4>In Objects:</h4>
+<pre><code>
+const user1 = { name: "Tamim" };
+const user2 = { age: 21 };
+const merged = { ...user1, ...user2 };
+console.log(merged); // { name: "Tamim", age: 21 }
+</code></pre>
+</ol>
 </li>
 </ul>
 
@@ -2887,6 +2971,11 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 
 
 
+<h3 id="rest-and-spread" align="center">rest and spread</h3>
+
+
+
+
 <h3 id="json" align="center">JSON</h3>
 <p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
 
@@ -2986,4 +3075,8 @@ Error: y is not defined
 Cleanup: This runs no matter what.
 */
 </code></pre>
+
+
+
+
 

@@ -18,6 +18,7 @@
         <ul>
           <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
            <li><a href="#var-hoisting-issue">var Hoisting Issue</a></li>
+          <li><a href="#variable-naming-convention">Variable naming convention</a></li>
         </ul>
            <li><a href="#operators">Operator</a></li>
            <ul>
@@ -536,7 +537,7 @@ sayHi(); // Output: undefined
 } 
  */</code></pre>
 
-<h3>Variable naming conventions:</h3>
+<h3 id="variable-naming-convention">Variable naming conventions:</h3>
 <ul>
 <li>Names must start with a letter, underscore _, or dollar sign $</li>
 <li>Names can contain letters, digits, _, and $ — but no spaces or symbols</li>
@@ -1107,6 +1108,45 @@ console.log(Math.abs(-7));      // 7 → remove negative sign
 
 console.log(Math.min(3, 1, 7)); // 1 → Smallest number
 console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
+
+<h3 id="type-conversion-methods">Type conversion methods</h3>
+
+<pre><code>
+console.log(parseInt("123"));       // 123
+console.log(parseInt("12.34"));     // 12
+console.log(parseInt("100px"));     // 100
+console.log(parseInt("abc"));       // NaN
+console.log(parseInt(true));       // NaN
+
+console.log(parseFloat("10"));         // 10
+console.log(parseFloat("12.34"));     // 12.34
+console.log(parseFloat("100px"));     // 100
+console.log(parseFloat("3.14hello")); // 3.14
+console.log(parseFloat("abc"));       // NaN
+
+console.log(Number("5"));        // 5
+console.log(Number("12.34"));    // 12.34
+console.log(Number(true));       // 1
+console.log(Number(false));      // 0
+console.log(Number(""));         // 0
+console.log(Number("hello"));    // NaN
+
+console.log(String(123));       // "123"
+console.log(String(true));      // "true"
+console.log(String(false));     // "false"
+console.log(String(null));      // "null"
+console.log(String(undefined)); // "undefined"
+console.log(String([1, 2, 3])); // "1,2,3"
+
+console.log(Boolean(0));           // false
+console.log(Boolean(1));           // true
+console.log(Boolean(""));          // false
+console.log(Boolean("Tamim"));     // true
+console.log(Boolean(null));        // false
+console.log(Boolean(undefined));   // false
+console.log(Boolean([]));          // true (empty array is truthy)
+console.log(Boolean({}));          // true (empty object is truthy)
+</code></pre>
 <hr>
 
 

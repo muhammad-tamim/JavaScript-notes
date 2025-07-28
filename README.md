@@ -66,7 +66,8 @@
             <li><a href="#object">Object</a></li>
             <ul>
              <li><a href="#object.keys-and-object.Values">Object.keys() and Object.Values() method</a></li>
-            <li><a href="#in-operator">in Operator</a></li>
+             <li><a href="#Object.freeze()vsObject.seal()">Object.freeze() vs Object.seal()</a></li>
+            <li><a href="#in-operator">Property existence test</a></li>
             <li><a href="#for-in">for-in Loop</a></li>
             <li><a href="#object-reference-and-copying">Object References and Coping</a></li>
             <li><a href="#cloning-and-merging-and-object.assign">Cloning and Merging and object.assign</a></li>
@@ -1485,6 +1486,114 @@ console.log(entries);
 */
 </code></pre>
 
+<h3 id="Object.freeze()vsObject.seal()">Object.freeze() vs Object.seal()</h3>
+
+<h3>Object.freeze():</h3>
+<p>Object.freeze() freezes an object. This means:</p>
+<ul>
+<li>You cannot add new properties.</li>
+<li>You cannot delete existing properties.</li>
+<li>You cannot modify existing property values.</li>
+<li>The object becomes immutable.</li>
+</ul>
+
+<pre><code>
+const person = {
+    name: "Alice",
+    age: 25
+};
+
+Object.freeze(person);
+
+person.age = 30;
+person.city = "NY";
+delete person.name;
+
+console.log(person);
+// Output: { name: "Alice", age: 25 }
+</code></pre>
+
+<h4>Note:</h4>
+<p>Object.freeze() is shallow — only freezes the immediate properties. If object properties are objects themselves, those nested objects can still be mutated unless they are frozen separately.</p>
+
+<pre><code>
+const user = {
+    name: "Bob",
+    address: {
+        city: "Paris"
+    }
+};
+
+Object.freeze(user);
+user.address.city = "London";
+
+console.log(user.address.city); // "London"
+
+// with deep Freeze
+function deepFreeze(obj) {
+    Object.keys(obj).forEach(key => {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+            deepFreeze(obj[key]);
+        }
+    });
+    return Object.freeze(obj);
+}
+
+const deepObj = {
+    level1: {
+        level2: {
+            value: 42
+        }
+    }
+};
+
+deepFreeze(deepObj);
+deepObj.level1.level2.value = 100;
+console.log(deepObj.level1.level2.value); // 42
+</code></pre>
+
+<h3>Object.seal():</h3>
+<p>Object.seal() freezes an object. This means:</p>
+<ul>
+<li>You cannot add new properties.</li>
+<li>You cannot delete existing properties.</li>
+<li><strong>But you can modify existing property values.</strong></li>
+</ul>
+
+<pre><code>
+const car = {
+    brand: "Toyota",
+    year: 2020
+};
+
+Object.seal(car);
+
+car.year = 2022;
+car.color = "red";
+delete car.brand;
+
+console.log(car);
+// { brand: "Toyota", year: 2022 }
+</code></pre>
+
+<h4>Note:</h4>
+<p>Object.seal() is shallow as well. So it also doesn’t affect nested objects.</p>
+
+<h4>How to Check if Object is Frozen or Sealed:</h4>
+
+<pre><code>
+const obj = { a: 1 };
+
+Object.freeze(obj);
+console.log(Object.isFrozen(obj)); // true
+console.log(Object.isSealed(obj)); // true, because frozen objects are also sealed
+
+const obj2 = { b: 2 };
+Object.seal(obj2);
+console.log(Object.isFrozen(obj2)); // false
+console.log(Object.isSealed(obj2)); // true
+</code></pre>
+
 <h3 id="in-operator">Property existence test:</h3>
 
 <h4>With in operator:</h4>
@@ -1888,6 +1997,7 @@ console.log(date.toLocaleDateString()); // Local format (BD: 21/7/2025)
 console.log(date.toLocaleTimeString()); // Local time
 </code></pre>
 </ul>
+
 <hr>
 
 <h3 id="function" align="center">Function</h3>

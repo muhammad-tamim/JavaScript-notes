@@ -198,6 +198,7 @@
         </ul>
         <li><a href="#error-handling">Error Handling</a></li>
         <li><a href="#import-and-export">Js Modules: Import and export</a></li>
+        <li><a href="#regular-expression">Regular Expression</a></li>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -3716,4 +3717,352 @@ import {add as sum} from './math.js';
 
 console.log(sum(2, 3));   // 5
 </code></pre>
+<hr>
 
+
+
+
+<h3 id="regular-expression" align="center">Regular Expression</h3>
+<p>A regular expression (RegEx) is a pattern used to match character combinations in strings.</p>
+
+<p>In JavaScript, RegEx is often used for:</p>
+<ul>
+<li>Validating input (e.g., email, phone number)</li>
+<li>Searching/matching strings</li>
+<li>Replacing patterns in text</li>
+</ul>
+
+<h3>Common RegEx Methods:</h3>
+<ul>
+<li>test() = Returns true if pattern matches</li>
+<li>match() = Returns matching values (array or null)</li>
+<li>replace() = Replace matched pattern</li>
+<li>search() = Returns index of match or -1</li>
+<li>split() = Split string by pattern</li>
+</ul>
+
+<pre><code>
+const str = "I have a cat, a dog, and a cow.";
+const pattern = /a/g;
+
+/*
+/a/ = matches the lowercase letter a
+g = means global, so it finds all occurrences
+*/
+
+console.log("test():", pattern.test(str));       // true
+console.log("match():", str.match(pattern));     // [ 'a', 'a', 'a', 'a', 'a' ]
+console.log("replace():", str.replace(pattern, "*")); // I h*ve * c*t, * dog, *nd * cow.
+console.log("search():", str.search(pattern));   // 3
+console.log("split():", str.split(pattern));     // [ 'I h', 've ', ' c', 't, ', ' dog, ', 'nd ', ' cow.' ]
+</code></pre>
+
+
+<h3>Anchors</h3>
+
+<ul>
+
+<li>^ = matches only the beginning of the entire string.</li>
+
+<li>$ = matches only the end of the entire string.</li>
+
+<li>\b = Word boundary (matches a boundary between a word character (a-z, A-Z, 0-9, _) and a non-word character like space, punctuation, etc. as a whole word, not inside others word)</li>
+</ul>
+
+
+<pre><code>
+const str = "helloWorld hello world\nstart hello\nend";
+
+console.log("^hello    :", str.match(/^hello/));
+console.log("end$      :", str.match(/end$/));
+console.log("\\bhello\\b:", str.match(/\bhello\b/g));
+
+/*
+^hello    : [
+  'hello',
+  index: 0,
+  input: 'helloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+end$      : [
+  'end',
+  index: 35,
+  input: 'helloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+\bhello\b: [ 'hello', 'hello' ]
+*/
+</code></pre>
+
+
+<h3>Flags:</h3>
+<ul>
+<li>g = Match all occurrences (not just the first one)</li>
+<li>i = ignores the case</li>
+<li>m = multiline (it changes how the ^ and $ anchors behave.)
+<br>
+without m (default behavior): 
+<ul>
+<li>^ matches only the beginning of the entire string.</li>
+<li>$ matches only the end of the entire string.
+</li>
+</ul>
+With m: 
+<ul>
+<li>^ matches the start of each line (right after a \n).</li>
+<li>$ matches the end of each line (right before a \n).</li>
+</ul>
+</li>
+</ul>
+
+<pre><code>
+const text = `Apple apple APPLE`;
+
+console.log("g :", text.match(/apple/g));
+console.log("i :", text.match(/apple/i));
+console.log("gi:", text.match(/apple/gi));
+
+/*
+g : [ 'apple' ]
+i : [ 'Apple', index: 0, input: 'Apple apple APPLE', groups: undefined ]
+gi: [ 'Apple', 'apple', 'APPLE' ] 
+*/
+</code></pre>
+
+<pre><code>
+const str = "d\nhelloWorld hello world\nstart hello\nend";
+
+console.log(str.match(/^hello/));
+console.log(str.match(/^hello/m));
+
+console.log(str.match(/hello$/));
+console.log(str.match(/hello$/m));
+
+/*
+null
+[
+  'hello',
+  index: 2,
+  input: 'd\nhelloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+null
+[
+  'hello',
+  index: 31,
+  input: 'd\nhelloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+*/
+</code></pre>
+
+
+<h3>Basic Patterns</h3>
+
+<ul>
+
+<li>
+<h4>/abc/ = Matches the exact sequence "abc"</h4>
+
+<pre><code>
+const str1 = "I know my abc and 123.";
+console.log(str1.match(/abc/));
+/*
+[
+  'abc',
+  index: 10,
+  input: 'I know my abc and 123.',
+  groups: undefined
+]
+*/
+</code></pre>
+</li>
+
+<li>
+<h4>/\d/ = Matches any digit (0–9)</h4>
+
+<pre><code>
+const str2 = "Room number is 405.";
+console.log(str2.match(/\d/g));
+// Output: [ '4', '0', '5' ]
+</code></pre>
+</li>
+
+<li>
+<h4>/\w/ → Matches any word character (a–z, A–Z, 0–9, _)</h4>
+
+<pre><code>
+const str3 = "Hi_123!";
+console.log(str3.match(/\w/g));
+// Output: [ 'H', 'i', '_', '1', '2', '3' ]
+</code></pre>
+</li>
+
+<li>
+<h4>/\s/ → Matches any whitespace character (space, tab, newline)</h4>
+
+<pre><code>
+const str4 = "Hello World! I am Tamim";
+console.log(str4.match(/\s/g));
+// Output: [ ' ', ' ', ' ', ' ' ]
+</code></pre>
+</li>
+
+<li>
+<h4>/./ → Matches any character (except newline)</h4>
+
+<pre><code>
+const str5 = "OK!";
+console.log(str5.match(/./g));
+// Output: [ 'O', 'K', '!' ]
+</code></pre>
+</li>
+
+<li>
+<h4>/[abc]/ → Matches a, b, or c</h4>
+
+<pre><code>
+const str6 = "bag of chips";
+console.log(str6.match(/[abc]/g));
+// Output: [ 'b', 'a', 'c' ]
+</code></pre>
+</li>
+
+<li>
+<h4>/[^abc]/ → Matches any character except a, b, or c</h4>
+
+<pre><code>
+const str7 = "abc123";
+console.log(str7.match(/[^abc]/g));
+// Output: [ '1', '2', '3' ]
+</code></pre>
+</li>
+
+<li>
+<h4>/[A-Z]/ → Matches any uppercase letter</h4>
+
+<pre><code>
+const str9 = "Hi There!";
+console.log(str9.match(/[A-Z]/g));
+// Output: [ 'H', 'T' ]
+</code></pre>
+</li>
+</ul>
+
+
+<h3>Quantifiers</h3>
+<ul>
+<li>/a+/ → 1 or more a</li>
+<li>/a*/ → 0 or more a</li>
+<li>/a?/ → 0 or 1 a</li>
+<li>/a{2}/ → Exactly 2 as</li>
+<li>/a{3,}/ → 3 or more as</li>
+<li>/a{2,4}/ → Between 2 and 4 as</li>
+</ul>
+
+<pre><code>
+const str = "aa aaaa a aaaa aaa aaaaaaa";
+
+console.log("+     :", str.match(/a+/g));       // Match one or more continuous "a" characters.
+console.log("*     :", str.match(/a*/g));       // Match zero or more continuous "a" characters.
+console.log("?     :", str.match(/a?/g));       // Match zero or one "a" character.
+console.log("{2}   :", str.match(/a{2}/g));     // Match exactly two "a" characters.
+console.log("{3,}  :", str.match(/a{3,}/g));    // Match three or more "a" characters.
+console.log("{2,4} :", str.match(/a{2,4}/g));   // Match between two and four "a" characters.
+
+/*
++     : [ 'aa', 'aaaa', 'a', 'aaaa', 'aaa', 'aaaaaaa' ]
+*     : [
+  'aa',      '',
+  'aaaa',    '',
+  'a',       '',
+  'aaaa',    '',
+  'aaa',     '',
+  'aaaaaaa', ''
+]
+?     : [
+  'a', 'a', '',  'a', 'a', 'a', 'a',
+  '',  'a', '',  'a', 'a', 'a', 'a',
+  '',  'a', 'a', 'a', '',  'a', 'a',
+  'a', 'a', 'a', 'a', 'a', ''
+]
+{2}   : [
+  'aa', 'aa', 'aa',
+  'aa', 'aa', 'aa',
+  'aa', 'aa', 'aa'
+]
+{3,}  : [ 'aaaa', 'aaaa', 'aaa', 'aaaaaaa' ]
+{2,4} : [ 'aa', 'aaaa', 'aaaa', 'aaa', 'aaaa', 'aaa' ]
+*/
+</code></pre>
+
+
+<h3>Escaping special characters</h3>
+<p>If you want to match characters like ., ?, *, use a backslash(\)</p>
+
+<pre><code>
+let pattern = /\./;
+console.log("google.com".match(pattern)); // [ '.', index: 6, input: 'google.com', groups: undefined ]
+</code></pre>
+
+<h3>Ral world examples:</h3>
+<ul>
+<li>
+<h4>Validate Email:</h4>
+
+<pre><code>
+const email = "tamim@gmail.com";
+const emailPattern = /^[\w.-]+@[\w.-]+\.\w+$/;
+
+console.log(emailPattern.test(email)); // true
+
+/*
+"tamim@gmail.com"
+
+^           → Start of string
+[\w.-]+     → "tamim"
+@           → "@"
+[\w.-]+     → "gmail"
+\.          → "."
+\w+         → "com"
+$           → End of string 
+
+ */
+</code></pre>
+</li>
+
+
+<li>
+<h4>Extract Digits</h4>
+
+<pre><code>
+let str = "Order #12345";
+let digits = str.match(/\d+/); // ['12345']
+console.log(digits); // [ '12345', index: 7, input: 'Order #12345', groups: undefined ]
+console.log(digits[0]); // '12345'
+
+/*
+/d --> matches any digit (0-9)
++ --> matches one or more digits
+/\d+/ --> matches one or more digits in a row
+*/
+</code></pre>
+</li>
+
+<li>
+<h4>Remove Extra Spaces</h4>
+
+<pre><code>
+let messy = "  too    many    spaces ";
+let clean = messy.replace(/\s+/g, " ").trim();
+console.log(clean); // "too many spaces"
+
+/*
+\s --> Matches any whitespace character (space, tab, newline)
++ --> Matches one or more occurrences 
+g --> Global search, match all occurrences in the string
+*/
+</code></pre>
+</li>
+
+</ul>

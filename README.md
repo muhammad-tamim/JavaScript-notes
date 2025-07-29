@@ -3650,6 +3650,101 @@ Error: y is not defined
 Cleanup: This runs no matter what.
 */
 </code></pre>
+
+
+<h3>Common JS Errors:</h3>
+
+<ul>
+<li>
+<h4>SyntaxError</h4>
+<p>Syntax error happens when JavaScript code is not written correctly.</p>
+
+<pre><code>
+// Missing parenthesis:
+console.log("Hello world"
+
+// Unexpected token:
+let a = 10
+let b = 20;
+console.log(a + b)
+
+// Using reserved keywords for variable names:
+let let = 5;
+
+// not using quotes properly for string:
+let greeting = "Hello;
+
+// Invalid object literal:
+let obj = { name: "Tamim", age: }; 
+</code></pre>
+</li>
+
+<li>
+<h4>ReferenceError</h4>
+<p>Reference Error happens when you use a variable that hasn’t been declared.</p>
+
+<pre><code>
+// Undeclared variable:
+console.log(x);
+
+// Misspelled variable name:
+let username = "Tamim";
+console.log(usernme);
+
+// Variable used outside its block:
+{
+    let a = 5;
+}
+console.log(a);
+
+// Accessing variable before declaration: 
+console.log(y);
+let y = 10;
+
+// Function-scoped variable not declared:
+function test() {
+    console.log(nonExistent);
+}
+test();
+</code></pre>
+</li>
+
+<li>
+<h4>TypeError</h4>
+<p>Type Error happens when a value is used in an invalid way (e.g., calling non-function, accessing property of undefined, etc.)</p>
+</li>
+
+<pre><code>
+// Calling something that's not a function:
+let num = 10;
+num();
+
+// Accessing property of undefined:
+let user;
+console.log(user.name);
+
+// Using string like an object:
+let str = "hello";
+str.push("!");
+
+// Invalid assignment:
+const age = 25;
+age = 30;
+
+// Accessing array index of null:
+let arr = null;
+arr[0];
+
+// Incorrect method on type:
+let number = 123;
+number.toUpperCase();
+
+// Using array as object incorrectly:
+let nums = [1, 2, 3];
+console.log(nums.name.first);
+</code></pre>
+</ul>
+
 <hr>
 
 

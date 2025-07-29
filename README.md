@@ -1417,11 +1417,57 @@ let isSingle = true;</code></pre>
 
 
 <h3 id="undefined" align="center">Undefined</h3>    
-    <p><strong>undefined</strong> – A variable declared but not assigned.<br>
-      Example: <pre><code>let result;
-console.log(result) // undefined 
-/* you declared a variable, but didn't assign a value. so js sets it to undefined by default. */</code></pre>
-    </p>
+<p><strong>undefined</strong> – It is a primitive data type and default value given by JavaScript when a variable:<br></p>
+
+<ul>
+<li>Is declared but not initialized</li>
+<li>Is declared but not initialized</li>
+<li>Doesn’t find the property you asked for</li>
+</ul>
+
+<h3>Common cases when you get undefined:</h3>
+ 
+<pre><code>
+//  Variable declared but not assigned
+let a;
+console.log(a); // undefined
+
+// Function without return
+function sayHello() {
+    console.log("Hello");
+}
+
+const result = sayHello();
+console.log(result); // undefined
+
+// Accessing nonexistent object property
+const user = { name: "Tamim" };
+console.log(user.age); // undefined
+
+// Array element is missing
+const arr = [1, , 3];
+console.log(arr[1]); // undefined
+
+// Function parameter is not passed
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+greet(); // Hello undefined
+
+//  Return statement with no value
+function test() {
+    return;
+}
+
+console.log(test()); // undefined
+
+// Destructuring failure
+const person = { name: "Alice" };
+const { age } = person;
+console.log(age); // undefined
+</code></pre>
+    
 
 
 <h3 id="symbol" align="center">Symbol</h3>

@@ -1290,7 +1290,10 @@ console.log(Math.sqrt(25));     // 5 → Square root of 25
 console.log(Math.abs(-7));      // 7 → remove negative sign
 
 console.log(Math.min(3, 1, 7)); // 1 → Smallest number
-console.log(Math.max(3, 1, 7)); // 7 → Largest number</code></pre>
+console.log(Math.max(3, 1, 7)); // 7 → Largest number
+
+console.log(Math.random());     // 0.08712360252844753 =  Random decimal between 0 (inclusive) and 1 (exclusive)
+</code></pre>
 
 <h3 id="type-conversion-methods">Type conversion methods: </h3>
 

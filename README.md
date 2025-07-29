@@ -17,6 +17,7 @@
         <li><a href="#variables">variables</a></li>
         <ul>
           <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
+          <li><a href="#scope">Scope</a></li>
            <li><a href="#var-hoisting-issue">var Hoisting Issue</a></li>
           <li><a href="#variable-naming-convention">Variable naming convention</a></li>
         </ul>
@@ -419,6 +420,98 @@ message = 'Hello Universe'
 </code></pre>
 
 <p><strong>Note:</strong> initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.</p>
+
+
+<h3 id="scope">Scope</h3>
+<p>Scope determines where variables can be accessed or referenced in your code. There are 4 types of scopes in js:</p>
+<ul>
+<li>Block Scope</li>
+<p>A variable has block scope if it is declared with let or const inside a block ({ }). It is accessible only within that block.</p>
+
+<pre><code>
+if (true) {
+  let age = 25;
+  const city = "Dhaka";
+  console.log(age, city); // 25 Dhaka
+}
+
+console.log(age);  //  Error
+console.log(city); //  Error
+</code></pre>
+
+<li>Function Scope</li>
+<p>A variable has function scope if it is declared inside a function. It is accessible only within that function.</p>
+
+<pre><code>
+function sayHello() {
+    let message = "Hello";
+    console.log(message); // Hello    
+}
+
+sayHello();
+console.log(message); // Error: message is not defined
+</code></pre>
+
+<li>Global Scope</li>
+<p>A variable has global scope if it is declared outside of any function or block. It is accessible from anywhere in the code.</p>
+
+<pre><code>
+let name = "Tamim";
+
+function greet() {
+    console.log("Hi", name); // Hi Tamim
+}
+
+greet();
+console.log(name); // Tamim
+</code></pre>
+
+<li>Lexical Scope (Static Scope)</li>
+<p>Lexical scope means You can access variables from outer to inner scope,
+but not from inner to outer scope.</p>
+
+<pre><code>
+function outer() {
+    let outerVar = "I'm outer";
+
+    function inner() {
+        console.log(outerVar); // ✅ Lexical scope
+    }
+
+    inner();
+}
+outer(); // Output: I'm outer
+</code></pre>
+
+</ul>
+
+<h3>Scope Chain</h3>
+<p>When you try to access a variable:</p>
+<ul>
+<li>JavaScript first looks in the current scope</li>
+<li>If not found, it goes to the outer scope</li>
+<li>This continues until it reaches the global scope</li>
+</ul>
+
+<pre><code>
+let globalVar = "Global";
+
+function outer() {
+    let outerVar = "Outer";
+
+    function inner() {
+        let innerVar = "Inner";
+        console.log(globalVar);
+        console.log(outerVar);
+        console.log(innerVar);
+    }
+
+    inner();
+}
+
+outer();
+</code></pre>
+
 
 <h3 id="difference-between-var-and-let">Difference between <code>var</code> and <code>let</code>:</h3>
 
@@ -1000,7 +1093,7 @@ greet(...args); // 1 2 3
 
 <pre><code>
 const nums1 = [1, 2];
-const nums2 = [3, 4];
+const Block Scopenums2 = [3, 4];
 const all = [...nums1, ...nums2];
 console.log(all); // [1, 2, 3, 4]
 </code></pre>
@@ -2219,6 +2312,35 @@ console.log(functionResult + 5); // 12
   <li>Without <code>return</code>, the robot just makes the coffee — but you don’t get it.</li>
   <li>With <code>return</code>, the robot <strong>makes</strong> the coffee and <strong>gives it to you</strong>.</li>
 </ul>
+
+
+<h3 id="callback function">CallBack Function</h3>
+<p>A callback is a function passed as an argument to another function, to be called later.</p>
+
+<pre><code>
+// without callback function
+function greeting(greetingHandler) {
+    console.log(greetingHandler);
+}
+
+function morningGreet() {
+    console.log('Good Morning');
+}
+
+greeting(morningGreet); // [Function: morningGreet]
+
+
+// with callback function
+function greet(name, callback) {
+    callback(name); // call the callback function
+}
+
+function sayBye(name) {
+    console.log("Bye! Bye " + name);
+}
+
+greet("Tamim", sayBye); // Bye! Bye Tamim
+</code></pre>
 
 <h3 id="default-parameter">Default Parameter:</h3>
 <p>In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.</p>

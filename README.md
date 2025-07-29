@@ -27,6 +27,9 @@
             <li><a href="#comparison-operator">Comparison Operator</a></li>
             <li><a href="#logical-operator">Logical Operator</a></li>
             <li><a href="#conditional-operator">Conditional Operator</a></li>
+            <ul>
+            <li><a href="#truthy-and-falsy-values">Truthy and Falsy Values</a></li>
+            </ul>
             <li><a href="#others-operator">Others Operator</a></li>
             <ul>
               <li><a href="#the-typeof-operator">typeof Operator</a></li>
@@ -749,7 +752,7 @@ console.log(undefined == 0); // false
 </li>
 
 <li>
-  <h3 id="logical-operator">Logical Operators (&&, ||, !)</h3>
+  <h3 id="logical-operator">Logical Operators (&&, ||, ! ,, !!)</h3>
 
 <pre><code>
 let age = 25;
@@ -766,6 +769,26 @@ let loggedIn = false;
 if (!loggedIn) {
   console.log("Please log in");
 }
+
+let username = "Tamim";
+
+if (!!username) {
+    console.log("Username is set"); // Username is set
+} else {
+    console.log("Please enter a username");
+}
+
+console.log(!!"hello"); // true
+console.log(!!42); // true
+console.log(!!{}); // true
+console.log(!![]); // true
+
+console.log(!!""); // false
+console.log(!!0); // false
+console.log(!!null); // false
+console.log(!!undefined); // false
+console.log(!!NaN); // false
+
 </code></pre>
 </li>
 
@@ -829,6 +852,47 @@ switch (color) {
 }
 // switch checks one variable against multiple cases and runs the matched block.
 </code></pre>
+
+
+<h3 id="truthy-and-falsy-values">Truthy and Falsy values:</h3>
+<p>In JavaScript, any value used in a conditional statement gets automatically converted to true or false.</p>
+
+<p>There are 7 total falsy values in js, everything else is truthy:</p>
+
+<pre><code>
+const falsyValues = [
+    false,      // Boolean false
+    0,          // Number zero
+    -0,         // Negative zero
+    0n,         // BigInt zero
+    "",         // Empty string
+    null,       // Null value
+    undefined,  // Undefined
+    NaN         // Not a Number
+];
+
+falsyValues.forEach((value, index) => {
+    if (value) {
+        console.log(`Value at index ${index} is TRUTHY`);
+    } else {
+        console.log(`Value at index ${index} is FALSY -->`, value);
+    }
+});
+
+/*
+Value at index 0 is FALSY --> false
+Value at index 1 is FALSY --> 0
+Value at index 2 is FALSY --> -0
+Value at index 3 is FALSY --> 0n
+Value at index 4 is FALSY --> 
+Value at index 5 is FALSY --> null
+Value at index 6 is FALSY --> undefined
+Value at index 7 is FALSY --> NaN
+*/
+</code></pre>
+
+
+
 
 </li>
 <li>

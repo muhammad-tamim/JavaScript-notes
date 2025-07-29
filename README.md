@@ -1290,7 +1290,9 @@ console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the r
 <li>
 <h4>Replacing and Repeating:</h4>
 
-<pre><code>console.log("I like cats".replace("cats", "dogs")); // "I like dogs"
+<pre><code>
+console.log("I like cats. cats are sweet".replace("cats", "dogs")); // "I like dogs"
+console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
 console.log("ha".repeat(3)); // "hahaha"
 </code></pre>
 </li>
@@ -1328,6 +1330,60 @@ console.log(fileName.endsWith(".txt"));  // false
 console.log("JavaScript".endsWith("Script", 10)); // true
 console.log("JavaScript".endsWith("Java", 4));    // true</code></pre>
 </li>
+<li>
+<h3>concat:</h3>
+
+<pre><code>
+const str1 = "Hello";
+const str2 = "World";
+const result = str1.concat(" ", str2);
+console.log(result); // "Hello World"
+
+const result2 = "I".concat(" love", " JavaScript");
+console.log(result2); // "I love JavaScript"
+</code></pre>
+</li>
+
+<li>
+<h3>substring</h3>
+
+<pre><code>
+const str = "JavaScript Essentials";
+const extractedPart = str.substring(4, 8);
+
+console.log(extractedPart); // "Scri"
+
+</code></pre>
+</li>
+
+<li>
+<h3>String Reverse:</h3>
+
+<pre><code>
+const sentence = 'hello';
+let reverse = '';
+for (const letter of sentence) {
+    reverse = letter + reverse;
+}
+console.log(reverse); // olleh
+
+
+// or using build in methods
+const str = "hello";
+const reversed = str.split("").reverse().join("");
+console.log(reversed); // Output: "olleh"
+
+const split = str.split("");
+console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
+
+const reversedArray = split.reverse();
+console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
+
+const joined = reversedArray.join("");
+console.log(joined); // Output: "olleh"
+</code></pre>
+</li>
+
 </ul>
 
 <h3>Strings are immutable:</h3>

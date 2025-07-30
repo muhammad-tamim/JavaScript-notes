@@ -199,6 +199,7 @@
         <li><a href="#error-handling">Error Handling</a></li>
         <li><a href="#import-and-export">Js Modules: Import and export</a></li>
         <li><a href="#regular-expression">Regular Expression</a></li>
+        <li><a href="#asynchronous-JavaScript">Asynchronous and Synchronous JavaScript</a></li>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -4161,3 +4162,211 @@ g --> Global search, match all occurrences in the string
 </li>
 
 </ul>
+<hr>
+
+
+
+
+
+
+<h3 id="asynchronous-JavaScript" align="center">Asynchronous and Synchronous JavaScript</h3>
+
+<h3 align="center">Synchronous JavaScript</h3>
+
+<h3 id="single-threaded">Single Threaded:</h3>
+<p>JavaScript is a single-threaded, synchronous language, which means it executes one task at a time, in a specific order from top to bottom.</p>
+
+<pre><code>
+console.log("Task 1");
+console.log("Task 2");
+console.log("Task 3");
+
+/*
+Task 1
+Task 2
+Task 3
+*/
+
+console.log(1);
+console.log(2);
+doSomething();
+console.log(4);
+console.log(5);
+console.log(6);
+
+function doSomething() {
+    console.log(3);
+}
+
+/*
+1
+2
+3
+4
+5
+6
+*/
+</code></pre>
+
+<h3 align="center">asynchronous JavaScript</h3>
+<p>In general, JavaScript runs code in a synchronous way — meaning it executes one task at a time, in the order they appear.</p>
+<p>However, JavaScript can also perform asynchronous tasks using methods like setTimeout() and setInterval().</p>
+<p>Behind the scenes, when an asynchronous method is called:</p>
+<ul>
+<li>JavaScript hands it off to the browser (<a href="#web-api">Web API</a>)</li>
+<li>Then continues to run other code without waiting. Once all synchronous tasks are done, the <a href="#event-loop">Event Loop</a> picks up the asynchronous callback and adds it to the call stack to execute.</li>
+</ul>
+<p>So, asynchronous methods like setTimeout() and setInterval() do not change the single-threaded, synchronous nature of JavaScript — they just work alongside it, using the event loop to manage timing and order.</p>
+
+<h3>setTimeOut()</h3>
+<p>setTimeout() runs a function once after a specified delay (in milliseconds).</p>
+
+<pre><code>
+console.log(1);
+
+console.log(2);
+setTimeout(() => {
+    console.log(3)
+});
+console.log(4);
+console.log(5);
+console.log(6);
+
+/*
+1
+2
+4
+5
+6
+3 - runs 0 second delay
+*/
+</code></pre>
+
+<pre><code>
+console.log(1);
+console.log(2);
+setTimeout(() => {
+    console.log(3)
+}, 4000);
+console.log(4);
+console.log(5);
+console.log(6);
+
+/*
+1
+2
+4
+5
+6
+3 - runs 4 second delay
+*/
+</code></pre>
+
+<pre><code>
+// With Parameters
+function greet(name) {
+    console.log("Hello, " + name);
+}
+
+setTimeout(greet, 3000, "Tamim"); // After 3 seconds
+</code></pre>
+
+<h3>setInterval()</h3>
+<p>setInterval() runs a function again and again, with a fixed time delay between each call.</p>
+
+<pre><code>
+// runs infinitely with one seconde delay
+setInterval(() => {
+    console.log("I print every 1 second");
+}, 1000);
+</code></pre>
+
+<pre><code>
+// Count every second
+let count = 1;
+const id = setInterval(() => {
+    console.log("Count:", count);
+    count++;
+}, 1000);
+</code></pre>
+
+
+<pre><code>
+// Stop setInterval() with clearInterval(id)
+let i = 1;
+const id = setInterval(() => {
+    console.log("i =", i);
+    i++;
+    if (i > 5) {
+        clearInterval(id); // Stop after 5 times
+    }
+}, 1000);
+</code></pre>
+
+<h3>Q&A</h3>
+<ul>
+<li>
+<h3 id="web-api">Web API:</h3>
+<p>A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things, like:</p>
+
+<ul>
+<li>setTimeout(), setInterval()</li>
+<li>Make HTTP requests (fetch)</li>
+<li>Handle user events (clicks, input)</li>
+<li>Work with the DOM</li>
+<li>Use browser storage (localStorage, sessionStorage)</li>
+</ul>
+</li>
+
+<li>
+<h3 id="event-loop">Event Loop:</h3>
+<p>The event loop checks if JavaScript is done with all synchronous tasks, and if so, it moves asynchronous tasks (like timers or API calls) back into the code to be run.</p>
+
+<h4>Why Do We Need the Event Loop?</h4>
+<p>JavaScript is:</p>
+<ul>
+<li><strong>Single-threaded: </strong>can do only one thing at a time
+</li>
+<li><strong>Non-blocking: </strong>doesn’t wait for slow tasks (setTimeout() or fetch())
+</li>
+</ul>
+<h4>How Event Loop works:</h4>
+
+<p>After parsing, compiling, and interpreting the code, the JavaScript engine uses these key parts:</p>
+
+<ul>
+<li>Call Stack - runs your js code synchronously with FIFO structure</li>
+<li>Web Apis - Handles async tasks </li>
+<li>Callback Queue - When async tasks are ready, they’re added here</li>
+<li>Event Loop - Constantly checks, is the call stack empty? If yes → moves tasks from callback queue into the stack to be run</li>
+</ul>
+<p>Example:</p>
+
+<pre><code>
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Timer done");
+}, 2000);
+
+console.log("End");
+
+/*
+Start
+End
+Timer done
+*/
+</code></pre>
+
+
+<p>Behind the Scenes:</p>
+<ul>
+<li>Start → Call Stack → runs</li>
+<li>setTimeout() → Web API → starts timer</li>
+<li>End → Call Stack → runs</li>
+<li>After 2 sec, callback goes to Callback Queue</li>
+<li>Event Loop sees the stack, if empty it moves callback to Call Stack → runs "Timer done"</li>
+</ul>
+</li>
+</ul>
+<hr>

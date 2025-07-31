@@ -192,15 +192,18 @@
           <li><a href="#destructuring-function-parameters">Destructuring function parameters</a></li>
         </ul>
         <li><a href="#rest-and-spread">rest and spread</a></li>
-        <li><a href="#json">JSON</a></li>
-        <ul>
-          <li><a href="#JSON.stringify()">JSON.stringify()</a></li>
-          <li><a href="#JSON.parse()">JSON.parse()</a></li>
-        </ul>
         <li><a href="#error-handling">Error Handling</a></li>
         <li><a href="#import-and-export">Js Modules: Import and export</a></li>
         <li><a href="#regular-expression">Regular Expression</a></li>
         <li><a href="#asynchronous-JavaScript">Asynchronous and Synchronous JavaScript</a></li>
+        <ul>
+        <li><a href="#synchronous-javascript">Synchronous JavaScript</a></li>
+        <li><a href="#asynchronous-javascript">Asynchronous JavaScript</a></li>
+        <ul>
+        <li><a href="#setTimeOut-setInterval">setTimeOut() and setInterval()</a></li>
+        <li><a href="#promise-fetch-async/await">Promise, fetch, async/await</a></li>
+        </ul>
+        </ul>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -1140,7 +1143,8 @@ greet(...args); // 1 2 3
 <h4>In Arrays</h4>
 
 <pre><code>
-const nums1 = [1, 2];
+const 
+nums1 = [1, 2];
 const Block Scopenums2 = [3, 4];
 const all = [...nums1, ...nums2];
 console.log(all); // [1, 2, 3, 4]
@@ -3593,39 +3597,6 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 
 
 
-<h3 id="rest-and-spread" align="center">rest and spread</h3>
-
-
-
-
-<h3 id="json" align="center">JSON</h3>
-<p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
-
-<h4 id="JSON.stringify()">JSON.stringify() — Convert JS → JSON string:</h4>
-
-<pre><code>
-const user = {
-    name: "Tamim",
-    age: 21
-};
-
-const jsonString = JSON.stringify(user);
-console.log(jsonString); // {"name":"Tamim","age":21}
-console.log(typeof jsonString); // string 
-</code></pre>
-
-<h4 id="JSON.parse()">JSON.parse() — Convert JSON string → JS object:</h4>
-
-<pre><code>
-const jsonStr = '{"name":"Tamim","age":21}';
-
-const obj = JSON.parse(jsonStr);
-console.log(obj); // { name: 'Tamim', age: 21 }
-console.log(typeof obj); // object 
-</code></pre>
-<hr>
-
-
 
 
 
@@ -4217,9 +4188,9 @@ g --> Global search, match all occurrences in the string
 
 <h3 id="asynchronous-JavaScript" align="center">Asynchronous and Synchronous JavaScript</h3>
 
-<h3 align="center">Synchronous JavaScript</h3>
+<h3 id="synchronous-javascript" align="center">Synchronous JavaScript</h3>
 
-<h3 id="single-threaded">Single Threaded:</h3>
+<h4 id="single-threaded">Single Threaded:</h4>
 <p>JavaScript is a single-threaded, synchronous language, which means it executes one task at a time, in a specific order from top to bottom.</p>
 
 <pre><code>
@@ -4254,9 +4225,10 @@ function doSomething() {
 */
 </code></pre>
 
-<h3 align="center">asynchronous JavaScript</h3>
-<p>In general, JavaScript runs code in a synchronous way — meaning it executes one task at a time, in the order they appear.</p>
-<p>However, JavaScript can also perform asynchronous tasks using methods like setTimeout() and setInterval().</p>
+
+<h3 id="asynchronous-javascript"  align="center">Asynchronous JavaScript</h3>
+<p>By default, JavaScript runs code in a synchronous way — meaning it executes one task at a time, in the order they appear.</p>
+<p>However, JavaScript can also perform asynchronous tasks  like setTimeout(), setInterval(), promise, async/await etc.</p>
 <p>Behind the scenes, when an asynchronous method is called:</p>
 <ul>
 <li>JavaScript hands it off to the browser (<a href="#web-api">Web API</a>)</li>
@@ -4264,7 +4236,77 @@ function doSomething() {
 </ul>
 <p>So, asynchronous methods like setTimeout() and setInterval() do not change the single-threaded, synchronous nature of JavaScript — they just work alongside it, using the event loop to manage timing and order.</p>
 
-<h3>setTimeOut()</h3>
+
+
+
+<h4 id="web-api">Web API:</h4>
+<p>A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things, like:</p>
+
+<ul>
+<li>setTimeout(), setInterval()</li>
+<li>Make HTTP requests (fetch)</li>
+<li>Handle user events (clicks, input)</li>
+<li>Work with the DOM</li>
+<li>Use browser storage (localStorage, sessionStorage)</li>
+</ul>
+
+
+<h4 id="event-loop">Event Loop:</h4>
+<p>The event loop checks if JavaScript is done with all synchronous tasks, and if so, it moves asynchronous tasks (like timers or API calls) back into the code to be run.</p>
+
+<p>Why Do We Need the Event Loop?</p>
+<p>JavaScript is:</p>
+<ul>
+<li><strong>Single-threaded: </strong>can do only one thing at a time
+</li>
+<li><strong>Non-blocking: </strong>doesn’t wait for slow tasks (setTimeout() or fetch())
+</li>
+</ul>
+<p>How Event Loop works:</p>
+
+<p>After parsing, compiling, and interpreting the code, the JavaScript engine uses these key parts:</p>
+
+<ul>
+<li>Call Stack - runs your js code synchronously with FIFO structure</li>
+<li>Web Apis - Handles async tasks </li>
+<li>Callback Queue - When async tasks are ready, they’re added here</li>
+<li>Event Loop - Constantly checks, is the call stack empty? If yes → moves tasks from callback queue into the stack to be run</li>
+</ul>
+<p>Example:</p>
+
+<pre><code>
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Timer done");
+}, 2000);
+
+console.log("End");
+
+/*
+Start
+End
+Timer done
+*/
+</code></pre>
+
+
+<p>Behind the Scenes:</p>
+<ul>
+<li>Start → Call Stack → runs</li>
+<li>setTimeout() → Web API → starts timer</li>
+<li>End → Call Stack → runs</li>
+<li>After 2 sec, callback goes to Callback Queue</li>
+<li>Event Loop sees the stack, if empty it moves callback to Call Stack → runs "Timer done"</li>
+</ul>
+
+
+
+<ol>
+<li>
+<h3 id="setTimeOut-setInterval">setTimeOut() and setInterval()</h3>
+
+<h4>setTimeOut()</h4>
 <p>setTimeout() runs a function once after a specified delay (in milliseconds).</p>
 
 <pre><code>
@@ -4317,7 +4359,9 @@ function greet(name) {
 setTimeout(greet, 3000, "Tamim"); // After 3 seconds
 </code></pre>
 
-<h3>setInterval()</h3>
+
+
+<h4>setInterval()</h4>
 <p>setInterval() runs a function again and again, with a fixed time delay between each call.</p>
 
 <pre><code>
@@ -4348,71 +4392,248 @@ const id = setInterval(() => {
     }
 }, 1000);
 </code></pre>
-
-<h3>Q&A</h3>
-<ul>
+</li>
 <li>
-<h3 id="web-api">Web API:</h3>
-<p>A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things, like:</p>
+<h3 id="promise-fetch-async/await">Promise, Fetch, async/await</h3>
 
-<ul>
-<li>setTimeout(), setInterval()</li>
-<li>Make HTTP requests (fetch)</li>
-<li>Handle user events (clicks, input)</li>
-<li>Work with the DOM</li>
-<li>Use browser storage (localStorage, sessionStorage)</li>
-</ul>
-</li>
+<p>Before learning about Promises, fetch(), and async/await, it’s important to understand the format of data that APIs usually return. Most APIs return data in JSON format:</p>
 
-<li>
-<h3 id="event-loop">Event Loop:</h3>
-<p>The event loop checks if JavaScript is done with all synchronous tasks, and if so, it moves asynchronous tasks (like timers or API calls) back into the code to be run.</p>
+<p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
 
-<h4>Why Do We Need the Event Loop?</h4>
-<p>JavaScript is:</p>
-<ul>
-<li><strong>Single-threaded: </strong>can do only one thing at a time
-</li>
-<li><strong>Non-blocking: </strong>doesn’t wait for slow tasks (setTimeout() or fetch())
-</li>
-</ul>
-<h4>How Event Loop works:</h4>
-
-<p>After parsing, compiling, and interpreting the code, the JavaScript engine uses these key parts:</p>
-
-<ul>
-<li>Call Stack - runs your js code synchronously with FIFO structure</li>
-<li>Web Apis - Handles async tasks </li>
-<li>Callback Queue - When async tasks are ready, they’re added here</li>
-<li>Event Loop - Constantly checks, is the call stack empty? If yes → moves tasks from callback queue into the stack to be run</li>
-</ul>
-<p>Example:</p>
+<h4 id="JSON.stringify()">JSON.stringify() — Convert JS → JSON string:</h4>
 
 <pre><code>
-console.log("Start");
+const user = {
+    name: "Tamim",
+    age: 21
+};
 
-setTimeout(() => {
-    console.log("Timer done");
-}, 2000);
+const jsonString = JSON.stringify(user);
+console.log(jsonString); // {"name":"Tamim","age":21}
+console.log(typeof jsonString); // string 
+</code></pre>
 
-console.log("End");
+<h4 id="JSON.parse()">JSON.parse() — Convert JSON string → JS object:</h4>
 
-/*
-Start
-End
-Timer done
-*/
+<pre><code>
+const jsonStr = '{"name":"Tamim","age":21}';
+
+const obj = JSON.parse(jsonStr);
+console.log(obj); // { name: 'Tamim', age: 21 }
+console.log(typeof obj); // object 
 </code></pre>
 
 
-<p>Behind the Scenes:</p>
+
 <ul>
-<li>Start → Call Stack → runs</li>
-<li>setTimeout() → Web API → starts timer</li>
-<li>End → Call Stack → runs</li>
-<li>After 2 sec, callback goes to Callback Queue</li>
-<li>Event Loop sees the stack, if empty it moves callback to Call Stack → runs "Timer done"</li>
+<li>
+<h3 id="promise">Promise</h3>
+<p>A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation.</p>
+
+<h4>Promise States:</h4>
+<ul>
+  <li>Pending - operation initial stage</li>
+  <li>Resolved(fulfilled) - if the operation is successful</li>
+  <li>Rejected - if the operation fails</li>
 </ul>
+
+<h4>Basic Syntax:</h4>
+<pre><code>
+let promise = new Promise(function (resolve, reject) {
+  // async task
+});
+</code></pre>
+
+<p>You can use these methods to work with the result of a promise:</p>
+
+<ul>
+<li>.then() - Called when the promise is resolved (fulfilled)</li>
+<li>.catch() - Called when the promise is rejected (error)</li>
+<li>.finally() - Called regardless of whether the promise was fulfilled or rejected</li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>
+let promise = new Promise(function (resolve, reject) {
+    let success = true;
+
+    if (success) {
+        resolve("Operation successful!");
+    } else {
+        reject("Operation failed.");
+    }
+});
+
+promise
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("Promise is settled (fulfilled or rejected).");
+    });
+</code></pre>
+
+<pre><code>
+// with Promise.all([]) --> Waits for all promises to resolve
+
+const moneyRequest = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Request submitted!"), 1000);
+});
+
+const transferMoney = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Money transferred!"), 2000);
+});
+
+const payFee = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Fee paid!"), 1500);
+});
+
+Promise.all([moneyRequest, transferMoney, payFee])
+    .then((results) => {
+        console.log(results);
+    })
+    .catch((error) => {
+        console.log("Error: ", error);
+    });
+
+// [ 'Request submitted!', 'Money transferred!', 'Fee paid!' ]
+</code></pre>
+</li>
+<li>
+<h3 id="fetch">Fetch</h3>
+<p>The fetch() method is used to make HTTP requests (like GET, POST, etc.) to servers and APIs.It returns a Promise that resolves to the Response object.</p>
+
+<h4>Basic GET Request:</h4>
+
+<pre><code>
+// without Convert response to JSON
+
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+
+/*
+ Response {
+  status: 200,
+  statusText: 'OK',
+  headers: Headers {
+    date: 'Wed, 30 Jul 2025 17:07:22 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'transfer-encoding': 'chunked',
+    connection: 'keep-alive',
+    'access-control-allow-credentials': 'true',
+    'cache-control': 'max-age=43200',
+    etag: 'W/"124-yiKdLzqO5gfBrJFrcdJ8Yq0LGnU"',
+    expires: '-1',
+    nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}',
+    pragma: 'no-cache',
+    'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=kHphepdcLXRPrx%2BR4ZbooXWDa6BR1Tm0fJq5WhSVlp4%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1753671479"}],"max_age":3600}',
+    'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=kHphepdcLXRPrx%2BR4ZbooXWDa6BR1Tm0fJq5WhSVlp4%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1753671479"',
+    server: 'cloudflare',
+    vary: 'Origin, Accept-Encoding',
+    via: '2.0 heroku-router',
+    'x-content-type-options': 'nosniff',
+    'x-powered-by': 'Express',
+    'x-ratelimit-limit': '1000',
+    'x-ratelimit-remaining': '999',
+    'x-ratelimit-reset': '1753671494',
+    age: '22154',
+    'cf-cache-status': 'HIT',
+    'content-encoding': 'br',
+    'cf-ray': '967673b27a628801-SIN',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  body: ReadableStream { locked: false, state: 'readable', supportsBYOB: true },
+  bodyUsed: false,
+  ok: true,
+  redirected: false,
+  type: 'basic',
+  url: 'https://jsonplaceholder.typicode.com/posts/1'
+}
+*/
+
+</code></pre>
+
+<pre><code>
+// With Convert response to JSON
+
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => response.json())  // Convert response to JSON
+    .then(data => console.log(data))    // Handle the data
+    .catch(error => console.error("Error:", error));
+
+/*
+{
+  userId: 1,
+  id: 1,
+  title: 'sunt aut facere repellat provident occaecati excepturi 
+  optio reprehenderit',
+  body: 'quia et suscipit\n' +
+    suscipit recusandae consequuntur expedita et cum\n' +
+    'reprehenderit molestiae ut ut quas totam\n' +
+    'nostrum rerum est autem sunt rem eveniet architecto'
+}
+*/
+</code></pre>
+</li>
+<li>
+<h4>async / await</h4>
+<p>async and await are modern JavaScript keywords that allow you to write asynchronous code that looks and behaves like synchronous code. They are used to work with Promises more cleanly.</p>
+<ul>
+<li>async - Used to declare an async function that returns a Promise if the promise resolved.</li>
+<li>await - Used inside an async function to pause execution until a Promise resolves.If the Promise is rejected, it throws an error that you can catch with try...catch.</li>
+</ul>
+
+<p><strong>Note:</strong> Normally, try...catch only works for synchronous code. However, when you use await, JavaScript pauses execution like it does for synchronous code — that allowing try...catch to catch async errors just like sync ones. This is why try...catch works with await, even though the operation is asynchronous.</p>
+   
+<pre><code>
+// Without arrow function
+
+async function fetchData() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+</code></pre>
+
+<pre><code>
+// With arrow function
+
+const fetchData = async () => {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+</code></pre>
 </li>
 </ul>
+
+
+</li>
+</ol>
+
 <hr>
+
+
+
+
+
+

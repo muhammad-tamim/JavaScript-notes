@@ -186,6 +186,7 @@
             </ul>
           </ul>
         </ul>
+        <li><a href="#class">Class</a></li>
         <li><a href="#destructuring">Destructuring</a></li>
         <ul>
           <li><a href="#array-destructuring">Array Destructuring</a></li>
@@ -3515,6 +3516,172 @@ console.log(uniqueNums); // [1, 2, 3, 4]
 <h4 id="set-vs-map-vs-array-vs-object">Set vs Map vs Array vs Object:<h4>
 <img src="images/image9.png" alt="set vs map vs array vs object">
 <hr>
+
+
+
+
+
+
+<h3 id="class" align="center">Class</h3>
+<p>A class is a template for creating multiple similar objects with shared properties and methods.</p>
+
+<pre><code>
+class Player {
+    constructor(name, runs, wickets) {
+        this.name = name;
+        this.runs = runs;
+        this.wickets = wickets;
+    }
+}
+
+const tam = new Player('Tam', 5000, 2);
+console.log(tam);
+const mash = new Player('Mash', 3200, 180);
+console.log(mash);
+
+/*
+Player { name: 'Tam', runs: 5000, wickets: 2 }
+Player { name: 'Mash', runs: 3200, wickets: 180 }
+*/
+</code></pre>
+
+<p>Here,</p>
+
+<ul>
+<li>class Player — Defines a class named Player. It's a template for creating player objects.</li>
+<li>constructor() — A special method inside the class that sets up the object’s properties when a new object is created. It does not create the object itself; it just defines how the object should be built.</li>
+<li>this.name, this.runs, this.wickets — These are properties that will be assigned to each object.</li>
+<li>new Player() — The new keyword is what actually creates a new object using the class template and runs the constructor() to initialize it.</li>
+</ul>
+
+
+<h4>Class Methods:</h4>
+<p>In JavaScript classes, we don’t use the function keyword when defining methods.But in regular objects, the function keyword is required.</p>
+
+
+<pre><code>
+class Player {
+    constructor(name, runs, wickets) {
+        this.name = name;
+        this.runs = runs;
+        this.wickets = wickets;
+    }
+
+    addRun(run) {
+        this.runs = this.runs + run;
+    }
+}
+
+const player1 = new Player("Tamim", 5000, 100);
+player1.addRun(200);
+player1.addRun(31);
+console.log(player1);
+
+// Player { name: 'Tamim', runs: 5231, wickets: 100 }
+</code></pre>
+
+<pre><code>
+class BankAccount {
+    constructor(owner, balance) {
+        this.owner = owner;
+        this.balance = balance;
+    }
+
+    deposit(amount) {
+        this.balance += amount;
+        return this.balance;
+    }
+
+    withdraw(amount) {
+        if (this.balance >= amount) {
+            this.balance -= amount;
+            return amount;
+        } else {
+            return 'Insufficient Balance';
+        }
+    }
+}
+
+const myAccount = new BankAccount('Leo', 5000);
+myAccount.deposit(2000);
+myAccount.withdraw(500);
+console.log(myAccount);
+
+// BankAccount { owner: 'Leo', balance: 6500 }
+</code></pre>
+
+
+<pre><code>
+// Parent Class or super class
+class Gadget {
+    constructor(brand, model, price) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+}
+
+// Child Class: Laptop
+class Laptop extends Gadget {
+    constructor(brand, model, price, keyboardLight) {
+        super(brand, model, price);
+        this.keyboardLight = keyboardLight;
+    }
+}
+
+// Child Class: Phone
+class Phone extends Gadget {
+    constructor(brand, model, price, hasFaceUnlock) {
+        super(brand, model, price);
+        this.hasFaceUnlock = hasFaceUnlock;
+    }
+}
+
+// Child Class: Tablet
+class Tablet extends Gadget {
+    constructor(brand, model, price, hasPen) {
+        super(brand, model, price);
+        this.hasPen = hasPen;
+    }
+}
+
+const myLaptop = new Laptop("Dell", "XPS 15", 1500, true);
+console.log(myLaptop);
+
+const myPhone = new Phone("Apple", "iPhone 14", 999, true);
+console.log(myPhone);
+
+
+const myTablet = new Tablet("Samsung", "Galaxy Tab S8", 700, true);
+console.log(myTablet);
+
+/*
+Laptop {
+  brand: 'Dell',
+  model: 'XPS 15',
+  price: 1500,
+  keyboardLight: true
+}
+Phone {
+  brand: 'Apple',
+  model: 'iPhone 14',
+  price: 999,
+  hasFaceUnlock: true
+}
+Tablet {
+  brand: 'Samsung',
+  model: 'Galaxy Tab S8',
+  price: 700,
+  hasPen: true
+}
+*/
+</code></pre>
+
+<h4>here</h4>
+<ul>
+<li>Extends Gadget → This makes Laptop, phone, tablet inherit from the Gadget class.</li>
+<li>super(brand, model, price) → Calls the parent constructor so we don't repeat code.</li>
+</ul>
 
 
 

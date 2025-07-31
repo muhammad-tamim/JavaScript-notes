@@ -36,6 +36,7 @@
             <ul>
               <li><a href="#the-typeof-operator">typeof Operator</a></li>
               <li><a href="#rest-spread">Rest and Spread Operator</a></li>
+              <li><a href="#nullish-coalescing-operator">Nullish Coalescing operator</a></li>
             </ul>
            </ul>
               <li><a href="#loops">Loops</a></li>
@@ -191,7 +192,6 @@
           <li><a href="#object-destructuring">Object Destructuring</a></li>
           <li><a href="#destructuring-function-parameters">Destructuring function parameters</a></li>
         </ul>
-        <li><a href="#rest-and-spread">rest and spread</a></li>
         <li><a href="#error-handling">Error Handling</a></li>
         <li><a href="#import-and-export">Js Modules: Import and export</a></li>
         <li><a href="#regular-expression">Regular Expression</a></li>
@@ -1076,8 +1076,9 @@ you will get "undefined"
   <li>typeof alert returns "function", but functions are technically objects. 
   </li>
 </ul>
+</li>
 
-
+<li>
 <h3 id="rest-spread">rest and spread operator</h3>
 
 <ol>
@@ -1158,8 +1159,94 @@ const user2 = { age: 21 };
 const merged = { ...user1, ...user2 };
 console.log(merged); // { name: "Tamim", age: 21 }
 </code></pre>
-</ol>
 </li>
+</ol>
+
+<li>
+<h3 id="Nullish-Coalescing-operator">Nullish Coalescing operator</h3>
+
+<p>The nullish coalescing operator (??) is used to provide a default value when a variable is null or undefined.</p>
+
+<h4>Use cases:</h4>
+
+<ol>
+<li>
+<p>Providing default values:</p>
+
+<pre><code>
+function greet(name) {
+  let user = name ?? "Guest";
+  console.log("Hello, " + user);
+}
+
+greet(null);   // Hello, Guest
+greet("John"); // Hello, John
+</code></pre>
+</li>
+<li>
+<p>Safely accessing object properties:</p>
+
+<pre><code>
+let user = {
+    age: 0,
+    name: ""
+};
+
+console.log(user.name ?? "Anonymous"); // "" (not nullish)
+console.log(user.email ?? "No email"); // "No email"
+
+const user = {
+    name: 'Rahim',
+    address: { city: 'Dhaka' }
+};
+
+const city = user?.address?.city ?? "City not available";
+console.log(city); // Dhaka
+
+
+const postalCode = user?.address?.postalCode ?? "Postal code not available";
+console.log(postalCode); // Postal code not available
+</code></pre>
+</li>
+</ol>
+
+
+<h4>|| vs ??:</h4>
+
+<pre><code>
+let value1 = 0;
+let result1 = value1 || 100;
+let result2 = value1 ?? 100;
+
+console.log(result1); // 100 (because 0 is falsy)
+console.log(result2); // 0   (because 0 is NOT null or undefined)
+</code></pre>
+
+<h4>Nested Nullish Coalescing:</h4>
+
+<pre><code>
+let a;
+let b = null;
+let c = undefined;
+let d = "Hello";
+
+let result = a ?? b ?? c ?? d ?? "Fallback";
+console.log(result); // "Hello"
+
+// It returns the first non-nullish value.
+</code></pre>
+
+<h4>You cannot mix ?? with || or && without parentheses:</h4>
+
+<pre><code>
+// SyntaxError:
+let result = null || undefined ?? "Default";
+
+// Fix:
+let result = (null || undefined) ?? "Default";
+</code></pre>
+</li>
+
 </ul>
 
 
@@ -4631,9 +4718,4 @@ fetchData();
 </ol>
 
 <hr>
-
-
-
-
-
 

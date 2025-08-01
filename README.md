@@ -20,6 +20,7 @@
           <li><a href="#scope">Scope</a></li>
            <li><a href="#var-hoisting-issue">var Hoisting Issue</a></li>
           <li><a href="#variable-naming-convention">Variable naming convention</a></li>
+          <li><a href="#how-to-write-long-variable-name">How to write a long variable name</a></li>
         </ul>
         <li><a href="#memory-management">Memory Management</a></li>
            <li><a href="#operators">Operator</a></li>
@@ -653,6 +654,17 @@ sayHi(); // Output: undefined
 <li>Names are Case-sensitive</li>
 <li>Names Cannot contain JavaScript reserved keywords</li>
 </ul>
+
+
+<h3 id="how-to-write-long-variable-name">How to write a long variable name</h3>
+<ul>
+<li><strong>Snake Case</strong> - let my_current_home_address = "Barisal";
+</li>
+<li><strong>Camel Case (recommended)</strong> - let myCurrentHomeAddress = "Barisal";
+</li>
+<li><strong>Pascal Case</strong> - let MyCurrentHomeAddress = "Barisal";</li>
+</ul>
+
 
 <h3>Q&A</h3>
 <ol>

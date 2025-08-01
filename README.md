@@ -1423,19 +1423,6 @@ console.log("Money:", money.toFixed(2)); // Outputs: Money: 25.53
 </code></pre>
     
 
-<h3>floating-point precision issues in JavaScript:</h3>
-
-<pre><code>
-const result = 0.1 + 0.2;
-console.log(result); // 0.30000000000000004
-
-// To fix this problem, we can use toFixed to round the result to a specific number of decimal places
-
-const fixedResult = result.toFixed(2);
-console.log(fixedResult); // 0.30 (string)
-console.log(parseFloat(fixedResult)); // 0.30 (number)
-</code></pre>
-
 <h3>Math Properties:</h3>
 <pre><code>console.log(Math.PI);       // 3.141592653589793</code></pre>
 

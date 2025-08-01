@@ -1602,6 +1602,24 @@ console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
 console.log(text.slice(4))        // "Script" (from index 4 to the end)
 console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)</code></pre>
 </li>
+
+<li>
+<h4>Joining and Splitting:</h4>
+
+<pre><code>const sentence = "I love JavaScript";
+const words = sentence.split(" "); // ["I", "love", "JavaScript"]
+console.log(words.join("-"));      // "I-love-JavaScript"
+</code></pre>
+</li>
+<li>
+<h4>trim() - for removing white space before and after:</h4>
+
+<pre><code>
+const str = " hello world! ";
+const trimmedStr = str.trim();
+console.log(trimmedStr); // Output: "hello world!"
+</code></pre>
+</li>
 <li>
 <h4>Replacing and Repeating:</h4>
 
@@ -1611,15 +1629,6 @@ console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I lik
 console.log("ha".repeat(3)); // "hahaha"
 </code></pre>
 </li>
-<li>
-<h4>Joining and Splitting:</h4>
-
-<pre><code>const sentence = "I love JavaScript";
-const words = sentence.split(" "); // ["I", "love", "JavaScript"]
-console.log(words.join("-"));      // "I-love-JavaScript"
-</code></pre>
-</li>
-
 <li>
 <h4>Removing Extra Spaces: </h4>
 

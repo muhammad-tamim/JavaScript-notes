@@ -2858,8 +2858,9 @@ console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
 </code></pre>
 
   </li>
-  </ul>
+<p><strong>Note:</strong> splice and slice are the same things, but the main difference is splice change the original array and slice does not change the original array.</p>
 
+  </ul>
   <li id="searching-location">Searching / Location</li>
   <ul>
     <li>
@@ -2992,8 +2993,8 @@ console.log(arr2); // [ 1, 2, 3, 4, 5 ]
 </code></pre>
 
 </li>
-      <li>
-        <h4 id="join">join(separator) – Returns a string with elements joined by the separator:</h4>
+<li>
+<h4 id="join">join(separator) – Returns a string by joining array elements using the given separator:</h4>
 
 <pre><code>
 let arr = ["a", "b", "c"];
@@ -3002,8 +3003,34 @@ console.log(arr); // [ 'a', 'b', 'c' ]
 console.log(arr2); // a-b-c
 </code></pre>
 </li>
-      <li>
-        <h4 id="reverse">reverse() – Reverses the array:</h4>
+<li>
+<h4 id="split">split(separator) – Splits a string into an array using the given separator:</h4>
+
+<pre><code>
+let str = "a-b-c";
+let result = str.split("-");
+console.log(str);    // "a-b-c"
+console.log(result); // [ 'a', 'b', 'c' ]
+</code></pre>
+
+<p><strong>Note: </strong>Join and split are the same things, but the main difference is join used on arrays to convert them into a string and split used on strings to convert them a array.</p>
+
+<pre><code>
+// Join()
+const arr = ['Hello', 'World'];
+let arr3 = arr.join(" ");
+console.log(arr); // ['Hello', 'World']
+console.log(arr3); // Hello World
+
+// Split()
+const str = 'Hello World';
+let arr2 = str.split(" ");
+console.log(str); // Hello World
+console.log(arr2); // ['Hello', 'World']
+</code></pre>
+</li>
+<li>
+<h4 id="reverse">reverse() – Reverses the array:</h4>
 
 <pre><code>
 let arr = [1, 2, 3];

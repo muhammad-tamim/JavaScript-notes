@@ -89,6 +89,7 @@
             <li><a href="#default-parameter">Default parameter</a></li>
             <li><a href="#arrow-function">Arrow function</a></li>
             <li><a href="#recursion">Recursion</a></li>
+            <li><a href="#closure">Closure</a></li>
             </ul>
             <li><a href="#array">Array</a></li>
             <ul>
@@ -2607,6 +2608,51 @@ greeting(); // RangeError: Maximum call stack size exceeded
 </code></pre>
 </li>
 </ul>
+
+
+
+<h3 id="closure">Closure</h3>
+<p>A closure is a function that remembers the variables from its outer scope, even after that outer function has finished executing.</p>
+
+<h4>Closure Features</h4>
+<ul>
+<li>Keeps scope alive -	Inner function remembers variables from outer scope</li>
+<li>Useful in data hiding -	Helps in making private variables</li>
+<li>Doesn’t lose data -	Keeps values even after outer is gone</li>
+</ul>
+
+<pre><code>
+function outer() {
+    let name = "Tamim"; // outer variable
+
+    function inner() {
+        console.log("Hello " + name); // inner uses outer variable
+    }
+
+    return inner; // return inner function
+}
+
+const greet = outer(); // outer() is called, inner() is returned
+
+greet(); // Hello Tamim 
+</code></pre>
+
+<pre><code>
+function secretCounter() {
+    let count = 0;
+
+    return function () {
+        count++;
+        console.log("Count is: " + count);
+    };
+}
+
+const counter = secretCounter();
+
+counter(); // Count is: 1
+counter(); // Count is: 2
+counter(); // Count is: 3
+</code></pre>
 
 
 <hr>

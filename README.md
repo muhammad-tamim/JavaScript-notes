@@ -205,6 +205,7 @@
         <li><a href="#promise-fetch-async/await">Promise, fetch, async/await</a></li>
         </ul>
         </ul>
+        <li><a href="#this-keyword">This Keyword</a></li>
     </ul>
   <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
   <li><a href="#part-3-additional-articles">Additional articles</a></li>
@@ -4886,3 +4887,176 @@ fetchData();
 
 <hr>
 
+
+
+
+
+<h3 id="this-keyword" align="center">This Keyword</h3>
+<p>this is a special keyword that refers to the object that is currently executing the code. It's value depends on the context in which it is used.</p>
+
+<ul>
+<li>
+<h4>this in Global Context</h4>
+<p>In a browser, this logs the global object, which is window.</p>
+<p>In Node.js, it logs an empty object {}</p>
+<pre><code>
+console.log(this);
+</code></pre>
+<img src="images/console.log(this).png" alt="this keyword">
+</li>
+<li>
+<h4>this in a Regular Function</h4>
+
+<pre><code>
+function show() {
+    console.log(this);
+}
+show();
+
+/*
+<ref *1> Object [global] {
+  global: [Circular *1],
+  clearImmediate: [Function: clearImmediate],
+  setImmediate: [Function: setImmediate] {
+    Symbol(nodejs.util.promisify.custom): [Getter]
+  },
+  clearInterval: [Function: clearInterval],
+  clearTimeout: [Function: clearTimeout],
+  setInterval: [Function: setInterval],
+  setTimeout: [Function: setTimeout] {
+    Symbol(nodejs.util.promisify.custom): [Getter]
+  },
+  queueMicrotask: [Function: queueMicrotask],
+  structuredClone: [Function: structuredClone],
+  atob: [Function: atob],
+  btoa: [Function: btoa],
+  performance: [Getter/Setter],
+  fetch: [Function: fetch],
+  crypto: [Getter],
+  navigator: [Getter]
+}
+*/
+</code></pre>
+
+<h4>call(), apply() and bind()</h4>
+<ul>
+<li>
+<h4>call() - Call Function with a Specific this</h4>
+<p>functionName.call(thisArg, arg1, arg2, ...)</p>
+
+<pre><code>
+function greet(greeting) {
+  console.log(greeting + ', ' + this.name);
+}
+
+const person = { name: 'Tamim' };
+
+greet.call(person, 'Hello'); // Hello, Tamim
+</code></pre>
+<p>Here, this inside greet() becomes the person object.</p>
+</li>
+<li>
+<h4>apply() – Like call(), but Pass Arguments as Array</h4>
+<p>functionName.apply(thisArg, [arg1, arg2, ...])</p>
+
+<pre><code>
+function greet(greeting, punctuation) {
+  console.log(greeting + ', ' + this.name + punctuation);
+}
+
+const person = { name: 'Tamim' };
+
+greet.apply(person, ['Hi', '!']); // Hi, Tamim!
+</code></pre>
+<p>Same as call(), but arguments are passed as an array.</p>
+</li>
+<li>
+<h4>bind() – Returns a New Function with Bound this</h4>
+<p>const newFunc = functionName.bind(thisArg, arg1, arg2, ...)
+</p>
+
+<pre><code>
+function greet() {
+  console.log('Hi, ' + this.name);
+}
+
+const person = { name: 'Tamim' };
+
+const greetTamim = greet.bind(person);
+
+greetTamim(); // Hi, Tamim
+</code></pre>
+<p>bind() doesn’t call the function immediately — it returns a new function with this permanently set.</p>
+</li>
+</ul>
+</li>
+<li>
+<h4>this in an Object Method</h4>
+
+<pre><code>
+const user = {
+    name: "Tamim",
+    greet() {
+        console.log("Hi, I am " + this.name);
+    }
+};
+
+user.greet(); // Hi, I am Tamim
+</code></pre>
+<p>Note: Inside the object Arrow function don't support this keyword.s</p>
+
+<pre><code>
+const user = {
+  name: "Tamim",
+  greet: () => {
+    console.log(this.name);
+  }
+};
+
+user.greet(); // undefined 
+</code></pre>
+
+<pre><code>
+const student = {
+    name: 'Learner',
+    getThis() {
+        console.log(this);
+    }
+}
+
+student.getThis();
+// { name: 'Learner', getThis: [Function: getThis] }
+</code></pre>
+</li>
+<li>
+<h4>this in class</h4>
+
+<pre><code>
+class Player {
+    constructor(name, runs, wickets) {
+        this.name = name;
+        this.runs = runs;
+        this.wickets = wickets;
+    }
+}
+
+const tam = new Player('Tam', 5000, 2);
+console.log(tam);
+</code></pre>
+
+</li>
+<li>
+<h4>this in Event Handlers</h4>
+
+```js
+<button id="btn">Click Me</button>
+
+<script>
+document.getElementById("btn").addEventListener("click", function () {
+  console.log(this); // refers to the button
+});
+</script>
+
+```
+</ul>
+<hr>

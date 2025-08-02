@@ -2521,6 +2521,10 @@ console.log(functionResult + 5); // 12
   <li>With <code>return</code>, the robot <strong>makes</strong> the coffee and <strong>gives it to you</strong>.</li>
 </ul>
 
+<p>so,</p>
+<p>
+If a function returns a value, you can store it in a variable and use it for further operations. If a function does not return anything, you just call the function, but you can’t use its output for further operations.
+</p>
 
 <h3 id="callback function">CallBack Function</h3>
 <p>A callback is a function passed as an argument to another function, to be called later.</p>

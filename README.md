@@ -1447,7 +1447,11 @@ console.log(Math.abs(-7));      // 7 → remove negative sign
 console.log(Math.min(3, 1, 7)); // 1 → Smallest number
 console.log(Math.max(3, 1, 7)); // 7 → Largest number
 
-console.log(Math.random());     // 0.08712360252844753 =  Random decimal between 0 (inclusive) and 1 (exclusive)
+console.log(Math.random());     // Random decimal between 0 (inclusive) and 1 (exclusive)
+console.log(Math.random() * 10); // Random decimal between 0 (inclusive) and 10 (exclusive)
+console.log(Math.random() * 100); // Random decimal between 0 (inclusive) and 100 (exclusive)
+console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclusive) and 10 (exclusive)
+console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive)
 </code></pre>
 
 <h3 id="type-conversion-methods">Type conversion methods: </h3>

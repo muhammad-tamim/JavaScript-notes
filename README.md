@@ -72,6 +72,7 @@
           <ul>
             <li><a href="#object">Object</a></li>
             <ul>
+            <li><a href="#different-ways-to-declare-an-object">Different ways to declare an object</a></li>
              <li><a href="#object.keys-and-object.Values">Object.keys() and Object.Values() method</a></li>
              <li><a href="#Object.freeze()vsObject.seal()">Object.freeze() vs Object.seal()</a></li>
             <li><a href="#in-operator">Property existence test</a></li>
@@ -1621,6 +1622,19 @@ console.log(trimmedStr); // Output: "hello world!"
 </code></pre>
 </li>
 <li>
+<h4>trimStart()/trimEnd() or trimLeft()/trimRight()- for removing white space from specific side:</h4>
+
+<pre><code>
+const str = "          hello world! ";
+console.log(str) // Output: "          hello world! "
+
+const trimmedStr = str.trimStart();
+const trimmedEndStr = str.trimEnd();
+console.log(trimmedStr); // Output: "hello world! "
+console.log(trimmedEndStr); // Output: "          hello world!"
+</code></pre>
+</li>
+<li>
 <h4>Replacing and Repeating:</h4>
 
 <pre><code>
@@ -1882,6 +1896,33 @@ console.log(user.name); // John
 let user = makeUser("John", 30);
 console.log(user.name); // John
 </code></pre>
+
+<h3 id="different-ways-to-declare-an-object">Different ways to declare an Object</h3>
+
+<pre><code>
+const pen = {
+    brand: "Parker",
+    color: "blue",
+    type: "ballpoint",
+    price: 10,
+}
+console.log(pen);
+
+const pen2 = new Object();
+pen2.brand = "Pilot";
+pen2.color = "black";
+pen2.type = "gel";
+pen2.price = 12;
+console.log(pen2);
+
+const pen3 = Object.create({});
+pen3.brand = "Bic";
+pen3.color = "red";
+pen3.type = "fountain";
+pen3.price = 8;
+console.log(pen3);
+</code></pre>
+
 
 <h3 id="object.keys-and-object.Values">Object.keys(), Object.Values() amd Object.entries() methods:</h3>
 

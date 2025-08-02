@@ -22,8 +22,7 @@
           <li><a href="#variable-naming-convention">Variable naming convention</a></li>
           <li><a href="#how-to-write-long-variable-name">How to write a long variable name</a></li>
         </ul>
-        <li><a href="#memory-management">Memory Management</a></li>
-           <li><a href="#operators">Operator</a></li>
+        <li><a href="#operators">Operator</a></li>
            <ul>
             <li><a href="#assignment-operator">Assignment Operator</a></li>
             <li><a href="#increment-decrement-operator">Increment/Decrement Operator</a></li>
@@ -199,6 +198,7 @@
         <li><a href="#error-handling">Error Handling</a></li>
         <li><a href="#import-and-export">Js Modules: Import and export</a></li>
         <li><a href="#regular-expression">Regular Expression</a></li>
+        <li><a href="#memory-management">Memory Management</a></li>
         <li><a href="#asynchronous-JavaScript">Asynchronous and Synchronous JavaScript</a></li>
         <ul>
         <li><a href="#synchronous-javascript">Synchronous JavaScript</a></li>
@@ -686,49 +686,6 @@ while      with       yield
 
 
 
-
-<h3 id="memory-management" align="center">Memory Management</h3>
-
-<p>Memory management in JavaScript refers to how the JavaScript engine allocates, uses, and frees up memory as your code runs.</p>
-
-<h4>Two Main Memory Phases in JS:</h4>
-<ul>
-<li>Allocation: JS reserves memory for your variables, objects, etc.</li>
-<li>Release: automatically frees memory that’s no longer used by garbage collector to avoid <a href="#memory-leak">memory leak</a></li>
-</ul>
-
-<h4>How GC Decides What to Remove?</h4>
-<p>It uses a concept called Reachability. Means a value is “reachable” if it can be accessed or used in some way.</p>
-<p>Examples of reachable values:</p>
-<ul>
-<li>Any global variable</li>
-<li>Local variables in currently running functions</li>
-<li>Objects or values referenced by other reachable objects</li>
-</ul>
-
-<p>Example:</p>
-<pre><code>
-let user = {
-  name: "Tamim"
-};
-
-user = null;
-</code></pre>
-
-<p>What happened:</p>
-<ul>
-<li>First, user references the object → memory is used.</li>
-<li>Then user = null → the object is no longer reachable.</li>
-<li>Garbage Collector will remove the object from memory.</li>
-</ul>
-
-<h3>Q&A</h3>
-<ul>
-<li>
-<h3>Memory Leak:</h3>
-<p>A memory leak happens when your program keeps using memory that it no longer needs.</p>
-</li>
-</ul>
 
 
 
@@ -4579,6 +4536,53 @@ g --> Global search, match all occurrences in the string
 
 </ul>
 <hr>
+
+
+
+
+<h3 id="memory-management" align="center">Memory Management</h3>
+
+<p>Memory management in JavaScript refers to how the JavaScript engine allocates, uses, and frees up memory as your code runs.</p>
+
+<h4>Two Main Memory Phases in JS:</h4>
+<ul>
+<li>Allocation: JS reserves memory for your variables, objects, etc.</li>
+<li>Release: automatically frees memory that’s no longer used by garbage collector to avoid <a href="#memory-leak">memory leak</a></li>
+</ul>
+
+<h4>How GC Decides What to Remove?</h4>
+<p>It uses a concept called Reachability. Means a value is “reachable” if it can be accessed or used in some way.</p>
+<p>Examples of reachable values:</p>
+<ul>
+<li>Any global variable</li>
+<li>Local variables in currently running functions</li>
+<li>Objects or values referenced by other reachable objects</li>
+</ul>
+
+<p>Example:</p>
+<pre><code>
+let user = {
+  name: "Tamim"
+};
+
+user = null;
+</code></pre>
+
+<p>What happened:</p>
+<ul>
+<li>First, user references the object → memory is used.</li>
+<li>Then user = null → the object is no longer reachable.</li>
+<li>Garbage Collector will remove the object from memory.</li>
+</ul>
+
+<h3>Q&A</h3>
+<ul>
+<li>
+<h3>Memory Leak:</h3>
+<p>A memory leak happens when your program keeps using memory that it no longer needs.</p>
+</li>
+</ul>
+
 
 
 

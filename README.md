@@ -24,6 +24,7 @@
         </ul>
         <li><a href="#operators">Operator</a></li>
            <ul>
+            <li><a href="#arithmetic-operator">Arithmetic Operator</a></li>
             <li><a href="#assignment-operator">Assignment Operator</a></li>
             <li><a href="#increment-decrement-operator">Increment/Decrement Operator</a></li>
             <li><a href="#comparison-operator">Comparison Operator</a></li>

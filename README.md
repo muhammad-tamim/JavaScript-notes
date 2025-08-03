@@ -16,8 +16,8 @@
         <li><a href="#hello-world">Hello, world!</a></li>
         <li><a href="#variables">variables</a></li>
         <ul>
-          <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
           <li><a href="#scope">Scope</a></li>
+          <li><a href="#difference-between-var-and-let">Difference between var and let</a></li>
            <li><a href="#var-hoisting-issue">var Hoisting Issue</a></li>
           <li><a href="#variable-naming-convention">Variable naming convention</a></li>
           <li><a href="#how-to-write-long-variable-name">How to write a long variable name</a></li>
@@ -69,7 +69,7 @@
             <li><a href="#undefined">Undefined</a></li>
             <li><a href="#symbol">Symbol</a></li>
           </ul>
-          <li><a href="#1-non-primitive-data-types">1 Non-primitive data types (Object)</a></li>
+          <li><a href="#1-non-primitive-data-types">1 Non-primitive data types (Objects)</a></li>
           <ul>
             <li><a href="#object">Object</a></li>
             <ul>
@@ -79,10 +79,9 @@
             <li><a href="#in-operator">Property existence test</a></li>
             <li><a href="#for-in">for-in Loop</a></li>
             <li><a href="#object-reference-and-copying">Object References and Coping</a></li>
-            <li><a href="#cloning-and-merging-and-object.assign">Cloning and Merging and object.assign</a></li>
+            <li><a href="#cloning-and-merging-and-object.assign">Cloning and merging, Object.assign and structuredClone()</a></li>
             <li><a href="#object-methods">Object Methods</a></li>
             <li><a href="#constructor-function-and-new-operator">Constructor function and new operator</a></li>
-            <li><a href="#">for-in Loop</a></li>
             <li><a href="#optional-chaining">Optional Chaining</a></li>
             <li><a href="#date">Date</a></li>
             </ul>
@@ -139,58 +138,7 @@
                       </ul>
               </ul>
             </ul>
-            <li><a href="#map-data-type">map</a></li>
-            <ul>
-               <li><a href="#looping-through-a-map">Looping through a map</a></li>
-               <ul>
-                 <li><a href="#map-for-of-loop">Using for of loop</a></li>
-                <li><a href="#map-forEach-method">Using for each method</a></li>
-                 <li><a href="#map-build-in-methods-for-keys,values-entries">Using Map build in methods: keys, values,entries</a></li>
-               </ul>
-                <li><a href="#basic-map-methods">Basic Map Methods</a></li>
-                <ul>
-                   <li><a href="#set()">set()</a></li>
-                  <li><a href="#get()">get()</a></li>
-                  <li><a href="#has()">has()</a></li>
-                  <li><a href="#delete()">delete()</a></li>
-                  <li><a href="#clear()">clear()</a></li>
-                  <li><a href="#size">size</a></li>
-                </ul>
-                <li><a href="#converting">Converting</a></li>
-                <ul>
-                   <li><a href="#convert-map-to-array">Convert map to array</a></li>
-                  <li><a href="#convert-map-to-object">Convert map to object</a></li>
-                  <li><a href="#convert-object-to-map">Convert object to map</a></li>
-                </ul>
-                <li><a href="#map-keys-can-be-anything">map keys can be anything</a></li>
-            </ul>
-            <li><a href="#set">Set</a></li>
-            <ul>
-               <li><a href="#looping-through-a-set">Looping through a set</a></li>
-               <ul>
-                 <li><a href="#using-for-of">Using for of loop</a></li>
-                <li><a href="#using-for-each">Using for each method</a></li>
-               </ul>
-                <li><a href="#basic-set-methods">Basic set Methods</a></li>
-                <ul>
-                   <li><a href="#set-add()">add()</a></li>
-                  <li><a href="#set-has()">has()</a></li>
-                  <li><a href="#set-delete()">delete()</a></li>
-                  <li><a href="#set-clear()">clear()</a></li>
-                  <li><a href="#set-size()">size</a></li>
-                </ul>
-                <li><a href="#set-converting">Converting</a></li>
-                <ul>
-                   <li><a href="#set-converting-set-to-array">Convert set to array</a></li>
-                  <li><a href="#set-converting-array-to-set">Convert array to set</a></li>
-                </ul>
-                <li><a href="#set-can-store-any-type">set can store any types</a></li>
-                <li><a href="#remove-duplicates-from-array">Remove duplicates from array</a></li>
-                <li><a href="#set-vs-map-vs-array-vs-object">Set Vs Map Vs Array Vs Object</a></li>
-            </ul>
-          </ul>
         </ul>
-        <li><a href="#class">Class</a></li>
         <li><a href="#destructuring">Destructuring</a></li>
         <ul>
           <li><a href="#array-destructuring">Array Destructuring</a></li>
@@ -198,8 +146,17 @@
           <li><a href="#destructuring-function-parameters">Destructuring function parameters</a></li>
         </ul>
         <li><a href="#error-handling">Error Handling</a></li>
+        <ul><li><a href="#common-js-errors">Commonjs JS Errors</a></li></ul>
         <li><a href="#import-and-export">Js Modules: Import and export</a></li>
         <li><a href="#regular-expression">Regular Expression</a></li>
+        <ul>
+        <li><a href="#common-regex-methods">Common RegEX Methods</a></li>
+        <li><a href="#anchors">anchors</a></li>
+        <li><a href="#flags">Flags</a></li>
+        <li><a href="#basic-patterns">Basic Patterns</a></li>
+        <li><a href="#quantifiers">Quantifiers</a></li>
+        <li><a href="#escaping-special-characters">Escaping Special Characters</a></li>
+        </ul>
         <li><a href="#asynchronous-JavaScript">Asynchronous and Synchronous JavaScript</a></li>
         <ul>
         <li><a href="#synchronous-javascript">Synchronous JavaScript</a></li>
@@ -209,10 +166,8 @@
         <li><a href="#promise-fetch-async/await">Promise, fetch, async/await</a></li>
         </ul>
         </ul>
-        <li><a href="#this-keyword">This Keyword</a></li>
     </ul>
-  <li><a href="#part-2-browser-document-events-interfaces">Part 2: Browser: Document, Events, Interfaces</a></li>
-  <li><a href="#part-3-additional-articles">Additional articles</a></li>
+  <li><a href="#part-2-document-events-interfaces">Part 2: Document, Events, Interfaces</a></li>
 </ul>
 <hr>
 
@@ -497,7 +452,7 @@ outer(); // Output: I'm outer
 
 </ul>
 
-<h3>Scope Chain</h3>
+<h4>Scope Chain</h4>
 <p>When you try to access a variable:</p>
 <ul>
 <li>JavaScript first looks in the current scope</li>
@@ -506,6 +461,7 @@ outer(); // Output: I'm outer
 </ul>
 
 <pre><code>
+
 let globalVar = "Global";
 
 function outer() {
@@ -522,6 +478,12 @@ function outer() {
 }
 
 outer();
+
+/*
+Global 
+Outer
+Inner
+*/s
 </code></pre>
 
 
@@ -742,7 +704,6 @@ user = null;
 
 <p><strong>Operator:</strong> An Operator is a special symbol or keyword that performs an operation on one or more values.</p>
 
-<img src="images/Operators.png" alt="operators">
 
 <h3>Different types of Operators:</h3>
 <ul>
@@ -869,12 +830,20 @@ console.log(5 !== '5'); // true
   <li>If all characters are equal and lengths differ, the shorter string is considered smaller.</li>
 </ol>
 
+<img src="images/ascii.png" alt="ascii vaues">
+
 <pre><code>console.log('Z' > 'A'); // true
 console.log('hello' == 'hello'); // true
 console.log('Glow' > 'Glee'); // true
 console.log('Be' < 'Bee'); // true
 </code></pre>
 
+<h4>How to see unicode or Ascii values in js:</h4>
+
+<pre><code>
+console.log('a'.charCodeAt(0)); // Output: 97
+console.log('a'.codePointAt(0)); // Output: 97
+</code></pre>
 
 <h4>Difference between == and === :</h4>
 <pre><code>console.log(0 == false); // 0 == 0 true
@@ -924,6 +893,13 @@ let age = 25;
 if (age > 18 && age < 30) {
   console.log("Young Adult");
 }
+
+const isLoggedIn = true;
+const userName = "Tamim";
+
+isLoggedIn && console.log("Welcome, " + userName);
+// Output: Welcome, Tamim
+
 
 let day = "Saturday";
 if (day === "Saturday" || day === "Sunday") {
@@ -1022,38 +998,29 @@ switch (color) {
 <h3 id="truthy-and-falsy-values">Truthy and Falsy values:</h3>
 <p>In JavaScript, any value used in a conditional statement gets automatically converted to true or false.</p>
 
-<p>There are 7 total falsy values in js, everything else is truthy:</p>
+<p>There are 8 total falsy values in js, everything else is truthy:</p>
+<ol>
+<li>false</li>
+<li>0</li>
+<li>-0</li>
+<li>0n (BigInt)</li>
+<li>""</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN</li>
+</ol>
 
 <pre><code>
-const falsyValues = [
-    false,      // Boolean false
-    0,          // Number zero
-    -0,         // Negative zero
-    0n,         // BigInt zero
-    "",         // Empty string
-    null,       // Null value
-    undefined,  // Undefined
-    NaN         // Not a Number
-];
+// None of the console.log() will run because all the values are falsy.
 
-falsyValues.forEach((value, index) => {
-    if (value) {
-        console.log(`Value at index ${index} is TRUTHY`);
-    } else {
-        console.log(`Value at index ${index} is FALSY -->`, value);
-    }
-});
-
-/*
-Value at index 0 is FALSY --> false
-Value at index 1 is FALSY --> 0
-Value at index 2 is FALSY --> -0
-Value at index 3 is FALSY --> 0n
-Value at index 4 is FALSY --> 
-Value at index 5 is FALSY --> null
-Value at index 6 is FALSY --> undefined
-Value at index 7 is FALSY --> NaN
-*/
+if (false) console.log('Falsy');
+if (0) console.log('Falsy');
+if (-0) console.log('Falsy');
+if (0n) console.log('Falsy');
+if ("") console.log('Falsy');
+if (null) console.log('Falsy');
+if (undefined) console.log('Falsy');
+if (NaN) console.log('Falsy');
 </code></pre>
 
 
@@ -1160,6 +1127,7 @@ function greet(a, b, c) {
 const args = [1, 2, 3];
 greet(args); // [ 1, 2, 3 ] undefined undefined
 greet(...args); // 1 2 3
+console.log(...args) // 1 2 3
 </code></pre>
 
 <h4>In Arrays</h4>
@@ -1213,15 +1181,15 @@ let user = {
     name: ""
 };
 
-console.log(user.name ?? "Anonymous"); // "" (not nullish)
-console.log(user.email ?? "No email"); // "No email"
+console.log(user?.name ?? "Anonymous"); // "" (not nullish)
+console.log(user?.email ?? "No email"); // "No email"
 
-const user = {
+const user2 = {
     name: 'Rahim',
     address: { city: 'Dhaka' }
 };
 
-const city = user?.address?.city ?? "City not available";
+const city = user2?.address?.city ?? "City not available";
 console.log(city); // Dhaka
 
 
@@ -1412,6 +1380,24 @@ message = 123456;      // number
 </code></pre>
 
 <p>There are 8 data types in JavaScript:</p>
+<ol>
+<h4>7 Primitive Data Types:</h4>
+<li>Number</li>
+<li>BigInt</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Symbol</li>
+<h4>1 Non-Primitive(object) Data Types:</h4>
+<li>Object</li>
+<h4>subtypes of the Object data type:</h4>
+<ul>
+  <li>object</li>
+  <li>Function</li>
+  <li>Array</li>
+</ul>
+</ol>
 
 <h3 id="7-primitive-data-types" align="center">7 primitive data types</h3>
 
@@ -1613,6 +1599,7 @@ console.log(text.slice(4))        // "Script" (from index 4 to the end)
 console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)</code></pre>
 </li>
 
+
 <li>
 <h4>Joining and Splitting:</h4>
 
@@ -1647,17 +1634,12 @@ console.log(trimmedEndStr); // Output: "          hello world!"
 <h4>Replacing and Repeating:</h4>
 
 <pre><code>
-console.log("I like cats. cats are sweet".replace("cats", "dogs")); // "I like dogs"
+console.log("I like cats. cats are sweet".replace("cats", "dogs")); // I like dogs. cats are sweet
 console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
 console.log("ha".repeat(3)); // "hahaha"
 </code></pre>
 </li>
-<li>
-<h4>Removing Extra Spaces: </h4>
 
-<pre><code>console.log("  hello world  ".trim()); // "hello world"
-</code></pre>
-</li>
 
 <li>
 <h3>includes, startsWith, endsWith: </h3>
@@ -1691,17 +1673,6 @@ console.log(result2); // "I love JavaScript"
 </code></pre>
 </li>
 
-<li>
-<h3>substring</h3>
-
-<pre><code>
-const str = "JavaScript Essentials";
-const extractedPart = str.substring(4, 8);
-
-console.log(extractedPart); // "Scri"
-
-</code></pre>
-</li>
 
 <li>
 <h3>String Reverse:</h3>
@@ -1730,7 +1701,7 @@ const joined = reversedArray.join("");
 console.log(joined); // Output: "olleh"
 </code></pre>
 </li>
-
+</ul>
 </ul>
 
 <h3>Strings are immutable:</h3>
@@ -1829,7 +1800,7 @@ let a = Symbol("id");
 let b = Symbol("id");
 console.log(a === b); // false
 </code></pre>
-    
+
 
 <h3 id="1-non-primitive-data-types" align="center">1 Non-Primitive Data Types (Object)</h3>
 <p>In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array):</p> 
@@ -1991,7 +1962,7 @@ console.log(person);
 </code></pre>
 
 <h4>Note:</h4>
-<p>Object.freeze() is shallow — only freezes the immediate properties. If object properties are objects themselves, those nested objects can still be mutated unless they are frozen separately.</p>
+<p>Object.freeze() only freezes the immediate properties. If object properties are objects themselves, those nested objects can still be mutated unless they are frozen separately.</p>
 
 <pre><code>
 const user = {
@@ -2054,7 +2025,7 @@ console.log(car);
 </code></pre>
 
 <h4>Note:</h4>
-<p>Object.seal() is shallow as well. So it also doesn’t affect nested objects.</p>
+<p>Object.seal also doesn’t affect nested objects.</p>
 
 <h4>How to Check if Object is Frozen or Sealed:</h4>
 
@@ -2182,7 +2153,7 @@ user.name = "Pete";
 console.log(user.name); // Pete
 </code></pre>
 
-<h3 id="cloning-and-merging-and-object.assign">Cloning and merging and Object.assign:</h3>
+<h3 id="cloning-and-merging-and-object.assign">Cloning and merging, Object.assign and structuredClone():</h3>
 
 <p>So, copying an object variable creates one more reference to the same object.
 <br>
@@ -2463,15 +2434,16 @@ console.log(date.getMilliseconds()); // 123
 </code></pre>
 
 <li>Date Formatting (Readable Strings):</li>
-<pre><code>const date = new Date();
 
-console.log(date.toString());      // Full string with time zone
-console.log(date.toDateString());  // Only date
-console.log(date.toTimeString());  // Only time
+<pre><code>
+const date = new Date();
+console.log(date.toString());      // Mon Aug 04 2025 01:14:18 GMT+0600 (Bangladesh Standard Time)
+console.log(date.toDateString());  // Mon Aug 04 2025
+console.log(date.toTimeString());  // 01:14:18 GMT+0600 (Bangladesh Standard Time)
 console.log(date.toISOString());   // ISO format (for JSON, API)
-console.log(date.toUTCString());   // UTC time
-console.log(date.toLocaleDateString()); // Local format (BD: 21/7/2025)
-console.log(date.toLocaleTimeString()); // Local time
+console.log(date.toUTCString());   // 2025-08-03T19:14:18.638Z
+console.log(date.toLocaleDateString()); // 8/4/2025
+console.log(date.toLocaleTimeString()); // 1:15:24 AM
 </code></pre>
 </ul>
 
@@ -2539,19 +2511,6 @@ If a function returns a value, you can store it in a variable and use it for fur
 <p>A callback is a function passed as an argument to another function, to be called later.</p>
 
 <pre><code>
-// without callback function
-function greeting(greetingHandler) {
-    console.log(greetingHandler);
-}
-
-function morningGreet() {
-    console.log('Good Morning');
-}
-
-greeting(morningGreet); // [Function: morningGreet]
-
-
-// with callback function
 function greet(name, callback) {
     callback(name); // call the callback function
 }
@@ -2657,8 +2616,8 @@ inside c 30
 
 <pre><code>
 function factorial(n) {
-  if (n === 0) {
-    return 1; // base case
+  if (n === 0) { // base case
+    return 1; 
   }
   return n * factorial(n - 1); // recursive case
 }
@@ -2688,7 +2647,7 @@ greeting(); // RangeError: Maximum call stack size exceeded
 
 
 <h3 id="closure">Closure</h3>
-<p>A closure is a function that remembers the variables from its outer scope, even after that outer function has finished executing.</p>
+<p>A closure is a function technique that remembers the variables from its outer scope, even after that outer function has finished executing.</p>
 
 <h4>Closure Features</h4>
 <ul>
@@ -2866,7 +2825,7 @@ console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
 <p>On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.</p>
     </li>
     <li>
-      <h4 id="splice">splice(start, deleteCount, ...items) – Modify array: remove, add, or replace elements; returns removed items:</h4>
+      <h4 id="splice">splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:</h4>
 
 <pre><code>
 let arr = ["I", "study", "JavaScript"];
@@ -2878,20 +2837,20 @@ console.log(arr); // [ 'I', 'JavaScript' ]
 let arr2 = ["I", "study", "JavaScript", "right", "now"];
 // remove 3 first elements and replace them with another
 console.log(arr2.splice(0, 3, "Let's", "dance")); // [ 'I', 'study', 'JavaScript' ]
-console.log(arr2) // now ["Let's", "dance", "right", "now"]
+console.log(arr2) // ["Let's", "dance", "right", "now"]
 
 
 let arr3 = ["I", "study", "JavaScript"];
 // from index 2, delete 0, then insert "complex" and "language"
 console.log(arr3.splice(2, 0, "complex", "language")); // []
-console.log(arr3); // "I", "study", "complex", "language", "JavaScript"
+console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
 
 
 
 let arr4 = [1, 2, 5];
 // from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
 console.log(arr4.splice(-1, 0, 3, 4));[]
-console.log(arr4); // 1,2,3,4,5
+console.log(arr4); // [ 1, 2, 3, 4, 5 ]
 </code></pre>
 
   </li>
@@ -2908,9 +2867,14 @@ console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
 </code></pre>
 
   </li>
-<p><strong>Note:</strong> splice and slice are the same things, but the main difference is splice change the original array and slice does not change the original array.</p>
-
   </ul>
+  <h4>Note: </h4>
+<ul>
+  <li>Use splice() when you want to change the original array (remove/insert/replace).</li>
+  <li>Use slice() when you want a copy of part of the array, without changing the original.</li>
+</ul>
+
+
   <li id="searching-location">Searching / Location</li>
   <ul>
     <li>
@@ -3029,7 +2993,6 @@ console.log(result); // Output: 10
 <img src="images/reduce.png" alt="reduce">
 
 </ul>
-    </ul>
   <li id="reordering-combining">Reordering / Combining</li>
     <ul>
       <li>
@@ -3051,6 +3014,11 @@ let arr = ["a", "b", "c"];
 let arr2 = arr.join("-");
 console.log(arr); // [ 'a', 'b', 'c' ]
 console.log(arr2); // a-b-c
+
+const arr = ['Hello', 'World'];
+let arr3 = arr.join(" ");
+console.log(arr); // ['Hello', 'World']
+console.log(arr3); // Hello World
 </code></pre>
 </li>
 <li>
@@ -3061,23 +3029,15 @@ let str = "a-b-c";
 let result = str.split("-");
 console.log(str);    // "a-b-c"
 console.log(result); // [ 'a', 'b', 'c' ]
-</code></pre>
 
-<p><strong>Note: </strong>Join and split are the same things, but the main difference is join used on arrays to convert them into a string and split used on strings to convert them a array.</p>
-
-<pre><code>
-// Join()
-const arr = ['Hello', 'World'];
-let arr3 = arr.join(" ");
-console.log(arr); // ['Hello', 'World']
-console.log(arr3); // Hello World
-
-// Split()
 const str = 'Hello World';
 let arr2 = str.split(" ");
 console.log(str); // Hello World
 console.log(arr2); // ['Hello', 'World']
 </code></pre>
+
+<p><strong>Note: </strong>join used on arrays to convert them into a string and split used on strings to convert them a array.</p>
+
 </li>
 <li>
 <h4 id="reverse">reverse() – Reverses the array:</h4>
@@ -3211,627 +3171,12 @@ const flatArr = arr.flat(Infinity);
 console.log(flatArr); // Output: [1, 2, 3, 4]
 </code></pre>
 </li>
+
 </ul>
+
 </ol>
 
-
 <hr>
-
-<h3 id="map-data-type" align="center">Map</h3>
-
-<p>A Map is a built-in object in JavaScript that holds key-value pairs like object, but here Keys can be of any type (not just strings!)</p>
-
-<h4>Declare a Map:</h4>
-<pre><code>const myMap = new Map();</code></pre>
-
-<h4>Initialized a Map:</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-console.log(myMap)
-// Map(3) { 'name' => 'Tamim', 'age' => 21, 'country' => 'Bangladesh' }
-</code></pre>
-
-<h3 id="looping-through-a-map">Looping through a Map:</h3>
-<ul>
-  <li>
-    <h4 id="map-for-of-loop">for...of loop:</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-for (const entry of myMap) {
-    const key = entry[0];
-    const value = entry[1];
-    console.log(key, value);
-}
-/*
-name Tamim
-age 21
-country Bangladesh 
-*/
-
-for (const [key, value] of myMap) {
-    console.log(key, value);
-}
-/*
-name Tamim
-age 21
-country Bangladesh 
-*/
-
-
-/*
-Behind the scenes of destructuring:
-Each entry is an array: ['name', 'Tamim']
-Destructuring splits it like:
-  [key, value] = ['name', 'Tamim'];
-*/
-</code></pre>
-
-  </li>
-<li>
-
-<h4 id="map-forEach-method">forEach() method:</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-myMap.forEach((value, key) => console.log(key, value))
-
-/**
-name Tamim
-age 21
-country Bangladesh
- */
-</code></pre>
-</li>
-<li>
-
-<h4 id="map-build-in-methods-for-keys,values-entries">3 Built-in Map Methods for Looping Through Keys, Values, and Entries:</h4>
-<ul>
-  <li><code>map.keys()</code> – Returns an iterable of keys.</li>
-  <li><code>map.values()</code> – Returns an iterable of values.</li>
-  <li>
-    <code>map.entries()</code> – Returns an iterable of <code>[key, value]</code> pairs.<br>
-    This is the default behavior when using a <code>for...of</code> loop with a <code>Map</code>, like:<br>
-    <code>for (const [key, value] of myMap)</code>
-  </li>
-</ul>
-
-<pre><code>
-let recipeMap = new Map([
-  ['cucumber', 500],
-  ['tomatoes', 350],
-  ['onion',    50]
-]);
-
-// iterate over keys (vegetables)
-for (let vegetable of recipeMap.keys()) {
-  alert(vegetable); // cucumber, tomatoes, onion
-}
-
-// iterate over values (amounts)
-for (let amount of recipeMap.values()) {
-  alert(amount); // 500, 350, 50
-}
-
-// iterate over [key, value] entries
-for (let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,500 (and so on)
-}</code></pre>
-</li>
-</ul>
-
-
-<h3 id="basic-map-methods">Basic Map Methods:</h3>
-<ul>
-<li>
-<h4 id="set()">set(key, value) – Add a key-value pair:</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-myMap.set("language", "JavaScript");
-
-for (let entry of myMap) {
-    console.log(entry);
-}
-
-/*
-[ 'name', 'Tamim' ]
-[ 'age', 21 ]
-[ 'country', 'Bangladesh' ]
-[ 'language', 'JavaScript' ]
-*/
-</code></pre>
-</li>
-<li>
-  <h4 id="get()">get(key) – Get value by key</h4>
-  
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-myMap.set("language", "JavaScript");
-console.log(myMap.get("language")); // "JavaScript"
-</code></pre>
-</li>
-
-<li>
-  <h4 id="has()">has(key) – Check if key exists</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-console.log(myMap.has("age")); // true  
-</code></pre>
-</li>
-
-<li>
-  <h4 id="delete()">delete(key) – Remove a key-value pair</h4>
-  
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-myMap.delete("country");
-
-for (const entry of myMap) {
-    console.log(entry);
-}
-
-/*
-[ 'name', 'Tamim' ]
-[ 'age', 21 ]
-*/
-</code></pre>
-</li>
-<li>
-  <h4 id="clear()">clear() – Remove all entries</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-myMap.clear();
-</code></pre>
-</li>
-<li>
-  <h4 id="size">size – Number of entries in the Map</h4>
-
-<pre><code>
-const myMap = new Map([
-    ['name', 'Tamim'],
-    ['age', 21],
-    ['country', 'Bangladesh']
-]);
-
-console.log(myMap.size); // 3
-</code></pre>
-</li>
-</ul>
-
-<h3 id="converting">Converting:</h3>
-<ul>
-<li>
-<h4 id="convert-map-to-array">Convert Map to Array:</h4>
-
-<pre><code>
-const myMap = new Map([
-    ["name", "Tamim"],
-    ["age", 21],
-    ["country", "Bangladesh"]
-]);
-
-const arr = Array.from(myMap);
-console.log(arr);
-// [ [ 'name', 'Tamim' ], [ 'age', 21 ], [ 'country', 'Bangladesh' ] ]
-</code></pre>
-</li>
-
-<li>
-<h4 id="convert-map-to-object">Convert Map to Object:</h4>
-
-<pre><code>
-const myMap = new Map([
-    ["name", "Tamim"],
-    ["age", 21],
-    ["country", "Bangladesh"]
-]);
-
-const mapToObj = Object.fromEntries(myMap);
-console.log(mapToObj);
-// { name: 'Tamim', age: 21, country: 'Bangladesh' }
-</code></pre>
-</li>
-
-<h4 id="convert-object-to-map">Convert Object to Map:</h4>
-
-<pre><code>
-const obj = { a: 1, b: 2 };
-const objToMap = new Map(Object.entries(obj));
-
-for (const [key, value] of objToMap) {
-    console.log(key, value)
-}
-/*
-a 1
-b 2
-*/
-</code></pre>
-</li>
-</ul>
-
-<h3 id="map-keys-can-be-anything">Map Keys Can Be Anything!</h3>
-
-<pre><code>
-const myMap = new Map([
-    ["name", "Tamim"],
-    ["age", 21],
-    ["country", "Bangladesh"]
-]);
-
-const objKey = { id: 1 };
-const funcKey = function () { };
-
-myMap.set(objKey, "Object as key");
-myMap.set(funcKey, "Function as key");
-console.log(myMap.get(objKey));    // "Object as key"
-console.log(myMap.get(funcKey));   // "Function as key"
-</code></pre>
-<hr>
-
-<h3 id="set" align="center">Set</h3>
-<p>A Set is a built-in object in JavaScript that stores a collection of unique values.</p>
-
-<h4>Set Declaration:</h4>
-<pre><code>const mySet = new Set();</code></pre>
-
-<h4>Set Initialization:</h4>
-<pre><code>const mySet = new Set([1, 2, 3, 3, 4]);
-console.log(mySet); // Set(4) {1, 2, 3, 4}
-</code></pre>
-
-<h4>Key Features:</h4>
-<ul>
-<li>No duplicates allowed </li>
-<li>Can hold any type of value (number, string, object, etc.) </li>
-</ul>
-
-<h3 id="looping-through-a-set">Looping through a Sat:</h3>
-<ul>
-<li>
-<h3 id="using-for-of">for...of:</h3>
-
-<pre><code>const letters = new Set(["a", "b", "c", "c"]);
-for (const letter of letters) {
-    console.log(letter); // a b c
-}
-</code></pre>
-</li>
-<li>
-<h3 id="using-for-each">forEach():</h3>
-
-<pre><code>const letters = new Set(["a", "b", "c", "c"]);
-
-letters.forEach((value) => {
-    console.log(value); // a b c
-});
-</code></pre>
-</li>
-</ul>
-
-<h3 id="basic-set-methods">Basic set methods:</h3>
-<ul>
-<li>
-  <h4 id="set-add()">add(value) – Adds a value to the Set:</h4>
-
-<pre><code>
-const mySet = new Set([1, 2, 3, 3, 4]);
-mySet.add("hello");
-
-for (const value of mySet) {
-    console.log(value);
-}
-
-/*
-1
-2
-3
-4
-hello
-*/
-</code></pre>
-</li>
-<li>
-  <h4 id="set-has()">has(value) – Checks if a value exists:</h4>
-  
-<pre><code>
-const mySet = new Set([1, 2, 3, 3, 4]);
-
-console.log(mySet.has("hello")); // false  
-</code></pre>
-</li>
-<li>
-  <h4 id="set-delete()">delete(value) – Removes a value:</h4>
-  
-<pre><code>
-const mySet = new Set([1, 2, 3, 3, 4]);
-mySet.delete(2);
-
-for (const value of mySet) {
-    console.log(value);
-}
-
-/*
-1
-3
-4
-*/
-</code></pre>
-</li>
-<li>
-  <h4 id="set-clear()">.clear() – Removes all values:</h4>
-
-<pre><code>
-const mySet = new Set([1, 2, 3, 3, 4]);
-mySet.clear();
-
-console.log(mySet); // Set(0) {}
-</code></pre>
-</li>
-<li>
-  <h4 id="set-size()">size – Returns number of items:</h4>
-  
-<pre><code>
-const mySet = new Set([1, 2, 3, 3, 4]);
-
-console.log(mySet.size); // 4
-</code></pre>
-</li>
-</ul>
-
-<h3 id="set-converting">Converting: </h3>
-<ul>
-<li>
-<h4 id="set-converting-set-to-array">Convert Set to Array:</h4>
-
-<pre><code>const mySet = new Set([1, 2, 3, 3, 4]);
-
-const arr = Array.from(mySet);
-// or
-const arr2 = [...mySet];
-console.log(mySet) // Set(4) { 1, 2, 3, 4 }
-console.log(arr) // [ 1, 2, 3, 4 ]
-console.log(arr2) // [ 1, 2, 3, 4 ]</code></pre>
-</li>
-
-<li>
-<h4 id="set-converting-array-to-set">Convert Array to Set:</h4>
-
-<pre><code>const set = new Set([1, 2, 2, 3]);</code></pre>
-</li>
-</ul>
-
-<h3 id="set-can-store-any-type">Set can store Any Type:</h3>
-
-<pre><code>
-const mySet = new Set();
-mySet.add(1);
-mySet.add("1");
-mySet.add({ name: "Tamim" });
-mySet.add([1, 2, 3])
-
-console.log(mySet);
-// Set(4) { 1, '1', { name: 'Tamim' }, [ 1, 2, 3 ] }
-</code></pre>
-
-<h4 id="remove-duplicates-from-array">Example: Remove Duplicates from Array</h3>
-
-<pre><code>const nums = [1, 2, 2, 3, 3, 4];
-const uniqueNums = [...new Set(nums)];
-console.log(uniqueNums); // [1, 2, 3, 4]
-</code></pre>
-
-<h4 id="set-vs-map-vs-array-vs-object">Set vs Map vs Array vs Object:<h4>
-<img src="images/image9.png" alt="set vs map vs array vs object">
-<hr>
-
-
-
-
-
-
-<h3 id="class" align="center">Class</h3>
-<p>A class is a template for creating multiple similar objects with shared properties and methods.</p>
-
-<pre><code>
-class Player {
-    constructor(name, runs, wickets) {
-        this.name = name;
-        this.runs = runs;
-        this.wickets = wickets;
-    }
-}
-
-const tam = new Player('Tam', 5000, 2);
-console.log(tam);
-const mash = new Player('Mash', 3200, 180);
-console.log(mash);
-
-/*
-Player { name: 'Tam', runs: 5000, wickets: 2 }
-Player { name: 'Mash', runs: 3200, wickets: 180 }
-*/
-</code></pre>
-
-<p>Here,</p>
-
-<ul>
-<li>class Player — Defines a class named Player. It's a template for creating player objects.</li>
-<li>constructor() — A special method inside the class that sets up the object’s properties when a new object is created. It does not create the object itself; it just defines how the object should be built.</li>
-<li>this.name, this.runs, this.wickets — These are properties that will be assigned to each object.</li>
-<li>new Player() — The new keyword is what actually creates a new object using the class template and runs the constructor() to initialize it.</li>
-</ul>
-
-
-<h4>Class Methods:</h4>
-<p>In JavaScript classes, we don’t use the function keyword when defining methods.But in regular objects, the function keyword is required.</p>
-
-
-<pre><code>
-class Player {
-    constructor(name, runs, wickets) {
-        this.name = name;
-        this.runs = runs;
-        this.wickets = wickets;
-    }
-
-    addRun(run) {
-        this.runs = this.runs + run;
-    }
-}
-
-const player1 = new Player("Tamim", 5000, 100);
-player1.addRun(200);
-player1.addRun(31);
-console.log(player1);
-
-// Player { name: 'Tamim', runs: 5231, wickets: 100 }
-</code></pre>
-
-<pre><code>
-class BankAccount {
-    constructor(owner, balance) {
-        this.owner = owner;
-        this.balance = balance;
-    }
-
-    deposit(amount) {
-        this.balance += amount;
-        return this.balance;
-    }
-
-    withdraw(amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return amount;
-        } else {
-            return 'Insufficient Balance';
-        }
-    }
-}
-
-const myAccount = new BankAccount('Leo', 5000);
-myAccount.deposit(2000);
-myAccount.withdraw(500);
-console.log(myAccount);
-
-// BankAccount { owner: 'Leo', balance: 6500 }
-</code></pre>
-
-
-<pre><code>
-// Parent Class or super class
-class Gadget {
-    constructor(brand, model, price) {
-        this.brand = brand;
-        this.model = model;
-        this.price = price;
-    }
-}
-
-// Child Class: Laptop
-class Laptop extends Gadget {
-    constructor(brand, model, price, keyboardLight) {
-        super(brand, model, price);
-        this.keyboardLight = keyboardLight;
-    }
-}
-
-// Child Class: Phone
-class Phone extends Gadget {
-    constructor(brand, model, price, hasFaceUnlock) {
-        super(brand, model, price);
-        this.hasFaceUnlock = hasFaceUnlock;
-    }
-}
-
-// Child Class: Tablet
-class Tablet extends Gadget {
-    constructor(brand, model, price, hasPen) {
-        super(brand, model, price);
-        this.hasPen = hasPen;
-    }
-}
-
-const myLaptop = new Laptop("Dell", "XPS 15", 1500, true);
-console.log(myLaptop);
-
-const myPhone = new Phone("Apple", "iPhone 14", 999, true);
-console.log(myPhone);
-
-
-const myTablet = new Tablet("Samsung", "Galaxy Tab S8", 700, true);
-console.log(myTablet);
-
-/*
-Laptop {
-  brand: 'Dell',
-  model: 'XPS 15',
-  price: 1500,
-  keyboardLight: true
-}
-Phone {
-  brand: 'Apple',
-  model: 'iPhone 14',
-  price: 999,
-  hasFaceUnlock: true
-}
-Tablet {
-  brand: 'Samsung',
-  model: 'Galaxy Tab S8',
-  price: 700,
-  hasPen: true
-}
-*/
-</code></pre>
-
-<h4>here</h4>
-<ul>
-<li>Extends Gadget → This makes Laptop, phone, tablet inherit from the Gadget class.</li>
-<li>super(brand, model, price) → Calls the parent constructor so we don't repeat code.</li>
-</ul>
 
 
 
@@ -4001,9 +3346,6 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 
 
 
-
-
-
 <h3 id="error-handling" align="center">Error Handling</h3>
 
 <p>try...catch is used to handle errors in JavaScript so your code doesn't crash. Instead of stopping the program when an error happens, you can catch the error and respond gracefully.</p>
@@ -4074,7 +3416,7 @@ Cleanup: This runs no matter what.
 </code></pre>
 
 
-<h3>Common JS Errors:</h3>
+<h3 id="common-js-errors">Common JS Errors:</h3>
 
 <ul>
 <li>
@@ -4249,7 +3591,7 @@ console.log(sum(2, 3));   // 5
 <li>Replacing patterns in text</li>
 </ul>
 
-<h3>Common RegEx Methods:</h3>
+<h3 id="common-regex-methods">Common RegEx Methods:</h3>
 <ul>
 <li>test() = Returns true if pattern matches</li>
 <li>match() = Returns matching values (array or null)</li>
@@ -4275,7 +3617,7 @@ console.log("split():", str.split(pattern));     // [ 'I h', 've ', ' c', 't, ',
 </code></pre>
 
 
-<h3>Anchors</h3>
+<h3 id="anchors">Anchors:</h3>
 
 <ul>
 
@@ -4312,7 +3654,7 @@ end$      : [
 </code></pre>
 
 
-<h3>Flags:</h3>
+<h3 id="flags">Flags:</h3>
 <ul>
 <li>g = Match all occurrences (not just the first one)</li>
 <li>i = ignores the case</li>
@@ -4374,7 +3716,7 @@ null
 </code></pre>
 
 
-<h3>Basic Patterns</h3>
+<h3 id="basic-patterns">Basic Patterns</h3>
 
 <ul>
 
@@ -4467,7 +3809,7 @@ console.log(str9.match(/[A-Z]/g));
 </ul>
 
 
-<h3>Quantifiers</h3>
+<h3 id="quantifiers">Quantifiers</h3>
 <ul>
 <li>/a+/ → 1 or more a</li>
 <li>/a*/ → 0 or more a</li>
@@ -4514,7 +3856,7 @@ console.log("{2,4} :", str.match(/a{2,4}/g));   // Match between two and four "a
 </code></pre>
 
 
-<h3>Escaping special characters</h3>
+<h3 id="escaping-special-characters">Escaping special characters</h3>
 <p>If you want to match characters like ., ?, *, use a backslash(\)</p>
 
 <pre><code>
@@ -4522,7 +3864,7 @@ let pattern = /\./;
 console.log("google.com".match(pattern)); // [ '.', index: 6, input: 'google.com', groups: undefined ]
 </code></pre>
 
-<h3>Ral world examples:</h3>
+<h3 id="real-world-examples">Ral world examples:</h3>
 <ul>
 <li>
 <h4>Validate Email:</h4>
@@ -5032,184 +4374,54 @@ const fetchData = async () => {
 fetchData();
 </code></pre>
 </li>
+
 </ul>
-
-
-</li>
 </ol>
-
 <hr>
 
 
 
 
 
-<h3 id="this-keyword" align="center">This Keyword</h3>
-<p>this is a special keyword that refers to the object that is currently executing the code. It's value depends on the context in which it is used.</p>
 
-<ul>
-<li>
-<h4>this in Global Context</h4>
-<p>In a browser, this logs the global object, which is window.</p>
-<p>In Node.js, it logs an empty object {}</p>
-<pre><code>
-console.log(this);
-</code></pre>
-<img src="images/console.log(this).png" alt="this keyword">
-</li>
-<li>
-<h4>this in a Regular Function</h4>
 
-<pre><code>
-function show() {
-    console.log(this);
-}
-show();
 
-/*
-<ref *1> Object [global] {
-  global: [Circular *1],
-  clearImmediate: [Function: clearImmediate],
-  setImmediate: [Function: setImmediate] {
-    Symbol(nodejs.util.promisify.custom): [Getter]
-  },
-  clearInterval: [Function: clearInterval],
-  clearTimeout: [Function: clearTimeout],
-  setInterval: [Function: setInterval],
-  setTimeout: [Function: setTimeout] {
-    Symbol(nodejs.util.promisify.custom): [Getter]
-  },
-  queueMicrotask: [Function: queueMicrotask],
-  structuredClone: [Function: structuredClone],
-  atob: [Function: atob],
-  btoa: [Function: btoa],
-  performance: [Getter/Setter],
-  fetch: [Function: fetch],
-  crypto: [Getter],
-  navigator: [Getter]
-}
-*/
-</code></pre>
+<!-- Part 2 -->
+<h1 id="part-2-document-events-interfaces" align="center">Part 2: Document, Events, Interfaces</h1>
 
-<h4>call(), apply() and bind()</h4>
-<ul>
-<li>
-<h4>call() - Call Function with a Specific this</h4>
-<p>functionName.call(thisArg, arg1, arg2, ...)</p>
 
-<pre><code>
-function greet(greeting) {
-  console.log(greeting + ', ' + this.name);
-}
 
-const person = { name: 'Tamim' };
 
-greet.call(person, 'Hello'); // Hello, Tamim
-</code></pre>
-<p>Here, this inside greet() becomes the person object.</p>
-</li>
-<li>
-<h4>apply() – Like call(), but Pass Arguments as Array</h4>
-<p>functionName.apply(thisArg, [arg1, arg2, ...])</p>
+<h1 align="center">DOM</h1>
+<p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
 
-<pre><code>
-function greet(greeting, punctuation) {
-  console.log(greeting + ', ' + this.name + punctuation);
-}
 
-const person = { name: 'Tamim' };
+<h2 align="center">Browser environment, specs</h2>
 
-greet.apply(person, ['Hi', '!']); // Hi, Tamim!
-</code></pre>
-<p>Same as call(), but arguments are passed as an array.</p>
-</li>
-<li>
-<h4>bind() – Returns a New Function with Bound this</h4>
-<p>const newFunc = functionName.bind(thisArg, arg1, arg2, ...)
-</p>
 
-<pre><code>
-function greet() {
-  console.log('Hi, ' + this.name);
-}
 
-const person = { name: 'Tamim' };
 
-const greetTamim = greet.bind(person);
 
-greetTamim(); // Hi, Tamim
-</code></pre>
-<p>bind() doesn’t call the function immediately — it returns a new function with this permanently set.</p>
-</li>
-</ul>
-</li>
-<li>
-<h4>this in an Object Method</h4>
 
-<pre><code>
-const user = {
-    name: "Tamim",
-    greet() {
-        console.log("Hi, I am " + this.name);
-    }
-};
 
-user.greet(); // Hi, I am Tamim
-</code></pre>
-<p>Note: Inside the object Arrow function don't support this keyword.s</p>
 
-<pre><code>
-const user = {
-  name: "Tamim",
-  greet: () => {
-    console.log(this.name);
-  }
-};
 
-user.greet(); // undefined 
-</code></pre>
 
-<pre><code>
-const student = {
-    name: 'Learner',
-    getThis() {
-        console.log(this);
-    }
-}
 
-student.getThis();
-// { name: 'Learner', getThis: [Function: getThis] }
-</code></pre>
-</li>
-<li>
-<h4>this in class</h4>
 
-<pre><code>
-class Player {
-    constructor(name, runs, wickets) {
-        this.name = name;
-        this.runs = runs;
-        this.wickets = wickets;
-    }
-}
 
-const tam = new Player('Tam', 5000, 2);
-console.log(tam);
-</code></pre>
 
-</li>
-<li>
-<h4>this in Event Handlers</h4>
 
-```js
-<button id="btn">Click Me</button>
 
-<script>
-document.getElementById("btn").addEventListener("click", function () {
-  console.log(this); // refers to the button
-});
-</script>
 
-```
-</ul>
-<hr>
+
+
+
+
+
+
+
+
+
+<h1 align="center">Events</h1>
+<h1 align="center">Interfaces</h1>

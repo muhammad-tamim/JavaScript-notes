@@ -16,13 +16,10 @@
 <li><a href="#map-problems">Map Problems</a></li>
 <li><a href="#set-problems">Set Problems</a></li>
 <li><a href="#class-problems">class Problems</a></li>
-<li><a href="#destructuring-problems">Destructuring Problems</a></li>
 <li><a href="#error-handling-problems">Error Handling Problems</a></li>
 <li><a href="#js-modules-problems">JS Modules Problems</a></li>
 <li><a href="#regular-expression-problems">Regular Expression Problems</a></li>
-<li><a href="#Memory-management-problems">Memory Management Problems</a></li>
 <li><a href="#async-sync-problems">Asynchronous and Synchronous Problems</a></li> 
-<li><a href="#this-keyword-problems">This keyword Problems</a></li> 
 </ul>
 
 <li><a href="#part-2-DOM">Part 2: Document Object Model</a></li>
@@ -1207,7 +1204,58 @@ Three lines:
 - LIS lengths: row 0=[5,3,8,2]→2, row 1=[1,9,4,6]→3, row 2=[7,2,1,3]→2. Max=3
 - Water flow path choosing smaller values: (0,0)→(1,0)→(2,0)→(2,1)→(2,2)→(2,3) = 5+1+7+2+1+3 = 19
 <!-- end -->
-
 <hr>
+
+<h1 id="object-problems" align="center">Object Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="function-problems" align="center">Function Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="array-problems" align="center">Array Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="map-problems" align="center">Map Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="set-problems" align="center">Set Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="class-problems" align="center">Class Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+
+<h1 id="error-handling-problems" align="center">Error Handling Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="js-modules-problems" align="center">JS Modules Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="regular-expression-problems" align="center">Regular Expression Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
+<h1 id="async-sync-problems" align="center">Asynchronous and Synchronous Problems</h1>
+<!-- start -->
+<!-- end -->
+<hr>
+
 
 <!-- <h1 id="part-2-DOM" align="center">Part 2: Document Object Model</h1> -->

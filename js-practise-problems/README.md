@@ -1,4 +1,4 @@
-<h1 align="center">JavaScript Practice Problems</h1>
+<h1 align="center">JS Practice Problems</h1>
 
 <h2>Table of Contents:</h2>
 
@@ -7,7 +7,7 @@
 <li><a href="#part-1-the-javascript-language">Part 1: The JavaScript Language</a></li>
 
 <ul>
-<li><a href="#variables-problems">Variables Problems</a></li>
+<li><a href="#Operator-problems">Operator Problems</a></li>
 </ul>
 
 <li><a href="#part-2-DOM">Part 2: Document Object Model</a></li>
@@ -18,428 +18,593 @@
 <h1 id="part-1-the-javascript-language" align="center">Part 1: The JavaScript Language</h1>
 
 
-<h1 id="variables-problems" align="center">Variables Problems</h1>
-<ol>
+<h1 id="operator-problems" align="center">Operator Problems</h1>
 
-<li>
-<h4 id="favorite-fruit">Favorite Fruit:</h4>
-<p>You declared a variable using const, but now want to change its value. Can you?</p>
+<!-- start -->
+## Problem A: Basic Calculator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-<h4>Task:</h4>
-<p>Declare a constant variable named fruit with an initial value. Try to reassign a new fruit to it and return the final value.</p>
+### Problem Statement
+You are given two integers `a` and `b`, and a character `op` representing an arithmetic operation. Perform the operation and output the result.
 
-<h4>Input:</h4>
+The operations are:
+- `+` for addition
+- `-` for subtraction  
+- `*` for multiplication
+- `/` for division (output with 1 decimal place)
+- `%` for modulo
+- `**` for exponentiation
 
-<pre><code>A fruit name</code></pre>
+### Input
+First line contains two integers `a` and `b` (-1000 ≤ a, b ≤ 1000).
+Second line contains a single character `op`.
 
-<h4>Output:</h4>
+### Output
+Output the result of `a op b`. For division, round to 1 decimal place.
 
-<pre><code>Print the value of the fruit variable.</code></pre>
+### Sample Input
+```
+10 3
+**
+```
 
-<h4>Solution:</h4>
+### Sample Output
+```
+1000
+```
 
-<pre><code>
-const fruit = "apple";
+---
 
-fruit = "mango";
+## Problem B: String Concatenation Mystery
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-console.log(fruit) // TypeError: Assignment to constant variable.
-</code></pre>
-</li>
+### Problem Statement
+JavaScript has peculiar behavior when mixing numbers and strings with the `+` operator. Given a sequence of operands (numbers or strings), calculate the final result when evaluated from left to right.
 
-<li>
-<h4>Block Mystery:</h4>
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of operands.
+Second line contains `n` space-separated operands. Each operand is either an integer or a string (enclosed in quotes).
 
-<h4>Problem:</h4>
-<p>You declare variables inside a block. Can you access them outside?</p>
+### Output
+Output the final result after all operations.
 
-<h4>Task:</h4>
-<p>Inside a block, declare:</p>
+### Sample Input
+```
+4
+2 2 "1" 3
+```
 
-<pre><code>
-let x = 10;
-var y = 20;
-const z = 30;
-</code></pre>
-<p>Try logging x, y, and z outside the block.</p>
+### Sample Output
+```
+413
+```
 
-<h4>Output:</h4>
+### Explanation
+2 + 2 = 4, then 4 + "1" = "41", then "41" + 3 = "413"
 
-<pre><code>
-ReferenceError: x is not defined
-20
-ReferenceError: z is not defined
-</code></pre>
+---
 
-<h4>Solution:</h4>
+## Problem C: Assignment Chain
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-<pre><code>
-{
-    let x = 10;
-    var y = 20;
-    const z = 30;
-}
+### Problem Statement
+Given an initial value `x` and a sequence of assignment operations, calculate the final value of `x`.
 
-console.log(x);
-console.log(y);
-console.log(z);
-</code></pre>
-</li>
+Operations are: `+=`, `-=`, `*=`, `/=`
 
+### Input
+First line contains integer `x` (1 ≤ x ≤ 1000).
+Second line contains integer `n` (1 ≤ n ≤ 100) - number of operations.
+Next `n` lines contain operation and value: `op val` where `op` is one of the assignment operators and `val` is an integer.
 
-<li>
-<h4>The Hoisted Message:</h4>
+### Output
+Output the final value of `x` (round to nearest integer if needed).
 
-<h4>Problem:</h4>
-<p>Predict what gets printed.</p>
-
-<h4>Code:</h4>
-
-<pre><code>
-function printMessage() {
-  console.log(message);
-  var message = "Hello, World!";
-}
-printMessage();
-</code></pre>
-
-
-<h4>Solution:</h4>
-
-<pre><code>
-undefined
-</code></pre>
-</li>
-
-<li>
-<h4>What's My Scope?</h4>
-
-<h4>Problem:</h4>
-<p>Can you guess what gets logged?</p>
-
-<h4>Code:</h4>
-
-<pre><code>
-var greeting = "Hi";
-
-function sayHi() {
-  var greeting = "Hello";
-  console.log(greeting);
-}
-
-sayHi();
-console.log(greeting);
-</code></pre>
-
-
-<h4>Solution:</h4>
-
-<pre><code>
-Hello
-Hi
-</code></pre>
-</li>
-
-<li>
-<h4>Variable Collision:</h4>
-
-<h4>Problem:</h4>
-<p>What happens when you redeclare a variable?</p>
-
-<h4>Code:</h4>
-
-<pre><code>
-var name = "Tamim";
-var name = "Muhammad";
-console.log(name);
-
-let user = "Tamim";
-let user = "Muhammad";
-console.log(user);
-</code></pre>
-
-
-<h4>Solution:</h4>
-
-<pre><code>
-SyntaxError: Identifier 'user' has already been declared
-</code></pre>
-</li>
-
-<li>
-<h4>Loop Trap:</h4>
-
-<h4>Problem:</h4>
-<p>What does this loop print?</p>
-
-<h4>Code:</h4>
-
-<pre><code>
-for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 100);
-}
-</code></pre>
-
-<h4>Output:</h4>
-
-<pre><code>
+### Sample Input
+```
+10
 3
-3
-3
-</code></pre>
++= 5
+*= 2
+/= 3
+```
 
-<p>Now fix it using let to make it log 0 1 2</p>
+### Sample Output
+```
+10
+```
 
-<h4>Solution:</h4>
+### Explanation
+x = 10, x += 5 → x = 15, x *= 2 → x = 30, x /= 3 → x = 10
 
-<pre><code>
-for (let i = 0; i < 3; i++) {
-    setTimeout(() => console.log(i), 100);
-}
+---
 
-/*
-0
-1
-2  
-*/
-</code></pre>
-</li>
+## Problem D: Increment Predictor
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-<li>
-<h4>Lexical Treasure Hunt:</h4>
+### Problem Statement
+Given a variable `i` with initial value and a sequence of pre/post increment/decrement operations, predict the final values of both `i` and the assigned variables.
 
-<h4>Problem:</h4>
-<p>Explore lexical scope.</p>
+### Input
+First line contains integer `i` (1 ≤ i ≤ 1000).
+Second line contains integer `n` (1 ≤ n ≤ 100) - number of operations.
+Next `n` lines contain operations in format: `var = operation` where `operation` is one of `++i`, `i++`, `--i`, `i--`.
 
-<h4>Code:</h4>
+### Output
+Output `n+1` lines: first line contains final value of `i`, next `n` lines contain values of assigned variables in order.
 
-<pre><code>
-let outer = "treasure";
-
-function search() {
-  function deep() {
-    console.log(outer);
-  }
-  deep();
-}
-
-search();
-</code></pre>
-
-<h4>Output:</h4>
-
-<pre><code>
-treasure
-</code></pre>
-
-<p>Now, move let outer = "treasure"; inside search() and try again.</p>
-
-<h4>Solution:</h4>
-
-<pre><code>
-function search() {
-    let outer = "treasure";
-    function deep() {
-        console.log(outer);
-    }
-    deep();
-}
-
-search(); 
-
-// treasure
-</code></pre>
-</li>
-
-<li>
-<h4>Hoisting Mystery:</h4>
-
-<h4>Problem:</h4>
-<p>Guess the output.</p>
-
-<h4>Code:</h4>
-
-<pre><code>
-console.log(myVar);
-var myVar = "Hoisted";
-</code></pre>
-
-<h4>Output:</h4>
-
-<pre><code>
-undefined
-</code></pre>
-
-<h4>Now try:</h4>
-
-<pre><code>
-console.log(myLet);
-let myLet = "Not Hoisted";
-</code></pre>
-
-<h4>Output:</h4>
-
-<pre><code>
-ReferenceError: Cannot access 'myLet' before initialization
-</code></pre>
-</li>
-
-<li>
-<h4> Block vs Function Scope Challenge:</h4>
-
-<h4>Problem:</h4>
-<p>Find the value of x.</p>
-
-<h4>Code:</h4>
-
-<pre><code>
-function test() {
-  if (true) {
-    var x = 5;
-  }
-  console.log(x);
-}
-
-test();
-</code></pre>
-
-<h4>Output:</h4>
-
-<pre><code>
+### Sample Input
+```
 5
-</code></pre>
+2
+x = ++i
+y = i++
+```
 
-<p>Now change var to let and try again.</p>
+### Sample Output
+```
+7
+6
+6
+```
 
-<h4>Solution:</h4>
+---
 
-<pre><code>
-function test() {
-    if (true) {
-        let x = 5;
-    }
-    console.log(x);
-}
+## Problem E: Comparison Judge
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-test();
+### Problem Statement
+You are given two values and a comparison operator. Determine if the comparison is true or false.
 
-// ReferenceError: x is not defined
-</code></pre>
-</li>
+Values can be numbers, strings, booleans, null, or undefined.
 
+### Input
+First line contains two values `a` and `b` (can be numbers, strings in quotes, `true`, `false`, `null`, `undefined`).
+Second line contains comparison operator: `>`, `<`, `>=`, `<=`, `==`, `===`, `!=`, `!==`.
 
-<li>
-<h4> Global Confusion:</h4>
+### Output
+Output `true` or `false`.
 
-<h4>Problem:</h4>
-<p>Check which variables are accessible globally.</p>
+### Sample Input
+```
+5 "5"
+===
+```
 
-<h4>Code:</h4>
+### Sample Output
+```
+false
+```
 
-<pre><code>
-if (true) {
-  var status = "visible";
-  let mode = "private";
-}
+---
 
-console.log(status);
-console.log(mode);
-</code></pre>
+## Problem F: Lexicographical Battle
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-<h4>Output:</h4>
+### Problem Statement
+Given `n` strings, sort them according to JavaScript's lexicographical comparison rules and output the sorted list.
 
-<pre><code>
-ReferenceError: mode is not defined
-</code></pre>
-</li>
+### Input
+First line contains integer `n` (1 ≤ n ≤ 1000).
+Next `n` lines contain strings (length ≤ 100 each).
 
-<li>
-<h4>Dynamic Variable Assignment:</h4>
+### Output
+Output the strings in lexicographically sorted order.
 
-<h4>Problem:</h4>
-<p>What's printed?</p>
+### Sample Input
+```
+4
+Glow
+Glee
+apple
+Apple
+```
 
-<h4>Code:</h4>
+### Sample Output
+```
+Apple
+Glee
+Glow
+apple
+```
 
-<pre><code>
-let a;
-console.log(a);
-a = 10;
-a = 20;
-console.log(a);
-</code></pre>
+---
 
-<h4>Output:</h4>
+## Problem G: Null and Undefined Chaos
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-<pre><code>
+### Problem Statement
+JavaScript has special rules for comparing `null` and `undefined`. Given a comparison involving these values, predict the result.
+
+### Input
+First line contains two values: each is either a number, `null`, or `undefined`.
+Second line contains comparison operator.
+
+### Output
+Output `true` or `false`.
+
+### Sample Input
+```
+null undefined
+==
+```
+
+### Sample Output
+```
+true
+```
+
+---
+
+## Problem H: Logical Circuit
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are given a logical expression with variables and operators `&&`, `||`, `!`. Evaluate the expression.
+
+Variables can be any JavaScript value. Remember JavaScript's truthy/falsy rules.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 26) - number of variables.
+Next `n` lines contain variable assignments: `var = value`.
+Last line contains the logical expression using these variables.
+
+### Output
+Output `true` or `false`.
+
+### Sample Input
+```
+3
+a = 0
+b = "hello"
+c = null
+a || (b && !c)
+```
+
+### Sample Output
+```
+true
+```
+
+---
+
+## Problem I: Double Negation Master
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a value, determine its boolean conversion using the double negation operator `!!`.
+
+### Input
+One line containing a value (can be number, string in quotes, `true`, `false`, `null`, `undefined`, `NaN`, empty string `""`, or `0`).
+
+### Output
+Output `true` or `false`.
+
+### Sample Input
+```
+""
+```
+
+### Sample Output
+```
+false
+```
+
+---
+
+## Problem J: Conditional Maze
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are given a nested if-else structure with conditions and need to determine which branch executes.
+
+### Input
+First line contains integer `age`.
+The program logic is:
+```
+if (age < 13) return "child"
+else if (age < 20) return "teenager"  
+else if (age < 60) return "adult"
+else return "senior"
+```
+
+### Output
+Output the corresponding category.
+
+### Sample Input
+```
+25
+```
+
+### Sample Output
+```
+adult
+```
+
+---
+
+## Problem K: Ternary Chain
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Evaluate a chain of ternary operators. Given three integers `a`, `b`, `c`, evaluate:
+`a > b ? (b > c ? a : c) : (a > c ? b : c)`
+
+### Input
+One line with three integers `a`, `b`, `c` (-1000 ≤ a,b,c ≤ 1000).
+
+### Output
+Output the result of the ternary expression.
+
+### Sample Input
+```
+5 3 8
+```
+
+### Sample Output
+```
+8
+```
+
+---
+
+## Problem L: Switch Case Router
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You have a switch statement that routes commands. Given a command and its cases, determine the output.
+
+### Input
+First line contains a string `command`.
+The switch logic is:
+- "start" → "Starting system"
+- "stop" → "Stopping system"  
+- "restart" → "Restarting system"
+- "status" → "System running"
+- default → "Unknown command"
+
+### Output
+Output the corresponding message.
+
+### Sample Input
+```
+pause
+```
+
+### Sample Output
+```
+Unknown command
+```
+
+---
+
+## Problem M: Falsy Counter
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given an array of values, count how many are falsy according to JavaScript rules.
+
+Falsy values: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 1000).
+Next `n` lines contain values (numbers, strings in quotes, booleans, `null`, `undefined`, `NaN`).
+
+### Output
+Output the count of falsy values.
+
+### Sample Input
+```
+5
+0
+"hello"
+null
+false
+42
+```
+
+### Sample Output
+```
+3
+```
+
+---
+
+## Problem N: Type Detective
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a value, determine its type using the `typeof` operator.
+
+### Input
+One line containing a value.
+
+### Output
+Output the typeof result.
+
+### Sample Input
+```
+null
+```
+
+### Sample Output
+```
+object
+```
+
+---
+
+## Problem O: Rest Parameter Collector
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Simulate a function with rest parameters. Given a list of arguments, the first argument is special, and the rest should be collected into an array.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - total arguments.
+Next line contains `n` space-separated integers.
+
+### Output
+First line: the first argument.
+Second line: remaining arguments as comma-separated values (or "empty" if none).
+
+### Sample Input
+```
+4
+2 1 3 5
+```
+
+### Sample Output
+```
+2
+1,3,5
+```
+
+---
+
+## Problem P: Spread Operator Magic
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You have two arrays and need to merge them using spread operator logic.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - size of first array.
+Second line contains `n` integers.
+Third line contains integer `m` (1 ≤ m ≤ 100) - size of second array.
+Fourth line contains `m` integers.
+
+### Output
+Output the merged array as comma-separated values.
+
+### Sample Input
+```
+3
+1 2 3
+2
+4 5
+```
+
+### Sample Output
+```
+1,2,3,4,5
+```
+
+---
+
+## Problem Q: Nullish Coalescing Champion
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a chain of values separated by `??` operators, find the first non-nullish value.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of values.
+Next `n` lines contain values (can be numbers, strings in quotes, `null`, `undefined`).
+
+### Output
+Output the first non-nullish value, or "all nullish" if all are null/undefined.
+
+### Sample Input
+```
+4
+null
 undefined
-20
-</code></pre>
-</li>
+0
+"hello"
+```
 
-<li>
-<h4>Scope Chain Adventure</h4>
+### Sample Output
+```
+0
+```
 
-<h4>Problem:</h4>
-<p>Trace the scope.</p>
+---
 
-<h4>Code:</h4>
+## Problem R: OR vs Nullish Coalescing
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
 
-<pre><code>
-let a = "Global";
+### Problem Statement
+Compare the results of `||` and `??` operators with the same operands.
 
-function outer() {
-  let b = "Outer";
+### Input
+Two lines, each containing a value (number, string in quotes, `null`, `undefined`, boolean).
 
-  function inner() {
-    let c = "Inner";
-    console.log(a);
-    console.log(b);
-    console.log(c);
-  }
+### Output
+Two lines:
+- Result of `value1 || value2`
+- Result of `value1 ?? value2`
 
-  inner();
-}
-outer();
-</code></pre>
+### Sample Input
+```
+0
+"default"
+```
 
-<h4>Output:</h4>
+### Sample Output
+```
+default
+0
+```
 
-<pre><code>
-Global
-Outer
-Inner
-</code></pre>
-</li>
+---
 
-<li>
-<h4>Constants Confusion:</h4>
+## Problem S: Mixed Operators Challenge
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
 
-<h4>Problem:</h4>
-<p>Can we update the value inside a const object?</p>
+### Problem Statement
+You are given a complex expression involving multiple operator types. Evaluate it step by step.
 
-<h4>Code:</h4>
+Given: `a`, `b`, `c` (integers), and a string `s`.
+Evaluate: `(a++ * ++b) + (s || "default").length + (c ?? 100)`
 
-<pre><code>
-const person = {
-  name: "Tamim"
-};
+### Input
+First line contains three integers `a`, `b`, `c`.
+Second line contains string `s` (in quotes, or "null" for null value).
 
-person.name = "Muhammad Tamim";
-console.log(person.name);
-</code></pre>
+### Output
+Three lines:
+- Final values of `a` and `b` after increment operations
+- Result of the entire expression
 
-<h4>Output:</h4>
+### Sample Input
+```
+5 2 0
+"test"
+```
 
-<pre><code>
-Muhammad Tamim
-</code></pre>
+### Sample Output
+```
+6 3
+19
+```
 
-<p>Note: You can't reassign person = {} but you can mutate its properties.</p>
+### Explanation
+- a++ * ++b = 5 * 3 = 15 (a becomes 6, b becomes 3)
+- (s || "default").length = "test".length = 4
+- c ?? 100 = 0 ?? 100 = 0 (since 0 is not nullish)
+- Total: 15 + 4 + 0 = 19
+<!-- end -->
 
-</li>
-
-</ol>
 <hr>
 
 

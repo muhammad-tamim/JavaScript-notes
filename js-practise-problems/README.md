@@ -2678,6 +2678,515 @@ Registration span: 36 days
 
 <h1 id="function-problems" align="center">Function Problems</h1>
 <!-- start -->
+
+## Problem A: The Coffee Robot Challenge
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are programming a coffee robot for a café. The robot has two modes of operation:
+
+1. **Silent Mode**: The robot makes coffee but doesn't serve it (no return)
+2. **Service Mode**: The robot makes coffee and serves it to customers (with return)
+
+You need to implement both modes and demonstrate their differences.
+
+### Input
+The first line contains an integer `t` (1 ≤ t ≤ 100) — the number of test cases.
+
+Each test case contains:
+- One line with two integers `a` and `b` (1 ≤ a, b ≤ 1000) representing coffee ingredients
+- One character `mode` ('S' for Silent, 'R' for Return)
+
+### Output
+For Silent mode: Print "Coffee made silently"
+For Return mode: Print the sum of ingredients and then "Coffee served: X" where X is the sum
+
+### Example
+```
+Input:
+3
+5 3 S
+7 2 R
+10 15 R
+
+Output:
+Coffee made silently
+9
+Coffee served: 9
+25
+Coffee served: 25
+```
+
+### Solution Template
+```javascript
+function silentCoffee(a, b) {
+    // Implement silent mode (no return)
+}
+
+function serviceCoffee(a, b) {
+    // Implement service mode (with return)
+}
+```
+
+---
+
+## Problem B: Greeting Callback System
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're building a greeting system that uses callback functions. The system should be able to handle different types of greetings based on the time of day.
+
+### Input
+The first line contains an integer `n` (1 ≤ n ≤ 50) — the number of people to greet.
+
+The next `n` lines each contain:
+- A string `name` (1 ≤ |name| ≤ 20) — person's name
+- An integer `time` (0 ≤ time ≤ 23) — hour in 24-hour format
+
+### Output
+For each person, output the appropriate greeting:
+- 0-11: "Good Morning, {name}!"
+- 12-17: "Good Afternoon, {name}!"
+- 18-23: "Good Evening, {name}!"
+
+### Example
+```
+Input:
+4
+Alice 8
+Bob 14
+Charlie 20
+Diana 23
+
+Output:
+Good Morning, Alice!
+Good Afternoon, Bob!
+Good Evening, Charlie!
+Good Evening, Diana!
+```
+
+### Solution Template
+```javascript
+function greetPerson(name, callback) {
+    // Implement using callback function
+}
+
+function morningGreet(name) {
+    // Morning greeting callback
+}
+
+function afternoonGreet(name) {
+    // Afternoon greeting callback  
+}
+
+function eveningGreet(name) {
+    // Evening greeting callback
+}
+```
+
+---
+
+## Problem C: Guest Registration System
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're managing a guest registration system. Some guests provide their names, while others don't. For guests without names, use "Guest" as the default.
+
+### Input
+The first line contains an integer `q` (1 ≤ q ≤ 100) — the number of registration requests.
+
+Each of the next `q` lines contains either:
+- A non-empty string `name` — the guest's name
+- The word "EMPTY" — indicating no name provided
+
+### Output
+For each registration, print "Welcome, {name}!" where {name} is either the provided name or "Guest" for empty entries.
+
+### Example
+```
+Input:
+5
+John
+EMPTY
+Maria
+EMPTY
+Peter
+
+Output:
+Welcome, John!
+Welcome, Guest!
+Welcome, Maria!
+Welcome, Guest!
+Welcome, Peter!
+```
+
+### Solution Template
+```javascript
+function registerGuest(name = "Guest") {
+    // Implement with default parameter
+}
+```
+
+---
+
+## Problem D: Arrow Function Calculator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create a calculator using arrow functions that can perform basic mathematical operations.
+
+### Input
+The first line contains an integer `m` (1 ≤ m ≤ 1000) — the number of operations.
+
+Each of the next `m` lines contains:
+- Two integers `x` and `y` (-1000 ≤ x, y ≤ 1000)
+- A character `op` which is one of: '+', '-', '*', '/', '^' (power)
+
+### Output
+For each operation, print the result rounded to 2 decimal places if it's a decimal, otherwise print the integer result.
+
+### Example
+```
+Input:
+5
+10 5 +
+12 3 *
+20 4 /
+5 3 ^
+100 7 -
+
+Output:
+15
+36
+5.00
+125
+93
+```
+
+### Solution Template
+```javascript
+const add = (a, b) => // Implement addition
+const subtract = (a, b) => // Implement subtraction  
+const multiply = (a, b) => // Implement multiplication
+const divide = (a, b) => // Implement division
+const power = (a, b) => // Implement power
+```
+
+---
+
+## Problem E: Function Call Stack Simulator
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You need to simulate a function call stack. Given a sequence of function calls, show the order of execution and the final output.
+
+### Input
+The first line contains an integer `k` (1 ≤ k ≤ 10) — the depth of function calls.
+
+The next line contains `k` integers representing the values passed to each function level.
+
+### Output
+Print the execution order as functions are called, then print the return order as functions complete.
+
+### Example
+```
+Input:
+3
+10 20 30
+
+Output:
+Calling function with value: 10
+Calling function with value: 20  
+Calling function with value: 30
+Returning from function with value: 30
+Returning from function with value: 20
+Returning from function with value: 10
+```
+
+### Solution Template
+```javascript
+function simulateCallStack(values, index = 0) {
+    // Implement recursive call stack simulation
+}
+```
+
+---
+
+## Problem F: Factorial Calculator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Calculate factorial of numbers using recursion. Handle edge cases and prevent stack overflow.
+
+### Input
+The first line contains an integer `p` (1 ≤ p ≤ 50) — the number of test cases.
+
+Each of the next `p` lines contains an integer `n` (0 ≤ n ≤ 20).
+
+### Output
+For each test case, print the factorial of `n`. If `n` is too large and might cause stack overflow, print "TOO_LARGE".
+
+### Example
+```
+Input:
+5
+0
+1
+5
+10
+15
+
+Output:
+1
+1
+120
+3628800
+1307674368000
+```
+
+### Solution Template
+```javascript
+function factorial(n) {
+    // Implement recursive factorial with base case
+}
+```
+
+---
+
+## Problem G: Stack Overflow Detection
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're given a recursive function that might cause stack overflow. Determine if a given recursion depth will cause stack overflow (assume max depth is 1000).
+
+### Input
+The first line contains an integer `r` (1 ≤ r ≤ 50) — the number of test cases.
+
+Each test case contains an integer `depth` (1 ≤ depth ≤ 10000) — the recursion depth.
+
+### Output
+For each test case, print "SAFE" if the recursion depth is ≤ 1000, otherwise print "STACK_OVERFLOW".
+
+### Example
+```
+Input:
+4
+100
+1000
+1001
+5000
+
+Output:
+SAFE
+SAFE
+STACK_OVERFLOW
+STACK_OVERFLOW
+```
+
+---
+
+## Problem H: Secret Counter with Closures
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Implement a secret counter system using closures. Each counter maintains its own private count that can only be modified through specific operations.
+
+### Input
+The first line contains an integer `s` (1 ≤ s ≤ 100) — the number of operations.
+
+Each of the next `s` lines contains:
+- "CREATE id" — create a new counter with given id
+- "INCREMENT id" — increment counter with given id
+- "GET id" — get current value of counter with given id
+
+### Output
+For each GET operation, print the current counter value.
+For CREATE and INCREMENT operations, print "Counter {id} created" or "Counter {id} incremented".
+
+### Example
+```
+Input:
+8
+CREATE A
+CREATE B
+INCREMENT A
+INCREMENT A
+GET A
+INCREMENT B
+GET B
+GET A
+
+Output:
+Counter A created
+Counter B created
+Counter A incremented
+Counter A incremented
+2
+Counter B incremented
+1
+2
+```
+
+### Solution Template
+```javascript
+function createSecretCounter() {
+    // Implement closure-based counter
+}
+
+const counters = {}; // Store multiple counters
+```
+
+---
+
+## Problem I: Advanced Closure Data Manager
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create a data manager using closures that can store and manipulate private data with different access levels.
+
+### Input
+The first line contains an integer `v` (1 ≤ v ≤ 200) — the number of operations.
+
+Each operation is one of:
+- "INIT name initialValue" — initialize a data store
+- "SET name value" — set value in the data store
+- "GET name" — get value from the data store  
+- "ADD name value" — add value to existing value
+- "RESET name" — reset to initial value
+
+### Output
+For GET operations, print the current value.
+For other operations, print "Operation completed on {name}".
+
+### Example
+```
+Input:
+10
+INIT counter 0
+INIT balance 100
+SET counter 5
+GET counter
+ADD counter 3
+GET counter
+ADD balance 50
+GET balance
+RESET counter
+GET counter
+
+Output:
+Operation completed on counter
+Operation completed on balance
+Operation completed on counter
+5
+Operation completed on counter
+8
+Operation completed on balance
+150
+Operation completed on counter
+0
+```
+
+### Solution Template
+```javascript
+function createDataManager(initialValue) {
+    // Implement closure-based data manager
+}
+
+const dataStores = {}; // Store multiple data managers
+```
+
+---
+
+## Problem J: Function Composition Challenge
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You need to compose multiple functions together, combining concepts of callbacks, arrow functions, and closures.
+
+### Input
+The first line contains an integer `w` (1 ≤ w ≤ 100) — the number of test cases.
+
+Each test case contains:
+- An integer `x` (1 ≤ x ≤ 1000) — initial value
+- A string of operations like "ADD5,MUL2,SUB3" — operations to apply in order
+
+Operations:
+- ADDn: add n to the value
+- SUBn: subtract n from the value  
+- MULn: multiply by n
+- DIVn: divide by n
+- POWn: raise to power n
+
+### Output
+For each test case, print the final result after applying all operations.
+
+### Example
+```
+Input:
+3
+10 ADD5,MUL2
+8 SUB3,POW2
+20 DIV4,ADD10
+
+Output:
+30
+25
+15
+```
+
+### Solution Template
+```javascript
+const operations = {
+    ADD: (x, n) => x + n,
+    SUB: (x, n) => x - n,
+    MUL: (x, n) => x * n,
+    DIV: (x, n) => x / n,
+    POW: (x, n) => Math.pow(x, n)
+};
+
+function processOperations(initialValue, operationString) {
+    // Implement function composition
+}
+```
+
+---
+
+## Bonus Problem K: Complete Function System
+**Time Limit:** 3 seconds  
+**Memory Limit:** 512 MB
+
+### Problem Statement
+Build a complete function system that demonstrates all concepts: regular functions, callbacks, default parameters, arrow functions, recursion, closures, and proper return handling.
+
+### Input
+A complex input format combining all previous problem types. The first line contains the type of operation to perform.
+
+### Output
+Varies based on operation type, demonstrating mastery of all JavaScript function concepts.
+
+This problem combines elements from all previous problems and requires implementing a comprehensive solution using all the concepts from your notes.
+
+---
+
+## Scoring
+- Problems A-D: Basic concepts (100 points each)
+- Problems E-G: Intermediate concepts (150 points each)  
+- Problems H-I: Advanced closures (200 points each)
+- Problem J: Function composition (250 points)
+- Problem K: Complete system (300 points)
+
+**Total: 1650 points**
+
 <!-- end -->
 <hr>
 

@@ -1206,6 +1206,712 @@ Three lines:
 <!-- end -->
 <hr>
 
+<h1 id="string-problems" align="center">String Problems</h1>
+<!-- start -->
+
+## Problem A: Quote Type Counter
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are given a JavaScript code snippet as a string. Count how many string literals use single quotes, double quotes, and backticks respectively.
+
+### Input
+One line containing a JavaScript code snippet (length ≤ 1000).
+
+### Output
+Three integers: count of single quotes, double quotes, and backticks.
+
+### Sample Input
+```
+let name = 'John'; let msg = "Hello"; let template = `Hi ${name}`;
+```
+
+### Sample Output
+```
+1 1 1
+```
+
+---
+
+## Problem B: Template String Builder
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are given a name, age, and city. Create a multiline template string that introduces the person in exactly this format:
+```
+Hello, my name is [name].
+I am [age] years old.
+I live in [city].
+```
+
+### Input
+Three lines containing name, age, and city respectively.
+
+### Output
+The formatted multiline string.
+
+### Sample Input
+```
+Alice
+25
+New York
+```
+
+### Sample Output
+```
+Hello, my name is Alice.
+I am 25 years old.
+I live in New York.
+```
+
+---
+
+## Problem C: Expression Evaluator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given two numbers `a` and `b`, create a template string that shows the result of all basic arithmetic operations: addition, subtraction, multiplication, and division (rounded to 2 decimal places).
+
+### Input
+One line with two integers `a` and `b` (-1000 ≤ a,b ≤ 1000, b ≠ 0).
+
+### Output
+Four lines showing the operations in template string format.
+
+### Sample Input
+```
+15 4
+```
+
+### Sample Output
+```
+15 + 4 = 19
+15 - 4 = 11
+15 * 4 = 60
+15 / 4 = 3.75
+```
+
+---
+
+## Problem D: String Length Analyzer
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given `n` strings, find:
+1. The longest string(s) and their length
+2. The shortest string(s) and their length
+3. The average length (rounded to 2 decimal places)
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100).
+Next `n` lines contain strings (each length ≤ 1000).
+
+### Output
+Three lines:
+- Longest length and the longest string(s) (comma-separated if multiple)
+- Shortest length and the shortest string(s) (comma-separated if multiple)  
+- Average length
+
+### Sample Input
+```
+4
+hello
+hi
+programming
+code
+```
+
+### Sample Output
+```
+11: programming
+2: hi
+5.50
+```
+
+---
+
+## Problem E: Case Conversion Challenge
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a string, perform the following transformations:
+1. Convert to uppercase
+2. Convert to lowercase  
+3. Convert first character of each word to lowercase, rest to uppercase
+4. Alternate case starting with uppercase
+
+### Input
+One line containing a string (length ≤ 1000).
+
+### Output
+Four lines showing the different transformations.
+
+### Sample Input
+```
+Hello World
+```
+
+### Sample Output
+```
+HELLO WORLD
+hello world
+hELLO wORLD
+HeLlO WoRlD
+```
+
+---
+
+## Problem F: String Search Master
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a text and a search term, find:
+1. Whether the text includes the search term (case-sensitive)
+2. Whether the text starts with the search term
+3. Whether the text ends with the search term
+4. The first index where the search term appears (-1 if not found)
+5. All indices where the search term appears
+
+### Input
+Two lines: the text and the search term.
+
+### Output
+Five lines with the results.
+
+### Sample Input
+```
+JavaScript is a JavaScript language
+Java
+```
+
+### Sample Output
+```
+true
+true
+false
+0
+0,16
+```
+
+---
+
+## Problem G: Advanced indexOf Operations
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a string and a character, find all occurrences of that character using indexOf with different starting positions.
+
+### Input
+Two lines: a string and a single character.
+
+### Output
+All indices where the character appears, space-separated. If not found, output -1.
+
+### Sample Input
+```
+banana
+a
+```
+
+### Sample Output
+```
+1 3 5
+```
+
+---
+
+## Problem H: String Slicer
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a string and multiple slice operations, perform each slice and output the results.
+
+### Input
+First line contains a string (length ≤ 1000).
+Second line contains integer `n` (1 ≤ n ≤ 100) - number of operations.
+Next `n` lines contain slice operations in format: `start end` (where end can be omitted, and values can be negative).
+
+### Output
+`n` lines with slice results.
+
+### Sample Input
+```
+JavaScript
+4
+0 4
+4
+-4 -1
+2 8
+```
+
+### Sample Output
+```
+Java
+Script
+rip
+vaScri
+```
+
+---
+
+## Problem I: Word Processor
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a sentence, perform the following operations:
+1. Split into words
+2. Join words with different separators
+3. Count total words
+4. Find the longest word
+
+### Input
+First line contains a sentence.
+Second line contains a separator character for joining.
+
+### Output
+Four lines:
+- Words separated by commas
+- Words joined with the given separator
+- Total word count
+- Longest word
+
+### Sample Input
+```
+I love programming in JavaScript
+-
+```
+
+### Sample Output
+```
+I,love,programming,in,JavaScript
+I-love-programming-in-JavaScript
+5
+programming
+```
+
+---
+
+## Problem J: Whitespace Warrior
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given strings with various whitespace issues, clean them up:
+1. Remove leading and trailing whitespace
+2. Remove only leading whitespace
+3. Remove only trailing whitespace
+4. Replace multiple consecutive spaces with single spaces
+
+### Input
+Integer `n` (1 ≤ n ≤ 100).
+Next `n` lines contain strings with whitespace issues.
+
+### Output
+For each string, output 4 lines showing the different cleaning operations.
+
+### Sample Input
+```
+2
+  hello   world  
+    JavaScript    
+```
+
+### Sample Output
+```
+hello   world
+hello   world  
+  hello   world
+hello world
+JavaScript
+JavaScript    
+    JavaScript
+JavaScript
+```
+
+---
+
+## Problem K: Find and Replace Expert
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a text and replacement operations, perform:
+1. Replace first occurrence only
+2. Replace all occurrences
+3. Case-insensitive replacement of all occurrences
+
+### Input
+First line contains the original text.
+Second line contains the word to find.
+Third line contains the replacement word.
+
+### Output
+Three lines showing the different replacement results.
+
+### Sample Input
+```
+I like cats. Cats are sweet animals. cats are cute.
+cats
+dogs
+```
+
+### Sample Output
+```
+I like dogs. Cats are sweet animals. cats are cute.
+I like dogs. Cats are sweet animals. dogs are cute.
+I like dogs. dogs are sweet animals. dogs are cute.
+```
+
+---
+
+## Problem L: String Repeater
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a string and a number, create patterns using the repeat method:
+1. Simple repetition
+2. Repetition with separator
+3. Create a "staircase" pattern (1 copy, then 2 copies, then 3 copies, etc.)
+
+### Input
+First line contains a string (length ≤ 100).
+Second line contains integer `n` (1 ≤ n ≤ 20).
+Third line contains a separator character.
+
+### Output
+Three sections:
+- Simple repetition
+- Repetition with separator  
+- Staircase pattern (n lines)
+
+### Sample Input
+```
+ha
+3
+-
+```
+
+### Sample Output
+```
+hahaha
+ha-ha-ha
+ha
+haha
+hahaha
+```
+
+---
+
+## Problem M: String Boundary Checker
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given multiple strings and patterns, check startsWith and endsWith with different starting positions.
+
+### Input
+First line contains integer `t` (1 ≤ t ≤ 100) - number of test cases.
+For each test case:
+- Line 1: main string
+- Line 2: pattern to check
+- Line 3: start position for startsWith check
+- Line 4: end position for endsWith check
+
+### Output
+For each test case, output two lines:
+- Result of startsWith with given position
+- Result of endsWith with given position
+
+### Sample Input
+```
+2
+JavaScript
+Script
+4
+10
+programming
+gram
+3
+7
+```
+
+### Sample Output
+```
+true
+true
+true
+true
+```
+
+---
+
+## Problem N: String Concatenation Olympics
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given multiple strings, concatenate them using different methods and compare performance:
+1. Using concat method
+2. Using + operator
+3. Using template literals
+4. Using array join
+
+All methods should produce the same result.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 1000).
+Next `n` lines contain strings to concatenate.
+
+### Output
+The concatenated result (all methods should give the same output).
+
+### Sample Input
+```
+4
+Hello
+ 
+World
+!
+```
+
+### Sample Output
+```
+Hello World!
+```
+
+---
+
+## Problem O: Substring Extractor
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a string and multiple substring operations, extract substrings using the substring method.
+
+### Input
+First line contains a string (length ≤ 1000).
+Second line contains integer `n` (1 ≤ n ≤ 100).
+Next `n` lines contain two integers `start` and `end` for substring(start, end).
+
+### Output
+`n` lines with extracted substrings.
+
+### Sample Input
+```
+JavaScript Programming
+3
+0 4
+11 22
+4 10
+```
+
+### Sample Output
+```
+Java
+Programming
+Script
+```
+
+---
+
+## Problem P: String Reversal Tournament
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given multiple strings, reverse each one using two different methods:
+1. Using built-in methods (split, reverse, join)
+2. Using manual loop approach
+
+Both methods should produce the same result.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100).
+Next `n` lines contain strings to reverse (each length ≤ 1000).
+
+### Output
+`n` lines with reversed strings.
+
+### Sample Input
+```
+3
+hello
+world
+JavaScript
+```
+
+### Sample Output
+```
+olleh
+dlrow
+tpircSavaJ
+```
+
+---
+
+## Problem Q: Immutability Demonstrator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a string and a list of "attempted modifications", show that strings are immutable by demonstrating that direct character assignment doesn't work, then show the correct way to modify strings.
+
+### Input
+First line contains original string.
+Second line contains integer `n` (1 ≤ n ≤ 100).
+Next `n` lines contain: `index newChar` for attempted modifications.
+
+### Output
+First line: original string (unchanged after attempted direct modifications).
+Second line: correctly modified string using slice and concatenation.
+
+### Sample Input
+```
+Hello
+2
+0 Y
+4 p
+```
+
+### Sample Output
+```
+Hello
+Yellp
+```
+
+---
+
+## Problem R: Text Analytics Engine
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given a large text, perform comprehensive analysis:
+1. Count total characters (including spaces)
+2. Count words
+3. Count sentences (ending with ., !, or ?)
+4. Find most frequent character (case-insensitive)
+5. Find longest word
+6. Calculate average word length
+
+### Input
+One line containing text (length ≤ 10000).
+
+### Output
+Six lines with the analysis results.
+
+### Sample Input
+```
+Hello world! This is a test. Programming is fun!
+```
+
+### Sample Output
+```
+48
+8
+3
+i
+Programming
+5.38
+```
+
+---
+
+## Problem S: Password Validator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create a password validator that checks:
+1. Length between 8-20 characters
+2. Contains at least one uppercase letter
+3. Contains at least one lowercase letter  
+4. Contains at least one digit
+5. Contains at least one special character (!@#$%^&*)
+6. Doesn't start or end with whitespace
+
+### Input
+Integer `n` (1 ≤ n ≤ 100).
+Next `n` lines contain passwords to validate.
+
+### Output
+For each password, output either "VALID" or list the requirements it fails (comma-separated).
+
+### Sample Input
+```
+3
+Password123!
+weakpass
+  Strong123!  
+```
+
+### Sample Output
+```
+VALID
+length,uppercase,digits,special
+whitespace
+```
+
+---
+
+## Problem T: Ultimate String Challenge
+**Time Limit:** 3 seconds  
+**Memory Limit:** 512 MB
+
+### Problem Statement
+You are given a text document and need to perform multiple complex string operations:
+
+1. Extract all email addresses (simple pattern: word@word.word)
+2. Replace all URLs (starting with http:// or https://) with "[LINK]"
+3. Count palindromic words (case-insensitive, length ≥ 3)
+4. Create an acronym from the first letter of each word (uppercase)
+5. Find the longest common substring between the first and last sentences
+
+### Input
+One line containing a text document (length ≤ 5000).
+
+### Output
+Five lines:
+- Email addresses found (comma-separated, or "none")
+- Text with URLs replaced
+- Count of palindromic words
+- Acronym formed
+- Longest common substring
+
+### Sample Input
+```
+Hello world! Visit https://example.com for info. Contact admin@site.com. This level is radar detection mom.
+```
+
+### Sample Output
+```
+admin@site.com
+Hello world! Visit [LINK] for info. Contact admin@site.com. This level is radar detection mom.
+3
+HWVFICMTLIRDM
+m
+```
+
+### Explanation
+- Email: admin@site.com
+- URL replaced: https://example.com → [LINK]
+- Palindromes: level, radar, mom (3 words)
+- Acronym: First letters of each word
+- Common substring: "m" appears in both first ("Hello world!") and last ("This level is radar detection mom.") sentences
+
+<!-- end -->
+<hr>
+
 <h1 id="object-problems" align="center">Object Problems</h1>
 <!-- start -->
 <!-- end -->

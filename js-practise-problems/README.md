@@ -3192,6 +3192,692 @@ This problem combines elements from all previous problems and requires implement
 
 <h1 id="array-problems" align="center">Array Problems</h1>
 <!-- start -->
+
+## Problem A: Array Reference vs Copy
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are managing a fruit inventory system. You need to understand the difference between array references and copies to avoid inventory errors.
+
+### Input
+The first line contains an integer `t` (1 ≤ t ≤ 100) — the number of test cases.
+
+Each test case contains:
+- An integer `n` (1 ≤ n ≤ 1000) — initial number of fruits
+- `n` strings representing fruit names
+- An integer `m` (1 ≤ m ≤ 100) — number of operations
+- `m` lines with operations: "ADD fruit" or "REMOVE"
+
+### Output
+For each test case, print two lines:
+- First line: original array after all operations
+- Second line: "SAME" if both arrays are identical, "DIFFERENT" otherwise
+
+### Example
+```
+Input:
+2
+3
+apple banana orange
+2
+ADD mango
+REMOVE
+2
+apple banana
+1
+ADD cherry
+
+Output:
+["apple","banana","mango"]
+SAME
+["apple","banana","cherry"]
+SAME
+```
+
+### Solution Template
+```javascript
+function processInventory(fruits, operations) {
+    // Demonstrate array reference behavior
+}
+```
+
+---
+
+## Problem B: Fruit Market Iterator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're managing a fruit market and need to process inventory using different iteration methods. Compare the performance and output of for, for..of, and for..in loops.
+
+### Input
+The first line contains an integer `k` (1 ≤ k ≤ 50) — the number of test cases.
+
+Each test case contains:
+- An integer `n` (1 ≤ n ≤ 100) — number of fruits
+- `n` strings representing fruit names
+- A character `method` ('I' for index-based for loop, 'O' for for..of, 'N' for for..in)
+
+### Output
+For each test case, print the iteration results based on the method:
+- 'I': Print "Index i: fruit" for each fruit
+- 'O': Print "Fruit: fruit" for each fruit  
+- 'N': Print "Key: key" for each key (including custom properties)
+
+### Example
+```
+Input:
+3
+3
+apple banana cherry
+I
+2
+mango orange
+O
+2
+grape kiwi
+N
+
+Output:
+Index 0: apple
+Index 1: banana
+Index 2: cherry
+Fruit: mango
+Fruit: orange
+Key: 0
+Key: 1
+```
+
+### Solution Template
+```javascript
+function iterateFruits(fruits, method) {
+    // Implement different iteration methods
+}
+```
+
+---
+
+## Problem C: Stack and Queue Operations
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're implementing a data structure that can work as both a stack and queue. You need to handle push/pop (stack) and unshift/shift (queue) operations efficiently.
+
+### Input
+The first line contains an integer `q` (1 ≤ q ≤ 1000) — the number of operations.
+
+Each of the next `q` lines contains one of:
+- "PUSH_END x" — add x to the end (push)
+- "POP_END" — remove from the end (pop)
+- "PUSH_START x" — add x to the start (unshift)
+- "POP_START" — remove from the start (shift)
+- "SIZE" — get current size
+- "SHOW" — display current array
+
+### Output
+For each operation, print:
+- PUSH operations: "Added x, new size: size"
+- POP operations: "Removed x" or "EMPTY" if array is empty
+- SIZE: current array size
+- SHOW: current array elements
+
+### Example
+```
+Input:
+8
+PUSH_END 5
+PUSH_END 10
+PUSH_START 1
+POP_END
+SHOW
+POP_START
+SIZE
+SHOW
+
+Output:
+Added 5, new size: 1
+Added 10, new size: 2
+Added 1, new size: 3
+Removed 10
+[1,5]
+Removed 1
+1
+[5]
+```
+
+### Solution Template
+```javascript
+class DataStructure {
+    constructor() {
+        this.arr = [];
+    }
+    
+    pushEnd(x) { /* implement */ }
+    popEnd() { /* implement */ }
+    pushStart(x) { /* implement */ }
+    popStart() { /* implement */ }
+}
+```
+
+---
+
+## Problem D: Array Surgeon - Splice Master
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're a digital surgeon operating on arrays. Use the splice method to perform complex array modifications: removals, additions, and replacements.
+
+### Input
+The first line contains an integer `p` (1 ≤ p ≤ 100) — the number of operations.
+
+Each test case contains:
+- An integer `n` (1 ≤ n ≤ 100) — initial array size
+- `n` integers — initial array elements
+- An integer `ops` (1 ≤ ops ≤ 50) — number of splice operations
+- `ops` lines with format: "start deleteCount item1 item2 ..." (items are optional)
+
+### Output
+For each splice operation, print:
+- "Removed: [removed_elements]"
+- "Result: [current_array]"
+
+### Example
+```
+Input:
+2
+5
+1 2 3 4 5
+3
+1 2 10 20
+0 0 0
+-1 1
+
+6
+10 20 30 40 50 60
+2
+2 3 100 200 300
+-2 0 99
+
+Output:
+Removed: [2,3]
+Result: [1,10,20,4,5]
+Removed: []
+Result: [0,1,10,20,4,5]
+Removed: [5]
+Result: [0,1,10,20,4]
+Removed: [30,40,50]
+Result: [10,20,100,200,300,60]
+Removed: []
+Result: [10,20,100,200,300,99,60]
+```
+
+---
+
+## Problem E: Array Slice Extractor
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You need to extract portions of arrays without modifying the original arrays. Master the slice method with positive and negative indices.
+
+### Input
+The first line contains an integer `s` (1 ≤ s ≤ 100) — the number of test cases.
+
+Each test case contains:
+- An integer `n` (1 ≤ n ≤ 1000) — array size
+- `n` integers — array elements
+- Two integers `start` and `end` (-n ≤ start, end ≤ n) — slice parameters
+
+### Output
+For each test case, print:
+- "Slice: [extracted_elements]"
+- "Original: [original_array]"
+
+### Example
+```
+Input:
+4
+5
+1 2 3 4 5
+1 3
+4
+10 20 30 40
+-2 -1
+3
+100 200 300
+0 -1
+6
+1 2 3 4 5 6
+-3 -1
+
+Output:
+Slice: [2,3]
+Original: [1,2,3,4,5]
+Slice: [30]
+Original: [10,20,30,40]
+Slice: [100,200]
+Original: [100,200,300]
+Slice: [4,5]
+Original: [1,2,3,4,5,6]
+```
+
+---
+
+## Problem F: Element Detective
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You're a detective searching for elements in arrays. Use indexOf, lastIndexOf, and includes methods to solve cases.
+
+### Input
+The first line contains an integer `d` (1 ≤ d ≤ 100) — the number of detective cases.
+
+Each case contains:
+- An integer `n` (1 ≤ n ≤ 1000) — array size
+- `n` integers — array elements
+- An integer `target` — element to search for
+- A character `method` ('F' for first occurrence, 'L' for last occurrence, 'C' for contains check)
+
+### Output
+For each case, print:
+- 'F': "First occurrence at index: i" or "Not found"
+- 'L': "Last occurrence at index: i" or "Not found"
+- 'C': "Found" or "Not found"
+
+### Example
+```
+Input:
+5
+6
+1 2 3 2 4 2
+2
+F
+6
+1 2 3 2 4 2
+2
+L
+4
+10 20 30 40
+50
+C
+3
+5 5 5
+5
+F
+3
+5 5 5
+5
+L
+
+Output:
+First occurrence at index: 1
+Last occurrence at index: 5
+Not found
+First occurrence at index: 0
+Last occurrence at index: 2
+```
+
+---
+
+## Problem G: Array Transformer Suite
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Transform arrays using forEach, map, filter, find, and findIndex methods. Each transformation should demonstrate the specific method's capabilities.
+
+### Input
+The first line contains an integer `r` (1 ≤ r ≤ 50) — the number of transformations.
+
+Each transformation contains:
+- An integer `n` (1 ≤ n ≤ 1000) — array size
+- `n` integers — array elements
+- A string `operation` — one of: "DOUBLE", "EVENS", "FIRST_GREATER_5", "INDEX_GREATER_5", "PRINT_SQUARES"
+
+### Output
+For each operation:
+- "DOUBLE": print doubled array using map
+- "EVENS": print even numbers using filter
+- "FIRST_GREATER_5": print first element > 5 using find
+- "INDEX_GREATER_5": print index of first element > 5 using findIndex
+- "PRINT_SQUARES": print squares using forEach (no return)
+
+### Example
+```
+Input:
+5
+4
+1 2 3 4
+DOUBLE
+5
+1 2 3 4 5
+EVENS
+6
+1 2 6 4 8 3
+FIRST_GREATER_5
+6
+1 2 6 4 8 3
+INDEX_GREATER_5
+3
+2 3 4
+PRINT_SQUARES
+
+Output:
+[2,4,6,8]
+[2,4]
+6
+2
+4 9 16
+```
+
+---
+
+## Problem H: Array Reducer Calculator
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Use the powerful reduce method to perform complex calculations on arrays. Master accumulator patterns for different operations.
+
+### Input
+The first line contains an integer `c` (1 ≤ c ≤ 100) — the number of calculations.
+
+Each calculation contains:
+- An integer `n` (1 ≤ n ≤ 1000) — array size
+- `n` integers — array elements
+- A string `operation` — one of: "SUM", "PRODUCT", "MAX", "MIN", "COUNT_POSITIVES", "CONCATENATE"
+
+### Output
+For each calculation, print the result of the reduce operation.
+
+### Example
+```
+Input:
+6
+4
+1 2 3 4
+SUM
+3
+2 3 4
+PRODUCT
+5
+1 9 3 7 2
+MAX
+4
+5 2 8 1
+MIN
+6
+-2 3 -1 4 -5 6
+COUNT_POSITIVES
+4
+10 20 30 40
+CONCATENATE
+
+Output:
+10
+24
+9
+1
+3
+10203040
+```
+
+### Solution Template
+```javascript
+function performReduction(arr, operation) {
+    switch(operation) {
+        case 'SUM': return arr.reduce(/* implement */);
+        case 'PRODUCT': return arr.reduce(/* implement */);
+        // ... other cases
+    }
+}
+```
+
+---
+
+## Problem I: Array Combiner and Splitter
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Master array combination with concat and string conversion with join/split operations.
+
+### Input
+The first line contains an integer `b` (1 ≤ b ≤ 100) — the number of operations.
+
+Each operation is one of:
+- "CONCAT n1 arr1... n2 arr2... n3 arr3..." — concatenate multiple arrays
+- "JOIN n arr... separator" — join array with separator
+- "SPLIT string separator" — split string by separator
+
+### Output
+For each operation, print the result.
+
+### Example
+```
+Input:
+4
+CONCAT 2 1 2 3 3 4 5 1 6
+JOIN 4 apple banana cherry date -
+SPLIT hello-world-programming -
+JOIN 3 10 20 30 ""
+
+Output:
+[1,2,3,4,5,6]
+apple-banana-cherry-date
+["hello","world","programming"]
+102030
+```
+
+---
+
+## Problem J: Array Sorter and Reverser
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Sort arrays correctly handling both string and numeric sorting, and reverse arrays when needed.
+
+### Input
+The first line contains an integer `v` (1 ≤ v ≤ 100) — the number of sorting operations.
+
+Each operation contains:
+- An integer `n` (1 ≤ n ≤ 1000) — array size
+- `n` elements (integers or strings)
+- A string `operation` — one of: "SORT_NUM", "SORT_STR", "REVERSE", "SORT_DESC"
+
+### Output
+For each operation, print the resulting array.
+
+### Example
+```
+Input:
+5
+4
+3 1 15 2
+SORT_NUM
+4
+3 1 15 2
+SORT_STR
+3
+apple banana cherry
+REVERSE
+5
+5 2 8 1 9
+SORT_DESC
+4
+hello world abc xyz
+SORT_STR
+
+Output:
+[1,2,3,15]
+[1,15,2,3]
+["cherry","banana","apple"]
+[9,8,5,2,1]
+["abc","hello","world","xyz"]
+```
+
+---
+
+## Problem K: Array Validator Suite
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Validate arrays and their elements using some, every, and Array.isArray methods.
+
+### Input
+The first line contains an integer `l` (1 ≤ l ≤ 100) — the number of validation tests.
+
+Each test contains:
+- A string `type` — one of: "SOME_POSITIVE", "ALL_POSITIVE", "SOME_EVEN", "ALL_EVEN", "IS_ARRAY"
+- Data to validate (format depends on type)
+
+### Output
+For each test, print "true" or "false".
+
+### Example
+```
+Input:
+6
+SOME_POSITIVE 4 -1 -2 3 -4
+ALL_POSITIVE 3 1 2 3
+SOME_EVEN 4 1 3 5 7
+ALL_EVEN 3 2 4 6
+IS_ARRAY [1,2,3]
+IS_ARRAY 123
+
+Output:
+true
+true
+false
+true
+true
+false
+```
+
+---
+
+## Problem L: Advanced Array Manipulator
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Use advanced array methods: at() for negative indexing, fill() for initialization, and flat() for nested array handling.
+
+### Input
+The first line contains an integer `a` (1 ≤ a ≤ 100) — the number of advanced operations.
+
+Each operation is one of:
+- "AT n arr... index" — get element at index (supports negative)
+- "FILL n value start end" — fill array of size n with value from start to end
+- "FLAT depth nested_array" — flatten nested array to specified depth
+
+### Output
+For each operation, print the result.
+
+### Example
+```
+Input:
+5
+AT 4 10 20 30 40 -1
+AT 3 5 15 25 1
+FILL 5 0 1 3
+FLAT 1 [1,2,[3,4],5]
+FLAT 2 [1,[2,[3,4]],5]
+
+Output:
+40
+15
+[undefined,0,0,undefined,undefined]
+[1,2,3,4,5]
+[1,2,3,4,5]
+```
+
+---
+
+## Problem M: Array Performance Analyzer
+**Time Limit:** 3 seconds  
+**Memory Limit:** 512 MB
+
+### Problem Statement
+Analyze the performance difference between push/pop vs unshift/shift operations on large arrays.
+
+### Input
+The first line contains an integer `n` (1 ≤ n ≤ 100000) — the number of operations.
+The next line contains `n` characters, each being 'P' (push), 'O' (pop), 'U' (unshift), or 'S' (shift).
+
+### Output
+Print the final array size and a performance note about which operations were used.
+
+### Example
+```
+Input:
+8
+PPUUSSOO
+
+Output:
+Size: 0
+Note: Mixed operations detected - unshift/shift operations may be slower for large arrays
+```
+
+---
+
+## Problem N: Complete Array System
+**Time Limit:** 5 seconds  
+**Memory Limit:** 1 GB
+
+### Problem Statement
+Build a complete array management system that demonstrates all array concepts: declaration, initialization, reference behavior, all methods, and performance considerations.
+
+This is a comprehensive problem that combines elements from all previous problems and requires implementing a full-featured array processing system.
+
+### Input
+Complex input format combining multiple operation types from all previous problems.
+
+### Output
+Varies based on operation type, demonstrating mastery of all JavaScript array concepts.
+
+---
+
+## Bonus Problem O: Array Algorithm Contest
+**Time Limit:** 3 seconds  
+**Memory Limit:** 512 MB
+
+### Problem Statement
+Solve algorithmic problems using array methods efficiently:
+
+1. Find the second largest element using array methods
+2. Remove duplicates while preserving order
+3. Rotate array elements by k positions
+4. Find the longest increasing subsequence
+5. Implement array-based stack and queue simultaneously
+
+This problem tests deep understanding of when and how to use specific array methods for optimal solutions.
+
+---
+
+## Scoring
+- Problems A-F: Basic array operations (100 points each)
+- Problems G-I: Iteration and transformation (150 points each)
+- Problems J-L: Advanced manipulation (200 points each)
+- Problem M: Performance analysis (250 points)
+- Problem N: Complete system (300 points)
+- Problem O: Algorithm contest (350 points)
+
+**Total: 2250 points**
+
+## Performance Notes
+- Remember push/pop are faster than unshift/shift
+- Use appropriate methods for the task (map vs forEach, some vs every)
+- Be aware of reference vs copy behavior
+- Understand lexicographic vs numeric sorting
+- Consider memory usage for large arrays
+
 <!-- end -->
 <hr>
 

@@ -1914,6 +1914,765 @@ m
 
 <h1 id="object-problems" align="center">Object Problems</h1>
 <!-- start -->
+
+## Problem A: Object Property Manager
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+You are given an object with initial properties and a series of operations to perform. Operations can be:
+- `ADD key value` - add a new property
+- `DELETE key` - delete a property
+- `READ key` - read a property value
+- `UPDATE key value` - update existing property
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 1000) - number of operations.
+Next `n` lines contain operations in the specified format.
+
+### Output
+For each READ operation, output the property value or "undefined" if it doesn't exist.
+
+### Sample Input
+```
+6
+ADD name John
+ADD age 30
+READ name
+DELETE age
+READ age
+UPDATE name Jane
+```
+
+### Sample Output
+```
+John
+undefined
+```
+
+---
+
+## Problem B: Multi-word Property Handler
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create an object with properties that may contain spaces or special characters. You need to handle both dot notation and bracket notation access.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of properties.
+Next `n` lines contain property definitions: `key value` (key may contain spaces).
+Last line contains a property key to retrieve.
+
+### Output
+Output the value of the requested property, or "undefined" if not found.
+
+### Sample Input
+```
+3
+name Alice
+like birds true
+favorite color blue
+like birds
+```
+
+### Sample Output
+```
+true
+```
+
+---
+
+## Problem C: Object Factory
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Implement a function that creates user objects using both regular syntax and shorthand property syntax when variable names match property names.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of users to create.
+Next `n` lines contain: `name age city` for each user.
+
+### Output
+For each user, output their information in format: "Name: X, Age: Y, City: Z"
+
+### Sample Input
+```
+2
+John 25 NYC
+Alice 30 LA
+```
+
+### Sample Output
+```
+Name: John, Age: 25, City: NYC
+Name: Alice, Age: 30, City: LA
+```
+
+---
+
+## Problem D: Object Declaration Methods
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create objects using three different methods: object literal, `new Object()`, and `Object.create()`. All should have the same properties but demonstrate different creation approaches.
+
+### Input
+One line containing: `brand color type price` for a pen object.
+
+### Output
+Three lines showing the objects created using different methods (in JSON format).
+
+### Sample Input
+```
+Parker blue ballpoint 10
+```
+
+### Sample Output
+```
+{"brand":"Parker","color":"blue","type":"ballpoint","price":10}
+{"brand":"Parker","color":"blue","type":"ballpoint","price":10}
+{"brand":"Parker","color":"blue","type":"ballpoint","price":10}
+```
+
+---
+
+## Problem E: Object Analysis Tools
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given an object's properties, use `Object.keys()`, `Object.values()`, and `Object.entries()` to analyze it.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of properties.
+Next `n` lines contain: `key value` pairs.
+
+### Output
+Three lines:
+- All keys (space-separated)
+- All values (space-separated)  
+- All entries in format "key:value" (space-separated)
+
+### Sample Input
+```
+3
+brand lenovo
+price 35000
+processor intel
+```
+
+### Sample Output
+```
+brand price processor
+lenovo 35000 intel
+brand:lenovo price:35000 processor:intel
+```
+
+---
+
+## Problem F: Object Freeze Challenge
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create an object, freeze it using `Object.freeze()`, then attempt various modifications. Show the object state before and after attempted modifications.
+
+### Input
+First line contains initial object properties: `name age`.
+Second line contains attempted modifications: `newAge newCity` (try to update age and add city).
+
+### Output
+Two lines:
+- Object before freeze attempts
+- Object after freeze attempts (should be unchanged)
+
+### Sample Input
+```
+Alice 25
+30 NYC
+```
+
+### Sample Output
+```
+{"name":"Alice","age":25}
+{"name":"Alice","age":25}
+```
+
+---
+
+## Problem G: Deep Freeze Implementation
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Implement a deep freeze function that freezes nested objects recursively. Test it on a multi-level nested object.
+
+### Input
+Nested object structure given as: `level1_key level2_key level3_value`
+Then attempted modification: `new_level3_value`
+
+### Output
+Two lines:
+- Value before deep freeze
+- Value after attempted modification (should be unchanged)
+
+### Sample Input
+```
+user profile name John
+Jane
+```
+
+### Sample Output
+```
+John
+John
+```
+
+---
+
+## Problem H: Object Seal vs Freeze
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Compare the behavior of `Object.seal()` vs `Object.freeze()` by testing various operations on sealed and frozen objects.
+
+### Input
+First line: `brand year` for initial car object.
+Second line: `newYear newColor` for attempted modifications.
+
+### Output
+Four lines:
+- Sealed object after trying to modify year
+- Sealed object after trying to add color  
+- Frozen object after trying to modify year
+- Frozen object after trying to add color
+
+### Sample Input
+```
+Toyota 2020
+2022 red
+```
+
+### Sample Output
+```
+{"brand":"Toyota","year":2022}
+{"brand":"Toyota","year":2022}
+{"brand":"Toyota","year":2020}
+{"brand":"Toyota","year":2020}
+```
+
+---
+
+## Problem I: Property Existence Detective
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Given an object and a list of properties to check, use three different methods to test property existence: `in` operator, `Object.keys().includes()`, and `hasOwnProperty()`.
+
+### Input
+First line contains object properties: `key1 value1 key2 value2 ...`
+Second line contains properties to check (space-separated).
+
+### Output
+For each property to check, output three lines:
+- Result using `in` operator
+- Result using `includes()` method  
+- Result using `hasOwnProperty()` method
+
+### Sample Input
+```
+name John age 30
+name location age
+```
+
+### Sample Output
+```
+true true true
+false false false
+true true true
+```
+
+---
+
+## Problem J: Object Iterator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Use `for...in` loop to iterate through an object and perform calculations on numeric properties.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of properties.
+Next `n` lines contain: `key value` where value can be string or number.
+
+### Output
+Three lines:
+- All property keys (space-separated)
+- Sum of all numeric values
+- Count of string properties
+
+### Sample Input
+```
+4
+name John
+age 30
+salary 5000
+city NYC
+```
+
+### Sample Output
+```
+name age salary city
+5030
+2
+```
+
+---
+
+## Problem K: Reference vs Value Demo
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Demonstrate object reference behavior by creating two variables pointing to the same object and showing how modifications affect both.
+
+### Input
+First line: `name` for initial object.
+Second line: `newName` for modification.
+
+### Output
+Four lines showing the progression:
+- user.name before modification
+- admin.name before modification
+- user.name after admin modifies it
+- admin.name after admin modifies it
+
+### Sample Input
+```
+John
+Pete
+```
+
+### Sample Output
+```
+John
+John
+Pete
+Pete
+```
+
+---
+
+## Problem L: Const Object Modification
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Show that const objects can have their properties modified even though the object reference cannot be changed.
+
+### Input
+First line: `initialName`
+Second line: `newName`
+
+### Output
+Two lines:
+- Object name before modification
+- Object name after modification
+
+### Sample Input
+```
+John
+Pete
+```
+
+### Sample Output
+```
+John
+Pete
+```
+
+---
+
+## Problem M: Object Cloning Master
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Implement object cloning using manual iteration and demonstrate that the clone is independent of the original.
+
+### Input
+First line: `name age` for original object.
+Second line: `newName` to modify clone.
+
+### Output
+Four lines:
+- Original object before clone modification
+- Clone object before modification
+- Original object after clone modification  
+- Clone object after modification
+
+### Sample Input
+```
+John 30
+Pete
+```
+
+### Sample Output
+```
+{"name":"John","age":30}
+{"name":"John","age":30}
+{"name":"John","age":30}
+{"name":"Pete","age":30}
+```
+
+---
+
+## Problem N: Object.assign Merger
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Use `Object.assign()` to merge multiple objects into a target object and demonstrate the merging process.
+
+### Input
+First line: `name` for user object.
+Second line: `canView` (true/false) for permissions1.
+Third line: `canEdit` (true/false) for permissions2.
+
+### Output
+The merged object with all properties.
+
+### Sample Input
+```
+John
+true
+false
+```
+
+### Sample Output
+```
+{"name":"John","canView":true,"canEdit":false}
+```
+
+---
+
+## Problem O: Shallow vs Deep Cloning
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Demonstrate the difference between shallow cloning (Object.assign) and deep cloning (structuredClone) with nested objects.
+
+### Input
+First line: `name height width` where height and width are for nested sizes object.
+Second line: `newWidth` for modification.
+
+### Output
+Four lines:
+- Are sizes objects the same reference? (shallow clone)
+- Shallow clone width after modification
+- Are sizes objects the same reference? (deep clone)  
+- Deep clone width after modification
+
+### Sample Input
+```
+John 182 50
+60
+```
+
+### Sample Output
+```
+true
+60
+false
+50
+```
+
+---
+
+## Problem P: Object Methods Implementation
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create an object with methods using both shorthand and traditional syntax. Demonstrate the use of `this` keyword.
+
+### Input
+One line containing: `name`
+
+### Output
+Two lines:
+- Output from shorthand method
+- Output from traditional method
+
+### Sample Input
+```
+Tamim
+```
+
+### Sample Output
+```
+Hello, I'm Tamim
+Hi, I'm Tamim
+```
+
+---
+
+## Problem Q: This Keyword Safety
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Demonstrate why using `this` is safer than direct object reference when objects are copied and original is nullified.
+
+### Input
+One line containing: `name`
+
+### Output
+Result of calling the method through the copied reference after original is nullified.
+
+### Sample Input
+```
+Tamim
+```
+
+### Sample Output
+```
+Tamim
+```
+
+---
+
+## Problem R: Constructor Function Factory
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Implement a constructor function to create multiple objects with the same structure.
+
+### Input
+First line contains integer `n` (1 ≤ n ≤ 100) - number of persons to create.
+Next `n` lines contain: `name age` for each person.
+
+### Output
+For each person, output: "Person: name, age"
+
+### Sample Input
+```
+3
+Tamim 20
+Asha 19
+Bob 25
+```
+
+### Sample Output
+```
+Person: Tamim, 20
+Person: Asha, 19
+Person: Bob, 25
+```
+
+---
+
+## Problem S: Optional Chaining Navigator
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Use optional chaining to safely access nested properties that may not exist, and call methods that may not be defined.
+
+### Input
+First line: `hasAddress` (true/false) - whether user has address property.
+Second line: `hasCity` (true/false) - whether address has city property.  
+Third line: `hasMethod` (true/false) - whether user has sayHi method.
+
+### Output
+Three lines:
+- Result of accessing user.address?.city
+- Result of calling user.sayHi?.()
+- Result of calling user.sayBye?.()
+
+### Sample Input
+```
+true
+false
+true
+```
+
+### Sample Output
+```
+undefined
+Hi!
+undefined
+```
+
+---
+
+## Problem T: Date Analyzer
+**Time Limit:** 1 second  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Create a Date object and extract various components, then format it in different ways.
+
+### Input
+One line with date string in format: "YYYY-MM-DD HH:MM:SS"
+
+### Output
+Eight lines:
+- Full year
+- Month (0-based)
+- Date
+- Day of week (0=Sunday)
+- Hours
+- Minutes  
+- Seconds
+- ISO string format
+
+### Sample Input
+```
+2025-07-22 15:30:45
+```
+
+### Sample Output
+```
+2025
+6
+22
+2
+15
+30
+45
+2025-07-22T15:30:45.000Z
+```
+
+---
+
+## Problem U: Advanced Object Operations
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Perform complex object operations including nested property manipulation, method chaining, and conditional property access.
+
+### Input
+First line: `userName userAge`
+Second line: `companyName position`
+Third line: `street city country` (address info)
+Fourth line: operation type - "UPDATE", "DELETE", or "QUERY"
+Fifth line: property path (e.g., "address.city" or "company.name")
+
+### Output
+Based on operation:
+- UPDATE: Show object after update
+- DELETE: Show object after deletion
+- QUERY: Show the queried value
+
+### Sample Input
+```
+John 30
+TechCorp Engineer
+123 Main St NYC USA
+QUERY
+address.city
+```
+
+### Sample Output
+```
+NYC
+```
+
+---
+
+## Problem V: Object Inheritance Simulator
+**Time Limit:** 2 seconds  
+**Memory Limit:** 256 MB
+
+### Problem Statement
+Simulate object inheritance using `Object.create()` and demonstrate property lookup in the prototype chain.
+
+### Input
+First line: `parentName parentAge` for parent object.
+Second line: `childName childAge` for child object.
+Third line: property to query.
+
+### Output
+Two lines:
+- Value from child object (or inherited from parent)
+- Whether property exists directly on child (true/false)
+
+### Sample Input
+```
+Parent 50
+Child 20
+age
+```
+
+### Sample Output
+```
+20
+true
+```
+
+---
+
+## Problem W: Ultimate Object Challenge
+**Time Limit:** 3 seconds  
+**Memory Limit:** 512 MB
+
+### Problem Statement
+Create a comprehensive object management system that handles:
+1. Multiple users with nested properties (personal info, address, preferences)
+2. Object freezing/sealing operations
+3. Deep cloning with modification tracking
+4. Method calls with proper `this` binding
+5. Optional chaining for safe property access
+6. Date operations for user registration/last login
+
+### Input
+First line: integer `n` (1 ≤ n ≤ 100) - number of users.
+For each user:
+- Line 1: `name age email`
+- Line 2: `street city country`
+- Line 3: `theme language notifications` (preferences)
+- Line 4: registration date "YYYY-MM-DD"
+
+Last line: operation - "CLONE_USER index", "FREEZE_USER index", "UPDATE_PREF index theme", or "STATS"
+
+### Output
+Based on operation:
+- CLONE_USER: Show cloned user can be modified independently
+- FREEZE_USER: Show user cannot be modified after freezing
+- UPDATE_PREF: Show preference update with optional chaining
+- STATS: Show total users, average age, most common city
+
+### Sample Input
+```
+2
+John 25 john@email.com
+123 Main NYC USA
+dark english true
+2024-01-15
+Alice 30 alice@email.com
+456 Oak LA USA
+light spanish false
+2024-02-20
+STATS
+```
+
+### Sample Output
+```
+Total users: 2
+Average age: 27.50
+Most common city: NYC,LA
+Registration span: 36 days
+```
+
 <!-- end -->
 <hr>
 

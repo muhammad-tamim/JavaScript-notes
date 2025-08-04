@@ -4739,9 +4739,26 @@ fetchData();
     <div class="card">Card 1</div>
     <div class="card">Card 2</div>
 
+    <div>
+        <p>One</p>
+        <p>Two</p>
+    </div>
+
+    <input type="text" name="userName" value="Tamim">
+    <input type="text" name="age">
+
     <script>
         const firstCard = document.querySelector(".card");
         console.log(firstCard.textContent); // Output: Card 1
+
+        const paragraph = document.querySelector("div > p");
+        console.log(paragraph.innerHTML) // Output: One
+
+        const input = document.querySelector("input[name='userName']");
+        console.log(input.value); // Output: Tamim
+
+        const input2 = document.querySelector("input[name='age']");
+        input2.value = "25"; // Set value to 25
     </script>
 
 </body>
@@ -4768,9 +4785,20 @@ fetchData();
     <p class="note">Note A</p>
     <p class="note">Note B</p>
 
+    <div>
+        <p>One</p>
+        <p>Two</p>
+    </div>
+
     <script>
         const notes = document.querySelectorAll(".note");
         notes.forEach(note => console.log(note.innerHTML)); // Output: Note A, Note B
+
+        const paragraphs = document.querySelectorAll("div > p");
+        console.log(paragraphs); // NodeList(2) [p, p]
+        for (const paragraph of paragraphs) {
+            console.log(paragraph.innerHTML); // Output: One, Two
+        }
     </script>
 
 </body>

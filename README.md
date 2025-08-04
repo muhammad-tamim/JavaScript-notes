@@ -4387,16 +4387,97 @@ fetchData();
 
 
 <!-- Part 2 -->
-<h1 id="part-2-document-events-interfaces" align="center">Part 2: Document, Events, Interfaces</h1>
+<h1 id="part-2-document-events-interfaces" align="center">Part 2: DOM</h1>
 
-
-
-
-<h1 align="center">DOM</h1>
+<h2 align="center">DOM Fundamentals</h2>
 <p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
 
+<h4>Html VS DOM:</h4>
 
-<h2 align="center">Browser environment, specs</h2>
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <!-- HTML (Static) -->
+    <div id="container">
+        <p>Hello World</p>
+    </div>
+
+    <script>
+        // DOM (Dynamic)
+        const container = document.getElementById('container');
+        container.innerHTML = '<p>Hello JavaScript!</p>';
+    </script>
+</body>
+
+</html>
+```
+
+<h4>Document Object properties:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <h1>Welcome to My Page</h1>
+    <p>This is a simple HTML document.</p>a
+    <script>
+        // Document properties
+        console.log(document.documentElement);  // <html> element
+        console.log(document.head);             // <head> element  
+        console.log(document.body);             // <body> element
+        console.log(document.title);            // Page title
+        console.log(document.URL);              // Current URL
+        console.log(document.domain);           // Domain name
+    </script>
+</body>
+
+</html>
+```
+<h4>Output:</h4>
+<img src="images/document-object-properties.png">
+<hr>
+
+
+<h2 align="center">Elements selecting methods</h2>
+
+<ol>
+
+<li>
+<h4>getElementById()</h4>
+<p>Selects a single element by its id attribute. Returns null if not found:</p>
+
+
+
+</li>
+
+<li><h4>getElementsByClassName()</h4></li>
+
+<li><h4>getElementsByTagName()</h4></li>
+
+<li><h4>getElementsByName()</h4></li>
+
+<li><h4>querySelector()</h4></li>
+
+<li><h4>querySelectorAll()</h4></li>
+
+</ol>
+
+<hr>
 
 
 
@@ -4413,15 +4494,3 @@ fetchData();
 
 
 
-
-
-
-
-
-
-
-
-
-
-<h1 align="center">Events</h1>
-<h1 align="center">Interfaces</h1>

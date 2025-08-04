@@ -4453,32 +4453,207 @@ fetchData();
 <hr>
 
 
+
 <h2 align="center">Elements selecting methods</h2>
 
 <ol>
 
 <li>
 <h4>getElementById()</h4>
-<p>Selects a single element by its id attribute. Returns null if not found:</p>
+<p>Selects a single element by its id attribute:</p>
 
+```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <h1 id="title">Hello World</h1>
+
+    <script>
+        const element = document.getElementById("title");
+        console.log(element); // Output: <h1 id="title">Hello World</h1>
+        console.log(element.tagName); // Output: H1
+        console.log(element.id); // Output: title
+        console.log(element.className); // Output: (empty string, since no class is assigned)
+        console.log(element.innerHTML); // Output: Hello World
+        console.log(element.textContent); // Output: Hello World
+        console.log(element.outerHTML); // Output: <h1 id="title">Hello World
+    </script>
+</body>
+
+</html>
+```
 
 </li>
 
-<li><h4>getElementsByClassName()</h4></li>
+<li>
+<h4>getElementsByClassName()</h4>
+<p>Selects all elements with the given class name:</p>
 
-<li><h4>getElementsByTagName()</h4></li>
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-<li><h4>getElementsByName()</h4></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
 
-<li><h4>querySelector()</h4></li>
+<body>
+    <p class="note">Note 1</p>
+    <p class="note">Note 2</p>
 
-<li><h4>querySelectorAll()</h4></li>
+    <script>
+        const elements = document.getElementsByClassName("note");
+        console.log(elements); // Output: HTMLCollection(2) [p.note, p.note]
+        for (let el of elements) {
+            console.log(el.innerHTML); // Output: Note 1, Note 2
+        }
+    </script>
+
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>getElementsByTagName()</h4>
+<p>Selects all elements with the specified tag name:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+
+    <script>
+        const items = document.getElementsByTagName("li");
+        console.log(items) // HTMLCollection(2) [li, li]
+        for (let item of items) {
+            console.log(item.innerHTML); // Output: Apple, Banana
+        }
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>getElementsByName()</h4>
+<p>Selects elements with a specific name attribute. Mostly used with input, code, textarea, or select :</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <input type="text" name="username">
+    <input type="text" name="username">
+
+    <script>
+        const inputs = document.getElementsByName("username");
+        console.log(inputs); // This will log a NodeList of all input elements with name "username"
+        console.log(inputs[0]); // This will log the first input element with name "username"
+        console.log(inputs[1]); // This will log the second input element with name "username
+        for (let input of inputs) {
+            console.log(input); // This will log each input element with name "username"
+        }
+        inputs.forEach(input => input.value = "Tamim");
+    </script>
+
+</body>
+
+</html>
+```
+
+</li>
+
+<li>
+<h4>querySelector()</h4>
+<p>Selects the first element that matches a CSS selector:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+
+    <script>
+        const firstCard = document.querySelector(".card");
+        console.log(firstCard.textContent); // Output: Card 1
+    </script>
+
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>querySelectorAll()</h4>
+<p>Selects all elements that match a CSS selector:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <p class="note">Note A</p>
+    <p class="note">Note B</p>
+
+    <script>
+        const notes = document.querySelectorAll(".note");
+        notes.forEach(note => console.log(note.innerHTML)); // Output: Note A, Note B
+    </script>
+
+</body>
+
+</html>
+```
+</li>
 
 </ol>
 
 <hr>
-
 
 
 

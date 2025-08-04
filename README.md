@@ -4392,7 +4392,7 @@ fetchData();
 <h2 align="center">DOM Fundamentals</h2>
 <p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
 
-<h4>Html VS DOM:</h4>
+<h3>Html VS DOM:</h3>
 
 ```html
 <!DOCTYPE html>
@@ -4420,7 +4420,23 @@ fetchData();
 </html>
 ```
 
-<h4>Document Object properties:</h4>
+
+<h3>DOM Tree Structure:</h3>
+<p>The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.</p>
+
+<img src="images/Example-of-DOM-Node-Tree.png">
+
+<h4>Note:</h4>
+<ul>
+<li>Node: The generic term for any item in the DOM tree</li>
+<li>Element: A specific type of node that represents HTML tags</li>
+</ul>
+
+
+
+
+<h3>Document Object:</h3>
+<p>The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it.</p>
 
 ```html
 <!DOCTYPE html>
@@ -4434,22 +4450,134 @@ fetchData();
 
 <body>
     <h1>Welcome to My Page</h1>
-    <p>This is a simple HTML document.</p>a
+    <p>This is a simple HTML document.</p>
+
     <script>
-        // Document properties
+        // Document object properties
+        console.log(document);                  // Document object
         console.log(document.documentElement);  // <html> element
         console.log(document.head);             // <head> element  
         console.log(document.body);             // <body> element
         console.log(document.title);            // Page title
         console.log(document.URL);              // Current URL
         console.log(document.domain);           // Domain name
+        console.log(document.forms);            // All forms in the document
+        console.log(document.images);           // All images in the document
+        console.log(document.links);            // All links in the document
+        console.log(document.scripts);          // All scripts in the document
     </script>
 </body>
 
 </html>
 ```
-<h4>Output:</h4>
-<img src="images/document-object-properties.png">
+<img src="images/document object.png">
+
+
+<h3>Parent, Child, and Sibling Relationships</h3>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="parent">
+        <p id="first-child">First paragraph</p>
+        <p id="second-child">Second paragraph</p>
+        <span id="last-child">Span element</span>
+    </div>
+
+    <script>
+        const parent = document.getElementById('parent');
+        const firstChild = document.getElementById('first-child');
+        const secondChild = document.getElementById('second-child');
+        const lastChild = document.getElementById('last-child');
+
+        // Parent relationships
+        console.log(firstChild.parentNode);        // The div element
+        console.log(firstChild.parentElement);     // Also the div element
+
+        // Child relationships
+        console.log(parent.children);              // All child elements
+        console.log(parent.firstElementChild);     // First p element
+        console.log(parent.lastElementChild);      // The span element
+
+        // Sibling relationships
+        console.log(firstChild.nextElementSibling);    // Second p element
+        console.log(firstChild.previousElementSibling); // null (no previous sibling)
+        console.log(secondChild.nextElementSibling);   // Span element
+        console.log(secondChild.previousElementSibling); // First p element
+    </script>
+</body>
+
+</html>
+```
+<img src="images/parent-child-sibling-relationship.png">
+
+<p>In this code:</p>
+<ul>
+<li>The div is the parent of all three elements inside it</li>
+<li>The p and span elements are children of the div</li>
+<li>The two p elements and the span are siblings to each other</li>
+</ul>
+
+
+<h3>DOM VS BOM:</h3>
+<table>
+<tr>
+<th>DOM</th>
+<th>BOM</th>
+</tr>
+<tr>
+<td>Controls the document content</td>
+<td>Controls browser features outside the document</td>
+</tr>
+<tr>
+<td>Standardized by W3C/WHATWG</td>
+<td>Not standardized (varies between browsers)</td>
+</tr>
+<tr>
+<td>Accessed Using document object</td>
+<td>Accessed Using window object</td>
+</tr>
+</table>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <h1 id="myHeading">Hello World!</h1>
+
+    <script>
+        // DOM
+        const heading = document.getElementById("myHeading");
+        heading.textContent = "Hello from DOM!";
+
+        // BOM
+        const url = window.location.href;
+        console.log("Current URL:", url);
+
+        window.alert("Welcome to the DOM and BOM example!");
+    </script>
+</body>
+
+</html>
+```
+<img src="images/window.alert.png">
+<img src="images/DOM-text-change.png">
+
 <hr>
 
 

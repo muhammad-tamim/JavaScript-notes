@@ -4425,6 +4425,7 @@ fetchData();
 <p>The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.</p>
 
 <img src="images/Example-of-DOM-Node-Tree.png">
+<img src="images/image10-Parents_and_Children_Tree_Data_Structure.jpg">
 
 <h4>Note:</h4>
 <ul>
@@ -4815,13 +4816,244 @@ fetchData();
 
 
 
+<h2 align="center">DOM Traversing</h2>
+<p>DOM traversing means navigating the DOM tree from one node to another using relationships like parent, child, and sibling.</p>
+
+<p>It allows you to:</p>
+
+<ul>
+<li>Find elements relative to a selected element</li>
+<li>Move between nodes (parents, children, siblings)</li>
+<li>Manipulate structure dynamically (add/remove/update nodes)</li>
+</ul>
 
 
+<h3>parentNode vs parentElement:</h3>
+<p>Both parentNode and parentElement are used to access the parent of a node in the DOM, But:</p>
+<ul>
+<li>parentNode returns any type of parent node.</li>
+<li>parentElement returns only if the parent is an Element node</li>
+</ul>
 
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <p id="child">Hello</p>
+    </div>
 
 
+    <script>
+        const child = document.getElementById("child");
+
+        console.log(child.parentNode); // <div id="container">...</div>
+        console.log(child.parentElement); // <div id="container">...</div>
+
+        console.log(document.body.parentNode); // <html>...</html>
+        console.log(document.body.parentElement); // <html>...</html>
+
+        console.log(document.documentElement.parentNode); // #document (http://127.0.0.1:5500/index.html)
+        console.log(document.documentElement.parentElement); // null
+    </script>
+
+</body>
+
+</html>
+```
+
+<h3>childNodes vs children:</h3>
+<ul>
+<li>childNodes: Returns all types of nodes.</li>
+<li>children: returns only element nodes.</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <!-- A comment -->
+        <li>Item 3</li>
+    </ul>
 
 
+    <script>
+        const list = document.getElementById("list");
+
+        console.log(list.childNodes);
+        // NodeList(9) [text, li, text, li, text, li, text, comment, text]
+
+        console.log(list.children);
+        // HTMLCollection(3) [li, li, li]
+
+    </script>
+
+</body>
+
+</html>
+```
+
+<h3>firstChild vs firstElementChild:</h3>
+<ul>
+<li>firstChild: Returns the first child node, which may be: (text, element etc)</li>
+<li>firstElementChild: Returns only the first element child.</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- whitespace -->
+        <h2>Heading</h2>
+    </div>
 
 
+    <script>
+        const wrapper = document.getElementById("wrapper");
+
+        console.log(wrapper.firstChild);         // #text
+        console.log(wrapper.firstElementChild);  // <h2>Heading</h2>
+
+    </script>
+
+</body> 
+
+</html>
+```
+
+<h3>lastChild vs lastElementChild:</h3>
+<p>Same as above but accesses the last child node instead.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- whitespace -->
+        <h2>Heading</h2>
+        <!-- comment -->
+    </div>
+
+
+    <script>
+        const wrapper = document.getElementById("wrapper");
+
+        console.log(wrapper.lastChild); // #text
+        console.log(wrapper.lastElementChild); // <h2>Heading</h2>
+
+    </script>
+
+</body>
+
+</html>
+```
+
+<h3>nextSibling vs nextElementSibling:</h3>
+<ul>
+<li>nextSibling: Returns the next sibling node.</li>
+<li>nextElementSibling: return only next sibling element node</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div>
+        <p id="p1">One</p>
+        <!-- comment -->
+        <p id="p2">Two</p>
+    </div>
+
+
+    <script>
+        const firstP = document.getElementById("p1");
+
+        console.log(firstP.nextSibling);         // #text
+        console.log(firstP.nextElementSibling);  // <p id="p2">Two</p>
+
+    </script>
+
+</body>
+
+</html>
+```
+
+<h3>previousSibling vs previousElementSibling</h3>
+<p>Same as above, but but accesses the previous sibling instead of next.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div>
+        <p id="p1">One</p>
+        <!-- comment -->
+        <p id="p2">Two</p>
+    </div>
+
+
+    <script>
+        const secondP = document.getElementById("p2");
+
+        console.log(secondP.previousSibling);         // #text
+        console.log(secondP.previousElementSibling);  // <p id="p1">One</p>
+
+    </script>
+
+</body>
+
+</html>
+```

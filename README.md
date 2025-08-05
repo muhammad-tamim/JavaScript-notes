@@ -171,13 +171,15 @@
   
   <ul>
 
-  <li><a href="#dom-fundamentals">DOM Fundamentals</a></li>
+  <li><a href="#dom-fundamentals">Introduction</a></li>
   <ul>
     <li><a href="#html-vs-dom">Html VS DOM</a></li>
+    <li><a href="#dom-vs-bom">DOM VS BOM</a></li>
     <li><a href="#dom-tree-structure">DOM Tree Structure</a></li>
     <li><a href="#document-object">Document Object</a></li>
     <li><a href="#parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships</a></li>
-    <li><a href="#dom-vs-bom">DOM VS BOM:</a></li>
+    <li><a href="#dom-collection">DOM Collection</a></li>
+    <li><a href="#what-can-do-javaScript-with-dom">What can do JavaScript with DOM</a></li>
   </ul>
 
   <li><a href="#element-selecting-methods">Elements selecting methods</a></li>
@@ -216,7 +218,7 @@
       <li><a href="#id-className-classList">id, className, classList</a></li>
       <li><a href="#tagName-vs-nodeName">tagName vs nodeName</a></li>
       <li><a href="#nodeType-and-nodeValue">nodeType and nodeValue</a></li>
-      <li><a href="#Form-element-properties:">Form Element Properties:</a></li>
+      <li><a href="#Form-element-properties">Form Element Properties</a></li>
     </ul>
   </ul>
 
@@ -283,7 +285,7 @@
     <li><a href="#event-delegation">Event Delegation</a></li>
   </ul>
   
-  <ul>
+  </ul>
 
 </ul>
 <hr>
@@ -4506,7 +4508,7 @@ fetchData();
 <!-- Part 2 -->
 <h1 id="part-2-DOM" align="center">Part 2: DOM</h1>
 
-<h2 id="dom-fundamentals" align="center">DOM Fundamentals</h2>
+<h2 id="dom-fundamentals" align="center">Introduction</h2>
 <p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
 
 <h3 id="html-vs-dom">Html VS DOM:</h3>
@@ -4538,11 +4540,66 @@ fetchData();
 ```
 
 
+<h3 id="dom-vs-bom">DOM VS BOM:</h3>
+<table>
+<tr>
+<th>DOM</th>
+<th>BOM</th>
+</tr>
+<tr>
+<td>Controls the document content</td>
+<td>Controls browser features outside the document</td>
+</tr>
+<tr>
+<td>Standardized by W3C/WHATWG</td>
+<td>Not standardized (varies between browsers)</td>
+</tr>
+<tr>
+<td>Accessed Using document object</td>
+<td>Accessed Using window object</td>
+</tr>
+</table>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <h1 id="myHeading">Hello World!</h1>
+
+    <script>
+        // DOM
+        const heading = document.getElementById("myHeading");
+        heading.textContent = "Hello from DOM!";
+
+        // BOM
+        const url = window.location.href;
+        console.log("Current URL:", url);
+
+        window.alert("Welcome to the DOM and BOM example!");
+    </script>
+</body>
+
+</html>
+```
+<img src="images/window.alert.png">
+<img src="images/DOM-text-change.png">
+
+
+
 <h3 id="dom-tree-structure">DOM Tree Structure:</h3>
 <p>The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.</p>
 
 <img src="images/Example-of-DOM-Node-Tree.png">
 <img src="images/image10-Parents_and_Children_Tree_Data_Structure.jpg">
+<img src="images/js-tree1.png">
+<img src="images/dom-tree-2.png">
 
 <h4>Note:</h4>
 <ul>
@@ -4591,7 +4648,7 @@ fetchData();
 <img src="images/document object.png">
 
 
-<h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships</h3>
+<h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships:</h3>
 
 ```html
 <!DOCTYPE html>
@@ -4645,25 +4702,29 @@ fetchData();
 </ul>
 
 
-<h3 id="dom-vs-bom">DOM VS BOM:</h3>
-<table>
-<tr>
-<th>DOM</th>
-<th>BOM</th>
-</tr>
-<tr>
-<td>Controls the document content</td>
-<td>Controls browser features outside the document</td>
-</tr>
-<tr>
-<td>Standardized by W3C/WHATWG</td>
-<td>Not standardized (varies between browsers)</td>
-</tr>
-<tr>
-<td>Accessed Using document object</td>
-<td>Accessed Using window object</td>
-</tr>
-</table>
+
+
+<h3 id="dom-collection">DOM Collection:</h3>
+<p>A DOM Collection is a special array-like object that holds a group of nodes or elements from the Document Object Model (DOM).
+DOM collection is array like means you can access items with indexes, and can use .length properties but since it's not actually array so, you can't use map(), filter(), find() etc, unless converted.</p>
+
+<h4>Common DOM Collection Types:</h4>
+
+| Collection         | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| `NodeList`         | Collection of **nodes** 
+| `HTMLCollection`   | Live collection of **HTML elements only**           |
+| `childNodes`       | NodeList of **all types** of child nodes            |
+| `children`         | HTMLCollection of **only element** children         |
+           
+
+
+<h3 id="what-can-do-javaScript-with-dom">What can do javaScript with DOM:</h3>
+
+<ul>
+
+<li>
+<h4>Can change all the HTML elements in the page:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -4676,25 +4737,180 @@ fetchData();
 </head>
 
 <body>
-    <h1 id="myHeading">Hello World!</h1>
+    <p id="demo">This is the original text.</p>
+    <button id="changeTextBtn">Click Me</button>
 
     <script>
-        // DOM
-        const heading = document.getElementById("myHeading");
-        heading.textContent = "Hello from DOM!";
-
-        // BOM
-        const url = window.location.href;
-        console.log("Current URL:", url);
-
-        window.alert("Welcome to the DOM and BOM example!");
+        document.getElementById("changeTextBtn").addEventListener("click", function () {
+            document.getElementById("demo").innerText = "The text has been changed by js";
+            // or
+            /* document.getElementById("demo").innerContent = "The text has been changed by js";
+             Note: we basically use innerText more than the innerContent 
+            */
+        });
     </script>
 </body>
 
 </html>
 ```
-<img src="images/window.alert.png">
-<img src="images/DOM-text-change.png">
+
+<img src="images/elementChanges.png">
+</li>
+
+<li>
+<h4>Can change all the HTML attributes in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <img id="myImage" src="myImage.jpg" width="200px">
+    <button id="btn">Click Me</button>
+
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            // update the attributes
+            document.getElementById("myImage").src = "hasuApa.jpg";
+            document.getElementById("myImage").width = "400";
+
+            // set a new attribute and value
+            document.getElementById("myImage").setAttribute("height", "400");
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/changeAttributeOutput.png">
+</li>
+
+<li>
+<h4>can remove existing HTML elements and attributes:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").remove();
+        });
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+
+
+<li>
+<h4>can add new HTML elements and attributes:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="divContainer1">
+
+    </div>
+
+    <button id="btn1">Click</button>
+
+    <div id="divContainer2">
+
+    </div>
+
+    <button id="btn2">Click</button>
+
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function () {
+            const newParagraph = document.createElement("p");
+            newParagraph.innerText = "this is a new paragraph created by JS";
+            document.getElementById("divContainer1").appendChild(newParagraph);
+
+        });
+        // alternatively you can use temple literal (backticks ``)
+        document.getElementById("btn2").addEventListener("click", function () {
+            document.getElementById("divContainer2").innerHTML += `
+        <p>This a new paragraph created by backticks</p>
+        `;
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/createNewElement.png">
+</li>
+
+
+
+<li>
+<h4>Can change all the CSS styles in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").style.backgroundColor = "yellow";
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/changeCSS.png">
+</li>
+
+</ul>
 
 <hr>
 

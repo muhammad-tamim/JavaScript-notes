@@ -5017,6 +5017,55 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </html>
 ```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+    </header>
+
+    <main>
+        <h1>My Awesome DOM de baba</h1>
+        <ul>
+            <li>Jalali set</li>
+            <li>Shafayet</li>
+            <li>Bonobash</li>
+        </ul>
+    </main>
+
+    <script>
+        console.log(document.getElementsByTagName('h1'));
+
+        const heading = document.getElementsByTagName('h1');
+        console.log(heading);
+
+        const liCollection = document.getElementsByTagName('li');
+        for (const li of liCollection) {
+            console.log(li);
+        }
+        for (const li of liCollection) {
+            console.log(li.innerText);
+        }
+        const allHeadings = document.getElementsByTagName("h1");
+        for (const h1 of allHeadings) {
+            console.log(h1.innerText);
+        }
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/getElementBYTagNameOutput.png">
 </li>
 
 <li>
@@ -5143,6 +5192,95 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </ol>
 
+<h4>All methods at a time:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        const liCollection = document.getElementsByTagName('li');
+        console.log(liCollection);
+        for (const li of liCollection) {
+            console.log(li.innerText);
+        }
+
+        // option -1: getElementByTagName
+        const allHeadings = document.getElementsByTagName('h1');
+        for (const h1 of allHeadings) {
+            console.log(h1.innerText);
+        }
+
+        // option -2: getElementById
+        const fruitsTitle = document.getElementById('fruits-title');
+        fruitsTitle.innerText = "Fruits changed by JS";
+
+        // option -3: getElementsByClassName
+        const places = document.getElementsByClassName('important-places');
+        for (const place of places) {
+            console.log(place.innerText);
+        }
+
+        // option -4: querySelector
+        const placesContainer = document.querySelector('#places-container');
+        console.log(placesContainer);
+
+        // option -5: querySelectorAll
+        const someLi = document.querySelectorAll('.fruits-container li');
+        console.log(someLi);
+        for (const li of someLi) {
+            console.log(li.innerText);
+        }
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/allElementSelectiongMethods.png">
 <hr>
 
 

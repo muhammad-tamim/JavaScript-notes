@@ -5317,7 +5317,7 @@ fetchData();
 9 → Document Node (document)
 ```
 
-<h4> Form Element Properties:<h4>
+<h4> Form Element Properties:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -5356,3 +5356,215 @@ fetchData();
 ```
 
 <hr>
+
+
+
+
+
+<h2 align="center">CSS and Class Styling</h2>
+<h3 align="center">CSS Styling</h3>
+
+<h3>Style Property:</h3>
+<p>style property is used to get or set inline styles of an HTML element using JavaScript.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="box" style="color: red;">Hello</div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        console.log(box.style.color); // "red"
+        box.style.backgroundColor = "yellow";
+    </script>
+</body>
+
+</html>
+```
+
+<p><strong>Note:</strong> JS follow camelCase css names:</p>
+
+| CSS Name           | JavaScript Style Name |
+| ------------------ | --------------------- |
+| `background-color` | `backgroundColor`     |
+| `font-size`        | `fontSize`            |
+| `z-index`          | `zIndex`              |
+| `border-radius`    | `borderRadius`        |
+
+
+<h3>cssText property:</h3>
+<ul>
+<li>Lets you set multiple styles at once as a string.</li>
+<li>Overwrites all existing inline styles.</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="box" style="color: red;">Hello</div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        box.style.cssText = "color: white; background: black; padding: 10px;";
+    </script>
+</body>
+
+</html>
+```
+
+<h3>getComputedStyle() method:</h3>
+<p>getComputedStyle() method returns the final computed styles of an element (after applying all CSS rules: external, inline, inherited, default) for Read-only.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        #card {
+            background-color: red;
+            color: white;
+            font-size: 24px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="card" style="text-align: center;">Hello</div>
+
+    <script>
+        const box = document.getElementById("card");
+        const styles = getComputedStyle(box);
+
+        console.log(styles);          // Logs all computed styles object of the element
+        console.log(styles.textAlign); // center
+        console.log(styles.width);    //  300px
+        console.log(styles.color);    // rgb(255, 255, 255)
+    </script>
+</body>
+
+</html>
+```
+
+
+<h3 align="center">Class Styling:</h3>
+
+<h4>className property:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="card" class="text-6xl bg-red-500">Hello</div>
+
+
+    <script>
+        const card = document.getElementById("card");
+
+        // Accessing and modifying class
+        console.log(card.className);      // "text-6xl bg-red-500"
+        card.className = "text-2xl bg-green-500";     // Replaces all classes
+    </script>
+</body>
+
+</html>
+```
+
+<h4>classList methods</h4>
+<p>classList gives you a powerful interface to manage individual classes.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+        <title>Element Properties</title>
+    </head>
+
+    <body>
+        <div id="card" class="text-6xl bg-red-500">Hello</div>
+
+
+        <script>
+            const card = document.getElementById("card");
+
+            // Add class
+            card.classList.add("text-white");
+
+            // Remove class
+            card.classList.remove("text-6xl");
+
+            // Check if a class exists
+            console.log(card.classList.contains("text-white")); // true
+
+            // replace class
+            card.classList.replace("bg-red-500", "bg-blue-500");
+        </script>
+    </body>
+
+    </html>
+</body>
+
+</html>
+```
+

@@ -5057,3 +5057,50 @@ fetchData();
 
 </html>
 ```
+<hr>
+
+
+<h2 align="center">Content Manipulation</h2>
+
+<h3>innerHTML vs outerHTML vs textContent vs innerText:</h3>
+
+| Property      | Returns...                                 | Includes Tags | Includes Hidden Text  | Editable |
+| ------------- | ------------------------------------------ | ------------- | --------------------- | -------- |
+| `innerHTML`   | HTML content **inside** the element        | ✅ Yes         | ✅ Yes                 | ✅ Yes    |
+| `outerHTML`   | Full HTML **including the element itself** | ✅ Yes         | ✅ Yes                 | ✅ Yes    |
+| `textContent` | All text (even hidden) without HTML        | ❌ No          | ✅ Yes                 | ✅ Yes    |
+| `innerText`   | Only **visible** text (like in UI)         | ❌ No          | ❌ No (ignores hidden) | ✅ Yes    |
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div id="demo">
+        Hello <span style="display:none">Hidden</span> World
+    </div>
+
+    <script>
+        const el = document.getElementById("demo");
+
+        console.log(el.innerHTML);   // "Hello <span style="display:none">Hidden</span> World"
+        console.log(el.outerHTML); // "<div id="demo">Hello <span style="display:none">Hidden</span> World</div>"
+        console.log(el.textContent); // "Hello Hidden World"
+        console.log(el.innerText);   // "Hello World"
+    </script>
+
+</body>
+
+</html>
+```
+<hr>
+
+<h2 align="center">Element Attributes and Properties</h2>

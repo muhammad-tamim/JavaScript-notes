@@ -5567,4 +5567,596 @@ fetchData();
 
 </html>
 ```
+<hr>
 
+
+
+
+<h2 align="center">Creating, Adding and Removing Elements methods<h2>
+
+<h3 align="center">Creating Elements</h3>
+<ul>
+
+<li>
+<h4>createElement()</h4>
+<ul>
+<li>Creates a new element node.</li>
+<li>Does not automatically add it to the DOM — you must insert it manually.</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <script>
+        const div = document.createElement("div");
+        div.textContent = "Hello World";
+        div.className = "bg-blue-500 text-white p-4 rounded-lg shadow-lg";
+        document.body.appendChild(div); // Adds to the page
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>createTextNode()</h4>
+<ul><li>Creates a text node (just text, no HTML).</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <script>
+        const p = document.createElement("p");
+        const text = document.createTextNode("This is a text node");
+        p.appendChild(text);
+        document.body.appendChild(p);
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>createDocumentFragment()</h4>
+<ul>
+<li>A lightweight container for temporary DOM storage.</li>
+<li>Useful for inserting many nodes at once.</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul id="myList"></ul>
+
+    <script>
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 1; i <= 3; i++) {
+            let li = document.createElement("li");
+            li.textContent = `Item ${i}`;
+            fragment.appendChild(li);
+        }
+
+        document.getElementById("myList").appendChild(fragment);
+
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>cloneNode()</h4>
+<ul>
+<li>Creates a copy of an element.</li>
+<li>cloneNode(true) → deep clone (includes children).</li>
+<li>cloneNode(false) → shallow clone (element only).</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="original">
+        <h2>Hello</h2>
+        <p>This is a paragraph.</p>
+    </div>
+
+    <script>
+        const original = document.getElementById("original");
+
+        // Shallow Clone (no children)
+        const shallowClone = original.cloneNode(false);
+        document.body.appendChild(shallowClone); // nothing show in the page
+        console.log("Shallow Clone:", shallowClone.outerHTML);
+        /*
+        Shallow Clone: <div id="original"></div>
+        */
+
+        // Deep Clone (includes children)
+        const deepClone = original.cloneNode(true);
+        document.body.appendChild(deepClone);
+        console.log("Deep Clone:", deepClone.outerHTML);
+        /*
+        Deep Clone: <div id="original">
+            <h2>Hello</h2>
+            <p>This is a paragraph.</p>
+        </div>
+        */
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+</ul>
+
+
+<h3 align="center">Adding Elements</h3>
+<ul>
+
+<li>
+<h4>appendChild()</h4>
+<ul><li>Adds a node as the last child of a parent.</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+    </ul>
+
+    <script>
+        const li = document.createElement("li");
+        li.innerText = "Hi";
+        document.querySelector("ul").appendChild(li);
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>insertBefore()</h4>
+<ul><li>Inserts a node before a reference node.</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+    </ul>
+
+    <script>
+        const ul = document.querySelector("ul");
+        const li = document.createElement("li");
+        li.innerText = "Hi";
+        ul.insertBefore(li, ul.firstChild);
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>insertAdjacentElement()</h4>
+<ul>
+<li>Inserts an element relative to another element.</li>
+<li>Position Options:</li>
+<ul>
+<li>"beforebegin" → before element itself</li>
+<li>"afterbegin" → inside element, before first child</li>
+<li>"beforeend" → inside element, after last child</li>
+<li>"afterend" → after element itself</li>
+</ul>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="target">
+        <p>Target Element</p>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+
+        // beforebegin
+        const beforeBeginEl = document.createElement("div");
+        beforeBeginEl.textContent = '1. beforebegin';
+        target.insertAdjacentElement("beforebegin", beforeBeginEl);
+
+        // afterbegin
+        const afterBeginEl = document.createElement("div");
+        afterBeginEl.textContent = '2. afterbegin';
+        target.insertAdjacentElement("afterbegin", afterBeginEl);
+
+        // beforeend
+        const beforeEndEl = document.createElement("div");
+        beforeEndEl.textContent = '3. beforeend';
+        target.insertAdjacentElement("beforeend", beforeEndEl);
+
+        // afterend
+        const afterEndEl = document.createElement("div");
+        afterEndEl.textContent = '4. afterend';
+        target.insertAdjacentElement("afterend", afterEndEl);
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>insertAdjacentHTML()</h4>
+<ul><li>Same as insertAdjacentElement(), but here you can inset HTML directly at a position:</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="target">
+        <p>Target Element</p>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+
+        // beforebegin
+        target.insertAdjacentHTML("beforebegin", "<div>1. beforebegin</div>");
+
+        // afterbegin
+        target.insertAdjacentHTML("afterbegin", "<div>2. afterbegin</div>");
+
+        // beforeend
+        target.insertAdjacentHTML("beforeend", "<div>3. beforeend</div>");
+
+        // afterend
+        target.insertAdjacentHTML("afterend", "<div>4. afterend</div>");
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>insertAdjacentText()</h4>
+<ul><li>Same as insertAdjacentElement() and insertAdjacentHTML(), but here you just inset plain text at a position:</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="target">
+        <p>Target Element</p>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+
+        // beforebegin
+        target.insertAdjacentText("beforebegin", "1. beforebegin");
+
+        // afterbegin
+        target.insertAdjacentText("afterbegin", "2. afterbegin");
+
+        // beforeend
+        target.insertAdjacentText("beforeend", "3. beforeend");
+
+        // afterend
+        target.insertAdjacentText("afterend", "4. afterend");
+    </script>
+</body>
+
+</html>
+```
+<img src="images/image11-insertAdjancentText().png">
+</li>
+
+<li>
+<h4>before(), parpend(), append(), after()</h4>
+<p>Can insert nodes or strings directly.</p>
+<ul>
+<li>before() → before element itself</li>
+<li>prepend() → inside element, before first child</li>
+<li>append() → inside element, after last child</li>
+<li>after() → after element itself</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul id="ul">
+        <li>Item</li>
+    </ul>
+    <br><br>
+    <br><br>
+    <ol id="ol">
+        <li>Item</li>
+    </ol>
+
+    <script>
+        const UlList = document.querySelector("ul");
+
+        // create string directly
+        UlList.before("Before Item");
+        UlList.prepend("First Item ");
+        UlList.append("Last Item");
+        UlList.after("After Item");
+
+
+        const olList = document.querySelector("ol");
+
+        // Create elements directly
+        const beforeItem = document.createElement("li");
+        beforeItem.textContent = "Before Item";
+        olList.before(beforeItem);
+
+        const firstItem = document.createElement("li");
+        firstItem.textContent = "First Item";
+        olList.prepend(firstItem);
+
+        const lastItem = document.createElement("li");
+        lastItem.textContent = "Last Item";
+        olList.append(lastItem);
+
+        const afterItem = document.createElement("li");
+        afterItem.textContent = "After Item";
+        olList.after(afterItem);
+
+
+    </script>
+</body>
+
+</html>
+```
+<img src="images/before()-after().png">
+</li>
+
+</ul>
+
+
+
+
+<h3 align="center">Removing Elements</h3>
+<ul>
+<li>
+<h4>removeChild()</h4>
+<ul><li>Removes a child node from its parent.</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+        <li>World</li>
+    </ul>
+
+    <script>
+        const list = document.querySelector("ul");
+        const lastItem = list.lastElementChild;
+        list.removeChild(lastItem);
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>remove()</h4>
+<ul><li>Removes the element directly.</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+        <li>World</li>
+    </ul>
+
+    <script>
+        document.querySelector("ul").remove();
+    </script>
+</body>
+
+</html>
+```
+</li>
+<li>
+<h4>replaceChild()</h4>
+<ul><li>Replaces one child with another.</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+        <li>World</li>
+    </ul>
+
+    <script>
+        const list = document.querySelector("ul");
+        const oldItem = list.lastElementChild;
+        const newItem = document.createElement("li");
+        newItem.textContent = "New Item";
+        list.replaceChild(newItem, oldItem);
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4>replaceWith()</h4>
+<ul><li>Replaces an element directly.</li></ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <p>Hello World</p>
+
+    <script>
+        const p = document.querySelector("p");
+        const h = document.createElement("h1");
+        h.innerText = "Hello World 2";
+
+        p.replaceWith(h);
+    </script>
+</body>
+
+</html>
+```
+</li>
+</ul>
+
+<hr>

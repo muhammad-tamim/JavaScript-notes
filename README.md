@@ -6160,3 +6160,512 @@ fetchData();
 </ul>
 
 <hr>
+
+
+
+
+
+
+<h2 align="center">Event Handling</h2>
+
+
+<h3 align="center">Event Basic</h3>
+
+<h4>What is events:</h4>
+<p>Events are signals that something has happened — like a button click, key press, page load, etc. You can "listen" for these events and run code in response.</p>
+
+<h4>Common Event Types:</h4>
+
+<ul>
+<li>click: When an element is clicked.</li>
+<li>submit: When a form is submitted.</li>
+<li>load: When the page or an image finishes loading.</li>
+<li>keydown, keyup: Keyboard interactions.</li>
+<li>mouseover, mouseout: Mouse movement events.</li>
+</ul>
+
+<h4>Event Object:</h4>
+<p>Every event has an associated event object that contains information about the event.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="myBtn">Click Me</button>
+
+    <script>
+        document.getElementById('myBtn').addEventListener('click', function (event) {
+            console.log(event); // Event object - PointerEvent {isTrusted: true, …}
+            console.log(event.type); // click
+            console.log(event.target); // Button element - <button id="myBtn">Click Me</button>
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<h4>preventDefault():</h4>
+<p>Stops the browser’s default behavior.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <a href="https://example.com" id="link">Click Me</a>
+
+    <script>
+        document.getElementById("link").addEventListener("click", (event) => {
+            event.preventDefault(); // Prevents redirect
+            alert("Default action prevented!");
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+
+<h4>StopPropagation()</h4>
+<p>Stops the event from bubbling up to parent elements</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="parent">
+        <button id="child">Click Me</button>
+    </div>
+
+    <script>
+        document.getElementById("parent").addEventListener("click", () => {
+            alert("Parent Clicked");
+        });
+
+        document.getElementById("child").addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent parent click
+            alert("Child Clicked");
+        });
+    </script>
+
+
+</body>
+
+</html>
+```
+
+
+
+
+<h3 align="center">Adding Event Listeners</h3>
+
+<h4>addEventListener():</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btns">Click Me</button>
+
+    <script>
+        document.getElementById("btns").addEventListener("click", function () {
+            alert("Button clicked");
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<h4>removeEventListener():</h4>
+<p>To remove the event listener, you need to use the same function reference for both addEventListener() and removeEventListener().</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btns">Click Me</button>
+
+    <script>
+        /*
+        document.getElementById("btns").addEventListener("click", function () {
+            alert("Button clicked");
+        });
+        document.getElementById("btns").removeEventListener("click", function () {
+            alert("Button clicked");
+        });
+        */
+        // The above removeEventListener will not work because the function reference is different.
+        // To remove the event listener, you need to use the same function reference for both cases.
+        const alertFunction = () => {
+            alert("Button clicked");
+        };
+        document.getElementById("btns").addEventListener("click", alertFunction);
+        document.getElementById("btns").removeEventListener("click", alertFunction);
+    </script>
+</body>
+
+</html>
+```
+
+<h4>onclick vs addEventListener():</h4>
+
+<p>With onclick perperty you can't add multiple event handler function. If you assign more than one evet handler to onclick, it overwrites the previous one.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btn" onclick="alert('Inline clicked')">Click Me</button>
+
+    <script>
+        const btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+            console.log("First handler");
+        };
+
+        btn.onclick = function () {
+            console.log("Second handler"); // Only this one runs
+        };
+    </script>
+
+</body>
+
+</html>
+```
+
+<p>But, with addEventListener() methods you can add multiple event handler function.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btn">Click Me</button>
+
+    <script>
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("click", function () {
+            console.log("First handler");
+        });
+
+        btn.addEventListener("click", function () {
+            console.log("Second handler");
+        });
+    </script>
+</body>
+
+</html>
+```
+
+
+<h3 align="center">Event Flow</h3>
+<p>DOM events go through 3 phases:</p>
+
+<ol>
+<li>Capturing: Event starts from the root and goes down.</li>
+<li>Target: The actual element that triggered the event.</li>
+<li>Bubbling: Event goes back up to the root.</li>
+</ol>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <div id="outer">
+        Outer Div
+        <div id="middle">
+            Middle Div
+            <div id="inner">
+                Inner Div (Click Me)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const outer = document.getElementById("outer");
+        const middle = document.getElementById("middle");
+        const inner = document.getElementById("inner");
+
+        // Capturing Phase (3rd parameter = true)
+        /*
+        in the third argument true means that the event listener will be triggered during the capturing phase.
+        If the third argument is false (by default), the event listener will be triggered during the bubbling phase
+        */
+
+        outer.addEventListener("click", () => {
+            console.log("Outer DIV - Capturing");
+        }, true);
+
+        middle.addEventListener("click", () => {
+            console.log("Middle DIV - Capturing");
+        }, true);
+
+        inner.addEventListener("click", () => {
+            console.log("Inner DIV - Capturing");
+        }, true);
+
+        // Bubbling Phase (default, 3rd parameter = false)
+        outer.addEventListener("click", () => {
+            console.log("Outer DIV - Bubbling");
+        });
+
+        middle.addEventListener("click", () => {
+            console.log("Middle DIV - Bubbling");
+        });
+
+        inner.addEventListener("click", () => {
+            console.log("Inner DIV - Bubbling");
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+<h3 align="center">Common Events</h3>
+ <ul>
+    <li><strong>Mouse Events</strong>
+      <ul>
+        <li>click</li>
+        <li>dblclick</li>
+        <li>mousedown</li>
+        <li>mouseup</li>
+        <li>mousemove</li>
+        <li>mouseenter</li>
+        <li>mouseleave</li>
+        <li>mouseover</li>
+        <li>mouseout</li>
+        <li>contextmenu</li>
+      </ul>
+    </li>
+    <li><strong>Keyboard Events</strong>
+      <ul>
+        <li>keydown</li>
+        <li>keypress</li> <!-- Deprecated -->
+        <li>keyup</li>
+      </ul>
+    </li>
+    <li><strong>Form Events</strong>
+      <ul>
+        <li>submit</li>
+        <li>reset</li>
+        <li>change</li>
+        <li>input</li>
+        <li>focus</li>
+        <li>blur</li>
+        <li>focusin</li>
+        <li>focusout</li>
+      </ul>
+    </li>
+    <li><strong>Clipboard Events</strong>
+      <ul>
+        <li>copy</li>
+        <li>cut</li>
+        <li>paste</li>
+      </ul>
+    </li>
+    <li><strong>Drag and Drop Events</strong>
+      <ul>
+        <li>drag</li>
+        <li>dragstart</li>
+        <li>dragend</li>
+        <li>dragenter</li>
+        <li>dragleave</li>
+        <li>dragover</li>
+        <li>drop</li>
+      </ul>
+    </li>
+    <li><strong>Touch Events (Mobile)</strong>
+      <ul>
+        <li>touchstart</li>
+        <li>touchend</li>
+        <li>touchmove</li>
+        <li>touchcancel</li>
+      </ul>
+    </li>
+    <li><strong>Pointer Events</strong>
+      <ul>
+        <li>pointerdown</li>
+        <li>pointerup</li>
+        <li>pointermove</li>
+        <li>pointerover</li>
+        <li>pointerout</li>
+        <li>pointerenter</li>
+        <li>pointerleave</li>
+        <li>pointercancel</li>
+      </ul>
+    </li>
+    <li><strong>Focus Events</strong>
+      <ul>
+        <li>focus</li>
+        <li>blur</li>
+        <li>focusin</li>
+        <li>focusout</li>
+      </ul>
+    </li>
+    <li><strong>Window Events</strong>
+      <ul>
+        <li>load</li>
+        <li>unload</li>
+        <li>beforeunload</li>
+        <li>resize</li>
+        <li>scroll</li>
+        <li>error</li>
+        <li>hashchange</li>
+        <li>popstate</li>
+      </ul>
+    </li>
+    <li><strong>Media Events</strong>
+      <ul>
+        <li>play</li>
+        <li>pause</li>
+        <li>ended</li>
+        <li>volumechange</li>
+        <li>timeupdate</li>
+        <li>durationchange</li>
+        <li>loadeddata</li>
+        <li>loadedmetadata</li>
+        <li>seeking</li>
+        <li>seeked</li>
+        <li>stalled</li>
+        <li>suspend</li>
+        <li>waiting</li>
+      </ul>
+    </li>
+    <li><strong>Animation Events</strong>
+      <ul>
+        <li>animationstart</li>
+        <li>animationend</li>
+        <li>animationiteration</li>
+      </ul>
+    </li>
+    <li><strong>Transition Events</strong>
+      <ul>
+        <li>transitionstart</li>
+        <li>transitionend</li>
+        <li>transitionrun</li>
+        <li>transitioncancel</li>
+      </ul>
+    </li>
+    <li><strong>Wheel Events</strong>
+      <ul>
+        <li>wheel</li>
+      </ul>
+    </li>
+    <li><strong>Composition Events</strong>
+      <ul>
+        <li>compositionstart</li>
+        <li>compositionupdate</li>
+        <li>compositionend</li>
+      </ul>
+    </li>
+    <li><strong>Other Events</strong>
+      <ul>
+        <li>DOMContentLoaded</li>
+        <li>visibilitychange</li>
+        <li>online</li>
+        <li>offline</li>
+        <li>message</li>
+        <li>storage</li>
+        <li>animationcancel</li>
+        <li>toggle</li>
+      </ul>
+    </li>
+  </ul>
+
+<h3 align="center">Event Delegation</h3>
+<p>Instead of adding listeners to every child, you add one listener to a common parent and use event.target to identify the clicked child.</p>
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+
+    <script>
+        document.getElementById("list").addEventListener("click", function (e) {
+            if (e.target.tagName === "LI") {
+                alert("Clicked: " + e.target.textContent);
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
+```
+<hr>

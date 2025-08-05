@@ -167,7 +167,124 @@
         </ul>
         </ul>
     </ul>
-  <li><a href="#part-2-document-events-interfaces">Part 2: Document, Events, Interfaces</a></li>
+  <li><a href="#part-2-DOM">Part 2: DOM</a></li>
+  
+  <ul>
+
+  <li><a href="#dom-fundamentals">DOM Fundamentals</a></li>
+  <ul>
+    <li><a href="#html-vs-dom">Html VS DOM</a></li>
+    <li><a href="#dom-tree-structure">DOM Tree Structure</a></li>
+    <li><a href="#document-object">Document Object</a></li>
+    <li><a href="#parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships</a></li>
+    <li><a href="#dom-vs-bom">DOM VS BOM:</a></li>
+  </ul>
+
+  <li><a href="#element-selecting-methods">Elements selecting methods</a></li>
+  <ul>
+    <li><a href="#getElementById()">getElementById()</a></li>
+    <li><a href="#getElementsByClassName()">getElementsByClassName()</a></li>
+    <li><a href="#getElementsByTagName()">getElementsByTagName()</a></li>
+    <li><a href="#querySelector()">querySelector()</a></li>
+    <li><a href="#querySelectorAll()">querySelectorAll()</a></li>
+  </ul>
+
+  <li><a href="#dom-traversing">DOM Traversing</a></li>
+  <ul>
+    <li><a href="#parentNode-vs-parentElement">parentNode vs parentElement</a></li>
+    <li><a href="#childNodes-vs-children">childNodes vs children</a></li>
+    <li><a href="#firstChild-vs-firstElementChild">firstChild vs firstElementChild</a></li>
+    <li><a href="#lastChild-vs-lastElementChild">lastChild vs lastElementChild</a></li>
+    <li><a href="#nextSibling-vs-nextElementSibling">nextSibling vs nextElementSibling</a></li>
+    <li><a href="#previousSibling-vs-previousElementSibling">previousSibling vs previousElementSibling</a></li>
+  </ul>
+
+  <li><a href="#content-manipulation">Content Manipulation</a></li>
+  <ul>
+    <li><a href="#innerHTML-vs-outerHTML-vs-textContent-vs-innerText">innerHTML vs outerHTML vs textContent vs innerText</a></li>
+  </ul>
+  
+  <li><a href="#element-attributes-and-properties">Element Attributes and Properties</a></li>
+  <ul>
+    <li><a href="#element-attributes">Element Attributes</a></li>
+    <ul>
+      <li><a href="#getAttribute()-setAttribute()-removeAttribute()-and-hasAttribute()">getAttribute(), setAttribute(), removeAttribute() and hasAttribute()</a></li>
+      <li><a href="#attributes-property">attributes property</a></li>
+    </ul>
+    <li><a href="#element-properties">Element properties</a></li>
+    <ul>
+      <li><a href="#id-className-classList">id, className, classList</a></li>
+      <li><a href="#tagName-vs-nodeName">tagName vs nodeName</a></li>
+      <li><a href="#nodeType-and-nodeValue">nodeType and nodeValue</a></li>
+      <li><a href="#Form-element-properties:">Form Element Properties:</a></li>
+    </ul>
+  </ul>
+
+  <li><a href="#css-and-class-styling">CSS and Class Styling</a></li>
+  <ul>
+    <li><a href="#css-styling">CSS Styling</a></li>
+    <ul>
+      <li><a href="#style-property">Style Property</a></li>
+      <li><a href="#cssText-property">cssText Property</a></li>
+      <li><a href="#getComputerStyle()-method">getComputedStyle() method</a></li>
+    </ul>
+    <li><a href="#class-styling">Class Styling:</a></li>
+    <ul>
+      <li><a href="#className-property">className property</a></li>
+      <li><a href="#classList-methods">classList methods</a></li>
+    </ul>
+  </ul>
+
+  <li><a href="#part-2-DOM">Creating, Adding and Removing Elements methods</a></li>
+  <ul>
+    <li><a href="#creating-elements">Creating Elements</a></li>
+    <ul>
+      <li><a href="#createElement()">createElement()</a></li>
+      <li><a href="#createTextNode()">createTextNode()</a></li>
+      <li><a href="#createDocumentFragment()">createDocumentFragment()</a></li>
+      <li><a href="#cloneNode()">cloneNode()</a></li>
+    </ul>
+    <li><a href="#adding-elements">Adding Elements</a></li>
+      <ul>
+        <li><a href="#appendChild()">appendChild()</a></li>
+        <li><a href="#insertBefore()">insertBefore()</a></li>
+        <li><a href="#insrtAdjacentElement()">insertAdjacentElement()</a></li>
+        <li><a href="#insertAdjacentHTML()">insertAdjacentHTML()</a></li>
+        <li><a href="#insertAdjacentText()">insertAdjacentText()</a></li>
+        <li><a href="#before()-parpend()-append()-after()">before(), prepend(), append(), after()</a></li>
+    </ul>
+    <li><a href="#removing-elements">Removing Elements</a></li>
+      <ul>
+        <li><a href="#removeChild()">removeChild()</a></li>
+        <li><a href="#remove()">remove()</a></li>
+        <li><a href="#replaceChild()">replaceChild()</a></li>
+        <li><a href="#replaceWith()">replaceWith()</a></li>
+      </ul>
+  </ul>
+
+  <li><a href="#event-handling">Event Handling</a></li>
+  <ul>
+    <li><a href="#event-basic">Event Basic</a></li>
+      <ul>
+        <li><a href="#what-is-events">What is Events</a></li>
+        <li><a href="#common-event-types">Common Event Types:</a></li>
+        <li><a href="#event-object">Event Object:</a></li>
+        <li><a href="#preventDefault()">preventDefault()</a></li>
+        <li><a href="#stopPropagation()">StopPropagation()</a></li>
+      </ul>
+    <li><a href="#adding-event-listeners">Adding Event Listeners</a></li>
+      <ul>
+        <li><a href="#addEventListener()">addEventListener()</a></li>
+        <li><a href="#removeEventListener()">removeEventListener()</a></li>
+        <li><a href="#onClick-vs-addEventListener()">onClick vs addEventListener()</a></li>
+      </ul>
+    <li><a href="#event-flow">Event Flow</a></li>
+    <li><a href="#common-events">Common Events</a></li>
+    <li><a href="#event-delegation">Event Delegation</a></li>
+  </ul>
+  
+  <ul>
+
 </ul>
 <hr>
 
@@ -4387,12 +4504,12 @@ fetchData();
 
 
 <!-- Part 2 -->
-<h1 id="part-2-document-events-interfaces" align="center">Part 2: DOM</h1>
+<h1 id="part-2-DOM" align="center">Part 2: DOM</h1>
 
-<h2 align="center">DOM Fundamentals</h2>
+<h2 id="dom-fundamentals" align="center">DOM Fundamentals</h2>
 <p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
 
-<h3>Html VS DOM:</h3>
+<h3 id="html-vs-dom">Html VS DOM:</h3>
 
 ```html
 <!DOCTYPE html>
@@ -4421,7 +4538,7 @@ fetchData();
 ```
 
 
-<h3>DOM Tree Structure:</h3>
+<h3 id="dom-tree-structure">DOM Tree Structure:</h3>
 <p>The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.</p>
 
 <img src="images/Example-of-DOM-Node-Tree.png">
@@ -4436,7 +4553,7 @@ fetchData();
 
 
 
-<h3>Document Object:</h3>
+<h3 id="document-object">Document Object:</h3>
 <p>The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it.</p>
 
 ```html
@@ -4474,7 +4591,7 @@ fetchData();
 <img src="images/document object.png">
 
 
-<h3>Parent, Child, and Sibling Relationships</h3>
+<h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships</h3>
 
 ```html
 <!DOCTYPE html>
@@ -4528,7 +4645,7 @@ fetchData();
 </ul>
 
 
-<h3>DOM VS BOM:</h3>
+<h3 id="dom-vs-bom">DOM VS BOM:</h3>
 <table>
 <tr>
 <th>DOM</th>
@@ -4583,12 +4700,12 @@ fetchData();
 
 
 
-<h2 align="center">Elements selecting methods</h2>
+<h2 id="element-selecting-methods" align="center">Elements selecting methods</h2>
 
 <ol>
 
 <li>
-<h4>getElementById()</h4>
+<h4 id="getElementById()">getElementById()</h4>
 <p>Selects a single element by its id attribute:</p>
 
 ```html
@@ -4622,7 +4739,7 @@ fetchData();
 </li>
 
 <li>
-<h4>getElementsByClassName()</h4>
+<h4 id="getElementsByClassName()">getElementsByClassName()</h4>
 <p>Selects all elements with the given class name:</p>
 
 ```html
@@ -4654,7 +4771,7 @@ fetchData();
 </li>
 
 <li>
-<h4>getElementsByTagName()</h4>
+<h4 id="getElementsByTagName()">getElementsByTagName()</h4>
 <p>Selects all elements with the specified tag name:</p>
 
 ```html
@@ -4687,7 +4804,7 @@ fetchData();
 </li>
 
 <li>
-<h4>getElementsByName()</h4>
+<h4 id="getElementsByName()">getElementsByName()</h4>
 <p>Selects elements with a specific name attribute. Mostly used with input, code, textarea, or select :</p>
 
 ```html
@@ -4723,7 +4840,7 @@ fetchData();
 </li>
 
 <li>
-<h4>querySelector()</h4>
+<h4 id="querySelector()">querySelector()</h4>
 <p>Selects the first element that matches a CSS selector:</p>
 
 ```html
@@ -4769,7 +4886,7 @@ fetchData();
 </li>
 
 <li>
-<h4>querySelectorAll()</h4>
+<h4 id="querySelectorAll()">querySelectorAll()</h4>
 <p>Selects all elements that match a CSS selector:</p>
 
 ```html
@@ -4816,7 +4933,7 @@ fetchData();
 
 
 
-<h2 align="center">DOM Traversing</h2>
+<h2 id="dom-traversing" align="center">DOM Traversing</h2>
 <p>DOM traversing means navigating the DOM tree from one node to another using relationships like parent, child, and sibling.</p>
 
 <p>It allows you to:</p>
@@ -4828,7 +4945,7 @@ fetchData();
 </ul>
 
 
-<h3>parentNode vs parentElement:</h3>
+<h3 id="parentNode-vs-parentElement">parentNode vs parentElement:</h3>
 <p>Both parentNode and parentElement are used to access the parent of a node in the DOM, But:</p>
 <ul>
 <li>parentNode returns any type of parent node.</li>
@@ -4871,7 +4988,7 @@ fetchData();
 </html>
 ```
 
-<h3>childNodes vs children:</h3>
+<h3 id="childNodes-vs-children">childNodes vs children:</h3>
 <ul>
 <li>childNodes: Returns all types of nodes.</li>
 <li>children: returns only element nodes.</li>
@@ -4913,7 +5030,7 @@ fetchData();
 </html>
 ```
 
-<h3>firstChild vs firstElementChild:</h3>
+<h3 id="firstChild-vs-firstElementChild">firstChild vs firstElementChild:</h3>
 <ul>
 <li>firstChild: Returns the first child node, which may be: (text, element etc)</li>
 <li>firstElementChild: Returns only the first element child.</li>
@@ -4950,7 +5067,7 @@ fetchData();
 </html>
 ```
 
-<h3>lastChild vs lastElementChild:</h3>
+<h3 id="lastChild-vs-lastElementChild">lastChild vs lastElementChild:</h3>
 <p>Same as above but accesses the last child node instead.</p>
 
 ```html
@@ -4985,7 +5102,7 @@ fetchData();
 </html>
 ```
 
-<h3>nextSibling vs nextElementSibling:</h3>
+<h3 id="nextSibling-vs-nextElementSibling">nextSibling vs nextElementSibling:</h3>
 <ul>
 <li>nextSibling: Returns the next sibling node.</li>
 <li>nextElementSibling: return only next sibling element node</li>
@@ -5023,7 +5140,7 @@ fetchData();
 </html>
 ```
 
-<h3>previousSibling vs previousElementSibling</h3>
+<h3 id="previousSibling-vs-previousElementSibling">previousSibling vs previousElementSibling</h3>
 <p>Same as above, but but accesses the previous sibling instead of next.</p>
 
 ```html
@@ -5060,9 +5177,9 @@ fetchData();
 <hr>
 
 
-<h2 align="center">Content Manipulation</h2>
+<h2 id="content-manipulation" align="center">Content Manipulation</h2>
 
-<h3>innerHTML vs outerHTML vs textContent vs innerText:</h3>
+<h3 id="innerHTML-vs-outerHTML-vs-textContent-vs-innerText">innerHTML vs outerHTML vs textContent vs innerText:</h3>
 
 | Property      | Returns...                                 | Includes Tags | Includes Hidden Text  | Editable |
 | ------------- | ------------------------------------------ | ------------- | --------------------- | -------- |
@@ -5105,11 +5222,11 @@ fetchData();
 
 
 
-<h2 align="center">Element Attributes and Properties</h2>
+<h2 id="Element-Attributes-and-Properties" align="center">Element Attributes and Properties</h2>
 
-<h3 align="center">Element Attributes<h3>
+<h3 id="element-attributes" align="center">Element Attributes<h3>
 
-<h4>getAttribute(), setAttribute(), removeAttribute() and hasAttribute():</h4>
+<h4 id="getAttribute()-setAttribute()-removeAttribute()-and-hasAttribute()">getAttribute(), setAttribute(), removeAttribute() and hasAttribute():</h4>
 
 ```html
 <!DOCTYPE html>
@@ -5151,7 +5268,7 @@ fetchData();
 </html>
 ```
 
-<h4>attributes property:</h4>
+<h4 id="attributes-property">attributes property:</h4>
 <p>Returns a NamedNodeMap of all attributes on the element.</p>
 
 ```html
@@ -5192,9 +5309,9 @@ fetchData();
 
 
 
-<h3 align="center">Element properties</h3>
+<h3 id="element-properties" align="center">Element properties</h3>
 
-<h4>id, className, classList:</h4>
+<h4 id="id-className-classList">id, className, classList:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -5233,7 +5350,7 @@ fetchData();
 </html>
 ```
 
-<h3>tagName vs nodeName:</h3>
+<h3 id="tagName-vs-nodeName">tagName vs nodeName:</h3>
 <p>Both give the tag name of an element, but nodeName works for any node, tagName only for elements node</p>
 
 ```html
@@ -5277,7 +5394,7 @@ fetchData();
 </html>
 ```
 
-<h3>nodeType and nodeValue:</h3>
+<h3 id="nodeType-and-nodeValue">nodeType and nodeValue:</h3>
 
 ```html
 <!DOCTYPE html>
@@ -5317,7 +5434,7 @@ fetchData();
 9 → Document Node (document)
 ```
 
-<h4> Form Element Properties:</h4>
+<h4 id="form-element-properties"> Form Element Properties:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -5361,10 +5478,10 @@ fetchData();
 
 
 
-<h2 align="center">CSS and Class Styling</h2>
-<h3 align="center">CSS Styling</h3>
+<h2 id="css-and-class-styling" align="center">CSS and Class Styling</h2>
+<h3 id="css-styling" align="center">CSS Styling</h3>
 
-<h3>Style Property:</h3>
+<h3 id="style-property">Style Property:</h3>
 <p>style property is used to get or set inline styles of an HTML element using JavaScript.</p>
 
 ```html
@@ -5404,7 +5521,7 @@ fetchData();
 | `border-radius`    | `borderRadius`        |
 
 
-<h3>cssText property:</h3>
+<h3 id="cssText-property">cssText property:</h3>
 <ul>
 <li>Lets you set multiple styles at once as a string.</li>
 <li>Overwrites all existing inline styles.</li>
@@ -5436,7 +5553,7 @@ fetchData();
 </html>
 ```
 
-<h3>getComputedStyle() method:</h3>
+<h3 id="getComputedStyle()-method">getComputedStyle() method:</h3>
 <p>getComputedStyle() method returns the final computed styles of an element (after applying all CSS rules: external, inline, inherited, default) for Read-only.</p>
 
 ```html
@@ -5479,9 +5596,9 @@ fetchData();
 ```
 
 
-<h3 align="center">Class Styling:</h3>
+<h3 id="class-styling" align="center">Class Styling:</h3>
 
-<h4>className property:</h4>
+<h4 id="className-property">className Property:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -5512,7 +5629,7 @@ fetchData();
 </html>
 ```
 
-<h4>classList methods</h4>
+<h4 id="classList-methods">classList methods</h4>
 <p>classList gives you a powerful interface to manage individual classes.</p>
 
 ```html
@@ -5572,9 +5689,9 @@ fetchData();
 
 
 
-<h2 align="center">Creating, Adding and Removing Elements methods<h2>
+<h2 id="Creating-Adding-and-Removing-Elements-methods" align="center">Creating, Adding and Removing Elements methods<h2>
 
-<h3 align="center">Creating Elements</h3>
+<h3 id="creating-elements" align="center">Creating Elements</h3>
 <ul>
 
 <li>
@@ -5612,7 +5729,7 @@ fetchData();
 </li>
 
 <li>
-<h4>createTextNode()</h4>
+<h4 id="createTextNode()">createTextNode()</h4>
 <ul><li>Creates a text node (just text, no HTML).</li></ul>
 
 ```html
@@ -5643,7 +5760,7 @@ fetchData();
 </li>
 
 <li>
-<h4>createDocumentFragment()</h4>
+<h4 id="createDocumentFragment()">createDocumentFragment()</h4>
 <ul>
 <li>A lightweight container for temporary DOM storage.</li>
 <li>Useful for inserting many nodes at once.</li>
@@ -5681,7 +5798,7 @@ fetchData();
 </li>
 
 <li>
-<h4>cloneNode()</h4>
+<h4 id="cloneNode()">cloneNode()</h4>
 <ul>
 <li>Creates a copy of an element.</li>
 <li>cloneNode(true) → deep clone (includes children).</li>
@@ -5738,7 +5855,7 @@ fetchData();
 </ul>
 
 
-<h3 align="center">Adding Elements</h3>
+<h3 id="adding-elements" align="center">Adding Elements</h3>
 <ul>
 
 <li>
@@ -5772,7 +5889,7 @@ fetchData();
 </li>
 
 <li>
-<h4>insertBefore()</h4>
+<h4 id="insertBefore()">insertBefore()</h4>
 <ul><li>Inserts a node before a reference node.</li></ul>
 
 ```html
@@ -5803,7 +5920,7 @@ fetchData();
 </li>
 
 <li>
-<h4>insertAdjacentElement()</h4>
+<h4 id="insertAdjacentElement()">insertAdjacentElement()</h4>
 <ul>
 <li>Inserts an element relative to another element.</li>
 <li>Position Options:</li>
@@ -5863,7 +5980,7 @@ fetchData();
 </li>
 
 <li>
-<h4>insertAdjacentHTML()</h4>
+<h4 id="insertAdjacentHTML()">insertAdjacentHTML()</h4>
 <ul><li>Same as insertAdjacentElement(), but here you can inset HTML directly at a position:</li></ul>
 
 ```html
@@ -5906,7 +6023,7 @@ fetchData();
 </li>
 
 <li>
-<h4>insertAdjacentText()</h4>
+<h4 id="insertAdjacentText()">insertAdjacentText()</h4>
 <ul><li>Same as insertAdjacentElement() and insertAdjacentHTML(), but here you just inset plain text at a position:</li></ul>
 
 ```html
@@ -5950,7 +6067,7 @@ fetchData();
 </li>
 
 <li>
-<h4>before(), parpend(), append(), after()</h4>
+<h4 id="before()-parpend()-append()-after()">before(), parpend(), append(), after()</h4>
 <p>Can insert nodes or strings directly.</p>
 <ul>
 <li>before() → before element itself</li>
@@ -6022,7 +6139,7 @@ fetchData();
 
 
 
-<h3 align="center">Removing Elements</h3>
+<h3 id="removing-elements" align="center">Removing Elements</h3>
 <ul>
 <li>
 <h4>removeChild()</h4>
@@ -6059,7 +6176,7 @@ fetchData();
 </li>
 
 <li>
-<h4>remove()</h4>
+<h4 id="remove()">remove()</h4>
 <ul><li>Removes the element directly.</li></ul>
 
 ```html
@@ -6090,7 +6207,7 @@ fetchData();
 ```
 </li>
 <li>
-<h4>replaceChild()</h4>
+<h4 id="replaceChild()">replaceChild()</h4>
 <ul><li>Replaces one child with another.</li></ul>
 
 ```html
@@ -6126,7 +6243,7 @@ fetchData();
 </li>
 
 <li>
-<h4>replaceWith()</h4>
+<h4 id="replaceWith()">replaceWith()</h4>
 <ul><li>Replaces an element directly.</li></ul>
 
 ```html
@@ -6166,15 +6283,15 @@ fetchData();
 
 
 
-<h2 align="center">Event Handling</h2>
+<h2 id="event-handling" align="center">Event Handling</h2>
 
 
-<h3 align="center">Event Basic</h3>
+<h3  align="center" id="event-basic">Event Basic</h3>
 
-<h4>What is events:</h4>
+<h4 id="what-is-event">What is events:</h4>
 <p>Events are signals that something has happened — like a button click, key press, page load, etc. You can "listen" for these events and run code in response.</p>
 
-<h4>Common Event Types:</h4>
+<h4 id="common-vent-types">Common Event Types:</h4>
 
 <ul>
 <li>click: When an element is clicked.</li>
@@ -6184,7 +6301,7 @@ fetchData();
 <li>mouseover, mouseout: Mouse movement events.</li>
 </ul>
 
-<h4>Event Object:</h4>
+<h4 id="event-object">Event Object:</h4>
 <p>Every event has an associated event object that contains information about the event.</p>
 
 ```html
@@ -6212,7 +6329,7 @@ fetchData();
 </html>
 ```
 
-<h4>preventDefault():</h4>
+<h4 id="preventDefault()">preventDefault():</h4>
 <p>Stops the browser’s default behavior.</p>
 
 ```html
@@ -6241,7 +6358,7 @@ fetchData();
 ```
 
 
-<h4>StopPropagation()</h4>
+<h4 id="stopPropagation()">StopPropagation()</h4>
 <p>Stops the event from bubbling up to parent elements</p>
 
 ```html
@@ -6279,9 +6396,9 @@ fetchData();
 
 
 
-<h3 align="center">Adding Event Listeners</h3>
+<h3 align="center" id="adding-event-listeners">Adding Event Listeners</h3>
 
-<h4>addEventListener():</h4>
+<h4 id="addEventListener()">addEventListener():</h4>
 
 ```html
 <!DOCTYPE html>
@@ -6306,7 +6423,7 @@ fetchData();
 </html>
 ```
 
-<h4>removeEventListener():</h4>
+<h4 id="removeEventListener()">removeEventListener():</h4>
 <p>To remove the event listener, you need to use the same function reference for both addEventListener() and removeEventListener().</p>
 
 ```html
@@ -6344,7 +6461,7 @@ fetchData();
 </html>
 ```
 
-<h4>onclick vs addEventListener():</h4>
+<h4 id="onClick-vs-addEventListener()">onClick vs addEventListener():</h4>
 
 <p>With onclick perperty you can't add multiple event handler function. If you assign more than one evet handler to onclick, it overwrites the previous one.</p>
 
@@ -6410,7 +6527,7 @@ fetchData();
 ```
 
 
-<h3 align="center">Event Flow</h3>
+<h3 align="center" id="event-flow">Event Flow</h3>
 <p>DOM events go through 3 phases:</p>
 
 <ol>
@@ -6483,7 +6600,7 @@ fetchData();
 </html>
 ```
 
-<h3 align="center">Common Events</h3>
+<h3 align="center" id="common-events">Common Events</h3>
  <ul>
     <li><strong>Mouse Events</strong>
       <ul>
@@ -6634,7 +6751,7 @@ fetchData();
     </li>
   </ul>
 
-<h3 align="center">Event Delegation</h3>
+<h3 align="center" id="event-delegation">Event Delegation</h3>
 <p>Instead of adding listeners to every child, you add one listener to a common parent and use event.target to identify the clicked child.</p>
 
 

@@ -2,9 +2,9 @@
 
 <h2>Table of Contents</h2>
 
-<ul>
-  <li><a href="#part-1-the-javascript-language">Part 1: The JavaScript Language</a></li>
-    <ul >
+
+<h3><a href="#part-1-the-javascript-language">Part 1: The JavaScript Language</a></h3>
+    <ul>
         <li><a href="#an-introduction-to-javaScript">An Introduction to JavaScript</a></li>
         <ul>
           <li><a href="#what-is-javaScript">What is JavaScript</a></li>
@@ -167,18 +167,22 @@
         </ul>
         </ul>
     </ul>
-  <li><a href="#part-2-DOM">Part 2: DOM</a></li>
+  </ul>
+
+
+  <h3><a href="#part-2-DOM">Part 2: DOM</a></h3>
   
   <ul>
 
   <li><a href="#dom-fundamentals">Introduction</a></li>
   <ul>
-    <li><a href="#html-vs-dom">Html VS DOM</a></li>
-    <li><a href="#dom-vs-bom">DOM VS BOM</a></li>
+    <li><a href="#what-is-dom">What is DOM</a></li>
     <li><a href="#dom-tree-structure">DOM Tree Structure</a></li>
-    <li><a href="#document-object">Document Object</a></li>
     <li><a href="#parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships</a></li>
     <li><a href="#dom-collection">DOM Collection</a></li>
+    <li><a href="#document-object">Document Object</a></li>
+    <li><a href="#html-vs-dom">Html VS DOM</a></li>
+    <li><a href="#dom-vs-bom">DOM VS BOM</a></li>
     <li><a href="#what-can-do-javaScript-with-dom">What can do JavaScript with DOM</a></li>
   </ul>
 
@@ -264,30 +268,28 @@
       </ul>
   </ul>
 
-  <li><a href="#event-handling">Event Handling</a></li>
-  <ul>
-    <li><a href="#event-basic">Event Basic</a></li>
+  <li><a href="#event">Event</a></li>
       <ul>
-        <li><a href="#what-is-events">What is Events</a></li>
-        <li><a href="#common-event-types">Common Event Types:</a></li>
-        <li><a href="#event-object">Event Object:</a></li>
-        <li><a href="#preventDefault()">preventDefault()</a></li>
-        <li><a href="#stopPropagation()">StopPropagation()</a></li>
+        <li><a href="#event-basic">Event Basic</a></li>
+          <ul>
+            <li><a href="#what-is-events">What is Events</a></li>
+            <li><a href="#common-event-types">Common Event Types:</a></li>
+            <li><a href="#event-object">Event Object:</a></li>
+            <li><a href="#preventDefault()">preventDefault()</a></li>
+            <li><a href="#stopPropagation()">StopPropagation()</a></li>
+          </ul>
+        <li><a href="#adding-event-listeners">Adding Events</a></li>
+          <ul>
+            <li><a href="#addEventListener()">addEventListener()</a></li>
+            <li><a href="#removeEventListener()">removeEventListener()</a></li>
+            <li><a href="#onClick-vs-addEventListener()">onClick vs addEventListener()</a></li>
+          </ul>
+        <li><a href="#common-events">Common Events</a></li>
+        <li><a href="#event-flow">Event Flow</a></li>
+        <li><a href="#event-delegation">Event Delegation</a></li>
+        <li><a href="#event-examples">Event Examples</a></li>
       </ul>
-    <li><a href="#adding-event-listeners">Adding Event Listeners</a></li>
-      <ul>
-        <li><a href="#addEventListener()">addEventListener()</a></li>
-        <li><a href="#removeEventListener()">removeEventListener()</a></li>
-        <li><a href="#onClick-vs-addEventListener()">onClick vs addEventListener()</a></li>
-      </ul>
-    <li><a href="#event-flow">Event Flow</a></li>
-    <li><a href="#common-events">Common Events</a></li>
-    <li><a href="#event-delegation">Event Delegation</a></li>
-  </ul>
-  
-  </ul>
-
-</ul>
+    </ul>
 <hr>
 
 <!-- part 1: -->
@@ -4509,7 +4511,209 @@ fetchData();
 <h1 id="part-2-DOM" align="center">Part 2: DOM</h1>
 
 <h2 id="dom-fundamentals" align="center">Introduction</h2>
+
+<h3 id="what-is-dom">What is DOM:</h3>
 <p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
+
+
+
+<h3 id="dom-tree-structure">DOM Tree Structure:</h3>
+<p>The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.</p>
+
+<img src="images/Example-of-DOM-Node-Tree.png">
+<img src="images/image10-Parents_and_Children_Tree_Data_Structure.jpg">
+<img src="images/js-tree1.png">
+<img src="images/dom-tree-2.png">
+
+<h4>Note:</h4>
+<ul>
+<li>Node: The generic term for any item in the DOM tree</li>
+<li>Element: A specific type of node that represents HTML tags</li>
+</ul>
+
+
+
+
+<h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships:</h3>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="parent">
+        <p id="first-child">First paragraph</p>
+        <p id="second-child">Second paragraph</p>
+        <span id="last-child">Span element</span>
+    </div>
+
+    <script>
+        const parent = document.getElementById('parent');
+        const firstChild = document.getElementById('first-child');
+        const secondChild = document.getElementById('second-child');
+        const lastChild = document.getElementById('last-child');
+
+        // Parent relationships
+        console.log(firstChild.parentNode);        // The div element
+        console.log(firstChild.parentElement);     // Also the div element
+
+        // Child relationships
+        console.log(parent.children);              // All child elements
+        console.log(parent.firstElementChild);     // First p element
+        console.log(parent.lastElementChild);      // The span element
+
+        // Sibling relationships
+        console.log(firstChild.nextElementSibling);    // Second p element
+        console.log(firstChild.previousElementSibling); // null (no previous sibling)
+        console.log(secondChild.nextElementSibling);   // Span element
+        console.log(secondChild.previousElementSibling); // First p element
+    </script>
+</body>
+
+</html>
+```
+<img src="images/parent-child-sibling-relationship.png">
+
+<p>In this code:</p>
+<ul>
+<li>The div is the parent of all three elements inside it</li>
+<li>The p and span elements are children of the div</li>
+<li>The two p elements and the span are siblings to each other</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        const placesContainer = document.getElementById("places-container");
+        console.log(placesContainer);
+        console.log(placesContainer.childNodes);
+        console.log(placesContainer.firstChild);
+        console.log(placesContainer.childNodes[1]);
+        console.log(placesContainer.childNodes[3]);
+        console.log(placesContainer.childNodes[3].childNodes[5]);
+
+        const placesUL = document.querySelector("#places-container");
+        console.log(placesUL);
+        const newLI = document.createElement("li");
+        newLI.innerText = "Brand new place to go";
+        placesUL.appendChild(newLI);
+        const newLI2 = document.createElement("li");
+        newLI2.innerText = "another dynamic li";
+        placesUL.appendChild(newLI2);
+
+        console.log(placesUL);
+        console.log(placesUL.parentNode);
+        console.log(placesUL.parentNode.parentNode);
+    </script>
+</body>
+
+</html>
+```
+<img src="images/differentTypeOfnodeOutput.png">
+
+<h3 id="dom-collection">DOM Collection:</h3>
+<p>A DOM Collection is a special array-like object that holds a group of nodes or elements from the Document Object Model (DOM).
+DOM collection is array like means you can access items with indexes, and can use .length properties but since it's not actually array so, you can't use map(), filter(), find() etc, unless converted.</p>
+
+<h4>Common DOM Collection Types:</h4>
+
+| Collection         | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| `NodeList`         | Collection of **nodes** 
+| `HTMLCollection`   | Live collection of **HTML elements only**           |
+| `childNodes`       | NodeList of **all types** of child nodes            |
+| `children`         | HTMLCollection of **only element** children         |
+  
+
+<h3 id="document-object">Document Object:</h3>
+<p>The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <h1>Welcome to My Page</h1>
+    <p>This is a simple HTML document.</p>
+
+    <script>
+        // Document object properties
+        console.log(document);                  // Document object
+        console.log(document.documentElement);  // <html> element
+        console.log(document.head);             // <head> element  
+        console.log(document.body);             // <body> element
+        console.log(document.title);            // Page title
+        console.log(document.URL);              // Current URL
+        console.log(document.domain);           // Domain name
+        console.log(document.forms);            // All forms in the document
+        console.log(document.images);           // All images in the document
+        console.log(document.links);            // All links in the document
+        console.log(document.scripts);          // All scripts in the document
+    </script>
+</body>
+
+</html>
+```
+<img src="images/document object.png">
+
+
 
 <h3 id="html-vs-dom">Html VS DOM:</h3>
 
@@ -4591,133 +4795,7 @@ fetchData();
 <img src="images/window.alert.png">
 <img src="images/DOM-text-change.png">
 
-
-
-<h3 id="dom-tree-structure">DOM Tree Structure:</h3>
-<p>The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.</p>
-
-<img src="images/Example-of-DOM-Node-Tree.png">
-<img src="images/image10-Parents_and_Children_Tree_Data_Structure.jpg">
-<img src="images/js-tree1.png">
-<img src="images/dom-tree-2.png">
-
-<h4>Note:</h4>
-<ul>
-<li>Node: The generic term for any item in the DOM tree</li>
-<li>Element: A specific type of node that represents HTML tags</li>
-</ul>
-
-
-
-
-<h3 id="document-object">Document Object:</h3>
-<p>The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it.</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <h1>Welcome to My Page</h1>
-    <p>This is a simple HTML document.</p>
-
-    <script>
-        // Document object properties
-        console.log(document);                  // Document object
-        console.log(document.documentElement);  // <html> element
-        console.log(document.head);             // <head> element  
-        console.log(document.body);             // <body> element
-        console.log(document.title);            // Page title
-        console.log(document.URL);              // Current URL
-        console.log(document.domain);           // Domain name
-        console.log(document.forms);            // All forms in the document
-        console.log(document.images);           // All images in the document
-        console.log(document.links);            // All links in the document
-        console.log(document.scripts);          // All scripts in the document
-    </script>
-</body>
-
-</html>
-```
-<img src="images/document object.png">
-
-
-<h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships:</h3>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="parent">
-        <p id="first-child">First paragraph</p>
-        <p id="second-child">Second paragraph</p>
-        <span id="last-child">Span element</span>
-    </div>
-
-    <script>
-        const parent = document.getElementById('parent');
-        const firstChild = document.getElementById('first-child');
-        const secondChild = document.getElementById('second-child');
-        const lastChild = document.getElementById('last-child');
-
-        // Parent relationships
-        console.log(firstChild.parentNode);        // The div element
-        console.log(firstChild.parentElement);     // Also the div element
-
-        // Child relationships
-        console.log(parent.children);              // All child elements
-        console.log(parent.firstElementChild);     // First p element
-        console.log(parent.lastElementChild);      // The span element
-
-        // Sibling relationships
-        console.log(firstChild.nextElementSibling);    // Second p element
-        console.log(firstChild.previousElementSibling); // null (no previous sibling)
-        console.log(secondChild.nextElementSibling);   // Span element
-        console.log(secondChild.previousElementSibling); // First p element
-    </script>
-</body>
-
-</html>
-```
-<img src="images/parent-child-sibling-relationship.png">
-
-<p>In this code:</p>
-<ul>
-<li>The div is the parent of all three elements inside it</li>
-<li>The p and span elements are children of the div</li>
-<li>The two p elements and the span are siblings to each other</li>
-</ul>
-
-
-
-
-<h3 id="dom-collection">DOM Collection:</h3>
-<p>A DOM Collection is a special array-like object that holds a group of nodes or elements from the Document Object Model (DOM).
-DOM collection is array like means you can access items with indexes, and can use .length properties but since it's not actually array so, you can't use map(), filter(), find() etc, unless converted.</p>
-
-<h4>Common DOM Collection Types:</h4>
-
-| Collection         | Description                                         |
-| ------------------ | --------------------------------------------------- |
-| `NodeList`         | Collection of **nodes** 
-| `HTMLCollection`   | Live collection of **HTML elements only**           |
-| `childNodes`       | NodeList of **all types** of child nodes            |
-| `children`         | HTMLCollection of **only element** children         |
-           
-
+         
 
 <h3 id="what-can-do-javaScript-with-dom">What can do javaScript with DOM:</h3>
 
@@ -5572,6 +5650,10 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </html>
 ```
+
+```html
+
+```
 <hr>
 
 
@@ -5865,6 +5947,84 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        const sections = document.querySelectorAll("section")
+        /*
+        if we need classes just write it document.querySelectorAll(.className)
+        if we need ids just write it document.querySelectorAll(#idName)
+        */
+        console.log(sections);
+        for (const section of sections) {
+            console.log(section);
+        }
+        for (const section of sections) {
+            section.style.border = "2px solid red";
+            section.style.borderRadius = '8px';
+            section.style.padding = "20px";
+            section.style.margin = "10px";
+            section.style.backgroundColor = "skyBlue";
+        }
+        const placesContainer = document.getElementById("places-container");
+        placesContainer.style.backgroundColor = "yellow";
+
+        // add and remove css class
+        placesContainer.classList.add("text-center");
+        placesContainer.classList.remove("large-text");
+
+    </script>
+</body>
+
+</html>
+```
+<img src="images/cssStyling.png">
+
 <p><strong>Note:</strong> JS follow camelCase css names:</p>
 
 | CSS Name           | JavaScript Style Name |
@@ -6049,7 +6209,7 @@ DOM collection is array like means you can access items with indexes, and can us
 <ul>
 
 <li>
-<h4>createElement()</h4>
+<h4 id="createElement()">createElement()</h4>
 <ul>
 <li>Creates a new element node.</li>
 <li>Does not automatically add it to the DOM — you must insert it manually.</li>
@@ -6075,6 +6235,158 @@ DOM collection is array like means you can access items with indexes, and can us
         div.textContent = "Hello World";
         div.className = "bg-blue-500 text-white p-4 rounded-lg shadow-lg";
         document.body.appendChild(div); // Adds to the page
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        // where to add
+        const placesList = document.getElementById("places-list");
+        // what to add
+        const li = document.createElement("li");
+        li.innerText = "pahertoli";
+        // add the child
+        placesList.appendChild(li);
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+
+    <script>
+        const mainContainer = document.getElementById("main-container");
+
+        const section = document.createElement("section");
+        const h1 = document.createElement("h1");
+        h1.innerText = "Favorite Food list";
+        section.appendChild(h1);
+
+        const ul = document.createElement("ul");
+        section.appendChild(ul);
+
+        const li1 = document.createElement("li");
+        li1.innerText = "biriyani";
+        ul.appendChild(li1);
+
+        const li2 = document.createElement("li");
+        li2.innerText = "kaschi";
+        ul.appendChild(li2);
+
+        const li3 = document.createElement("li");
+        li3.innerText = "morogPolaw";
+        ul.appendChild(li3);
+
+        mainContainer.appendChild(section);
+        console.log(document.getElementsByTagName("section.innerHTML"));
+
+        // Set Inner HTML Directly
+        const sectionDress = document.createElement("section");
+        sectionDress.innerHTML = `
+        <h1>My Dress Section </h2>
+            <ul>
+                <li>T-shirt</li>    
+                <li>longi</li>    
+                <li>sendel genji</li>    
+            </ul>
+        `
+        mainContainer.appendChild(sectionDress)
     </script>
 </body>
 
@@ -6637,7 +6949,7 @@ DOM collection is array like means you can access items with indexes, and can us
 
 
 
-<h2 id="event-handling" align="center">Event Handling</h2>
+<h2 id="event" align="center">Event</h2>
 
 
 <h3  align="center" id="event-basic">Event Basic</h3>
@@ -6750,7 +7062,7 @@ DOM collection is array like means you can access items with indexes, and can us
 
 
 
-<h3 align="center" id="adding-event-listeners">Adding Event Listeners</h3>
+<h3 align="center" id="adding-event-listeners">Adding Events</h3>
 
 <h4 id="addEventListener()">addEventListener():</h4>
 
@@ -6776,6 +7088,49 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </html>
 ```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<h1 id="heading-text">Event Handler</h1>
+<button id="btn-update-heading">Update Heading</button> <br><br>
+
+<h1 id="heading-text2">Event Handler</h1>
+<button id="btn-update-heading2">Update Heading</button> <br><br>
+
+<p id="no-name">No Name</p>
+<input type="text" id="input-field">
+<button id="btn">Update</button>
+
+<script>
+    document.getElementById("btn-update-heading").addEventListener("click", function () {
+        const h1 = document.getElementsByTagName("h1");
+        h1[0].innerText = "I am change by the event handler";
+    })
+
+    document.getElementById("btn-update-heading2").addEventListener("click", function () {
+        const originalHeading = document.getElementById("heading-text2");
+        originalHeading.innerText = "I am changed by the event handler";
+    })
+
+    document.getElementById("btn").addEventListener("click", () => {
+        const getInputFieldValue = document.getElementById("input-field").value;
+        const setName = document.getElementById("no-name");
+        setName.innerText = getInputFieldValue;
+    })
+</script>
+</body>
+
+</html>
+```
+
 
 <h4 id="removeEventListener()">removeEventListener():</h4>
 <p>To remove the event listener, you need to use the same function reference for both addEventListener() and removeEventListener().</p>
@@ -6880,15 +7235,7 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
-
-<h3 align="center" id="event-flow">Event Flow</h3>
-<p>DOM events go through 3 phases:</p>
-
-<ol>
-<li>Capturing: Event starts from the root and goes down.</li>
-<li>Target: The actual element that triggered the event.</li>
-<li>Bubbling: Event goes back up to the root.</li>
-</ol>
+<p>Add a events on a button with onClick event handler and addEventListener() method:</p>
 
 ```html
 <!DOCTYPE html>
@@ -6897,58 +7244,56 @@ DOM collection is array like means you can access items with indexes, and can us
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Document</title>
 </head>
 
 <body>
+    <!-- Option 1 -->
+    <button onclick="console.log(3)">Click Me</button>
+    <button onclick="console.log(7)">Click Me</button>
+    <button onclick="console.log('I am Clicked')">Click Me</button>
 
-    <div id="outer">
-        Outer Div
-        <div id="middle">
-            Middle Div
-            <div id="inner">
-                Inner Div (Click Me)
-            </div>
-        </div>
-    </div>
+    <!-- option 2 -->
+    <button onclick="makeYellow()">Make Yellow</button>
+    <button onclick="makeRed()">Make Red</button>
+
+    <!-- option 3 -->
+    <button id="btn-make-blue">Make Blue</button>
+    <button id="btn-make-purple">Make Purple</button>
+
+    <!-- option 4 -->
+    <button id="btn-make-green">Make Green</button>
+    <button id="btn-make-pink">Make Pink</button>
 
     <script>
-        const outer = document.getElementById("outer");
-        const middle = document.getElementById("middle");
-        const inner = document.getElementById("inner");
+        // option 2
+        function makeYellow() {
+            document.body.style.backgroundColor = "yellow";
+        }
+        function makeRed() {
+            document.body.style.backgroundColor = "red";
+        }
 
-        // Capturing Phase (3rd parameter = true)
-        /*
-        in the third argument true means that the event listener will be triggered during the capturing phase.
-        If the third argument is false (by default), the event listener will be triggered during the bubbling phase
-        */
+        // option 3
+        const btnMakeBlue = document.getElementById("btn-make-blue");
+        btnMakeBlue.onclick = function () {
+            document.body.style.backgroundColor = "blue";
+        }
 
-        outer.addEventListener("click", () => {
-            console.log("Outer DIV - Capturing");
-        }, true);
+        const btnMakePurple = document.getElementById("btn-make-purple");
+        btnMakePurple.onclick = function () {
+            document.body.style.backgroundColor = "purple";
+        }
 
-        middle.addEventListener("click", () => {
-            console.log("Middle DIV - Capturing");
-        }, true);
-
-        inner.addEventListener("click", () => {
-            console.log("Inner DIV - Capturing");
-        }, true);
-
-        // Bubbling Phase (default, 3rd parameter = false)
-        outer.addEventListener("click", () => {
-            console.log("Outer DIV - Bubbling");
+        // option 4 (best practice)
+        document.getElementById("btn-make-green").addEventListener("click", function () {
+            document.body.style.backgroundColor = "green";
         });
 
-        middle.addEventListener("click", () => {
-            console.log("Middle DIV - Bubbling");
-        });
-
-        inner.addEventListener("click", () => {
-            console.log("Inner DIV - Bubbling");
+        document.getElementById("btn-make-pink").addEventListener("click", () => {
+            document.body.style.backgroundColor = "pink";
         });
     </script>
-
 </body>
 
 </html>
@@ -7105,6 +7450,81 @@ DOM collection is array like means you can access items with indexes, and can us
     </li>
   </ul>
 
+
+<h3 align="center" id="event-flow">Event Flow</h3>
+<p>DOM events go through 3 phases:</p>
+
+<ol>
+<li>Capturing: Event starts from the root and goes down.</li>
+<li>Target: The actual element that triggered the event.</li>
+<li>Bubbling: Event goes back up to the root.</li>
+</ol>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <div id="outer">
+        Outer Div
+        <div id="middle">
+            Middle Div
+            <div id="inner">
+                Inner Div (Click Me)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const outer = document.getElementById("outer");
+        const middle = document.getElementById("middle");
+        const inner = document.getElementById("inner");
+
+        // Capturing Phase (3rd parameter = true)
+        /*
+        in the third argument true means that the event listener will be triggered during the capturing phase.
+        If the third argument is false (by default), the event listener will be triggered during the bubbling phase
+        */
+
+        outer.addEventListener("click", () => {
+            console.log("Outer DIV - Capturing");
+        }, true);
+
+        middle.addEventListener("click", () => {
+            console.log("Middle DIV - Capturing");
+        }, true);
+
+        inner.addEventListener("click", () => {
+            console.log("Inner DIV - Capturing");
+        }, true);
+
+        // Bubbling Phase (default, 3rd parameter = false)
+        outer.addEventListener("click", () => {
+            console.log("Outer DIV - Bubbling");
+        });
+
+        middle.addEventListener("click", () => {
+            console.log("Middle DIV - Bubbling");
+        });
+
+        inner.addEventListener("click", () => {
+            console.log("Inner DIV - Bubbling");
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+
 <h3 align="center" id="event-delegation">Event Delegation</h3>
 <p>Instead of adding listeners to every child, you add one listener to a common parent and use event.target to identify the clicked child.</p>
 
@@ -7140,3 +7560,126 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 <hr>
+
+
+
+
+<h2 align="center" id="event-examples">Event Examples</h2>
+
+<h3 id="create-a-comment-box-and-display-comment">create a comment box and display comment:</h3>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .comment {
+            border: 2px solid blue;
+            background-color: lightcyan;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Awesome comment box. write What in you mind!!!</h1>
+
+    <section>
+        <h2>All comments Here:</h2>
+
+        <div id="comment-container">
+            <p class="comment">This is the first comment.</p>
+            <p class="comment">This is the second comment.</p>
+            <p class="comment">This is the third comment.</p>
+        </div>
+
+        <textarea name="" id="comment-text-box" cols="60" rows="5"></textarea>
+        <br>
+        <button id="btn-post-comment">Post Comment</button>
+    </section>
+
+    <script>
+        // step 1: set a event handler to the button
+        document.getElementById("btn-post-comment").addEventListener("click", () => {
+            // step 2: get the text, written in the comment text area
+            const commentTextBox = document.getElementById("comment-text-box");
+            const newComment = commentTextBox.value;
+            // step 3: get the parent node where to publish comment
+            const commentContainer = document.getElementById("comment-container");
+            //step 4: create a comment paragraph and add the "comment" class to it for style
+            const commentElement = document.createElement('p');
+            commentElement.classList.add("comment");
+            // step 5: set the text get form the newComment
+            commentElement.innerText = newComment;
+            // step 6: append the new p tag to the parent node
+            commentContainer.appendChild(commentElement);
+            // step 7: clean the text area
+            commentTextBox.value = "";
+        })
+    </script>
+</body>
+
+</html>
+```
+<img src="images/comments.png">
+
+
+<h3 id="simple-delete-confirmation-button">Simple delete confirmation button:</h3>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .comment {
+            border: 2px solid blue;
+            background-color: lightcyan;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="secret-info">My Secret Info</h1>
+
+    <input type="text" id="input-delete" placeholder="write delete">
+    <button id="btn-delete" disabled>Delete</button>
+
+    <script>
+        document.getElementById("input-delete").addEventListener("keyup", (event) => {
+
+            const text = event.target.value;
+            console.log(text);
+            const btnDelete = document.getElementById("btn-delete");
+
+            if (text === "delete") {
+                btnDelete.removeAttribute("disabled");
+                const secretInfo = document.getElementById("secret-info");
+                secretInfo.style.display = "none";
+            }
+            else {
+                btnDelete.setAttribute("disabled", true);
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+<img src="images/deleteConfirmation.png">
+
+
+<hr>
+

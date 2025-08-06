@@ -181,9 +181,7 @@
     <li><a href="#parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships</a></li>
     <li><a href="#dom-collection">DOM Collection</a></li>
     <li><a href="#document-object">Document Object</a></li>
-    <li><a href="#html-vs-dom">Html VS DOM</a></li>
     <li><a href="#dom-vs-bom">DOM VS BOM</a></li>
-    <li><a href="#what-can-do-javaScript-with-dom">What can do JavaScript with DOM</a></li>
   </ul>
 
   <li><a href="#element-selecting-methods">Elements selecting methods</a></li>
@@ -4735,34 +4733,6 @@ DOM collection is array like means you can access items with indexes, and can us
 
 
 
-<h3 id="html-vs-dom">Html VS DOM:</h3>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <!-- HTML (Static) -->
-    <div id="container">
-        <p>Hello World</p>
-    </div>
-
-    <script>
-        // DOM (Dynamic)
-        const container = document.getElementById('container');
-        container.innerHTML = '<p>Hello JavaScript!</p>';
-    </script>
-</body>
-
-</html>
-```
-
 
 <h3 id="dom-vs-bom">DOM VS BOM:</h3>
 <table>
@@ -4815,200 +4785,6 @@ DOM collection is array like means you can access items with indexes, and can us
 <img src="images/welbome-to-BOM.png">
 <img src="images/welcome-to-DOM.png">
       
-
-<h3 id="what-can-do-javaScript-with-dom">What can do javaScript with DOM:</h3>
-
-<ul>
-
-<li>
-<h4>Can change all the HTML elements in the page:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <p id="demo">This is the original text.</p>
-    <button id="changeTextBtn">Click Me</button>
-
-    <script>
-        document.getElementById("changeTextBtn").addEventListener("click", function () {
-            document.getElementById("demo").innerText = "The text has been changed by js";
-            // or
-            /* document.getElementById("demo").innerContent = "The text has been changed by js";
-             Note: we basically use innerText more than the innerContent 
-            */
-        });
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/elementChanges.png">
-</li>
-
-<li>
-<h4>Can change all the HTML attributes in the page:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <img id="myImage" src="myImage.jpg" width="200px">
-    <button id="btn">Click Me</button>
-
-
-    <script>
-        document.getElementById("btn").addEventListener("click", function () {
-            // update the attributes
-            document.getElementById("myImage").src = "hasuApa.jpg";
-            document.getElementById("myImage").width = "400";
-
-            // set a new attribute and value
-            document.getElementById("myImage").setAttribute("height", "400");
-        })
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/changeAttributeOutput.png">
-</li>
-
-<li>
-<h4>can remove existing HTML elements and attributes:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
-        <p>Click the button to change my color!</p>
-    </div>
-
-    <button id="btn">Click</button>
-
-    <script>
-        document.getElementById("btn").addEventListener("click", function () {
-            document.getElementById("myDiv").remove();
-        });
-    </script>
-</body>
-
-</html>
-```
-</li>
-
-
-
-<li>
-<h4>can add new HTML elements and attributes:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="divContainer1">
-
-    </div>
-
-    <button id="btn1">Click</button>
-
-    <div id="divContainer2">
-
-    </div>
-
-    <button id="btn2">Click</button>
-
-
-    <script>
-        document.getElementById("btn1").addEventListener("click", function () {
-            const newParagraph = document.createElement("p");
-            newParagraph.innerText = "this is a new paragraph created by JS";
-            document.getElementById("divContainer1").appendChild(newParagraph);
-
-        });
-        // alternatively you can use temple literal (backticks ``)
-        document.getElementById("btn2").addEventListener("click", function () {
-            document.getElementById("divContainer2").innerHTML += `
-        <p>This a new paragraph created by backticks</p>
-        `;
-        });
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/createNewElement.png">
-</li>
-
-
-
-<li>
-<h4>Can change all the CSS styles in the page:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
-        <p>Click the button to change my color!</p>
-    </div>
-
-    <button id="btn">Click</button>
-
-    <script>
-        document.getElementById("btn").addEventListener("click", function () {
-            document.getElementById("myDiv").style.backgroundColor = "yellow";
-        });
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/changeCSS.png">
-</li>
-
-</ul>
-
 
 <h3>Q&A:</h3>
 <ul>
@@ -5301,6 +5077,13 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </ol>
 
+
+
+<h3>Examples:</h3>
+
+<ul>
+
+<li>
 <h4>All methods at a time:</h4>
 
 ```html
@@ -5390,7 +5173,204 @@ DOM collection is array like means you can access items with indexes, and can us
 ```
 
 <img src="images/allElementSelectiongMethods.png">
+</li>
+
+
+<li>
+<h4>change all the HTML elements in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <p id="demo">This is the original text.</p>
+    <button id="changeTextBtn">Click Me</button>
+
+    <script>
+        document.getElementById("changeTextBtn").addEventListener("click", function () {
+            document.getElementById("demo").innerText = "The text has been changed by js";
+            // or
+            /* document.getElementById("demo").innerContent = "The text has been changed by js";
+             Note: we basically use innerText more than the innerContent 
+            */
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/elementChanges.png">
+</li>
+
+<li>
+<h4>change all the HTML attributes in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <img id="myImage" src="myImage.jpg" width="200px">
+    <button id="btn">Click Me</button>
+
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            // update the attributes
+            document.getElementById("myImage").src = "hasuApa.jpg";
+            document.getElementById("myImage").width = "400";
+
+            // set a new attribute and value
+            document.getElementById("myImage").setAttribute("height", "400");
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/changeAttributeOutput.png">
+</li>
+
+<li>
+<h4>remove existing HTML elements and attributes:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").remove();
+        });
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+
+
+<li>
+<h4>add new HTML elements and attributes:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="divContainer1">
+
+    </div>
+
+    <button id="btn1">Click</button>
+
+    <div id="divContainer2">
+
+    </div>
+
+    <button id="btn2">Click</button>
+
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function () {
+            const newParagraph = document.createElement("p");
+            newParagraph.innerText = "this is a new paragraph created by JS";
+            document.getElementById("divContainer1").appendChild(newParagraph);
+
+        });
+        // alternatively you can use temple literal (backticks ``)
+        document.getElementById("btn2").addEventListener("click", function () {
+            document.getElementById("divContainer2").innerHTML += `
+        <p>This a new paragraph created by backticks</p>
+        `;
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/createNewElement.png">
+</li>
+
+
+
+<li>
+<h4>change all the CSS styles in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").style.backgroundColor = "yellow";
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/changeCSS.png">
+</li>
+
+</ul>
+
 <hr>
+
+
+
+
+
 
 
 

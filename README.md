@@ -184,15 +184,6 @@
     <li><a href="#dom-vs-bom">DOM VS BOM</a></li>
   </ul>
 
-  <li><a href="#element-selecting-methods">Elements selecting methods</a></li>
-  <ul>
-    <li><a href="#getElementById()">getElementById()</a></li>
-    <li><a href="#getElementsByClassName()">getElementsByClassName()</a></li>
-    <li><a href="#getElementsByTagName()">getElementsByTagName()</a></li>
-    <li><a href="#querySelector()">querySelector()</a></li>
-    <li><a href="#querySelectorAll()">querySelectorAll()</a></li>
-  </ul>
-
   <li><a href="#dom-traversing">DOM Traversing</a></li>
   <ul>
     <li><a href="#parentNode-vs-parentElement">parentNode vs parentElement</a></li>
@@ -202,6 +193,16 @@
     <li><a href="#nextSibling-vs-nextElementSibling">nextSibling vs nextElementSibling</a></li>
     <li><a href="#previousSibling-vs-previousElementSibling">previousSibling vs previousElementSibling</a></li>
   </ul>
+
+  <li><a href="#element-selecting-methods">Elements selecting methods</a></li>
+  <ul>
+    <li><a href="#getElementById()">getElementById()</a></li>
+    <li><a href="#getElementsByClassName()">getElementsByClassName()</a></li>
+    <li><a href="#getElementsByTagName()">getElementsByTagName()</a></li>
+    <li><a href="#querySelector()">querySelector()</a></li>
+    <li><a href="#querySelectorAll()">querySelectorAll()</a></li>
+  </ul>
+
 
   <li><a href="#content-manipulation">Content Manipulation</a></li>
   <ul>
@@ -284,7 +285,13 @@
           </ul>
         <li><a href="#common-events">Common Events</a></li>
         <li><a href="#event-flow">Event Flow</a></li>
-        <li><a href="#event-delegation">Event Delegation</a></li>
+        <ul>
+            <li><a href="#useCapture-parameter">UseCapture parameter</a></li>
+            <li><a href="#stopPropagation()">stopPropagation()</a></li>
+            <li><a href="#stopImmediatePropagation()">stopImmediatePropagation()</a></li>
+            <li><a href="#event-delegation">Event Delegation</a></li>
+            <li><a href="#event-delegation">Event Delegation</a></li>
+        </ul>
         <li><a href="#event-examples">Event Examples</a></li>
       </ul>
     </ul>
@@ -4497,8 +4504,7 @@ fetchData();
 </ul>
 </ol>
 <hr>
-
-
+<hr>
 
 
 
@@ -4691,6 +4697,8 @@ DOM collection is array like means you can access items with indexes, and can us
 | `NodeList`         | Collection of **nodes** 
 | `HTMLCollection`   | Live collection of **HTML elements only**           |
 | `childNodes`       | NodeList of **all types** of child nodes            |
+| `NamedNodeMap`       | Collection of attribute nodes of an element            |
+| `DOMTokenList`       | Collection of classes            |
 
   
 
@@ -4798,579 +4806,6 @@ DOM collection is array like means you can access items with indexes, and can us
   </li>
 </ul>
 <hr>
-
-
-
-<h2 id="element-selecting-methods" align="center">Elements selecting methods</h2>
-
-<ol>
-
-<li>
-<h4 id="getElementById()">getElementById()</h4>
-<p>Selects a single element by its id attribute:</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Elements selecting methods</title>
-</head>
-
-<body>
-    <h1 id="title">Hello World</h1>
-
-    <script>
-        const element = document.getElementById("title");
-        console.log(element); // Output: <h1 id="title">Hello World</h1>
-        console.log(element.tagName); // Output: H1
-        console.log(element.id); // Output: title
-        console.log(element.className); // Output: (empty string, since no class is assigned)
-        console.log(element.innerHTML); // Output: Hello World
-        console.log(element.textContent); // Output: Hello World
-        console.log(element.outerHTML); // Output: <h1 id="title">Hello World
-    </script>
-</body>
-
-</html>
-```
-
-</li>
-
-<li>
-<h4 id="getElementsByClassName()">getElementsByClassName()</h4>
-<p>Selects all elements with the given class name:</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Elements selecting methods</title>
-</head>
-
-<body>
-    <p class="note">Note 1</p>
-    <p class="note">Note 2</p>
-
-    <script>
-        const elements = document.getElementsByClassName("note");
-        console.log(elements); // Output: HTMLCollection(2) [p.note, p.note]
-        for (let el of elements) {
-            console.log(el.innerHTML); // Output: Note 1, Note 2
-        }
-    </script>
-
-</body>
-
-</html>
-```
-</li>
-
-<li>
-<h4 id="getElementsByTagName()">getElementsByTagName()</h4>
-<p>Selects all elements with the specified tag name:</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Elements selecting methods</title>
-</head>
-
-<body>
-    <ul>
-        <li>Apple</li>
-        <li>Banana</li>
-    </ul>
-
-    <script>
-        const items = document.getElementsByTagName("li");
-        console.log(items) // HTMLCollection(2) [li, li]
-        for (let item of items) {
-            console.log(item.innerHTML); // Output: Apple, Banana
-        }
-    </script>
-</body>
-
-</html>
-```
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <header>
-        <h1>Welcome to my DOM</h1>
-    </header>
-
-    <main>
-        <h1>My Awesome DOM de baba</h1>
-        <ul>
-            <li>Jalali set</li>
-            <li>Shafayet</li>
-            <li>Bonobash</li>
-        </ul>
-    </main>
-
-    <script>
-        console.log(document.getElementsByTagName('h1'));
-
-        const heading = document.getElementsByTagName('h1');
-        console.log(heading);
-
-        const liCollection = document.getElementsByTagName('li');
-        for (const li of liCollection) {
-            console.log(li);
-        }
-        for (const li of liCollection) {
-            console.log(li.innerText);
-        }
-        const allHeadings = document.getElementsByTagName("h1");
-        for (const h1 of allHeadings) {
-            console.log(h1.innerText);
-        }
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/getElementBYTagNameOutput.png">
-</li>
-
-<li>
-<h4 id="getElementsByName()">getElementsByName()</h4>
-<p>Selects elements with a specific name attribute. Mostly used with input, code, textarea, or select :</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Elements selecting methods</title>
-</head>
-
-<body>
-    <input type="text" name="username">
-    <input type="text" name="username">
-
-    <script>
-        const inputs = document.getElementsByName("username");
-        console.log(inputs); // This will log a NodeList of all input elements with name "username"
-        console.log(inputs[0]); // This will log the first input element with name "username"
-        console.log(inputs[1]); // This will log the second input element with name "username
-        for (let input of inputs) {
-            console.log(input); // This will log each input element with name "username"
-        }
-        inputs.forEach(input => input.value = "Tamim");
-    </script>
-
-</body>
-
-</html>
-```
-
-</li>
-
-<li>
-<h4 id="querySelector()">querySelector()</h4>
-<p>Selects the first element that matches a CSS selector:</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Elements selecting methods</title>
-</head>
-
-<body>
-    <div class="card">Card 1</div>
-    <div class="card">Card 2</div>
-
-    <div>
-        <p>One</p>
-        <p>Two</p>
-    </div>
-
-    <input type="text" name="userName" value="Tamim">
-    <input type="text" name="age">
-
-    <script>
-        const firstCard = document.querySelector(".card");
-        console.log(firstCard.textContent); // Output: Card 1
-
-        const paragraph = document.querySelector("div > p");
-        console.log(paragraph.innerHTML) // Output: One
-
-        const input = document.querySelector("input[name='userName']");
-        console.log(input.value); // Output: Tamim
-
-        const input2 = document.querySelector("input[name='age']");
-        input2.value = "25"; // Set value to 25
-    </script>
-
-</body>
-
-</html>
-```
-</li>
-
-<li>
-<h4 id="querySelectorAll()">querySelectorAll()</h4>
-<p>Selects all elements that match a CSS selector:</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Elements selecting methods</title>
-</head>
-
-<body>
-    <p class="note">Note A</p>
-    <p class="note">Note B</p>
-
-    <div>
-        <p>One</p>
-        <p>Two</p>
-    </div>
-
-    <script>
-        const notes = document.querySelectorAll(".note");
-        notes.forEach(note => console.log(note.innerHTML)); // Output: Note A, Note B
-
-        const paragraphs = document.querySelectorAll("div > p");
-        console.log(paragraphs); // NodeList(2) [p, p]
-        for (const paragraph of paragraphs) {
-            console.log(paragraph.innerHTML); // Output: One, Two
-        }
-    </script>
-
-</body>
-
-</html>
-```
-</li>
-
-</ol>
-
-
-
-<h3>Examples:</h3>
-
-<ul>
-
-<li>
-<h4>All methods at a time:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <header>
-        <h1>Welcome to my DOM</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
-            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
-            dolore vitae?</p>
-    </header>
-    <main id="main-container">
-        <section>
-            <h1>My Awesome DOM de baba</h1>
-            <ul>
-                <li>Jalali Set</li>
-                <li>Shafayet</li>
-                <li>bonobash</li>
-                <li>DOM de re baba</li>
-            </ul>
-        </section>
-        <section class="fruits-container">
-            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
-            <ul>
-                <li>Apple</li>
-                <li>Banana</li>
-                <li>Carrot</li>
-            </ul>
-        </section>
-        <section id="places-container" class="large-text">
-            <h1 id="places-title">Places I like to visit</h1>
-            <ul id="places-list">
-                <li class="important-places">Soondarban</li>
-                <li class="important-places">bandorban</li>
-                <li class="important-places">Kataban</li>
-                <li class="other-place">shalbon</li>
-            </ul>
-        </section>
-    </main>
-
-
-    <script>
-        const liCollection = document.getElementsByTagName('li');
-        console.log(liCollection);
-        for (const li of liCollection) {
-            console.log(li.innerText);
-        }
-
-        // option -1: getElementByTagName
-        const allHeadings = document.getElementsByTagName('h1');
-        for (const h1 of allHeadings) {
-            console.log(h1.innerText);
-        }
-
-        // option -2: getElementById
-        const fruitsTitle = document.getElementById('fruits-title');
-        fruitsTitle.innerText = "Fruits changed by JS";
-
-        // option -3: getElementsByClassName
-        const places = document.getElementsByClassName('important-places');
-        for (const place of places) {
-            console.log(place.innerText);
-        }
-
-        // option -4: querySelector
-        const placesContainer = document.querySelector('#places-container');
-        console.log(placesContainer);
-
-        // option -5: querySelectorAll
-        const someLi = document.querySelectorAll('.fruits-container li');
-        console.log(someLi);
-        for (const li of someLi) {
-            console.log(li.innerText);
-        }
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/allElementSelectiongMethods.png">
-</li>
-
-
-<li>
-<h4>change all the HTML elements in the page:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <p id="demo">This is the original text.</p>
-    <button id="changeTextBtn">Click Me</button>
-
-    <script>
-        document.getElementById("changeTextBtn").addEventListener("click", function () {
-            document.getElementById("demo").innerText = "The text has been changed by js";
-            // or
-            /* document.getElementById("demo").innerContent = "The text has been changed by js";
-             Note: we basically use innerText more than the innerContent 
-            */
-        });
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/elementChanges.png">
-</li>
-
-<li>
-<h4>change all the HTML attributes in the page:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <img id="myImage" src="myImage.jpg" width="200px">
-    <button id="btn">Click Me</button>
-
-
-    <script>
-        document.getElementById("btn").addEventListener("click", function () {
-            // update the attributes
-            document.getElementById("myImage").src = "hasuApa.jpg";
-            document.getElementById("myImage").width = "400";
-
-            // set a new attribute and value
-            document.getElementById("myImage").setAttribute("height", "400");
-        })
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/changeAttributeOutput.png">
-</li>
-
-<li>
-<h4>remove existing HTML elements and attributes:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
-        <p>Click the button to change my color!</p>
-    </div>
-
-    <button id="btn">Click</button>
-
-    <script>
-        document.getElementById("btn").addEventListener("click", function () {
-            document.getElementById("myDiv").remove();
-        });
-    </script>
-</body>
-
-</html>
-```
-</li>
-
-
-
-<li>
-<h4>add new HTML elements and attributes:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="divContainer1">
-
-    </div>
-
-    <button id="btn1">Click</button>
-
-    <div id="divContainer2">
-
-    </div>
-
-    <button id="btn2">Click</button>
-
-
-    <script>
-        document.getElementById("btn1").addEventListener("click", function () {
-            const newParagraph = document.createElement("p");
-            newParagraph.innerText = "this is a new paragraph created by JS";
-            document.getElementById("divContainer1").appendChild(newParagraph);
-
-        });
-        // alternatively you can use temple literal (backticks ``)
-        document.getElementById("btn2").addEventListener("click", function () {
-            document.getElementById("divContainer2").innerHTML += `
-        <p>This a new paragraph created by backticks</p>
-        `;
-        });
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/createNewElement.png">
-</li>
-
-
-
-<li>
-<h4>change all the CSS styles in the page:</h4>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Object Model</title>
-</head>
-
-<body>
-    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
-        <p>Click the button to change my color!</p>
-    </div>
-
-    <button id="btn">Click</button>
-
-    <script>
-        document.getElementById("btn").addEventListener("click", function () {
-            document.getElementById("myDiv").style.backgroundColor = "yellow";
-        });
-    </script>
-</body>
-
-</html>
-```
-
-<img src="images/changeCSS.png">
-</li>
-
-</ul>
-
-<hr>
-
-
-
-
-
 
 
 
@@ -5620,6 +5055,584 @@ DOM collection is array like means you can access items with indexes, and can us
 <hr>
 
 
+
+
+
+<h2 id="element-selecting-methods" align="center">Elements selecting methods</h2>
+
+<ol>
+
+<li>
+<h4 id="getElementById()">getElementById():</h4>
+<p>Selects a single element by its id attribute:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <h1 id="title">Hello World</h1>
+
+    <script>
+        const element = document.getElementById("title");
+        console.log(element); // Output: <h1 id="title">Hello World</h1>
+        console.log(element.tagName); // Output: H1
+        console.log(element.id); // Output: title
+        console.log(element.className); // Output: (empty string, since no class is assigned)
+        console.log(element.innerText) // output: Hello World
+        console.log(element.innerHTML); // Output: Hello World
+        console.log(element.textContent); // Output: Hello World
+        console.log(element.outerHTML); // Output: <h1 id="title">Hello World
+    </script>
+</body>
+
+</html>
+```
+
+</li>
+
+<li>
+<h4 id="getElementsByClassName()">getElementsByClassName()</h4>
+<p>Selects all elements with the given class name:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <p class="note">Note 1</p>
+    <p class="note">Note 2</p>
+
+    <script>
+        const elements = document.getElementsByClassName("note");
+        console.log(elements); // Output: HTMLCollection(2) [p.note, p.note]
+        for (let el of elements) {
+            console.log(el.innerHTML); // Output: Note 1, Note 2
+        }
+    </script>
+
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4 id="getElementsByTagName()">getElementsByTagName():</h4>
+<p>Selects all elements with the specified tag name:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+
+    <script>
+        const items = document.getElementsByTagName("li");
+        console.log(items) // HTMLCollection(2) [li, li]
+        for (let item of items) {
+            console.log(item.innerHTML); // Output: Apple, Banana
+        }
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+    </header>
+
+    <main>
+        <h1>My Awesome DOM de baba</h1>
+        <ul>
+            <li>Jalali set</li>
+            <li>Shafayet</li>
+            <li>Bonobash</li>
+        </ul>
+    </main>
+
+    <script>
+        console.log(document.getElementsByTagName('h1'));
+
+        const heading = document.getElementsByTagName('h1');
+        console.log(heading);
+
+        const liCollection = document.getElementsByTagName('li');
+        for (const li of liCollection) {
+            console.log(li);
+        }
+        for (const li of liCollection) {
+            console.log(li.innerText);
+        }
+        const allHeadings = document.getElementsByTagName("h1");
+        for (const h1 of allHeadings) {
+            console.log(h1.innerText);
+        }
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/getElementBYTagNameOutput.png">
+</li>
+
+<li>
+<h4 id="getElementsByName()">getElementsByName():</h4>
+<p>Selects elements with a specific name attribute. Mostly used with input, code, textarea, or select :</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <input type="text" name="username" value="Muhammad">
+    <input type="text" name="username" value="Tamim">
+
+    <script>
+        const inputs = document.getElementsByName("username");
+        console.log(inputs); // NodeList(2) [input, input]
+        console.log(inputs[0]); // This will log the first input element 
+        console.log(inputs[1]); // This will log the second input element
+        for (let input of inputs) {
+            console.log(input); // This will log each input element 
+        }
+        inputs.forEach(input => input.value = "Tamim");
+    </script>
+
+</body>
+
+</html>
+```
+
+</li>
+
+<li>
+<h4 id="querySelector()">querySelector():</h4>
+<p>Selects the first element that matches a CSS selector:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+
+    <div>
+        <p>One</p>
+        <p>Two</p>
+    </div>
+
+    <input type="text" name="userName" value="Tamim">
+    <input type="text" name="age">
+
+    <script>
+        const firstCard = document.querySelector(".card");
+        console.log(firstCard.textContent); // Output: Card 1
+
+        const paragraph = document.querySelector("div > p");
+        console.log(paragraph.innerHTML) // Output: One
+
+        const input = document.querySelector("input[name='userName']");
+        console.log(input.value); // Output: Tamim
+
+        const input2 = document.querySelector("input[name='age']");
+        input2.value = "25"; // Set value to 25
+    </script>
+
+</body>
+
+</html>
+```
+</li>
+
+<li>
+<h4 id="querySelectorAll()">querySelectorAll():</h4>
+<p>Selects all elements that match a CSS selector:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <p class="note">Note A</p>
+    <p class="note">Note B</p>
+
+    <div>
+        <p>One</p>
+        <p>Two</p>
+    </div>
+
+    <script>
+        const notes = document.querySelectorAll(".note");
+        notes.forEach(note => console.log(note.innerHTML)); // Output: Note A, Note B
+
+        const paragraphs = document.querySelectorAll("div > p");
+        console.log(paragraphs); // NodeList(2) [p, p]
+        for (const paragraph of paragraphs) {
+            console.log(paragraph.innerHTML); // Output: One, Two
+        }
+    </script>
+
+</body>
+
+</html>
+```
+</li>
+
+</ol>
+
+
+
+<h3>Examples:</h3>
+
+<ul>
+
+<li>
+<h4>All methods at a time:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        const liCollection = document.getElementsByTagName('li');
+        console.log(liCollection);
+        for (const li of liCollection) {
+            console.log(li.innerText);
+        }
+
+        // option -1: getElementByTagName
+        const allHeadings = document.getElementsByTagName('h1');
+        for (const h1 of allHeadings) {
+            console.log(h1.innerText);
+        }
+
+        // option -2: getElementById
+        const fruitsTitle = document.getElementById('fruits-title');
+        fruitsTitle.innerText = "Fruits changed by JS";
+
+        // option -3: getElementsByClassName
+        const places = document.getElementsByClassName('important-places');
+        for (const place of places) {
+            console.log(place.innerText);
+        }
+
+        // option -4: querySelector
+        const placesContainer = document.querySelector('#places-container');
+        console.log(placesContainer);
+
+        // option -5: querySelectorAll
+        const someLi = document.querySelectorAll('.fruits-container li');
+        console.log(someLi);
+        for (const li of someLi) {
+            console.log(li.innerText);
+        }
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/allElementSelectiongMethods.png">
+</li>
+
+
+<li>
+<h4>change all the HTML elements in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <p id="demo">This is the original text.</p>
+    <button id="changeTextBtn">Click Me</button>
+
+    <script>
+        document.getElementById("changeTextBtn").addEventListener("click", function () {
+            document.getElementById("demo").innerText = "The text has been changed by js";
+            // or
+            /* document.getElementById("demo").innerContent = "The text has been changed by js";
+             Note: we basically use innerText more than the innerContent 
+            */
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/elementChanges.png">
+</li>
+
+<li>
+<h4>change the HTML attributes in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <img id="myImage" src="myImage.jpg" width="200px">
+    <button id="btn">Click Me</button>
+
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            // update the attributes
+            document.getElementById("myImage").src = "hasuApa.jpg";
+            document.getElementById("myImage").width = "400";
+
+            // set a new attribute and value
+            document.getElementById("myImage").setAttribute("height", "400");
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/changeAttributeOutput.png">
+</li>
+
+<li>
+<h4>remove existing HTML elements and attributes:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").remove();
+        });
+    </script>
+</body>
+
+</html>
+```
+</li>
+
+
+
+<li>
+<h4>add new HTML elements and attributes:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="divContainer1">
+
+    </div>
+
+    <button id="btn1">Click</button>
+
+    <div id="divContainer2">
+
+    </div>
+
+    <button id="btn2">Click</button>
+
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function () {
+            const newParagraph = document.createElement("p");
+            newParagraph.innerText = "this is a new paragraph created by JS";
+            document.getElementById("divContainer1").appendChild(newParagraph);
+
+        });
+        // alternatively you can use temple literal (backticks ``)
+        document.getElementById("btn2").addEventListener("click", function () {
+            document.getElementById("divContainer2").innerHTML += `
+        <p>This a new paragraph created by backticks</p>
+        `;
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/createNewElement.png">
+</li>
+
+
+
+<li>
+<h4>change all the CSS styles in the page:</h4>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").style.backgroundColor = "yellow";
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/changeCSS.png">
+</li>
+
+</ul>
+
+<hr>
+
+
+
+
+
+
+
+
+
 <h2 id="content-manipulation" align="center">Content Manipulation</h2>
 
 <h3 id="innerHTML-vs-outerHTML-vs-textContent-vs-innerText">innerHTML vs outerHTML vs textContent vs innerText:</h3>
@@ -5780,9 +5793,9 @@ DOM collection is array like means you can access items with indexes, and can us
     <script>
         const box = document.getElementById("box");
 
-        console.log(box.id);
-        console.log(box.className);
-        console.log(box.classList);
+        console.log(box.id); // box
+        console.log(box.className); // text-red-500 bg-green-600 border-10 border-blue-500 p-6
+        console.log(box.classList); 
         // DOMTokenList(5) ['text-red-500', 'bg-green-600', 'border-10', 'border-blue-500', 'p-6' value: 'text-red-500 bg-green-600 border-10 border-blue-500 p-6']
 
         // classList methods
@@ -5822,13 +5835,13 @@ DOM collection is array like means you can access items with indexes, and can us
         const divElement = document.getElementById("myDiv");
 
         // tagName and nodeName of the element
-        console.log("divElement.tagName:", divElement.tagName);     // DIV
-        console.log("divElement.nodeName:", divElement.nodeName);   // DIV
+        console.log(divElement.tagName);     // DIV
+        console.log(divElement.nodeName);   // DIV
 
         // Let's look at a text node
         const textNode = divElement.firstChild;
 
-        console.log("textNode.nodeName:", textNode.nodeName);       // #text
+        console.log(textNode.nodeName);       // #text
         console.log(textNode.tagName); // This will be undefined
 
         // Let's check the <span> tag inside the div
@@ -6243,7 +6256,8 @@ DOM collection is array like means you can access items with indexes, and can us
 
     <script>
         const div = document.createElement("div");
-        div.textContent = "Hello World";
+        div.innerText = "Hello World";
+        // div.textContent = "Hello WOrld"
         div.className = "bg-blue-500 text-white p-4 rounded-lg shadow-lg";
         document.body.appendChild(div); // Adds to the page
     </script>
@@ -6461,7 +6475,7 @@ DOM collection is array like means you can access items with indexes, and can us
 
         for (let i = 1; i <= 3; i++) {
             let li = document.createElement("li");
-            li.textContent = `Item ${i}`;
+            li.innerText = `Item ${i}`;
             fragment.appendChild(li);
         }
 
@@ -6968,16 +6982,6 @@ DOM collection is array like means you can access items with indexes, and can us
 <h4 id="what-is-event">What is events:</h4>
 <p>Events are signals that something has happened — like a button click, key press, page load, etc. You can "listen" for these events and run code in response.</p>
 
-<h4 id="common-vent-types">Common Event Types:</h4>
-
-<ul>
-<li>click: When an element is clicked.</li>
-<li>submit: When a form is submitted.</li>
-<li>load: When the page or an image finishes loading.</li>
-<li>keydown, keyup: Keyboard interactions.</li>
-<li>mouseover, mouseout: Mouse movement events.</li>
-</ul>
-
 <h4 id="event-object">Event Object:</h4>
 <p>Every event has an associated event object that contains information about the event.</p>
 
@@ -7028,42 +7032,6 @@ DOM collection is array like means you can access items with indexes, and can us
             alert("Default action prevented!");
         });
     </script>
-
-</body>
-
-</html>
-```
-
-
-<h4 id="stopPropagation()">StopPropagation()</h4>
-<p>Stops the event from bubbling up to parent elements</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
-</head>
-
-<body>
-    <div id="parent">
-        <button id="child">Click Me</button>
-    </div>
-
-    <script>
-        document.getElementById("parent").addEventListener("click", () => {
-            alert("Parent Clicked");
-        });
-
-        document.getElementById("child").addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent parent click
-            alert("Child Clicked");
-        });
-    </script>
-
 
 </body>
 
@@ -7312,164 +7280,407 @@ DOM collection is array like means you can access items with indexes, and can us
 
 <h3 align="center" id="common-events">Common Events</h3>
  <ul>
-    <li><strong>Mouse Events</strong>
-      <ul>
-        <li>click</li>
-        <li>dblclick</li>
-        <li>mousedown</li>
-        <li>mouseup</li>
-        <li>mousemove</li>
-        <li>mouseenter</li>
-        <li>mouseleave</li>
-        <li>mouseover</li>
-        <li>mouseout</li>
-        <li>contextmenu</li>
-      </ul>
-    </li>
-    <li><strong>Keyboard Events</strong>
-      <ul>
-        <li>keydown</li>
-        <li>keypress</li> <!-- Deprecated -->
-        <li>keyup</li>
-      </ul>
-    </li>
-    <li><strong>Form Events</strong>
-      <ul>
-        <li>submit</li>
-        <li>reset</li>
-        <li>change</li>
-        <li>input</li>
-        <li>focus</li>
-        <li>blur</li>
-        <li>focusin</li>
-        <li>focusout</li>
-      </ul>
-    </li>
-    <li><strong>Clipboard Events</strong>
-      <ul>
-        <li>copy</li>
-        <li>cut</li>
-        <li>paste</li>
-      </ul>
-    </li>
-    <li><strong>Drag and Drop Events</strong>
-      <ul>
-        <li>drag</li>
-        <li>dragstart</li>
-        <li>dragend</li>
-        <li>dragenter</li>
-        <li>dragleave</li>
-        <li>dragover</li>
-        <li>drop</li>
-      </ul>
-    </li>
-    <li><strong>Touch Events (Mobile)</strong>
-      <ul>
-        <li>touchstart</li>
-        <li>touchend</li>
-        <li>touchmove</li>
-        <li>touchcancel</li>
-      </ul>
-    </li>
-    <li><strong>Pointer Events</strong>
-      <ul>
-        <li>pointerdown</li>
-        <li>pointerup</li>
-        <li>pointermove</li>
-        <li>pointerover</li>
-        <li>pointerout</li>
-        <li>pointerenter</li>
-        <li>pointerleave</li>
-        <li>pointercancel</li>
-      </ul>
-    </li>
-    <li><strong>Focus Events</strong>
-      <ul>
-        <li>focus</li>
-        <li>blur</li>
-        <li>focusin</li>
-        <li>focusout</li>
-      </ul>
-    </li>
-    <li><strong>Window Events</strong>
-      <ul>
-        <li>load</li>
-        <li>unload</li>
-        <li>beforeunload</li>
-        <li>resize</li>
-        <li>scroll</li>
-        <li>error</li>
-        <li>hashchange</li>
-        <li>popstate</li>
-      </ul>
-    </li>
-    <li><strong>Media Events</strong>
-      <ul>
-        <li>play</li>
-        <li>pause</li>
-        <li>ended</li>
-        <li>volumechange</li>
-        <li>timeupdate</li>
-        <li>durationchange</li>
-        <li>loadeddata</li>
-        <li>loadedmetadata</li>
-        <li>seeking</li>
-        <li>seeked</li>
-        <li>stalled</li>
-        <li>suspend</li>
-        <li>waiting</li>
-      </ul>
-    </li>
-    <li><strong>Animation Events</strong>
-      <ul>
-        <li>animationstart</li>
-        <li>animationend</li>
-        <li>animationiteration</li>
-      </ul>
-    </li>
-    <li><strong>Transition Events</strong>
-      <ul>
-        <li>transitionstart</li>
-        <li>transitionend</li>
-        <li>transitionrun</li>
-        <li>transitioncancel</li>
-      </ul>
-    </li>
-    <li><strong>Wheel Events</strong>
-      <ul>
-        <li>wheel</li>
-      </ul>
-    </li>
-    <li><strong>Composition Events</strong>
-      <ul>
-        <li>compositionstart</li>
-        <li>compositionupdate</li>
-        <li>compositionend</li>
-      </ul>
-    </li>
-    <li><strong>Other Events</strong>
-      <ul>
-        <li>DOMContentLoaded</li>
-        <li>visibilitychange</li>
-        <li>online</li>
-        <li>offline</li>
-        <li>message</li>
-        <li>storage</li>
-        <li>animationcancel</li>
-        <li>toggle</li>
-      </ul>
-    </li>
-  </ul>
+  <li><strong>Mouse Events</strong>
+    <ul>
+      <li><code>click</code> – Single click on an element</li>
+      <li><code>dblclick</code> – Double click</li>
+      <li><code>mousedown</code> – Mouse button pressed</li>
+      <li><code>mouseup</code> – Mouse button released</li>
+      <li><code>mousemove</code> – Mouse moves over an element</li>
+      <li><code>mouseenter</code> – Mouse enters an element (no bubbling)</li>
+      <li><code>mouseleave</code> – Mouse leaves an element (no bubbling)</li>
+      <li><code>mouseover</code> – Mouse moves onto an element</li>
+      <li><code>mouseout</code> – Mouse moves off an element</li>
+      <li><code>contextmenu</code> – Right-click opens context menu</li>
+    </ul>
+  </li>
+
+  <li><strong>Keyboard Events</strong>
+    <ul>
+      <li><code>keydown</code> – Key is pressed</li>
+      <li><code>keypress</code> – Key is pressed (deprecated)</li>
+      <li><code>keyup</code> – Key is released</li>
+    </ul>
+  </li>
+
+  <li><strong>Form Events</strong>
+    <ul>
+      <li><code>submit</code> – Form is submitted</li>
+      <li><code>reset</code> – Form is reset</li>
+      <li><code>change</code> – Form element value changes</li>
+      <li><code>input</code> – User input changes (real-time)</li>
+      <li><code>focus</code> – Element gains focus</li>
+      <li><code>blur</code> – Element loses focus</li>
+      <li><code>focusin</code> – Focus enters a descendant (bubbles)</li>
+      <li><code>focusout</code> – Focus leaves a descendant (bubbles)</li>
+    </ul>
+  </li>
+
+  <li><strong>Clipboard Events</strong>
+    <ul>
+      <li><code>copy</code> – User copies content</li>
+      <li><code>cut</code> – User cuts content</li>
+      <li><code>paste</code> – User pastes content</li>
+    </ul>
+  </li>
+
+  <li><strong>Drag and Drop Events</strong>
+    <ul>
+      <li><code>drag</code> – Element is being dragged</li>
+      <li><code>dragstart</code> – Dragging starts</li>
+      <li><code>dragend</code> – Dragging ends</li>
+      <li><code>dragenter</code> – Dragged item enters drop target</li>
+      <li><code>dragleave</code> – Dragged item leaves drop target</li>
+      <li><code>dragover</code> – Dragged item is over drop target</li>
+      <li><code>drop</code> – Dragged item is dropped</li>
+    </ul>
+  </li>
+
+  <li><strong>Touch Events (Mobile)</strong>
+    <ul>
+      <li><code>touchstart</code> – Finger touches screen</li>
+      <li><code>touchend</code> – Finger is lifted off screen</li>
+      <li><code>touchmove</code> – Finger moves on screen</li>
+      <li><code>touchcancel</code> – Touch is canceled</li>
+    </ul>
+  </li>
+
+  <li><strong>Pointer Events</strong>
+    <ul>
+      <li><code>pointerdown</code> – Pointer is pressed</li>
+      <li><code>pointerup</code> – Pointer is released</li>
+      <li><code>pointermove</code> – Pointer moves</li>
+      <li><code>pointerover</code> – Pointer enters element</li>
+      <li><code>pointerout</code> – Pointer leaves element</li>
+      <li><code>pointerenter</code> – Pointer enters (no bubbling)</li>
+      <li><code>pointerleave</code> – Pointer leaves (no bubbling)</li>
+      <li><code>pointercancel</code> – Pointer action canceled</li>
+    </ul>
+  </li>
+
+  <li><strong>Focus Events</strong>
+    <ul>
+      <li><code>focus</code> – Element gets focus</li>
+      <li><code>blur</code> – Element loses focus</li>
+      <li><code>focusin</code> – Focus enters child (bubbles)</li>
+      <li><code>focusout</code> – Focus leaves child (bubbles)</li>
+    </ul>
+  </li>
+
+  <li><strong>Window Events</strong>
+    <ul>
+      <li><code>load</code> – Page or resource loaded</li>
+      <li><code>unload</code> – Page is unloading (deprecated)</li>
+      <li><code>beforeunload</code> – User tries to leave page</li>
+      <li><code>resize</code> – Window is resized</li>
+      <li><code>scroll</code> – User scrolls page or element</li>
+      <li><code>error</code> – Error loading resource</li>
+      <li><code>hashchange</code> – URL hash (#) changes</li>
+      <li><code>popstate</code> – History changes (back/forward)</li>
+    </ul>
+  </li>
+
+  <li><strong>Media Events</strong>
+    <ul>
+      <li><code>play</code> – Media playback starts</li>
+      <li><code>pause</code> – Media is paused</li>
+      <li><code>ended</code> – Media has finished playing</li>
+      <li><code>volumechange</code> – Volume is changed</li>
+      <li><code>timeupdate</code> – Current playback time updates</li>
+      <li><code>durationchange</code> – Media duration changes</li>
+      <li><code>loadeddata</code> – Media data loaded</li>
+      <li><code>loadedmetadata</code> – Media metadata loaded</li>
+      <li><code>seeking</code> – Seeking begins</li>
+      <li><code>seeked</code> – Seeking ends</li>
+      <li><code>stalled</code> – Media data stalled</li>
+      <li><code>suspend</code> – Loading is suspended</li>
+      <li><code>waiting</code> – Waiting for data</li>
+    </ul>
+  </li>
+
+  <li><strong>Animation Events</strong>
+    <ul>
+      <li><code>animationstart</code> – CSS animation starts</li>
+      <li><code>animationend</code> – CSS animation ends</li>
+      <li><code>animationiteration</code> – Animation repeats</li>
+    </ul>
+  </li>
+
+  <li><strong>Transition Events</strong>
+    <ul>
+      <li><code>transitionstart</code> – CSS transition starts</li>
+      <li><code>transitionend</code> – CSS transition ends</li>
+      <li><code>transitionrun</code> – Transition is running</li>
+      <li><code>transitioncancel</code> – Transition canceled</li>
+    </ul>
+  </li>
+
+  <li><strong>Wheel Events</strong>
+    <ul>
+      <li><code>wheel</code> – Mouse wheel is used</li>
+    </ul>
+  </li>
+
+  <li><strong>Composition Events</strong>
+    <ul>
+      <li><code>compositionstart</code> – Text input starts (IME)</li>
+      <li><code>compositionupdate</code> – Text input updates</li>
+      <li><code>compositionend</code> – Text input ends</li>
+    </ul>
+  </li>
+
+  <li><strong>Other Events</strong>
+    <ul>
+      <li><code>DOMContentLoaded</code> – HTML loaded and parsed</li>
+      <li><code>visibilitychange</code> – Tab becomes hidden or visible</li>
+      <li><code>online</code> – Browser goes online</li>
+      <li><code>offline</code> – Browser goes offline</li>
+      <li><code>message</code> – Message received (e.g., from iframe)</li>
+      <li><code>storage</code> – Local/session storage changed</li>
+      <li><code>animationcancel</code> – Animation is canceled</li>
+      <li><code>toggle</code> – `details` element is toggled</li>
+    </ul>
+  </li>
+</ul>
 
 
 <h3 align="center" id="event-flow">Event Flow</h3>
-<p>DOM events go through 3 phases:</p>
+<p>Event Flow describes how events travel through the DOM tree. When you click, type, or interact with a webpage, the event doesn’t go straight to the target element. It flows through three phases:</p>
 
 <ol>
 <li>Capturing: Event starts from the root and goes down.</li>
 <li>Target: The actual element that triggered the event.</li>
 <li>Bubbling: Event goes back up to the root.</li>
 </ol>
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        })
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        })
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button")
+        })
+    </script>
+</body>
+
+</html>
+```
+<img src="images/eventFlowOutput.png">
+
+<p>When You click the button, the event flow would be:</p>
+<ol>
+<li>Capturing: document → outer div → inner div → button</li>
+<li>Target: button (the actual target)</li>
+<li>Bubbling: button → inner div → outer div → document</li>
+</ol>
+
+
+<h4 id="useCapture-paramenter">UseCapture paramenter:</h4>
+<p>In the event flow phase, the useCapture parameter controls when the event handler runs:</p>
+<ul>
+<li>If useCapture is set to true, the event listener executes during the capturing phase </li>
+<li>If useCapture is set to false (default), the listener runs during the bubbling phase </li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        }, true)
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        })
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button")
+        })
+        /*
+        Outer Div
+        Button
+        Inner Div
+        */
+    </script>
+</body>
+
+</html>
+```
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        })
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        }, true)
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button")
+        })
+        /*
+        Inner Div
+        Button
+        Outer Div
+        */
+    </script>
+</body>
+
+</html>
+```
+
+<h4 id="stopPropagation()">stopPropagation():</h4>
+<p>event.stopPropagation() method used to stop the event from bubbling up.</p>
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        });
+
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        });
+
+        document.getElementById("button").addEventListener("click", (event) => {
+            console.log("Button");
+            event.stopPropagation(); // Stop the event here
+        });
+
+        // output: Button
+    </script>
+</body>
+
+</html>
+
+```
+
+<h4 id="stopImmediatePropagation()">stopImmediatePropagation():</h4>
+<p>Does everything stopPropagation() does, plus It also stops other listeners on the same element from executing.</p>
+
+<p>with stopPropagation()</p>
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div");
+        });
+
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div");
+        });
+
+        // Two handlers on the same button
+        document.getElementById("button").addEventListener("click", (event) => {
+            console.log("Button Handler 1");
+            event.stopPropagation();
+        });
+
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button Handler 2");
+        });
+
+        /*
+        Button Handler 1
+        Button Handler 2
+        */
+    </script>
+</body>
+
+</html>
+```
+<p>With stopImmediatePropagation()</p>
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div");
+        });
+
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div");
+        });
+
+        // Two handlers on the same button
+        document.getElementById("button").addEventListener("click", (event) => {
+            console.log("Button Handler 1");
+            event.stopImmediatePropagation();
+        });
+
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button Handler 2");
+        });
+
+        /*
+        Button Handler 1
+        */
+    </script>
+</body>
+
+</html>
+```
+
+
+<h4 id="event-delegation">Event Delegation:</h4>
+<p>Event Delegation is a technique where you attach a single event listener to a parent element instead of attaching listeners to each child element individually. This takes advantage of event bubbling, where an event on a child element "bubbles up" to its parent.</p>
+
+<p>Without Delegation</p>
 
 ```html
 <!DOCTYPE html>
@@ -7483,62 +7694,37 @@ DOM collection is array like means you can access items with indexes, and can us
 
 <body>
 
-    <div id="outer">
-        Outer Div
-        <div id="middle">
-            Middle Div
-            <div id="inner">
-                Inner Div (Click Me)
-            </div>
-        </div>
-    </div>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
 
     <script>
-        const outer = document.getElementById("outer");
-        const middle = document.getElementById("middle");
-        const inner = document.getElementById("inner");
-
-        // Capturing Phase (3rd parameter = true)
-        /*
-        in the third argument true means that the event listener will be triggered during the capturing phase.
-        If the third argument is false (by default), the event listener will be triggered during the bubbling phase
-        */
-
-        outer.addEventListener("click", () => {
-            console.log("Outer DIV - Capturing");
-        }, true);
-
-        middle.addEventListener("click", () => {
-            console.log("Middle DIV - Capturing");
-        }, true);
-
-        inner.addEventListener("click", () => {
-            console.log("Inner DIV - Capturing");
-        }, true);
-
-        // Bubbling Phase (default, 3rd parameter = false)
-        outer.addEventListener("click", () => {
-            console.log("Outer DIV - Bubbling");
-        });
-
-        middle.addEventListener("click", () => {
-            console.log("Middle DIV - Bubbling");
-        });
-
-        inner.addEventListener("click", () => {
-            console.log("Inner DIV - Bubbling");
-        });
+        const items = document.querySelectorAll("li");
+        // items.forEach(item => {
+        //     item.addEventListener("click", function () {
+        //         alert("You clicked " + item.textContent);
+        //     });
+        // });
+        // or
+        for (const item of items) {
+            item.addEventListener("click", () => {
+                alert(`You clicked ${item.innerText}`); 
+            })
+        }
     </script>
-
 </body>
 
 </html>
 ```
+<p>Problems:</P>
+<ul>
+<li>You must manually attach listeners to every li.</il>
+<li>Won’t work for new li that added dynamically.</li>
+</ul>
 
-
-<h3 align="center" id="event-delegation">Event Delegation</h3>
-<p>Instead of adding listeners to every child, you add one listener to a common parent and use event.target to identify the clicked child.</p>
-
+<p>With Delegation:</p>
 
 ```html
 <!DOCTYPE html>
@@ -7555,29 +7741,123 @@ DOM collection is array like means you can access items with indexes, and can us
     <ul id="list">
         <li>Item 1</li>
         <li>Item 2</li>
+        <li>Item 3</li>
     </ul>
 
     <script>
-        document.getElementById("list").addEventListener("click", function (e) {
+        const list = document.getElementById("list");
+
+        list.addEventListener("click", (e) => {
+            console.log(e.target.tagName) // LI
+            if (e.target.tagName === "LI") {
+                alert("You Clicked " + event.target.innerText);
+            }
+        })
+
+    </script>
+</body>
+
+</html>
+```
+
+<ul>
+<li>Capturing Phase : document → html → body → ul → li (clicked)
+</li>
+<li>Target Phase : li (Item 2)</li>
+<li>Bubbling Phase : li → ul → body → html → document
+</li>
+</ul>
+
+
+<p>Witout Delegation (Won’t work for new li that added dynamically.):</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul id="todo-list">
+        <li>Task 1</li>
+    </ul>
+    <button id="add-task">Add Task</button>
+
+    <script>
+        const list = document.getElementById("todo-list");
+        const addTask = document.getElementById("add-task");
+
+        addTask.addEventListener("click", function () {
+            const li = document.createElement("li");
+            li.textContent = "New Task";
+            list.appendChild(li);
+        });
+
+        const items = document.querySelectorAll("li");
+        items.forEach(item => {
+            item.addEventListener("click", function () {
+                alert("You clicked " + item.textContent);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+<p>With Delegations:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul id="todo-list">
+        <li>Task 1</li>
+    </ul>
+    <button id="add-task">Add Task</button>
+
+    <script>
+        const list = document.getElementById("todo-list");
+        const addTask = document.getElementById("add-task");
+
+        addTask.addEventListener("click", function () {
+            const li = document.createElement("li");
+            li.innerText = "New Task";
+            list.appendChild(li);
+        });
+
+        list.addEventListener("click", function (e) {
             if (e.target.tagName === "LI") {
                 alert("Clicked: " + e.target.textContent);
             }
         });
     </script>
 
-
 </body>
 
 </html>
 ```
-<hr>
 
 
 
 
-<h2 align="center" id="event-examples">Event Examples</h2>
+<h3 id="event-examples">Event Examples:</h3>
 
-<h3 id="create-a-comment-box-and-display-comment">create a comment box and display comment:</h3>
+<h4 id="create-a-comment-box-and-display-comment">create a comment box and display comment:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -7641,7 +7921,7 @@ DOM collection is array like means you can access items with indexes, and can us
 <img src="images/comments.png">
 
 
-<h3 id="simple-delete-confirmation-button">Simple delete confirmation button:</h3>
+<h4 id="simple-delete-confirmation-button">Simple delete confirmation button:</h4>
 
 ```html
 <!DOCTYPE html>

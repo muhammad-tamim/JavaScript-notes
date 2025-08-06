@@ -4523,7 +4523,6 @@ fetchData();
 <img src="images/Example-of-DOM-Node-Tree.png">
 <img src="images/image10-Parents_and_Children_Tree_Data_Structure.jpg">
 <img src="images/js-tree1.png">
-<img src="images/dom-tree-2.png">
 
 <h4>Note:</h4>
 <ul>
@@ -4535,6 +4534,25 @@ fetchData();
 
 
 <h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships:</h3>
+<img src="images/dom-tree-2.png">
+
+| 🔢 Category | 🏷️ Property    | 🔍 Description                                                        |
+| ----------- | ------------------------ | --------------------------------------------------------------------- |
+| **Parent**  | `parentNode`             | Returns the parent **node** of the current node                       |
+|             | `parentElement`          | Returns the parent **element**, or `null` if parent is not an element |
+| **Child**   | `children`               | Returns a list of child **elements only**                             |
+|             | `childNodes`             | Returns all child **nodes** (elements, text, comments, etc.)          |
+|             | `firstElementChild`      | Returns the **first child element**                                   |
+|             | `firstChild`             | Returns the **first child node** (could be text)                      |
+|             | `lastElementChild`       | Returns the **last child element**                                    |
+|             | `lastChild`              | Returns the **last child node** (could be text)                       |
+| **Sibling** | `nextElementSibling`     | Returns the **next sibling element**                                  |
+|             | `nextSibling`            | Returns the **next sibling node** (can be text)                       |
+|             | `previousElementSibling` | Returns the **previous sibling element**                              |
+|             | `previousSibling`        | Returns the **previous sibling node** (can be text)                   |
+
+
+<h4>Example 1:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -4580,12 +4598,14 @@ fetchData();
 ```
 <img src="images/parent-child-sibling-relationship.png">
 
-<p>In this code:</p>
+<p>In the above example:</p>
 <ul>
 <li>The div is the parent of all three elements inside it</li>
 <li>The p and span elements are children of the div</li>
 <li>The two p elements and the span are siblings to each other</li>
 </ul>
+
+<h4>Example 2:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -4673,7 +4693,7 @@ DOM collection is array like means you can access items with indexes, and can us
 | `NodeList`         | Collection of **nodes** 
 | `HTMLCollection`   | Live collection of **HTML elements only**           |
 | `childNodes`       | NodeList of **all types** of child nodes            |
-| `children`         | HTMLCollection of **only element** children         |
+
   
 
 <h3 id="document-object">Document Object:</h3>
@@ -4755,7 +4775,7 @@ DOM collection is array like means you can access items with indexes, and can us
 <td>Controls browser features outside the document</td>
 </tr>
 <tr>
-<td>Standardized by W3C/WHATWG</td>
+<td>Standardized (don't varies between browsers)</td>
 <td>Not standardized (varies between browsers)</td>
 </tr>
 <tr>
@@ -4775,27 +4795,26 @@ DOM collection is array like means you can access items with indexes, and can us
 </head>
 
 <body>
-    <h1 id="myHeading">Hello World!</h1>
+    <h1 id="myHeading"></h1>
 
     <script>
         // DOM
         const heading = document.getElementById("myHeading");
-        heading.textContent = "Hello from DOM!";
+        heading.innerText = "Hello from DOM!";
 
         // BOM
         const url = window.location.href;
         console.log("Current URL:", url);
 
-        window.alert("Welcome to the DOM and BOM example!");
+        window.alert("Welcome to BOM");
     </script>
 </body>
 
 </html>
 ```
-<img src="images/window.alert.png">
-<img src="images/DOM-text-change.png">
-
-         
+<img src="images/welbome-to-BOM.png">
+<img src="images/welcome-to-DOM.png">
+      
 
 <h3 id="what-can-do-javaScript-with-dom">What can do javaScript with DOM:</h3>
 

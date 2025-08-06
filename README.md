@@ -4513,7 +4513,7 @@ fetchData();
 <h2 id="dom-fundamentals" align="center">Introduction</h2>
 
 <h3 id="what-is-dom">What is DOM:</h3>
-<p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
+<p>DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a <a href="#hierarchical">hierarchical</a> tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.</p>
 
 
 
@@ -4990,6 +4990,18 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </ul>
 
+
+<h3>Q&A:</h3>
+<ul>
+  <li>
+    <p><strong>hierarchical: </strong>Hierarchical means things are arranged like a tree, where:</p>
+    <ul>
+      <li>One item is at the top (called the root).</li>
+      <li>Other items are under it, like branches and sub-branches.</li>
+      <li>Each item can have children and a parent.</li>
+    </ul>
+  </li>
+</ul>
 <hr>
 
 

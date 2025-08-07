@@ -3165,7 +3165,16 @@ console.log(arr.includes(5)) // false
 </ul>
 
 <li id="iteration-transformation">Iteration / Transformation</li>
-    <ul>
+
+| Method      | Purpose                                              | Returns                         | Modifies Original Array |                                               |
+| ----------- | ---------------------------------------------------- | ------------------------------- | ----------------------- | ------------------------------------------------------------- |
+| `map()`     | return a new array by applying function to each element      | ✅ New array                     | ❌ No                    
+| `forEach()` | Executes a function for each element; no return value      | ❌ No Return                   | ❌ No                    
+| `filter()`  | Filters elements based on a condition                | ✅ New filtered array            | ❌ No                    
+| `find()`    | Finds the **first** element that matches a condition | ✅ Single element or `undefined` | ❌ No                    
+
+
+<ul>
       <li>
         <h4 id="forEach">forEach(callback) – Executes a function for each element; no return value:</h4>
         
@@ -3174,6 +3183,26 @@ let arr = [1, 2, 3]
 arr.forEach(n => console.log(n * 2)); // 2 4 6       
 </code></pre>
       
+<pre><code>
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+products.forEach(product => console.log(product))
+
+/*
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+*/
+</code></pre>
+
 </li>
       <li>
         <h4 id="map">map(callback) – return a new array by applying function to each element:</h4>
@@ -3184,6 +3213,44 @@ let arr2 = arr.map(n => n * 2);
 console.log(arr) // [ 1, 2, 3 ]
 console.log(arr2) // [ 2, 4, 6 ]
 </code></pre>
+
+<pre><code>
+// using map for just printf (not recommended)
+const numbers = [1, 2, 3, 4, 5];
+
+const newNumber = numbers.map(number => console.log(number))
+
+console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
+</code></pre>
+
+<pre><code>
+// using map for both element and index
+const names = ["tamim", "nasrin", "maria"];
+
+const newNames = names.map((element, index) => console.log(element, index))
+
+/*
+tamim 0
+nasrin 1
+maria 2
+ */
+</code></pre>
+
+<pre><code>
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+const productNames = products.map(product => product.name);
+console.log(productNames)
+
+// [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
+</code></pre>
+
 </li>
       <li>
         <h4 id="filter">filter(callback) – return a new array with elements that pass the test:</h4>
@@ -3194,6 +3261,28 @@ let arr2 = arr.filter(n => n % 2 === 0);
 console.log(arr) // [ 1, 2, 3, 4 ]
 console.log(arr2) // [ 2, 4 ]
 </code></pre>
+
+<pre><code>
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+const filterProducts = products.filter(product => product.price >= 1000)
+console.log(filterProducts);
+
+/*
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+*/
+
+const expensiveProducts = products.filter(product => product.price >= 5000);
+console.log(expensiveProducts); // []
+</code></pre>
+
 </li>
       <li>
         <h4 id="find">find(callback) – Returns the first element that matches:</h4>
@@ -3202,6 +3291,26 @@ console.log(arr2) // [ 2, 4 ]
 let arr = [1, 2, 3, 4, 5];
 const result = arr.find(n => n > 2);
 console.log(result); // 3
+</code></pre>
+
+<pre><code>
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+const foundProduct = products.find(product => product.brand === "apple");
+console.log(foundProduct)
+
+/*
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+*/
+
+const foundColor = products.find(product => product.color === "pink");
+console.log(foundColor) // undefined
 </code></pre>
 
 </li>

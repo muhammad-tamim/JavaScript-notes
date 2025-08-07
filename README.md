@@ -2035,6 +2035,127 @@ console.log(pen3);
 </code></pre>
 
 
+
+<h3>Dot Notation VS Bracket Notation:</h3>
+
+| Situation                                | Dot Notation | Bracket Notation |
+| ---------------------------------------- | ------------ | ---------------- |
+| Property name has **spaces**             | ❌            | ✅                |
+| Property name has **special characters** | ❌            | ✅                |
+| Property name starts with a **number**   | ❌            | ✅                |
+| Property accessed via **variable**       | ❌            | ✅                |
+| Used in a **loop**                       | ❌            | ✅                |
+| Key is from **JSON**                     | ❌            | ✅                |
+| Nested **dynamic access**                | ❌            | ✅                |
+
+
+<h4>example: </h4>
+<ul>
+<li>
+<h4>Property Name Has Spaces:</h4>
+
+<pre><code>
+const user = {
+  "first name": "Tamim",
+  "last name": "Hossain"
+};
+
+console.log(user["first name"]);  //  "Tamim"
+// console.log(user.first name);  //  SyntaxError
+</code></pre>
+</li>
+<li>
+<h4>Property Name Starts with a Number:</h4>
+
+<pre><code>
+const errorCodes = {
+  "404": "Not Found",
+  "500": "Internal Server Error"
+};
+
+console.log(errorCodes["404"]); //  "Not Found"
+// console.log(errorCodes.404); //  SyntaxError
+</code></pre>
+</li>
+<li>
+<h4>Property Name Has Special Characters:</h4>
+
+<pre><code>
+const config = {
+  "api-key": "123abc",
+  "user@domain": "admin"
+};
+
+console.log(config["api-key"]);       //  "123abc"
+console.log(config["user@domain"]);   //  "admin"
+// console.log(config.api-key);       //  Error: undefined - interpreted as subtraction
+</code></pre>
+</li>
+<li>
+<h4>Accessing Property Using a Variable:</h4>
+
+<pre><code>
+const key = "username";
+const user = {
+  username: "Tamim"
+};
+
+console.log(user[key]);     //  "Tamim"
+// console.log(user.key);   //  undefined (literally looks for 'key' property)
+</code></pre>
+</li>
+<li>
+<h4>Looping Through Object Keys:</h4>
+
+<pre><code>
+const scores = {
+  Alice: 90,
+  Bob: 80,
+  Charlie: 85
+};
+
+for (let name in scores) {
+  console.log(`${name}: ${scores[name]}`);
+}
+</code></pre>
+<p>Note: You must use bracket notation in loops for keys because keys are dynamic.</p>
+</li>
+<li>
+<h4>Working with JSON Data:</h4>
+
+<pre><code>
+const jsonData = {
+  "user-info": {
+    "first name": "Tamim",
+    "last name": "Hossain"
+  }
+};
+
+console.log(jsonData["user-info"]["first name"]); // 
+console.log(user-info.first name) // error
+</code></pre>
+</li>
+<li>
+<h4>Nested Dynamic Access:</h4>
+
+<pre><code>
+const data = {
+  settings: {
+    theme: "dark",
+    layout: "grid"
+  }
+};
+
+const section = "settings";
+const prop = "theme";
+
+console.log(data[section][prop]); //  "dark"
+</code></pre>
+</li>
+</ul>
+
+
+
 <h3 id="object.keys-and-object.Values">Object.keys(), Object.Values() amd Object.entries() methods:</h3>
 
 <pre><code>

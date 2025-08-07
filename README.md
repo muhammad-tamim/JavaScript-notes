@@ -164,6 +164,12 @@
         <ul>
         <li><a href="#setTimeOut-setInterval">setTimeOut() and setInterval()</a></li>
         <li><a href="#promise-fetch-async/await">Promise, fetch, async/await</a></li>
+            <ul>
+                <li><a href="#json">JSON</a></li>
+                <li><a href="#promise">promise</a></li>
+                <li><a href="#promise">fetch</a></li>
+                <li><a href="#async/await">async/await</a></li>
+            </ul>
         </ul>
         </ul>
     </ul>
@@ -4509,6 +4515,7 @@ const id = setInterval(() => {
 
 <p>Before learning about Promises, fetch(), and async/await, it’s important to understand the format of data that APIs usually return. Most APIs return data in JSON format:</p>
 
+<h4 id="json">JSON</h4>
 <p>JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").</p>
 
 <h4 id="JSON.stringify()">JSON.stringify() — Convert JS → JSON string:</h4>
@@ -4616,13 +4623,13 @@ Promise.all([moneyRequest, transferMoney, payFee])
 </li>
 <li>
 <h3 id="fetch">Fetch</h3>
-<p>The fetch() method is used to make HTTP requests (like GET, POST, etc.) to servers and APIs.It returns a Promise that resolves to the Response object.</p>
+<p>The fetch() method is used to make HTTP requests (like GET, POST, PUT, PATCH, DElETE etc.) to servers and APIs.It returns a Promise that resolves to the Response object.</p>
 
 <h4>Basic GET Request:</h4>
 
-<pre><code>
-// without Convert response to JSON
+<p>without Convert response to JSON:</p>
 
+<pre><code>
 fetch("https://jsonplaceholder.typicode.com/posts/1")
     .then(response => console.log(response))
     .catch(err => console.log(err))
@@ -4666,12 +4673,11 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
   url: 'https://jsonplaceholder.typicode.com/posts/1'
 }
 */
-
 </code></pre>
 
-<pre><code>
-// With Convert response to JSON
+<p>With Convert response to JSON:</p>
 
+<pre><code>
 fetch("https://jsonplaceholder.typicode.com/posts/1")
     .then(response => response.json())  // Convert response to JSON
     .then(data => console.log(data))    // Handle the data
@@ -4690,9 +4696,131 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
 }
 */
 </code></pre>
+
+<p>function to fetch user data from the API:</p>
+
+<pre><code>
+const handleLoadUser = () => {
+    fetch("https://jsonplaceholder.typicode.com/users") // fetch  user data
+        .then(res => res.json()) // Convert response to JSON
+        .then(data => {
+            console.log(data);
+            displayUser(data);
+        })
+}
+
+// function to display user data
+const displayUser = (users) => {
+    console.log(users); // Logs the entire user list
+    console.log(users[0]) // logs the first user (index 0)
+}
+handleLoadUser();
+</code></pre>
+<img src="images/Asynchronous-and-Synchronous-JavaScript-images/fetch-ouput-1.png">
+
+<p>Dynamically Display data:</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Click me for load user</button>
+
+    <div>
+        <ul id="users">
+
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", () => {
+            fetch("https://jsonplaceholder.typicode.com/users")
+                .then(response => response.json())
+                .then(data => showUser(data));
+        })
+
+        const showUser = (users) => {
+            const userContainer = document.getElementById("users")
+
+            for (const user of users) {
+                const li = document.createElement("li");
+                li.innerText = user.name;
+                userContainer.appendChild(li)
+            }
+        }
+    </script>
+</body>
+
+</html>
+```
+<img src="images/Asynchronous-and-Synchronous-JavaScript-images/fetch-output-2.png">
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            border: 2px solid red;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Load All Post:</h1>
+
+    <div id="postContainer">
+
+    </div>
+
+    <script>
+        const handlePost = () => {
+            // Making a fetch request to get the posts form the JSONPlaceholder API
+            fetch("https://jsonplaceholder.typicode.com/posts")
+                .then(response => response.json())
+                .then(data => displayPost(data));
+        }
+
+
+        const displayPost = (posts) => {
+            const postContainer = document.getElementById("postContainer")
+
+            for (const post of posts) {
+                const div = document.createElement("div");
+                div.classList.add("card")
+                div.innerHTML = `
+                <h1>${post.title}</h1>
+                <p>${post.body}</p>
+                `
+                postContainer.appendChild(div);
+            }
+        }
+        handlePost()
+    </script>
+</body>
+
+</html>
+```
+<img src="images/Asynchronous-and-Synchronous-JavaScript-images/fetch-ouput-3.png">
 </li>
 <li>
-<h4>async / await</h4>
+<h4 id="async/await">async / await</h4>
 <p>async and await are modern JavaScript keywords that allow you to write asynchronous code that looks and behaves like synchronous code. They are used to work with Promises more cleanly.</p>
 <ul>
 <li>async - Used to declare an async function that returns a Promise if the promise resolved.</li>

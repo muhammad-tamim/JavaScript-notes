@@ -1259,11 +1259,14 @@ console.log(...args) // 1 2 3
 <h4>In Arrays</h4>
 
 <pre><code>
-const 
-nums1 = [1, 2];
-const Block Scopenums2 = [3, 4];
-const all = [...nums1, ...nums2];
+const num1 = [1, 2];
+const num2 = [3, 4];
+const all = [...num1, ...num2];
 console.log(all); // [1, 2, 3, 4]
+
+console.log(...all)
+console.log(Math.max(...all))
+console.log(Math.min(...all))
 </code></pre>
 
 
@@ -1274,6 +1277,8 @@ const user2 = { age: 21 };
 const merged = { ...user1, ...user2 };
 console.log(merged); // { name: "Tamim", age: 21 }
 </code></pre>
+
+
 </li>
 </ol>
 

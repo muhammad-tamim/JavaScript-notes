@@ -4,6 +4,8 @@
 <h1>Table of Contents:</h1>
 <ul>
     <li><a href="#problem-1-inch-to-feet">Problem 1: Inch to Feet</a></li>
+    <li><a href="#problem-2-miles-to-kilometers">Problem 2: Miles to Kilometers</a></li>
+    <li><a href="#problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</a></li>
 </ul>
 <hr>
 
@@ -92,5 +94,39 @@ const distanceInMiles = 10;
 const convertKilometer = (10 * 1.60934);
 
 console.log(parseFloat(convertKilometer.toFixed(3))) // 16.093
+```
+---
+
+
+<h1 align="center" id="problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</h1>
+
+**Description:**  
+You are given a length in centimeters. Convert it to inches.  
+1 inch = 2.54 centimeters.  
+Output the result with **exactly 4 decimal places**.
+
+**Input:**  
+- A floating-point number `cm` (0 < cm ≤ 10⁶) — the length in centimeters.
+
+**Output:**  
+- A floating-point number representing the length in inches.
+
+**Example:**
+
+```
+Input:
+10
+Output:
+3.9370
+```
+
+### Solution:
+
+```js
+const lengthInCm = 10;
+
+const cmToInch = 10 / 2.54;
+
+console.log(parseFloat((cmToInch).toFixed(4))); // 3.937 (0 not shown)
 ```
 ---

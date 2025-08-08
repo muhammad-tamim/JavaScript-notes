@@ -1033,6 +1033,9 @@ const userName = "Tamim";
 isLoggedIn && console.log("Welcome, " + userName);
 // Output: Welcome, Tamim
 
+const isMingle = false;
+
+isMingle || console.log("Sad for you!");
 
 let day = "Saturday";
 if (day === "Saturday" || day === "Sunday") {

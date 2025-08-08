@@ -172,6 +172,7 @@
             </ul>
         </ul>
         </ul>
+        <li><a href="#local-storage">Local Storage</a></li>
     </ul>
   </ul>
 
@@ -1484,8 +1485,11 @@ for (const key in obj) {
     console.log(key, obj[key]);
 }
 /*
-a 1
-b 2
+key = a
+key = b
+
+obj[key] = obj[a] = 1
+obj[key] = obj[b] = 2
 */
 </code></pre>
 
@@ -4867,7 +4871,360 @@ fetchData();
 </ul>
 </ol>
 <hr>
+
+
+
+<h3 id="local-storage" align="center">Local Storage</h3>
+
+<p>localStorage is a Web Storage API feature that allows you to store key-value pairs in the browser with no expiration date. Data stored in localStorage persists even after the browser is closed.</p>
+
+<p><strong>Note:</strong> LocalStorage stores strings only</p>
+<p>So, If you want to store objects, arrays, or any other non-string data types, you need to convert them into strings using JSON.stringify() before storing.</p>
+<p>Similarly, when retrieving the data, use JSON.parse() to convert the string back into its original format.</p>
+
+<h4>Local Storage Methods:</h4>
+<ol>
+<li>
+<h4>setItem(key, value):</h4>
+<p>Stores a key-value pair (as string) in local storage.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: "Tamim",
+            country: "Bangladesh"
+        };
+        localStorage.setItem("user", JSON.stringify(user));
+    </script>
+</body>
+
+</html>
+```
+<img src="images/local-storage/local-storage-output-1.png">
+</li>
+<li>
+<h4>getItem(key):</h4>
+<p>Retrieves the value associated with a key.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: "Tamim",
+            country: "Bangladesh"
+        };
+        localStorage.setItem("user", JSON.stringify(user));
+
+
+        const userData = localStorage.getItem("user");
+        console.log(userData);
+
+        const userObj = JSON.parse(userData);
+        console.log(userObj);
+    </script>
+</body>
+
+</html>
+```
+<img src="images/local-storage/local-storage-output-2.png">
+</li>
+<li>
+<h4>removeItem(key):</h4>
+<p>Removes a specific key-value pair from local storage.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: "Tamim",
+            country: "Bangladesh"
+        };
+        const user2 = {
+            username: "Nasrin",
+            country: "Canada"
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user2", JSON.stringify(user2));
+
+        console.log(localStorage.getItem("user")) // {"username":"Tamim","country":"Bangladesh"}
+        console.log(localStorage.getItem("user2")) // {"username":"Nasrin","country":"Canada"}
+
+        localStorage.removeItem("user"); 
+
+        console.log(localStorage.getItem("user")) // null
+        console.log(localStorage.getItem("user2")) // {"username":"Nasrin","country":"Canada"}
+
+    </script>
+</body>
+
+</html>
+```
+</li>
+<li>
+<h4>clear():</h4>
+<p>Deletes all data from local storage.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: "Tamim",
+            country: "Bangladesh"
+        };
+        const user2 = {
+            username: "Nasrin",
+            country: "Canada"
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user2", JSON.stringify(user2));
+
+        console.log(localStorage.getItem("user")) // {"username":"Tamim","country":"Bangladesh"}
+        console.log(localStorage.getItem("user2")) // {"username":"Nasrin","country":"Canada"}
+
+        localStorage.clear("user");
+
+        console.log(localStorage.getItem("user")) // null
+        console.log(localStorage.getItem("user2")) // null
+    </script>
+</body>
+
+</html>
+```
+</li>
+<li>
+<h4>length:</h4>
+<p>Returns the number of key-value pairs in storage.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: "Tamim",
+            country: "Bangladesh"
+        };
+        const user2 = {
+            username: "Nasrin",
+            country: "Canada"
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user2", JSON.stringify(user2));
+
+        console.log(localStorage.length) // 2
+    </script>
+</body>
+
+</html>
+```
+</li>
+<li>
+<h4>key(index):</h4>
+<p>Returns the key name at the specified index.</p>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            username: "Tamim",
+            country: "Bangladesh"
+        };
+        const user2 = {
+            username: "Nasrin",
+            country: "Canada"
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user2", JSON.stringify(user2));
+
+        console.log(localStorage.key(0)) // user
+        console.log(localStorage.key(1)) // user2
+    </script>
+</body>
+
+</html>
+```
+</li>
+</ol>
+
+<h4>Update the Local Storage key and values:</h4>
+<p>In localStorage, key name are immutable and values are mutable, thats means, you can't change the key name directly. If you want to change the key name, you must:</p>
+<ul>
+<li>Get the value of the old name</li>
+<li>Save it under the new name</li>
+<li>Remove the old name</li>
+</ul>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            userName: "Tamim",
+            country: "Bangladesh"
+        };
+
+        localStorage.setItem("user", JSON.stringify(user));
+        console.log(JSON.parse(localStorage.getItem("user"))) // {username: 'Tamim', country: 'Bangladesh'}
+
+        // Change key name
+        const oldValue = localStorage.getItem("user")
+        localStorage.setItem("userData", oldValue);
+        localStorage.removeItem("user");
+
+        console.log(localStorage.getItem("user")) // null
+        console.log(JSON.parse(localStorage.getItem("userData"))) // {username: 'Tamim', country: 'Bangladesh'}
+
+
+        // change value
+        const value = JSON.parse(localStorage.getItem("userData"));
+        value.userName = "Muhammad Tamim";
+        localStorage.setItem("userData", JSON.stringify(value))
+
+        console.log(JSON.parse(localStorage.getItem("userData"))) // {userName: 'Muhammad Tamim', country: 'Bangladesh'}
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="productName" placeholder="write you product name">
+    <input type="number" id="productQuantity" placeholder="write you product quantity">
+    <input type="submit" id="btn" value="Add to local storage">
+
+    <ul id="listContainer">
+
+    </ul>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", () => {
+            // get the the input fields
+            const productName = document.getElementById("productName");
+            const productQuantity = document.getElementById("productQuantity");
+
+            // get the input field value
+            const name = productName.value;
+            const quantity = productQuantity.value;
+
+            // clear the input fields
+            productName.value = "";
+            productQuantity.value = "";
+
+            // Initialize an empty cart object
+            let cart = {};
+
+            // check if the cart are already exists in the localStorage or not
+            const checkChart = localStorage.getItem("cart");
+            if (checkChart) {
+                // if the cart value exist to the localStorage replace the cart = {} empty object to the local storage new value 
+                cart = JSON.parse(checkChart);
+            }
+
+            // add/update chart object
+            cart[name] = quantity;
+            /*
+            If the product name already exists, its quantity is updated.
+            If the product name is new, it’s added alongside the old ones.
+            */
+
+            // convert the cart object into JSON String and store it in localStorage
+            const convertObjToJsonString = JSON.stringify(cart);
+            localStorage.setItem("cart", convertObjToJsonString);
+
+            // get the cart ul list container
+            const listContainer = document.getElementById("listContainer");
+            listContainer.innerHTML = ""; // clear the list before re-render to avoid duplicate
+
+            // add li to ul
+            for (const product in cart) {
+                const li = document.createElement("li");
+                li.innerText = `${product}: ${cart[product]}`;
+                listContainer.appendChild(li);
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+<img src="images/local-storage/local-storage-output-3.png">
 <hr>
+
+
+
+
 
 
 
@@ -4987,7 +5344,7 @@ fetchData();
 <body>
     <header>
         <h1>Welcome to my DOM</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+        <p>Lorem ipsum dolor sit imamet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
             eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
             dolore vitae?</p>
     </header>

@@ -59,3 +59,38 @@ const inchToFootRemainder = heightInInch % 12;
 
 console.log(`${inchToFoot} foot ${inchToFootRemainder} inch`) // 4 foot 2 inch
 ```
+---
+
+
+<h1 align="center" id="problem-2-miles-to-kilometers">Problem 2: Miles to Kilometers</h1>
+
+**Description:**  
+You are given a distance in miles. Convert it to kilometers.  
+1 mile = 1.60934 kilometers.  
+Output the distance in kilometers with **exactly 3 decimal places**.
+
+**Input:**  
+- A floating-point number `m` (0 < m ≤ 10⁶) — the distance in miles.
+
+**Output:**  
+- A floating-point number representing the distance in kilometers, formatted to 3 decimal places.
+
+**Example:**
+
+```
+Input:
+10
+Output:
+16.093
+```
+
+### Solution:
+
+```js   
+const distanceInMiles = 10;
+
+const convertKilometer = (10 * 1.60934);
+
+console.log(parseFloat(convertKilometer.toFixed(3))) // 16.093
+```
+---

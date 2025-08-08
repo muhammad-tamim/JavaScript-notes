@@ -6,6 +6,7 @@
     <li><a href="#problem-1-inch-to-feet">Problem 1: Inch to Feet</a></li>
     <li><a href="#problem-2-miles-to-kilometers">Problem 2: Miles to Kilometers</a></li>
     <li><a href="#problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</a></li>
+    <li><a href="#problem-4-leap-year-checker">Problem 4: Leap Year Checker</a></li>
 </ul>
 <hr>
 
@@ -128,5 +129,60 @@ const lengthInCm = 10;
 const cmToInch = 10 / 2.54;
 
 console.log(parseFloat((cmToInch).toFixed(4))); // 3.937 (0 not shown)
+```
+---
+
+
+<h1 align="center" id="problem-4-leap-year-checker">Problem 4: Leap Year Checker</h1>
+
+**Description:**  
+You are given a year. Determine whether it is a **Leap Year** or **Not a Leap Year**.  
+
+A year is a **Leap Year** if:  
+1. It is divisible by 400, OR  
+2. It is divisible by 4 **and not** divisible by 100.  
+
+Otherwise, it is **Not a Leap Year**.
+
+**Input:**  
+- A single integer `y` (1 ≤ y ≤ 10⁶) — the year to check.
+
+**Output:**  
+- Print `"Leap Year"` if the year is a leap year.  
+- Otherwise, print `"Not a Leap Year"`.
+
+**Example 1:**
+
+```
+Input:
+2020
+Output:
+Leap Year
+```
+**Example 2:**
+
+```
+Input:
+1900
+Output:
+Not a Leap Year
+```
+**Example 2:**
+
+```
+Input:
+2000
+Output:
+Leap Year
+```
+
+### Solution: 
+
+```js
+const year = 1900;
+
+const checkLeapYear = (year % 4 === 0 && year % 400 === 0 && year % 100 !== 0) ? "Leap Year" : "Not Leap Year";
+
+console.log(checkLeapYear); // Not Leap Year
 ```
 ---

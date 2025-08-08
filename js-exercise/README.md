@@ -7,6 +7,7 @@
     <li><a href="#problem-2-miles-to-kilometers">Problem 2: Miles to Kilometers</a></li>
     <li><a href="#problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</a></li>
     <li><a href="#problem-4-leap-year-checker">Problem 4: Leap Year Checker</a></li>
+    <li><a href="#problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of odd numbers in an array</a></li>
 </ul>
 <hr>
 
@@ -184,5 +185,59 @@ const year = 1900;
 const checkLeapYear = (year % 4 === 0 && year % 400 === 0 && year % 100 !== 0) ? "Leap Year" : "Not Leap Year";
 
 console.log(checkLeapYear); // Not Leap Year
+```
+---
+
+
+<h1 align="center" id="problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of Odd Numbers in an Array</h1>
+
+**Description:**  
+You are given an array of integers. Calculate the **average** of all the odd numbers in the array.  
+If there are **no odd numbers**, output `0`.
+
+**Input:**  
+- The first line contains an integer `n` (1 ≤ n ≤ 10⁵) — the number of elements in the array.  
+- The second line contains `n` space-separated integers `a[i]` (−10⁹ ≤ a[i] ≤ 10⁹).
+
+**Output:**  
+- A floating-point number representing the average of the odd numbers.  
+- If there are no odd numbers, print `0`.
+
+**Example 1:**
+
+```
+Input:
+5
+1 2 3 4 5
+Output:
+3
+```
+
+### Solution:
+
+```html
+const numbers = [1, 2, 3, 4, 5];
+
+const oddNumbers = []
+
+for (const number of numbers) {
+    if (number % 2 !== 0) {
+        oddNumbers.push(number);
+    }
+    if (oddNumbers.length === 0) {
+        oddNumbers.push(0)
+    }
+}
+
+const oddNumbersLength = oddNumbers.length;
+
+let sumOfOddNumbers = 0;
+for (const number of oddNumbers) {
+    sumOfOddNumbers += number;
+}
+
+const averageOfOddNumbers = sumOfOddNumbers / oddNumbersLength;
+
+console.log(averageOfOddNumbers); // 3
 ```
 ---

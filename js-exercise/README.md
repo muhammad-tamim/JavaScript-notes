@@ -8,10 +8,11 @@
     <li><a href="#problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</a></li>
     <li><a href="#problem-4-leap-year-checker">Problem 4: Leap Year Checker</a></li>
     <li><a href="#problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of odd numbers in an array</a></li>
+     <li><a href="#problem-6-remove-duplicate-items-from-an-array">Problem 6: Remove duplicate items from an array</a></li>
 </ul>
 <hr>
 
-<h1 align="center" id="problem-1-inch-to-feet">Problem 1: Inch to Feet</h1>
+<h2 align="center" id="problem-1-inch-to-feet">Problem 1: Inch to Feet</h2>
 
 **Description:**  
 You are given a person height in inches. Convert it into **feet and inches** format.  
@@ -66,7 +67,7 @@ console.log(`${inchToFoot} foot ${inchToFootRemainder} inch`) // 4 foot 2 inch
 ---
 
 
-<h1 align="center" id="problem-2-miles-to-kilometers">Problem 2: Miles to Kilometers</h1>
+<h2 align="center" id="problem-2-miles-to-kilometers">Problem 2: Miles to Kilometers</h2>
 
 **Description:**  
 You are given a distance in miles. Convert it to kilometers.  
@@ -100,7 +101,7 @@ console.log(parseFloat(convertKilometer.toFixed(3))) // 16.093
 ---
 
 
-<h1 align="center" id="problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</h1>
+<h2 align="center" id="problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</h2>
 
 **Description:**  
 You are given a length in centimeters. Convert it to inches.  
@@ -134,7 +135,7 @@ console.log(parseFloat((cmToInch).toFixed(4))); // 3.937 (0 not shown)
 ---
 
 
-<h1 align="center" id="problem-4-leap-year-checker">Problem 4: Leap Year Checker</h1>
+<h2 align="center" id="problem-4-leap-year-checker">Problem 4: Leap Year Checker</h2>
 
 **Description:**  
 You are given a year. Determine whether it is a **Leap Year** or **Not a Leap Year**.  
@@ -189,7 +190,7 @@ console.log(checkLeapYear); // Not Leap Year
 ---
 
 
-<h1 align="center" id="problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of Odd Numbers in an Array</h1>
+<h2 align="center" id="problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of Odd Numbers in an Array</h2>
 
 **Description:**  
 You are given an array of integers. Calculate the **average** of all the odd numbers in the array.  
@@ -241,3 +242,38 @@ const averageOfOddNumbers = sumOfOddNumbers / oddNumbersLength;
 console.log(averageOfOddNumbers); // 3
 ```
 ---
+
+
+<h2 align="center" id="problem-6-remove-duplicate-items-from-an-array">Problem 6: Remove Duplicate Items from an Array</h2>
+
+**Description:**  
+You are given an array. Remove all **duplicate values** and print the resulting array in the **same order** as their first occurrence.
+
+**Example:**
+```
+Input:
+1 2 2 3 4 1 5 2
+Output:
+1 2 3 4 5
+
+Input: 
+tamim tamim nasrin nasrin tamim ammu
+Output: 
+tamim nasrin ammu
+```
+
+### Solution:
+
+```js
+const array = ["tamim", "tamim", "nasrin", "tamim", "ammu"];
+
+const newArray = [];
+
+for (const arr of array) {
+    if (newArray.includes(arr) !== array.includes(arr)) {
+        newArray.push(arr)
+    }
+}
+
+console.log(newArray); 
+```

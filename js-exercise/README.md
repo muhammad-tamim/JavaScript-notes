@@ -11,6 +11,7 @@
     <li><a href="#problem-6-remove-duplicate-items-from-an-array">Problem 6: Remove duplicate items from an array</a></li>
     <li><a href="#problem-7-find-the-maximum-number-in-an-array">Problem 7: Find the maximum number in an array</a></li>
     <li><a href="#problem-8-find-the-cheapest-phone">Problem 8: Find the cheapest phone</a></li>
+    <li><a href="#problem-9-calculate-the-total-cost-of-products-in-a-shopping-cart">Problem 9: Calculate the total const of products in a shopping cart</a></li>
 </ul>
 <hr>
 
@@ -359,5 +360,49 @@ for (const phone of phones) {
 }
 
 console.log(cheapestPhone.name, "=", cheapestPhone.price)
+```
+---
+
+
+<h2 align="center" id="problem-9-calculate-the-total-cost-of-products-in-a-shopping-cart">Problem 9: Calculate the Total Cost of Products in a Shopping Cart</h2>
+
+**Description:**  
+You are given a shopping cart represented as an array of product objects.  
+Each product object contains:
+- `name` (string) — the product's name  
+- `price` (number) — the price of a single unit of the product  
+- `quantity` (integer) — how many units of the product are in the cart  
+
+Your task is to calculate the **total cost** of all the products in the shopping cart.
+
+**example:**  
+
+```
+Input:
+[
+    { name: "Laptop", price: 800, quantity: 1 },
+    { name: "Phone", price: 500, quantity: 2 },
+    { name: "Headphones", price: 50, quantity: 4 }
+]
+
+Output:
+2000
+```
+
+### Solution: 
+
+```js
+const cart = [
+    { name: "Laptop", price: 800, quantity: 1 },
+    { name: "Phone", price: 500, quantity: 2 },
+    { name: "Headphones", price: 50, quantity: 4 }
+]
+
+let totalCost = 0;
+for (const obj of cart) {
+    totalCost += obj.price * obj.quantity;
+}
+
+console.log(totalCost)
 ```
 ---

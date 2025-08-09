@@ -10,6 +10,7 @@
     <li><a href="#problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of odd numbers in an array</a></li>
     <li><a href="#problem-6-remove-duplicate-items-from-an-array">Problem 6: Remove duplicate items from an array</a></li>
     <li><a href="#problem-7-find-the-maximum-number-in-an-array">Problem 7: Find the maximum number in an array</a></li>
+    <li><a href="#problem-8-find-the-cheapest-phone">Problem 8: Find the cheapest phone</a></li>
 </ul>
 <hr>
 
@@ -303,6 +304,8 @@ Output:
 185
 ```
 
+### Solution: 
+
 ```js
 const numbers = [160, 172, 185, 178, 169];
 
@@ -318,3 +321,43 @@ for (const number of numbers) {
 }
 console.log(largest) // 185
 ```
+---
+
+
+<h2 align="center" id="problem-8-find-the-cheapest-phone">Problem 8: Find the Cheapest Phone</h2>
+
+**Description:**  
+You are given an array of phone objects. Your task is to determine the **cheapest phone** and print its name and price.
+
+**Example:**
+
+```
+Input
+[
+    { name: "iPhone14", brand: "Apple", price: 999 },
+    { name: "SamsungS23", brand: "Samsung", price: 899 },
+    { name: "Pixel7", brand: "Google", price: 799 }
+]
+output:
+Pixel7 = 799
+```
+
+### Solution: 
+
+```js
+const phones = [
+    { name: "iPhone14", brand: "Apple", price: 999 },
+    { name: "SamsungS23", brand: "Samsung", price: 899 },
+    { name: "Pixel7", brand: "Google", price: 799 }
+]
+
+let cheapestPhone = phones[0];
+for (const phone of phones) {
+    if (phone.price <= cheapestPhone.price) {
+        cheapestPhone = phone;
+    }
+}
+
+console.log(cheapestPhone.name, "=", cheapestPhone.price)
+```
+---

@@ -12,6 +12,7 @@
     <li><a href="#problem-7-find-the-maximum-number-in-an-array">Problem 7: Find the maximum number in an array</a></li>
     <li><a href="#problem-8-find-the-cheapest-phone">Problem 8: Find the cheapest phone</a></li>
     <li><a href="#problem-9-calculate-the-total-cost-of-products-in-a-shopping-cart">Problem 9: Calculate the total const of products in a shopping cart</a></li>
+    <li><a href="#problem-10-simple-calculator">Problem 10: Simple calculator</a></li>
 </ul>
 <hr>
 
@@ -404,5 +405,78 @@ for (const obj of cart) {
 }
 
 console.log(totalCost)
+```
+---
+
+
+<h2 align="center" id="problem-10-simple-calculator">Problem 10: Simple Calculator</h2>
+
+**Description:**  
+You need to create a simple calculator where one main function can call smaller functions for each arithmetic operation.  
+The calculator should be able to:
+- Add
+- Subtract
+- Multiply
+- Divide
+
+The main function should take:
+- Two numbers
+- An operator symbol (`+`, `-`, `*`, `/`)
+
+Then, it should call the correct operation function **inside itself** to get the result.
+
+**Input:**  
+- `num1` (number) — the first number  
+- `num2` (number) — the second number  
+- `operator` (string) — one of `+`, `-`, `*`, `/`
+
+**Output:**  
+- A number representing the result of the calculation.
+
+**Example:**
+```js
+Input:
+10 5 +
+Output:
+15
+```
+
+### SOlution:
+
+```js
+const addition = (num1, num2) => {
+    return num1 + num2;
+}
+const subtract = (num1, num2) => {
+    return num1 - num2;
+}
+const multiply = (num1, num2) => {
+    return num1 * num2;
+}
+const divide = (num1, num2) => {
+    return num1 / num2;
+}
+
+const calculator = (num1, num2, operator) => {
+    switch (operator) {
+        case "+":
+            return addition(num1, num2);
+            break;
+        case "-":
+            return subtract(num1, num1);
+            break;
+        case "*":
+            return multiply(num1, num2);
+            break;
+        case "/":
+            return divide(num1, num2);
+            break;
+        default:
+            return "Please Enter a valid operator"
+    }
+}
+
+const result = calculator(10, 5, "+")
+console.log(result)
 ```
 ---

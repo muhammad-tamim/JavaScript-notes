@@ -8,7 +8,8 @@
     <li><a href="#problem-3-centimeters-to-inches">Problem 3: Centimeters to Inches</a></li>
     <li><a href="#problem-4-leap-year-checker">Problem 4: Leap Year Checker</a></li>
     <li><a href="#problem-5-average-of-odd-numbers-in-an-array">Problem 5: Average of odd numbers in an array</a></li>
-     <li><a href="#problem-6-remove-duplicate-items-from-an-array">Problem 6: Remove duplicate items from an array</a></li>
+    <li><a href="#problem-6-remove-duplicate-items-from-an-array">Problem 6: Remove duplicate items from an array</a></li>
+    <li><a href="#problem-7-find-the-maximum-number-in-an-array">Problem 7: Find the maximum number in an array</a></li>
 </ul>
 <hr>
 
@@ -276,4 +277,44 @@ for (const arr of array) {
 }
 
 console.log(newArray); 
+```
+---
+
+
+<h2 align="center" id="problem-7-find-the-maximum-number-in-an-array">Problem 7: Find the maximum number in an array</h2>
+
+**Description:**  
+You are given an array of numbers representing the heights of people.  
+Your task is to determine the **tallest height** (the maximum number in the array).
+
+**Input:**  
+- The first line contains an integer `n` (1 ≤ n ≤ 10⁵) — the number of elements in the array.  
+- The second line contains `n` space-separated integers `h[i]` (−10⁹ ≤ h[i] ≤ 10⁹) representing the heights.
+
+**Output:**  
+- Print the maximum number in the array.
+
+**Example:**
+
+```
+Input:
+160 172 185 178 169
+Output:
+185
+```
+
+```js
+const numbers = [160, 172, 185, 178, 169];
+
+console.log(Math.max(...numbers)) // 185
+
+// or
+let largest = 0;
+
+for (const number of numbers) {
+    if (number >= largest) {
+        largest = number;
+    }
+}
+console.log(largest) // 185
 ```

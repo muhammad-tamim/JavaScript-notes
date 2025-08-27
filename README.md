@@ -3180,12 +3180,12 @@ console.log(arr.includes(5)) // false
 
 <li id="iteration-transformation">Iteration / Transformation</li>
 
-| Method      | Purpose                                              | Returns                         | Modifies Original Array |                                               |
-| ----------- | ---------------------------------------------------- | ------------------------------- | ----------------------- | ------------------------------------------------------------- |
-| `map()`     | return a new array by applying function to each element      | ✅ New array                     | ❌ No                    
-| `forEach()` | Executes a function for each element; no return value      | ❌ No Return                   | ❌ No                    
-| `filter()`  | Filters elements based on a condition                | ✅ New filtered array            | ❌ No                    
-| `find()`    | Finds the **first** element that matches a condition | ✅ Single element or `undefined` | ❌ No                    
+| Method      | Purpose                                                 | Returns                         | Modifies Original Array |     |
+| ----------- | ------------------------------------------------------- | ------------------------------- | ----------------------- | --- |
+| `map()`     | return a new array by applying function to each element | ✅ New array                     | ❌ No                    |
+| `forEach()` | Executes a function for each element; no return value   | ❌ No Return                     | ❌ No                    |
+| `filter()`  | Filters elements based on a condition                   | ✅ New filtered array            | ❌ No                    |
+| `find()`    | Finds the **first** element that matches a condition    | ✅ Single element or `undefined` | ❌ No                    |
 
 
 <ul>
@@ -5325,7 +5325,7 @@ fetchData();
 <h3 id="parent-child-and-sibling-relationships">Parent, Child, and Sibling Relationships:</h3>
 <img src="images/dom-tree-2.png">
 
-| 🔢 Category | 🏷️ Property    | 🔍 Description                                                        |
+| 🔢 Category  | 🏷️ Property               | 🔍 Description                                                         |
 | ----------- | ------------------------ | --------------------------------------------------------------------- |
 | **Parent**  | `parentNode`             | Returns the parent **node** of the current node                       |
 |             | `parentElement`          | Returns the parent **element**, or `null` if parent is not an element |
@@ -5477,13 +5477,13 @@ DOM collection is array like means you can access items with indexes, and can us
 
 <h4>Common DOM Collection Types:</h4>
 
-| Collection         | Description                                         |
-| ------------------ | --------------------------------------------------- |
-| `NodeList`         | Collection of **nodes** 
-| `HTMLCollection`   | Live collection of **HTML elements only**           |
-| `childNodes`       | NodeList of **all types** of child nodes            |
-| `NamedNodeMap`       | Collection of attribute nodes of an element            |
-| `DOMTokenList`       | Collection of classes            |
+| Collection       | Description                                 |
+| ---------------- | ------------------------------------------- |
+| `NodeList`       | Collection of **nodes**                     |
+| `HTMLCollection` | Live collection of **HTML elements only**   |
+| `childNodes`     | NodeList of **all types** of child nodes    |
+| `NamedNodeMap`   | Collection of attribute nodes of an element |
+| `DOMTokenList`   | Collection of classes                       |
 
   
 
@@ -6404,6 +6404,66 @@ DOM collection is array like means you can access items with indexes, and can us
 ```
 
 <img src="images/changeCSS.png">
+</li>
+
+<li>
+<h4>add, remove, or toggle a CSS class on a DOM element:</h4>
+
+```html 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>classList Example</title>
+    <style>
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">Hello World</h1>
+    <h1 class="hidden">This is hidden</h1>
+
+    <button id="addBtn">Add Class</button>
+    <button id="removeBtn">Remove Class</button>
+    <button id="toggleBtn">Toggle Class</button>
+
+    <script>
+        const heading = document.getElementById("title");
+        const hiddenHeading = document.querySelector("h1.hidden");
+
+        // Add class
+        document.getElementById("addBtn").addEventListener("click", () => {
+            heading.classList.add("active"); // adds green + bold
+        });
+
+        // Remove class
+        document.getElementById("removeBtn").addEventListener("click", () => {
+            hiddenHeading.classList.remove("hidden"); // ensures it's visible
+        });
+
+        // Toggle class
+        document.getElementById("toggleBtn").addEventListener("click", () => {
+            heading.classList.toggle("highlight"); // yellow bg on/off
+        });
+    </script>
+</body>
+
+</html>
+```
+
+<img src="images/add-remove-toggle.png">
 </li>
 
 </ul>

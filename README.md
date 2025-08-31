@@ -1779,6 +1779,16 @@ console.log(trimmedEndStr); // Output: "          hello world!"
 <h4>Replacing and Repeating:</h4>
 
 <pre><code>
+let str = "purple-color";
+let result = str.replace("-color", "");
+console.log(result); // "purple"
+
+/*
+We replaced "-color" with an empty string"" →  An empty string "" is not " " (a space), or any characters. empty string means nothing.
+
+So we’re left with only "purple".
+*/
+    
 console.log("I like cats. cats are sweet".replace("cats", "dogs")); // I like dogs. cats are sweet
 console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
 console.log("ha".repeat(3)); // "hahaha"

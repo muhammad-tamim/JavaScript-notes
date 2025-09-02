@@ -6745,8 +6745,8 @@ DOM collection is array like means you can access items with indexes, and can us
 
         // Let's check the <span> tag inside the div
         const spanElement = divElement.querySelector("span");
-        console.log("spanElement.tagName:", spanElement.tagName);   // SPAN
-        console.log("spanElement.nodeName:", spanElement.nodeName); // SPAN
+        console.log(spanElement.tagName);   // SPAN
+        console.log(spanElement.nodeName); // SPAN
     </script>
 </body>
 

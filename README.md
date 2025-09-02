@@ -1856,6 +1856,31 @@ const joined = reversedArray.join("");
 console.log(joined); // Output: "olleh"
 </code></pre>
 </li>
+
+<li>
+<h3>padStart</h3>  
+
+padStart is a string method that ensures a string reaches a certain length by adding characters to the start of the string.  
+syntax:  
+
+```js
+str.padStart(targetLength, padString)
+```
+
+- targetLength → the final desired length of the string.
+- padString → the character(s) to add at the start (default is space " " if not specified).
+
+```js
+let num = "5";
+console.log(num.padStart(3, "0")); // "005"
+```
+- Original string: "5" (length 1)
+- Target length: 3
+- Pad with "0" at the start until length becomes 3 → "005"
+
+
+</li>
+
 </ul>
 </ul>
 

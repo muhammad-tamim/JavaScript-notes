@@ -6990,48 +6990,6 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
-<h3 id="getComputedStyle()-method">getComputedStyle() method:</h3>
-<p>getComputedStyle() method returns the final computed styles of an element (after applying all CSS rules: external, inline, inherited, default) for Read-only.</p>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Element Properties</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <style>
-        #card {
-            background-color: red;
-            color: white;
-            font-size: 24px;
-            width: 300px;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="card" style="text-align: center;">Hello</div>
-
-    <script>
-        const box = document.getElementById("card");
-        const styles = getComputedStyle(box);
-
-        console.log(styles);          // Logs all computed styles object of the element
-        console.log(styles.textAlign); // center
-        console.log(styles.width);    //  300px
-        console.log(styles.color);    // rgb(255, 255, 255)
-    </script>
-</body>
-
-</html>
-```
-
 
 <h3 id="class-styling" align="center">Class Styling:</h3>
 

@@ -5689,6 +5689,8 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
+<img src="images/DOM Traversing/parentNode-vs-parentElement.png">
+
 <h3 id="childNodes-vs-children">childNodes vs children:</h3>
 <ul>
 <li>childNodes: Returns all types of nodes.</li>
@@ -5731,6 +5733,8 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
+<img src="images/DOM Traversing/childNodes-vs-children.png">
+
 <h3 id="firstChild-vs-firstElementChild">firstChild vs firstElementChild:</h3>
 <ul>
 <li>firstChild: Returns the first child node, which may be: (text, element etc)</li>
@@ -5768,6 +5772,8 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
+<img src="images/DOM Traversing/firstChild-vs-firstElementChild:.png">
+
 <h3 id="lastChild-vs-lastElementChild">lastChild vs lastElementChild:</h3>
 <p>Same as above but accesses the last child node instead.</p>
 
@@ -5802,6 +5808,8 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </html>
 ```
+
+<img src="images/DOM Traversing/lastChild-vs-lastElementChild.png">
 
 <h3 id="nextSibling-vs-nextElementSibling">nextSibling vs nextElementSibling:</h3>
 <ul>
@@ -5841,7 +5849,9 @@ DOM collection is array like means you can access items with indexes, and can us
 </html>
 ```
 
-<h3 id="previousSibling-vs-previousElementSibling">previousSibling vs previousElementSibling</h3>
+<img src="images/DOM Traversing/nextSibling-vs-nextElementSibling:.png">
+
+<h3 id="previousSibling-vs-previousElementSibling">previousSibling vs previousElementSibling:</h3>
 <p>Same as above, but but accesses the previous sibling instead of next.</p>
 
 ```html
@@ -5875,6 +5885,9 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </html>
 ```
+
+<img src="images/DOM Traversing/previousSibling-vs-previousElementSibling.png">
+
 <hr>
 
 

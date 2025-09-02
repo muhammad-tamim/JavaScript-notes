@@ -5406,7 +5406,7 @@ fetchData();
         console.log(firstChild.parentElement);     // Also the div element
 
         // Child relationships
-        console.log(parent.children);              // All child elements
+        console.log(parent.children);              // All child elements (gives a HTML Collections)
         console.log(parent.firstElementChild);     // First p element
         console.log(parent.lastElementChild);      // The span element
 

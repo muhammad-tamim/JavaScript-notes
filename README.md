@@ -5346,6 +5346,13 @@ fetchData();
 
 <img src="images/Example-of-DOM-Node-Tree.png">
 <img src="images/image10-Parents_and_Children_Tree_Data_Structure.jpg">
+<img src="images/js-tree1.png">
+
+<h4>Note:</h4>
+<ul>
+<li>Node: The generic term for any item in the DOM tree</li>
+<li>Element Node: A specific type of node that represents HTML tags</li>
+</ul>
 
 
 

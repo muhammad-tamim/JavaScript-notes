@@ -5512,13 +5512,16 @@ DOM collection is array like means you can access items with indexes, and can us
 
 <h4>Common DOM Collection Types:</h4>
 
-| Collection       | Description                                 |
-| ---------------- | ------------------------------------------- |
-| `NodeList`       | Collection of **nodes**                     |
-| `HTMLCollection` | Live collection of **HTML elements only**   |
-| `childNodes`     | NodeList of **all types** of child nodes    |
-| `NamedNodeMap`   | Collection of attribute nodes of an element |
-| `DOMTokenList`   | Collection of classes                       |
+| Collection       | Description                                                                  |
+| ---------------- | ---------------------------------------------------------------------------- |
+| `NodeList`       | Is a collection of nodes (can include elements, text nodes, comments, etc.). |
+| `HTMLCollection` | An HTMLCollection contains only HTML elements (not text nodes or comments).  |
+| `childNodes`     | NodeList of **all types** of child nodes                                     |
+| `NamedNodeMap`   | Collection of attribute nodes of an element                                  |
+| `DOMTokenList`   | Collection of classes                                                        |
+
+<img src="images/node-list.png">
+<img src="images/html-collection.png">
 
   
 

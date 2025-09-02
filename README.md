@@ -6341,7 +6341,7 @@ DOM collection is array like means you can access items with indexes, and can us
 </li>
 
 <li>
-<h4>remove existing HTML elements and attributes:</h4>
+<h4>remove existing HTML elements:</h4>
 
 ```html
 <!DOCTYPE html>
@@ -6369,6 +6369,9 @@ DOM collection is array like means you can access items with indexes, and can us
 
 </html>
 ```
+<img src="images/elements-selecting-methods/remove-attribute-1.png">
+<img src="images/elements-selecting-methods/remove-attribute-2.png">
+
 </li>
 
 

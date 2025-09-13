@@ -41,6 +41,13 @@
       - [1.4.7.2. rest operator:](#1472-rest-operator)
       - [1.4.7.3. spread operator](#1473-spread-operator)
       - [1.4.7.4. Nullish Coalescing operator (??)](#1474-nullish-coalescing-operator-)
+  - [1.5. Loops](#15-loops)
+    - [1.5.1. for loop:](#151-for-loop)
+    - [1.5.2. while loop:](#152-while-loop)
+    - [1.5.3. do while loop:](#153-do-while-loop)
+    - [1.5.4. for..of loop (for iterables):](#154-forof-loop-for-iterables)
+    - [1.5.5. for..in loop (for objects):](#155-forin-loop-for-objects)
+    - [1.5.6. forEach method (only for array):](#156-foreach-method-only-for-array)
 
 ---
 
@@ -1197,6 +1204,109 @@ let result = null || undefined ?? "Default";
 let result = (null || undefined) ?? "Default";
 ```
 
+## 1.5. Loops
+
+### 1.5.1. for loop:
+
+```js
+for (let i = 0; i < 5; i++) {
+    console.log(i); // 0 1 2 3 4
+}
+
+// With break and continue
+
+for (let i = 1; i <= 10; i++) {
+  if (i % 2 === 0) {
+    continue; // skip even numbers
+  }
+
+  if (i === 7) {
+    break; // stop the loop when i is 7
+  }
+
+  console.log(i);
+}
+/*
+1
+3
+5
+*/
+```
+
+### 1.5.2. while loop:
+
+```js
+let i = 0;
+while (i < 5) {
+    console.log(i); // 0 1 2 3 4
+    i++;
+}
+```
+
+### 1.5.3. do while loop:
+
+```js
+let i = 0;
+do {
+    console.log(i); // 0 1 2 3 4
+    i++;
+} while (i < 5);
+```
+
+### 1.5.4. for..of loop (for iterables):
+
+```js
+// with array
+const arr = ['a', 'b', 'c'];
+
+for (const element of arr) {
+    console.log(element); //  a b c
+}
+
+// with string
+const str = 'hello';
+
+for (const value of str) {
+    console.log(value); // h e l l o
+}
+```
+
+### 1.5.5. for..in loop (for objects):
+
+```
+const obj = {
+    a: 1,
+    b: 2
+};
+
+for (const key in obj) {
+    console.log(key, obj[key]);
+}
+/*
+key = a
+key = b
+
+obj[key] = obj[a] = 1
+obj[key] = obj[b] = 2
+*/
+```
+
+### 1.5.6. forEach method (only for array):
+
+```js
+const numbers = [1, 2, 3];
+numbers.forEach(function (num) {
+    console.log(num); // 1 2 3
+});
+
+// or
+
+const num2 = [4, 5, 6];
+num2.forEach(num2 => console.log(num2)) // 4 5 6
+```
+Note: It does not support break or continue.
+
+
 
 
 
@@ -1263,6 +1373,7 @@ let result = (null || undefined) ?? "Default";
 
 
  -->
+
 
 
 

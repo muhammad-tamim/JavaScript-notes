@@ -89,7 +89,6 @@
     - [Get the length of an array using length property:](#get-the-length-of-an-array-using-length-property)
     - [for..of loop](#forof-loop)
     - [Array Methods](#array-methods)
-      - [Note:](#note)
   - [1.11. set](#111-set)
     - [1.11.1. creating a set](#1111-creating-a-set)
     - [1.11.2. Adding \& Removing Values](#1112-adding--removing-values)
@@ -2778,8 +2777,7 @@ console.log(fruits.length); // 3
 
 Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array. They both point to the same memory address:
 
-```
-
+```js
 let fruits = ["Banana"]
 
 let arr = fruits; // copy by reference (two variables reference the same array)
@@ -2795,8 +2793,7 @@ console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
 
 One of the oldest ways to cycle array items is the for loop over indexes:
 
-```
-
+```js
 let arr = ["Apple", "Orange", "Pear"];
 
 for (let i = 0; i < arr.length; i++) {
@@ -2804,10 +2801,7 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-**With for..of loop**
-
-```
-
+```js
 let fruits = ["Apple", "Orange", "Plum"];
 
 // iterates over array elements
@@ -2818,8 +2812,7 @@ for (let fruit of fruits) {
 
 Technically, because arrays are objects, it is also possible to use for..in, but it gives you the keys (like "0", "1", or even custom properties) instead of the actual values.
 
-```
-
+```js
 const fruits = ["apple", "banana", "mango"];
 fruits.custom = "extra"; // adding a property to the array
 
@@ -2832,7 +2825,7 @@ for (const key in fruits) {
 
 1.  Adding / Removing Elements
 
--   #### push/pop and unshift/shift:
+    - push/pop and unshift/shift:
     
     | Operation                                        | Method    |
     | ------------------------------------------------ | --------- |
@@ -2841,8 +2834,7 @@ for (const key in fruits) {
     | Adds element to start and returns the new length | unshift() |
     | Remove the first element and returns the element | shift()   |
     
-    ```
-    
+    ```js
     let fruits = ["Apple", "Orange", "Plum"];
     
     console.log(fruits.push('Mango')) // 4
@@ -2864,10 +2856,9 @@ for (const key in fruits) {
     
     On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.
     
--   #### splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:
+    - splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:
     
-    ```
-    
+    ```js
     let arr = ["I", "study", "JavaScript"];
     // from index 1 remove 1 element
     console.log(arr.splice(1, 1));  // [ 'study' ]
@@ -2886,17 +2877,15 @@ for (const key in fruits) {
     console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
     
     
-    
     let arr4 = [1, 2, 5];
     // from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
     console.log(arr4.splice(-1, 0, 3, 4));[]
     console.log(arr4); // [ 1, 2, 3, 4, 5 ]
     ```
     
--   #### slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:
+    - slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:
     
-    ```
-    
+    ```js
     let arr = ["t", "e", "s", "t"];
     
     console.log(arr.slice(1, 3)); // [ 'e', 's' ]
@@ -2905,38 +2894,33 @@ for (const key in fruits) {
     console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
     ```
     
+    Note:
+    - Use splice() when you want to change the original array (remove/insert/replace).
+    - Use slice() when you want a copy of part of the array, without changing the original.
 
-#### Note:
+2. Searching / Location
 
--   Use splice() when you want to change the original array (remove/insert/replace).
--   Use slice() when you want a copy of part of the array, without changing the original.
-
-5.  Searching / Location
-
--   #### indexOf(item) – Returns the index of the first match, or -1:
+   - indexOf(item) – Returns the index of the first match, or -1:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3];
     
     console.log(arr.indexOf(2)); // 1
     console.log(arr.indexOf(4)); // -1
     ```
     
--   #### lastIndexOf(item) – Returns the index of the last match, or -1:
+   - lastIndexOf(item) – Returns the index of the last match, or -1:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 2, 3];
     
     console.log(arr.lastIndexOf(2)); // 2
     console.log(arr.lastIndexOf(5)); // -1
     ```
     
--   #### includes(item) – Returns true if array contains item, or false:
+   - includes(item) – Returns true if array contains item, or false:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3];
     
     console.log(arr.includes(2)); // true
@@ -2944,19 +2928,23 @@ for (const key in fruits) {
     ```
     
 
-7.  Iteration / Transformation
-| Method | Purpose | Returns | Modifies Original Array | | | ----------- | ------------------------------------------------------- | ------------------------------- | ----------------------- | --- | | \`map()\` | return a new array by applying function to each element | ✅ New array | ❌ No | | \`forEach()\` | Executes a function for each element; no return value | ❌ No Return | ❌ No | | \`filter()\` | Filters elements based on a condition | ✅ New filtered array | ❌ No | | \`find()\` | Finds the \*\*first\*\* element that matches a condition | ✅ Single element or \`undefined\` | ❌ No |
+3.  Iteration / Transformation
 
--   #### forEach(callback) – Executes a function for each element; no return value:
+    | Method      | Purpose                                                    | Returns                         | Modifies Original Array |
+    | ----------- | ---------------------------------------------------------- | ------------------------------- | ----------------------- |
+    | `map()`     | Returns a new array by applying a function to each element | ✅ New array                     | ❌ No                    |
+    | `forEach()` | Executes a function for each element; no return value      | ❌ No return                     | ❌ No                    |
+    | `filter()`  | Filters elements based on a condition                      | ✅ New filtered array            | ❌ No                    |
+    | `find()`    | Finds the **first** element that matches a condition       | ✅ Single element or `undefined` | ❌ No                    |
+
+    - forEach(callback) – Executes a function for each element; no return value:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3]
     arr.forEach(n => console.log(n * 2)); // 2 4 6       
     ```
     
-    ```
-    
+    ```js
     const products = [
         { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
         { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
@@ -2976,18 +2964,16 @@ for (const key in fruits) {
     */
     ```
     
--   #### map(callback) – return a new array by applying function to each element:
+    - map(callback) – return a new array by applying function to each element:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3]
     let arr2 = arr.map(n => n * 2);
     console.log(arr) // [ 1, 2, 3 ]
     console.log(arr2) // [ 2, 4, 6 ]
     ```
     
-    ```
-    
+    ```js
     // using map for just printf (not recommended)
     const numbers = [1, 2, 3, 4, 5];
     
@@ -2996,8 +2982,7 @@ for (const key in fruits) {
     console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
     ```
     
-    ```
-    
+    ```js
     // using map for both element and index
     const names = ["tamim", "nasrin", "maria"];
     
@@ -3010,8 +2995,7 @@ for (const key in fruits) {
      */
     ```
     
-    ```
-    
+    ```js
     const products = [
         { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
         { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
@@ -3026,18 +3010,16 @@ for (const key in fruits) {
     // [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
     ```
     
--   #### filter(callback) – return a new array with elements that pass the test:
+    - filter(callback) – return a new array with elements that pass the test:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3, 4]
     let arr2 = arr.filter(n => n % 2 === 0);
     console.log(arr) // [ 1, 2, 3, 4 ]
     console.log(arr2) // [ 2, 4 ]
     ```
     
-    ```
-    
+    ```js
     const products = [
         { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
         { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
@@ -3058,17 +3040,16 @@ for (const key in fruits) {
     console.log(expensiveProducts); // []
     ```
     
--   #### find(callback) – Returns the first element that matches:
+    - find(callback) – Returns the first element that matches:
     
-    ```
+    ```js
     
     let arr = [1, 2, 3, 4, 5];
     const result = arr.find(n => n > 2);
     console.log(result); // 3
     ```
     
-    ```
-    
+    ```js
     const products = [
         { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
         { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
@@ -3088,25 +3069,23 @@ for (const key in fruits) {
     console.log(foundColor) // undefined
     ```
     
--   #### findIndex(callback) – Returns the index of the first element that matches:
+    - findIndex(callback) – Returns the index of the first element that matches:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3, 4, 5];
     const result = arr.findIndex(n => n > 2);
     console.log(result); // 2
     ```
     
--   #### reduce()– Reduces array to a single value:
+    - reduce()– Reduces array to a single value:
     
     Syntax:
     
-    ```
+    ```js
     reduce((accumulator, currentValue) => ..., initialValue);
     ```
     
-    ```
-    
+    ```js
     const numbers = [1, 2, 3, 4];
     
     // without reduce method
@@ -3131,22 +3110,20 @@ for (const key in fruits) {
     
     ![reduce](images/reduce.png)
 
-9.  Reordering / Combining
+4.  Reordering / Combining
 
--   #### concat(...arrays) – Returns a new array by merging arrays/values:
+    - concat(...arrays) – Returns a new array by merging arrays/values:
     
-    ```
-    
+    ```js
     let arr = [1, 2];
     const arr2 = arr.concat([3, 4], 5);
     console.log(arr); // [ 1, 2 ]
     console.log(arr2); // [ 1, 2, 3, 4, 5 ]
     ```
     
--   #### join(separator) – Returns a string by joining array elements using the given separator:
+    - join(separator) – Returns a string by joining array elements using the given separator:
     
-    ```
-    
+    ```js
     let arr = ["a", "b", "c"];
     let arr2 = arr.join("-");
     console.log(arr); // [ 'a', 'b', 'c' ]
@@ -3158,10 +3135,9 @@ for (const key in fruits) {
     console.log(arr3); // Hello World
     ```
     
--   #### split(separator) – Splits a string into an array using the given separator:
+    - split(separator) – Splits a string into an array using the given separator:
     
-    ```
-    
+    ```js
     let str = "a-b-c";
     let result = str.split("-");
     console.log(str);    // "a-b-c"
@@ -3175,18 +3151,16 @@ for (const key in fruits) {
     
     **Note:** join used on arrays to convert them into a string and split used on strings to convert them a array.
     
--   #### reverse() – Reverses the array:
+    - reverse() – Reverses the array:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3];
     console.log(arr.reverse()) // [ 3, 2, 1 ]
     ```
     
--   #### sort – return a new sorted array:
+    - sort – return a new sorted array:
     
-    ```
-    
+    ```js
     let arr = [3, 1, 2];
     console.log(arr.sort())  // default lexicographic: [1,2,3]
     
@@ -3201,11 +3175,11 @@ for (const key in fruits) {
     
     -   It converts elements to strings.
     -   Then it compares those strings using Unicode (UTF-16) code unit values.
-    thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: \[1, 15, 2\]
+    thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: [1, 15, 2]
     
     To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.
     
-    ```
+    ```js
     let arr2 = [1, 2, 15];
     console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
     ```
@@ -3217,30 +3191,28 @@ for (const key in fruits) {
     -   Positive number (a - b > 0) → place b before a
     -   Zero (a - b === 0) → leave a and b unchanged
 
-11.  Others
+5.   Others
 
--   #### some() –Return true if any element passes the test, else false:
+     - some() –Return true if any element passes the test, else false:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3];
     const arr2 = arr.some(n => n > 2);
     console.log(arr2) // true
     ```
     
--   #### every() –Return true if all element passes the test, else false:
+     - every() –Return true if all element passes the test, else false:
     
-    ```
-    
+    ```js
     let arr = [1, 2, 3];
     const arr2 = arr.every(n => n > 2);
     console.log(arr2) // false
     ```
     
 
--   #### at(index) – Returns element at index; supports negative indexing:
+     - at(index) – Returns element at index; supports negative indexing:
     
-    ```
+    ```js
     // With at method
     let fruits = ["Apple", "Orange", "Plum"];
     
@@ -3252,28 +3224,26 @@ for (const key in fruits) {
     ```
     
 
--   #### Array.isArray(value) – Return true if value is an array, else false:
+    - Array.isArray(value) – Return true if value is an array, else false:
     
-    ```
+    ```js
     
     const arr = [1, 2]
     const result = Array.isArray(arr);
     console.log(result) // true       
     ```
     
--   #### fill(value, start?, end?) – Fills array with value:
+    - fill(value, start?, end?) – Fills array with value:
     
-    ```
-    
+    ```js
     const arr = [1, 2, 3]
     arr.fill(0, 1);
     console.log(arr) // [ 1, 0, 0 ]
     ```
     
--   #### flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:
+    - flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:
     
-    ```
-    
+    ```js
     // Default depth (1)
     
     const arr = [1, 2, [3, 4]];

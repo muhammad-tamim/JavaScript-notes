@@ -150,12 +150,19 @@
     - [1.12.11. Banking System](#11211-banking-system)
   - [1.13. Iterables](#113-iterables)
   - [1.14. Destructuring](#114-destructuring)
-    - [1.14.1. Destructuring](#1141-destructuring)
-    - [1.14.2. Array Destructuring](#1142-array-destructuring)
-    - [1.14.3. Object Destructuring](#1143-object-destructuring)
-    - [1.14.4. Destructuring in Function Parameters](#1144-destructuring-in-function-parameters)
+    - [1.14.1. Array Destructuring](#1141-array-destructuring)
+    - [1.14.2. Object Destructuring](#1142-object-destructuring)
+    - [1.14.3. Destructuring in Function Parameters](#1143-destructuring-in-function-parameters)
   - [1.15. Strict Mode](#115-strict-mode)
   - [1.16. Error Handling](#116-error-handling)
+    - [1.16.1. Without try...catch :](#1161-without-trycatch-)
+    - [1.16.2. With try...catch:](#1162-with-trycatch)
+    - [1.16.3. err vs err.message vs err.name](#1163-err-vs-errmessage-vs-errname)
+    - [1.16.4. Finally block:](#1164-finally-block)
+    - [1.16.5. Common JS Errors:](#1165-common-js-errors)
+      - [SyntaxError:](#syntaxerror)
+      - [ReferenceError](#referenceerror)
+      - [TypeError](#typeerror)
   - [1.17. Js Modules: Import and export](#117-js-modules-import-and-export)
   - [1.18. Regular Expression](#118-regular-expression)
   - [1.19. Local Storage and Session Storage](#119-local-storage-and-session-storage)
@@ -5429,11 +5436,10 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 
 ## 1.14. Destructuring
-### 1.14.1. Destructuring
 
 Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.
 
-### 1.14.2. Array Destructuring
+### 1.14.1. Array Destructuring
     
 Basic Syntax:
 
@@ -5489,7 +5495,7 @@ console.log(first); // 1
 console.log(rest);  // [2, 3, 4]
 ```
 
-### 1.14.3. Object Destructuring
+### 1.14.2. Object Destructuring
     
 
 Basic Syntax:
@@ -5566,7 +5572,7 @@ console.log(name);   // Tamim
 console.log(others); // { age: 21, country: "BD" }
 ```
 
-### 1.14.4. Destructuring in Function Parameters
+### 1.14.3. Destructuring in Function Parameters
     
 
 Array Parameters:
@@ -5640,6 +5646,163 @@ It helps you
     ```
 
 ## 1.16. Error Handling
+
+try...catch is used to handle errors in JavaScript so your code doesn't crash. Instead of stopping the program when an error happens, you can catch the error and respond gracefully.
+
+### 1.16.1. Without try...catch :
+
+```js
+let x = y + 10; // Error: y is not defined
+console.log("This line will not run");
+```
+
+### 1.16.2. With try...catch:
+
+```js
+try {
+    let x = y + 10; // Error here
+} catch (err) {
+    console.log("Something went wrong!");
+}
+console.log("This line will run");
+```
+
+### 1.16.3. err vs err.message vs err.name
+
+```js
+try {
+    let x = y + 10; // Error here
+} catch (err) {
+    console.log(err.name); // ReferenceError
+    console.log(err.message); // y is not defined
+    console.log(err); // full error message
+    console.log(err.stack); // full error message
+}
+console.log("This line will run");
+```
+
+### 1.16.4. Finally block:
+
+finally runs after try and catch, no matter what.
+
+```js
+try {
+    let result = 10 / 2;
+    console.log(result);
+} catch (err) {
+    console.log("Error:", err.message);
+} finally {
+    console.log("Cleanup: This runs no matter what.");
+}
+/*
+5
+Cleanup: This runs no matter what.
+*/
+```
+
+```js
+try {
+    let result = 10 / y;
+    console.log(result);
+} catch (err) {
+    console.log("Error:", err.message);
+} finally {
+    console.log("Cleanup: This runs no matter what.");
+}
+/*
+Error: y is not defined
+Cleanup: This runs no matter what.
+*/
+```
+
+### 1.16.5. Common JS Errors:
+
+#### SyntaxError: 
+Syntax error happens when JavaScript code is not written correctly.
+
+```js
+
+// Missing parenthesis:
+console.log("Hello world"
+
+// Unexpected token:
+let a = 10
+let b = 20;
+console.log(a + b)
+
+// Using reserved keywords for variable names:
+let let = 5;
+
+// not using quotes properly for string:
+let greeting = "Hello;
+
+// Invalid object literal:
+let obj = { name: "Tamim", age: }; 
+```
+
+#### ReferenceError
+Reference Error happens when you use a variable that hasn’t been declared.
+
+```js
+
+// Undeclared variable:
+console.log(x); // ReferenceError: x is not defined
+
+// Misspelled variable name:
+let username = "Tamim";
+console.log(usernme);
+
+// Variable used outside its block:
+{
+    let a = 5;
+}
+console.log(a);
+
+// Accessing variable before declaration: 
+console.log(y);
+let y = 10;
+
+// Function-scoped variable not declared:
+function test() {
+    console.log(nonExistent);
+}
+test();
+```
+
+#### TypeError
+Type Error happens when a value is used in an invalid way (e.g., calling non-function, accessing property of undefined, etc.)
+
+```js
+
+// Calling something that's not a function:
+let num = 10;
+num();
+
+// Accessing property of undefined:
+let user;
+console.log(user.name);
+
+// Using string like an object:
+let str = "hello";
+str.push("!");
+
+// Invalid assignment:
+const age = 25;
+age = 30;
+
+// Accessing array index of null:
+let arr = null;
+arr[0];
+
+// Incorrect method on type:
+let number = 123;
+number.toUpperCase();
+
+// Using array as object incorrectly:
+let nums = [1, 2, 3];
+console.log(nums.name.first);
+```
+
 
 ## 1.17. Js Modules: Import and export
 

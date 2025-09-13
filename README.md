@@ -15,6 +15,9 @@
     - [1.2.4. Scope Chain](#124-scope-chain)
     - [1.2.5. Variable naming conventions:](#125-variable-naming-conventions)
     - [1.2.6. How to write a long variable name](#126-how-to-write-a-long-variable-name)
+  - [1.3. Data Types](#13-data-types)
+    - [1.3.1. 7 Primitive Data Types:](#131-7-primitive-data-types)
+    - [1.3.2. 1 Non-Primitive Data Types:](#132-1-non-primitive-data-types)
 
 ---
 
@@ -460,6 +463,221 @@ console.log(num);
 
 
 
+## 1.3. Data Types
+
+A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)
+
+JavaScript is a dynamically typed language, which means:
+- You don’t have to declare the type of a variable.
+- The type is determined automatically based on the value you assign.
+
+```js
+let message = "hello"; // string
+message = 123456;      // number
+```
+
+There are 8 data types in JavaScript:
+
+### 1.3.1. 7 Primitive Data Types:
+
+1. Number 
+Represents both integers and floating-point numbers. 
+    
+```js
+let age = 25;
+let money = 25.5345;
+
+console.log("Age:", age); // Outputs: Age: 25
+console.log("Money:", money.toFixed(2)); // Outputs: Money: 25.53
+```
+
+**Math Properties:**
+
+```js
+console.log(Math.PI);       // 3.141592653589793
+```
+
+**Math Methods:**
+
+```js
+console.log(Math.round(4.5)); // 5 
+/*
+Rounds to the nearest integer:
+if number >= 0.5, it rounds up to the next integer
+if number < 0.5, it rounds down to the previous integer
+*/
+console.log(Math.floor(4.9));   // 4 → Rounds down
+console.log(Math.ceil(4.1));    // 5 → Rounds up
+console.log(Math.trunc(4.9));   // 4 → Removes decimal part (not supported IE)
+
+
+console.log(Math.pow(2, 3));    // 8 → 2 to the power of 3
+console.log(Math.sqrt(25));     // 5 → Square root of 25
+console.log(Math.abs(-7));      // 7 → remove negative sign
+
+console.log(Math.min(3, 1, 7)); // 1 → Smallest number
+console.log(Math.max(3, 1, 7)); // 7 → Largest number
+
+console.log(Math.random());     // Random decimal between 0 (inclusive) and 1 (exclusive)
+console.log(Math.random() * 10); // Random decimal between 0 (inclusive) and 10 (exclusive)
+console.log(Math.random() * 100); // Random decimal between 0 (inclusive) and 100 (exclusive)
+console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclusive) and 10 (exclusive)
+console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive)
+```
+
+**Type conversion global functions:**
+
+```js
+console.log(parseInt("123"));       // 123
+console.log(parseInt("12.34"));     // 12
+console.log(parseInt("100px"));     // 100
+console.log(parseInt("abc"));       // NaN
+console.log(parseInt(true));       // NaN
+
+console.log(parseFloat("10"));         // 10
+console.log(parseFloat("12.34"));     // 12.34
+console.log(parseFloat("100px"));     // 100
+console.log(parseFloat("3.14hello")); // 3.14
+console.log(parseFloat("abc"));       // NaN
+
+console.log(Number("5"));        // 5
+console.log(Number("12.34"));    // 12.34
+console.log(Number(true));       // 1
+console.log(Number(false));      // 0
+console.log(Number(""));         // 0
+console.log(Number("hello"));    // NaN
+
+console.log(String(123));       // "123"
+console.log(String(true));      // "true"
+console.log(String(false));     // "false"
+console.log(String(null));      // "null"
+console.log(String(undefined)); // "undefined"
+console.log(String([1, 2, 3])); // "1,2,3"
+
+console.log(Boolean(0));           // false
+console.log(Boolean(1));           // true
+console.log(Boolean(""));          // false
+console.log(Boolean("Tamim"));     // true
+console.log(Boolean(null));        // false
+console.log(Boolean(undefined));   // false
+console.log(Boolean([]));          // true (empty array is truthy)
+console.log(Boolean({}));          // true (empty object is truthy)
+```
+
+**Type conversion methods**
+
+```js
+console.log((123).toString());       // "123"
+console.log(true.toString());      // "true"
+console.log(false.toString());     // "false"
+// console.log(null.toString());      // TypeError
+// console.log(undefined.toString()); // TypeError
+console.log([1, 2, 3].toString()); // "1,2,3"
+
+console.log((12.3456).toFixed(2)); // "12.35"
+
+console.log(12.3456.toPrecision(4)); // "12.35"
+console.log(12.3456789.toPrecision(5)); // "12.346"
+
+let date = new Date();
+console.log(date) // 2025-09-13T05:25:33.523Z
+console.log(date.toLocaleString()); // 9/13/2025, 11:26:02 AM
+```
+
+
+2. BigInt
+
+Used for integers larger than <code>2<sup>53</sup> - 1</code>.
+
+```let big = 12345678901234567890n;```
+
+3. String
+
+4. Boolean
+Represents true or false.
+
+```js
+let isMarried = false;
+let isSingle = true;
+```
+
+5. Null
+Represents intentional "no value".
+
+```js
+let data = null;
+console.log(data) // null
+```
+
+6. Undefined
+It is a primitive data type and default value given by JavaScript when JavaScript expects a value but doesn’t find one.:
+
+a variable Declared but not initialized
+
+```js
+let a;
+console.log(a); // undefined
+```
+
+Function without a return value
+
+```js
+function greet() {}
+console.log(greet()); // undefined
+```
+
+Accessing a non-existing object property
+
+```js
+let obj = { name: "Alice" };
+console.log(obj.age); // undefined
+```
+
+Accessing an array element that doesn’t exist
+
+```js
+let arr = [1, 2, 3];
+console.log(arr[5]); // undefined
+```
+
+Function parameters not provided
+
+```js
+function sum(a, b) {
+  console.log(b);
+}
+sum(5); // undefined
+```
+
+Explicit assignment
+
+```js
+let x = undefined;
+console.log(x); // undefined
+```
+
+7. Symbol
+
+Represents a unique and immutable value, mainly used to create unique identifiers for object properties.
+
+```js
+let id = Symbol();
+console.log(typeof id); // "symbol"
+
+
+let a = Symbol("id");
+let b = Symbol("id");
+console.log(a === b); // false
+```
+
+### 1.3.2. 1 Non-Primitive Data Types:
+
+8. Object
+In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array)
+- function 
+- array
+- object
+
 
 
 
@@ -527,6 +745,8 @@ console.log(num);
 
 
  -->
+
+
 
 
 

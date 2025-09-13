@@ -605,7 +605,7 @@ fetchData();
 
 </html>
 ```
-<img src="images/local-storage/local-storage-output-1.png">
+<img src="">
 </li>
 <li>
 <h4>getItem(key):</h4>
@@ -640,7 +640,7 @@ fetchData();
 
 </html>
 ```
-<img src="images/local-storage/local-storage-output-2.png">
+<img src="">
 </li>
 <li>
 <h4>removeItem(key):</h4>
@@ -914,7 +914,7 @@ fetchData();
 
 </html>
 ```
-<img src="images/local-storage/local-storage-output-3.png">
+<img src="">
 <hr>
 
 

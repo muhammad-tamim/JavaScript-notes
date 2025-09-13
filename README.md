@@ -164,6 +164,8 @@
       - [ReferenceError](#referenceerror)
       - [TypeError](#typeerror)
   - [1.17. Js Modules: Import and export](#117-js-modules-import-and-export)
+    - [Export:](#export)
+    - [Import:](#import)
   - [1.18. Regular Expression](#118-regular-expression)
   - [1.19. Local Storage and Session Storage](#119-local-storage-and-session-storage)
   - [1.20. Asynchronous and Synchronous JavaScript](#120-asynchronous-and-synchronous-javascript)
@@ -5805,6 +5807,65 @@ console.log(nums.name.first);
 
 
 ## 1.17. Js Modules: Import and export
+
+### Export:
+
+There are Three main ways to export from a file:
+
+1. Named Export: You export multiple values by name
+
+```js
+// math.js
+export const PI = 3.14;
+export function add(x, y) {
+  return x + y;
+}
+export const multiply = (x, y) => x * y;
+```
+
+2. Default Export: You export only one default value form a file. A file can have only one default export
+
+```js
+// greet.js
+export default function greet(name) {
+  return `Hello, ${name}`;
+}
+```
+
+3.  Name export and default export in a same file:
+
+```js
+// utils.js
+export const sayHi = () => console.log("Hi!");
+
+export default function sayHello(name) {
+  console.log(`Hello, ${name}`);
+}
+```
+
+### Import:
+
+```js
+import { PI, add, multiply } from './math.js';
+import greet from './greet.js';
+import sayHello, { sayHi } from './utils.js';
+
+console.log(PI);          // 3.14
+console.log(add(2, 3));   // 5
+console.log(multiply(2, 3)); // 6
+console.log(greet('Tamim')); // Hello, Tamim
+
+sayHi(); // Hi!
+sayHello('Tamim'); // Hello, Tamim
+```
+
+You can Rename imported file name with as:
+
+```js
+import {add as sum} from './math.js';
+
+console.log(sum(2, 3));   // 5
+```
 
 ## 1.18. Regular Expression
 

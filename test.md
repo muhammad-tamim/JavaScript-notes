@@ -415,7 +415,7 @@ const displayUser = (users) => {
 }
 handleLoadUser();
 </code></pre>
-<img src="images/Asynchronous-and-Synchronous-JavaScript-images/fetch-ouput-1.png">
+<img src="">
 
 <p>Dynamically Display data:</p>
 
@@ -459,7 +459,7 @@ handleLoadUser();
 
 </html>
 ```
-<img src="images/Asynchronous-and-Synchronous-JavaScript-images/fetch-output-2.png">
+<img src="">
 
 ```html
 <!DOCTYPE html>
@@ -516,7 +516,7 @@ handleLoadUser();
 
 </html>
 ```
-<img src="images/Asynchronous-and-Synchronous-JavaScript-images/fetch-ouput-3.png">
+<img src="">
 </li>
 <li>
 <h4 id="async/await">async / await</h4>

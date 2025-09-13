@@ -160,24 +160,35 @@
     - [1.16.3. err vs err.message vs err.name](#1163-err-vs-errmessage-vs-errname)
     - [1.16.4. Finally block:](#1164-finally-block)
     - [1.16.5. Common JS Errors:](#1165-common-js-errors)
-      - [SyntaxError:](#syntaxerror)
-      - [ReferenceError](#referenceerror)
-      - [TypeError](#typeerror)
+      - [1.16.5.1. SyntaxError:](#11651-syntaxerror)
+      - [1.16.5.2. ReferenceError](#11652-referenceerror)
+      - [1.16.5.3. TypeError](#11653-typeerror)
   - [1.17. Js Modules: Import and export](#117-js-modules-import-and-export)
-    - [Export:](#export)
-    - [Import:](#import)
+    - [1.17.1. Export:](#1171-export)
+    - [1.17.2. Import:](#1172-import)
   - [1.18. Regular Expression](#118-regular-expression)
-    - [Common RegEx Methods:](#common-regex-methods)
-    - [Anchors:](#anchors)
-    - [Flags:](#flags)
-    - [Basic Patterns](#basic-patterns)
-    - [Quantifiers](#quantifiers)
-    - [Escaping special characters](#escaping-special-characters)
-    - [Ral world examples:](#ral-world-examples)
+    - [1.18.1. Common RegEx Methods:](#1181-common-regex-methods)
+    - [1.18.2. Anchors:](#1182-anchors)
+    - [1.18.3. Flags:](#1183-flags)
+    - [1.18.4. Basic Patterns](#1184-basic-patterns)
+    - [1.18.5. Quantifiers](#1185-quantifiers)
+    - [1.18.6. Escaping special characters](#1186-escaping-special-characters)
+    - [1.18.7. Ral world examples:](#1187-ral-world-examples)
   - [1.19. Local Storage and Session Storage](#119-local-storage-and-session-storage)
-    - [local storage methods:](#local-storage-methods)
-    - [Update the Local Storage key and values:](#update-the-local-storage-key-and-values)
+    - [1.19.1. local storage methods:](#1191-local-storage-methods)
+    - [1.19.2. Update the Local Storage key and values:](#1192-update-the-local-storage-key-and-values)
   - [1.20. Asynchronous and Synchronous JavaScript](#120-asynchronous-and-synchronous-javascript)
+    - [1.20.1. Synchronous Javascript](#1201-synchronous-javascript)
+      - [1.20.1.1. Single Threaded:](#12011-single-threaded)
+    - [1.20.2. Asynchronous JavaScript](#1202-asynchronous-javascript)
+    - [1.20.3. Web API:](#1203-web-api)
+    - [1.20.4. Event loop:](#1204-event-loop)
+    - [1.20.5. setTimeOut() and setInterval()](#1205-settimeout-and-setinterval)
+    - [1.20.6. JSON, promise, fetch, async/await](#1206-json-promise-fetch-asyncawait)
+      - [1.20.6.1. JSON](#12061-json)
+      - [1.20.6.2. promise](#12062-promise)
+      - [fetch](#fetch)
+      - [async/await:](#asyncawait)
 - [2. Part 3: DOM](#2-part-3-dom)
   - [2.1. An Introduction To the DOM](#21-an-introduction-to-the-dom)
   - [2.2. DOM Traversing](#22-dom-traversing)
@@ -5728,7 +5739,7 @@ Cleanup: This runs no matter what.
 
 ### 1.16.5. Common JS Errors:
 
-#### SyntaxError: 
+#### 1.16.5.1. SyntaxError: 
 Syntax error happens when JavaScript code is not written correctly.
 
 ```js
@@ -5751,7 +5762,7 @@ let greeting = "Hello;
 let obj = { name: "Tamim", age: }; 
 ```
 
-#### ReferenceError
+#### 1.16.5.2. ReferenceError
 Reference Error happens when you use a variable that hasn’t been declared.
 
 ```js
@@ -5780,7 +5791,7 @@ function test() {
 test();
 ```
 
-#### TypeError
+#### 1.16.5.3. TypeError
 Type Error happens when a value is used in an invalid way (e.g., calling non-function, accessing property of undefined, etc.)
 
 ```js
@@ -5817,7 +5828,7 @@ console.log(nums.name.first);
 
 ## 1.17. Js Modules: Import and export
 
-### Export:
+### 1.17.1. Export:
 
 There are Three main ways to export from a file:
 
@@ -5852,7 +5863,7 @@ export default function sayHello(name) {
 }
 ```
 
-### Import:
+### 1.17.2. Import:
 
 ```js
 import { PI, add, multiply } from './math.js';
@@ -5886,7 +5897,7 @@ In JavaScript, RegEx is often used for:
 -   Searching/matching strings
 -   Replacing patterns in text
 
-### Common RegEx Methods:
+### 1.18.1. Common RegEx Methods:
 
 -   test() = Returns true if pattern matches
 -   match() = Returns matching values (array or null)
@@ -5910,7 +5921,7 @@ console.log("search():", str.search(pattern));   // 3
 console.log("split():", str.split(pattern));     // [ 'I h', 've ', ' c', 't, ', ' dog, ', 'nd ', ' cow.' ]
 ```
 
-### Anchors:
+### 1.18.2. Anchors:
 
 -   ^ = matches only the beginning of the entire string.
 -   $ = matches only the end of the entire string.
@@ -5940,7 +5951,7 @@ end$      : [
 */
 ```
 
-### Flags:
+### 1.18.3. Flags:
 
 -   g = Match all occurrences (not just the first one)
 -   i = ignores the case
@@ -5995,7 +6006,7 @@ null
 */
 ```
 
-### Basic Patterns
+### 1.18.4. Basic Patterns
 
 - /abc/ = Matches the exact sequence "abc"
     
@@ -6070,7 +6081,7 @@ null
     ```
     
 
-### Quantifiers
+### 1.18.5. Quantifiers
 
 -   /a+/ → 1 or more a
 -   /a\*/ → 0 or more a
@@ -6115,7 +6126,7 @@ console.log("{2,4} :", str.match(/a{2,4}/g));   // Match between two and four "a
 */
 ```
 
-### Escaping special characters
+### 1.18.6. Escaping special characters
 
 If you want to match characters like ., ?, \*, use a backslash(\\)
 
@@ -6124,7 +6135,7 @@ let pattern = /\./;
 console.log("google.com".match(pattern)); // [ '.', index: 6, input: 'google.com', groups: undefined ]
 ```
 
-### Ral world examples:
+### 1.18.7. Ral world examples:
 
 -  Validate Email:
     
@@ -6193,7 +6204,7 @@ localStorage and sessionStorage use the same methods and approach. The only diff
 - localStorage → persists until manually cleared
 - sessionStorage → cleared when the tab or browser is closed
 
-### local storage methods:
+### 1.19.1. local storage methods:
 
 - setItem(key, value): 
 Stores a key-value pair (as string) in local storage.
@@ -6403,7 +6414,7 @@ Returns the key name at the specified index.
 </html>
 ```
 
-### Update the Local Storage key and values:
+### 1.19.2. Update the Local Storage key and values:
 
 In localStorage, key name are immutable and values are mutable, thats means, you can't change the key name directly. If you want to change the key name, you must:
 - Get the value of the old name
@@ -6527,6 +6538,527 @@ In localStorage, key name are immutable and values are mutable, thats means, you
 
 
 ## 1.20. Asynchronous and Synchronous JavaScript
+
+### 1.20.1. Synchronous Javascript
+
+#### 1.20.1.1. Single Threaded:
+JavaScript is a single-threaded, synchronous language, which means it executes one task at a time, in a specific order from top to bottom.
+
+```js
+
+console.log("Task 1");
+console.log("Task 2");
+console.log("Task 3");
+
+/*
+Task 1
+Task 2
+Task 3
+*/
+
+console.log(1);
+console.log(2);
+doSomething();
+console.log(4);
+console.log(5);
+console.log(6);
+
+function doSomething() {
+    console.log(3);
+}
+
+/*
+1
+2
+3
+4
+5
+6
+*/
+```
+
+### 1.20.2. Asynchronous JavaScript
+By default, JavaScript runs code in a synchronous way — meaning it executes one task at a time, in the order they appear.
+
+However, JavaScript can also perform asynchronous tasks like setTimeout(), setInterval(), promise, async/await etc.
+
+Behind the scenes, when an asynchronous method is called:
+
+- JavaScript hands it off to the browser (Web API)
+- Then continues to run other code without waiting. Once all synchronous tasks are done, the Event Loop picks up the asynchronous callback and adds it to the call stack to execute.
+
+So, asynchronous methods like setTimeout() and setInterval() do not change the single-threaded, synchronous nature of JavaScript — they just work alongside it, using the event loop to manage timing and order.
+
+
+### 1.20.3. Web API:
+
+A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things, like:
+
+- setTimeout(), setInterval()
+- Make HTTP requests (fetch)
+- Handle user events (clicks, input)
+- Work with the DOM
+- Use browser storage (localStorage, sessionStorage)
+
+### 1.20.4. Event loop:
+
+The event loop checks if JavaScript is done with all synchronous tasks, and if so, it moves asynchronous tasks (like timers or API calls) back into the code to be run.
+
+**Why Do We Need the Event Loop?**
+
+JavaScript is:
+
+- Single-threaded: can do only one thing at a time
+- Non-blocking: doesn’t wait for slow tasks (setTimeout() or fetch())
+
+so, After parsing, compiling, and interpreting the code, the JavaScript engine uses these key parts:
+- Call Stack - runs your js code synchronously with FIFO structure
+- Web Apis - Handles async tasks
+- Callback Queue - When async tasks are ready, they’re added here
+- Event Loop - Constantly checks, is the call stack empty? If yes → moves tasks from callback queue into the stack to be run
+
+```js
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Timer done");
+}, 2000);
+
+console.log("End");
+
+/*
+Start
+End
+Timer done
+*/
+```
+
+Behind the Scenes:
+- Start → Call Stack → runs
+- setTimeout() → Web API → starts timer
+- End → Call Stack → runs
+- After 2 sec, callback goes to Callback Queue
+- Event Loop sees the stack, if empty it moves callback to Call Stack → runs "Timer done"
+
+
+### 1.20.5. setTimeOut() and setInterval()
+
+**setTimeOut():**
+
+setTimeout() runs a function once after a specified delay (in milliseconds).
+
+```js
+
+console.log(1);
+
+console.log(2);
+setTimeout(() => {
+    console.log(3)
+});
+console.log(4);
+console.log(5);
+console.log(6);
+
+/*
+1
+2
+4
+5
+6
+3 - runs 0 second delay
+*/
+```
+
+```js
+
+console.log(1);
+console.log(2);
+setTimeout(() => {
+    console.log(3)
+}, 4000);
+console.log(4);
+console.log(5);
+console.log(6);
+
+/*
+1
+2
+4
+5
+6
+3 - runs 4 second delay
+*/
+```
+
+```js
+// With Parameters
+function greet(name) {
+    console.log("Hello, " + name);
+}
+
+setTimeout(greet, 3000, "Tamim"); // After 3 seconds
+```
+
+**setInterval():**
+setInterval() runs a function again and again, with a fixed time delay between each call.
+
+```js
+// runs infinitely with one seconde delay
+setInterval(() => {
+    console.log("I print every 1 second");
+}, 1000);
+```
+
+```js
+// Count every second
+let count = 1;
+const id = setInterval(() => {
+    console.log("Count:", count);
+    count++;
+}, 1000);
+```
+
+```js
+
+// Stop setInterval() with clearInterval(id)
+let i = 1;
+const id = setInterval(() => {
+    console.log("i =", i);
+    i++;
+    if (i > 5) {
+        clearInterval(id); // Stop after 5 times
+    }
+}, 1000);
+```
+
+### 1.20.6. JSON, promise, fetch, async/await
+
+Before learning about Promises, fetch(), and async/await, it’s important to understand the format of data that APIs usually return. Most APIs return data in JSON format:
+
+#### 1.20.6.1. JSON
+JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").
+
+**JSON.stringify() — Convert JS → JSON string:**
+
+```js
+
+const user = {
+    name: "Tamim",
+    age: 21
+};
+
+const jsonString = JSON.stringify(user);
+console.log(jsonString); // {"name":"Tamim","age":21}
+console.log(typeof jsonString); // string 
+```
+
+**JSON.parse() — Convert JSON string → JS object:**
+
+```js
+const jsonStr = '{"name":"Tamim","age":21}';
+
+const obj = JSON.parse(jsonStr);
+console.log(obj); // { name: 'Tamim', age: 21 }
+console.log(typeof obj); // object 
+```
+
+#### 1.20.6.2. promise
+A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation.
+
+Promise States:
+- Pending - operation initial stage
+- Resolved(fulfilled) - if the operation is successful
+- Rejected - if the operation fails
+
+Basic Syntax:
+
+```js
+let promise = new Promise(function (resolve, reject) {
+  // async task
+});
+```
+
+You can use below methods to work with the result of a promise:
+
+.then() - Called when the promise is resolved (fulfilled)
+.catch() - Called when the promise is rejected (error)
+.finally() - must Called, no matter whatever the promise was fulfilled or rejected 
+
+```js
+let promise = new Promise(function (resolve, reject) {
+    let success = true;
+
+    if (success) {
+        resolve("Operation successful!");
+    } else {
+        reject("Operation failed.");
+    }
+});
+
+promise
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("Promise is settled (fulfilled or rejected).");
+    });
+```
+
+```js
+// Promise.all([]) --> Waits for all promises to resolve
+
+const moneyRequest = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Request submitted!"), 1000);
+});
+
+const transferMoney = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Money transferred!"), 2000);
+});
+
+const payFee = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Fee paid!"), 1500);
+});
+
+Promise.all([moneyRequest, transferMoney, payFee])
+    .then((results) => {
+        console.log(results);
+    })
+    .catch((error) => {
+        console.log("Error: ", error);
+    });
+
+// [ 'Request submitted!', 'Money transferred!', 'Fee paid!' ]
+```
+
+#### fetch
+
+The fetch() method is used to make HTTP requests (like GET, POST, PUT, PATCH, DElETE etc.) to servers and APIs.It returns a Promise that resolves to the Response object.
+
+**Basic GET Request:**
+```js
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+
+/*
+ Response {
+  status: 200,
+  statusText: 'OK',
+  headers: Headers {
+    date: 'Wed, 30 Jul 2025 17:07:22 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'transfer-encoding': 'chunked',
+    connection: 'keep-alive',
+    'access-control-allow-credentials': 'true',
+    'cache-control': 'max-age=43200',
+    etag: 'W/"124-yiKdLzqO5gfBrJFrcdJ8Yq0LGnU"',
+    expires: '-1',
+    nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}',
+    pragma: 'no-cache',
+    'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=kHphepdcLXRPrx%2BR4ZbooXWDa6BR1Tm0fJq5WhSVlp4%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1753671479"}],"max_age":3600}',
+    'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=kHphepdcLXRPrx%2BR4ZbooXWDa6BR1Tm0fJq5WhSVlp4%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1753671479"',
+    server: 'cloudflare',
+    vary: 'Origin, Accept-Encoding',
+    via: '2.0 heroku-router',
+    'x-content-type-options': 'nosniff',
+    'x-powered-by': 'Express',
+    'x-ratelimit-limit': '1000',
+    'x-ratelimit-remaining': '999',
+    'x-ratelimit-reset': '1753671494',
+    age: '22154',
+    'cf-cache-status': 'HIT',
+    'content-encoding': 'br',
+    'cf-ray': '967673b27a628801-SIN',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  body: ReadableStream { locked: false, state: 'readable', supportsBYOB: true },
+  bodyUsed: false,
+  ok: true,
+  redirected: false,
+  type: 'basic',
+  url: 'https://jsonplaceholder.typicode.com/posts/1'
+}
+*/
+```
+
+```js
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(res => res.text()) // See the raw JSON text
+    .then(txt => console.log("Raw JSON string:", txt));
+/*
+Raw JSON string: {
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+*/
+```
+convert response JSON into a JavaScript object using response.json()
+
+```js
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(res => res.json()) // convert response JSON into object
+    .then(data => console.log(data));
+
+/*
+{
+  userId: 1,
+  id: 1,
+  title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+  body: 'quia et suscipit\n' +
+    'suscipit recusandae consequuntur expedita et cum\n' +
+    'reprehenderit molestiae ut ut quas totam\n' +
+    'nostrum rerum est autem sunt rem eveniet architecto'
+}
+*/
+```
+Dynamically Display data:
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Click me for load user</button>
+
+    <div>
+        <ul id="users">
+
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", () => {
+            fetch("https://jsonplaceholder.typicode.com/users")
+                .then(response => response.json())
+                .then(data => showUser(data));
+        })
+
+        const showUser = (users) => {
+            const userContainer = document.getElementById("users")
+
+            for (const user of users) {
+                const li = document.createElement("li");
+                li.innerText = user.name;
+                userContainer.appendChild(li)
+            }
+        }
+    </script>
+</body>
+
+</html>
+```
+
+![](images/Asynchronous-and-Synchronous-JavaScript-images/fetch-output-2.png)
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            border: 2px solid red;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Load All Post:</h1>
+
+    <div id="postContainer">
+
+    </div>
+
+    <script>
+        const handlePost = () => {
+            // Making a fetch request to get the posts form the JSONPlaceholder API
+            fetch("https://jsonplaceholder.typicode.com/posts")
+                .then(response => response.json())
+                .then(data => displayPost(data));
+        }
+
+
+        const displayPost = (posts) => {
+            const postContainer = document.getElementById("postContainer")
+
+            for (const post of posts) {
+                const div = document.createElement("div");
+                div.classList.add("card")
+                div.innerHTML = `
+                <h1>${post.title}</h1>
+                <p>${post.body}</p>
+                `
+                postContainer.appendChild(div);
+            }
+        }
+        handlePost()
+    </script>
+</body>
+
+</html>
+```
+
+![](images/Asynchronous-and-Synchronous-JavaScript-images/fetch-ouput-3.png)
+
+#### async/await:
+
+async and await are modern JavaScript keywords that allow you to write asynchronous code that looks like synchronous code. They are used to work with Promises more cleanly.
+
+- async - Used to declare an async function that returns a Promise if the promise resolved.
+- await - Used inside an async function to pause execution until a Promise resolves.If the Promise is rejected, it throws an error that you can catch with try...catch.
+
+Note: Normally, try...catch only works for synchronous code. However, when you use await, JavaScript pauses execution like it does for synchronous code — that allowing try...catch to catch async errors just like sync ones. This is why try...catch works with await, even though the operation is asynchronous.
+
+```js
+// Without arrow function
+async function fetchData() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+```
+
+```js
+// With arrow function
+const fetchData = async () => {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+```
 
 
 

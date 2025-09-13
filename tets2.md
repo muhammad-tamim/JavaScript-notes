@@ -254,69 +254,7 @@ console.log(myAccount);
 
 ```
 
-// Parent Class or super class
-class Gadget {
-    constructor(brand, model, price) {
-        this.brand = brand;
-        this.model = model;
-        this.price = price;
-    }
-}
 
-// Child Class: Laptop
-class Laptop extends Gadget {
-    constructor(brand, model, price, keyboardLight) {
-        super(brand, model, price);
-        this.keyboardLight = keyboardLight;
-    }
-}
-
-// Child Class: Phone
-class Phone extends Gadget {
-    constructor(brand, model, price, hasFaceUnlock) {
-        super(brand, model, price);
-        this.hasFaceUnlock = hasFaceUnlock;
-    }
-}
-
-// Child Class: Tablet
-class Tablet extends Gadget {
-    constructor(brand, model, price, hasPen) {
-        super(brand, model, price);
-        this.hasPen = hasPen;
-    }
-}
-
-const myLaptop = new Laptop("Dell", "XPS 15", 1500, true);
-console.log(myLaptop);
-
-const myPhone = new Phone("Apple", "iPhone 14", 999, true);
-console.log(myPhone);
-
-
-const myTablet = new Tablet("Samsung", "Galaxy Tab S8", 700, true);
-console.log(myTablet);
-
-/*
-Laptop {
-  brand: 'Dell',
-  model: 'XPS 15',
-  price: 1500,
-  keyboardLight: true
-}
-Phone {
-  brand: 'Apple',
-  model: 'iPhone 14',
-  price: 999,
-  hasFaceUnlock: true
-}
-Tablet {
-  brand: 'Samsung',
-  model: 'Galaxy Tab S8',
-  price: 700,
-  hasPen: true
-}
-*/
 ```
 
 here

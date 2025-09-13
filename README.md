@@ -85,19 +85,23 @@
     - [Object Methods](#object-methods)
     - [Optional Chaining (?.)](#optional-chaining-)
     - [Date:](#date)
-  - [1.13. constructor function](#113-constructor-function)
-    - [1.13.1. Why Do We Use Constructor Functions?](#1131-why-do-we-use-constructor-functions)
-    - [1.13.2. Methods in Constructor Functions](#1132-methods-in-constructor-functions)
-      - [1.13.2.1. Adding Methods Inside Constructor](#11321-adding-methods-inside-constructor)
-      - [1.13.2.2. Adding methods though prototype](#11322-adding-methods-though-prototype)
-    - [1.13.3. Prototype](#1133-prototype)
-      - [prototype chain](#prototype-chain)
-      - [Instance vs Prototype Properties](#instance-vs-prototype-properties)
   - [array](#array)
     - [Get the length of an array using length property:](#get-the-length-of-an-array-using-length-property)
     - [for..of loop](#forof-loop)
     - [Array Methods](#array-methods)
       - [Note:](#note)
+  - [1.11. set](#111-set)
+    - [1.11.1. creating a set](#1111-creating-a-set)
+    - [1.11.2. Adding \& Removing Values](#1112-adding--removing-values)
+    - [1.11.3. Checking \& Size](#1113-checking--size)
+    - [1.11.4. Iterating Over a Set](#1114-iterating-over-a-set)
+    - [1.11.5. Convert Set ↔ Array](#1115-convert-set--array)
+  - [1.12. map](#112-map)
+    - [1.12.1. Creating a Map](#1121-creating-a-map)
+    - [1.12.2. Adding \& Updating Values](#1122-adding--updating-values)
+    - [1.12.3. Getting \& Checking Values](#1123-getting--checking-values)
+    - [1.12.4. Deleting \& Clearing](#1124-deleting--clearing)
+    - [1.12.5. Iterating Over a Map](#1125-iterating-over-a-map)
   - [1.5. Iterables](#15-iterables)
   - [1.16. Destructuring](#116-destructuring)
   - [1.17. Strict Mode](#117-strict-mode)
@@ -2740,200 +2744,6 @@ console.log(date.toLocaleDateString()); // 8/4/2025
 console.log(date.toLocaleTimeString()); // 1:15:24 AM
 ```
 
-## 1.13. constructor function
-A constructor function is a special function used to create multiple objects with the same structure and behavior. By convention, the name of a constructor function starts with a capital letter to distinguish it from regular functions.
-
-### 1.13.1. Why Do We Use Constructor Functions?
-Suppose we want multiple similar objects:
-
-```js
-const person1 = { name: "Alice", age: 25 };
-const person2 = { name: "Bob", age: 30 };
-```
-For 2 objects, it’s fine. But for hundreds of objects, manually creating each object is tedious and repetitive.
-
-fot the solution we ca use constructor function:
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-
-const p1 = new Person("Alice", 25);
-const p2 = new Person("Bob", 30);
-
-console.log(p1.name); // Alice
-console.log(p2.age);  // 30
-```
-
-**explanation:**
-here, 
-- Person is a constructor function
-- this refers to the new object that will be created when we use new Person(...). In other words, when we use new Person("Alice", 25), a empty object {} is created, and this points to that object.
-`const p1 = new Person("Alice", 25);`
-- The new keyword does several things: 
-  - Creates a new empty object.
-  - Sets the prototype of the new object to Person.prototype.
-  - Calls the Person function with this pointing to the new object.
-  - Returns the new object automatically (unless you explicitly return something else).
-So after this line:
-
-```js
-p1 = {
-  name: "Alice",
-  age: 25
-}
-```
-Similarly, `p2 = new Person("Bob", 30)` creates another object:
-
-```js
-p2 = {
-  name: "Bob",
-  age: 30
-}
-```
-
-### 1.13.2. Methods in Constructor Functions
-#### 1.13.2.1. Adding Methods Inside Constructor
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-  this.sayHello = function() {
-    console.log(`Hello, I'm ${this.name}`);
-  };
-}
-
-const p1 = new Person("Bob", 30);
-const p2 = new Person("tamim", 30);
-p1.sayHello(); // Hello, I'm Bob
-p2.sayHello(); // Hello, I'm tamim
-```
-
-
-#### 1.13.2.2. Adding methods though prototype
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-
-// Adding method to prototype
-Person.prototype.sayHello = function() {
-  console.log(`Hello, I'm ${this.name}`);
-};
-
-const p1 = new Person("Charlie", 35);
-const p2 = new Person("tamim", 35);
-p2.sayHello(); // Hello, I'm Charlie
-p2.sayHello(); // Hello, I'm tamim
-```
-Notice we didn’t define sayHello inside the constructor.It’s shared via the prototype, so memory isn’t wasted creating a new function for every object.
-
-
-### 1.13.3. Prototype 
-
-A prototype is an object associated with every function and object in JavaScript.It allows objects to share properties and methods rather than each instance having its own copy.
-
-In constructor functions, the prototype property is used to attach methods or properties shared by all instances.
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-  this.sayHello = function() {
-    console.log(`Hello, I'm ${this.name}`);
-  };
-}
-
-const p1 = new Person("Bob", 30);
-const p2 = new Person("tamim", 30);
-p1.sayHello(); // Hello, I'm Bob
-p2.sayHello(); // Hello, I'm tamim
-```
-
-In this example we don't use prototype and every time if we create a new object using new keyword the sayHello method is created for that object and take a space to our memory. If you create 1000 objects, you have 1000 copies of the same function in memory 
-
-to solve this problem, we can  use prototype
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-
-// Adding a method to the prototype
-Person.prototype.greet = function() {
-  console.log(`Hi, I am ${this.name}`);
-};
-
-const p1 = new Person("Alice", 25);
-const p2 = new Person("Bob", 30);
-
-p1.greet(); // Hi, I am Alice
-p2.greet(); // Hi, I am Bob
-```
-
-now, 
-- p1 and p2 do not have their own greet method.
-- They share the same greet method via Person.prototype.
-- This saves memory because only one copy of the function exists.
-
-#### prototype chain
-The prototype chain is the mechanism JavaScript uses to look up properties and methods on objects.
-
-When you try to access a property/method on an object:
-
-- JavaScript checks the object itself.
-- If not found, it checks the object’s prototype.
-- If still not found, it checks the prototype’s prototype.
-- This continues until it reaches Object.prototype.
-
-This chain of references is called the prototype chain.
-
-```js
-function Person(name) {
-  this.name = name;
-}
-
-Person.prototype.greet = function() {
-  console.log(`Hi, I am ${this.name}`);
-};
-
-const p1 = new Person("Alice");
-
-// Accessing method from Person.prototype
-p1.greet(); // Hi, I am Alice
-
-// Accessing method from Object.prototype
-console.log(p1.toString()); // "[object Object]"
-```
-
-
-#### Instance vs Prototype Properties
-
-```js
-function Person(name) {
-  this.name = name;  // instance property
-}
-Person.prototype.sayHello = function() { // prototype property
-  console.log(`Hello, ${this.name}`);
-};
-
-const p1 = new Person("Alice");
-
-console.log(p1.hasOwnProperty('name'));      // true
-console.log(p1.hasOwnProperty('sayHello'));  // false
-```
-
-| Feature        | Instance property               | Prototype property      |
-| -------------- | ------------------------------- | ----------------------- |
-| Defined inside | Constructor function            | Constructor.prototype   |
-| Exists on      | The object itself               | Shared by all instances |
-| Memory         | Each instance gets its own copy | Only one copy shared    |
 
 
 ## array 
@@ -3482,6 +3292,166 @@ for (const key in fruits) {
     const flatArr = arr.flat(Infinity);
     console.log(flatArr); // Output: [1, 2, 3, 4]
     ```
+
+## 1.11. set
+A Set in JavaScript is a collection of unique values (no duplicates allowed).
+
+- Stores unique values
+- Methods: add, delete, has, clear
+- Iteration: for...of, forEach
+- Use cases: remove duplicates, track unique items
+
+### 1.11.1. creating a set
+
+```js
+// Create an empty Set
+const mySet = new Set();
+
+// Create a Set with initial values
+const numbers = new Set([1, 2, 3, 4, 4, 5]); // duplicates ignored
+
+console.log(numbers); // Set(5) {1, 2, 3, 4, 5}
+```
+
+### 1.11.2. Adding & Removing Values
+
+```js
+const fruits = new Set();
+
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.add("Apple"); // ignored, already exists
+
+console.log(fruits); // Set(2) {"Apple", "Banana"}
+
+// Remove a value
+fruits.delete("Banana");
+console.log(fruits); // Set(1) {"Apple"}
+
+// Clear all values
+fruits.clear();
+console.log(fruits); // Set(0) {}
+```
+
+### 1.11.3. Checking & Size
+
+```js
+const letters = new Set(["a", "b", "c"]);
+
+console.log(letters.has("b")); // true
+console.log(letters.has("z")); // false
+
+console.log(letters.size); // 3
+```
+
+### 1.11.4. Iterating Over a Set
+
+```js
+const colors = new Set(["red", "green", "blue"]);
+
+// Using for...of
+for (let color of colors) {
+  console.log(color);
+}
+
+// Using forEach
+colors.forEach((value) => {
+  console.log(value);
+});
+```
+
+### 1.11.5. Convert Set ↔ Array
+
+```js
+const nums = [1, 2, 2, 3, 4, 4];
+const uniqueNums = new Set(nums); // remove duplicates
+console.log(uniqueNums); // Set {1, 2, 3, 4}
+
+// Convert back to array
+const uniqueArray = [...uniqueNums];
+console.log(uniqueArray); // [1, 2, 3, 4]
+```
+
+
+
+## 1.12. map
+A Map in JavaScript is a collection of key-value pairs.
+
+- Stores key-value pairs
+- Unlike objects(keys must be Strings or Symbols only), her keys can be any type.
+- Methods: set, get, delete, has, clear
+- Iteration: for...of, forEach
+- Use cases: frequency count, caching, dictionary-like storage
+
+### 1.12.1. Creating a Map
+
+```js
+// Empty Map
+const myMap = new Map();
+
+// Map with initial key-value pairs
+const user = new Map([
+  ["name", "Alice"],
+  ["age", 25]
+]);
+
+console.log(user); // Map(2) {"name" => "Alice", "age" => 25}
+```
+
+### 1.12.2. Adding & Updating Values
+
+```js
+const student = new Map();
+
+student.set("name", "Bob");
+student.set("age", 21);
+
+// Update existing key
+student.set("age", 22);
+
+console.log(student);
+// Map(2) {"name" => "Bob", "age" => 22}
+```
+
+### 1.12.3. Getting & Checking Values
+
+```js
+console.log(student.get("name")); // Bob
+console.log(student.has("age"));  // true
+console.log(student.has("roll")); // false
+
+console.log(student.size); // 2
+```
+
+### 1.12.4. Deleting & Clearing
+
+```js
+student.delete("age");
+console.log(student); // Map(1) {"name" => "Bob"}
+
+student.clear();
+console.log(student); // Map(0) {}
+```
+
+### 1.12.5. Iterating Over a Map
+
+```js
+const person = new Map([
+  ["name", "Alice"],
+  ["age", 25],
+  ["city", "New York"]
+]);
+
+// for...of
+for (let [key, value] of person) {
+  console.log(`${key}: ${value}`);
+}
+
+// forEach
+person.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});
+```
 
 
 

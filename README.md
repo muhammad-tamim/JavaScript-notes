@@ -90,8 +90,9 @@
     - [1.13.2. Methods in Constructor Functions](#1132-methods-in-constructor-functions)
       - [1.13.2.1. Adding Methods Inside Constructor](#11321-adding-methods-inside-constructor)
       - [1.13.2.2. Adding methods though prototype](#11322-adding-methods-though-prototype)
-  - [1.13.3. Prototype](#1133-prototype)
+    - [1.13.3. Prototype](#1133-prototype)
       - [prototype chain](#prototype-chain)
+      - [Instance vs Prototype Properties](#instance-vs-prototype-properties)
   - [array](#array)
     - [Get the length of an array using length property:](#get-the-length-of-an-array-using-length-property)
     - [for..of loop](#forof-loop)
@@ -2833,9 +2834,9 @@ p2.sayHello(); // Hello, I'm tamim
 Notice we didn’t define sayHello inside the constructor.It’s shared via the prototype, so memory isn’t wasted creating a new function for every object.
 
 
-## 1.13.3. Prototype 
+### 1.13.3. Prototype 
 
-A prototype is an object that is associated with every function and object in JavaScript. It allows objects to share properties and methods instead of each object having its own copy.
+A prototype is an object associated with every function and object in JavaScript.It allows objects to share properties and methods rather than each instance having its own copy.
 
 In constructor functions, the prototype property is used to attach methods or properties shared by all instances.
 
@@ -2904,7 +2905,7 @@ Person.prototype.greet = function() {
 
 const p1 = new Person("Alice");
 
-// Accessing method from prototype
+// Accessing method from Person.prototype
 p1.greet(); // Hi, I am Alice
 
 // Accessing method from Object.prototype
@@ -2912,12 +2913,27 @@ console.log(p1.toString()); // "[object Object]"
 ```
 
 
+#### Instance vs Prototype Properties
 
+```js
+function Person(name) {
+  this.name = name;  // instance property
+}
+Person.prototype.sayHello = function() { // prototype property
+  console.log(`Hello, ${this.name}`);
+};
 
+const p1 = new Person("Alice");
 
+console.log(p1.hasOwnProperty('name'));      // true
+console.log(p1.hasOwnProperty('sayHello'));  // false
+```
 
-
-
+| Feature        | Instance property               | Prototype property      |
+| -------------- | ------------------------------- | ----------------------- |
+| Defined inside | Constructor function            | Constructor.prototype   |
+| Exists on      | The object itself               | Shared by all instances |
+| Memory         | Each instance gets its own copy | Only one copy shared    |
 
 
 ## array 

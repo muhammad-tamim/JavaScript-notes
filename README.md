@@ -20,27 +20,12 @@
     - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
   - [Operator](#operator)
     - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
-      - [String concatenation with +:](#string-concatenation-with-)
     - [Assignment Operators (=, +=, -=, \*=, /=):](#assignment-operators------)
     - [Increment / Decrement Operators (--, ++):](#increment--decrement-operators----)
-      - [Pre Increment / Decrement:](#pre-increment--decrement)
-      - [post Increment / Decrement:](#post-increment--decrement)
     - [Comparison Operator (\>, \<, \>=, \<=, ==, ===, !=, !==):](#comparison-operator--------)
-      - [String comparison:](#string-comparison)
-      - [Difference between == and === :](#difference-between--and--)
-      - [Comparison with null and undefined:](#comparison-with-null-and-undefined)
-      - [null vs 0:](#null-vs-0)
-      - [undefined vs 0:](#undefined-vs-0)
     - [Logical Operators (\&\&, ||, ! ,, !!):](#logical-operators-----)
     - [Conditional Operators (if, else, else if, ? :, switch, case):](#conditional-operators-if-else-else-if---switch-case)
-      - [Ternary operator(? :):](#ternary-operator-)
-      - [switch...case:](#switchcase)
-      - [Truthy and Falsy values:](#truthy-and-falsy-values)
     - [Others Operators](#others-operators)
-      - [typeof operator:](#typeof-operator)
-      - [rest operator:](#rest-operator)
-      - [spread operator](#spread-operator)
-      - [Nullish Coalescing operator (??)](#nullish-coalescing-operator-)
   - [Loops](#loops)
     - [for loop:](#for-loop)
     - [while loop:](#while-loop)
@@ -55,9 +40,6 @@
     - [Arrow Function:](#arrow-function)
     - [Difference between arrow function and normal function](#difference-between-arrow-function-and-normal-function)
     - [Recursion](#recursion)
-      - [what is Call Stack:](#what-is-call-stack)
-      - [How the recursion Works:](#how-the-recursion-works)
-      - [Find Factorial Using Recursion:](#find-factorial-using-recursion)
     - [Closure](#closure)
   - [string](#string)
     - [why strings are iterable also?](#why-strings-are-iterable-also)
@@ -70,12 +52,7 @@
     - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
     - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
     - [Object.freeze() vs Object.seal()](#objectfreeze-vs-objectseal)
-      - [Object.freeze():](#objectfreeze)
-      - [Object.seal():](#objectseal)
     - [Property existence test:](#property-existence-test)
-      - [With in operator:](#with-in-operator)
-      - [With includes() method:](#with-includes-method)
-      - [With hasOwnProperty() method:](#with-hasownproperty-method)
     - [The "for..in" loop](#the-forin-loop)
     - [Objects References and Copying:](#objects-references-and-copying)
     - [Const objects can be modified?](#const-objects-can-be-modified)
@@ -85,7 +62,6 @@
     - [Optional Chaining (?.)](#optional-chaining-)
     - [Date:](#date)
   - [array](#array)
-    - [Get the length of an array using length property:](#get-the-length-of-an-array-using-length-property)
     - [for..of loop](#forof-loop)
     - [Array Methods](#array-methods)
   - [set](#set)
@@ -166,7 +142,6 @@
     - [Update the Local Storage key and values:](#update-the-local-storage-key-and-values)
   - [Asynchronous and Synchronous JavaScript](#asynchronous-and-synchronous-javascript)
     - [Synchronous Javascript](#synchronous-javascript)
-      - [Single Threaded:](#single-threaded)
     - [Asynchronous JavaScript](#asynchronous-javascript)
     - [Web API:](#web-api)
     - [Event loop:](#event-loop)
@@ -882,7 +857,7 @@ console.log(4 ** (1 / 2)); // 2 (power of 1/2 is the same as a square root)
 console.log(8 ** (1 / 3)); // 2 (power of 1/3 is the same as a cubic root)
 ```
 
-#### String concatenation with +:
+**String concatenation with +:**
 
 ```js
 let s = "my" + "string";
@@ -917,7 +892,7 @@ x /= 2;  // x = x / 2
 
 ### Increment / Decrement Operators (--, ++):
 
-#### Pre Increment / Decrement:
+**Pre Increment / Decrement:**
 
 ```js
 let i = 10;
@@ -927,7 +902,7 @@ console.log(x); // 11
 ```
 Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.
 
-#### post Increment / Decrement:
+**post Increment / Decrement:**
 
 ```js
 let i = 10;
@@ -954,7 +929,7 @@ console.log(5 === '5'); // false
 console.log(5 != '5');  // false
 console.log(5 !== '5'); // true
 ```
-#### String comparison:
+**String comparison:**
 
 To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.
 
@@ -979,7 +954,7 @@ console.log('a'.charCodeAt(0)); // Output: 97
 console.log('a'.codePointAt(0)); // Output: 97
 ```
 
-#### Difference between == and === :
+**Difference between == and === :**
 
 ```js
 console.log(0 == false); // 0 == 0 true
@@ -996,7 +971,7 @@ console.log(0 === 0); // true
 console.log('' === ''); // true
 ```
 
-#### Comparison with null and undefined:
+**Comparison with null and undefined:**
 
 ```js
 console.log(null === undefined); // false
@@ -1006,7 +981,7 @@ console.log(null == undefined); // true
 // this is a special rule. If you use ==, null and undefined are considered equal.
 ```
 
-#### null vs 0:
+**null vs 0:**
 
 ```js
 console.log(null > 0);  // false
@@ -1014,7 +989,7 @@ console.log(null == 0); // false
 console.log(null >= 0); // true 
 ```
 
-#### undefined vs 0:
+**undefined vs 0:**
 
 ```js
 console.log(undefined > 0); // false 
@@ -1086,7 +1061,7 @@ if (age < 18) {
 }
 ```
 
-#### Ternary operator(? :):
+**Ternary operator(? :):**
 
 syntax:
 
@@ -1112,7 +1087,7 @@ let message = (age >= 18) ? "You are an adult" : "You are a minor";
 console.log(message);
 ```
 
-#### switch...case:
+**switch...case:**
 
 ```js
 
@@ -1134,7 +1109,7 @@ switch (color) {
 // switch checks one variable against multiple cases and runs the matched block.
 ```
 
-#### Truthy and Falsy values:
+**Truthy and Falsy values:**
 
 In JavaScript, any value used in a conditional statement gets automatically converted to true or false.
 
@@ -1164,7 +1139,7 @@ if (NaN) console.log('Falsy');
 
 ### Others Operators
 
-#### typeof operator:
+**typeof operator:**
 
 ```js
 
@@ -1196,7 +1171,7 @@ Note:
 - typeof null return "object", but null is a primitive data type.
 - typeof alert returns "function", but functions are technically objects.
 
-#### rest operator:
+**rest operator:**
 
 Rest operator gathers values into an array or object. It is used defining things like Function parameters, array destructuring, object destructuring.
 
@@ -1238,7 +1213,7 @@ console.log(name); // Tamim
 console.log(rest); // { age: 21, country: "BD" }
 ```
 
-#### spread operator
+**spread operator:**
 Spreads operator breaks an array or object into individual values. It is Used in Function calls, array literals and object literals.
 
 In function call:
@@ -1277,7 +1252,7 @@ console.log(merged); // { name: "Tamim", age: 21 }
 ```
 
 
-#### Nullish Coalescing operator (??)
+**Nullish Coalescing operator (??):**
 The nullish coalescing operator (??) is used to provide a default value when a variable is null or undefined.
 
 ```js
@@ -1700,7 +1675,7 @@ inside c 30
 */
 ```
 
-#### what is Call Stack:
+**what is Call Stack:**
 
 A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:
 
@@ -1711,7 +1686,7 @@ A call stack is a data structure that keeps track of function calls in a Last-In
 
 ![callstack](images/callStack.png)  
 
-#### How the recursion Works:
+**How the recursion Works:**
 
 A recursive function typically has two main components:
 
@@ -1728,7 +1703,7 @@ A recursive function typically has two main components:
 2.  **Recursive Case:** The part where the recursive function calls itself.
     
 
-#### Find Factorial Using Recursion:
+**Find Factorial Using Recursion:**
 
 ```
 
@@ -2326,7 +2301,7 @@ console.log(entries);
 
 ### Object.freeze() vs Object.seal()
 
-#### Object.freeze():
+**Object.freeze():**
 
 Object.freeze() freezes an object. This means:
 
@@ -2391,7 +2366,7 @@ deepObj.level1.level2.value = 100;
 console.log(deepObj.level1.level2.value); // 42
 ```
 
-#### Object.seal():
+**Object.seal():**
 
 Object.seal() freezes an object. This means:
 
@@ -2436,7 +2411,7 @@ console.log(Object.isSealed(obj2)); // true
 
 ### Property existence test:
 
-#### With in operator:
+**With in operator:**
 
 ```js
 let user = {
@@ -2448,7 +2423,7 @@ console.log("age" in user); // true, user.age exists
 console.log("location" in user); // false, user.location doesn't exist
 ```
 
-#### With includes() method:
+**With includes() method:**
 
 ```js
 const profile = {
@@ -2462,7 +2437,7 @@ const hasName = profileKeys.includes("name");
 console.log(hasName); // Output: true
 ```
 
-#### With hasOwnProperty() method:
+**With hasOwnProperty() method:**
 
 ```js
 const profile = {
@@ -2835,7 +2810,7 @@ fruits[2] = 'mango';
 console.log(fruits); // [ 'apple', 'orange', 'mango' ]
 ```
 
-### Get the length of an array using length property:
+**Get the length of an array using length property:**
 
 ```js
 let fruits = ["Apple", "Orange", "Plum"];
@@ -6226,7 +6201,7 @@ In localStorage, key name are immutable and values are mutable, thats means, you
 
 ### Synchronous Javascript
 
-#### Single Threaded:
+**Single Threaded:**
 JavaScript is a single-threaded, synchronous language, which means it executes one task at a time, in a specific order from top to bottom.
 
 ```js

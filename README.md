@@ -167,6 +167,13 @@
     - [Export:](#export)
     - [Import:](#import)
   - [1.18. Regular Expression](#118-regular-expression)
+    - [Common RegEx Methods:](#common-regex-methods)
+    - [Anchors:](#anchors)
+    - [Flags:](#flags)
+    - [Basic Patterns](#basic-patterns)
+    - [Quantifiers](#quantifiers)
+    - [Escaping special characters](#escaping-special-characters)
+    - [Ral world examples:](#ral-world-examples)
   - [1.19. Local Storage and Session Storage](#119-local-storage-and-session-storage)
   - [1.20. Asynchronous and Synchronous JavaScript](#120-asynchronous-and-synchronous-javascript)
 - [2. Part 3: DOM](#2-part-3-dom)
@@ -5868,6 +5875,306 @@ console.log(sum(2, 3));   // 5
 ```
 
 ## 1.18. Regular Expression
+
+A regular expression (RegEx) is a pattern used to match character combinations in strings.
+
+In JavaScript, RegEx is often used for:
+
+-   Validating input (e.g., email, phone number)
+-   Searching/matching strings
+-   Replacing patterns in text
+
+### Common RegEx Methods:
+
+-   test() = Returns true if pattern matches
+-   match() = Returns matching values (array or null)
+-   replace() = Replace matched pattern
+-   search() = Returns index of match or -1
+-   split() = Split string by pattern
+
+```js
+const str = "I have a cat, a dog, and a cow.";
+const pattern = /a/g;
+
+/*
+/a/ = matches the lowercase letter a
+g = means global, so it finds all occurrences
+*/
+
+console.log("test():", pattern.test(str));       // true
+console.log("match():", str.match(pattern));     // [ 'a', 'a', 'a', 'a', 'a' ]
+console.log("replace():", str.replace(pattern, "*")); // I h*ve * c*t, * dog, *nd * cow.
+console.log("search():", str.search(pattern));   // 3
+console.log("split():", str.split(pattern));     // [ 'I h', 've ', ' c', 't, ', ' dog, ', 'nd ', ' cow.' ]
+```
+
+### Anchors:
+
+-   ^ = matches only the beginning of the entire string.
+-   $ = matches only the end of the entire string.
+-   \\b = Word boundary (matches a boundary between a word character (a-z, A-Z, 0-9, \_) and a non-word character like space, punctuation, etc. as a whole word, not inside others word)
+
+```js
+const str = "helloWorld hello world\nstart hello\nend";
+
+console.log("^hello    :", str.match(/^hello/));
+console.log("end$      :", str.match(/end$/));
+console.log("\\bhello\\b:", str.match(/\bhello\b/g));
+
+/*
+^hello    : [
+  'hello',
+  index: 0,
+  input: 'helloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+end$      : [
+  'end',
+  index: 35,
+  input: 'helloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+\bhello\b: [ 'hello', 'hello' ]
+*/
+```
+
+### Flags:
+
+-   g = Match all occurrences (not just the first one)
+-   i = ignores the case
+-   m = multiline (it changes how the ^ and $ anchors behave.)  
+    without m (default behavior):
+    
+    -   ^ matches only the beginning of the entire string.
+    -   $ matches only the end of the entire string.
+    
+    With m:
+    -   ^ matches the start of each line (right after a \\n).
+    -   $ matches the end of each line (right before a \\n).
+
+```js
+const text = `Apple apple APPLE`;
+
+console.log("g :", text.match(/apple/g));
+console.log("i :", text.match(/apple/i));
+console.log("gi:", text.match(/apple/gi));
+
+/*
+g : [ 'apple' ]
+i : [ 'Apple', index: 0, input: 'Apple apple APPLE', groups: undefined ]
+gi: [ 'Apple', 'apple', 'APPLE' ] 
+*/
+```
+
+```js
+const str = "d\nhelloWorld hello world\nstart hello\nend";
+
+console.log(str.match(/^hello/));
+console.log(str.match(/^hello/m));
+
+console.log(str.match(/hello$/));
+console.log(str.match(/hello$/m));
+
+/*
+null
+[
+  'hello',
+  index: 2,
+  input: 'd\nhelloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+null
+[
+  'hello',
+  index: 31,
+  input: 'd\nhelloWorld hello world\nstart hello\nend',
+  groups: undefined
+]
+*/
+```
+
+### Basic Patterns
+
+- /abc/ = Matches the exact sequence "abc"
+    
+    ```js
+    
+    const str1 = "I know my abc and 123.";
+    console.log(str1.match(/abc/));
+    /*
+    [
+      'abc',
+      index: 10,
+      input: 'I know my abc and 123.',
+      groups: undefined
+    ]
+    */
+    ```
+    
+-   /\d/ = Matches any digit (0–9)
+    
+    ```js
+    const str2 = "Room number is 405.";
+    console.log(str2.match(/\d/g));
+    // Output: [ '4', '0', '5' ]
+    ```
+    
+-  /\w/ → Matches any word character (a–z, A–Z, 0–9, \_)
+    
+    ```js
+    const str3 = "Hi_123!";
+    console.log(str3.match(/\w/g));
+    // Output: [ 'H', 'i', '_', '1', '2', '3' ]
+    ```
+    
+-   /\s/ → Matches any whitespace character (space, tab, newline)
+    
+    ```js
+    const str4 = "Hello World! I am Tamim";
+    console.log(str4.match(/\s/g));
+    // Output: [ ' ', ' ', ' ', ' ' ]
+    ```
+    
+-   /./ → Matches any character (except newline)
+    
+    ```js
+    const str5 = "OK!";
+    console.log(str5.match(/./g));
+    // Output: [ 'O', 'K', '!' ]
+    ```
+    
+-   /[abc]/ → Matches a, b, or c
+    
+    ```js
+    const str6 = "bag of chips";
+    console.log(str6.match(/[abc]/g));
+    // Output: [ 'b', 'a', 'c' ]
+    ```
+    
+-   /[^abc]/ → Matches any character except a, b, or c
+    
+    ```js
+    const str7 = "abc123";
+    console.log(str7.match(/[^abc]/g));
+    // Output: [ '1', '2', '3' ]
+    ```
+    
+-   /[A-Z]/ → Matches any uppercase letter
+    
+    ```js
+    const str9 = "Hi There!";
+    console.log(str9.match(/[A-Z]/g));
+    // Output: [ 'H', 'T' ]
+    ```
+    
+
+### Quantifiers
+
+-   /a+/ → 1 or more a
+-   /a\*/ → 0 or more a
+-   /a?/ → 0 or 1 a
+-   /a{2}/ → Exactly 2 as
+-   /a{3,}/ → 3 or more as
+-   /a{2,4}/ → Between 2 and 4 as
+
+```js
+const str = "aa aaaa a aaaa aaa aaaaaaa";
+
+console.log("+     :", str.match(/a+/g));       // Match one or more continuous "a" characters.
+console.log("*     :", str.match(/a*/g));       // Match zero or more continuous "a" characters.
+console.log("?     :", str.match(/a?/g));       // Match zero or one "a" character.
+console.log("{2}   :", str.match(/a{2}/g));     // Match exactly two "a" characters.
+console.log("{3,}  :", str.match(/a{3,}/g));    // Match three or more "a" characters.
+console.log("{2,4} :", str.match(/a{2,4}/g));   // Match between two and four "a" characters.
+
+/*
++     : [ 'aa', 'aaaa', 'a', 'aaaa', 'aaa', 'aaaaaaa' ]
+*     : [
+  'aa',      '',
+  'aaaa',    '',
+  'a',       '',
+  'aaaa',    '',
+  'aaa',     '',
+  'aaaaaaa', ''
+]
+?     : [
+  'a', 'a', '',  'a', 'a', 'a', 'a',
+  '',  'a', '',  'a', 'a', 'a', 'a',
+  '',  'a', 'a', 'a', '',  'a', 'a',
+  'a', 'a', 'a', 'a', 'a', ''
+]
+{2}   : [
+  'aa', 'aa', 'aa',
+  'aa', 'aa', 'aa',
+  'aa', 'aa', 'aa'
+]
+{3,}  : [ 'aaaa', 'aaaa', 'aaa', 'aaaaaaa' ]
+{2,4} : [ 'aa', 'aaaa', 'aaaa', 'aaa', 'aaaa', 'aaa' ]
+*/
+```
+
+### Escaping special characters
+
+If you want to match characters like ., ?, \*, use a backslash(\\)
+
+```js
+let pattern = /\./;
+console.log("google.com".match(pattern)); // [ '.', index: 6, input: 'google.com', groups: undefined ]
+```
+
+### Ral world examples:
+
+-  Validate Email:
+    
+    ```js
+    
+    const email = "tamim@gmail.com";
+    const emailPattern = /^[\w.-]+@[\w.-]+\.\w+$/;
+    
+    console.log(emailPattern.test(email)); // true
+    
+    /*
+    "tamim@gmail.com"
+    
+    ^           → Start of string
+    [\w.-]+     → "tamim"
+    @           → "@"
+    [\w.-]+     → "gmail"
+    \.          → "."
+    \w+         → "com"
+    $           → End of string 
+    
+     */
+    ```
+    
+-   Extract Digits
+    
+    ```js
+    let str = "Order #12345";
+    let digits = str.match(/\d+/); // ['12345']
+    console.log(digits); // [ '12345', index: 7, input: 'Order #12345', groups: undefined ]
+    console.log(digits[0]); // '12345'
+    
+    /*
+    /d --> matches any digit (0-9)
+    + --> matches one or more digits
+    /\d+/ --> matches one or more digits in a row
+    */
+    ```
+    
+-  Remove Extra Spaces
+    
+    ```js
+    let messy = "  too    many    spaces ";
+    let clean = messy.replace(/\s+/g, " ").trim();
+    console.log(clean); // "too many spaces"
+    
+    /*
+    \s --> Matches any whitespace character (space, tab, newline)
+    + --> Matches one or more occurrences 
+    g --> Global search, match all occurrences in the string
+    */
+    ```
 
 ## 1.19. Local Storage and Session Storage
 

@@ -1,220 +1,215 @@
 <h1 align="center">JavaScript Notes</h1>
 
 
-- [1. Part 1: The JavaScript Language](#1-part-1-the-javascript-language)
-  - [1.1. An Introduction to Javascript](#11-an-introduction-to-javascript)
-    - [1.1.1. What is JavaScript:](#111-what-is-javascript)
-    - [1.1.2. JavaScript History:](#112-javascript-history)
-    - [1.1.3. Why Did JavaScript Need a Standard Version:](#113-why-did-javascript-need-a-standard-version)
-    - [1.1.4. JavaScript Engines:](#114-javascript-engines)
-    - [1.1.5. Hello World](#115-hello-world)
-  - [1.2. Variables](#12-variables)
-    - [1.2.1. Difference between var, let and const:](#121-difference-between-var-let-and-const)
-    - [1.2.2. Hoisting](#122-hoisting)
-    - [1.2.3. Scope](#123-scope)
-    - [1.2.4. Scope Chain](#124-scope-chain)
-    - [1.2.5. Variable naming conventions:](#125-variable-naming-conventions)
-    - [1.2.6. How to write a long variable name](#126-how-to-write-a-long-variable-name)
-  - [1.3. Data Types](#13-data-types)
-    - [1.3.1. 7 Primitive Data Types:](#131-7-primitive-data-types)
-    - [1.3.2. 1 Non-Primitive Data Types:](#132-1-non-primitive-data-types)
-  - [1.4. Operator](#14-operator)
-    - [1.4.1. Arithmetic Operators (+, -, \*, /, %, \*\*):](#141-arithmetic-operators-------)
-      - [1.4.1.1. String concatenation with +:](#1411-string-concatenation-with-)
-    - [1.4.2. Assignment Operators (=, +=, -=, \*=, /=):](#142-assignment-operators------)
-    - [1.4.3. Increment / Decrement Operators (--, ++):](#143-increment--decrement-operators----)
-      - [1.4.3.1. Pre Increment / Decrement:](#1431-pre-increment--decrement)
-      - [1.4.3.2. post Increment / Decrement:](#1432-post-increment--decrement)
-    - [1.4.4. Comparison Operator (\>, \<, \>=, \<=, ==, ===, !=, !==):](#144-comparison-operator--------)
-      - [1.4.4.1. String comparison:](#1441-string-comparison)
-      - [1.4.4.2. Difference between == and === :](#1442-difference-between--and--)
-      - [1.4.4.3. Comparison with null and undefined:](#1443-comparison-with-null-and-undefined)
-      - [1.4.4.4. null vs 0:](#1444-null-vs-0)
-      - [1.4.4.5. undefined vs 0:](#1445-undefined-vs-0)
-    - [1.4.5. Logical Operators (\&\&, ||, ! ,, !!):](#145-logical-operators-----)
-    - [1.4.6. Conditional Operators (if, else, else if, ? :, switch, case):](#146-conditional-operators-if-else-else-if---switch-case)
-      - [1.4.6.1. Ternary operator(? :):](#1461-ternary-operator-)
-      - [1.4.6.2. switch...case:](#1462-switchcase)
-      - [1.4.6.3. Truthy and Falsy values:](#1463-truthy-and-falsy-values)
-    - [1.4.7. Others Operators](#147-others-operators)
-      - [1.4.7.1. typeof operator:](#1471-typeof-operator)
-      - [1.4.7.2. rest operator:](#1472-rest-operator)
-      - [1.4.7.3. spread operator](#1473-spread-operator)
-      - [1.4.7.4. Nullish Coalescing operator (??)](#1474-nullish-coalescing-operator-)
-  - [1.5. Loops](#15-loops)
-    - [1.5.1. for loop:](#151-for-loop)
-    - [1.5.2. while loop:](#152-while-loop)
-    - [1.5.3. do while loop:](#153-do-while-loop)
-    - [1.5.4. for..of loop (for iterables):](#154-forof-loop-for-iterables)
-    - [1.5.5. for..in loop (for objects):](#155-forin-loop-for-objects)
-    - [1.5.6. forEach method (only for array):](#156-foreach-method-only-for-array)
-  - [1.6. function](#16-function)
-    - [1.6.1. What is the difference between return and no return in a function?](#161-what-is-the-difference-between-return-and-no-return-in-a-function)
-    - [1.6.2. Default Parameter:](#162-default-parameter)
-    - [1.6.3. CallBack Function](#163-callback-function)
-    - [1.6.4. Arrow Function:](#164-arrow-function)
-    - [1.6.5. Difference between arrow function and normal function](#165-difference-between-arrow-function-and-normal-function)
-    - [1.6.6. Recursion](#166-recursion)
-      - [1.6.6.1. what is Call Stack:](#1661-what-is-call-stack)
-      - [1.6.6.2. How the recursion Works:](#1662-how-the-recursion-works)
-      - [1.6.6.3. Find Factorial Using Recursion:](#1663-find-factorial-using-recursion)
-    - [1.6.7. Closure](#167-closure)
-      - [1.6.7.1. Closure Features](#1671-closure-features)
-  - [1.7. string](#17-string)
-    - [1.7.1. why strings are iterable also?](#171-why-strings-are-iterable-also)
-    - [1.7.2. Strings are immutable:](#172-strings-are-immutable)
-    - [1.7.3. Quotes:](#173-quotes)
-    - [1.7.4. String Property:](#174-string-property)
-    - [1.7.5. String Methods:](#175-string-methods)
-  - [1.8. Objects:](#18-objects)
-    - [1.8.1. Different ways to declare an Object](#181-different-ways-to-declare-an-object)
-    - [1.8.2. Dot Notation VS Bracket Notation:](#182-dot-notation-vs-bracket-notation)
-    - [1.8.3. Object.keys(), Object.Values() and Object.entries() methods:](#183-objectkeys-objectvalues-and-objectentries-methods)
-    - [1.8.4. Object.freeze() vs Object.seal()](#184-objectfreeze-vs-objectseal)
-      - [1.8.4.1. Object.freeze():](#1841-objectfreeze)
-      - [1.8.4.2. Object.seal():](#1842-objectseal)
-    - [1.8.5. Property existence test:](#185-property-existence-test)
-      - [1.8.5.1. With in operator:](#1851-with-in-operator)
-      - [1.8.5.2. With includes() method:](#1852-with-includes-method)
-      - [1.8.5.3. With hasOwnProperty() method:](#1853-with-hasownproperty-method)
-    - [1.8.6. The "for..in" loop](#186-the-forin-loop)
-    - [1.8.7. Objects References and Copying:](#187-objects-references-and-copying)
-    - [1.8.8. Const objects can be modified?](#188-const-objects-can-be-modified)
-    - [1.8.9. Cloning and merging, Object.assign and structuredClone():](#189-cloning-and-merging-objectassign-and-structuredclone)
-    - [1.8.10. Nested cloning:](#1810-nested-cloning)
-    - [1.8.11. Object Methods](#1811-object-methods)
-    - [1.8.12. Optional Chaining (?.)](#1812-optional-chaining-)
-    - [1.8.13. Date:](#1813-date)
-  - [1.9. array](#19-array)
-    - [1.9.1. Get the length of an array using length property:](#191-get-the-length-of-an-array-using-length-property)
-    - [1.9.2. for..of loop](#192-forof-loop)
-    - [1.9.3. Array Methods](#193-array-methods)
-  - [1.10. set](#110-set)
-    - [1.10.1. creating a set](#1101-creating-a-set)
-    - [1.10.2. Adding \& Removing Values](#1102-adding--removing-values)
-    - [1.10.3. Checking \& Size](#1103-checking--size)
-    - [1.10.4. Iterating Over a Set](#1104-iterating-over-a-set)
-    - [1.10.5. Convert Set ↔ Array](#1105-convert-set--array)
-  - [1.11. map](#111-map)
-    - [1.11.1. Creating a Map](#1111-creating-a-map)
-    - [1.11.2. Adding \& Updating Values](#1112-adding--updating-values)
-    - [1.11.3. Getting \& Checking Values](#1113-getting--checking-values)
-    - [1.11.4. Deleting \& Clearing](#1114-deleting--clearing)
-    - [1.11.5. Iterating Over a Map](#1115-iterating-over-a-map)
-  - [1.12. OPP in js](#112-opp-in-js)
-    - [1.12.1. Object and properties](#1121-object-and-properties)
-      - [1.12.1.1. creating objects](#11211-creating-objects)
-        - [1.12.1.1.1. using general object literal syntax](#112111-using-general-object-literal-syntax)
-        - [1.12.1.1.2. Using Object Constructor](#112112-using-object-constructor)
-        - [1.12.1.1.3. Using Object.create()](#112113-using-objectcreate)
-      - [1.12.1.2. Properties](#11212-properties)
-        - [1.12.1.2.1. Property Access](#112121-property-access)
-        - [1.12.1.2.2. Property Descriptors](#112122-property-descriptors)
-    - [1.12.2. Constructor Functions](#1122-constructor-functions)
-      - [1.12.2.1. Basic Constructor Function](#11221-basic-constructor-function)
-      - [1.12.2.2. Adding Methods to Prototype](#11222-adding-methods-to-prototype)
-      - [1.12.2.3. Constructor Function vs Regular Function](#11223-constructor-function-vs-regular-function)
-    - [1.12.3. ES6 Classes](#1123-es6-classes)
-      - [1.12.3.1. Basic Class Syntax](#11231-basic-class-syntax)
-      - [1.12.3.2. Class Expressions](#11232-class-expressions)
-      - [1.12.3.3. Getters and Setters](#11233-getters-and-setters)
-    - [1.12.4. The Four Pillars of OOP](#1124-the-four-pillars-of-oop)
-      - [1.12.4.1. Encapsulation](#11241-encapsulation)
-        - [1.12.4.1.1. Private Fields (ES2022)](#112411-private-fields-es2022)
-        - [1.12.4.1.2. Traditional Encapsulation (Using Closures)](#112412-traditional-encapsulation-using-closures)
-      - [1.12.4.2. Inheritance](#11242-inheritance)
-        - [1.12.4.2.1. Class Inheritance](#112421-class-inheritance)
-        - [1.12.4.2.2. Prototype-based Inheritance](#112422-prototype-based-inheritance)
-      - [1.12.4.3. Polymorphism](#11243-polymorphism)
-      - [1.12.4.4. Abstraction](#11244-abstraction)
-    - [1.12.5. Prototypes and Inheritance](#1125-prototypes-and-inheritance)
-      - [1.12.5.1. Understanding Prototypes](#11251-understanding-prototypes)
-      - [1.12.5.2. Prototype Chain](#11252-prototype-chain)
-      - [1.12.5.3. Modern Prototype Methods](#11253-modern-prototype-methods)
-    - [1.12.6. Advanced OOP Concepts](#1126-advanced-oop-concepts)
-      - [1.12.6.1. Composition over Inheritance](#11261-composition-over-inheritance)
-      - [1.12.6.2. Method Chaining](#11262-method-chaining)
-      - [1.12.6.3. Factory Pattern](#11263-factory-pattern)
-    - [1.12.7. Design Patterns](#1127-design-patterns)
-      - [1.12.7.1. Singleton Pattern](#11271-singleton-pattern)
-      - [1.12.7.2. Observer Pattern](#11272-observer-pattern)
-      - [1.12.7.3. Strategy Pattern](#11273-strategy-pattern)
-    - [1.12.8. Best Practices](#1128-best-practices)
-      - [1.12.8.1. Use Meaningful Names](#11281-use-meaningful-names)
-      - [1.12.8.2. Follow Single Responsibility Principle](#11282-follow-single-responsibility-principle)
-          - [1.12.8.2.0.1. Use Composition When Appropriate](#1128201-use-composition-when-appropriate)
-      - [1.12.8.3. Use Private Members for Internal State](#11283-use-private-members-for-internal-state)
-    - [1.12.9. Examples](#1129-examples)
-      - [1.12.9.1. E-commerce System](#11291-e-commerce-system)
-    - [1.12.10. Task Management System](#11210-task-management-system)
-    - [1.12.11. Banking System](#11211-banking-system)
-  - [1.13. Iterables](#113-iterables)
-  - [1.14. Destructuring](#114-destructuring)
-    - [1.14.1. Array Destructuring](#1141-array-destructuring)
-    - [1.14.2. Object Destructuring](#1142-object-destructuring)
-    - [1.14.3. Destructuring in Function Parameters](#1143-destructuring-in-function-parameters)
-  - [1.15. Strict Mode](#115-strict-mode)
-  - [1.16. Error Handling](#116-error-handling)
-    - [1.16.1. Without try...catch :](#1161-without-trycatch-)
-    - [1.16.2. With try...catch:](#1162-with-trycatch)
-    - [1.16.3. err vs err.message vs err.name](#1163-err-vs-errmessage-vs-errname)
-    - [1.16.4. Finally block:](#1164-finally-block)
-    - [1.16.5. Common JS Errors:](#1165-common-js-errors)
-      - [1.16.5.1. SyntaxError:](#11651-syntaxerror)
-      - [1.16.5.2. ReferenceError](#11652-referenceerror)
-      - [1.16.5.3. TypeError](#11653-typeerror)
-  - [1.17. Js Modules: Import and export](#117-js-modules-import-and-export)
-    - [1.17.1. Export:](#1171-export)
-    - [1.17.2. Import:](#1172-import)
-  - [1.18. Regular Expression](#118-regular-expression)
-    - [1.18.1. Common RegEx Methods:](#1181-common-regex-methods)
-    - [1.18.2. Anchors:](#1182-anchors)
-    - [1.18.3. Flags:](#1183-flags)
-    - [1.18.4. Basic Patterns](#1184-basic-patterns)
-    - [1.18.5. Quantifiers](#1185-quantifiers)
-    - [1.18.6. Escaping special characters](#1186-escaping-special-characters)
-    - [1.18.7. Ral world examples:](#1187-ral-world-examples)
-  - [1.19. Local Storage and Session Storage](#119-local-storage-and-session-storage)
-    - [1.19.1. local storage methods:](#1191-local-storage-methods)
-    - [1.19.2. Update the Local Storage key and values:](#1192-update-the-local-storage-key-and-values)
-  - [1.20. Asynchronous and Synchronous JavaScript](#120-asynchronous-and-synchronous-javascript)
-    - [1.20.1. Synchronous Javascript](#1201-synchronous-javascript)
-      - [1.20.1.1. Single Threaded:](#12011-single-threaded)
-    - [1.20.2. Asynchronous JavaScript](#1202-asynchronous-javascript)
-    - [1.20.3. Web API:](#1203-web-api)
-    - [1.20.4. Event loop:](#1204-event-loop)
-    - [1.20.5. setTimeOut() and setInterval()](#1205-settimeout-and-setinterval)
-    - [1.20.6. JSON, promise, fetch, async/await](#1206-json-promise-fetch-asyncawait)
-      - [1.20.6.1. JSON](#12061-json)
-      - [1.20.6.2. promise](#12062-promise)
+- [Part 1: The JavaScript Language](#part-1-the-javascript-language)
+  - [An Introduction to Javascript](#an-introduction-to-javascript)
+    - [What is JavaScript:](#what-is-javascript)
+    - [JavaScript History:](#javascript-history)
+    - [Why Did JavaScript Need a Standard Version:](#why-did-javascript-need-a-standard-version)
+    - [JavaScript Engines:](#javascript-engines)
+    - [Hello World](#hello-world)
+  - [Variables](#variables)
+    - [Difference between var, let and const:](#difference-between-var-let-and-const)
+    - [Hoisting](#hoisting)
+    - [Scope](#scope)
+    - [Scope Chain](#scope-chain)
+    - [Variable naming conventions:](#variable-naming-conventions)
+    - [How to write a long variable name](#how-to-write-a-long-variable-name)
+  - [Data Types](#data-types)
+    - [7 Primitive Data Types:](#7-primitive-data-types)
+    - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
+  - [Operator](#operator)
+    - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
+      - [String concatenation with +:](#string-concatenation-with-)
+    - [Assignment Operators (=, +=, -=, \*=, /=):](#assignment-operators------)
+    - [Increment / Decrement Operators (--, ++):](#increment--decrement-operators----)
+      - [Pre Increment / Decrement:](#pre-increment--decrement)
+      - [post Increment / Decrement:](#post-increment--decrement)
+    - [Comparison Operator (\>, \<, \>=, \<=, ==, ===, !=, !==):](#comparison-operator--------)
+      - [String comparison:](#string-comparison)
+      - [Difference between == and === :](#difference-between--and--)
+      - [Comparison with null and undefined:](#comparison-with-null-and-undefined)
+      - [null vs 0:](#null-vs-0)
+      - [undefined vs 0:](#undefined-vs-0)
+    - [Logical Operators (\&\&, ||, ! ,, !!):](#logical-operators-----)
+    - [Conditional Operators (if, else, else if, ? :, switch, case):](#conditional-operators-if-else-else-if---switch-case)
+      - [Ternary operator(? :):](#ternary-operator-)
+      - [switch...case:](#switchcase)
+      - [Truthy and Falsy values:](#truthy-and-falsy-values)
+    - [Others Operators](#others-operators)
+      - [typeof operator:](#typeof-operator)
+      - [rest operator:](#rest-operator)
+      - [spread operator](#spread-operator)
+      - [Nullish Coalescing operator (??)](#nullish-coalescing-operator-)
+  - [Loops](#loops)
+    - [for loop:](#for-loop)
+    - [while loop:](#while-loop)
+    - [do while loop:](#do-while-loop)
+    - [for..of loop (for iterables):](#forof-loop-for-iterables)
+    - [for..in loop (for objects):](#forin-loop-for-objects)
+    - [forEach method (only for array):](#foreach-method-only-for-array)
+  - [function](#function)
+    - [What is the difference between return and no return in a function?](#what-is-the-difference-between-return-and-no-return-in-a-function)
+    - [Default Parameter:](#default-parameter)
+    - [CallBack Function](#callback-function)
+    - [Arrow Function:](#arrow-function)
+    - [Difference between arrow function and normal function](#difference-between-arrow-function-and-normal-function)
+    - [Recursion](#recursion)
+      - [what is Call Stack:](#what-is-call-stack)
+      - [How the recursion Works:](#how-the-recursion-works)
+      - [Find Factorial Using Recursion:](#find-factorial-using-recursion)
+    - [Closure](#closure)
+  - [string](#string)
+    - [why strings are iterable also?](#why-strings-are-iterable-also)
+    - [Strings are immutable:](#strings-are-immutable)
+    - [Quotes:](#quotes)
+    - [String Property:](#string-property)
+    - [String Methods:](#string-methods)
+  - [Objects:](#objects)
+    - [Different ways to declare an Object](#different-ways-to-declare-an-object)
+    - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
+    - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
+    - [Object.freeze() vs Object.seal()](#objectfreeze-vs-objectseal)
+      - [Object.freeze():](#objectfreeze)
+      - [Object.seal():](#objectseal)
+    - [Property existence test:](#property-existence-test)
+      - [With in operator:](#with-in-operator)
+      - [With includes() method:](#with-includes-method)
+      - [With hasOwnProperty() method:](#with-hasownproperty-method)
+    - [The "for..in" loop](#the-forin-loop)
+    - [Objects References and Copying:](#objects-references-and-copying)
+    - [Const objects can be modified?](#const-objects-can-be-modified)
+    - [Cloning and merging, Object.assign and structuredClone():](#cloning-and-merging-objectassign-and-structuredclone)
+    - [Nested cloning:](#nested-cloning)
+    - [Object Methods](#object-methods)
+    - [Optional Chaining (?.)](#optional-chaining-)
+    - [Date:](#date)
+  - [array](#array)
+    - [Get the length of an array using length property:](#get-the-length-of-an-array-using-length-property)
+    - [for..of loop](#forof-loop)
+    - [Array Methods](#array-methods)
+  - [set](#set)
+    - [creating a set](#creating-a-set)
+    - [Adding \& Removing Values](#adding--removing-values)
+    - [Checking \& Size](#checking--size)
+    - [Iterating Over a Set](#iterating-over-a-set)
+    - [Convert Set ↔ Array](#convert-set--array)
+  - [map](#map)
+    - [Creating a Map](#creating-a-map)
+    - [Adding \& Updating Values](#adding--updating-values)
+    - [Getting \& Checking Values](#getting--checking-values)
+    - [Deleting \& Clearing](#deleting--clearing)
+    - [Iterating Over a Map](#iterating-over-a-map)
+  - [OPP in js](#opp-in-js)
+    - [Object and properties](#object-and-properties)
+      - [creating objects](#creating-objects)
+        - [using general object literal syntax](#using-general-object-literal-syntax)
+        - [Using Object Constructor](#using-object-constructor)
+        - [Using Object.create()](#using-objectcreate)
+      - [Properties](#properties)
+        - [Property Access](#property-access)
+        - [Property Descriptors](#property-descriptors)
+    - [Constructor Functions](#constructor-functions)
+      - [Basic Constructor Function](#basic-constructor-function)
+      - [Adding Methods to Prototype](#adding-methods-to-prototype)
+      - [Constructor Function vs Regular Function](#constructor-function-vs-regular-function)
+    - [ES6 Classes](#es6-classes)
+      - [Basic Class Syntax](#basic-class-syntax)
+      - [Class Expressions](#class-expressions)
+      - [Getters and Setters](#getters-and-setters)
+    - [The Four Pillars of OOP](#the-four-pillars-of-oop)
+      - [Encapsulation](#encapsulation)
+        - [Private Fields (ES2022)](#private-fields-es2022)
+        - [Traditional Encapsulation (Using Closures)](#traditional-encapsulation-using-closures)
+      - [Inheritance](#inheritance)
+        - [Class Inheritance](#class-inheritance)
+        - [Prototype-based Inheritance](#prototype-based-inheritance)
+      - [Polymorphism](#polymorphism)
+      - [Abstraction](#abstraction)
+    - [Prototypes and Inheritance](#prototypes-and-inheritance)
+      - [Understanding Prototypes](#understanding-prototypes)
+      - [Prototype Chain](#prototype-chain)
+      - [Modern Prototype Methods](#modern-prototype-methods)
+    - [Advanced OOP Concepts](#advanced-oop-concepts)
+      - [Composition over Inheritance](#composition-over-inheritance)
+      - [Method Chaining](#method-chaining)
+      - [Factory Pattern](#factory-pattern)
+    - [Design Patterns](#design-patterns)
+      - [Singleton Pattern](#singleton-pattern)
+      - [Observer Pattern](#observer-pattern)
+      - [Strategy Pattern](#strategy-pattern)
+    - [Best Practices](#best-practices)
+      - [Use Meaningful Names](#use-meaningful-names)
+      - [Follow Single Responsibility Principle](#follow-single-responsibility-principle)
+          - [Use Composition When Appropriate](#use-composition-when-appropriate)
+      - [Use Private Members for Internal State](#use-private-members-for-internal-state)
+    - [Examples](#examples)
+      - [E-commerce System](#e-commerce-system)
+    - [Task Management System](#task-management-system)
+    - [Banking System](#banking-system)
+  - [Iterables](#iterables)
+  - [Destructuring](#destructuring)
+    - [Array Destructuring](#array-destructuring)
+    - [Object Destructuring](#object-destructuring)
+    - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
+  - [Strict Mode](#strict-mode)
+  - [Error Handling](#error-handling)
+    - [Common JS Errors:](#common-js-errors)
+      - [SyntaxError:](#syntaxerror)
+      - [ReferenceError](#referenceerror)
+      - [TypeError](#typeerror)
+  - [Js Modules: Import and export](#js-modules-import-and-export)
+    - [Export:](#export)
+    - [Import:](#import)
+  - [Regular Expression](#regular-expression)
+    - [Common RegEx Methods:](#common-regex-methods)
+    - [Anchors:](#anchors)
+    - [Flags:](#flags)
+    - [Basic Patterns](#basic-patterns)
+    - [Quantifiers](#quantifiers)
+    - [Escaping special characters](#escaping-special-characters)
+    - [Ral world examples:](#ral-world-examples)
+  - [Local Storage and Session Storage](#local-storage-and-session-storage)
+    - [local storage methods:](#local-storage-methods)
+    - [Update the Local Storage key and values:](#update-the-local-storage-key-and-values)
+  - [Asynchronous and Synchronous JavaScript](#asynchronous-and-synchronous-javascript)
+    - [Synchronous Javascript](#synchronous-javascript)
+      - [Single Threaded:](#single-threaded)
+    - [Asynchronous JavaScript](#asynchronous-javascript)
+    - [Web API:](#web-api)
+    - [Event loop:](#event-loop)
+    - [setTimeOut() and setInterval()](#settimeout-and-setinterval)
+    - [JSON, promise, fetch, async/await](#json-promise-fetch-asyncawait)
+      - [JSON](#json)
+      - [promise](#promise)
       - [fetch](#fetch)
       - [async/await:](#asyncawait)
-- [2. Part 3: DOM](#2-part-3-dom)
-  - [2.1. An Introduction To the DOM](#21-an-introduction-to-the-dom)
-  - [2.2. DOM Traversing](#22-dom-traversing)
-  - [2.3. Elements selecting methods](#23-elements-selecting-methods)
-  - [2.4. Content Manipulation](#24-content-manipulation)
-  - [2.5. Element Attributes and Element Properties](#25-element-attributes-and-element-properties)
-  - [2.6. CSS and Class Styling](#26-css-and-class-styling)
-  - [2.7. Creating, Adding and Removing Element Methods](#27-creating-adding-and-removing-element-methods)
-  - [2.8. Events](#28-events)
-- [3. Part 3: JS Exercise](#3-part-3-js-exercise)
-  - [3.1. Operator Problems](#31-operator-problems)
-  - [3.2. Loop Problems](#32-loop-problems)
-  - [3.3. String Problems](#33-string-problems)
-  - [3.4. Array Problems](#34-array-problems)
-  - [3.5. Object Problems](#35-object-problems)
-  - [3.6. Function Problems](#36-function-problems)
+- [Part 3: DOM](#part-3-dom)
+  - [An Introduction To the DOM](#an-introduction-to-the-dom)
+  - [DOM Traversing](#dom-traversing)
+  - [Elements selecting methods](#elements-selecting-methods)
+  - [Content Manipulation](#content-manipulation)
+  - [Element Attributes and Element Properties](#element-attributes-and-element-properties)
+  - [CSS and Class Styling](#css-and-class-styling)
+  - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
+  - [Events](#events)
+- [Part 3: JS Exercise](#part-3-js-exercise)
+  - [Operator Problems](#operator-problems)
+  - [Loop Problems](#loop-problems)
+  - [String Problems](#string-problems)
+  - [Array Problems](#array-problems)
+  - [Object Problems](#object-problems)
+  - [Function Problems](#function-problems)
 
 ---
 
 
 
-# 1. Part 1: The JavaScript Language
+# Part 1: The JavaScript Language
 
-## 1.1. An Introduction to Javascript
+## An Introduction to Javascript
 
-### 1.1.1. What is JavaScript:
+### What is JavaScript:
 
 JavaScript is a: 
 - scripting language 
@@ -242,7 +237,7 @@ JavaScript is a:
   - Because it supports core OOP concepts such as:
     - Encapsulation, Inheritance, Polymorphism, Abstraction
 
-### 1.1.2. JavaScript History:
+### JavaScript History:
 In 1995, Brendan Eich, a developer at Netscape Communications Corporation, created JavaScript. Eich initially joined Netscape with the intention of implementing the Scheme programming language in the browser. However, Netscape’s management wanted the Scheme language syntax resemble and look similar to Java. As a result, Eich decided to designed a new language that combined:
 
 - The functionality of Scheme programming language
@@ -267,7 +262,7 @@ He completed the first version of the language called Mocha in just 10 days in M
     So, ECMAScript is the official name of the JavaScript standard and ES1, ES2, ES6 etc. are its version numbers.
 
 
-### 1.1.3. Why Did JavaScript Need a Standard Version:
+### Why Did JavaScript Need a Standard Version:
 When JavaScript was first created in 1995 by Netscape, it was only implemented in their browser Netscape Navigator. Shortly, Microsoft launched its own browser, Internet Explorer, and included its own version of JavaScript called JScript. As a result, two distinct versions of JavaScript were emerged in the market:
 
 - JavaScript in Netscape Navigator
@@ -277,7 +272,7 @@ so, Different browsers had slightly different implementations of JavaScript. Som
 
 To solve this problem, Netscape submitted JavaScript to ECMA International in June 1997, so they could create a standardized specification of the language. This standard was named ECMAScript.
 
-### 1.1.4. JavaScript Engines:
+### JavaScript Engines:
 A JavaScript engine is a program built into web browsers (and platforms like Node.js) that is responsible for executing JavaScript code.
 
 It takes the JavaScript you write, then:
@@ -332,7 +327,7 @@ Ast format:
    - JIT(Just In Time) Compilation is a process where the JS engine detects frequently executed “hot” code and compiles it into machine code. On the future runs, the engines skips parsing, compiling AST to Bytecode and interpreting instead it running the machine code directly for faster execution.     
 
 
-### 1.1.5. Hello World
+### Hello World
 
 ```console.log("Hello World");```
 
@@ -357,7 +352,7 @@ Q&A:
 - Method: when a function is stored as a property of an object, it’s called a method.
 
 
-## 1.2. Variables
+## Variables
 A variable is a “named storage” for data. We can declare variables to store data by using the keywords:
 
 Note: A keyword is a reserved word that has a special meaning in the language. 
@@ -382,7 +377,7 @@ message = 'Hello Universe'
 ```
 **Note:** initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.
 
-### 1.2.1. Difference between var, let and const:
+### Difference between var, let and const:
 
 <table>
 <tr>
@@ -521,7 +516,7 @@ console.log(window.a); // undefined
 </tr>
 </table>
 
-### 1.2.2. Hoisting
+### Hoisting
 
 In JavaScript, code execution happens in two phases for each scope:
 
@@ -537,7 +532,7 @@ In JavaScript, code execution happens in two phases for each scope:
 **Note:** Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their scope during the creation phase.
 
 
-### 1.2.3. Scope
+### Scope
 Scope determines where variables can be accessed in your code. There are 4 types of scopes in js:
 
 1. Block Scope
@@ -604,7 +599,7 @@ outerFunction();
 console.log(innerVar1); // ReferenceError: innerVar1 is not defined
 ```
 
-### 1.2.4. Scope Chain
+### Scope Chain
 When you try to access a variable:
 - JavaScript first looks in the current scope
 - If not found, it goes to the outer scope
@@ -636,13 +631,13 @@ console.log(num);
 */
 ```
 
-### 1.2.5. Variable naming conventions:
+### Variable naming conventions:
 - Names must start with a letter, underscore _, or dollar sign $
 - Names can contain letters, digits, _, and $ — but no spaces or symbols
 - Names are Case-sensitive
 - Names Cannot contain JavaScript reserved keywords
 
-### 1.2.6. How to write a long variable name
+### How to write a long variable name
 - Snake Case - let my_current_home_address = "Barisal";
 - Camel Case (recommended) - let myCurrentHomeAddress = "Barisal";
 - Pascal Case - let MyCurrentHomeAddress = "Barisal";
@@ -650,7 +645,7 @@ console.log(num);
 
 
 
-## 1.3. Data Types
+## Data Types
 
 A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)
 
@@ -665,7 +660,7 @@ message = 123456;      // number
 
 There are 8 data types in JavaScript:
 
-### 1.3.1. 7 Primitive Data Types:
+### 7 Primitive Data Types:
 
 1. Number 
 Represents both integers and floating-point numbers. 
@@ -857,7 +852,7 @@ let b = Symbol("id");
 console.log(a === b); // false
 ```
 
-### 1.3.2. 1 Non-Primitive Data Types:
+### 1 Non-Primitive Data Types:
 
 8. Object
 In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array)
@@ -865,11 +860,11 @@ In JavaScript, any data that is not a primitive is as an object. There are 3 com
 - array
 - object
 
-## 1.4. Operator
+## Operator
 
 An Operator is a special symbol or keyword that performs an operation on one or more values.
 
-### 1.4.1. Arithmetic Operators (+, -, *, /, %, **):
+### Arithmetic Operators (+, -, *, /, %, **):
 
 ```js
 
@@ -895,7 +890,7 @@ console.log(4 ** (1 / 2)); // 2 (power of 1/2 is the same as a square root)
 console.log(8 ** (1 / 3)); // 2 (power of 1/3 is the same as a cubic root)
 ```
 
-#### 1.4.1.1. String concatenation with +:
+#### String concatenation with +:
 
 ```js
 let s = "my" + "string";
@@ -918,7 +913,7 @@ console.log(6 - '2'); // 4, converts '2' to a number
 console.log('6' / '2'); // 3, converts both operands to numbers
 ```
 
-### 1.4.2. Assignment Operators (=, +=, -=, *=, /=):
+### Assignment Operators (=, +=, -=, *=, /=):
 
 ```js
 let x = 10;
@@ -928,9 +923,9 @@ x *= 3;  // x = x * 3
 x /= 2;  // x = x / 2
 ```
 
-### 1.4.3. Increment / Decrement Operators (--, ++):
+### Increment / Decrement Operators (--, ++):
 
-#### 1.4.3.1. Pre Increment / Decrement:
+#### Pre Increment / Decrement:
 
 ```js
 let i = 10;
@@ -940,7 +935,7 @@ console.log(x); // 11
 ```
 Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.
 
-#### 1.4.3.2. post Increment / Decrement:
+#### post Increment / Decrement:
 
 ```js
 let i = 10;
@@ -955,7 +950,7 @@ Note:
 - Pre-increment (++i): First increments the value of i, then assigns it.
 - Post-increment (i++): First assigns the value, then increments it.
 
-### 1.4.4. Comparison Operator (>, <, >=, <=, ==, ===, !=, !==):
+### Comparison Operator (>, <, >=, <=, ==, ===, !=, !==):
 
 ```js
 console.log(5 > 3);     // true
@@ -967,7 +962,7 @@ console.log(5 === '5'); // false
 console.log(5 != '5');  // false
 console.log(5 !== '5'); // true
 ```
-#### 1.4.4.1. String comparison:
+#### String comparison:
 
 To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.
 
@@ -992,7 +987,7 @@ console.log('a'.charCodeAt(0)); // Output: 97
 console.log('a'.codePointAt(0)); // Output: 97
 ```
 
-#### 1.4.4.2. Difference between == and === :
+#### Difference between == and === :
 
 ```js
 console.log(0 == false); // 0 == 0 true
@@ -1009,7 +1004,7 @@ console.log(0 === 0); // true
 console.log('' === ''); // true
 ```
 
-#### 1.4.4.3. Comparison with null and undefined:
+#### Comparison with null and undefined:
 
 ```js
 console.log(null === undefined); // false
@@ -1019,7 +1014,7 @@ console.log(null == undefined); // true
 // this is a special rule. If you use ==, null and undefined are considered equal.
 ```
 
-#### 1.4.4.4. null vs 0:
+#### null vs 0:
 
 ```js
 console.log(null > 0);  // false
@@ -1027,7 +1022,7 @@ console.log(null == 0); // false
 console.log(null >= 0); // true 
 ```
 
-#### 1.4.4.5. undefined vs 0:
+#### undefined vs 0:
 
 ```js
 console.log(undefined > 0); // false 
@@ -1037,7 +1032,7 @@ console.log(undefined == 0); // false
 ```
 
 
-### 1.4.5. Logical Operators (&&, ||, ! ,, !!):
+### Logical Operators (&&, ||, ! ,, !!):
 
 ```js
 let age = 25;
@@ -1085,7 +1080,7 @@ console.log(!!undefined); // false
 console.log(!!NaN); // false
 ```
 
-### 1.4.6. Conditional Operators (if, else, else if, ? :, switch, case):
+### Conditional Operators (if, else, else if, ? :, switch, case):
 
 ```js
 let age = 20;
@@ -1099,7 +1094,7 @@ if (age < 18) {
 }
 ```
 
-#### 1.4.6.1. Ternary operator(? :):
+#### Ternary operator(? :):
 
 syntax:
 
@@ -1125,7 +1120,7 @@ let message = (age >= 18) ? "You are an adult" : "You are a minor";
 console.log(message);
 ```
 
-#### 1.4.6.2. switch...case:
+#### switch...case:
 
 ```js
 
@@ -1147,7 +1142,7 @@ switch (color) {
 // switch checks one variable against multiple cases and runs the matched block.
 ```
 
-#### 1.4.6.3. Truthy and Falsy values:
+#### Truthy and Falsy values:
 
 In JavaScript, any value used in a conditional statement gets automatically converted to true or false.
 
@@ -1175,9 +1170,9 @@ if (undefined) console.log('Falsy');
 if (NaN) console.log('Falsy');
 ```
 
-### 1.4.7. Others Operators
+### Others Operators
 
-#### 1.4.7.1. typeof operator:
+#### typeof operator:
 
 ```js
 
@@ -1209,7 +1204,7 @@ Note:
 - typeof null return "object", but null is a primitive data type.
 - typeof alert returns "function", but functions are technically objects.
 
-#### 1.4.7.2. rest operator:
+#### rest operator:
 
 Rest operator gathers values into an array or object. It is used defining things like Function parameters, array destructuring, object destructuring.
 
@@ -1251,7 +1246,7 @@ console.log(name); // Tamim
 console.log(rest); // { age: 21, country: "BD" }
 ```
 
-#### 1.4.7.3. spread operator
+#### spread operator
 Spreads operator breaks an array or object into individual values. It is Used in Function calls, array literals and object literals.
 
 In function call:
@@ -1290,7 +1285,7 @@ console.log(merged); // { name: "Tamim", age: 21 }
 ```
 
 
-#### 1.4.7.4. Nullish Coalescing operator (??)
+#### Nullish Coalescing operator (??)
 The nullish coalescing operator (??) is used to provide a default value when a variable is null or undefined.
 
 ```js
@@ -1361,9 +1356,9 @@ let result = null || undefined ?? "Default";
 let result = (null || undefined) ?? "Default";
 ```
 
-## 1.5. Loops
+## Loops
 
-### 1.5.1. for loop:
+### for loop:
 
 ```js
 for (let i = 0; i < 5; i++) {
@@ -1390,7 +1385,7 @@ for (let i = 1; i <= 10; i++) {
 */
 ```
 
-### 1.5.2. while loop:
+### while loop:
 
 ```js
 let i = 0;
@@ -1400,7 +1395,7 @@ while (i < 5) {
 }
 ```
 
-### 1.5.3. do while loop:
+### do while loop:
 
 ```js
 let i = 0;
@@ -1410,7 +1405,7 @@ do {
 } while (i < 5);
 ```
 
-### 1.5.4. for..of loop (for iterables):
+### for..of loop (for iterables):
 
 ```js
 // with array
@@ -1428,7 +1423,7 @@ for (const value of str) {
 }
 ```
 
-### 1.5.5. for..in loop (for objects):
+### for..in loop (for objects):
 
 ```
 const obj = {
@@ -1448,7 +1443,7 @@ obj[key] = obj[b] = 2
 */
 ```
 
-### 1.5.6. forEach method (only for array):
+### forEach method (only for array):
 
 ```js
 const numbers = [1, 2, 3];
@@ -1464,7 +1459,7 @@ num2.forEach(num2 => console.log(num2)) // 4 5 6
 Note: It does not support break or continue.
 
 
-## 1.6. function
+## function
 
 A Function is a block of reusable code that perform a specific task when it is called.
 
@@ -1481,7 +1476,7 @@ calcSum(1, 2); // 3
 *   1, 2 are arguments
 *   a, b are parameters
 
-### 1.6.1. What is the difference between return and no return in a function?
+### What is the difference between return and no return in a function?
 
 ```js
 function calcSum(a, b) {
@@ -1520,7 +1515,7 @@ so,
 
 If a function returns a value, you can store it in a variable and use it for further operations. If a function does not return anything, you just call the function, but you can’t use its output for further operations.
 
-### 1.6.2. Default Parameter:
+### Default Parameter:
 
 In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.
 
@@ -1532,7 +1527,7 @@ showGreet("Tamim"); // Output: Hello, Tamim!
 showGreet();        // Output: Hello, Guest!
 ```
 
-### 1.6.3. CallBack Function
+### CallBack Function
 
 A callback is a function passed as an argument to another function, to be called later.
 
@@ -1556,7 +1551,7 @@ greet("Tamim", sayGoodbye);
 ```
 
 
-### 1.6.4. Arrow Function:
+### Arrow Function:
 
 Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6.
 
@@ -1587,7 +1582,7 @@ const multiply = (a, b) => {
 console.log(multiply(3, 4)); // Output: 12
 ```
 
-### 1.6.5. Difference between arrow function and normal function
+### Difference between arrow function and normal function
 
 - Normal function: Must use return.
 - Arrow function: Can omit {} and return for single-expression functions.
@@ -1684,7 +1679,7 @@ console.log(squaredArrow); // [1, 4, 9, 16, 25]
 ```
 
 
-### 1.6.6. Recursion
+### Recursion
 
 Recursion is a technique where a function calls itself.
 
@@ -1713,7 +1708,7 @@ inside c 30
 */
 ```
 
-#### 1.6.6.1. what is Call Stack:
+#### what is Call Stack:
 
 A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:
 
@@ -1724,7 +1719,7 @@ A call stack is a data structure that keeps track of function calls in a Last-In
 
 ![callstack](images/callStack.png)  
 
-#### 1.6.6.2. How the recursion Works:
+#### How the recursion Works:
 
 A recursive function typically has two main components:
 
@@ -1741,7 +1736,7 @@ A recursive function typically has two main components:
 2.  **Recursive Case:** The part where the recursive function calls itself.
     
 
-#### 1.6.6.3. Find Factorial Using Recursion:
+#### Find Factorial Using Recursion:
 
 ```
 
@@ -1762,11 +1757,11 @@ call stack:
 
     
 
-### 1.6.7. Closure
+### Closure
 
 A closure is a function technique that remembers the variables from its outer scope, even after that outer function has finished executing.
 
-#### 1.6.7.1. Closure Features
+**Closure Features**
 
 *   Keeps scope alive - Inner function remembers variables from outer scope
 *   Useful in data hiding - Helps in making private variables
@@ -1805,7 +1800,7 @@ counter(); // Count is: 2
 counter(); // Count is: 3
 ```
 
-## 1.7. string
+## string
 
 String represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable, array-like objects, and immutable. They are not actual objects, but they appear like objects because JavaScript automatically convert them into a temporary String object whenever you use properties or methods on it.
 
@@ -1829,7 +1824,7 @@ str.toUpperCase() → engine makes new String("hello") → calls .toUpperCase() 
 
 This mechanism allows string primitives to behave like objects, giving them methods and properties, while remaining immutable and primitive.
 
-### 1.7.1. why strings are iterable also?
+### why strings are iterable also?
 
 - In JavaScript, an iterable is any object that has a Symbol.iterator method.
 - Arrays have Array.prototype[Symbol.iterator].
@@ -1846,7 +1841,7 @@ for (const ch of "Hi") {
 ```
 
 
-### 1.7.2. Strings are immutable:
+### Strings are immutable:
 
 That's mean you can't change characters directly:
 
@@ -1866,7 +1861,7 @@ console.log(newStr); // "Yello"
 
 
 
-### 1.7.3. Quotes:
+### Quotes:
 
 JavaScript supports three types of quotes for working with strings.
 
@@ -1914,7 +1909,7 @@ console.log(info);
 console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12
 ```
 
-### 1.7.4. String Property:
+### String Property:
 
 .length is the only string property, and it’s very commonly used.
 
@@ -1923,7 +1918,7 @@ const str = "JavaScript";
 console.log(str.length); // 10
 ```
 
-### 1.7.5. String Methods:
+### String Methods:
 
 - **Case Conversion:**
     
@@ -2098,7 +2093,7 @@ console.log(str.length); // 10
     - Target length: 3
     - Pad with "0" at the start until length becomes 3 → "005"
 
-## 1.8. Objects:
+## Objects:
 
 An object is a collection of key-value pairs called properties. where key is a string (also called a “property name”), and value can be anything.
 
@@ -2173,7 +2168,7 @@ let user = makeUser("John", 30);
 console.log(user.name); // John
 ```
 
-### 1.8.1. Different ways to declare an Object
+### Different ways to declare an Object
 
 ```js
 const pen = {
@@ -2199,7 +2194,7 @@ pen3.price = 8;
 console.log(pen3);
 ```
 
-### 1.8.2. Dot Notation VS Bracket Notation:
+### Dot Notation VS Bracket Notation:
 
 | Situation                                | Dot Notation | Bracket Notation |
 | ---------------------------------------- | ------------ | ---------------- |
@@ -2308,7 +2303,7 @@ example:
     ```
     
 
-### 1.8.3. Object.keys(), Object.Values() and Object.entries() methods:
+### Object.keys(), Object.Values() and Object.entries() methods:
 
 ```js
 const computer = {
@@ -2337,9 +2332,9 @@ console.log(entries);
 */
 ```
 
-### 1.8.4. Object.freeze() vs Object.seal()
+### Object.freeze() vs Object.seal()
 
-#### 1.8.4.1. Object.freeze():
+#### Object.freeze():
 
 Object.freeze() freezes an object. This means:
 
@@ -2404,7 +2399,7 @@ deepObj.level1.level2.value = 100;
 console.log(deepObj.level1.level2.value); // 42
 ```
 
-#### 1.8.4.2. Object.seal():
+#### Object.seal():
 
 Object.seal() freezes an object. This means:
 
@@ -2447,9 +2442,9 @@ console.log(Object.isFrozen(obj2)); // false
 console.log(Object.isSealed(obj2)); // true
 ```
 
-### 1.8.5. Property existence test:
+### Property existence test:
 
-#### 1.8.5.1. With in operator:
+#### With in operator:
 
 ```js
 let user = {
@@ -2461,7 +2456,7 @@ console.log("age" in user); // true, user.age exists
 console.log("location" in user); // false, user.location doesn't exist
 ```
 
-#### 1.8.5.2. With includes() method:
+#### With includes() method:
 
 ```js
 const profile = {
@@ -2475,7 +2470,7 @@ const hasName = profileKeys.includes("name");
 console.log(hasName); // Output: true
 ```
 
-#### 1.8.5.3. With hasOwnProperty() method:
+#### With hasOwnProperty() method:
 
 ```js
 const profile = {
@@ -2488,7 +2483,7 @@ const hasName = profile.hasOwnProperty("name");
 console.log(hasName); // Output: true
 ```
 
-### 1.8.6. The "for..in" loop
+### The "for..in" loop
 
 ```js
 let user = {
@@ -2503,7 +2498,7 @@ for (let key in user) {
 }
 ```
 
-### 1.8.7. Objects References and Copying:
+### Objects References and Copying:
 
 One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.
 
@@ -2559,7 +2554,7 @@ console.log(user.name); // 'Pete',
 console.log(admin.name); // 'Pete', 
 ```
 
-### 1.8.8. Const objects can be modified?
+### Const objects can be modified?
 
 An important side effect of storing objects as references is that an object declared as const can be modified.
 
@@ -2573,7 +2568,7 @@ user.name = "Pete";
 console.log(user.name); // Pete
 ```
 
-### 1.8.9. Cloning and merging, Object.assign and structuredClone():
+### Cloning and merging, Object.assign and structuredClone():
 
 So, copying an object variable creates one more reference to the same object.  
 But what if we need to duplicate an object?  
@@ -2646,7 +2641,7 @@ console.log(clone.name); // John
 console.log(clone.age); // 30
 ```
 
-### 1.8.10. Nested cloning:
+### Nested cloning:
 
 ```js
 let user = {
@@ -2684,7 +2679,7 @@ user.sizes.width = 60;    // change a property from one place
 console.log(clone.sizes.width); // 50, not related
 ```
 
-### 1.8.11. Object Methods
+### Object Methods
 
 A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.
 
@@ -2751,7 +2746,7 @@ user = null;
 admin.sayHello(); // Tamim
 ```
 
-### 1.8.12. Optional Chaining (?.)
+### Optional Chaining (?.)
 
 Optional Chaining(?.) is a safe way to access deeply nested properties without getting an error if something is undefined or null.
 
@@ -2784,7 +2779,7 @@ user.sayHi?.();     // Hi!
 user.sayBye?.();    // Nothing happens, no error or undefined
 ```
 
-### 1.8.13. Date:
+### Date:
 
 Date is a built-in object in JavaScript that represents a single moment in time — down to the millisecond. Under the hood, it stores time as the number of milliseconds since January 1, 1970 (UTC) (called the Unix Epoch).
 
@@ -2825,7 +2820,7 @@ console.log(date.toLocaleTimeString()); // 1:15:24 AM
 
 
 
-## 1.9. array 
+## array 
 An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.
 
 **Array Declaration:**
@@ -2848,7 +2843,7 @@ fruits[2] = 'mango';
 console.log(fruits); // [ 'apple', 'orange', 'mango' ]
 ```
 
-### 1.9.1. Get the length of an array using length property:
+### Get the length of an array using length property:
 
 ```js
 let fruits = ["Apple", "Orange", "Plum"];
@@ -2869,7 +2864,7 @@ arr.push("Pear"); // modify the array by reference
 console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
 ```
 
-### 1.9.2. for..of loop
+### for..of loop
 
 One of the oldest ways to cycle array items is the for loop over indexes:
 
@@ -2901,7 +2896,7 @@ for (const key in fruits) {
 }
 ```
 
-### 1.9.3. Array Methods
+### Array Methods
 
 1.  Adding / Removing Elements
 
@@ -3343,7 +3338,7 @@ for (const key in fruits) {
     console.log(flatArr); // Output: [1, 2, 3, 4]
     ```
 
-## 1.10. set
+## set
 A Set in JavaScript is a collection of unique values (no duplicates allowed).
 
 - Stores unique values
@@ -3351,7 +3346,7 @@ A Set in JavaScript is a collection of unique values (no duplicates allowed).
 - Iteration: for...of, forEach
 - Use cases: remove duplicates, track unique items
 
-### 1.10.1. creating a set
+### creating a set
 
 ```js
 // Create an empty Set
@@ -3363,7 +3358,7 @@ const numbers = new Set([1, 2, 3, 4, 4, 5]); // duplicates ignored
 console.log(numbers); // Set(5) {1, 2, 3, 4, 5}
 ```
 
-### 1.10.2. Adding & Removing Values
+### Adding & Removing Values
 
 ```js
 const fruits = new Set();
@@ -3383,7 +3378,7 @@ fruits.clear();
 console.log(fruits); // Set(0) {}
 ```
 
-### 1.10.3. Checking & Size
+### Checking & Size
 
 ```js
 const letters = new Set(["a", "b", "c"]);
@@ -3394,7 +3389,7 @@ console.log(letters.has("z")); // false
 console.log(letters.size); // 3
 ```
 
-### 1.10.4. Iterating Over a Set
+### Iterating Over a Set
 
 ```js
 const colors = new Set(["red", "green", "blue"]);
@@ -3410,7 +3405,7 @@ colors.forEach((value) => {
 });
 ```
 
-### 1.10.5. Convert Set ↔ Array
+### Convert Set ↔ Array
 
 ```js
 const nums = [1, 2, 2, 3, 4, 4];
@@ -3424,7 +3419,7 @@ console.log(uniqueArray); // [1, 2, 3, 4]
 
 
 
-## 1.11. map
+## map
 A Map in JavaScript is a collection of key-value pairs.
 
 - Stores key-value pairs
@@ -3433,7 +3428,7 @@ A Map in JavaScript is a collection of key-value pairs.
 - Iteration: for...of, forEach
 - Use cases: frequency count, caching, dictionary-like storage
 
-### 1.11.1. Creating a Map
+### Creating a Map
 
 ```js
 // Empty Map
@@ -3448,7 +3443,7 @@ const user = new Map([
 console.log(user); // Map(2) {"name" => "Alice", "age" => 25}
 ```
 
-### 1.11.2. Adding & Updating Values
+### Adding & Updating Values
 
 ```js
 const student = new Map();
@@ -3463,7 +3458,7 @@ console.log(student);
 // Map(2) {"name" => "Bob", "age" => 22}
 ```
 
-### 1.11.3. Getting & Checking Values
+### Getting & Checking Values
 
 ```js
 console.log(student.get("name")); // Bob
@@ -3473,7 +3468,7 @@ console.log(student.has("roll")); // false
 console.log(student.size); // 2
 ```
 
-### 1.11.4. Deleting & Clearing
+### Deleting & Clearing
 
 ```js
 student.delete("age");
@@ -3483,7 +3478,7 @@ student.clear();
 console.log(student); // Map(0) {}
 ```
 
-### 1.11.5. Iterating Over a Map
+### Iterating Over a Map
 
 ```js
 const person = new Map([
@@ -3515,13 +3510,13 @@ person.forEach((value, key) => {
 
 
 
-##  1.12. OPP in js
+##  OPP in js
 
 Object-Oriented Programming is a programming paradigm based on the concept of "objects" that contain properties and methods. JavaScript supports OOP through prototypes and, since ES6, through classes.
 
-### 1.12.1. Object and properties
-#### 1.12.1.1. creating objects
-##### 1.12.1.1.1. using general object literal syntax
+### Object and properties
+#### creating objects
+##### using general object literal syntax
 
 ```jss
 const person = {
@@ -3535,7 +3530,7 @@ const person = {
 console.log(person.name); // "John"
 console.log(person.greet()); // "Hello, I'm John"
 ```
-##### 1.12.1.1.2. Using Object Constructor
+##### Using Object Constructor
 
 ```js
 const person = new Object();
@@ -3549,7 +3544,7 @@ console.log(person.name); // "John"
 console.log(person.greet()); // "Hello, I'm John"
 ```
 
-##### 1.12.1.1.3. Using Object.create()
+##### Using Object.create()
 
 ```js
 const personPrototype = {
@@ -3565,8 +3560,8 @@ person.age = 30;
 console.log(person.name); // "John"
 console.log(person.greet()); // "Hello, I'm John"
 ```
-#### 1.12.1.2. Properties
-##### 1.12.1.2.1. Property Access
+#### Properties
+##### Property Access
 
 ```js
 const car = {
@@ -3586,7 +3581,7 @@ const property = "year";
 console.log(car[property]); // 2020
 ```
 
-##### 1.12.1.2.2. Property Descriptors
+##### Property Descriptors
 
 ```js
 const obj = {};
@@ -3602,10 +3597,10 @@ Object.defineProperty(obj, 'name', {
 console.log(Object.getOwnPropertyDescriptor(obj, 'name'));
 ```
 
-### 1.12.2. Constructor Functions
+### Constructor Functions
 Constructor functions are the traditional way to create objects in JavaScript before ES6 classes.
 
-#### 1.12.2.1. Basic Constructor Function
+#### Basic Constructor Function
 
 ```js
 function Person(name, age) {
@@ -3623,7 +3618,7 @@ console.log(person1.greet()); // "Hello, I'm Alice"
 console.log(person2.greet()); // "Hello, I'm Bob"
 ```
 
-#### 1.12.2.2. Adding Methods to Prototype
+#### Adding Methods to Prototype
 
 ```js
 function Car(brand, model, year) {
@@ -3646,7 +3641,7 @@ console.log(myCar.getInfo()); // "2021 Honda Civic"
 console.log(myCar.start()); // "Honda Civic is starting..."
 ```
 
-#### 1.12.2.3. Constructor Function vs Regular Function
+#### Constructor Function vs Regular Function
 
 ```js
 function Person(name) {
@@ -3663,10 +3658,10 @@ console.log(result); // undefined
 console.log(window.name); // "Jane" (in browser) - pollutes global scope
 ```
 
-### 1.12.3. ES6 Classes
+### ES6 Classes
 ES6 introduced class syntax, which is syntactic sugar over prototype-based inheritance.
 
-#### 1.12.3.1. Basic Class Syntax
+#### Basic Class Syntax
 
 ```js
 class Person {
@@ -3694,7 +3689,7 @@ console.log(person.greet()); // "Hello, I'm Alice"
 console.log(Person.species()); // "Homo sapiens"
 ```
 
-#### 1.12.3.2. Class Expressions
+#### Class Expressions
 
 ```js
 // Named class expression
@@ -3716,7 +3711,7 @@ const Animal = class {
 };
 ```
 
-#### 1.12.3.3. Getters and Setters
+#### Getters and Setters
 
 ```js
 class Rectangle {
@@ -3749,12 +3744,12 @@ console.log(rect.area); // 30
 ```
 
 
-### 1.12.4. The Four Pillars of OOP
+### The Four Pillars of OOP
 
-####  1.12.4.1. Encapsulation
+####  Encapsulation
 Encapsulation is about bundling data and methods together and restricting access to internal details.
 
-##### 1.12.4.1.1. Private Fields (ES2022)
+##### Private Fields (ES2022)
 
 ```js
 class BankAccount {
@@ -3799,7 +3794,7 @@ console.log(account.getBalance()); // 1500
 // console.log(account.#balance); // SyntaxError: Private field '#balance' must be declared in an enclosing class
 ```
 
-##### 1.12.4.1.2. Traditional Encapsulation (Using Closures)
+##### Traditional Encapsulation (Using Closures)
 
 ```js
 function createBankAccount(initialBalance = 0) {
@@ -3832,10 +3827,10 @@ const account = createBankAccount(1000);
 console.log(account.getBalance()); // 1000
 ```
 
-####  1.12.4.2. Inheritance
+####  Inheritance
 Inheritance allows classes to inherit properties and methods from other classes.
 
-##### 1.12.4.2.1. Class Inheritance
+##### Class Inheritance
 
 ```js
 class Animal {
@@ -3894,7 +3889,7 @@ console.log(cat.makeSound()); // "Meow!"
 console.log(cat.climb()); // "Whiskers is climbing a tree!"
 ```
 
-##### 1.12.4.2.2. Prototype-based Inheritance
+##### Prototype-based Inheritance
 
 ```js
 function Animal(name, species) {
@@ -3932,7 +3927,7 @@ console.log(dog.getInfo()); // "Max is a Dog"
 console.log(dog.makeSound()); // "Woof! Woof!"
 ```
 
-####  1.12.4.3. Polymorphism
+####  Polymorphism
 Polymorphism allows objects of different types to be treated as instances of the same type.
 
 ```js
@@ -4011,7 +4006,7 @@ shapes.forEach(shape => {
 });
 ```
 
-####  1.12.4.4. Abstraction
+####  Abstraction
 Abstraction hides complex implementation details and shows only essential features.
 
 ```js
@@ -4077,9 +4072,9 @@ console.log(car.start()); // "Honda Civic car is starting with ignition"
 console.log(bike.start()); // "Yamaha R1 motorcycle is starting with kick/button"
 ```
 
-### 1.12.5. Prototypes and Inheritance
+### Prototypes and Inheritance
 
-#### 1.12.5.1. Understanding Prototypes
+#### Understanding Prototypes
 
 ```js
 // Every function has a prototype property
@@ -4099,7 +4094,7 @@ console.log(person1.__proto__ === Person.prototype); // true
 console.log(person1.constructor === Person); // true
 ```
 
-#### 1.12.5.2. Prototype Chain
+#### Prototype Chain
 
 ```js
 function Animal(name) {
@@ -4131,7 +4126,7 @@ console.log(dog.bark()); // "Buddy is barking" (own method)
 // Prototype chain: dog -> Dog.prototype -> Animal.prototype -> Object.prototype -> null
 ```
 
-#### 1.12.5.3. Modern Prototype Methods
+#### Modern Prototype Methods
 
 ```js
 // Object.create()
@@ -4159,7 +4154,7 @@ console.log(Object.getPrototypeOf(dog) === animalPrototype); // true
 ```
 
 
-### 1.12.6. Advanced OOP Concepts
+### Advanced OOP Concepts
 
 ```js
 // Mixin pattern - adding functionality to classes
@@ -4214,7 +4209,7 @@ console.log(duck.fly()); // "Donald is flying"
 console.log(duck.swim()); // "Donald is swimming"
 ```
 
-#### 1.12.6.1. Composition over Inheritance
+#### Composition over Inheritance
 
 ```js
 // Composition approach
@@ -4264,7 +4259,7 @@ console.log(car.start()); // "Engine started"
 console.log(car.navigateTo("Home")); // "Navigating to Home"
 ```
 
-#### 1.12.6.2. Method Chaining
+#### Method Chaining
 
 ```js
 class Calculator {
@@ -4315,7 +4310,7 @@ const result = calc
 console.log(result); // 5
 ```
 
-#### 1.12.6.3. Factory Pattern
+#### Factory Pattern
 
 ```js
 class Car {
@@ -4352,9 +4347,9 @@ console.log(sedan.getInfo()); // "Honda Civic (Sedan)"
 console.log(suv.getInfo()); // "Toyota RAV4 (SUV)"
 ```
 
-### 1.12.7. Design Patterns
+### Design Patterns
 
-#### 1.12.7.1. Singleton Pattern
+#### Singleton Pattern
 
 ```js
 class Database {
@@ -4387,7 +4382,7 @@ console.log(db1 === db2); // true
 console.log(db1 === db3); // true
 ```
 
-#### 1.12.7.2. Observer Pattern
+#### Observer Pattern
 
 ```js
 class EventEmitter {
@@ -4449,7 +4444,7 @@ agency.on('news', (news) => bbc.update(news));
 agency.setNews("Breaking: Major scientific discovery!");
 ```
 
-#### 1.12.7.3. Strategy Pattern
+#### Strategy Pattern
 
 ```js
 class PaymentStrategy {
@@ -4525,9 +4520,9 @@ cart.setPaymentStrategy(new PayPalPayment("user@example.com"));
 console.log(cart.checkout()); // "Paid $1024 using PayPal account user@example.com"
 ```
 
-### 1.12.8. Best Practices
+### Best Practices
 
-#### 1.12.8.1. Use Meaningful Names
+#### Use Meaningful Names
 
 ```js
 // Bad
@@ -4555,7 +4550,7 @@ class Person {
 }
 ```
 
-####  1.12.8.2. Follow Single Responsibility Principle
+####  Follow Single Responsibility Principle
 
 ```js
 // Bad - Class doing too many things
@@ -4627,7 +4622,7 @@ class PasswordService {
 }
 ```
 
-###### 1.12.8.2.0.1. Use Composition When Appropriate
+###### Use Composition When Appropriate
 
 ```js
 // Instead of deep inheritance hierarchies, use composition
@@ -4674,7 +4669,7 @@ const automaticTrans = new Transmission("Automatic");
 const car = new Vehicle("Honda", "Accord", v6Engine, automaticTrans);
 ```
 
-#### 1.12.8.3. Use Private Members for Internal State
+#### Use Private Members for Internal State
 
 ```js
 class Counter {
@@ -4710,9 +4705,9 @@ class Counter {
 }
 ```
 
-###  1.12.9. Examples
+###  Examples
 
-#### 1.12.9.1. E-commerce System
+#### E-commerce System
 
 ```js
 class Product {
@@ -4847,7 +4842,7 @@ customer.addOrder(order);
 console.log(order.getOrderSummary());
 ```
 
-### 1.12.10. Task Management System
+### Task Management System
 
 ```js
 class Task {
@@ -5057,7 +5052,7 @@ console.log("Project Stats:", webProject.getProjectStats());
 console.log("Overall Stats:", taskManager.getOverallStats());
 ```
 
-### 1.12.11. Banking System
+### Banking System
 
 ```js
 // Abstract Account class
@@ -5372,7 +5367,7 @@ console.log("Checking Balance:", johnChecking.getBalance());
 
 
 
-## 1.13. Iterables 
+## Iterables 
 
 An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a special method Symbol.iterator.
 
@@ -5457,11 +5452,11 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 
 
-## 1.14. Destructuring
+## Destructuring
 
 Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.
 
-### 1.14.1. Array Destructuring
+### Array Destructuring
     
 Basic Syntax:
 
@@ -5517,7 +5512,7 @@ console.log(first); // 1
 console.log(rest);  // [2, 3, 4]
 ```
 
-### 1.14.2. Object Destructuring
+### Object Destructuring
     
 
 Basic Syntax:
@@ -5594,7 +5589,7 @@ console.log(name);   // Tamim
 console.log(others); // { age: 21, country: "BD" }
 ```
 
-### 1.14.3. Destructuring in Function Parameters
+### Destructuring in Function Parameters
     
 
 Array Parameters:
@@ -5616,7 +5611,7 @@ function displayUser({ name, age }) {
 displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 ```
 
-## 1.15. Strict Mode
+## Strict Mode
 
 In JavaScript, "use strict"; is a directive that activates Strict Mode, which is a stricter set of rules for executing your JavaScript code.
 
@@ -5667,18 +5662,18 @@ It helps you
     console.log(sum(2, 2));
     ```
 
-## 1.16. Error Handling
+## Error Handling
 
 try...catch is used to handle errors in JavaScript so your code doesn't crash. Instead of stopping the program when an error happens, you can catch the error and respond gracefully.
 
-### 1.16.1. Without try...catch :
+**Without try...catch :**
 
 ```js
 let x = y + 10; // Error: y is not defined
 console.log("This line will not run");
 ```
 
-### 1.16.2. With try...catch:
+**With try...catch:**
 
 ```js
 try {
@@ -5689,7 +5684,7 @@ try {
 console.log("This line will run");
 ```
 
-### 1.16.3. err vs err.message vs err.name
+**err vs err.message vs err.name:**
 
 ```js
 try {
@@ -5703,7 +5698,7 @@ try {
 console.log("This line will run");
 ```
 
-### 1.16.4. Finally block:
+**Finally block:**
 
 finally runs after try and catch, no matter what.
 
@@ -5737,9 +5732,9 @@ Cleanup: This runs no matter what.
 */
 ```
 
-### 1.16.5. Common JS Errors:
+### Common JS Errors:
 
-#### 1.16.5.1. SyntaxError: 
+#### SyntaxError: 
 Syntax error happens when JavaScript code is not written correctly.
 
 ```js
@@ -5762,7 +5757,7 @@ let greeting = "Hello;
 let obj = { name: "Tamim", age: }; 
 ```
 
-#### 1.16.5.2. ReferenceError
+#### ReferenceError
 Reference Error happens when you use a variable that hasn’t been declared.
 
 ```js
@@ -5791,7 +5786,7 @@ function test() {
 test();
 ```
 
-#### 1.16.5.3. TypeError
+#### TypeError
 Type Error happens when a value is used in an invalid way (e.g., calling non-function, accessing property of undefined, etc.)
 
 ```js
@@ -5826,9 +5821,9 @@ console.log(nums.name.first);
 ```
 
 
-## 1.17. Js Modules: Import and export
+## Js Modules: Import and export
 
-### 1.17.1. Export:
+### Export:
 
 There are Three main ways to export from a file:
 
@@ -5863,7 +5858,7 @@ export default function sayHello(name) {
 }
 ```
 
-### 1.17.2. Import:
+### Import:
 
 ```js
 import { PI, add, multiply } from './math.js';
@@ -5887,7 +5882,7 @@ import {add as sum} from './math.js';
 console.log(sum(2, 3));   // 5
 ```
 
-## 1.18. Regular Expression
+## Regular Expression
 
 A regular expression (RegEx) is a pattern used to match character combinations in strings.
 
@@ -5897,7 +5892,7 @@ In JavaScript, RegEx is often used for:
 -   Searching/matching strings
 -   Replacing patterns in text
 
-### 1.18.1. Common RegEx Methods:
+### Common RegEx Methods:
 
 -   test() = Returns true if pattern matches
 -   match() = Returns matching values (array or null)
@@ -5921,7 +5916,7 @@ console.log("search():", str.search(pattern));   // 3
 console.log("split():", str.split(pattern));     // [ 'I h', 've ', ' c', 't, ', ' dog, ', 'nd ', ' cow.' ]
 ```
 
-### 1.18.2. Anchors:
+### Anchors:
 
 -   ^ = matches only the beginning of the entire string.
 -   $ = matches only the end of the entire string.
@@ -5951,7 +5946,7 @@ end$      : [
 */
 ```
 
-### 1.18.3. Flags:
+### Flags:
 
 -   g = Match all occurrences (not just the first one)
 -   i = ignores the case
@@ -6006,7 +6001,7 @@ null
 */
 ```
 
-### 1.18.4. Basic Patterns
+### Basic Patterns
 
 - /abc/ = Matches the exact sequence "abc"
     
@@ -6081,7 +6076,7 @@ null
     ```
     
 
-### 1.18.5. Quantifiers
+### Quantifiers
 
 -   /a+/ → 1 or more a
 -   /a\*/ → 0 or more a
@@ -6126,7 +6121,7 @@ console.log("{2,4} :", str.match(/a{2,4}/g));   // Match between two and four "a
 */
 ```
 
-### 1.18.6. Escaping special characters
+### Escaping special characters
 
 If you want to match characters like ., ?, \*, use a backslash(\\)
 
@@ -6135,7 +6130,7 @@ let pattern = /\./;
 console.log("google.com".match(pattern)); // [ '.', index: 6, input: 'google.com', groups: undefined ]
 ```
 
-### 1.18.7. Ral world examples:
+### Ral world examples:
 
 -  Validate Email:
     
@@ -6189,7 +6184,7 @@ console.log("google.com".match(pattern)); // [ '.', index: 6, input: 'google.com
     */
     ```
 
-## 1.19. Local Storage and Session Storage
+## Local Storage and Session Storage
 
 localStorage is a Web Storage API feature that allows you to store key-value pairs in the browser with no expiration date. Data stored in localStorage persists even after the browser is closed.
 
@@ -6204,7 +6199,7 @@ localStorage and sessionStorage use the same methods and approach. The only diff
 - localStorage → persists until manually cleared
 - sessionStorage → cleared when the tab or browser is closed
 
-### 1.19.1. local storage methods:
+### local storage methods:
 
 - setItem(key, value): 
 Stores a key-value pair (as string) in local storage.
@@ -6414,7 +6409,7 @@ Returns the key name at the specified index.
 </html>
 ```
 
-### 1.19.2. Update the Local Storage key and values:
+### Update the Local Storage key and values:
 
 In localStorage, key name are immutable and values are mutable, thats means, you can't change the key name directly. If you want to change the key name, you must:
 - Get the value of the old name
@@ -6537,11 +6532,11 @@ In localStorage, key name are immutable and values are mutable, thats means, you
 ![](images/local-storage/local-storage-output-3.png)
 
 
-## 1.20. Asynchronous and Synchronous JavaScript
+## Asynchronous and Synchronous JavaScript
 
-### 1.20.1. Synchronous Javascript
+### Synchronous Javascript
 
-#### 1.20.1.1. Single Threaded:
+#### Single Threaded:
 JavaScript is a single-threaded, synchronous language, which means it executes one task at a time, in a specific order from top to bottom.
 
 ```js
@@ -6577,7 +6572,7 @@ function doSomething() {
 */
 ```
 
-### 1.20.2. Asynchronous JavaScript
+### Asynchronous JavaScript
 By default, JavaScript runs code in a synchronous way — meaning it executes one task at a time, in the order they appear.
 
 However, JavaScript can also perform asynchronous tasks like setTimeout(), setInterval(), promise, async/await etc.
@@ -6590,7 +6585,7 @@ Behind the scenes, when an asynchronous method is called:
 So, asynchronous methods like setTimeout() and setInterval() do not change the single-threaded, synchronous nature of JavaScript — they just work alongside it, using the event loop to manage timing and order.
 
 
-### 1.20.3. Web API:
+### Web API:
 
 A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things, like:
 
@@ -6600,7 +6595,7 @@ A Web API is a feature provided by the browser (or the environment like Node.js)
 - Work with the DOM
 - Use browser storage (localStorage, sessionStorage)
 
-### 1.20.4. Event loop:
+### Event loop:
 
 The event loop checks if JavaScript is done with all synchronous tasks, and if so, it moves asynchronous tasks (like timers or API calls) back into the code to be run.
 
@@ -6641,7 +6636,7 @@ Behind the Scenes:
 - Event Loop sees the stack, if empty it moves callback to Call Stack → runs "Timer done"
 
 
-### 1.20.5. setTimeOut() and setInterval()
+### setTimeOut() and setInterval()
 
 **setTimeOut():**
 
@@ -6731,11 +6726,11 @@ const id = setInterval(() => {
 }, 1000);
 ```
 
-### 1.20.6. JSON, promise, fetch, async/await
+### JSON, promise, fetch, async/await
 
 Before learning about Promises, fetch(), and async/await, it’s important to understand the format of data that APIs usually return. Most APIs return data in JSON format:
 
-#### 1.20.6.1. JSON
+#### JSON
 JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").
 
 **JSON.stringify() — Convert JS → JSON string:**
@@ -6762,7 +6757,7 @@ console.log(obj); // { name: 'Tamim', age: 21 }
 console.log(typeof obj); // object 
 ```
 
-#### 1.20.6.2. promise
+#### promise
 A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation.
 
 Promise States:
@@ -7062,23 +7057,23 @@ fetchData();
 
 
 
-# 2. Part 3: DOM
-## 2.1. An Introduction To the DOM
-## 2.2. DOM Traversing
-## 2.3. Elements selecting methods
-## 2.4. Content Manipulation
-## 2.5. Element Attributes and Element Properties
-## 2.6. CSS and Class Styling
-## 2.7. Creating, Adding and Removing Element Methods
-## 2.8. Events
+# Part 3: DOM
+## An Introduction To the DOM
+## DOM Traversing
+## Elements selecting methods
+## Content Manipulation
+## Element Attributes and Element Properties
+## CSS and Class Styling
+## Creating, Adding and Removing Element Methods
+## Events
 
-# 3. Part 3: JS Exercise
-## 3.1. Operator Problems
-## 3.2. Loop Problems
-## 3.3. String Problems
-## 3.4. Array Problems
-## 3.5. Object Problems
-## 3.6. Function Problems
+# Part 3: JS Exercise
+## Operator Problems
+## Loop Problems
+## String Problems
+## Array Problems
+## Object Problems
+## Function Problems
 
 
 

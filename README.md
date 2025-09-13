@@ -48,6 +48,7 @@
     - [1.5.4. for..of loop (for iterables):](#154-forof-loop-for-iterables)
     - [1.5.5. for..in loop (for objects):](#155-forin-loop-for-objects)
     - [1.5.6. forEach method (only for array):](#156-foreach-method-only-for-array)
+  - [1.5. Iterables](#15-iterables)
 
 ---
 
@@ -1307,7 +1308,80 @@ num2.forEach(num2 => console.log(num2)) // 4 5 6
 Note: It does not support break or continue.
 
 
+## 1.5. Iterables 
 
+An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a special method Symbol.iterator.
+
+- When this method is called, it returns an iterator.
+  - Iterator = An object that provides a way to access iterable items one by one using a next() method.
+    - Each call to next() returns a result object:
+      - value → the current element
+      - done → false if there are more elements, true when iteration is finished
+
+JavaScript features like for...of loop, spread operator (...), and destructuring automatically use this Symbol.iterator under the hood.
+
+for quick preview: 
+- Iterable an object with Symbol.iterator
+- Iterator an object returned by calling Symbol.iterator
+
+```js
+let str = "Hi";
+
+let iterator = str[Symbol.iterator](); // get iterator object
+console.log(iterator.next()); // { value: 'H', done: false }
+console.log(iterator.next()); // { value: 'i', done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+// Used automatically by for...of
+for (let ch of str) {
+  console.log(ch); 
+}
+// H
+// i
+```
+
+```js
+let str = "ABC";
+console.log([...str]);  
+// [ 'A', 'B', 'C' ]
+```
+
+```js
+let arr = [1, 2, 3];
+let [a, b] = arr;
+
+console.log(a, b); // 1 2
+```
+
+```js
+let mySet = new Set([1, 2, 2, 3]);
+
+for (let val of mySet) {
+    console.log(val); // 1 2 3
+}
+```
+
+```js
+let myMap = new Map([
+    ["name", "Alice"],
+    ["age", 22]
+]);
+
+for (let [key, value] of myMap) {
+    console.log(key, ":", value);
+}
+/*
+name : Alice
+age : 22
+*/
+```
+
+Note:
+Even though Array, Set, and Map have a .forEach() method that lets you iterate over their elements, it is not part of the iterable protocol.
+
+- .forEach() is a separate method that executes a callback for each element.
+- It works differently from for...of and does not rely on Symbol.iterator.
+- It is only available on Array, Set, and Map.
 
 
 
@@ -1373,6 +1447,7 @@ Note: It does not support break or continue.
 
 
  -->
+
 
 
 

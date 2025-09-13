@@ -155,7 +155,7 @@
   - [1.19. Js Modules: Import and export](#119-js-modules-import-and-export)
   - [1.20. Regular Expression](#120-regular-expression)
   - [1.21. Local Storage and Session Storage](#121-local-storage-and-session-storage)
-  - [1.22. Asynchronous and Synchronous JavaScript --\>](#122-asynchronous-and-synchronous-javascript---)
+  - [1.22. Asynchronous and Synchronous JavaScript](#122-asynchronous-and-synchronous-javascript)
 - [2. Part 3: DOM](#2-part-3-dom)
   - [2.1. An Introduction To the DOM](#21-an-introduction-to-the-dom)
   - [2.2. DOM Traversing](#22-dom-traversing)
@@ -5428,6 +5428,55 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 ## 1.17. Strict Mode
 
+In JavaScript, "use strict"; is a directive that activates Strict Mode, which is a stricter set of rules for executing your JavaScript code.
+
+It helps you
+
+-  Catch common mistakes earlier
+-  Prevent silent errors
+-  Write cleaner, safer code
+
+**Key Effects of Strict Mode:**
+
+- No undeclared variables
+    
+    ```js
+    // without strict mode
+    x = 5;
+    console.log(x); // 5
+    ```
+    
+    ```js
+    // with strict mode
+    "use strict"
+    
+    x = 5;
+    console.log(x); // ReferenceError: x is not defined
+    ```
+    
+- No duplicate parameter names
+    
+    ```js
+    
+    // without strict mode
+    
+    function sum(a, a) {
+        return a + a;
+    }
+    
+    console.log(sum(2, 2)); // 4
+    ```
+    
+    ```js
+    // with strict mode
+    
+    "use strict";
+    function sum(a, a) { // SyntaxError: Duplicate parameter name not allowed in this context
+        return a + a;
+    }
+    console.log(sum(2, 2));
+    ```
+
 ## 1.18. Error Handling
 
 ## 1.19. Js Modules: Import and export
@@ -5436,7 +5485,7 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 ## 1.21. Local Storage and Session Storage
 
-## 1.22. Asynchronous and Synchronous JavaScript -->
+## 1.22. Asynchronous and Synchronous JavaScript
 
 
 

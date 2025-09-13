@@ -3,63 +3,8 @@
 
 
 
-<h3 id="strict-mode" align="center">Strict Mode</h3>
-<p>In JavaScript, "use strict"; is a directive that activates Strict Mode, which is a stricter set of rules for executing your JavaScript code.</p>
 
-<p>It helps you</p>
-<ul>
-<li>Catch common mistakes earlier</li>
-<li>Prevent silent errors</li>
-<li>Write cleaner, safer code</li>
-</ul>
 
-<h4>Key Effects of Strict Mode</h4>
-<ul>
-
-<li>
-<h4>No undeclared variables</h4>
-
-<pre><code>
-// without strict mode
-x = 5;
-console.log(x); // 5
-</code></pre>
-
-<pre><code>
-// with strict mode
-"use strict"
-
-x = 5;
-console.log(x); // ReferenceError: x is not defined
-</code></pre>
-</li>
-
-<li>
-<h4>No duplicate parameter names</h4>
-
-<pre><code>
-// without strict mode
-
-function sum(a, a) {
-    return a + a;
-}
-
-console.log(sum(2, 2)); // 4
-</code></pre>
-
-<pre><code>
-// with strict mode
-
-"use strict";
-function sum(a, a) { // SyntaxError: Duplicate parameter name not allowed in this context
-    return a + a;
-}
-console.log(sum(2, 2));
-</code></pre>
-</li>
-
-</ul>
-<hr>
 
 
 
@@ -223,7 +168,6 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 </code></pre>
 
 </ul>
-<hr>
 
 
 

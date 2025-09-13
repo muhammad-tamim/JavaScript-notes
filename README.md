@@ -60,13 +60,67 @@
       - [1.7.6.3. Find Factorial Using Recursion:](#1763-find-factorial-using-recursion)
     - [1.7.7. Closure](#177-closure)
       - [1.7.7.1. Closure Features](#1771-closure-features)
-  - [1.5. Iterables](#15-iterables)
   - [1.8. string](#18-string)
     - [why strings are iterable also?](#why-strings-are-iterable-also)
     - [Strings are immutable:](#strings-are-immutable)
     - [Quotes:](#quotes)
     - [String Property:](#string-property)
     - [String Methods:](#string-methods)
+  - [Objects:](#objects)
+    - [Different ways to declare an Object](#different-ways-to-declare-an-object)
+    - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
+    - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
+    - [Object.freeze() vs Object.seal()](#objectfreeze-vs-objectseal)
+      - [Object.freeze():](#objectfreeze)
+      - [Object.seal():](#objectseal)
+    - [Property existence test:](#property-existence-test)
+      - [With in operator:](#with-in-operator)
+      - [With includes() method:](#with-includes-method)
+      - [With hasOwnProperty() method:](#with-hasownproperty-method)
+    - [The "for..in" loop](#the-forin-loop)
+    - [Objects References and Copying:](#objects-references-and-copying)
+    - [Const objects can be modified?](#const-objects-can-be-modified)
+    - [Cloning and merging, Object.assign and structuredClone():](#cloning-and-merging-objectassign-and-structuredclone)
+    - [Nested cloning:](#nested-cloning)
+    - [Object Methods](#object-methods)
+    - [Optional Chaining (?.)](#optional-chaining-)
+    - [Date:](#date)
+  - [1.13. constructor function](#113-constructor-function)
+    - [1.13.1. Why Do We Use Constructor Functions?](#1131-why-do-we-use-constructor-functions)
+    - [1.13.2. Methods in Constructor Functions](#1132-methods-in-constructor-functions)
+      - [1.13.2.1. Adding Methods Inside Constructor](#11321-adding-methods-inside-constructor)
+      - [1.13.2.2. Adding methods though prototype](#11322-adding-methods-though-prototype)
+    - [1.13.3. Prototype](#1133-prototype)
+      - [prototype chain](#prototype-chain)
+  - [array](#array)
+    - [Get the length of an array using length property:](#get-the-length-of-an-array-using-length-property)
+    - [for..of loop](#forof-loop)
+    - [Array Methods](#array-methods)
+      - [Note:](#note)
+  - [1.5. Iterables](#15-iterables)
+  - [1.16. Destructuring](#116-destructuring)
+  - [1.17. Strict Mode](#117-strict-mode)
+  - [1.18. Error Handling](#118-error-handling)
+  - [1.19. Js Modules: Import and export](#119-js-modules-import-and-export)
+  - [1.20. Regular Expression](#120-regular-expression)
+  - [1.21. Local Storage and Session Storage](#121-local-storage-and-session-storage)
+  - [1.22. Asynchronous and Synchronous JavaScript --\>](#122-asynchronous-and-synchronous-javascript---)
+- [2. Part 3: DOM](#2-part-3-dom)
+  - [2.1. An Introduction To the DOM](#21-an-introduction-to-the-dom)
+  - [2.2. DOM Traversing](#22-dom-traversing)
+  - [2.3. Elements selecting methods](#23-elements-selecting-methods)
+  - [2.4. Content Manipulation](#24-content-manipulation)
+  - [2.5. Element Attributes and Element Properties](#25-element-attributes-and-element-properties)
+  - [2.6. CSS and Class Styling](#26-css-and-class-styling)
+  - [2.7. Creating, Adding and Removing Element Methods](#27-creating-adding-and-removing-element-methods)
+  - [2.8. Events](#28-events)
+- [3. Part 3: JS Exercise](#3-part-3-js-exercise)
+  - [3.1. Operator Problems](#31-operator-problems)
+  - [3.2. Loop Problems](#32-loop-problems)
+  - [3.3. String Problems](#33-string-problems)
+  - [3.4. Array Problems](#34-array-problems)
+  - [3.5. Object Problems](#35-object-problems)
+  - [3.6. Function Problems](#36-function-problems)
 
 ---
 
@@ -1667,86 +1721,6 @@ counter(); // Count is: 2
 counter(); // Count is: 3
 ```
 
-## 1.5. Iterables 
-
-An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a special method Symbol.iterator.
-
-- When this method is called, it returns an iterator.
-  - Iterator = An object that provides a way to access iterable items one by one using a next() method.
-    - Each call to next() returns a result object:
-      - value → the current element
-      - done → false if there are more elements, true when iteration is finished
-
-JavaScript features like for...of loop, spread operator (...), and destructuring automatically use this Symbol.iterator under the hood.
-
-for quick preview: 
-- Iterable an object with Symbol.iterator
-- Iterator an object returned by calling Symbol.iterator
-
-```js
-let str = "Hi";
-
-let iterator = str[Symbol.iterator](); // get iterator object
-console.log(iterator.next()); // { value: 'H', done: false }
-console.log(iterator.next()); // { value: 'i', done: false }
-console.log(iterator.next()); // { value: undefined, done: true }
-
-// Used automatically by for...of
-for (let ch of str) {
-  console.log(ch); 
-}
-// H
-// i
-```
-
-```js
-let str = "ABC";
-console.log([...str]);  
-// [ 'A', 'B', 'C' ]
-```
-
-```js
-let arr = [1, 2, 3];
-let [a, b] = arr;
-
-console.log(a, b); // 1 2
-```
-
-```js
-let mySet = new Set([1, 2, 2, 3]);
-
-for (let val of mySet) {
-    console.log(val); // 1 2 3
-}
-```
-
-```js
-let myMap = new Map([
-    ["name", "Alice"],
-    ["age", 22]
-]);
-
-for (let [key, value] of myMap) {
-    console.log(key, ":", value);
-}
-/*
-name : Alice
-age : 22
-*/
-```
-
-Note:
-Even though Array, Set, and Map have a .forEach() method that lets you iterate over their elements, it is not part of the iterable protocol.
-
-- .forEach() is a separate method that executes a callback for each element.
-- It works differently from for...of and does not rely on Symbol.iterator.
-- It is only available on Array, Set, and Map.
-
-
-
-
-
-
 ## 1.8. string
 
 String represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable, array-like objects, and immutable. They are not actual objects, but they appear like objects because JavaScript automatically convert them into a temporary String object whenever you use properties or methods on it.
@@ -2040,6 +2014,1537 @@ console.log(str.length); // 10
     - Target length: 3
     - Pad with "0" at the start until length becomes 3 → "005"
 
+## Objects:
+
+An object is a collection of key-value pairs called properties. where key is a string (also called a “property name”), and value can be anything.
+
+```js
+let user = {   
+  name: "John",  
+  age: 30        
+}
+```
+
+In the user object, there are two properties:
+
+1.  The first property has the key "name" and the value "John".
+2.  The second one has the key "age" and the value 30.
+
+The user object can be imagined as a cabinet with two signed files labeled “name” and “age”:
+
+![object image](images/image4.png)
+
+We can add, remove and read files from it at any time by the using of dot or bracket notation:
+
+```js
+let user = {
+    name: "John",
+    age: 30
+}
+
+console.log(user.name); // John
+console.log(user.age); // 30
+user.location = "USA";
+console.log(user.location); // USA
+delete user.location;
+console.log(user.location); // undefined
+```
+
+We can also use multi-word property names, but then they must be quoted and when read the peppery value we need to use bracket notation.
+
+```js
+let user = {
+    name: "John",
+    age: 30,
+    "like birds": true,
+}
+console.log(user["like birds"]); // true
+```
+
+In real code, we often use existing variables as values for property names:
+
+```js
+function makeUser(name, age) {
+    return {
+        name: name,
+        age: age,
+    };
+}
+
+let user = makeUser("John", 30);
+console.log(user.name); // John
+```
+
+In the example above, properties have the same names as variables. so in this case we can use shorthand technique:
+
+```js
+function makeUser(name, age) {
+    return {
+        name,
+        age
+    };
+}
+
+let user = makeUser("John", 30);
+console.log(user.name); // John
+```
+
+### Different ways to declare an Object
+
+```js
+const pen = {
+    brand: "Parker",
+    color: "blue",
+    type: "ballpoint",
+    price: 10,
+}
+console.log(pen);
+
+const pen2 = new Object();
+pen2.brand = "Pilot";
+pen2.color = "black";
+pen2.type = "gel";
+pen2.price = 12;
+console.log(pen2);
+
+const pen3 = Object.create({});
+pen3.brand = "Bic";
+pen3.color = "red";
+pen3.type = "fountain";
+pen3.price = 8;
+console.log(pen3);
+```
+
+### Dot Notation VS Bracket Notation:
+
+| Situation                                | Dot Notation | Bracket Notation |
+| ---------------------------------------- | ------------ | ---------------- |
+| Property name has **spaces**             | ❌            | ✅                |
+| Property name has **special characters** | ❌            | ✅                |
+| Property name starts with a **number**   | ❌            | ✅                |
+| Property accessed via **variable**       | ❌            | ✅                |
+| Used in a **loop**                       | ❌            | ✅                |
+| Key is from **JSON**                     | ❌            | ✅                |
+| Nested **dynamic access**                | ❌            | ✅                |
+
+example:
+
+- Property Name Has Spaces:
+    
+    ```js
+    const user = {
+      "first name": "Tamim",
+      "last name": "Hossain"
+    };
+    
+    console.log(user["first name"]);  //  "Tamim"
+    // console.log(user.first name);  //  SyntaxError
+    ```
+    
+- Property Name Starts with a Number:
+    
+    ```js  
+    const errorCodes = {
+      "404": "Not Found",
+      "500": "Internal Server Error"
+    };
+    
+    console.log(errorCodes["404"]); //  "Not Found"
+    // console.log(errorCodes.404); //  SyntaxError
+    ```
+    
+- Property Name Has Special Characters:
+    
+    ```js
+    const config = {
+      "api-key": "123abc",
+      "user@domain": "admin"
+    };
+    
+    console.log(config["api-key"]);       //  "123abc"
+    console.log(config["user@domain"]);   //  "admin"
+    // console.log(config.api-key);       //  Error: undefined - interpreted as subtraction
+    ```
+    
+- Accessing Property Using a Variable:
+    
+    ```js
+    const key = "username";
+    const user = {
+      username: "Tamim"
+    };
+    
+    console.log(user[key]);     //  "Tamim"
+    // console.log(user.key);   //  undefined (literally looks for 'key' property)
+    ```
+    
+- Looping Through Object Keys:
+    
+    ```js
+    const scores = {
+      Alice: 90,
+      Bob: 80,
+      Charlie: 85
+    };
+    
+    for (let name in scores) {
+      console.log(`${name}: ${scores[name]}`);
+    }
+    ```
+    Note: You must use bracket notation in loops for keys because keys are dynamic.
+    
+- Working with JSON Data:
+    
+    ```js
+    const jsonData = {
+      "user-info": {
+        "first name": "Tamim",
+        "last name": "Hossain"
+      }
+    };
+    
+    console.log(jsonData["user-info"]["first name"]); 
+    console.log(user-info.first name) // error
+    ```
+    
+- Nested Dynamic Access:
+    
+    ```js
+    const data = {
+      settings: {
+        theme: "dark",
+        layout: "grid"
+      }
+    };
+    
+    const section = "settings";
+    const prop = "theme";
+    
+    console.log(data[section][prop]); //  "dark"
+    ```
+    
+
+### Object.keys(), Object.Values() and Object.entries() methods:
+
+```js
+const computer = {
+    brand: 'lenovo',
+    price: 35000,
+    processor: 'intel',
+    ssd: '512gb'
+};
+
+const keys = Object.keys(computer);
+console.log(keys); // [ 'brand', 'price', 'processor', 'ssd' ]
+
+const values = Object.values(computer);
+console.log(values); // [ 'lenovo', 35000, 'intel', '512gb' ]
+
+const entries = Object.entries(computer);
+console.log(entries);
+
+/*
+[
+  [ 'brand', 'lenovo' ],
+  [ 'price', 35000 ],
+  [ 'processor', 'intel' ],
+  [ 'ssd', '512gb' ]
+]
+*/
+```
+
+### Object.freeze() vs Object.seal()
+
+#### Object.freeze():
+
+Object.freeze() freezes an object. This means:
+
+-   You cannot add new properties.
+-   You cannot delete existing properties.
+-   You cannot modify existing property values.
+-   The object becomes immutable.
+
+```js
+const person = {
+    name: "Alice",
+    age: 25
+};
+
+Object.freeze(person);
+
+person.age = 30;
+person.city = "NY";
+delete person.name;
+
+console.log(person);
+// Output: { name: "Alice", age: 25 }
+```
+
+Note:
+
+Object.freeze() only freezes the immediate properties. If object properties are objects themselves, those nested objects can still be mutated unless they are frozen separately.
+
+```js
+const user = {
+    name: "Bob",
+    address: {
+        city: "Paris"
+    }
+};
+
+Object.freeze(user);
+user.address.city = "London";
+
+console.log(user.address.city); // "London"
+
+// with deep Freeze
+function deepFreeze(obj) {
+    Object.keys(obj).forEach(key => {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+            deepFreeze(obj[key]);
+        }
+    });
+    return Object.freeze(obj);
+}
+
+const deepObj = {
+    level1: {
+        level2: {
+            value: 42
+        }
+    }
+};
+
+deepFreeze(deepObj);
+deepObj.level1.level2.value = 100;
+console.log(deepObj.level1.level2.value); // 42
+```
+
+#### Object.seal():
+
+Object.seal() freezes an object. This means:
+
+-   You cannot add new properties.
+-   You cannot delete existing properties.
+-   **But you can modify existing property values.**
+
+```js
+const car = {
+    brand: "Toyota",
+    year: 2020
+};
+
+Object.seal(car);
+
+car.year = 2022;
+car.color = "red";
+delete car.brand;
+
+console.log(car);
+// { brand: "Toyota", year: 2022 }
+```
+
+Note:
+
+Object.seal also doesn’t affect nested objects.
+
+**How to Check if Object is Frozen or Sealed:**
+
+```js
+const obj = { a: 1 };
+
+Object.freeze(obj);
+console.log(Object.isFrozen(obj)); // true
+console.log(Object.isSealed(obj)); // true, because frozen objects are also sealed
+
+const obj2 = { b: 2 };
+Object.seal(obj2);
+console.log(Object.isFrozen(obj2)); // false
+console.log(Object.isSealed(obj2)); // true
+```
+
+### Property existence test:
+
+#### With in operator:
+
+```js
+let user = {
+    name: "John",
+    age: 30,
+}
+
+console.log("age" in user); // true, user.age exists
+console.log("location" in user); // false, user.location doesn't exist
+```
+
+#### With includes() method:
+
+```js
+const profile = {
+    name: "Rahim",
+    age: 28,
+    city: "Dhaka",
+};
+
+const profileKeys = Object.keys(profile);
+const hasName = profileKeys.includes("name");
+console.log(hasName); // Output: true
+```
+
+#### With hasOwnProperty() method:
+
+```js
+const profile = {
+    name: "Rahim",
+    age: 28,
+    city: "Dhaka",
+};
+
+const hasName = profile.hasOwnProperty("name");
+console.log(hasName); // Output: true
+```
+
+### The "for..in" loop
+
+```js
+let user = {
+    name: "John",
+    age: 30,
+    isAdmin: true
+};
+
+for (let key in user) {
+    console.log(key);  // name, age, isAdmin
+    console.log(user[key]); // John, 30, true
+}
+```
+
+### Objects References and Copying:
+
+One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.
+
+That’s easy to understand if we look a bit under the hood of what happens when we copy a value. Let’s start with a primitive, such as a string.  
+Here we put a copy of message into phrase:
+
+```js
+let message = "Hello!";
+let phrase = message;
+```
+
+As a result we have two independent variables, each one storing the string "Hello!".
+
+![string copy image](images/image5.png)
+
+A variable doesn’t hold the object directly. It just holds a reference (or pointer) to where the object is stored in memory.
+
+Let’s look at an example of such a variable:
+
+```js
+let user = {
+  name: "John"
+};
+```
+
+![object image](images/image6.png)
+
+The object is stored somewhere in memory (at the right of the picture), while the user variable (at the left) has a “reference” to it.
+
+**When an object variable is copied, the reference is copied, but the object itself is not duplicated:**
+
+```js
+let user = { name: "John" };
+
+let admin = user; // copy the reference
+```
+
+Now we have two variables, each storing a reference to the same object:
+
+![object image](images/image7.png)
+
+As you can see, there’s still one object, but now with two variables that reference it.  
+We can use either variable to access the object and modify its contents:
+
+```js
+let user = { name: 'John' };
+
+let admin = user;
+
+admin.name = 'Pete'; // changed by the "admin" reference
+
+console.log(user.name); // 'Pete', 
+console.log(admin.name); // 'Pete', 
+```
+
+### Const objects can be modified?
+
+An important side effect of storing objects as references is that an object declared as const can be modified.
+
+```js
+const user = {
+    name: "John"
+};
+
+user.name = "Pete";
+
+console.log(user.name); // Pete
+```
+
+### Cloning and merging, Object.assign and structuredClone():
+
+So, copying an object variable creates one more reference to the same object.  
+But what if we need to duplicate an object?  
+We can create a new object and replicate the structure of the existing one, by iterating over its properties and copying them on the primitive level.  
+Like this:
+
+```js
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let property in user) {
+    clone[property] = user[property];
+}
+
+console.log(clone); // { name: "John", age: 30 }
+console.log(user); // { name: "John", age: 30 } 
+
+clone.name = "Pete"; // changed the data in it
+
+console.log(user.name); // still John in the original object
+console.log(clone.name); // but Pete in the clone
+
+console.log(clone); // { name: "Pete", age: 30 }
+console.log(user); // { name: "John", age: 30 }
+```
+
+We can also use the method **Object.assign**:
+
+The syntax is:
+
+```js
+Object.assign(dest, ...sources)
+```
+
+-   The first argument dest is a target object.
+-   Further arguments is a list of source objects.
+
+It copies the properties of all source objects into the target dest, and then returns it as the result.
+
+```js
+let user = { name: "John" };
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: "John", canView: true, canEdit: true }
+console.log(user.name); // John
+console.log(user.canView); // true
+console.log(user.canEdit); // true
+```
+
+We also can use Object.assign to perform a simple object cloning:
+
+```js
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = Object.assign({}, user);
+
+console.log(clone.name); // John
+console.log(clone.age); // 30
+```
+
+### Nested cloning:
+
+```js
+let user = {
+    name: "John",
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+let clone = Object.assign({}, user);
+
+console.log(user.sizes === clone.sizes); // true, same object
+
+user.sizes.width = 60;   // Modify the original object
+console.log(clone.sizes.width); // 60, get the result from the other one
+```
+
+To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user [key] and, if it’s an object, then replicate its structure as well. That is called a “structured cloning”.The call **structuredClone(object)** clones the object with all nested properties:
+
+```js
+let user = {
+    name: "John",
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+let clone = structuredClone(user);
+
+console.log(user.sizes === clone.sizes); // false, different objects
+
+user.sizes.width = 60;    // change a property from one place
+console.log(clone.sizes.width); // 50, not related
+```
+
+### Object Methods
+
+A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.
+
+Example:
+
+```js
+let user = {
+    name: "Tamim",
+    // Method shorthand (recommended)
+    sayHello() {
+        console.log("Hello, I'm " + this.name);
+    },
+    // method without shorthand
+    sayHi: function () {
+        console.log("Hi, I'm " + this.name);
+    }
+};
+user.sayHello(); // Output: Hello, I'm Tamim
+user.sayHi(); // Output: Hi, I'm Tamim
+```
+-   sayHello ia a method of user object
+-   It uses this.name to access the object’s own data.
+
+Technically, it’s also possible to access the object without this:
+
+```js
+let user = {
+    name: "Tamim",
+    sayHello() {
+        console.log("Hello, I'm " + user.name);
+    },
+
+};
+user.sayHello(); // Output: Hello, I'm Tamim
+```
+
+But such code is unreliable. If we decide to copy user to another variable, e.g. admin = user and overwrite user with something else, then it will access the wrong object:
+
+```js
+let user = {
+    name: "Tamim",
+    sayHello() {
+        console.log(user.name);
+    },
+};
+
+let admin = user;
+user = null;
+admin.sayHello(); // Cannot read properties of null (reading 'sayHello')
+```
+
+If we used this.name instead of user.name inside the console, then the code would work:
+
+```js
+let user = {
+    name: "Tamim",
+    sayHello() {
+        console.log(this.name);
+    },
+};
+
+let admin = user;
+user = null;
+admin.sayHello(); // Tamim
+```
+
+### Optional Chaining (?.)
+
+Optional Chaining(?.) is a safe way to access deeply nested properties without getting an error if something is undefined or null.
+
+Without Optional Chaining:
+
+```js
+const user = {};
+console.log(user.address.city); // error: Cannot read properties of undefined (reading 'city')
+```
+
+With Optional Chaining:
+
+```js
+const user = {};
+console.log(user.address?.city); // undefined
+```
+
+if address is undefined or null optional chaining stops accessing .city and returns undefined instead of throwing an error.
+
+we can also use optional chaining for calling method:
+
+```js
+const user = {
+    sayHi() {
+        console.log("Hi!");
+    }
+};
+
+user.sayHi?.();     // Hi!
+user.sayBye?.();    // Nothing happens, no error or undefined
+```
+
+### Date:
+
+Date is a built-in object in JavaScript that represents a single moment in time — down to the millisecond. Under the hood, it stores time as the number of milliseconds since January 1, 1970 (UTC) (called the Unix Epoch).
+
+- Current Date & Time:
+
+```js
+const now = new Date();
+console.log(now); // 2025-07-22T05:57:06.058Z
+```
+
+- Get Parts of a Date:
+
+```js
+const date = new Date();
+
+console.log(date.getFullYear()); // 2025
+console.log(date.getMonth());    // 6 (July) → Month is 0-based
+console.log(date.getDate());     // 21
+console.log(date.getDay());      // 1 (Monday) → 0 = Sunday
+console.log(date.getHours());    // 23
+console.log(date.getMinutes());  // 5
+console.log(date.getSeconds());  // 30
+console.log(date.getMilliseconds()); // 123
+```
+
+- Date Formatting (Readable Strings):
+
+```js
+const date = new Date();
+console.log(date.toString());      // Mon Aug 04 2025 01:14:18 GMT+0600 (Bangladesh Standard Time)
+console.log(date.toDateString());  // Mon Aug 04 2025
+console.log(date.toTimeString());  // 01:14:18 GMT+0600 (Bangladesh Standard Time)
+console.log(date.toISOString());   // ISO format (for JSON, API)
+console.log(date.toUTCString());   // 2025-08-03T19:14:18.638Z
+console.log(date.toLocaleDateString()); // 8/4/2025
+console.log(date.toLocaleTimeString()); // 1:15:24 AM
+```
+
+## 1.13. constructor function
+A constructor function is a special function used to create multiple objects with the same structure and behavior. By convention, the name of a constructor function starts with a capital letter to distinguish it from regular functions.
+
+### 1.13.1. Why Do We Use Constructor Functions?
+Suppose we want multiple similar objects:
+
+```js
+const person1 = { name: "Alice", age: 25 };
+const person2 = { name: "Bob", age: 30 };
+```
+For 2 objects, it’s fine. But for hundreds of objects, manually creating each object is tedious and repetitive.
+
+fot the solution we ca use constructor function:
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const p1 = new Person("Alice", 25);
+const p2 = new Person("Bob", 30);
+
+console.log(p1.name); // Alice
+console.log(p2.age);  // 30
+```
+
+**explanation:**
+here, 
+- Person is a constructor function
+- this refers to the new object that will be created when we use new Person(...). In other words, when we use new Person("Alice", 25), a empty object {} is created, and this points to that object.
+`const p1 = new Person("Alice", 25);`
+- The new keyword does several things: 
+  - Creates a new empty object.
+  - Sets the prototype of the new object to Person.prototype.
+  - Calls the Person function with this pointing to the new object.
+  - Returns the new object automatically (unless you explicitly return something else).
+So after this line:
+
+```js
+p1 = {
+  name: "Alice",
+  age: 25
+}
+```
+Similarly, `p2 = new Person("Bob", 30)` creates another object:
+
+```js
+p2 = {
+  name: "Bob",
+  age: 30
+}
+```
+
+### 1.13.2. Methods in Constructor Functions
+#### 1.13.2.1. Adding Methods Inside Constructor
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.sayHello = function() {
+    console.log(`Hello, I'm ${this.name}`);
+  };
+}
+
+const p1 = new Person("Bob", 30);
+const p2 = new Person("tamim", 30);
+p1.sayHello(); // Hello, I'm Bob
+p2.sayHello(); // Hello, I'm tamim
+```
+
+
+#### 1.13.2.2. Adding methods though prototype
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// Adding method to prototype
+Person.prototype.sayHello = function() {
+  console.log(`Hello, I'm ${this.name}`);
+};
+
+const p1 = new Person("Charlie", 35);
+const p2 = new Person("tamim", 35);
+p2.sayHello(); // Hello, I'm Charlie
+p2.sayHello(); // Hello, I'm tamim
+```
+Notice we didn’t define sayHello inside the constructor.It’s shared via the prototype, so memory isn’t wasted creating a new function for every object.
+
+
+### 1.13.3. Prototype 
+
+A prototype is an object that is associated with every function and object in JavaScript. It allows objects to share properties and methods instead of each object having its own copy.
+
+In constructor functions, the prototype property is used to attach methods or properties shared by all instances.
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.sayHello = function() {
+    console.log(`Hello, I'm ${this.name}`);
+  };
+}
+
+const p1 = new Person("Bob", 30);
+const p2 = new Person("tamim", 30);
+p1.sayHello(); // Hello, I'm Bob
+p2.sayHello(); // Hello, I'm tamim
+```
+
+In this example we don't use prototype and every time if we create a new object using new keyword the sayHello method is created for that object and take a space to our memory. If you create 1000 objects, you have 1000 copies of the same function in memory 
+
+to solve this problem, we can  use prototype
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// Adding a method to the prototype
+Person.prototype.greet = function() {
+  console.log(`Hi, I am ${this.name}`);
+};
+
+const p1 = new Person("Alice", 25);
+const p2 = new Person("Bob", 30);
+
+p1.greet(); // Hi, I am Alice
+p2.greet(); // Hi, I am Bob
+```
+
+now, 
+- p1 and p2 do not have their own greet method.
+- They share the same greet method via Person.prototype.
+- This saves memory because only one copy of the function exists.
+
+#### prototype chain
+The prototype chain is the mechanism JavaScript uses to look up properties and methods on objects.
+
+When you try to access a property/method on an object:
+
+- JavaScript checks the object itself.
+- If not found, it checks the object’s prototype.
+- If still not found, it checks the prototype’s prototype.
+- This continues until it reaches Object.prototype.
+
+This chain of references is called the prototype chain.
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.greet = function() {
+  console.log(`Hi, I am ${this.name}`);
+};
+
+const p1 = new Person("Alice");
+
+// Accessing method from prototype
+p1.greet(); // Hi, I am Alice
+
+// Accessing method from Object.prototype
+console.log(p1.toString()); // "[object Object]"
+```
+
+
+
+
+
+
+
+
+
+
+## array 
+An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.
+
+**Array Declaration:**
+
+```js
+let fruits = []
+```
+
+**Array Initialization:**
+
+```js
+let fruits = ['apple', 'orange', 'plum']
+```
+
+**Array Assignment:**
+
+```js
+let fruits = ['apple', 'orange', 'plum'];
+fruits[2] = 'mango';
+console.log(fruits); // [ 'apple', 'orange', 'mango' ]
+```
+
+### Get the length of an array using length property:
+
+```js
+let fruits = ["Apple", "Orange", "Plum"];
+console.log(fruits.length); // 3
+```
+
+Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array. They both point to the same memory address:
+
+```
+
+let fruits = ["Banana"]
+
+let arr = fruits; // copy by reference (two variables reference the same array)
+
+console.log(arr === fruits); // true
+
+arr.push("Pear"); // modify the array by reference
+
+console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
+```
+
+### for..of loop
+
+One of the oldest ways to cycle array items is the for loop over indexes:
+
+```
+
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+```
+
+**With for..of loop**
+
+```
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+// iterates over array elements
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+```
+
+Technically, because arrays are objects, it is also possible to use for..in, but it gives you the keys (like "0", "1", or even custom properties) instead of the actual values.
+
+```
+
+const fruits = ["apple", "banana", "mango"];
+fruits.custom = "extra"; // adding a property to the array
+
+for (const key in fruits) {
+    console.log(key); // 0, 1, 2, custom
+}
+```
+
+### Array Methods
+
+1.  Adding / Removing Elements
+
+-   #### push/pop and unshift/shift:
+    
+    | Operation                                        | Method    |
+    | ------------------------------------------------ | --------- |
+    | Adds element to end and returns the new length   | push()    |
+    | Remove the last element and returns the element  | pop()     |
+    | Adds element to start and returns the new length | unshift() |
+    | Remove the first element and returns the element | shift()   |
+    
+    ```
+    
+    let fruits = ["Apple", "Orange", "Plum"];
+    
+    console.log(fruits.push('Mango')) // 4
+    console.log(fruits); // [ 'Apple', 'Orange', 'Plum', 'Mango' ]
+    console.log(fruits.pop()); // Mango
+    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
+    
+    console.log(fruits.unshift('Mango')) // 4
+    console.log(fruits); // [ 'Mango', 'Apple', 'Orange', 'Plum' ]
+    console.log(fruits.shift()); // Mango
+    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
+    ```
+    
+    #### Why push/pop run fast and unshift/shift are slow?
+    
+    ![push/pop/unshift/shift](images/image8.png)
+    
+    push() and pop() are fast because they work at the end of an array, where JavaScript can simply add or remove an item without affecting the positions of other elements.
+    
+    On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.
+    
+-   #### splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:
+    
+    ```
+    
+    let arr = ["I", "study", "JavaScript"];
+    // from index 1 remove 1 element
+    console.log(arr.splice(1, 1));  // [ 'study' ]
+    console.log(arr); // [ 'I', 'JavaScript' ]
+    
+    
+    let arr2 = ["I", "study", "JavaScript", "right", "now"];
+    // remove 3 first elements and replace them with another
+    console.log(arr2.splice(0, 3, "Let's", "dance")); // [ 'I', 'study', 'JavaScript' ]
+    console.log(arr2) // ["Let's", "dance", "right", "now"]
+    
+    
+    let arr3 = ["I", "study", "JavaScript"];
+    // from index 2, delete 0, then insert "complex" and "language"
+    console.log(arr3.splice(2, 0, "complex", "language")); // []
+    console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
+    
+    
+    
+    let arr4 = [1, 2, 5];
+    // from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
+    console.log(arr4.splice(-1, 0, 3, 4));[]
+    console.log(arr4); // [ 1, 2, 3, 4, 5 ]
+    ```
+    
+-   #### slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:
+    
+    ```
+    
+    let arr = ["t", "e", "s", "t"];
+    
+    console.log(arr.slice(1, 3)); // [ 'e', 's' ]
+    console.log(arr); // [ 't', 'e', 's', 't' ]
+    console.log(arr.slice(-2)); // [ 's', 't' ]
+    console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
+    ```
+    
+
+#### Note:
+
+-   Use splice() when you want to change the original array (remove/insert/replace).
+-   Use slice() when you want a copy of part of the array, without changing the original.
+
+5.  Searching / Location
+
+-   #### indexOf(item) – Returns the index of the first match, or -1:
+    
+    ```
+    
+    let arr = [1, 2, 3];
+    
+    console.log(arr.indexOf(2)); // 1
+    console.log(arr.indexOf(4)); // -1
+    ```
+    
+-   #### lastIndexOf(item) – Returns the index of the last match, or -1:
+    
+    ```
+    
+    let arr = [1, 2, 2, 3];
+    
+    console.log(arr.lastIndexOf(2)); // 2
+    console.log(arr.lastIndexOf(5)); // -1
+    ```
+    
+-   #### includes(item) – Returns true if array contains item, or false:
+    
+    ```
+    
+    let arr = [1, 2, 3];
+    
+    console.log(arr.includes(2)); // true
+    console.log(arr.includes(5)) // false
+    ```
+    
+
+7.  Iteration / Transformation
+| Method | Purpose | Returns | Modifies Original Array | | | ----------- | ------------------------------------------------------- | ------------------------------- | ----------------------- | --- | | \`map()\` | return a new array by applying function to each element | ✅ New array | ❌ No | | \`forEach()\` | Executes a function for each element; no return value | ❌ No Return | ❌ No | | \`filter()\` | Filters elements based on a condition | ✅ New filtered array | ❌ No | | \`find()\` | Finds the \*\*first\*\* element that matches a condition | ✅ Single element or \`undefined\` | ❌ No |
+
+-   #### forEach(callback) – Executes a function for each element; no return value:
+    
+    ```
+    
+    let arr = [1, 2, 3]
+    arr.forEach(n => console.log(n * 2)); // 2 4 6       
+    ```
+    
+    ```
+    
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    products.forEach(product => console.log(product))
+    
+    /*
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    */
+    ```
+    
+-   #### map(callback) – return a new array by applying function to each element:
+    
+    ```
+    
+    let arr = [1, 2, 3]
+    let arr2 = arr.map(n => n * 2);
+    console.log(arr) // [ 1, 2, 3 ]
+    console.log(arr2) // [ 2, 4, 6 ]
+    ```
+    
+    ```
+    
+    // using map for just printf (not recommended)
+    const numbers = [1, 2, 3, 4, 5];
+    
+    const newNumber = numbers.map(number => console.log(number))
+    
+    console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
+    ```
+    
+    ```
+    
+    // using map for both element and index
+    const names = ["tamim", "nasrin", "maria"];
+    
+    const newNames = names.map((element, index) => console.log(element, index))
+    
+    /*
+    tamim 0
+    nasrin 1
+    maria 2
+     */
+    ```
+    
+    ```
+    
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    const productNames = products.map(product => product.name);
+    console.log(productNames)
+    
+    // [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
+    ```
+    
+-   #### filter(callback) – return a new array with elements that pass the test:
+    
+    ```
+    
+    let arr = [1, 2, 3, 4]
+    let arr2 = arr.filter(n => n % 2 === 0);
+    console.log(arr) // [ 1, 2, 3, 4 ]
+    console.log(arr2) // [ 2, 4 ]
+    ```
+    
+    ```
+    
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    const filterProducts = products.filter(product => product.price >= 1000)
+    console.log(filterProducts);
+    
+    /*
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    */
+    
+    const expensiveProducts = products.filter(product => product.price >= 5000);
+    console.log(expensiveProducts); // []
+    ```
+    
+-   #### find(callback) – Returns the first element that matches:
+    
+    ```
+    
+    let arr = [1, 2, 3, 4, 5];
+    const result = arr.find(n => n > 2);
+    console.log(result); // 3
+    ```
+    
+    ```
+    
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    const foundProduct = products.find(product => product.brand === "apple");
+    console.log(foundProduct)
+    
+    /*
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    */
+    
+    const foundColor = products.find(product => product.color === "pink");
+    console.log(foundColor) // undefined
+    ```
+    
+-   #### findIndex(callback) – Returns the index of the first element that matches:
+    
+    ```
+    
+    let arr = [1, 2, 3, 4, 5];
+    const result = arr.findIndex(n => n > 2);
+    console.log(result); // 2
+    ```
+    
+-   #### reduce()– Reduces array to a single value:
+    
+    Syntax:
+    
+    ```
+    reduce((accumulator, currentValue) => ..., initialValue);
+    ```
+    
+    ```
+    
+    const numbers = [1, 2, 3, 4];
+    
+    // without reduce method
+    
+    let acc = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        acc = acc + numbers[i];
+    }
+    console.log(acc); // Output: 10
+    
+    // with reduce method
+    
+    const result = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(result); // Output: 10
+    ```
+    
+    Here,
+    
+    -   accumulator = keeps the result
+    -   0 = The staring value of accumulator
+    -   currentValue = the current element of the array
+    
+    ![reduce](images/reduce.png)
+
+9.  Reordering / Combining
+
+-   #### concat(...arrays) – Returns a new array by merging arrays/values:
+    
+    ```
+    
+    let arr = [1, 2];
+    const arr2 = arr.concat([3, 4], 5);
+    console.log(arr); // [ 1, 2 ]
+    console.log(arr2); // [ 1, 2, 3, 4, 5 ]
+    ```
+    
+-   #### join(separator) – Returns a string by joining array elements using the given separator:
+    
+    ```
+    
+    let arr = ["a", "b", "c"];
+    let arr2 = arr.join("-");
+    console.log(arr); // [ 'a', 'b', 'c' ]
+    console.log(arr2); // a-b-c
+    
+    const arr = ['Hello', 'World'];
+    let arr3 = arr.join(" ");
+    console.log(arr); // ['Hello', 'World']
+    console.log(arr3); // Hello World
+    ```
+    
+-   #### split(separator) – Splits a string into an array using the given separator:
+    
+    ```
+    
+    let str = "a-b-c";
+    let result = str.split("-");
+    console.log(str);    // "a-b-c"
+    console.log(result); // [ 'a', 'b', 'c' ]
+    
+    const str = 'Hello World';
+    let arr2 = str.split(" ");
+    console.log(str); // Hello World
+    console.log(arr2); // ['Hello', 'World']
+    ```
+    
+    **Note:** join used on arrays to convert them into a string and split used on strings to convert them a array.
+    
+-   #### reverse() – Reverses the array:
+    
+    ```
+    
+    let arr = [1, 2, 3];
+    console.log(arr.reverse()) // [ 3, 2, 1 ]
+    ```
+    
+-   #### sort – return a new sorted array:
+    
+    ```
+    
+    let arr = [3, 1, 2];
+    console.log(arr.sort())  // default lexicographic: [1,2,3]
+    
+    // but in this case default sort fails:
+    let arr2 = [1, 2, 15];
+    console.log(arr2.sort()) // [ 1, 15, 2 ]
+    ```
+    
+    The order became 1, 15, 2. Incorrect. But why?
+    
+    In JavaScript, the default behavior of sort() is lexicographic (dictionary-like) sorting. This means:
+    
+    -   It converts elements to strings.
+    -   Then it compares those strings using Unicode (UTF-16) code unit values.
+    thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: \[1, 15, 2\]
+    
+    To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.
+    
+    ```
+    let arr2 = [1, 2, 15];
+    console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
+    ```
+    
+    How it works:
+    
+    `(a, b) => a - b this function returns:`
+    -   Negative number (a - b < 0) → keep a before b
+    -   Positive number (a - b > 0) → place b before a
+    -   Zero (a - b === 0) → leave a and b unchanged
+
+11.  Others
+
+-   #### some() –Return true if any element passes the test, else false:
+    
+    ```
+    
+    let arr = [1, 2, 3];
+    const arr2 = arr.some(n => n > 2);
+    console.log(arr2) // true
+    ```
+    
+-   #### every() –Return true if all element passes the test, else false:
+    
+    ```
+    
+    let arr = [1, 2, 3];
+    const arr2 = arr.every(n => n > 2);
+    console.log(arr2) // false
+    ```
+    
+
+-   #### at(index) – Returns element at index; supports negative indexing:
+    
+    ```
+    // With at method
+    let fruits = ["Apple", "Orange", "Plum"];
+    
+    console.log(fruits.at(-1)); // Plum
+    
+    // without at method
+    let fruits = ["Apple", "Orange", "Plum"];
+    console.log(fruits[fruits.length - 1]); // Plum
+    ```
+    
+
+-   #### Array.isArray(value) – Return true if value is an array, else false:
+    
+    ```
+    
+    const arr = [1, 2]
+    const result = Array.isArray(arr);
+    console.log(result) // true       
+    ```
+    
+-   #### fill(value, start?, end?) – Fills array with value:
+    
+    ```
+    
+    const arr = [1, 2, 3]
+    arr.fill(0, 1);
+    console.log(arr) // [ 1, 0, 0 ]
+    ```
+    
+-   #### flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:
+    
+    ```
+    
+    // Default depth (1)
+    
+    const arr = [1, 2, [3, 4]];
+    const flatArr = arr.flat();
+    console.log(flatArr); // Output: [1, 2, 3, 4]
+    
+    // Deeper nesting with depth = 2
+    
+    const arr = [1, 2, [3, 4, [5, 6]]];
+    const flatArr = arr.flat(2);
+    console.log(flatArr); // Output: [1, 2, 3, 4, 5, 6]
+    
+    // Infinite depth (Infinity)
+    
+    const arr = [1, [2, [3, [4]]]];
+    const flatArr = arr.flat(Infinity);
+    console.log(flatArr); // Output: [1, 2, 3, 4]
+    ```
+
+
+
+
+
+## 1.5. Iterables 
+
+An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a special method Symbol.iterator.
+
+- When this method is called, it returns an iterator.
+  - Iterator = An object that provides a way to access iterable items one by one using a next() method.
+    - Each call to next() returns a result object:
+      - value → the current element
+      - done → false if there are more elements, true when iteration is finished
+
+JavaScript features like for...of loop, spread operator (...), and destructuring automatically use this Symbol.iterator under the hood.
+
+for quick preview: 
+- Iterable an object with Symbol.iterator
+- Iterator an object returned by calling Symbol.iterator
+
+```js
+let str = "Hi";
+
+let iterator = str[Symbol.iterator](); // get iterator object
+console.log(iterator.next()); // { value: 'H', done: false }
+console.log(iterator.next()); // { value: 'i', done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+// Used automatically by for...of
+for (let ch of str) {
+  console.log(ch); 
+}
+// H
+// i
+```
+
+```js
+let str = "ABC";
+console.log([...str]);  
+// [ 'A', 'B', 'C' ]
+```
+
+```js
+let arr = [1, 2, 3];
+let [a, b] = arr;
+
+console.log(a, b); // 1 2
+```
+
+```js
+let mySet = new Set([1, 2, 2, 3]);
+
+for (let val of mySet) {
+    console.log(val); // 1 2 3
+}
+```
+
+```js
+let myMap = new Map([
+    ["name", "Alice"],
+    ["age", 22]
+]);
+
+for (let [key, value] of myMap) {
+    console.log(key, ":", value);
+}
+/*
+name : Alice
+age : 22
+*/
+```
+
+Note:
+Even though Array, Set, and Map have a .forEach() method that lets you iterate over their elements, it is not part of the iterable protocol.
+
+- .forEach() is a separate method that executes a callback for each element.
+- It works differently from for...of and does not rely on Symbol.iterator.
+- It is only available on Array, Set, and Map.
 
 
 
@@ -2051,21 +3556,7 @@ console.log(str.length); // 10
 
 
 
-
-
-
-
-
-
-
-<!-- ## 1.9. array -->
-
-<!-- ## 1.10. object -->
-
-
-
-
-<!-- ## 1.16. Destructuring
+## 1.16. Destructuring
 
 ## 1.17. Strict Mode
 
@@ -2080,7 +3571,7 @@ console.log(str.length); // 10
 ## 1.22. Asynchronous and Synchronous JavaScript -->
 
 
-<!-- 
+
 # 2. Part 3: DOM
 ## 2.1. An Introduction To the DOM
 ## 2.2. DOM Traversing
@@ -2102,7 +3593,13 @@ console.log(str.length); // 10
 
 
 
- -->
+
+
+
+
+
+
+
 
 
 

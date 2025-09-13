@@ -49,6 +49,12 @@
     - [1.5.5. for..in loop (for objects):](#155-forin-loop-for-objects)
     - [1.5.6. forEach method (only for array):](#156-foreach-method-only-for-array)
   - [1.5. Iterables](#15-iterables)
+  - [1.8. string](#18-string)
+    - [why strings are iterable also?](#why-strings-are-iterable-also)
+    - [Strings are immutable:](#strings-are-immutable)
+    - [Quotes:](#quotes)
+    - [String Property:](#string-property)
+    - [String Methods:](#string-methods)
 
 ---
 
@@ -1387,6 +1393,301 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 
 
+## 1.8. string
+
+String represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable, array-like objects, and immutable. They are not actual objects, but they appear like objects because JavaScript automatically convert them into a temporary String object whenever you use properties or methods on it.
+
+When you access a property or method on a string, JavaScript creates a temporary string object behind the scenes:
+
+```js
+let obj = new String("hello"); 
+console.log(typeof obj); // "object"
+```
+
+For Example:
+
+```js
+let str = "hello";
+let upper = str.toUpperCase();
+console.log(upper); // "HELLO"
+```
+Behind the scenes:
+
+str.toUpperCase() → engine makes new String("hello") → calls .toUpperCase() on the temporary object → returns "HELLO" → discards the temporary object.
+
+This mechanism allows string primitives to behave like objects, giving them methods and properties, while remaining immutable and primitive.
+
+### why strings are iterable also?
+
+- In JavaScript, an iterable is any object that has a Symbol.iterator method.
+- Arrays have Array.prototype[Symbol.iterator].
+- Strings also implement String.prototype[Symbol.iterator].
+
+This means you can use for...of, spread syntax, destructuring, etc. directly on strings, just like arrays.
+
+```js
+for (const ch of "Hi") {
+  console.log(ch);
+}
+// H
+// i
+```
+
+
+### Strings are immutable:
+
+That's mean you can't change characters directly:
+
+```js
+let str = "Hello";
+str[0] = "Y";
+console.log(str); // "Hello" (not "Yello")
+```
+
+You must create a new string instead:
+
+```js
+let str = "Hello";
+let newStr = "Y" + str.slice(1);
+console.log(newStr); // "Yello"
+```
+
+
+
+### Quotes:
+
+JavaScript supports three types of quotes for working with strings.
+
+1.  Single Quotes (''):
+
+```js
+const name = 'Tamim';
+console.log(name); // Tamim
+```
+
+1.  Double Quotes (""):
+
+```js
+const language = "JavaScript";
+console.log(language); // JavaScript
+```
+
+3.  Backticks (``):
+
+Backticks are more powerful than single/double quotes. They were introduced in ES6 (2015) and allow for:
+
+-  Multiline Strings (No need for \n):
+
+```js
+const multiline = `This is line 1
+This is line 2
+This is line 3`;
+console.log(multiline);
+```
+
+-  Insert Variables Directly:
+
+```js
+const name = "Tamim";
+const age = 20;
+
+const info = `My name is ${name} and I am ${age} years old.`;
+console.log(info);
+// My name is Tamim and I am 20 years old.
+```
+
+-  Expression Evaluation:
+
+```js
+console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12
+```
+
+### String Property:
+
+.length is the only string property, and it’s very commonly used.
+
+```js
+const str = "JavaScript";
+console.log(str.length); // 10
+```
+
+### String Methods:
+
+- **Case Conversion:**
+    
+    ```js
+    console.log("hello".toUpperCase()); // "HELLO"
+    console.log("WORLD".toLowerCase()); // "world"
+    console.log('Interface'[0].toLowerCase()); // 'i'
+    ```
+    
+- **Searching in Strings:**
+    
+    ```js
+    console.log("JavaScript".includes("Script")); // true
+    console.log("JavaScript".startsWith("Java")); // true
+    console.log("JavaScript".endsWith("Script")); // true
+    console.log("hello world".indexOf("world")); // 6
+    ```
+    
+    Note: indexOf() method searches a string for a specific substring and returns the index (position) of the first match of found and -1 if nothing can be found.
+    
+    syntax:
+    
+    ```js
+    string.indexOf(searchValue, startIndex);
+    ```
+    
+    -  searchValue – the substring to find
+    -  startIndex (optional) – where to start the search (default is 0)
+    
+    ```js
+    console.log("banana".indexOf("a"));      // 1 → first "a"
+    console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
+    console.log("banana".indexOf("z"));      // -1 → not found
+    ```
+    
+- **Extracting Part of a String:**
+    
+    slice(start, end):
+    
+    The slice() method returns a part of the string, starting from the given start index and ending just before the end index. If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.
+    
+    ```js
+    const text = "JavaScript";
+    
+    console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
+    console.log(text.slice(4))        // "Script" (from index 4 to the end)
+    console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)
+    ```
+    
+- **Joining and Splitting:**
+    
+    ```js
+    const sentence = "I love JavaScript";
+    const words = sentence.split(" "); // ["I", "love", "JavaScript"]
+    console.log(words.join("-"));      // "I-love-JavaScript"
+    ```
+    
+- **trim() - for removing white space before and after:**
+    
+    ```js
+    const str = " hello world! ";
+    const trimmedStr = str.trim();
+    console.log(trimmedStr); // Output: "hello world!"
+    ```
+    
+- **trimStart()/trimEnd() or trimLeft()/trimRight()- for removing white space from specific side:**
+    
+    ```js
+    const str = "          hello world! ";
+    console.log(str) // Output: "          hello world! "
+    
+    const trimmedStr = str.trimStart();
+    const trimmedEndStr = str.trimEnd();
+    console.log(trimmedStr); // Output: "hello world! "
+    console.log(trimmedEndStr); // Output: "          hello world!"
+    ```
+    
+- **Replacing and Repeating:**
+    
+    ```js
+    let str = "purple-color";
+    let result = str.replace("-color", "");
+    console.log(result); // "purple"
+    
+    /*
+    We replaced "-color" with an empty string"" →  An empty string "" is not " " (a space), or any characters. empty string means nothing.
+    
+    So we’re left with only "purple".
+    */
+        
+    console.log("I like cats. cats are sweet".replace("cats", "dogs")); // I like dogs. cats are sweet
+    console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
+    console.log("ha".repeat(3)); // "hahaha"
+    ```
+    
+- **includes, startsWith, endsWith:**
+    
+    ```js
+    const message = "Hello, Tamim!";
+    console.log(message.includes("Tamim")); // true
+    console.log(message.includes("hello")); // false (case-sensitive)
+    
+    const greeting = "JavaScript is fun!";
+    console.log(greeting.startsWith("Java"));   // true
+    console.log(greeting.startsWith("Script")); // false
+    console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
+    
+    const fileName = "report.pdf";
+    console.log(fileName.endsWith(".pdf"));  // true
+    console.log(fileName.endsWith(".txt"));  // false
+    console.log("JavaScript".endsWith("Script", 10)); // true
+    console.log("JavaScript".endsWith("Java", 4));    // true
+    ```
+    
+- **concat:**
+    
+    ```js
+    const str1 = "Hello";
+    const str2 = "World";
+    const result = str1.concat(" ", str2);
+    console.log(result); // "Hello World"
+    
+    const result2 = "I".concat(" love", " JavaScript");
+    console.log(result2); // "I love JavaScript"
+    ```
+    
+- **String Reverse:**
+    
+    ```js
+    const sentence = 'hello';
+    let reverse = '';
+    for (const letter of sentence) {
+        reverse = letter + reverse;
+    }
+    console.log(reverse); // olleh
+    
+    
+    // or using build in methods
+    const str = "hello";
+    const reversed = str.split("").reverse().join("");
+    console.log(reversed); // Output: "olleh"
+    
+    const split = str.split("");
+    console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
+    
+    const reversedArray = split.reverse();
+    console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
+    
+    const joined = reversedArray.join("");
+    console.log(joined); // Output: "olleh"
+    ```
+    
+- **padStart**   
+  
+    padStart is a string method that ensures a string reaches a certain length by adding characters to the start of the string.
+    
+    syntax:
+
+    ```js
+    str.padStart(targetLength, padString)
+    ```
+
+    - targetLength → the final desired length of the string.
+    - padString → the character(s) to add at the start (default is space " " if not specified).
+
+    ```js
+        let num = "5";
+        console.log(num.padStart(3, "0")); // "005"
+    ```
+
+    - Original string: "5" (length 1)
+    - Target length: 3
+    - Pad with "0" at the start until length becomes 3 → "005"
+
+
+
 
 
 
@@ -1447,6 +1748,8 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 
  -->
+
+
 
 
 

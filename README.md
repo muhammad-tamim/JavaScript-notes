@@ -8,6 +8,13 @@
     - [1.1.3. Why Did JavaScript Need a Standard Version:](#113-why-did-javascript-need-a-standard-version)
     - [1.1.4. JavaScript Engines:](#114-javascript-engines)
     - [1.1.5. Hello World](#115-hello-world)
+  - [1.2. Variables](#12-variables)
+    - [1.2.1. Difference between var, let and const:](#121-difference-between-var-let-and-const)
+    - [1.2.2. Hoisting](#122-hoisting)
+    - [1.2.3. Scope](#123-scope)
+    - [1.2.4. Scope Chain](#124-scope-chain)
+    - [1.2.5. Variable naming conventions:](#125-variable-naming-conventions)
+    - [1.2.6. How to write a long variable name](#126-how-to-write-a-long-variable-name)
 
 ---
 
@@ -160,7 +167,295 @@ Q&A:
 - Method: when a function is stored as a property of an object, it’s called a method.
 
 
+## 1.2. Variables
+A variable is a “named storage” for data. We can declare variables to store data by using the keywords:
 
+Note: A keyword is a reserved word that has a special meaning in the language. 
+
+- var: the old way to declare variables 
+- let: the modern way to declare variables 
+- const: declares constant variables
+
+**Variable Declaration:**
+
+`let message;`
+
+**Variable Initialization:**
+
+`let message = 'Hello World';`
+
+**Variable assignment:**
+
+```js
+let message = 'Hello World';
+message = 'Hello Universe'
+```
+**Note:** initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.
+
+### 1.2.1. Difference between var, let and const:
+
+<table>
+<tr>
+<th>var</th>
+<th>let</th>
+<th>const</th>
+</tr>
+<tr>
+<td>Function-scoped (global scope if not in a function)
+<pre><code>
+function testScope() {
+    if (true) {
+        var x = 10;
+    }
+    console.log(x); // output: 10 
+}
+testScope();
+</code></pre>
+<pre><code>
+if (true) {
+    var test = true; 
+}
+console.log(test); // output: true
+</code></pre>
+</td>
+<td>Block-scoped
+<pre><code>
+function testScope() {
+    if (true) {
+        let x = 10;
+    }
+    console.log(x); // ReferenceError: x is not defined
+}
+testScope();
+</code></pre>
+<pre><code>
+if (true) {
+    let test = true;
+}
+console.log(test); // ReferenceError: x is not defined
+</code></pre>
+</td>
+<td>block Block-scoped
+<pre><code>
+function testScope() {
+    if (true) {
+        const x = 10;
+    }
+    console.log(x); // // ReferenceError: x is not defined
+}
+testScope();
+</code></pre>
+<pre><code>
+if (true) {
+    const test = true;
+}
+console.log(test); // ReferenceError: x is not defined
+</code></pre>
+</td>
+</tr>
+<tr>
+<td>
+Hoisted and initialized with undefined.
+<pre><code>
+console.log(a); // undefine
+var a = 10;
+</code></pre>
+</td>
+<td>
+Hoisted but not initialized
+<pre><code>
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 20;
+</code></pre>
+</td>
+<td>
+Hoisted but not initialized
+<pre><code>
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+const b = 20;
+</code></pre>
+</td>
+</tr>
+<tr>
+<td>
+Can be re-declared and re-assign in the same scope.
+<pre><code>
+var a = 10;
+var a = 20;  //  Allowed
+a = 30;      //  Allowed
+console.log(a); // 30
+</code></pre>
+</td>
+<td>
+Cannot be re-declared but can re-assign in the same scope.
+<pre><code>
+let b = 10;
+// let b = 20;  // Error: re-declaration not allowed
+b = 20;        //  Re-assignment allowed
+console.log(b); // 20
+</code></pre>
+</td>
+<td>
+Cannot be re-declared and re-assign in the same scope.
+<pre><code>
+const c = 10;
+// c = 20;      // Error: cannot reassign
+// const c = 30; // Error: cannot re-declare
+console.log(c); // 10
+</code></pre>
+</td>
+</tr>
+<tr>
+<td>
+Declaring var globally adds it to window object as a property (in browsers).
+<img src="./images/window.png">
+</td>
+<td>
+Declaring let doesn't globally add it to window object as a property (in browsers).
+<pre><code>
+let a = 10;
+
+console.log(window);
+console.log(window.a); // undefined
+</code></pre>
+</td>
+<td>
+Declaring const doesn't globally adds it to window object as a property (in browsers).
+<pre><code>
+const a = 10;
+
+console.log(window);
+console.log(window.a); // undefined
+</code></pre>
+</td>
+</tr>
+</table>
+
+### 1.2.2. Hoisting
+
+In JavaScript, code execution happens in two phases for each scope:
+
+1.  Creation Phase 
+    - The JavaScript engine scans the scope before execution begins and allocates memory for all declarations:
+      - var → allocated and initialized with undefined
+      - let / const → allocated but not initialized.They remain in the Temporal Dead Zone (TDZ) until the line of code where they are declared is executed.
+      - Function declarations → fully allocated and initialized (can be called before declaration)
+
+2. Execution Phase 
+   - The engine executes the code line by line.
+
+**Note:** Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their scope during the creation phase.
+
+
+### 1.2.3. Scope
+Scope determines where variables can be accessed in your code. There are 4 types of scopes in js:
+
+1. Block Scope
+A variable has block scope if it is declared with let or const inside a block ({ }). It is accessible only within that block.
+
+```js
+if (true) {
+    let age = 25;
+    const city = "Dhaka";
+    console.log(age, city); // 25 Dhaka
+}
+
+console.log(age);  //  ReferenceError: age is not defined
+console.log(city); //  ReferenceError: city is not defined
+```
+
+2. Function Scope
+A variable has function scope if it is declared inside a function. It is accessible only within that function.
+
+
+function sayHello() {
+    let message = "Hello";
+    console.log(message); // Hello    
+}
+
+sayHello();
+console.log(message); // ReferenceError: message is not defined
+
+3. Global Scope
+A variable has global scope if it is declared outside of any function or block. It is accessible from anywhere in the code.
+
+
+let name = "Tamim";
+
+function greet() {
+    console.log("Hi", name); // Hi Tamim
+}
+
+greet();
+console.log(name); // Tamim
+
+1. Lexical Scope 
+Lexical scope means You can access variables from outer to inner scope, but not from inner to outer scope.
+
+```js
+let outerVar = "I am outer";
+
+function outerFunction() {
+    let innerVar1 = "I am inner1";
+
+    function innerFunction() {
+        let innerVar2 = "I am inner2"
+        console.log(outerVar); // I am outer
+        console.log(innerVar1); // I am inner1
+    }
+
+    innerFunction();
+
+    console.log(innerVar2) // ReferenceError: innerVar2 is not defined
+}
+
+outerFunction();
+
+console.log(innerVar1); // ReferenceError: innerVar1 is not defined
+```
+
+### 1.2.4. Scope Chain
+When you try to access a variable:
+- JavaScript first looks in the current scope
+- If not found, it goes to the outer scope
+- This continues until it reaches the global scope
+
+```js
+let num = 1;
+
+function outerFunction() {
+    let num = 2;
+
+    function innerFunction() {
+        let num = 3;
+
+        console.log(num);
+    }
+
+    innerFunction();
+    console.log(num);
+}
+
+outerFunction();
+console.log(num);
+
+/*
+3
+2
+1
+*/
+```
+
+### 1.2.5. Variable naming conventions:
+- Names must start with a letter, underscore _, or dollar sign $
+- Names can contain letters, digits, _, and $ — but no spaces or symbols
+- Names are Case-sensitive
+- Names Cannot contain JavaScript reserved keywords
+
+### 1.2.6. How to write a long variable name
+- Snake Case - let my_current_home_address = "Barisal";
+- Camel Case (recommended) - let myCurrentHomeAddress = "Barisal";
+- Pascal Case - let MyCurrentHomeAddress = "Barisal";
 
 
 

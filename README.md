@@ -294,7 +294,7 @@ Ast format:
 2. Compiling the AST to Bytecode
    - **Bytecode:** Is an intermediate from between your original JavaScript code and the machine code.
 3. Interpreting
-   - Is a process where the JS engine executes the bytecode step-by-step using an interpreter.
+   - Is a process where the JS engine convert bytecode into machine code using an interpreter, and then executes it lie by line or step by step.
 4. JIT Compilation (if applicable)
    - JIT(Just In Time) Compilation is a process where the JS engine detects frequently executed “hot” code and compiles it into machine code. On the future runs, the engines skips parsing, compiling AST to Bytecode and interpreting instead it running the machine code directly for faster execution.     
 

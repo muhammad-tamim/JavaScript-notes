@@ -190,6 +190,9 @@ JavaScript is a:
 - Single Threaded
   - meaning it executes one task at a time in sequence.
 
+- Non-blocking 
+  - doesn’t wait for asynchronous operation like (setTimeout() or fetch())
+
 - Dynamically Typed
   - meaning variables in JS do not need a type declaration
 

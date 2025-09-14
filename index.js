@@ -1,21 +1,24 @@
-const numbers = [1, 2, 3];
-numbers.forEach(function (value, index, arr) {
-    console.log(value, index, arr);
-});
+function bankAccount(initialBalance) {
+    let balance = initialBalance;
 
-/*
-1 0 [ 1, 2, 3 ]
-2 1 [ 1, 2, 3 ]
-3 2 [ 1, 2, 3 ]
-*/
+    function deposit(amount) {
+        balance += amount;
+        console.log("Deposited: " + amount + " | Balance: " + balance);
+        return;
+    }
 
-// or
+    function withdraw(amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            console.log("Withdrew: " + amount + " | Balance: " + balance);
+        } else {
+            console.log("Insufficient funds!");
+        }
+        return
+    }
+}
 
-const num2 = [4, 5, 6];
-num2.forEach((value, index, arr) => console.log(value, index, arr))
-
-/*
-4 0 [ 4, 5, 6 ]
-5 1 [ 4, 5, 6 ]
-6 2 [ 4, 5, 6 ]
-*/
+const account = bankAccount(100);
+account.deposit(50);   // Deposited: 50 | Balance: 150
+account.withdraw(70);  // Withdrew: 70 | Balance: 80
+account.withdraw(200); // Insufficient funds!

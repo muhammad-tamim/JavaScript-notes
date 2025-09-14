@@ -37,6 +37,7 @@
     - [What is the difference between return and no return in a function?](#what-is-the-difference-between-return-and-no-return-in-a-function)
     - [Default Parameter:](#default-parameter)
     - [CallBack Function](#callback-function)
+    - [callback hell:](#callback-hell)
     - [Arrow Function:](#arrow-function)
     - [Difference between arrow function and normal function](#difference-between-arrow-function-and-normal-function)
     - [Recursion](#recursion)
@@ -1598,27 +1599,57 @@ showGreet();        // Output: Hello, Guest!
 
 ### CallBack Function
 
-A callback is a function passed as an argument to another function, to be called later.
+A callback function is a function that is passed as an argument to another function and is executed by that function at a later time.
 
 ```js
 // A function that takes another function as a callback
 function greet(name, callback) {
   console.log("Hello " + name);
-  callback(); // calling the callback
+  callback(); 
 }
 
-// Passing a function as a callback
 function sayGoodbye() {
   console.log("Goodbye!");
 }
 
-greet("Tamim", sayGoodbye);
+greet("Tamim", sayGoodbye); // passing sayGoodbye function as a callback function
 
 // Output:
 // Hello Tamim
 // Goodbye!
 ```
+here, SayGoodbye is a callback function, because we pass it into another function and them executed in that function.
 
+### callback hell:
+
+When we write too many nested callback functions that are hard to read and maintain, it is called callback hell.
+
+```js
+// Example: Simulating steps with nested callbacks
+setTimeout(() => {
+  console.log("Step 1: Start project");
+  
+  setTimeout(() => {
+    console.log("Step 2: Do research");
+    
+    setTimeout(() => {
+      console.log("Step 3: Build features");
+      
+      setTimeout(() => {
+        console.log("Step 4: Test project");
+        
+        setTimeout(() => {
+          console.log("Step 5: Deploy project");
+        }, 1000);
+        
+      }, 1000);
+      
+    }, 1000);
+    
+  }, 1000);
+  
+}, 1000);
+```
 
 ### Arrow Function:
 
@@ -1726,8 +1757,8 @@ console.log(p2.name);
 console.log(p2.age);  
 ```
 
-- Arrow functions are ideal for callbacks, especially with array methods like map, filter, forEach.
 - normal function are not ideal for callback
+- Arrow functions are ideal for callbacks, especially with array methods like map, filter, forEach.
 
 ```js
 const numbers = [1, 2, 3, 4, 5];
@@ -1821,36 +1852,15 @@ console.log(factorial(5)); // 120
 
 call stack:
 
-![call-stack-2](images/Call Stack2.png.png)
+![call-stack-2](./images/Call%20Stack2.png.png)
 
 
     
 
 ### Closure
 
-A closure is a function technique that remembers the variables from its outer scope, even after that outer function has finished executing.
+A closure is a function technique where inner function remembers the variables from its outer scope, even after that outer function has finished executing.
 
-**Closure Features**
-
-*   Keeps scope alive - Inner function remembers variables from outer scope
-*   Useful in data hiding - Helps in making private variables
-*   Doesn’t lose data - Keeps values even after outer is gone
-
-```js
-function outer() {
-    let name = "Tamim"; // outer variable
-
-    function inner() {
-        console.log("Hello " + name); // inner uses outer variable
-    }
-
-    return inner; // return inner function
-}
-
-const greet = outer(); // outer() is called, inner() is returned
-
-greet(); // Hello Tamim 
-```
 
 ```js
 function secretCounter() {
@@ -1868,6 +1878,62 @@ counter(); // Count is: 1
 counter(); // Count is: 2
 counter(); // Count is: 3
 ```
+
+```js
+function bankAccount(initialBalance) {
+  let balance = initialBalance;
+
+  return {
+    deposit: function(amount) {
+      balance += amount;
+      console.log("Deposited: " + amount + " | Balance: " + balance);
+    },
+    withdraw: function(amount) {
+      if (amount <= balance) {
+        balance -= amount;
+        console.log("Withdrew: " + amount + " | Balance: " + balance);
+      } else {
+        console.log("Insufficient funds!");
+      }
+    }
+  };
+}
+
+const account = bankAccount(100);
+account.deposit(50);   // Deposited: 50 | Balance: 150
+account.withdraw(70);  // Withdrew: 70 | Balance: 80
+account.withdraw(200); // Insufficient funds!
+```
+
+```js
+function makeMultiplier(multiplier) {
+  return function(num) {
+    return num * multiplier;
+  };
+}
+
+const double = makeMultiplier(2);
+const triple = makeMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+```
+
+explanation: 
+
+When we call
+
+```const double = makeMultiplier(2);```
+
+it returns:
+
+```js
+function(num) {
+    return num * multiplier;
+};
+```
+Now double holds this function, and it also remembers that multiplier = 2 (because of closure).
+So when we call double(5), it returns: ```return 5 * 2;```
 
 ## string
 

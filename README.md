@@ -43,6 +43,7 @@
     - [Recursion](#recursion)
     - [Closure](#closure)
   - [string](#string)
+    - [autoBoxing](#autoboxing)
     - [why strings are iterable also?](#why-strings-are-iterable-also)
     - [Strings are immutable:](#strings-are-immutable)
     - [Quotes:](#quotes)
@@ -152,7 +153,7 @@
       - [promise](#promise)
       - [fetch](#fetch)
       - [async/await:](#asyncawait)
-- [Part 3: DOM](#part-3-dom)
+- [Part 2: DOM](#part-2-dom)
   - [An Introduction To the DOM](#an-introduction-to-the-dom)
   - [DOM Traversing](#dom-traversing)
   - [Elements selecting methods](#elements-selecting-methods)
@@ -1854,12 +1855,10 @@ call stack:
 
 ![call-stack-2](./images/Call%20Stack2.png.png)
 
-
     
-
 ### Closure
 
-A closure is a function technique where inner function remembers the variables from its outer scope, even after that outer function has finished executing.
+A closure is a function technique where an inner function remembers the variables from its outer scope, even after that outer function has finished executing.
 
 
 ```js
@@ -1937,27 +1936,31 @@ So when we call double(5), it returns: ```return 5 * 2;```
 
 ## string
 
-String represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable, array-like objects, and immutable. They are not actual objects, but they appear like objects because JavaScript automatically convert them into a temporary String object whenever you use properties or methods on it.
+A string in JavaScript is a primitive data type that represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable but immutable, meaning you cannot modify them directly. 
 
-When you access a property or method on a string, JavaScript creates a temporary string object behind the scenes:
+Strings are not objects by default, but when you use object-like features (such as accessing values by index like an array, or calling methods and properties), JavaScript automatically converts them behind the scenes into a temporary String object using autoBoxing.
 
-```js
-let obj = new String("hello"); 
-console.log(typeof obj); // "object"
-```
+### autoBoxing
 
-For Example:
+Autoboxing is the process in JavaScript where a primitive value (like a string, number, or boolean) is temporarily converted into an object so that you can use properties or methods on it. Once the operation is done, the temporary object is discarded.
 
 ```js
-let str = "hello";
-let upper = str.toUpperCase();
-console.log(upper); // "HELLO"
+const str = "hello";
+
+console.log(str.length);       // 5
+console.log(str.toUpperCase()); // "HELLO"
+console.log(str[0]) // h
 ```
+
 Behind the scenes:
 
-str.toUpperCase() → engine makes new String("hello") → calls .toUpperCase() on the temporary object → returns "HELLO" → discards the temporary object.
-
-This mechanism allows string primitives to behave like objects, giving them methods and properties, while remaining immutable and primitive.
+```js
+let temp = new String(str); // temporary object
+temp.length;               // 5
+temp.toUpperCase();        // "HELLO"
+temp[0] // h
+```
+- Here, a temporary string object is created using the new String() keyword. This keyword converts the primitive string into an object so that we can access properties and methods or index.
 
 ### why strings are iterable also?
 
@@ -6890,7 +6893,7 @@ fetchData();
 
 
 
-# Part 3: DOM
+# Part 2: DOM
 ## An Introduction To the DOM
 ## DOM Traversing
 ## Elements selecting methods

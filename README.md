@@ -66,6 +66,10 @@
   - [array](#array)
     - [for..of loop](#forof-loop)
     - [Array Methods](#array-methods)
+  - [Destructuring](#destructuring)
+    - [Array Destructuring](#array-destructuring)
+    - [Object Destructuring](#object-destructuring)
+    - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
   - [set](#set)
     - [creating a set](#creating-a-set)
     - [Adding \& Removing Values](#adding--removing-values)
@@ -126,10 +130,6 @@
     - [Task Management System](#task-management-system)
     - [Banking System](#banking-system)
   - [Iterables](#iterables)
-  - [Destructuring](#destructuring)
-    - [Array Destructuring](#array-destructuring)
-    - [Object Destructuring](#object-destructuring)
-    - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
   - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
     - [Common JS Errors:](#common-js-errors)
@@ -690,11 +690,11 @@ console.log(Math.abs(-7));      // 7 → remove negative sign
 console.log(Math.min(3, 1, 7)); // 1 → Smallest number
 console.log(Math.max(3, 1, 7)); // 7 → Largest number
 
-console.log(Math.random());     // Random decimal between 0 (inclusive) and 1 (exclusive)
-console.log(Math.random() * 10); // Random decimal between 0 (inclusive) and 10 (exclusive)
-console.log(Math.random() * 100); // Random decimal between 0 (inclusive) and 100 (exclusive)
-console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclusive) and 10 (exclusive)
-console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive)
+console.log(Math.random());     // Random decimal between 0 (inclusive) and 1 (exclusive) = 0.9424061987261064
+console.log(Math.random() * 10); // Random decimal between 0 (inclusive) and 10 (exclusive) = 5.058496963060374
+console.log(Math.random() * 100); // Random decimal between 0 (inclusive) and 100 (exclusive) = 65.20503567629157
+console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclusive) and 10 (exclusive) = 3
+console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive) = 28
 ```
 
 **Type conversion with global functions:**
@@ -705,12 +705,15 @@ console.log(parseInt("12.34"));     // 12
 console.log(parseInt("100px"));     // 100
 console.log(parseInt("abc"));       // NaN
 console.log(parseInt(true));       // NaN
+console.log(parseInt(false));       // NaN
 
 console.log(parseFloat("10"));         // 10
 console.log(parseFloat("12.34"));     // 12.34
 console.log(parseFloat("100px"));     // 100
 console.log(parseFloat("3.14hello")); // 3.14
 console.log(parseFloat("abc"));       // NaN
+console.log(parseFloat(true));       // NaN
+console.log(parseFloat(false));       // NaN
 
 console.log(Number("5"));        // 5
 console.log(Number("12.34"));    // 12.34
@@ -851,10 +854,10 @@ console.log(a === b); // false
 
 8. Object  
    
-In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array)
-- function 
-- array
+In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript:
 - object
+- array
+- function 
 
 ## Operator
 
@@ -996,33 +999,6 @@ console.log(0 === false); // false
 console.log('' === false); // false
 console.log(0 === 0); // true
 console.log('' === ''); // true
-```
-
-**Comparison with null and undefined:**
-
-```js
-console.log(null === undefined); // false
-console.log(null >= undefined); // false
-console.log(null < undefined); // false
-console.log(null == undefined); // true
-// this is a special rule. If you use ==, null and undefined are considered equal.
-```
-
-**null vs 0:**
-
-```js
-console.log(null > 0);  // false
-console.log(null == 0); // false
-console.log(null >= 0); // true 
-// this is a special rule. If you use >=, null and o are considered true.
-```
-
-**undefined vs 0:**
-
-```js
-console.log(undefined > 0); // false 
-console.log(undefined < 0); // false 
-console.log(undefined == 0); // false
 ```
 
 
@@ -1240,6 +1216,7 @@ Spreads operator breaks an array or object into individual values.
 
 It is Used in Function calls, array literals and object literals.
 
+
 in function call:
 
 ```js
@@ -1276,7 +1253,8 @@ console.log(merged); // { name: "Tamim", age: 21 }
 ```
 
 
-**Nullish Coalescing operator (??):**
+**Nullish Coalescing operator (??):**  
+
 The nullish coalescing operator (??) is used to provide a default value when a variable is null or undefined.
 
 ```js
@@ -3466,6 +3444,165 @@ for (const key in fruits) {
     console.log(flatArr); // Output: [1, 2, 3, 4]
     ```
 
+## Destructuring
+
+Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.
+
+### Array Destructuring
+    
+Basic Syntax:
+
+```js
+const arr = [1, 2, 3];
+
+const [a, b, c] = arr;
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
+```
+
+Skip Items:
+
+```js
+const colors = ["red", "green", "blue"];
+
+const [first, , third] = colors;
+
+console.log(first); // red
+console.log(third); // blue
+```
+
+Default Values:
+
+```js
+const arr = [10];
+
+const [x, y = 100] = arr;
+
+console.log(x); // 10
+console.log(y); // 100
+```Swap Variables :
+
+```js
+let a = 1;
+let b = 2;
+
+[a, b] = [b, a];
+
+console.log(a); // 2
+console.log(b); // 1
+```
+
+rest Operator (...):
+
+```js
+const nums = [1, 2, 3, 4];
+
+const [first, ...rest] = nums;
+
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4]
+```
+
+### Object Destructuring
+    
+
+Basic Syntax:
+
+```js
+const person = {
+  name: "Tamim",
+  age: 21
+};
+
+const { name, age } = person;
+
+console.log(name); // Tamim
+console.log(age);  // 21
+```
+
+Rename Variables:
+
+```js
+const person = {
+  name: "Tamim",
+  age: 21
+};
+
+const { name: fullName, age: years } = person;
+
+console.log(fullName); // Tamim
+console.log(years);    // 21
+```
+
+Default Values:
+
+```js
+const person = {
+  name: "Tamim"
+};
+
+const { name, age = 20 } = person;
+
+console.log(name); // Tamim
+console.log(age);  // 20
+```
+
+Nested Destructuring:
+
+```js
+const user = {
+  id: 1,
+  profile: {
+    username: "tamim",
+    email: "tamim@example.com"
+  }
+};
+
+const {
+  profile: { username, email }
+} = user;
+
+console.log(username); // tamim
+```
+
+Rest Operator in Object:
+
+```js
+const user = {
+  name: "Tamim",
+  age: 21,
+  country: "BD"
+};
+
+const { name, ...others } = user;
+
+console.log(name);   // Tamim
+console.log(others); // { age: 21, country: "BD" }
+```
+
+### Destructuring in Function Parameters
+    
+
+Array Parameters:
+
+```js
+function greet([first, second]) {
+    console.log("Hello", first, second);
+}
+greet(["Tamim", "Ahmed"]); // Hello Tamim Ahmed
+```
+
+Object Parameters:
+
+```js
+function displayUser({ name, age }) {
+    console.log(`${name} is ${age} years old.`);
+}
+
+displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
+```
+
 ## set
 A Set in JavaScript is a collection of unique values (no duplicates allowed).
 
@@ -5580,164 +5717,7 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 
 
 
-## Destructuring
 
-Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.
-
-### Array Destructuring
-    
-Basic Syntax:
-
-```js
-const arr = [1, 2, 3];
-
-const [a, b, c] = arr;
-console.log(a); // 1
-console.log(b); // 2
-console.log(c); // 3
-```
-
-Skip Items:
-
-```js
-const colors = ["red", "green", "blue"];
-
-const [first, , third] = colors;
-
-console.log(first); // red
-console.log(third); // blue
-```
-
-Default Values:
-
-```js
-const arr = [10];
-
-const [x, y = 100] = arr;
-
-console.log(x); // 10
-console.log(y); // 100
-```Swap Variables :
-
-```js
-let a = 1;
-let b = 2;
-
-[a, b] = [b, a];
-
-console.log(a); // 2
-console.log(b); // 1
-```
-
-rest Operator (...):
-
-```js
-const nums = [1, 2, 3, 4];
-
-const [first, ...rest] = nums;
-
-console.log(first); // 1
-console.log(rest);  // [2, 3, 4]
-```
-
-### Object Destructuring
-    
-
-Basic Syntax:
-
-```js
-const person = {
-  name: "Tamim",
-  age: 21
-};
-
-const { name, age } = person;
-
-console.log(name); // Tamim
-console.log(age);  // 21
-```
-
-Rename Variables:
-
-```js
-const person = {
-  name: "Tamim",
-  age: 21
-};
-
-const { name: fullName, age: years } = person;
-
-console.log(fullName); // Tamim
-console.log(years);    // 21
-```
-
-Default Values:
-
-```js
-const person = {
-  name: "Tamim"
-};
-
-const { name, age = 20 } = person;
-
-console.log(name); // Tamim
-console.log(age);  // 20
-```
-
-Nested Destructuring:
-
-```js
-const user = {
-  id: 1,
-  profile: {
-    username: "tamim",
-    email: "tamim@example.com"
-  }
-};
-
-const {
-  profile: { username, email }
-} = user;
-
-console.log(username); // tamim
-```
-
-Rest Operator in Object:
-
-```js
-const user = {
-  name: "Tamim",
-  age: 21,
-  country: "BD"
-};
-
-const { name, ...others } = user;
-
-console.log(name);   // Tamim
-console.log(others); // { age: 21, country: "BD" }
-```
-
-### Destructuring in Function Parameters
-    
-
-Array Parameters:
-
-```js
-function greet([first, second]) {
-    console.log("Hello", first, second);
-}
-greet(["Tamim", "Ahmed"]); // Hello Tamim Ahmed
-```
-
-Object Parameters:
-
-```js
-function displayUser({ name, age }) {
-    console.log(`${name} is ${age} years old.`);
-}
-
-displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
-```
 
 ## Strict Mode
 

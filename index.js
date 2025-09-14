@@ -1,24 +1,5 @@
-function bankAccount(initialBalance) {
-    let balance = initialBalance;
-
-    function deposit(amount) {
-        balance += amount;
-        console.log("Deposited: " + amount + " | Balance: " + balance);
-        return;
-    }
-
-    function withdraw(amount) {
-        if (amount <= balance) {
-            balance -= amount;
-            console.log("Withdrew: " + amount + " | Balance: " + balance);
-        } else {
-            console.log("Insufficient funds!");
-        }
-        return
-    }
-}
-
-const account = bankAccount(100);
-account.deposit(50);   // Deposited: 50 | Balance: 150
-account.withdraw(70);  // Withdrew: 70 | Balance: 80
-account.withdraw(200); // Insufficient funds!
+console.log(Math.random());     // Random decimal between 0 (inclusive) and 1 (exclusive)
+console.log(Math.random() * 10); // Random decimal between 0 (inclusive) and 10 (exclusive)
+console.log(Math.random() * 100); // Random decimal between 0 (inclusive) and 100 (exclusive)
+console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclusive) and 10 (exclusive)
+console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive)

@@ -182,7 +182,7 @@
 
 JavaScript is a: 
 - scripting language 
-  - A scripting language is a programming language that is executed by an interpreter, which translates and runs the code line by line (or step by step) at runtime, instead compiling the whole program into machine code beforehand.
+  - A scripting language is a programming language that is executed by an interpreter, which translates the code into machine code and runs it line by line at runtime, instead of compiling the entire program into machine code beforehand.
     - Compile time → when the code is being converted into machine code (before execution start).
     - Runtime → when the  code is actually being executed.
     ![](./images/scripting-language)
@@ -247,7 +247,7 @@ To solve this problem, Netscape submitted JavaScript to ECMA International in Ju
 ### JavaScript Engines:
 A JavaScript engine is a program built into web browsers (and platforms like Node.js) that is responsible for executing JavaScript code.
 
-It takes the JavaScript you write, then:
+It takes the JavaScript you write and processes it in the following steps:
 
 1. Parsing
      - Parsing is the process where the JavaScript engine reads your code and breaks it down into a structured format (called an AST – Abstract Syntax Tree) so it can understand and execute it.
@@ -293,26 +293,26 @@ Ast format:
 
 2. Compiling the AST to Bytecode
    - **Bytecode:** Is an intermediate from between your original JavaScript code and the machine code.
-3. Interpreting
-   - Is a process where the JS engine convert bytecode into machine code using an interpreter, and then executes it lie by line or step by step.
-4. JIT Compilation (if applicable)
-   - JIT(Just In Time) Compilation is a process where the JS engine detects frequently executed “hot” code and compiles it into machine code. On the future runs, the engines skips parsing, compiling AST to Bytecode and interpreting instead it running the machine code directly for faster execution.     
-
+3. Execution: Execution has two phase, interpreting and JIT compilation (if applicable)
+   - Interpreting
+     - Is a process where the interpreter convert bytecode into machine code, and then executes it line by line or step by step.
+   - JIT Compilation (if applicable)
+     - JIT(Just In Time) Compilation is a process where the JS engine detects frequently executed “hot” code and convert it into machine code using JIT compiler. On future executions, the engine can skip parsing, compiling to bytecode, and interpreting, and instead run the precompiled hot code directly for better performance.
 
 ### Hello World
 
 ```console.log("Hello World");```
 
 **What’s happened behind the code:**
-- The statement sends to the JavaScript Engine
+The statement sends to the JavaScript Engine
 - Parsing
 - Compiling AST to Bytecode
-- Interpretation
-- JIT Compilation (if applicable)
-- Execution of console.log
-  - console is a global object provided by the environment (browser or Node.js).
-  - log is a method of the console object.
-  - so, Calling console.log("Hello World") passes the string "Hello World" as an argument to that log method.
+- executing (Interpreting or JIT compilation) 
+  - After interpreting of JIT compilation the  engines execute `console.log("Hello World")`
+    - here
+      - console is a global object provided by the environment (browser or Node.js).
+      - log is a method of the console object.
+      - so, Calling console.log("Hello World") passes the string "Hello World" as an argument to that log method, which then prints it to the web browser console or terminal (in Node.js).
 
 Q&A:
 - statement: A single instruction in a programming language
@@ -360,7 +360,7 @@ message = 'Hello Universe'
 <tr>
 <td>Function-scoped (global scope if not in a function)
 
-<pre><code>
+```js
 function testScope() {
     if (true) {
         var x = 10;
@@ -368,19 +368,19 @@ function testScope() {
     console.log(x); // output: 10 
 }
 testScope();
-</code></pre>
+```
 
-<pre><code>
+```js
 if (true) {
     var test = true; 
 }
 console.log(test); // output: true
-</code></pre>
+```
 
 </td>
 <td>Block-scoped
 
-<pre><code>
+```js
 function testScope() {
     if (true) {
         let x = 10;
@@ -388,19 +388,19 @@ function testScope() {
     console.log(x); // ReferenceError: x is not defined
 }
 testScope();
-</code></pre>
+```
 
-<pre><code>
+```js
 if (true) {
     let test = true;
 }
 console.log(test); // ReferenceError: x is not defined
-</code></pre>
+```
 
 </td>
 <td>block Block-scoped
 
-<pre><code>
+```js
 function testScope() {
     if (true) {
         const x = 10;
@@ -408,14 +408,14 @@ function testScope() {
     console.log(x); // // ReferenceError: x is not defined
 }
 testScope();
-</code></pre>
+```
 
-<pre><code>
+```js
 if (true) {
     const test = true;
 }
 console.log(test); // ReferenceError: x is not defined
-</code></pre>
+```
 
 </td>
 </tr>
@@ -423,28 +423,28 @@ console.log(test); // ReferenceError: x is not defined
 <td>
 Hoisted and initialized with undefined.
 
-<pre><code>
+```js
 console.log(a); // undefine
 var a = 10;
-</code></pre>
+```
 
 </td>
 <td>
 Hoisted but not initialized
 
-<pre><code>
+```js
 console.log(b); // ReferenceError: Cannot access 'b' before initialization
 let b = 20;
-</code></pre>
+```
 
 </td>
 <td>
 Hoisted but not initialized
 
-<pre><code>
+```js
 console.log(b); // ReferenceError: Cannot access 'b' before initialization
 const b = 20;
-</code></pre>
+```
 
 </td>
 </tr>
@@ -452,34 +452,34 @@ const b = 20;
 <td>
 Can be re-declared and re-assign in the same scope.
 
-<pre><code>
+```js
 var a = 10;
 var a = 20;  //  Allowed
 a = 30;      //  Allowed
 console.log(a); // 30
-</code></pre>
+```
 
 </td>
 <td>
 Cannot be re-declared but can re-assign in the same scope.
 
-<pre><code>
+```js
 let b = 10;
 // let b = 20;  // Error: re-declaration not allowed
 b = 20;        //  Re-assignment allowed
 console.log(b); // 20
-</code></pre>
+```
 
 </td>
 <td>
 Cannot be re-declared and re-assign in the same scope.
 
-<pre><code>
+```js
 const c = 10;
 // c = 20;      // Error: cannot reassign
 // const c = 30; // Error: cannot re-declare
 console.log(c); // 10
-</code></pre>
+```
 
 </td>
 </tr>
@@ -491,43 +491,30 @@ Declaring var globally adds it to window object as a property (in browsers).
 <td>
 Declaring let doesn't globally add it to window object as a property (in browsers).
 
-<pre><code>
+```js
 let a = 10;
 
 console.log(window);
 console.log(window.a); // undefined
-</code></pre>
+```
 
 </td>
 <td>
 Declaring const doesn't globally adds it to window object as a property (in browsers).
 
-<pre><code>
+```js
 const a = 10;
 
 console.log(window);
 console.log(window.a); // undefined
-</code></pre>
+```
 
 </td>
 </tr>
 </table>
 
 ### Hoisting
-
-In JavaScript, code execution happens in two phases for each scope:
-
-1.  Creation Phase 
-    - The JavaScript engine scans the scope before execution begins and allocates memory for all declarations:
-      - var → allocated and initialized with undefined
-      - let / const → allocated but not initialized.They remain in the Temporal Dead Zone (TDZ) until the line of code where they are declared is executed.
-      - Function declarations → fully allocated and initialized (can be called before declaration)
-
-2. Execution Phase 
-   - The engine executes the code line by line.
-
-**Note:** Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their scope during the creation phase.
-
+Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their scope during parsing and compiling the AST to Bytecode phase, before the code is executed by interpreter or JIT compiler(if applicable).
 
 ### Scope
 Scope determines where variables can be accessed in your code. There are 4 types of scopes in js:

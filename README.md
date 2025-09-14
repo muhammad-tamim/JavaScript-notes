@@ -320,7 +320,7 @@ Q&A:
 
 
 ## Variables
-A variable is a “named storage” for data. We can declare variables to store data by using the keywords:
+A variable is a “named storage” for data. We can declare variables to store data by using keywords:
 
 Note: A keyword is a reserved word that has a special meaning in the language. 
 
@@ -354,6 +354,7 @@ message = 'Hello Universe'
 </tr>
 <tr>
 <td>Function-scoped (global scope if not in a function)
+
 <pre><code>
 function testScope() {
     if (true) {
@@ -363,14 +364,17 @@ function testScope() {
 }
 testScope();
 </code></pre>
+
 <pre><code>
 if (true) {
     var test = true; 
 }
 console.log(test); // output: true
 </code></pre>
+
 </td>
 <td>Block-scoped
+
 <pre><code>
 function testScope() {
     if (true) {
@@ -380,14 +384,17 @@ function testScope() {
 }
 testScope();
 </code></pre>
+
 <pre><code>
 if (true) {
     let test = true;
 }
 console.log(test); // ReferenceError: x is not defined
 </code></pre>
+
 </td>
 <td>block Block-scoped
+
 <pre><code>
 function testScope() {
     if (true) {
@@ -397,64 +404,78 @@ function testScope() {
 }
 testScope();
 </code></pre>
+
 <pre><code>
 if (true) {
     const test = true;
 }
 console.log(test); // ReferenceError: x is not defined
 </code></pre>
+
 </td>
 </tr>
 <tr>
 <td>
 Hoisted and initialized with undefined.
+
 <pre><code>
 console.log(a); // undefine
 var a = 10;
 </code></pre>
+
 </td>
 <td>
 Hoisted but not initialized
+
 <pre><code>
 console.log(b); // ReferenceError: Cannot access 'b' before initialization
 let b = 20;
 </code></pre>
+
 </td>
 <td>
 Hoisted but not initialized
+
 <pre><code>
 console.log(b); // ReferenceError: Cannot access 'b' before initialization
 const b = 20;
 </code></pre>
+
 </td>
 </tr>
 <tr>
 <td>
 Can be re-declared and re-assign in the same scope.
+
 <pre><code>
 var a = 10;
 var a = 20;  //  Allowed
 a = 30;      //  Allowed
 console.log(a); // 30
 </code></pre>
+
 </td>
 <td>
 Cannot be re-declared but can re-assign in the same scope.
+
 <pre><code>
 let b = 10;
 // let b = 20;  // Error: re-declaration not allowed
 b = 20;        //  Re-assignment allowed
 console.log(b); // 20
 </code></pre>
+
 </td>
 <td>
 Cannot be re-declared and re-assign in the same scope.
+
 <pre><code>
 const c = 10;
 // c = 20;      // Error: cannot reassign
 // const c = 30; // Error: cannot re-declare
 console.log(c); // 10
 </code></pre>
+
 </td>
 </tr>
 <tr>
@@ -464,21 +485,25 @@ Declaring var globally adds it to window object as a property (in browsers).
 </td>
 <td>
 Declaring let doesn't globally add it to window object as a property (in browsers).
+
 <pre><code>
 let a = 10;
 
 console.log(window);
 console.log(window.a); // undefined
 </code></pre>
+
 </td>
 <td>
 Declaring const doesn't globally adds it to window object as a property (in browsers).
+
 <pre><code>
 const a = 10;
 
 console.log(window);
 console.log(window.a); // undefined
 </code></pre>
+
 </td>
 </tr>
 </table>
@@ -502,7 +527,8 @@ In JavaScript, code execution happens in two phases for each scope:
 ### Scope
 Scope determines where variables can be accessed in your code. There are 4 types of scopes in js:
 
-1. Block Scope
+1. Block Scope:  
+   
 A variable has block scope if it is declared with let or const inside a block ({ }). It is accessible only within that block.
 
 ```js
@@ -516,10 +542,11 @@ console.log(age);  //  ReferenceError: age is not defined
 console.log(city); //  ReferenceError: city is not defined
 ```
 
-2. Function Scope
+2. Function Scope:  
+   
 A variable has function scope if it is declared inside a function. It is accessible only within that function.
 
-
+```js
 function sayHello() {
     let message = "Hello";
     console.log(message); // Hello    
@@ -527,11 +554,13 @@ function sayHello() {
 
 sayHello();
 console.log(message); // ReferenceError: message is not defined
+```
 
-3. Global Scope
+3. Global Scope:  
+   
 A variable has global scope if it is declared outside of any function or block. It is accessible from anywhere in the code.
 
-
+```js
 let name = "Tamim";
 
 function greet() {
@@ -540,8 +569,10 @@ function greet() {
 
 greet();
 console.log(name); // Tamim
+```
 
-1. Lexical Scope 
+4. Lexical Scope:  
+    
 Lexical scope means You can access variables from outer to inner scope, but not from inner to outer scope.
 
 ```js
@@ -605,9 +636,9 @@ console.log(num);
 - Names Cannot contain JavaScript reserved keywords
 
 ### How to write a long variable name
-- Snake Case - let my_current_home_address = "Barisal";
-- Camel Case (recommended) - let myCurrentHomeAddress = "Barisal";
-- Pascal Case - let MyCurrentHomeAddress = "Barisal";
+- Snake Case = `let my_current_home_address = "Barisal";`
+- Camel Case (recommended) = `let myCurrentHomeAddress = "Barisal";`
+- Pascal Case = `let MyCurrentHomeAddress = "Barisal";`
 
 
 
@@ -674,7 +705,7 @@ console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclus
 console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive)
 ```
 
-**Type conversion global functions:**
+**Type conversion with global functions:**
 
 ```js
 console.log(parseInt("123"));       // 123
@@ -713,7 +744,7 @@ console.log(Boolean([]));          // true (empty array is truthy)
 console.log(Boolean({}));          // true (empty object is truthy)
 ```
 
-**Type conversion methods**
+**Type conversion with methods**
 
 ```js
 console.log((123).toString());       // "123"
@@ -742,7 +773,8 @@ Used for integers larger than <code>2<sup>53</sup> - 1</code>.
 
 3. String
 
-4. Boolean
+4. Boolean 
+   
 Represents true or false.
 
 ```js
@@ -750,7 +782,8 @@ let isMarried = false;
 let isSingle = true;
 ```
 
-5. Null
+5. Null  
+   
 Represents intentional "no value".
 
 ```js
@@ -758,8 +791,11 @@ let data = null;
 console.log(data) // null
 ```
 
-6. Undefined
+6. Undefined  
+   
 It is a primitive data type and default value given by JavaScript when JavaScript expects a value but doesn’t find one.:
+
+**When we got undefined:**
 
 a variable Declared but not initialized
 
@@ -821,7 +857,8 @@ console.log(a === b); // false
 
 ### 1 Non-Primitive Data Types:
 
-8. Object
+8. Object  
+   
 In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript (object, function, array)
 - function 
 - array
@@ -843,8 +880,8 @@ console.log(10 / 50); // 0.2
 console.log(10 % 50) // 10
 console.log(50 / 10) // 5
 console.log(50 % 10) // 0
-// Note: For a perfect division, the dividend > divisor.
 ```
+Note: For a perfect division, the dividend > divisor.
 
 <h4>** (Exponentiation):</h4>
 <p>a ** b = a<sup> b</sup></p>
@@ -864,7 +901,7 @@ let s = "my" + "string";
 console.log(s); // mystring
 ```
 
-**Note:** If any of the operands is a string, then the other one is converted to a string too.
+Note: If any of the operands is a string, then the other one is converted to a string too.
 
 ```js
 console.log('1' + 2); // "12"
@@ -873,7 +910,7 @@ console.log(2 + 2 + '1'); // "41" and not "221"
 console.log('1' + 2 + 2); // "122" and not "14"
 ```
 
-**Note:** The + is the only operator that supports strings concatenation. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+Note: The + is the only operator that supports strings concatenation. Other arithmetic operators work only with numbers and always convert their operands to numbers.
 
 ```js
 console.log(6 - '2'); // 4, converts '2' to a number
@@ -900,7 +937,6 @@ let x = ++i;
 console.log(i); // 11
 console.log(x); // 11
 ```
-Explanation: : Here, i is incremented to 11 first, and then this new value is assigned to x. Both i and x are 11 after this operation.
 
 **post Increment / Decrement:**
 
@@ -910,7 +946,6 @@ let x = i++;
 console.log(i); // 11
 console.log(x); // 10
 ```
-Explanation: here, First, the value of i (which is 10) is assigned to the variable x. After that, i is incremented, so i becomes 11.
 
 Note: 
 
@@ -987,6 +1022,7 @@ console.log(null == undefined); // true
 console.log(null > 0);  // false
 console.log(null == 0); // false
 console.log(null >= 0); // true 
+// this is a special rule. If you use >=, null and o are considered true.
 ```
 
 **undefined vs 0:**
@@ -995,7 +1031,6 @@ console.log(null >= 0); // true
 console.log(undefined > 0); // false 
 console.log(undefined < 0); // false 
 console.log(undefined == 0); // false
-// undefined is converted to NaN in numeric comparisons
 ```
 
 
@@ -1004,8 +1039,9 @@ console.log(undefined == 0); // false
 ```js
 let age = 25;
 if (age > 18 && age < 30) {
-  console.log("Young Adult");
+    console.log("Young Adult");
 }
+// Young Adult
 
 const isLoggedIn = true;
 const userName = "Tamim";
@@ -1016,24 +1052,28 @@ isLoggedIn && console.log("Welcome, " + userName);
 const isMingle = false;
 
 isMingle || console.log("Sad for you!");
+// Sad for you
 
 let day = "Saturday";
 if (day === "Saturday" || day === "Sunday") {
-  console.log("Weekend");
+    console.log("Weekend");
 }
+// weekend
 
 let loggedIn = false;
 if (!loggedIn) {
-  console.log("Please log in");
+    console.log("Please log in");
 }
+// Please log in
 
 let username = "Tamim";
 
 if (!!username) {
-    console.log("Username is set"); // Username is set
+    console.log("Username is set");
 } else {
     console.log("Please enter a username");
 }
+// Username is set
 
 console.log(!!"hello"); // true
 console.log(!!42); // true
@@ -1113,12 +1153,10 @@ switch (color) {
 
 In JavaScript, any value used in a conditional statement gets automatically converted to true or false.
 
-There are 8 total falsy values in js, everything else is truthy:
+There are 6 total falsy values in js, everything else is truthy:
 
 - false
 - 0
-- -0
-- 0n (BigInt)
 - ""
 - null
 - undefined
@@ -1155,27 +1193,19 @@ console.log(typeof "foo"); // "string"
 
 console.log(typeof Symbol("id")); // "symbol"
 
-console.log(typeof Math); // "object"  
-
 console.log(typeof null); // "object"  
+// typeof null return "object", but null is a primitive data type.
 
-console.log(typeof alert); 
-/*
-you will get "function" as output 
-if you use browser console, in node 
-you will get "undefined"
-*/  
 ```
 
-Note:
-- typeof null return "object", but null is a primitive data type.
-- typeof alert returns "function", but functions are technically objects.
 
 **rest operator:**
 
-Rest operator gathers values into an array or object. It is used defining things like Function parameters, array destructuring, object destructuring.
+Rest operator gathers values into an array or object.
 
-In function parameter:
+It is used defining things like Function parameters, array destructuring, object destructuring.
+
+rest in function parameter:
 ```js
 
 function multiply(multiplier, ...numbers) {
@@ -1195,7 +1225,7 @@ multiply(3, 4, 5, 6);
 */
 ```
 
-In array destructuring:
+rest in array destructuring:
 
 ```js
 const [first, ...rest] = [1, 2, 3, 4];
@@ -1203,7 +1233,7 @@ console.log(first); // 1
 console.log(rest);  // [2, 3, 4]
 ```
 
-In object destructuring:
+rest in object destructuring:
 
 ```js
 const user = { name: "Tamim", age: 21, country: "BD" };
@@ -1214,9 +1244,11 @@ console.log(rest); // { age: 21, country: "BD" }
 ```
 
 **spread operator:**
-Spreads operator breaks an array or object into individual values. It is Used in Function calls, array literals and object literals.
+Spreads operator breaks an array or object into individual values. 
 
-In function call:
+It is Used in Function calls, array literals and object literals.
+
+in function call:
 
 ```js
 function greet(a, b, c) {
@@ -1392,7 +1424,7 @@ for (const value of str) {
 
 ### for..in loop (for objects):
 
-```
+```js
 const obj = {
     a: 1,
     b: 2
@@ -1402,6 +1434,9 @@ for (const key in obj) {
     console.log(key, obj[key]);
 }
 /*
+a 1
+b 2
+
 key = a
 key = b
 
@@ -1411,6 +1446,8 @@ obj[key] = obj[b] = 2
 ```
 
 ### forEach method (only for array):
+
+forEach is an array method in JavaScript that loops through each element of an array and calls a callback function for each element.
 
 ```js
 const numbers = [1, 2, 3];
@@ -1423,8 +1460,73 @@ numbers.forEach(function (num) {
 const num2 = [4, 5, 6];
 num2.forEach(num2 => console.log(num2)) // 4 5 6
 ```
-Note: It does not support break or continue.
 
+```js
+const arr = [4, 5, 6];
+
+function myCallback(value, index, array) {
+  console.log(value, index, array);
+}
+
+arr.forEach(myCallback);
+
+/*
+Output:
+4 0 [4, 5, 6]
+5 1 [4, 5, 6]
+6 2 [4, 5, 6]
+*/
+```
+
+**Behind the scenes:**
+
+```js
+Array.prototype.forEach = function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    // Call the callback function for each element
+    callback(this[i], i, this);
+  }
+};
+```
+Here, 
+- Array = This is the built-in JavaScript constructor for creating arrays.
+
+```js
+const arr = [1, 2, 3];  // shorthand way to create an array
+const arr2 = new Array(1, 2, 3); // create array using constructor
+```
+
+- prototype = Every constructor function in JavaScript has a prototype object to share methods. This is where shared methods (like forEach, map, filter, etc.) are stored. That way, these methods are not recreated for every array but instead reused.
+
+- forEach = This is one of those reusable prototype methods. Any array can use it because arrays inherit it from Array.prototype.
+
+- this = Inside the forEach method, this refers to the array that called the method.
+
+**Manual forEach Simulation**
+
+```js
+function myForEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
+  }
+}
+
+const arr = [4, 5, 6];
+
+function myCallback(value, index, array) {
+  console.log(value, index, array);
+}
+
+myForEach(arr, myCallback);
+
+/*
+Output:
+4 0 [4, 5, 6]
+5 1 [4, 5, 6]
+6 2 [4, 5, 6]
+*/
+
+```
 
 ## function
 

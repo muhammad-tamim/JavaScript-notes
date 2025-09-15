@@ -1,5 +1,10 @@
-console.log(Math.random());     // Random decimal between 0 (inclusive) and 1 (exclusive)
-console.log(Math.random() * 10); // Random decimal between 0 (inclusive) and 10 (exclusive)
-console.log(Math.random() * 100); // Random decimal between 0 (inclusive) and 100 (exclusive)
-console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclusive) and 10 (exclusive)
-console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive)
+const arr = [1, 2, 3];
+arr["10"] = "ten";
+arr["5"] = "five";
+arr["a"] = "letter a";
+arr["1.5"] = "one point five";
+
+for (const key in arr) {
+    console.log(key);
+    // Possible order: "0" "1" "2" "5" "10" "a" "1.5"
+}

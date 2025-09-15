@@ -43,6 +43,7 @@
     - [Anonymous function](#anonymous-function)
     - [Recursion](#recursion)
     - [Closure](#closure)
+    - [Difference between callback function, recursion and closure](#difference-between-callback-function-recursion-and-closure)
   - [string](#string)
     - [autoBoxing](#autoboxing)
     - [why strings are iterable also?](#why-strings-are-iterable-also)
@@ -2253,6 +2254,11 @@ function(num) {
 ```
 Now double holds this function, and it also remembers that multiplier = 2 (because of closure).
 So when we call double(5), it returns: ```return 5 * 2;```
+
+### Difference between callback function, recursion and closure
+- callback function: A function that is passed as an argument to another function
+- recursion: A technique where a function calls itself.
+- closure: A technique where an inner function remembers the variables from its outer function
 
 ## string
 

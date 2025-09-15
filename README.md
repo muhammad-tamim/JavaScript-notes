@@ -2178,7 +2178,7 @@ call stack:
     
 ### Closure
 
-A closure is a function technique where an inner function remembers the variables from its outer scope, even after that outer function has finished executing.
+A closure is a function technique where an inner function remembers the variables from its outer function, even after that outer function has finished executing.
 
 
 ```js
@@ -2248,7 +2248,7 @@ it returns:
 
 ```js
 function(num) {
-    return num * multiplier;
+    return num * 2;
 };
 ```
 Now double holds this function, and it also remembers that multiplier = 2 (because of closure).

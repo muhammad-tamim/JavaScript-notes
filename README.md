@@ -182,7 +182,7 @@
 
 JavaScript is a: 
 - scripting language 
-  - A scripting language is a programming language that is executed by an interpreter, which translates the code into machine code and runs it line by line at runtime, instead of compiling the entire program into machine code beforehand.
+  - A scripting language is a programming language that is executed by an interpreter, which translates the code into machine code and runs it line by line (or step by step) at runtime, instead of compiling the entire program into machine code beforehand.
     - Compile time → when the code is being converted into machine code (before execution start).
     - Runtime → when the  code is actually being executed.
     ![](./images/scripting-language)
@@ -854,7 +854,8 @@ console.log(a === b); // false
 
 8. Object  
    
-In JavaScript, any data that is not a primitive is as an object. There are 3 commonly used objects in JavaScript:
+In JavaScript, any data that is not a primitive type is considered an object type. The three most commonly used object types are:
+
 - object
 - array
 - function 
@@ -970,10 +971,10 @@ How lexicographical algorithm works:
 - If all characters are equal and lengths differ, the shorter string is considered smaller.
 
 ```js
-console.log('Z' > 'A'); // true
-console.log('hello' == 'hello'); // true
-console.log('Glow' > 'Glee'); // true
-console.log('Be' < 'Bee'); // true
+console.log('B' > 'A'); // true
+console.log('abcd' == 'abcd'); // true
+console.log('abcd' > 'abcc'); // true
+console.log('Bc' < 'Bce'); // true
 ```
 <img src="images/ascii.png" alt="ascii vaues">
 
@@ -1215,7 +1216,7 @@ console.log(rest); // { age: 21, country: "BD" }
 Spreads operator breaks an array or object into individual values. 
 
 It is Used in Function calls, array literals and object literals.
-
+  - A literal means a fixed value written directly in the code.
 
 in function call:
 

@@ -40,6 +40,7 @@
     - [callback hell:](#callback-hell)
     - [Arrow Function:](#arrow-function)
     - [Difference between arrow function and normal function](#difference-between-arrow-function-and-normal-function)
+    - [Anonymous function](#anonymous-function)
     - [Recursion](#recursion)
     - [Closure](#closure)
   - [string](#string)
@@ -1793,6 +1794,20 @@ greet("Tamim", sayGoodbye); // passing sayGoodbye function as a callback functio
 ```
 here, SayGoodbye is a callback function, because we pass it into another function and them executed in that function.
 
+```js
+function calculate(a, b, operation) {
+  return operation(a, b);
+}
+
+function add(x, y) {
+  return x + y;
+}
+
+console.log(calculate(5, 3, add)); // 8
+
+// 'add' is the callback function because we passed that function as an argument to another function.
+```
+
 ### callback hell:
 
 When we write too many nested callback functions that are hard to read and maintain, it is called callback hell.
@@ -1950,6 +1965,111 @@ const squaredArrow = numbers.map(num => num * num);
 
 console.log(squaredArrow); // [1, 4, 9, 16, 25]
 ```
+
+
+### Anonymous function
+
+An anonymous function is simply a function without a name since we dint get any name of that function means we cant re-use that funciton.
+
+```js
+// Named function
+function sayHello() {
+    console.log("Hello!");
+}
+
+// Anonymous function (stored in a variable)
+const sayHi = function() {
+    console.log("Hi!");
+};
+
+// Arrow function (always anonymous)
+const sayHey = () => {
+    console.log("Hey!");
+};
+```
+
+**Common Use Cases for Anonymous Functions:**
+
+- Event Handlers: 
+  
+```js
+const button = document.getElementById('myButton');
+
+// Anonymous function as event handler
+button.addEventListener('click', function() {
+    console.log('Button clicked!');
+});
+
+// Arrow function event handler
+button.addEventListener('click', () => {
+    console.log('Button clicked with arrow function!');
+});
+```
+
+- Array Methods (Higher-Order Functions)
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+// map with anonymous function
+const doubled = numbers.map(function (num) {
+    return num * 2;
+});
+
+// filter with arrow function
+const evens = numbers.filter(num => num % 2 === 0);
+
+// forEach with anonymous function
+numbers.forEach(function (num, index) {
+    console.log(`Index ${index}: ${num}`);
+});
+
+
+console.log(doubled); // [2, 4, 6, 8, 10]
+console.log(evens);   // [2, 4]
+
+/*
+Index 0: 1
+Index 1: 2
+Index 2: 3
+Index 3: 4
+Index 4: 5
+[ 2, 4, 6, 8, 10 ]
+[ 2, 4 ]
+*/
+```
+
+- callbacks functions
+  
+```js
+// Promise with anonymous functions
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    })
+
+/**
+ * Here, we passed anonymous callback functions as arguments to .then().
+ * When the Promise is resolved, JavaScript automatically calls these functions
+ * and provides the resolved values (first the response, then the data).
+ */
+
+
+// Same with arrow functions
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+/*
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+*/
+```
+
+
 
 
 ### Recursion

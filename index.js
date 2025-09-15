@@ -1,10 +1,12 @@
-const arr = [1, 2, 3];
-arr["10"] = "ten";
-arr["5"] = "five";
-arr["a"] = "letter a";
-arr["1.5"] = "one point five";
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    })
 
-for (const key in arr) {
-    console.log(key);
-    // Possible order: "0" "1" "2" "5" "10" "a" "1.5"
-}
+// Same with arrow functions
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(data => console.log(data))

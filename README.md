@@ -2074,7 +2074,11 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 
 ### Recursion
 
-Recursion is a technique where a function calls itself.
+Recursion is a technique where a recursive function calls itself.
+
+Note:
+- Recursive function; The actual function that calls itself.
+- Recursion: The process or technique of a function calling itself.
 
 ```js
 function a() {
@@ -2105,6 +2109,9 @@ inside c 30
 
 A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:
 
+- new frame creation and stack growing
+- Base case reached and stack un-winding
+
 *   New Frame Creation: Each function call creates a new "stack frame" containing the function's parameters, local variables, and return address
 *   Stack Growth: These frames pile up on top of each other as the recursion goes deeper
 *   Base Case Reached: When the base case is hit, the recursion stops adding new frames
@@ -2116,8 +2123,8 @@ A call stack is a data structure that keeps track of function calls in a Last-In
 
 A recursive function typically has two main components:
 
-1.  **Base Case:** The part where the recursive function stops the recursion based on a condition. It ensures that the function does not call itself indefinitely, which prevents a stack overflow.
-    - **Stack OverFlow:** A stack overflow is an error that happens when the call stack gets too full.
+1.  **Base Case:** The part where the recursive function stops the recursion based on a condition. It ensures that the function does not call itself infinitely, which prevents a stack overflow.
+    - **Stack OverFlow:** A stack overflow is an error that happens when the call stack gets full.
     
     ```js
     function greeting() {
@@ -2128,11 +2135,11 @@ A recursive function typically has two main components:
     ```
 2.  **Recursive Case:** The part where the recursive function calls itself.
     
+**Example:** 
 
-**Find Factorial Using Recursion:**
+Find Factorial Using Recursion:
 
-```
-
+```js
 function factorial(n) {
   if (n === 0) { // base case
     return 1; 
@@ -2141,11 +2148,32 @@ function factorial(n) {
 }
 
 console.log(factorial(5)); // 120
+
+// stack growing
+/**
+ * Returns 5 * factorial(4)
+ * Returns 4 * factorial(3)
+ * Returns 3 * factorial(2)
+ * Returns 2 * factorial(1)
+ * Returns 1 * factorial(0)
+*/
+
+// base case: n === 0 → return 1
+
+// Stack unwinding
+
+/**
+ * return  1 * 1 = 1
+ * return  2 * 1 = 2
+ * return  3 * 2 = 6
+ * return  4 * 6 = 24
+ * return  5 * 24 = 120
+*/
 ```
 
 call stack:
 
-![call-stack-2](./images/Call%20Stack2.png.png)
+![call-stack-2](./images/call-stack-2)
 
     
 ### Closure

@@ -2343,176 +2343,154 @@ console.log(str.length); // 10
 
 - **Case Conversion:**
     
-    ```js
-    console.log("hello".toUpperCase()); // "HELLO"
-    console.log("WORLD".toLowerCase()); // "world"
-    console.log('Interface'[0].toLowerCase()); // 'i'
-    ```
+```js
+console.log("hello".toUpperCase()); // "HELLO"
+console.log("WORLD".toLowerCase()); // "world"
+console.log('Interface'[0].toLowerCase()); // 'i'
+```
     
 - **Searching in Strings:**
     
-    ```js
-    console.log("JavaScript".includes("Script")); // true
-    console.log("JavaScript".startsWith("Java")); // true
-    console.log("JavaScript".endsWith("Script")); // true
-    console.log("hello world".indexOf("world")); // 6
-    ```
-    
-    Note: indexOf() method searches a string for a specific substring and returns the index (position) of the first match of found and -1 if nothing can be found.
-    
-    syntax:
-    
-    ```js
-    string.indexOf(searchValue, startIndex);
-    ```
-    
-    -  searchValue – the substring to find
-    -  startIndex (optional) – where to start the search (default is 0)
-    
-    ```js
-    console.log("banana".indexOf("a"));      // 1 → first "a"
-    console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
-    console.log("banana".indexOf("z"));      // -1 → not found
-    ```
+```js
+console.log("JavaScript".includes("Script")); // true
+console.log("JavaScript".startsWith("Java")); // true
+console.log("JavaScript".endsWith("Script")); // true
+console.log("hello world".indexOf("world")); // 6
+console.log("banana".indexOf("a"));      // 1 → first "a"
+console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
+console.log("banana".indexOf("z"));      // -1 → not found
+```
     
 - **Extracting Part of a String:**
     
-    slice(start, end):
-    
-    The slice() method returns a part of the string, starting from the given start index and ending just before the end index. If the second argument is not provided, the method extracts characters from the start index to the end of the string. Additionally, slice() supports negative values, which count from the end of the string instead of the beginning.
-    
-    ```js
-    const text = "JavaScript";
-    
-    console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
-    console.log(text.slice(4))        // "Script" (from index 4 to the end)
-    console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)
-    ```
+slice(start, end):
+        
+```js
+const text = "JavaScript";
+
+console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
+console.log(text.slice(4))        // "Script" (from index 4 to the end)
+console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)
+```
     
 - **Joining and Splitting:**
     
-    ```js
-    const sentence = "I love JavaScript";
-    const words = sentence.split(" "); // ["I", "love", "JavaScript"]
-    console.log(words.join("-"));      // "I-love-JavaScript"
-    ```
+split() → converts a string → array
+join() → converts an array → string
+
+```js
+const str = "Hello";
+const split = str.split("")
+console.log(split) // [ 'H', 'e', 'l', 'l', 'o' ]
+
+const join = split.join("");
+console.log(join)
+```
     
 - **trim() - for removing white space before and after:**
     
-    ```js
-    const str = " hello world! ";
-    const trimmedStr = str.trim();
-    console.log(trimmedStr); // Output: "hello world!"
-    ```
+```js
+const str = " hello world! ";
+const trimmedStr = str.trim();
+console.log(trimmedStr); // Output: "hello world!"
+```
     
 - **trimStart()/trimEnd() or trimLeft()/trimRight()- for removing white space from specific side:**
     
-    ```js
-    const str = "          hello world! ";
-    console.log(str) // Output: "          hello world! "
-    
-    const trimmedStr = str.trimStart();
-    const trimmedEndStr = str.trimEnd();
-    console.log(trimmedStr); // Output: "hello world! "
-    console.log(trimmedEndStr); // Output: "          hello world!"
-    ```
+```js
+const str = "          hello world! ";
+console.log(str) // Output: "          hello world! "
+
+const trimmedStr = str.trimStart();
+const trimmedEndStr = str.trimEnd();
+console.log(trimmedStr); // Output: "hello world! "
+console.log(trimmedEndStr); // Output: "          hello world!"
+```
     
 - **Replacing and Repeating:**
     
-    ```js
-    let str = "purple-color";
-    let result = str.replace("-color", "");
-    console.log(result); // "purple"
-    
-    /*
-    We replaced "-color" with an empty string"" →  An empty string "" is not " " (a space), or any characters. empty string means nothing.
-    
-    So we’re left with only "purple".
-    */
-        
-    console.log("I like cats. cats are sweet".replace("cats", "dogs")); // I like dogs. cats are sweet
-    console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
-    console.log("ha".repeat(3)); // "hahaha"
-    ```
+```js
+let str = "purple-color";
+let result = str.replace("-color", "");
+console.log(result); // "purple"
+
+/*
+We replaced "-color" with an empty string"" →  An empty string "" is not " " (a space), or any characters. empty string means nothing.
+ 
+So we’re left with only "purple".
+*/
+
+console.log("I like cats. cats are sweet".replace("cats", "dogs")); // I like dogs. cats are sweet
+console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
+console.log("ha".repeat(3)); // "hahaha"
+```
     
 - **includes, startsWith, endsWith:**
     
-    ```js
-    const message = "Hello, Tamim!";
-    console.log(message.includes("Tamim")); // true
-    console.log(message.includes("hello")); // false (case-sensitive)
-    
-    const greeting = "JavaScript is fun!";
-    console.log(greeting.startsWith("Java"));   // true
-    console.log(greeting.startsWith("Script")); // false
-    console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
-    
-    const fileName = "report.pdf";
-    console.log(fileName.endsWith(".pdf"));  // true
-    console.log(fileName.endsWith(".txt"));  // false
-    console.log("JavaScript".endsWith("Script", 10)); // true
-    console.log("JavaScript".endsWith("Java", 4));    // true
-    ```
+```js
+const message = "Hello, Tamim!";
+console.log(message.includes("Tamim")); // true
+console.log(message.includes("hello")); // false (case-sensitive)
+
+const greeting = "JavaScript is fun!";
+console.log(greeting.startsWith("Java"));   // true
+console.log(greeting.startsWith("Script")); // false
+console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
+
+const fileName = "report.pdf";
+console.log(fileName.endsWith(".pdf"));  // true
+console.log(fileName.endsWith(".txt"));  // false
+console.log("JavaScript".endsWith("Script", 10)); // true
+console.log("JavaScript".endsWith("Java", 4));    // true
+```
     
 - **concat:**
     
-    ```js
-    const str1 = "Hello";
-    const str2 = "World";
-    const result = str1.concat(" ", str2);
-    console.log(result); // "Hello World"
-    
-    const result2 = "I".concat(" love", " JavaScript");
-    console.log(result2); // "I love JavaScript"
-    ```
+```js
+const str1 = "Hello";
+const str2 = "World";
+const result = str1.concat(" ", str2);
+console.log(result); // "Hello World"
+
+const result2 = "I".concat(" love", " JavaScript");
+console.log(result2); // "I love JavaScript"
+```
     
 - **String Reverse:**
     
-    ```js
-    const sentence = 'hello';
-    let reverse = '';
-    for (const letter of sentence) {
-        reverse = letter + reverse;
-    }
-    console.log(reverse); // olleh
-    
-    
-    // or using build in methods
-    const str = "hello";
-    const reversed = str.split("").reverse().join("");
-    console.log(reversed); // Output: "olleh"
-    
-    const split = str.split("");
-    console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
-    
-    const reversedArray = split.reverse();
-    console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
-    
-    const joined = reversedArray.join("");
-    console.log(joined); // Output: "olleh"
-    ```
+```js
+const sentence = 'hello';
+let reverse = '';
+for (const letter of sentence) {
+    reverse = letter + reverse;
+}
+console.log(reverse); // olleh
+
+
+// or using build in methods
+const str = "hello";
+const reversed = str.split("").reverse().join("");
+console.log(reversed); // Output: "olleh"
+
+const split = str.split("");
+console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
+
+const reversedArray = split.reverse();
+console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
+
+const joined = reversedArray.join("");
+console.log(joined); // Output: "olleh"
+```
     
 - **padStart**   
   
-    padStart is a string method that ensures a string reaches a certain length by adding characters to the start of the string.
-    
-    syntax:
-
-    ```js
-    str.padStart(targetLength, padString)
-    ```
-
-    - targetLength → the final desired length of the string.
-    - padString → the character(s) to add at the start (default is space " " if not specified).
-
-    ```js
-        let num = "5";
-        console.log(num.padStart(3, "0")); // "005"
-    ```
-
-    - Original string: "5" (length 1)
-    - Target length: 3
-    - Pad with "0" at the start until length becomes 3 → "005"
+```js
+    let num = "5";
+    console.log(num.padStart(3, "0")); // "005"
+```
+- Original string: "5" (length 1)
+- Target length: 3
+- Pad with "0" at the start until length becomes 3 → "005"
 
 ## AutoBoxing
 

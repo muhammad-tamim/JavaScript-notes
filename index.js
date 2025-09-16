@@ -1,12 +1,21 @@
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-    })
+const sentence = 'hello';
+let reverse = '';
+for (const letter of sentence) {
+    reverse = letter + reverse;
+}
+console.log(reverse); // olleh
 
-// Same with arrow functions
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
-    .then(data => console.log(data))
+
+// or using build in methods
+const str = "hello";
+const reversed = str.split("").reverse().join("");
+console.log(reversed); // Output: "olleh"
+
+const split = str.split("");
+console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
+
+const reversedArray = split.reverse();
+console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
+
+const joined = reversedArray.join("");
+console.log(joined); // Output: "olleh"

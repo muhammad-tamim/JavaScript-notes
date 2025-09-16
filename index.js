@@ -1,21 +1,16 @@
-const sentence = 'hello';
-let reverse = '';
-for (const letter of sentence) {
-    reverse = letter + reverse;
-}
-console.log(reverse); // olleh
+let user = { name: "John" };
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
 
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
 
-// or using build in methods
-const str = "hello";
-const reversed = str.split("").reverse().join("");
-console.log(reversed); // Output: "olleh"
+// now user = { name: "John", canView: true, canEdit: true }
+console.log(user.name); // John
+console.log(user.canView); // true
 
-const split = str.split("");
-console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
+permissions2.canEdit = false
+console.log(permissions2.canEdit) // false
 
-const reversedArray = split.reverse();
-console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
+console.log(user.canEdit); // true
 
-const joined = reversedArray.join("");
-console.log(joined); // Output: "olleh"

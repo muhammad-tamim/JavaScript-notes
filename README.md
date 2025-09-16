@@ -50,12 +50,11 @@
     - [String Property:](#string-property)
     - [String Methods:](#string-methods)
   - [Objects:](#objects)
-    - [Different ways to declare an Object](#different-ways-to-declare-an-object)
-    - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
+    - [Different ways to make an Object](#different-ways-to-make-an-object)
     - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
     - [Object.freeze() vs Object.seal()](#objectfreeze-vs-objectseal)
+    - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
     - [Property existence test:](#property-existence-test)
-    - [The "for..in" loop](#the-forin-loop)
     - [Objects References and Copying:](#objects-references-and-copying)
     - [Const objects can be modified?](#const-objects-can-be-modified)
     - [Cloning and merging, Object.assign and structuredClone():](#cloning-and-merging-objectassign-and-structuredclone)
@@ -2494,7 +2493,10 @@ console.log(joined); // Output: "olleh"
 
 ## Objects:
 
-An object is a collection of key-value pairs called properties. where key is a string (also called a “property name”), and value can be anything.
+An object is a collection of key-value pairs (property). where key is a string or symbol, and value can be anything.
+
+- key + value = property
+
 
 ```js
 let user = {   
@@ -2567,7 +2569,7 @@ let user = makeUser("John", 30);
 console.log(user.name); // John
 ```
 
-### Different ways to declare an Object
+### Different ways to make an Object
 
 ```js
 const pen = {
@@ -2578,129 +2580,20 @@ const pen = {
 }
 console.log(pen);
 
-const pen2 = new Object();
+const pen2 = new Object(); // new Object() = Creates an empty object by calling the built-in Object constructor
 pen2.brand = "Pilot";
 pen2.color = "black";
 pen2.type = "gel";
 pen2.price = 12;
 console.log(pen2);
 
-const pen3 = Object.create({});
+const pen3 = Object.create({}); // also describe this
 pen3.brand = "Bic";
 pen3.color = "red";
 pen3.type = "fountain";
 pen3.price = 8;
 console.log(pen3);
-```
-
-### Dot Notation VS Bracket Notation:
-
-| Situation                                | Dot Notation | Bracket Notation |
-| ---------------------------------------- | ------------ | ---------------- |
-| Property name has **spaces**             | ❌            | ✅                |
-| Property name has **special characters** | ❌            | ✅                |
-| Property name starts with a **number**   | ❌            | ✅                |
-| Property accessed via **variable**       | ❌            | ✅                |
-| Used in a **loop**                       | ❌            | ✅                |
-| Key is from **JSON**                     | ❌            | ✅                |
-| Nested **dynamic access**                | ❌            | ✅                |
-
-example:
-
-- Property Name Has Spaces:
-    
-    ```js
-    const user = {
-      "first name": "Tamim",
-      "last name": "Hossain"
-    };
-    
-    console.log(user["first name"]);  //  "Tamim"
-    // console.log(user.first name);  //  SyntaxError
-    ```
-    
-- Property Name Starts with a Number:
-    
-    ```js  
-    const errorCodes = {
-      "404": "Not Found",
-      "500": "Internal Server Error"
-    };
-    
-    console.log(errorCodes["404"]); //  "Not Found"
-    // console.log(errorCodes.404); //  SyntaxError
-    ```
-    
-- Property Name Has Special Characters:
-    
-    ```js
-    const config = {
-      "api-key": "123abc",
-      "user@domain": "admin"
-    };
-    
-    console.log(config["api-key"]);       //  "123abc"
-    console.log(config["user@domain"]);   //  "admin"
-    // console.log(config.api-key);       //  Error: undefined - interpreted as subtraction
-    ```
-    
-- Accessing Property Using a Variable:
-    
-    ```js
-    const key = "username";
-    const user = {
-      username: "Tamim"
-    };
-    
-    console.log(user[key]);     //  "Tamim"
-    // console.log(user.key);   //  undefined (literally looks for 'key' property)
-    ```
-    
-- Looping Through Object Keys:
-    
-    ```js
-    const scores = {
-      Alice: 90,
-      Bob: 80,
-      Charlie: 85
-    };
-    
-    for (let name in scores) {
-      console.log(`${name}: ${scores[name]}`);
-    }
-    ```
-    Note: You must use bracket notation in loops for keys because keys are dynamic.
-    
-- Working with JSON Data:
-    
-    ```js
-    const jsonData = {
-      "user-info": {
-        "first name": "Tamim",
-        "last name": "Hossain"
-      }
-    };
-    
-    console.log(jsonData["user-info"]["first name"]); 
-    console.log(user-info.first name) // error
-    ```
-    
-- Nested Dynamic Access:
-    
-    ```js
-    const data = {
-      settings: {
-        theme: "dark",
-        layout: "grid"
-      }
-    };
-    
-    const section = "settings";
-    const prop = "theme";
-    
-    console.log(data[section][prop]); //  "dark"
-    ```
-    
+```    
 
 ### Object.keys(), Object.Values() and Object.entries() methods:
 
@@ -2777,14 +2670,21 @@ console.log(user.address.city); // "London"
 
 // with deep Freeze
 function deepFreeze(obj) {
-    Object.keys(obj).forEach(key => {
-        if (typeof obj[key] === 'object' && obj[key] !== null) {
-            deepFreeze(obj[key]);
+    // Freeze the current object
+    Object.freeze(obj);
+
+    // Loop through all property values
+    for (const value of Object.values(obj)) {
+        // If the value is a non-null object, recursively freeze it
+        if (value && typeof value === "object") {
+            deepFreeze(value);
         }
-    });
-    return Object.freeze(obj);
+    }
+
+    return obj;
 }
 
+// Example
 const deepObj = {
     level1: {
         level2: {
@@ -2794,13 +2694,14 @@ const deepObj = {
 };
 
 deepFreeze(deepObj);
+
 deepObj.level1.level2.value = 100;
 console.log(deepObj.level1.level2.value); // 42
 ```
 
 **Object.seal():**
 
-Object.seal() freezes an object. This means:
+Object.seal() seals an object. This means:
 
 -   You cannot add new properties.
 -   You cannot delete existing properties.
@@ -2841,9 +2742,134 @@ console.log(Object.isFrozen(obj2)); // false
 console.log(Object.isSealed(obj2)); // true
 ```
 
+### Dot Notation VS Bracket Notation:
+
+| Situation                                | Dot Notation | Bracket Notation |
+| ---------------------------------------- | ------------ | ---------------- |
+| Property name has **spaces**             | ❌            | ✅                |
+| Property name has **special characters** | ❌            | ✅                |
+| Property name starts with a **number**   | ❌            | ✅                |
+| Property accessed via **variable**       | ❌            | ✅                |
+| Used in a **loop**                       | ❌            | ✅                |
+| Key is from **JSON**                     | ❌            | ✅                |
+| Nested **dynamic access**                | ❌            | ✅                |
+
+example:
+
+- Property Name Has Spaces:
+    
+    ```js
+    const user = {
+      "first name": "Tamim",
+      "last name": "Hossain"
+    };
+    
+    console.log(user["first name"]);  //  "Tamim"
+    // console.log(user.first name);  //  SyntaxError
+    ```
+    
+- Property Name Starts with a Number:
+    
+    ```js  
+    const errorCodes = {
+      "404": "Not Found",
+      "500": "Internal Server Error"
+    };
+    
+    console.log(errorCodes["404"]); //  "Not Found"
+    // console.log(errorCodes.404); //  SyntaxError
+    ```
+    
+- Property Name Has Special Characters:
+    
+    ```js
+    const config = {
+      "api-key": "123abc",
+      "user@domain": "admin"
+    };
+    
+    console.log(config["api-key"]);       //  "123abc"
+    console.log(config["user@domain"]);   //  "admin"
+    // console.log(config.api-key);       //  Error: undefined - interpreted as subtraction
+    ```
+    
+- Accessing Property Using a Variable:
+    
+    ```js
+    const key = "username";
+    const user = {
+      username: "Tamim"
+    };
+    
+    console.log(user[key]);     //  "Tamim"
+    // console.log(user.key);   //  undefined (literally looks for 'key' property)
+    ```
+    
+- Looping Through Object Keys:
+    
+```js
+const scores = {
+    Alice: 90,
+    Bob: 80,
+    Charlie: 85
+};
+
+for (let name in scores) {
+    console.log(`${name}: ${scores[name]}`);
+}
+/*
+Alice: 90
+Bob: 80
+Charlie: 85
+*/
+
+for (let name in scores) {
+    console.log(`${name}: ${scores.name}`);
+}
+
+/*
+Alice: undefined
+Bob: undefined
+Charlie: undefined
+*/
+```
+Note: You must use bracket notation in loops for keys because keys are comes dynamically behind the scenes in for..in loop.
+    
+- Working with JSON Data:
+    
+    ```js
+    const jsonData = {
+      "user-info": {
+        "first name": "Tamim",
+        "last name": "Hossain"
+      }
+    };
+    
+    console.log(jsonData["user-info"]["first name"]); 
+    console.log(user-info.first name) // error
+    ```
+    
+- Nested Dynamic Access:
+    
+```js
+const data = {
+    settings: {
+        theme: "dark",
+        layout: "grid"
+    }
+};
+
+const section = "settings";
+const prop = "theme";
+
+console.log(data[section][prop]); //  "dark"
+console.log(data.section.prop) // TypeError: Cannot read properties of undefined
+```
+
+
 ### Property existence test:
 
-**With in operator:**
+With in operator:
 
 ```js
 let user = {
@@ -2855,7 +2881,7 @@ console.log("age" in user); // true, user.age exists
 console.log("location" in user); // false, user.location doesn't exist
 ```
 
-**With includes() method:**
+With includes() method:
 
 ```js
 const profile = {
@@ -2869,7 +2895,7 @@ const hasName = profileKeys.includes("name");
 console.log(hasName); // Output: true
 ```
 
-**With hasOwnProperty() method:**
+With hasOwnProperty() method:
 
 ```js
 const profile = {
@@ -2880,21 +2906,6 @@ const profile = {
 
 const hasName = profile.hasOwnProperty("name");
 console.log(hasName); // Output: true
-```
-
-### The "for..in" loop
-
-```js
-let user = {
-    name: "John",
-    age: 30,
-    isAdmin: true
-};
-
-for (let key in user) {
-    console.log(key);  // name, age, isAdmin
-    console.log(user[key]); // John, 30, true
-}
 ```
 
 ### Objects References and Copying:
@@ -2940,7 +2951,7 @@ Now we have two variables, each storing a reference to the same object:
 ![object image](images/image7.png)
 
 As you can see, there’s still one object, but now with two variables that reference it.  
-We can use either variable to access the object and modify its contents:
+We can use one of theat  variables to access the object and modify its contents:
 
 ```js
 let user = { name: 'John' };
@@ -2983,8 +2994,9 @@ let user = {
 let clone = {}; // the new empty object
 
 // let's copy all user properties into it
-for (let property in user) {
-    clone[property] = user[property];
+for (let key in user) {
+    clone[key] = user[key];
+
 }
 
 console.log(clone); // { name: "John", age: 30 }
@@ -3023,10 +3035,14 @@ Object.assign(user, permissions1, permissions2);
 // now user = { name: "John", canView: true, canEdit: true }
 console.log(user.name); // John
 console.log(user.canView); // true
+
+permissions2.canEdit = false
+console.log(permissions2.canEdit) // false
+
 console.log(user.canEdit); // true
+
 ```
 
-We also can use Object.assign to perform a simple object cloning:
 
 ```js
 let user = {
@@ -3059,7 +3075,7 @@ user.sizes.width = 60;   // Modify the original object
 console.log(clone.sizes.width); // 60, get the result from the other one
 ```
 
-To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user [key] and, if it’s an object, then replicate its structure as well. That is called a “structured cloning”.The call **structuredClone(object)** clones the object with all nested properties:
+To fix this, we can use **structuredClone(object)**, which creates a deep copy of the object, including all nested properties  :
 
 ```js
 let user = {
@@ -3130,7 +3146,7 @@ user = null;
 admin.sayHello(); // Cannot read properties of null (reading 'sayHello')
 ```
 
-If we used this.name instead of user.name inside the console, then the code would work:
+If we used this.name instead of user.name, then the code work:
 
 ```js
 let user = {

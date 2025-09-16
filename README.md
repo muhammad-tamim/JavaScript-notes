@@ -49,7 +49,6 @@
     - [Quotes:](#quotes)
     - [String Property:](#string-property)
     - [String Methods:](#string-methods)
-  - [AutoBoxing](#autoboxing)
   - [Objects:](#objects)
     - [Different ways to declare an Object](#different-ways-to-declare-an-object)
     - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
@@ -131,6 +130,7 @@
     - [Task Management System](#task-management-system)
     - [Banking System](#banking-system)
   - [Iterables](#iterables)
+  - [AutoBoxing](#autoboxing)
   - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
     - [Common JS Errors:](#common-js-errors)
@@ -2491,42 +2491,6 @@ console.log(joined); // Output: "olleh"
 - Original string: "5" (length 1)
 - Target length: 3
 - Pad with "0" at the start until length becomes 3 → "005"
-
-## AutoBoxing
-
-Autoboxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so you can use object methods and properties on them. JavaScript automatically wraps the primitive value in its object temporarily, whenever you access a property or method. After the operation, the object is discarded.
-
-**Autoboxing with string:**
-
-```js
-let str = "hello";
-console.log(str.length); // 5
-console.log(str.toUpperCase()); // "HELLO"
-```
-
-Behind the scenes, Autoboxing convert string to temporary object:
-
-```js
-let temp = new String(str); // temporary object
-temp.length;               // 5
-temp.toUpperCase();        // "HELLO"
-```
-
-**Autoboxing with Numbers:**
-
-```js
-let num = 42;
-
-console.log(num.toString()); // "42"
-console.log(num.toFixed(2)); // "42.00"
-```
-Behind the scenes:
-
-```js
-let tempNum = new Number(num); // temporary object
-tempNum.toString();            // "42"
-tempNum.toFixed(2);            // "42.00"
-```
 
 ## Objects:
 
@@ -6180,16 +6144,41 @@ Even though Array, Set, and Map have a .forEach() method that lets you iterate o
 - It is only available on Array, Set, and Map.
 
 
+## AutoBoxing
 
+Autoboxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so you can use object methods and properties on them. JavaScript automatically wraps the primitive value in its object temporarily, whenever you access a property or method. After the operation, the object is discarded.
 
+**Autoboxing with string:**
 
+```js
+let str = "hello";
+console.log(str.length); // 5
+console.log(str.toUpperCase()); // "HELLO"
+```
 
+Behind the scenes, Autoboxing convert string to temporary object:
 
+```js
+let temp = new String(str); // temporary object
+temp.length;               // 5
+temp.toUpperCase();        // "HELLO"
+```
 
+**Autoboxing with Numbers:**
 
+```js
+let num = 42;
 
+console.log(num.toString()); // "42"
+console.log(num.toFixed(2)); // "42.00"
+```
+Behind the scenes:
 
-
+```js
+let tempNum = new Number(num); // temporary object
+tempNum.toString();            // "42"
+tempNum.toFixed(2);            // "42.00"
+```
 
 ## Strict Mode
 

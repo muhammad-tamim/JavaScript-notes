@@ -45,7 +45,6 @@
     - [Closure](#closure)
     - [Difference between callback function, recursion and closure](#difference-between-callback-function-recursion-and-closure)
   - [string](#string)
-    - [why strings are iterable?](#why-strings-are-iterable)
     - [Strings are immutable:](#strings-are-immutable)
     - [Quotes:](#quotes)
     - [String Property:](#string-property)
@@ -1418,14 +1417,14 @@ console.log(iterator.next()); // { value: undefined, done: true }
 So, When you write a for...of loop,
 
 ```js
-const arr = [1, 2, 3];
+const arr = [1, 2, 3];**
 
 for (const element of arr) {
     console.log(element); //  1 2 3
 }
 ```
 
-the JavaScript engine automatically transforms it into something like this:
+the JavaScript engine automatically transforms it into something like this:**
 
 ```js
 const iterable = [1, 2, 3];
@@ -2261,23 +2260,6 @@ So when we call double(5), it returns: ```return 5 * 2;```
 A string in JavaScript is a primitive data type that represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable but immutable, meaning you cannot modify them directly. 
 
 Also Strings are not objects by default, but when you use object-like features (such as accessing values by index like an array, or calling methods and properties), JavaScript automatically converts them behind the scenes into a temporary String object using autoBoxing.
-
-
-### why strings are iterable?
-
-- In JavaScript, an iterable is any object that has a Symbol.iterator method.
-- Arrays have Array.prototype[Symbol.iterator].
-- Strings also have String.prototype[Symbol.iterator].
-
-This means you can use for...of, spread syntax, destructuring, etc. directly on strings, just like arrays.
-
-```js
-for (const ch of "Hi") {
-  console.log(ch);
-}
-// H
-// i
-```
 
 
 ### Strings are immutable:

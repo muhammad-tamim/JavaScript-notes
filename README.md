@@ -1396,19 +1396,19 @@ for (const value of str) {
 ```
 
 **How for..of loop work behind the scenes:**
-Every iterable has a Symbol.iterator built-in method on it.
-- When we call iterable[Symbol.iterator](), we get back an iterator object and this object has a built-in next() method.
-- Each call to next() returns an object with two properties:
-  - value → the current element from the iterable
-  - done → a boolean that tells whether the iteration is finished
+
+An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a built-in method at the key Symbol.iterator. Calling `arr[Symbol.iterator]()` returns an iterator object, which can be used to access the elements one by one using its next() method.
+
+  - Iterator = An object that provides a way to access iterable items one by one using a next() method.
+    - Each time we call `iterator.next()` it returns a object, that has:
+      - value → the current element
+      - done → false if there are more elements, true when iteration is finished
 
 ```js
 const arr = [1, 2, 3];
 
-// Step 1: Get the iterator object from the iterable
-const iterator = arr[Symbol.iterator]();
+const iterator = arr[Symbol.iterator](); // get iterator object
 
-// Step 2: Call next() method repeatedly to get values from iterable object
 console.log(iterator.next()); // { value: 1, done: false }
 console.log(iterator.next()); // { value: 2, done: false }
 console.log(iterator.next()); // { value: 3, done: false }
@@ -1424,30 +1424,26 @@ for (const element of arr) {
     console.log(element); //  1 2 3
 }
 ```
+
 the JavaScript engine automatically transforms it into something like this:
 
 ```js
 const iterable = [1, 2, 3];
 
-// Step 1: Get the iterator from the iterable object
+// Get the iterator object
 const iterator = iterable[Symbol.iterator]();
 
-// Step 2: Get the first result
+// Get the first result
 let result = iterator.next();
 
-// Step 3: Loop while we have more elements
 while (!result.done) {
-  // Step 4: Extract the current value
+  // Extract the current value
   const value = result.value;
   
-  // Step 5: Process the value (this is your loop body)
   console.log(value); // 1, 2, 3
   
-  // Step 6: Move to next element
   result = iterator.next();
 }
-
-// When done: true, the loop exits
 ```
 
 
@@ -2271,7 +2267,7 @@ Also Strings are not objects by default, but when you use object-like features (
 
 - In JavaScript, an iterable is any object that has a Symbol.iterator method.
 - Arrays have Array.prototype[Symbol.iterator].
-- Strings also implement String.prototype[Symbol.iterator].
+- Strings also have String.prototype[Symbol.iterator].
 
 This means you can use for...of, spread syntax, destructuring, etc. directly on strings, just like arrays.
 
@@ -6005,50 +6001,89 @@ console.log("Checking Balance:", johnChecking.getBalance());
 
 
 
-## Iterables 
+## Iterables   
 
-An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a special method Symbol.iterator.
+An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a built-in method at the key Symbol.iterator. Calling `arr[Symbol.iterator]()` returns an iterator object, which can be used to access the elements one by one using its next() method.
 
-- When this method is called, it returns an iterator.
   - Iterator = An object that provides a way to access iterable items one by one using a next() method.
-    - Each call to next() returns a result object:
+    - Each time we call `iterator.next()` it returns a object, that has:
       - value → the current element
       - done → false if there are more elements, true when iteration is finished
 
+```js
+const arr = [1, 2, 3];
+
+const iterator = arr[Symbol.iterator](); // get iterator object
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
 JavaScript features like for...of loop, spread operator (...), and destructuring automatically use this Symbol.iterator under the hood.
 
-for quick preview: 
-- Iterable an object with Symbol.iterator
-- Iterator an object returned by calling Symbol.iterator
+**behind the scene of for..of:**
+
+On array:
 
 ```js
-let str = "Hi";
+const arr = [1, 2, 3];
 
-let iterator = str[Symbol.iterator](); // get iterator object
-console.log(iterator.next()); // { value: 'H', done: false }
-console.log(iterator.next()); // { value: 'i', done: false }
-console.log(iterator.next()); // { value: undefined, done: true }
-
-// Used automatically by for...of
-for (let ch of str) {
-  console.log(ch); 
+for (const element of arr) {
+    console.log(element); //  1 2 3
 }
-// H
-// i
 ```
 
 ```js
-let str = "ABC";
-console.log([...str]);  
-// [ 'A', 'B', 'C' ]
+const iterable = [1, 2, 3];
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); // 1, 2, 3
+  
+  result = iterator.next();
+}
+```
+
+On String:
+
+```js
+const str = "hello";
+
+for (const value of str) {
+    console.log(value); // hello 
+}
 ```
 
 ```js
-let arr = [1, 2, 3];
-let [a, b] = arr;
+const iterable = "hello";
 
-console.log(a, b); // 1 2
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); // hello
+  
+  result = iterator.next();
+}
 ```
+
+On Set: 
 
 ```js
 let mySet = new Set([1, 2, 2, 3]);
@@ -6057,6 +6092,27 @@ for (let val of mySet) {
     console.log(val); // 1 2 3
 }
 ```
+
+```js
+let iterable = new Set([1, 2, 2, 3]);
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); // 1 2 3
+  
+  result = iterator.next();
+}
+```
+
+On Map:
 
 ```js
 let myMap = new Map([
@@ -6072,6 +6128,89 @@ name : Alice
 age : 22
 */
 ```
+
+```js
+let iterable = new Map([
+    ["name", "Alice"],
+    ["age", 22]
+]);
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); 
+  
+  result = iterator.next();
+}
+
+/*
+name : Alice
+age : 22
+*/
+```
+
+
+**behind the scene of spread operator:**
+
+```js
+const str = "ABC";
+console.log([...str]);  // [ 'A', 'B', 'C' ]
+```
+
+```js
+let iterable = "ABC";
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+const spread = [];
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  spread.push(value)
+
+  result = iterator.next();
+}
+
+console.log(spread) // [ 'A', 'B', 'C' ]
+
+```
+
+**Behind the scene of destructuring:**
+
+```js
+let arr = [1, 2, 3];
+let [a, b] = arr;
+
+console.log(a, b); // 1 2
+```
+
+Destructuring [a, b] = arr internally calls the iterator for each element.
+
+```js
+let iterator = [1, 2, 3];
+
+// Get the iterator object
+const iterator = arr[Symbol.iterator]();
+
+const a = iterator.next().value;
+const b = iterator.next().value;
+
+console.log(a, b); // 1 2
+```
+
 
 Note:
 Even though Array, Set, and Map have a .forEach() method that lets you iterate over their elements, it is not part of the iterable protocol.

@@ -3233,7 +3233,17 @@ console.log(date.toLocaleDateString()); // 8/4/2025
 console.log(date.toLocaleTimeString()); // 1:15:24 AM
 ```
 
+- Gets specific Date name: 
 
+```js
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const date = new Date();
+const dayName = days[date.getDay()]; // Tuesday
+
+const date = new Date();
+const longWeekday = date.toLocaleString('en-US', { weekday: 'long' }); // Tuesday
+const shortWeekday = date.toLocaleString('en-US', { weekday: 'short' }); // Tue
+```
 
 ## array 
 An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.

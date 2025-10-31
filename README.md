@@ -3211,39 +3211,76 @@ console.log(now); // 2025-07-22T05:57:06.058Z
 const date = new Date();
 
 console.log(date.getFullYear()); // 2025
-console.log(date.getMonth());    // 6 (July) → Month is 0-based
-console.log(date.getDate());     // 21
-console.log(date.getDay());      // 1 (Monday) → 0 = Sunday
-console.log(date.getHours());    // 23
-console.log(date.getMinutes());  // 5
-console.log(date.getSeconds());  // 30
-console.log(date.getMilliseconds()); // 123
+console.log(date.getMonth());    // Returns month (0–11)
+console.log(date.getDate());     // Day of the month (1–31)
+console.log(date.getDay());      // Day of the week (0–6), 0 = sunday
+console.log(date.getHours());    // Hours (0–23)
+console.log(date.getMinutes());  // Minutes (0–59)
+console.log(date.getSeconds());  // Seconds (0–59)
 ```
 
 - Date Formatting (Readable Strings):
+
+| Option                     | Description                                   | Example Output               |
+| -------------------------- | --------------------------------------------- | ---------------------------- |
+| `weekday`                  | `"long"`, `"short"`, `"narrow"`               | `Friday`, `Fri`, `F`         |
+| `year`                     | `"numeric"`, `"2-digit"`                      | `2025`, `25`                 |
+| `month`                    | `"numeric"`, `"2-digit"`, `"long"`, `"short"` | `1`, `01`, `Feb`, `February` |
+| `day`                      | `"numeric"`, `"2-digit"`                      | `3`, `03`                    |
+| `hour`, `minute`, `second` | `"numeric"`, `"2-digit"`                      | `2 PM`, `02 PM`              |
+| `hour12`                   | `true` / `false` (12h or 24h)                 | `2:30 PM` / `14:30`          |
+| `timeZone`                 | e.g. `"UTC"`, `"Asia/Dhaka"`                  | converts to that zone        |
+
 
 ```js
 const date = new Date();
 console.log(date.toString());      // Mon Aug 04 2025 01:14:18 GMT+0600 (Bangladesh Standard Time)
 console.log(date.toDateString());  // Mon Aug 04 2025
 console.log(date.toTimeString());  // 01:14:18 GMT+0600 (Bangladesh Standard Time)
-console.log(date.toISOString());   // ISO format (for JSON, API)
-console.log(date.toUTCString());   // 2025-08-03T19:14:18.638Z
+
+
+console.log(date.toLocalString()) // 8/4/2025 1:15:24 AM
 console.log(date.toLocaleDateString()); // 8/4/2025
 console.log(date.toLocaleTimeString()); // 1:15:24 AM
+
+
+console.log(date.toLocaleString("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+}));
+// Friday, October 31, 2025, 02:45 PM
+
+
+console.log(date.toLocaleDateString("bn-BD", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+}));
+// শুক্রবার, ৩১ অক্টোবর, ২০২৫
+
 ```
 
-- Gets specific Date name: 
+Note: if you don't specify time zone, js Uses your system’s local time: 
 
 ```js
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const date = new Date();
-const dayName = days[date.getDay()]; // Tuesday
+console.log(date.toLocaleString("en-US")); 
+// 10/31/2025, 1:09:40 PM
 
-const date = new Date();
-const longWeekday = date.toLocaleString('en-US', { weekday: 'long' }); // Tuesday
-const shortWeekday = date.toLocaleString('en-US', { weekday: 'short' }); // Tue
+console.log(date.toLocaleString("en-US", { timeZone: "Asia/Dhaka" }));
+// 10/31/2025, 1:09:40 PM (Bangladesh = UTC+6)
+
+console.log(date.toLocaleString("en-US", { timeZone: "UTC" }));
+// 10/31/2025, 7:09:40 AM
+
+console.log(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
+// 10/31/2025, 3:09:40 AM (New York = UTC-4)
 ```
+
 
 ## array 
 An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.

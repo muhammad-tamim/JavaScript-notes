@@ -18,7 +18,17 @@
     - [How to write a long variable name](#how-to-write-a-long-variable-name)
   - [Data Types](#data-types)
     - [7 Primitive Data Types:](#7-primitive-data-types)
+      - [1. Number](#1-number)
+        - [Math Object:](#math-object)
+        - [Type Conversion:](#type-conversion)
+      - [2. BigInt](#2-bigint)
+      - [3. String](#3-string)
+      - [4. Boolean](#4-boolean)
+      - [5. Null](#5-null)
+      - [6. Undefined](#6-undefined)
+        - [When we got undefined:](#when-we-got-undefined)
     - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
+    - [8. Object](#8-object)
   - [Operator](#operator)
     - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
     - [Assignment Operators (=, +=, -=, \*=, /=):](#assignment-operators------)
@@ -708,9 +718,11 @@ message = 123456;      // number
 
 There are 8 data types in JavaScript:
 
+![image](./images/data-types/data_types_in_javascript.webp)
+
 ### 7 Primitive Data Types:
 
-1. Number 
+#### 1. Number 
 Represents both integers and floating-point numbers. 
     
 ```js
@@ -720,21 +732,22 @@ let money = 25.5345;
 console.log("Age:", age); // Outputs: Age: 25
 console.log("Money:", money.toFixed(2)); // Outputs: Money: 25.53
 ```
+##### Math Object:
 
-**Math Properties:**
+Math Properties:
 
 ```js
 console.log(Math.PI);       // 3.141592653589793
 ```
 
-**Math Methods:**
+Math Methods:
 
 ```js
 console.log(Math.round(4.5)); // 5 
 /*
 Rounds to the nearest integer:
-if number >= 0.5, it rounds up to the next integer
-if number < 0.5, it rounds down to the previous integer
+if number >= .5, it rounds up to the next integer
+if number < .5, it rounds down to the previous integer
 */
 console.log(Math.floor(4.9));   // 4 → Rounds down
 console.log(Math.ceil(4.1));    // 5 → Rounds up
@@ -755,15 +768,18 @@ console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclus
 console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive) = 28
 ```
 
-**Type conversion with global functions:**
+##### Type Conversion:
+
+With global functions:
 
 ```js
 console.log(parseInt("123"));       // 123
 console.log(parseInt("12.34"));     // 12
 console.log(parseInt("100px"));     // 100
 console.log(parseInt("abc"));       // NaN
-console.log(parseInt(true));       // NaN
+console.log(parseInt(true));        // NaN
 console.log(parseInt(false));       // NaN
+console.log(parseInt(""));          // NaN
 
 console.log(parseFloat("10"));         // 10
 console.log(parseFloat("12.34"));     // 12.34
@@ -772,13 +788,14 @@ console.log(parseFloat("3.14hello")); // 3.14
 console.log(parseFloat("abc"));       // NaN
 console.log(parseFloat(true));       // NaN
 console.log(parseFloat(false));       // NaN
+console.log(parseFloat(""));        // NaN
 
-console.log(Number("5"));        // 5
-console.log(Number("12.34"));    // 12.34
+// For Number all the behavior are same like parseInt and parseFloat but 
+// number can also convert true, false and emptyString "" to boolean number
 console.log(Number(true));       // 1
 console.log(Number(false));      // 0
 console.log(Number(""));         // 0
-console.log(Number("hello"));    // NaN
+
 
 console.log(String(123));       // "123"
 console.log(String(true));      // "true"
@@ -787,6 +804,7 @@ console.log(String(null));      // "null"
 console.log(String(undefined)); // "undefined"
 console.log(String([1, 2, 3])); // "1,2,3"
 
+// Boolean follows js truthy and falsy values
 console.log(Boolean(0));           // false
 console.log(Boolean(1));           // true
 console.log(Boolean(""));          // false
@@ -797,7 +815,7 @@ console.log(Boolean([]));          // true (empty array is truthy)
 console.log(Boolean({}));          // true (empty object is truthy)
 ```
 
-**Type conversion with methods**
+with methods:
 
 ```js
 console.log((123).toString());       // "123"
@@ -812,21 +830,18 @@ console.log((12.3456).toFixed(2)); // "12.35"
 console.log(12.3456.toPrecision(4)); // "12.35"
 console.log(12.3456789.toPrecision(5)); // "12.346"
 
-let date = new Date();
-console.log(date) // 2025-09-13T05:25:33.523Z
-console.log(date.toLocaleString()); // 9/13/2025, 11:26:02 AM
 ```
 
 
-2. BigInt
+#### 2. BigInt
 
 Used for integers larger than <code>2<sup>53</sup> - 1</code>.
 
 ```let big = 12345678901234567890n;```
 
-3. String
+#### 3. String
 
-4. Boolean 
+#### 4. Boolean 
    
 Represents true or false.
 
@@ -835,7 +850,7 @@ let isMarried = false;
 let isSingle = true;
 ```
 
-5. Null  
+#### 5. Null  
    
 Represents intentional "no value".
 
@@ -844,41 +859,41 @@ let data = null;
 console.log(data) // null
 ```
 
-6. Undefined  
+#### 6. Undefined  
    
-It is a primitive data type and default value given by JavaScript when JavaScript expects a value but doesn’t find one.:
+It is a primitive data type and default value given by JavaScript when JavaScript expects a value but doesn’t find one:
 
-**When we got undefined:**
+##### When we got undefined:
 
-a variable Declared but not initialized
+- a variable Declared but not initialized
 
 ```js
 let a;
 console.log(a); // undefined
 ```
 
-Function without a return value
+- Function without a return value
 
 ```js
 function greet() {}
 console.log(greet()); // undefined
 ```
 
-Accessing a non-existing object property
+- Accessing a non-existing object property
 
 ```js
 let obj = { name: "Alice" };
 console.log(obj.age); // undefined
 ```
 
-Accessing an array element that doesn’t exist
+- Accessing an array element that doesn’t exist
 
 ```js
 let arr = [1, 2, 3];
 console.log(arr[5]); // undefined
 ```
 
-Function parameters not provided
+- IF Function parameters are not provided
 
 ```js
 function sum(a, b) {
@@ -887,7 +902,7 @@ function sum(a, b) {
 sum(5); // undefined
 ```
 
-Explicit assignment
+- Explicit assignment
 
 ```js
 let x = undefined;
@@ -902,15 +917,15 @@ Represents a unique and immutable value, mainly used to create unique identifier
 let id = Symbol();
 console.log(typeof id); // "symbol"
 
-
-let a = Symbol("id");
-let b = Symbol("id");
+const name = "tamim";
+let a = Symbol(name);
+let b = Symbol(name);
 console.log(a === b); // false
 ```
 
 ### 1 Non-Primitive Data Types:
 
-8. Object  
+### 8. Object  
    
 In JavaScript, any data that is not a primitive type is considered an object type. The three most commonly used object types are:
 

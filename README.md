@@ -28,15 +28,21 @@
       - [6. Undefined](#6-undefined)
         - [When we got undefined:](#when-we-got-undefined)
     - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
-    - [8. Object](#8-object)
+      - [8. Object](#8-object)
   - [Operator](#operator)
     - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
     - [Assignment Operators (=, +=, -=, \*=, /=):](#assignment-operators------)
     - [Increment / Decrement Operators (--, ++):](#increment--decrement-operators----)
     - [Comparison Operator (\>, \<, \>=, \<=, ==, ===, !=, !==):](#comparison-operator--------)
     - [Logical Operators (\&\&, ||, ! ,, !!):](#logical-operators-----)
-    - [Conditional Operators (if, else, else if, ? :, switch, case):](#conditional-operators-if-else-else-if---switch-case)
+    - [Conditional Operators (if, else, else if, ? :, switch case):](#conditional-operators-if-else-else-if---switch-case)
+      - [Truthy and Falsy values:](#truthy-and-falsy-values)
     - [Others Operators](#others-operators)
+      - [typeof operator:](#typeof-operator)
+      - [rest operator:](#rest-operator)
+      - [spread operator:](#spread-operator)
+      - [Nullish Coalescing operator (??):](#nullish-coalescing-operator-)
+      - [|| vs ??:](#-vs-)
   - [Loops](#loops)
     - [for loop:](#for-loop)
     - [while loop:](#while-loop)
@@ -925,7 +931,7 @@ console.log(a === b); // false
 
 ### 1 Non-Primitive Data Types:
 
-### 8. Object  
+#### 8. Object  
    
 In JavaScript, any data that is not a primitive type is considered an object type. The three most commonly used object types are:
 
@@ -935,12 +941,11 @@ In JavaScript, any data that is not a primitive type is considered an object typ
 
 ## Operator
 
-An Operator is a special symbol or keyword that performs an operation on one or more values.
+An Operator is a special symbol that tells the program to performs a specific operation on one or more values.
 
 ### Arithmetic Operators (+, -, *, /, %, **):
 
 ```js
-
 console.log(2 + 3); // 5
 console.log(5 - 2); // 3
 console.log(4 * 2); // 8
@@ -1017,9 +1022,8 @@ console.log(x); // 10
 ```
 
 Note: 
-
 - Pre-increment (++i): First increments the value of i, then assigns it.
-- Post-increment (i++): First assigns the value, then increments it.
+- Post-increment (i++): First assigns the value of i, then increments it.
 
 ### Comparison Operator (>, <, >=, <=, ==, ===, !=, !==):
 
@@ -1129,7 +1133,7 @@ console.log(!!undefined); // false
 console.log(!!NaN); // false
 ```
 
-### Conditional Operators (if, else, else if, ? :, switch, case):
+### Conditional Operators (if, else, else if, ? :, switch case):
 
 ```js
 let age = 20;
@@ -1191,7 +1195,7 @@ switch (color) {
 // switch checks one variable against multiple cases and runs the matched block.
 ```
 
-**Truthy and Falsy values:**
+#### Truthy and Falsy values:
 
 In JavaScript, any value used in a conditional statement gets automatically converted to true or false.
 
@@ -1219,35 +1223,29 @@ if (NaN) console.log('Falsy');
 
 ### Others Operators
 
-**typeof operator:**
+#### typeof operator:
 
 ```js
-
-console.log(typeof undefined); // "undefined"
-
 console.log(typeof 0); // "number"
-
 console.log(typeof 10n); // "bigint"
-
 console.log(typeof true); // "boolean"
-
 console.log(typeof "foo"); // "string"
-
 console.log(typeof Symbol("id")); // "symbol"
+console.log(typeof null); // object
+console.log(typeof undefined); // undefined
 
-console.log(typeof null); // "object"  
-// typeof null return "object", but null is a primitive data type.
 
+console.log(typeof NaN); // number
 ```
 
 
-**rest operator:**
+#### rest operator:
 
 Rest operator gathers values into an array or object.
 
 It is used defining things like Function parameters, array destructuring, object destructuring.
 
-rest in function parameter:
+- rest in function parameter:
 ```js
 
 function multiply(multiplier, ...numbers) {
@@ -1257,17 +1255,14 @@ function multiply(multiplier, ...numbers) {
 }
 
 multiply(2, 1, 2, 3);
-multiply(3, 4, 5, 6);
 
 /*
 2
 [ 1, 2, 3 ]
-3
-[ 4, 5, 6 ]
 */
 ```
 
-rest in array destructuring:
+- rest in array destructuring:
 
 ```js
 const [first, ...rest] = [1, 2, 3, 4];
@@ -1275,7 +1270,7 @@ console.log(first); // 1
 console.log(rest);  // [2, 3, 4]
 ```
 
-rest in object destructuring:
+- rest in object destructuring:
 
 ```js
 const user = { name: "Tamim", age: 21, country: "BD" };
@@ -1285,13 +1280,12 @@ console.log(name); // Tamim
 console.log(rest); // { age: 21, country: "BD" }
 ```
 
-**spread operator:**
+#### spread operator:
 Spreads operator breaks an array or object into individual values. 
 
-It is Used in Function calls, array literals and object literals.
-  - A literal means a fixed value written directly in the code.
+It is Used in Function parameter, array literals and object literals.
 
-in function call:
+- in function parameter:
 
 ```js
 function greet(a, b, c) {
@@ -1304,7 +1298,7 @@ greet(...args); // 1 2 3
 console.log(...args) // 1 2 3
 ```
 
-In Arrays
+- In Arrays literal:
 
 ```js
 const num1 = [1, 2];
@@ -1317,7 +1311,7 @@ console.log(Math.max(...all)) // 4
 console.log(Math.min(...all)) // 1
 ```
 
-In Objects:
+- In Objects literal:
 
 ```js
 const user1 = { name: "Tamim" };
@@ -1326,8 +1320,16 @@ const merged = { ...user1, ...user2 };
 console.log(merged); // { name: "Tamim", age: 21 }
 ```
 
+Note: A literal means a fixed value written directly in the code. It represents a value exactly as it is, without calculation or computation.
 
-**Nullish Coalescing operator (??):**  
+```js
+let age = 25;      // 25 is a number literal
+let name = "Tamim"; // "Tamim" is a string literal
+let numbers = [1, 2, 3]; // [1,2,3] is an array literal
+```
+
+
+#### Nullish Coalescing operator (??):
 
 The nullish coalescing operator (??) is used to provide a default value when a variable is null or undefined.
 
@@ -1342,7 +1344,6 @@ greet("John"); // Hello, John
 ```
 
 ```js
-
 let user = {
     age: 0,
     name: ""
@@ -1365,7 +1366,6 @@ console.log(postalCode); // Postal code not available
 ```
 
 ```js
-
 let a;
 let b = null;
 let c = undefined;
@@ -1373,11 +1373,9 @@ let d = "Hello";
 
 let result = a ?? b ?? c ?? d ?? "Fallback";
 console.log(result); // "Hello"
-
-// It returns the first non-nullish value.
 ```
 
-|| vs ??:
+#### || vs ??:
 
 ```js
 let value1 = 0;
@@ -1391,7 +1389,6 @@ console.log(result2); // 0   (because 0 is NOT null or undefined)
 You cannot mix ?? with || or && without parentheses:
 
 ```js
-
 // SyntaxError:
 let result = null || undefined ?? "Default";
 

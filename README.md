@@ -8,6 +8,7 @@
     - [Why Did JavaScript Need a Standard Version:](#why-did-javascript-need-a-standard-version)
     - [JavaScript Engines:](#javascript-engines)
     - [Hello World](#hello-world)
+    - [Why JavaScript is one of the most hated language:](#why-javascript-is-one-of-the-most-hated-language)
   - [Variables](#variables)
     - [Difference between var, let and const:](#difference-between-var-let-and-const)
     - [Hoisting](#hoisting)
@@ -266,8 +267,7 @@ The statement sends to the JavaScript Engine
       - console is a global object provided by the environment (browser or Node.js).
       - log is a method of the console object.
       - so, Calling console.log("Hello World") passes the string "Hello World" as an argument to that log method, which then prints it to the web browser console or terminal (in Node.js).
-
-Q&A:
+**Note:**
 - statement: A single instruction in a programming language
   - ```console.log("Hello World");```
 - code: Any written instructions in a programming language, from one line to many. 
@@ -276,6 +276,110 @@ Q&A:
   - Find the largest number in an array
 - Method: when a function is stored as a property of an object, it’s called a method.
 
+### Why JavaScript is one of the most hated language:
+
+1. Weird Type Conversions: 
+
+```js
+console.log(1 + "2");   // "12"  (number + string = string)
+console.log("2" - 1);   // 1     (string - number = number)
+console.log("2" + 1);   // "21"  (string + number = string)
+```
+
+```js
+console.log(true + false); // 1
+console.log(1 < 2 < 3);    // true
+console.log(3 < 2 < 1);    // true but 3 < 2 → false, 2 < 1 → false
+```
+
+```js
+console.log([] + []) // ''
+console.log([] + {}) // [object Object]
+console.log({} + []) // 0
+console.log({} + {}) // NaN
+```
+
+2. The == Disaster: 
+
+```jsx
+console.log(0 == false);   // true
+console.log('' == false);  // true
+console.log(null == undefined); // true
+console.log([] == false);  // true
+console.log([] == 0);      // true
+console.log([] == ![]);    // true 😵
+```
+
+```jsx
+console.log(0 == "0") // true
+console.log(0 == []) // true
+console.log("0" == []) // true
+```
+
+3. null and undefined Confusion:
+
+JavaScript has two different “nothing” values — null and undefined.
+
+```jsx
+console.log(typeof null); // "object" ❌ (bug from 1995!)
+console.log(typeof undefined); // "undefined"
+console.log(null === undefined) // false
+```
+Even the creator of JavaScript admitted this was a mistake, but it’s too late to fix now — it would break 
+millions of websites.
+
+Note: 
+- Undefined = a variable has no value assigned 
+- Null = a variable has been intentionally assigned empty
+
+1. NaN Has an Identity Crisis
+
+```js
+typeof NaN; // "number" - Wait what? “Not-a-Number” is a number?!
+
+console.log(NaN == NaN)
+console.log(NaN === NaN)
+```
+Note: NaN is the only value in JavaScript that is not equal to itself.
+
+5. The “this” Keyword Madness:
+
+this loses its context when the method is called separately. That’s why people call it one of the most confusing parts of JavaScript.
+
+```jsx
+const user = {
+    name: "Tamim",
+    sayHi() {
+        console.log("hi", this.name);
+    },
+    sayHey() {
+        console.log("hey", user.name)
+    }
+};
+
+user.sayHi(); // Tamim ✅
+user.sayHey(); // hey Tamim ✅
+
+const hi = user.sayHi;
+hi();      // undefined ❌
+
+const hey = user.sayHey
+hey() // hey Tamim
+```
+
+Because this depends on how the function is called, not where it’s written. 😡 Many developers spend hours debugging “why this is undefined.”
+
+
+That’s why developers say:
+👉 Always use ===, not ==.
+
+6. Too Many Ways to Say “Hi”: 
+
+```jsx
+function sayHi() {}
+const sayHi = function() {}
+const sayHi = () => {}
+```
 
 ## Variables
 A variable is a “named storage” for data. We can declare variables to store data by using keywords:

@@ -1,7 +1,7 @@
 <h1 align="center">JavaScript Notes</h1>
 
 
-- [Part 1: The JavaScript Language](#part-1-the-javascript-language)
+- [Part 1: JS Fundamental](#part-1-js-fundamental)
   - [An Introduction to Javascript](#an-introduction-to-javascript)
     - [What is JavaScript:](#what-is-javascript)
     - [JavaScript History:](#javascript-history)
@@ -18,15 +18,7 @@
     - [How to write a long variable name](#how-to-write-a-long-variable-name)
   - [Data Types](#data-types)
     - [7 Primitive Data Types:](#7-primitive-data-types)
-      - [1. Number](#1-number)
-      - [2. BigInt](#2-bigint)
-      - [3. String](#3-string)
-      - [4. Boolean](#4-boolean)
-      - [5. Null](#5-null)
-      - [6. Undefined](#6-undefined)
-        - [When we got undefined:](#when-we-got-undefined)
     - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
-      - [8. Object](#8-object)
     - [Type Conversion:](#type-conversion)
   - [Operator](#operator)
     - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
@@ -71,6 +63,9 @@
     - [Quotes:](#quotes)
     - [String Property:](#string-property)
     - [String Methods:](#string-methods)
+  - [array](#array)
+    - [for..of loop](#forof-loop)
+    - [Array Methods](#array-methods)
   - [Objects:](#objects)
     - [Different ways to make an Object](#different-ways-to-make-an-object)
     - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
@@ -85,25 +80,10 @@
     - [Optional Chaining (?.)](#optional-chaining-)
     - [Date Object:](#date-object)
     - [Math Object:](#math-object)
-  - [array](#array)
-    - [for..of loop](#forof-loop)
-    - [Array Methods](#array-methods)
   - [Destructuring](#destructuring)
     - [Array Destructuring](#array-destructuring)
     - [Object Destructuring](#object-destructuring)
     - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
-  - [set](#set)
-    - [creating a set](#creating-a-set)
-    - [Adding \& Removing Values](#adding--removing-values)
-    - [Checking \& Size](#checking--size)
-    - [Iterating Over a Set](#iterating-over-a-set)
-    - [Convert Set ↔ Array](#convert-set--array)
-  - [map](#map)
-    - [Creating a Map](#creating-a-map)
-    - [Adding \& Updating Values](#adding--updating-values)
-    - [Getting \& Checking Values](#getting--checking-values)
-    - [Deleting \& Clearing](#deleting--clearing)
-    - [Iterating Over a Map](#iterating-over-a-map)
   - [Iterables](#iterables)
   - [AutoBoxing](#autoboxing)
   - [Strict Mode](#strict-mode)
@@ -138,19 +118,35 @@
   - [CSS and Class Styling](#css-and-class-styling)
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
   - [Events](#events)
-- [Part 3: JS Exercise](#part-3-js-exercise)
-  - [Operator Problems](#operator-problems)
-  - [Loop Problems](#loop-problems)
-  - [String Problems](#string-problems)
-  - [Array Problems](#array-problems)
-  - [Object Problems](#object-problems)
-  - [Function Problems](#function-problems)
+- [Part 3: OOP](#part-3-oop)
+- [Part 4: Data Structure](#part-4-data-structure)
+  - [Array](#array-1)
+  - [Object](#object)
+  - [set](#set)
+    - [creating a set](#creating-a-set)
+    - [Adding \& Removing Values](#adding--removing-values)
+    - [Checking \& Size](#checking--size)
+    - [Iterating Over a Set](#iterating-over-a-set)
+    - [Convert Set ↔ Array](#convert-set--array)
+  - [map](#map)
+    - [Creating a Map](#creating-a-map)
+    - [Adding \& Updating Values](#adding--updating-values)
+    - [Getting \& Checking Values](#getting--checking-values)
+    - [Deleting \& Clearing](#deleting--clearing)
+    - [Iterating Over a Map](#iterating-over-a-map)
+  - [Stack](#stack)
+  - [Queue](#queue)
+  - [Linked List](#linked-list)
+  - [Graph](#graph)
+- [Part 5: Algorithms](#part-5-algorithms)
+  - [Time and Space Complexity](#time-and-space-complexity)
+  - [Searching](#searching)
+  - [Sorting](#sorting)
 
 ---
 
 
-
-# Part 1: The JavaScript Language
+# Part 1: JS Fundamental
 
 ## An Introduction to Javascript
 
@@ -734,7 +730,7 @@ There are 8 data types in JavaScript:
 
 ### 7 Primitive Data Types:
 
-#### 1. Number 
+1. Number 
 Represents both integers and floating-point numbers. 
     
 ```js
@@ -745,7 +741,7 @@ console.log("Age:", age); // Outputs: Age: 25
 console.log("Money:", money.toFixed(2)); // Outputs: Money: 25.53
 ```
 
-#### 2. BigInt
+2. BigInt
 
 JavaScript Numbers are only accurate up to 15 digits, but BigInt can represent an integer of any size, limited only by available memory.
 
@@ -760,9 +756,9 @@ let y = BigInt("12345123451234512345");
 console.log(x, y) // 12345123451234512345n 12345123451234512345n
 ```
 
-#### 3. String
+3. String
 
-#### 4. Boolean 
+4. Boolean 
    
 Represents true or false.
 
@@ -771,7 +767,7 @@ let isMarried = false;
 let isSingle = true;
 ```
 
-#### 5. Null  
+5. Null  
    
 Represents intentional "no value".
 
@@ -780,11 +776,11 @@ let data = null;
 console.log(data) // null
 ```
 
-#### 6. Undefined  
+6. Undefined  
    
 It is a primitive data type and default value given by JavaScript when JavaScript expects a value but doesn’t find one:
 
-##### When we got undefined:
+**When we got undefined:**
 
 - a variable Declared but not initialized
 
@@ -846,7 +842,7 @@ console.log(a === b); // false
 
 ### 1 Non-Primitive Data Types:
 
-#### 8. Object  
+8. Object  
    
 In JavaScript, any data that is not a primitive type is considered an object type. The three most commonly used object types are:
 
@@ -4423,6 +4419,522 @@ console.log(joined); // Output: "olleh"
 - Target length: 3
 - Pad with "0" at the start until length becomes 3 → "005"
 
+## array 
+An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.
+
+**Array Declaration:**
+
+```js
+let fruits = []
+```
+
+**Array Initialization:**
+
+```js
+let fruits = ['apple', 'orange', 'plum']
+```
+
+**Array Assignment:**
+
+```js
+let fruits = ['apple', 'orange', 'plum'];
+fruits[2] = 'mango';
+console.log(fruits); // [ 'apple', 'orange', 'mango' ]
+```
+
+**Get the length of an array using length property:**
+
+```js
+let fruits = ["Apple", "Orange", "Plum"];
+console.log(fruits.length); // 3
+```
+
+Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array. They both point to the same memory address:
+
+```js
+let fruits = ["Banana"]
+
+let arr = fruits; // copy by reference (two variables reference the same array)
+
+console.log(arr === fruits); // true
+
+arr.push("Pear"); // modify the array by reference
+
+console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
+```
+
+### for..of loop
+
+One of the oldest ways to cycle array items is the for loop over indexes:
+
+```js
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+```
+
+```js
+let fruits = ["Apple", "Orange", "Plum"];
+
+// iterates over array elements
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+```
+
+Technically, because arrays are objects, it is also possible to use for..in, but it gives you the keys (like "0", "1", or even custom properties) instead of the actual values.
+
+```js
+const fruits = ["apple", "banana", "mango"];
+fruits.custom = "extra"; // adding a property to the array
+
+for (const key in fruits) {
+    console.log(key); // 0, 1, 2, custom
+}
+```
+
+### Array Methods
+
+1.  Adding / Removing Elements
+
+    - push/pop and unshift/shift:
+    
+    | Operation                                        | Method    |
+    | ------------------------------------------------ | --------- |
+    | Adds element to end and returns the new length   | push()    |
+    | Remove the last element and returns the element  | pop()     |
+    | Adds element to start and returns the new length | unshift() |
+    | Remove the first element and returns the element | shift()   |
+    
+    ```js
+    let fruits = ["Apple", "Orange", "Plum"];
+    
+    console.log(fruits.push('Mango')) // 4
+    console.log(fruits); // [ 'Apple', 'Orange', 'Plum', 'Mango' ]
+    console.log(fruits.pop()); // Mango
+    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
+    
+    console.log(fruits.unshift('Mango')) // 4
+    console.log(fruits); // [ 'Mango', 'Apple', 'Orange', 'Plum' ]
+    console.log(fruits.shift()); // Mango
+    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
+    ```
+    
+    #### Why push/pop run fast and unshift/shift are slow?
+    
+    ![push/pop/unshift/shift](images/image8.png)
+    
+    push() and pop() are fast because they work at the end of an array, where JavaScript can simply add or remove an item without affecting the positions of other elements.
+    
+    On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.
+    
+    - splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:
+    
+    ```js
+    let arr = ["I", "study", "JavaScript"];
+    // from index 1 remove 1 element
+    console.log(arr.splice(1, 1));  // [ 'study' ]
+    console.log(arr); // [ 'I', 'JavaScript' ]
+    
+    
+    let arr2 = ["I", "study", "JavaScript", "right", "now"];
+    // remove 3 first elements and replace them with another
+    console.log(arr2.splice(0, 3, "Let's", "dance")); // [ 'I', 'study', 'JavaScript' ]
+    console.log(arr2) // ["Let's", "dance", "right", "now"]
+    
+    
+    let arr3 = ["I", "study", "JavaScript"];
+    // from index 2, delete 0, then insert "complex" and "language"
+    console.log(arr3.splice(2, 0, "complex", "language")); // []
+    console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
+    
+    
+    let arr4 = [1, 2, 5];
+    // from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
+    console.log(arr4.splice(-1, 0, 3, 4));[]
+    console.log(arr4); // [ 1, 2, 3, 4, 5 ]
+    ```
+    
+    - slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:
+    
+    ```js
+    let arr = ["t", "e", "s", "t"];
+    
+    console.log(arr.slice(1, 3)); // [ 'e', 's' ]
+    console.log(arr); // [ 't', 'e', 's', 't' ]
+    console.log(arr.slice(-2)); // [ 's', 't' ]
+    console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
+    ```
+    
+    Note:
+    - Use splice() when you want to change the original array (remove/insert/replace).
+    - Use slice() when you want a copy of part of the array, without changing the original.
+
+2. Searching / Location
+
+   - indexOf(item) – Returns the index of the first match, or -1:
+    
+    ```js
+    let arr = [1, 2, 3];
+    
+    console.log(arr.indexOf(2)); // 1
+    console.log(arr.indexOf(4)); // -1
+    ```
+    
+   - lastIndexOf(item) – Returns the index of the last match, or -1:
+    
+    ```js
+    let arr = [1, 2, 2, 3];
+    
+    console.log(arr.lastIndexOf(2)); // 2
+    console.log(arr.lastIndexOf(5)); // -1
+    ```
+    
+   - includes(item) – Returns true if array contains item, or false:
+    
+    ```js
+    let arr = [1, 2, 3];
+    
+    console.log(arr.includes(2)); // true
+    console.log(arr.includes(5)) // false
+    ```
+    
+
+3.  Iteration / Transformation
+
+    | Method      | Purpose                                                    | Returns                         | Modifies Original Array |
+    | ----------- | ---------------------------------------------------------- | ------------------------------- | ----------------------- |
+    | `map()`     | Returns a new array by applying a function to each element | ✅ New array                     | ❌ No                    |
+    | `forEach()` | Executes a function for each element; no return value      | ❌ No return                     | ❌ No                    |
+    | `filter()`  | Filters elements based on a condition                      | ✅ New filtered array            | ❌ No                    |
+    | `find()`    | Finds the **first** element that matches a condition       | ✅ Single element or `undefined` | ❌ No                    |
+
+    - forEach(callback) – Executes a function for each element; no return value:
+    
+    ```js
+    let arr = [1, 2, 3]
+    arr.forEach(n => console.log(n * 2)); // 2 4 6       
+    ```
+    
+    ```js
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    products.forEach(product => console.log(product))
+    
+    /*
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    */
+    ```
+    
+    - map(callback) – return a new array by applying function to each element:
+    
+    ```js
+    let arr = [1, 2, 3]
+    let arr2 = arr.map(n => n * 2);
+    console.log(arr) // [ 1, 2, 3 ]
+    console.log(arr2) // [ 2, 4, 6 ]
+    ```
+    
+    ```js
+    // using map for just printf (not recommended)
+    const numbers = [1, 2, 3, 4, 5];
+    
+    const newNumber = numbers.map(number => console.log(number))
+    
+    console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
+    ```
+    
+    ```js
+    // using map for both element and index
+    const names = ["tamim", "nasrin", "maria"];
+    
+    const newNames = names.map((element, index) => console.log(element, index))
+    
+    /*
+    tamim 0
+    nasrin 1
+    maria 2
+     */
+    ```
+    
+    ```js
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    const productNames = products.map(product => product.name);
+    console.log(productNames)
+    
+    // [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
+    ```
+    
+    - filter(callback) – return a new array with elements that pass the test:
+    
+    ```js
+    let arr = [1, 2, 3, 4]
+    let arr2 = arr.filter(n => n % 2 === 0);
+    console.log(arr) // [ 1, 2, 3, 4 ]
+    console.log(arr2) // [ 2, 4 ]
+    ```
+    
+    ```js
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    const filterProducts = products.filter(product => product.price >= 1000)
+    console.log(filterProducts);
+    
+    /*
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    */
+    
+    const expensiveProducts = products.filter(product => product.price >= 5000);
+    console.log(expensiveProducts); // []
+    ```
+    
+    - find(callback) – Returns the first element that matches:
+    
+    ```js
+    
+    let arr = [1, 2, 3, 4, 5];
+    const result = arr.find(n => n > 2);
+    console.log(result); // 3
+    ```
+    
+    ```js
+    const products = [
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+    ]
+    
+    const foundProduct = products.find(product => product.brand === "apple");
+    console.log(foundProduct)
+    
+    /*
+        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    */
+    
+    const foundColor = products.find(product => product.color === "pink");
+    console.log(foundColor) // undefined
+    ```
+    
+    - findIndex(callback) – Returns the index of the first element that matches:
+    
+    ```js
+    let arr = [1, 2, 3, 4, 5];
+    const result = arr.findIndex(n => n > 2);
+    console.log(result); // 2
+    ```
+    
+    - reduce()– Reduces array to a single value:
+    
+    Syntax:
+    
+    ```js
+    reduce((accumulator, currentValue) => ..., initialValue);
+    ```
+    
+    ```js
+    const numbers = [1, 2, 3, 4];
+    
+    // without reduce method
+    
+    let acc = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        acc = acc + numbers[i];
+    }
+    console.log(acc); // Output: 10
+    
+    // with reduce method
+    
+    const result = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(result); // Output: 10
+    ```
+    
+    Here,
+    
+    -   accumulator = keeps the result
+    -   0 = The staring value of accumulator
+    -   currentValue = the current element of the array
+    
+    ![reduce](images/reduce.png)
+
+4.  Reordering / Combining
+
+    - concat(...arrays) – Returns a new array by merging arrays/values:
+    
+    ```js
+    let arr = [1, 2];
+    const arr2 = arr.concat([3, 4], 5);
+    console.log(arr); // [ 1, 2 ]
+    console.log(arr2); // [ 1, 2, 3, 4, 5 ]
+    ```
+    
+    - join(separator) – Returns a string by joining array elements using the given separator:
+    
+    ```js
+    let arr = ["a", "b", "c"];
+    let arr2 = arr.join("-");
+    console.log(arr); // [ 'a', 'b', 'c' ]
+    console.log(arr2); // a-b-c
+    
+    const arr = ['Hello', 'World'];
+    let arr3 = arr.join(" ");
+    console.log(arr); // ['Hello', 'World']
+    console.log(arr3); // Hello World
+    ```
+    
+    - split(separator) – Splits a string into an array using the given separator:
+    
+    ```js
+    let str = "a-b-c";
+    let result = str.split("-");
+    console.log(str);    // "a-b-c"
+    console.log(result); // [ 'a', 'b', 'c' ]
+    
+    const str = 'Hello World';
+    let arr2 = str.split(" ");
+    console.log(str); // Hello World
+    console.log(arr2); // ['Hello', 'World']
+    ```
+    
+    **Note:** join used on arrays to convert them into a string and split used on strings to convert them a array.
+    
+    - reverse() – Reverses the array:
+    
+    ```js
+    let arr = [1, 2, 3];
+    console.log(arr.reverse()) // [ 3, 2, 1 ]
+    ```
+    
+    - sort – return a new sorted array:
+    
+    ```js
+    let arr = [3, 1, 2];
+    console.log(arr.sort())  // default lexicographic: [1,2,3]
+    
+    // but in this case default sort fails:
+    let arr2 = [1, 2, 15];
+    console.log(arr2.sort()) // [ 1, 15, 2 ]
+    ```
+    
+    The order became 1, 15, 2. Incorrect. But why?
+    
+    In JavaScript, the default behavior of sort() is lexicographic (dictionary-like) sorting. This means:
+    
+    -   It converts elements to strings.
+    -   Then it compares those strings using Unicode (UTF-16) code unit values.
+    thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: [1, 15, 2]
+    
+    To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.
+    
+    ```js
+    let arr2 = [1, 2, 15];
+    console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
+    ```
+    
+    How it works:
+    
+    `(a, b) => a - b this function returns:`
+    -   Negative number (a - b < 0) → keep a before b
+    -   Positive number (a - b > 0) → place b before a
+    -   Zero (a - b === 0) → leave a and b unchanged
+
+5. Others
+
+- some() –Return true if any element passes the test, else false:
+    
+```js
+let arr = [1, 2, 3];
+const arr2 = arr.some(n => n > 2);
+console.log(arr2) // true
+```
+    
+- every() –Return true if all element passes the test, else false:
+    
+```js
+let arr = [1, 2, 3];
+const arr2 = arr.every(n => n > 2);
+console.log(arr2) // false
+```
+
+- at(index) – Returns element at index; supports negative indexing:
+    
+```js
+// With at method
+let fruits = ["Apple", "Orange", "Plum"];
+    
+console.log(fruits.at(-1)); // Plum
+    
+// without at method
+let fruits = ["Apple", "Orange", "Plum"];
+console.log(fruits[fruits.length - 1]); // Plum
+```
+    
+- Array.isArray(value) – Return true if value is an array, else false:
+    
+```js
+    
+const arr = [1, 2]
+const result = Array.isArray(arr);
+console.log(result) // true       
+```
+    
+- fill(value, start?, end?) – Fills array with value:
+    
+```js
+const arr = [1, 2, 3]
+arr.fill(0, 1);
+console.log(arr) // [ 1, 0, 0 ]
+```
+    
+- flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:
+    
+```js
+// Default depth (1)
+
+const arr = [1, 2, [3, 4]];
+const flatArr = arr.flat();
+console.log(flatArr); // Output: [1, 2, 3, 4]
+
+// Deeper nesting with depth = 2
+
+const arr = [1, 2, [3, 4, [5, 6]]];
+const flatArr = arr.flat(2);
+console.log(flatArr); // Output: [1, 2, 3, 4, 5, 6]
+
+// Infinite depth (Infinity)
+
+const arr = [1, [2, [3, [4]]]];
+const flatArr = arr.flat(Infinity);
+console.log(flatArr); // Output: [1, 2, 3, 4]
+```
+
 ## Objects:
 
 An object is a collection of key-value pairs (property). where key is a string or symbol, and value can be anything.
@@ -5249,521 +5761,7 @@ console.log(Math.floor(Math.random() * 10)); // Random integer between 0 (inclus
 console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclusive) and 100 (exclusive) = 28
 ```
 
-## array 
-An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.
 
-**Array Declaration:**
-
-```js
-let fruits = []
-```
-
-**Array Initialization:**
-
-```js
-let fruits = ['apple', 'orange', 'plum']
-```
-
-**Array Assignment:**
-
-```js
-let fruits = ['apple', 'orange', 'plum'];
-fruits[2] = 'mango';
-console.log(fruits); // [ 'apple', 'orange', 'mango' ]
-```
-
-**Get the length of an array using length property:**
-
-```js
-let fruits = ["Apple", "Orange", "Plum"];
-console.log(fruits.length); // 3
-```
-
-Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array. They both point to the same memory address:
-
-```js
-let fruits = ["Banana"]
-
-let arr = fruits; // copy by reference (two variables reference the same array)
-
-console.log(arr === fruits); // true
-
-arr.push("Pear"); // modify the array by reference
-
-console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
-```
-
-### for..of loop
-
-One of the oldest ways to cycle array items is the for loop over indexes:
-
-```js
-let arr = ["Apple", "Orange", "Pear"];
-
-for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-}
-```
-
-```js
-let fruits = ["Apple", "Orange", "Plum"];
-
-// iterates over array elements
-for (let fruit of fruits) {
-    console.log(fruit);
-}
-```
-
-Technically, because arrays are objects, it is also possible to use for..in, but it gives you the keys (like "0", "1", or even custom properties) instead of the actual values.
-
-```js
-const fruits = ["apple", "banana", "mango"];
-fruits.custom = "extra"; // adding a property to the array
-
-for (const key in fruits) {
-    console.log(key); // 0, 1, 2, custom
-}
-```
-
-### Array Methods
-
-1.  Adding / Removing Elements
-
-    - push/pop and unshift/shift:
-    
-    | Operation                                        | Method    |
-    | ------------------------------------------------ | --------- |
-    | Adds element to end and returns the new length   | push()    |
-    | Remove the last element and returns the element  | pop()     |
-    | Adds element to start and returns the new length | unshift() |
-    | Remove the first element and returns the element | shift()   |
-    
-    ```js
-    let fruits = ["Apple", "Orange", "Plum"];
-    
-    console.log(fruits.push('Mango')) // 4
-    console.log(fruits); // [ 'Apple', 'Orange', 'Plum', 'Mango' ]
-    console.log(fruits.pop()); // Mango
-    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
-    
-    console.log(fruits.unshift('Mango')) // 4
-    console.log(fruits); // [ 'Mango', 'Apple', 'Orange', 'Plum' ]
-    console.log(fruits.shift()); // Mango
-    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
-    ```
-    
-    #### Why push/pop run fast and unshift/shift are slow?
-    
-    ![push/pop/unshift/shift](images/image8.png)
-    
-    push() and pop() are fast because they work at the end of an array, where JavaScript can simply add or remove an item without affecting the positions of other elements.
-    
-    On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.
-    
-    - splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:
-    
-    ```js
-    let arr = ["I", "study", "JavaScript"];
-    // from index 1 remove 1 element
-    console.log(arr.splice(1, 1));  // [ 'study' ]
-    console.log(arr); // [ 'I', 'JavaScript' ]
-    
-    
-    let arr2 = ["I", "study", "JavaScript", "right", "now"];
-    // remove 3 first elements and replace them with another
-    console.log(arr2.splice(0, 3, "Let's", "dance")); // [ 'I', 'study', 'JavaScript' ]
-    console.log(arr2) // ["Let's", "dance", "right", "now"]
-    
-    
-    let arr3 = ["I", "study", "JavaScript"];
-    // from index 2, delete 0, then insert "complex" and "language"
-    console.log(arr3.splice(2, 0, "complex", "language")); // []
-    console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
-    
-    
-    let arr4 = [1, 2, 5];
-    // from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
-    console.log(arr4.splice(-1, 0, 3, 4));[]
-    console.log(arr4); // [ 1, 2, 3, 4, 5 ]
-    ```
-    
-    - slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:
-    
-    ```js
-    let arr = ["t", "e", "s", "t"];
-    
-    console.log(arr.slice(1, 3)); // [ 'e', 's' ]
-    console.log(arr); // [ 't', 'e', 's', 't' ]
-    console.log(arr.slice(-2)); // [ 's', 't' ]
-    console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
-    ```
-    
-    Note:
-    - Use splice() when you want to change the original array (remove/insert/replace).
-    - Use slice() when you want a copy of part of the array, without changing the original.
-
-2. Searching / Location
-
-   - indexOf(item) – Returns the index of the first match, or -1:
-    
-    ```js
-    let arr = [1, 2, 3];
-    
-    console.log(arr.indexOf(2)); // 1
-    console.log(arr.indexOf(4)); // -1
-    ```
-    
-   - lastIndexOf(item) – Returns the index of the last match, or -1:
-    
-    ```js
-    let arr = [1, 2, 2, 3];
-    
-    console.log(arr.lastIndexOf(2)); // 2
-    console.log(arr.lastIndexOf(5)); // -1
-    ```
-    
-   - includes(item) – Returns true if array contains item, or false:
-    
-    ```js
-    let arr = [1, 2, 3];
-    
-    console.log(arr.includes(2)); // true
-    console.log(arr.includes(5)) // false
-    ```
-    
-
-3.  Iteration / Transformation
-
-    | Method      | Purpose                                                    | Returns                         | Modifies Original Array |
-    | ----------- | ---------------------------------------------------------- | ------------------------------- | ----------------------- |
-    | `map()`     | Returns a new array by applying a function to each element | ✅ New array                     | ❌ No                    |
-    | `forEach()` | Executes a function for each element; no return value      | ❌ No return                     | ❌ No                    |
-    | `filter()`  | Filters elements based on a condition                      | ✅ New filtered array            | ❌ No                    |
-    | `find()`    | Finds the **first** element that matches a condition       | ✅ Single element or `undefined` | ❌ No                    |
-
-    - forEach(callback) – Executes a function for each element; no return value:
-    
-    ```js
-    let arr = [1, 2, 3]
-    arr.forEach(n => console.log(n * 2)); // 2 4 6       
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    products.forEach(product => console.log(product))
-    
-    /*
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    */
-    ```
-    
-    - map(callback) – return a new array by applying function to each element:
-    
-    ```js
-    let arr = [1, 2, 3]
-    let arr2 = arr.map(n => n * 2);
-    console.log(arr) // [ 1, 2, 3 ]
-    console.log(arr2) // [ 2, 4, 6 ]
-    ```
-    
-    ```js
-    // using map for just printf (not recommended)
-    const numbers = [1, 2, 3, 4, 5];
-    
-    const newNumber = numbers.map(number => console.log(number))
-    
-    console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
-    ```
-    
-    ```js
-    // using map for both element and index
-    const names = ["tamim", "nasrin", "maria"];
-    
-    const newNames = names.map((element, index) => console.log(element, index))
-    
-    /*
-    tamim 0
-    nasrin 1
-    maria 2
-     */
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    const productNames = products.map(product => product.name);
-    console.log(productNames)
-    
-    // [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
-    ```
-    
-    - filter(callback) – return a new array with elements that pass the test:
-    
-    ```js
-    let arr = [1, 2, 3, 4]
-    let arr2 = arr.filter(n => n % 2 === 0);
-    console.log(arr) // [ 1, 2, 3, 4 ]
-    console.log(arr2) // [ 2, 4 ]
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    const filterProducts = products.filter(product => product.price >= 1000)
-    console.log(filterProducts);
-    
-    /*
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-    */
-    
-    const expensiveProducts = products.filter(product => product.price >= 5000);
-    console.log(expensiveProducts); // []
-    ```
-    
-    - find(callback) – Returns the first element that matches:
-    
-    ```js
-    
-    let arr = [1, 2, 3, 4, 5];
-    const result = arr.find(n => n > 2);
-    console.log(result); // 3
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    const foundProduct = products.find(product => product.brand === "apple");
-    console.log(foundProduct)
-    
-    /*
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-    */
-    
-    const foundColor = products.find(product => product.color === "pink");
-    console.log(foundColor) // undefined
-    ```
-    
-    - findIndex(callback) – Returns the index of the first element that matches:
-    
-    ```js
-    let arr = [1, 2, 3, 4, 5];
-    const result = arr.findIndex(n => n > 2);
-    console.log(result); // 2
-    ```
-    
-    - reduce()– Reduces array to a single value:
-    
-    Syntax:
-    
-    ```js
-    reduce((accumulator, currentValue) => ..., initialValue);
-    ```
-    
-    ```js
-    const numbers = [1, 2, 3, 4];
-    
-    // without reduce method
-    
-    let acc = 0;
-    for (let i = 0; i < numbers.length; i++) {
-        acc = acc + numbers[i];
-    }
-    console.log(acc); // Output: 10
-    
-    // with reduce method
-    
-    const result = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    console.log(result); // Output: 10
-    ```
-    
-    Here,
-    
-    -   accumulator = keeps the result
-    -   0 = The staring value of accumulator
-    -   currentValue = the current element of the array
-    
-    ![reduce](images/reduce.png)
-
-4.  Reordering / Combining
-
-    - concat(...arrays) – Returns a new array by merging arrays/values:
-    
-    ```js
-    let arr = [1, 2];
-    const arr2 = arr.concat([3, 4], 5);
-    console.log(arr); // [ 1, 2 ]
-    console.log(arr2); // [ 1, 2, 3, 4, 5 ]
-    ```
-    
-    - join(separator) – Returns a string by joining array elements using the given separator:
-    
-    ```js
-    let arr = ["a", "b", "c"];
-    let arr2 = arr.join("-");
-    console.log(arr); // [ 'a', 'b', 'c' ]
-    console.log(arr2); // a-b-c
-    
-    const arr = ['Hello', 'World'];
-    let arr3 = arr.join(" ");
-    console.log(arr); // ['Hello', 'World']
-    console.log(arr3); // Hello World
-    ```
-    
-    - split(separator) – Splits a string into an array using the given separator:
-    
-    ```js
-    let str = "a-b-c";
-    let result = str.split("-");
-    console.log(str);    // "a-b-c"
-    console.log(result); // [ 'a', 'b', 'c' ]
-    
-    const str = 'Hello World';
-    let arr2 = str.split(" ");
-    console.log(str); // Hello World
-    console.log(arr2); // ['Hello', 'World']
-    ```
-    
-    **Note:** join used on arrays to convert them into a string and split used on strings to convert them a array.
-    
-    - reverse() – Reverses the array:
-    
-    ```js
-    let arr = [1, 2, 3];
-    console.log(arr.reverse()) // [ 3, 2, 1 ]
-    ```
-    
-    - sort – return a new sorted array:
-    
-    ```js
-    let arr = [3, 1, 2];
-    console.log(arr.sort())  // default lexicographic: [1,2,3]
-    
-    // but in this case default sort fails:
-    let arr2 = [1, 2, 15];
-    console.log(arr2.sort()) // [ 1, 15, 2 ]
-    ```
-    
-    The order became 1, 15, 2. Incorrect. But why?
-    
-    In JavaScript, the default behavior of sort() is lexicographic (dictionary-like) sorting. This means:
-    
-    -   It converts elements to strings.
-    -   Then it compares those strings using Unicode (UTF-16) code unit values.
-    thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: [1, 15, 2]
-    
-    To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.
-    
-    ```js
-    let arr2 = [1, 2, 15];
-    console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
-    ```
-    
-    How it works:
-    
-    `(a, b) => a - b this function returns:`
-    -   Negative number (a - b < 0) → keep a before b
-    -   Positive number (a - b > 0) → place b before a
-    -   Zero (a - b === 0) → leave a and b unchanged
-
-5. Others
-
-- some() –Return true if any element passes the test, else false:
-    
-```js
-let arr = [1, 2, 3];
-const arr2 = arr.some(n => n > 2);
-console.log(arr2) // true
-```
-    
-- every() –Return true if all element passes the test, else false:
-    
-```js
-let arr = [1, 2, 3];
-const arr2 = arr.every(n => n > 2);
-console.log(arr2) // false
-```
-
-- at(index) – Returns element at index; supports negative indexing:
-    
-```js
-// With at method
-let fruits = ["Apple", "Orange", "Plum"];
-    
-console.log(fruits.at(-1)); // Plum
-    
-// without at method
-let fruits = ["Apple", "Orange", "Plum"];
-console.log(fruits[fruits.length - 1]); // Plum
-```
-    
-- Array.isArray(value) – Return true if value is an array, else false:
-    
-```js
-    
-const arr = [1, 2]
-const result = Array.isArray(arr);
-console.log(result) // true       
-```
-    
-- fill(value, start?, end?) – Fills array with value:
-    
-```js
-const arr = [1, 2, 3]
-arr.fill(0, 1);
-console.log(arr) // [ 1, 0, 0 ]
-```
-    
-- flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:
-    
-```js
-// Default depth (1)
-
-const arr = [1, 2, [3, 4]];
-const flatArr = arr.flat();
-console.log(flatArr); // Output: [1, 2, 3, 4]
-
-// Deeper nesting with depth = 2
-
-const arr = [1, 2, [3, 4, [5, 6]]];
-const flatArr = arr.flat(2);
-console.log(flatArr); // Output: [1, 2, 3, 4, 5, 6]
-
-// Infinite depth (Infinity)
-
-const arr = [1, [2, [3, [4]]]];
-const flatArr = arr.flat(Infinity);
-console.log(flatArr); // Output: [1, 2, 3, 4]
-```
 
 ## Destructuring
 
@@ -5924,165 +5922,6 @@ function displayUser({ name, age }) {
 displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 ```
 
-## set
-A Set in JavaScript is a collection of unique values (no duplicates allowed).
-
-- Stores unique values
-- Methods: add, delete, has, clear
-- Iteration: for...of, forEach
-- Use cases: remove duplicates, track unique items
-
-### creating a set
-
-```js
-// Create an empty Set
-const mySet = new Set();
-
-// Create a Set with initial values
-const numbers = new Set([1, 2, 3, 4, 4, 5]); // duplicates ignored
-
-console.log(numbers); // Set(5) {1, 2, 3, 4, 5}
-```
-
-### Adding & Removing Values
-
-```js
-const fruits = new Set();
-
-fruits.add("Apple");
-fruits.add("Banana");
-fruits.add("Apple"); // ignored, already exists
-
-console.log(fruits); // Set(2) {"Apple", "Banana"}
-
-// Remove a value
-fruits.delete("Banana");
-console.log(fruits); // Set(1) {"Apple"}
-
-// Clear all values
-fruits.clear();
-console.log(fruits); // Set(0) {}
-```
-
-### Checking & Size
-
-```js
-const letters = new Set(["a", "b", "c"]);
-
-console.log(letters.has("b")); // true
-console.log(letters.has("z")); // false
-
-console.log(letters.size); // 3
-```
-
-### Iterating Over a Set
-
-```js
-const colors = new Set(["red", "green", "blue"]);
-
-// Using for...of
-for (let color of colors) {
-  console.log(color);
-}
-
-// Using forEach
-colors.forEach((value) => {
-  console.log(value);
-});
-```
-
-### Convert Set ↔ Array
-
-```js
-const nums = [1, 2, 2, 3, 4, 4];
-const uniqueNums = new Set(nums); // remove duplicates
-console.log(uniqueNums); // Set {1, 2, 3, 4}
-
-// Convert back to array
-const uniqueArray = [...uniqueNums];
-console.log(uniqueArray); // [1, 2, 3, 4]
-```
-
-
-
-## map
-A Map in JavaScript is a collection of key-value pairs.
-
-- Stores key-value pairs
-- Unlike objects(keys must be Strings or Symbols only), her keys can be any type.
-- Methods: set, get, delete, has, clear
-- Iteration: for...of, forEach
-- Use cases: frequency count, caching, dictionary-like storage
-
-### Creating a Map
-
-```js
-// Empty Map
-const myMap = new Map();
-
-// Map with initial key-value pairs
-const user = new Map([
-  ["name", "Alice"],
-  ["age", 25]
-]);
-
-console.log(user); // Map(2) {"name" => "Alice", "age" => 25}
-```
-
-### Adding & Updating Values
-
-```js
-const student = new Map();
-
-student.set("name", "Bob");
-student.set("age", 21);
-
-// Update existing key
-student.set("age", 22);
-
-console.log(student);
-// Map(2) {"name" => "Bob", "age" => 22}
-```
-
-### Getting & Checking Values
-
-```js
-console.log(student.get("name")); // Bob
-console.log(student.has("age"));  // true
-console.log(student.has("roll")); // false
-
-console.log(student.size); // 2
-```
-
-### Deleting & Clearing
-
-```js
-student.delete("age");
-console.log(student); // Map(1) {"name" => "Bob"}
-
-student.clear();
-console.log(student); // Map(0) {}
-```
-
-### Iterating Over a Map
-
-```js
-const person = new Map([
-  ["name", "Alice"],
-  ["age", 25],
-  ["city", "New York"]
-]);
-
-// for...of
-for (let [key, value] of person) {
-  console.log(`${key}: ${value}`);
-}
-
-// forEach
-person.forEach((value, key) => {
-  console.log(`${key}: ${value}`);
-});
-```
 
 
 
@@ -7483,8 +7322,6 @@ const fetchData = async () => {
 fetchData();
 ```
 
-
-
 # Part 2: DOM
 ## An Introduction To the DOM
 ## DOM Traversing
@@ -7495,37 +7332,185 @@ fetchData();
 ## Creating, Adding and Removing Element Methods
 ## Events
 
-# Part 3: JS Exercise
-## Operator Problems
-## Loop Problems
-## String Problems
-## Array Problems
-## Object Problems
-## Function Problems
+# Part 3: OOP
+
+# Part 4: Data Structure
+
+## Array 
+
+## Object 
+
+## set
+A Set in JavaScript is a collection of unique values (no duplicates allowed).
+
+- Stores unique values
+- Methods: add, delete, has, clear
+- Iteration: for...of, forEach
+- Use cases: remove duplicates, track unique items
+
+### creating a set
+
+```js
+// Create an empty Set
+const mySet = new Set();
+
+// Create a Set with initial values
+const numbers = new Set([1, 2, 3, 4, 4, 5]); // duplicates ignored
+
+console.log(numbers); // Set(5) {1, 2, 3, 4, 5}
+```
+
+### Adding & Removing Values
+
+```js
+const fruits = new Set();
+
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.add("Apple"); // ignored, already exists
+
+console.log(fruits); // Set(2) {"Apple", "Banana"}
+
+// Remove a value
+fruits.delete("Banana");
+console.log(fruits); // Set(1) {"Apple"}
+
+// Clear all values
+fruits.clear();
+console.log(fruits); // Set(0) {}
+```
+
+### Checking & Size
+
+```js
+const letters = new Set(["a", "b", "c"]);
+
+console.log(letters.has("b")); // true
+console.log(letters.has("z")); // false
+
+console.log(letters.size); // 3
+```
+
+### Iterating Over a Set
+
+```js
+const colors = new Set(["red", "green", "blue"]);
+
+// Using for...of
+for (let color of colors) {
+  console.log(color);
+}
+
+// Using forEach
+colors.forEach((value) => {
+  console.log(value);
+});
+```
+
+### Convert Set ↔ Array
+
+```js
+const nums = [1, 2, 2, 3, 4, 4];
+const uniqueNums = new Set(nums); // remove duplicates
+console.log(uniqueNums); // Set {1, 2, 3, 4}
+
+// Convert back to array
+const uniqueArray = [...uniqueNums];
+console.log(uniqueArray); // [1, 2, 3, 4]
+```
 
 
+## map
+A Map in JavaScript is a collection of key-value pairs.
+
+- Stores key-value pairs
+- Unlike objects(keys must be Strings or Symbols only), her keys can be any type.
+- Methods: set, get, delete, has, clear
+- Iteration: for...of, forEach
+- Use cases: frequency count, caching, dictionary-like storage
+
+### Creating a Map
+
+```js
+// Empty Map
+const myMap = new Map();
+
+// Map with initial key-value pairs
+const user = new Map([
+  ["name", "Alice"],
+  ["age", 25]
+]);
+
+console.log(user); // Map(2) {"name" => "Alice", "age" => 25}
+```
+
+### Adding & Updating Values
+
+```js
+const student = new Map();
+
+student.set("name", "Bob");
+student.set("age", 21);
+
+// Update existing key
+student.set("age", 22);
+
+console.log(student);
+// Map(2) {"name" => "Bob", "age" => 22}
+```
+
+### Getting & Checking Values
+
+```js
+console.log(student.get("name")); // Bob
+console.log(student.has("age"));  // true
+console.log(student.has("roll")); // false
+
+console.log(student.size); // 2
+```
+
+### Deleting & Clearing
+
+```js
+student.delete("age");
+console.log(student); // Map(1) {"name" => "Bob"}
+
+student.clear();
+console.log(student); // Map(0) {}
+```
+
+### Iterating Over a Map
+
+```js
+const person = new Map([
+  ["name", "Alice"],
+  ["age", 25],
+  ["city", "New York"]
+]);
+
+// for...of
+for (let [key, value] of person) {
+  console.log(`${key}: ${value}`);
+}
+
+// forEach
+person.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});
+```
 
 
+## Stack 
 
+## Queue
 
+## Linked List
 
+## Graph
 
+# Part 5: Algorithms
 
+## Time and Space Complexity
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Searching 
+## Sorting

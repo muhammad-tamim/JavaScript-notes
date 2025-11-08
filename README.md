@@ -92,10 +92,6 @@
     - [Date Object:](#date-object)
     - [Math Object:](#math-object)
   - [Destructuring](#destructuring)
-    - [Array Destructuring](#array-destructuring)
-    - [Object Destructuring](#object-destructuring)
-    - [Nested Destructuring:](#nested-destructuring)
-    - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
   - [AutoBoxing](#autoboxing)
   - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
@@ -5822,9 +5818,8 @@ console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclu
 
 Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.
 
-### Array Destructuring
-    
-Basic Syntax:
+
+**Basic Syntax:**
 
 ```js
 const arr = [1, 2, 3];
@@ -5833,20 +5828,46 @@ const [a, b, c] = arr;
 console.log(a); // 1
 console.log(b); // 2
 console.log(c); // 3
+
+
+const person = {
+  name: "Tamim",
+  age: 21
+};
+
+const { name, age } = person;
+
+console.log(name); // Tamim
+console.log(age);  // 21
 ```
 
-Skip Items:
+**Skip Items:** 
 
-```js
+```jsx
 const colors = ["red", "green", "blue"];
 
 const [first, , third] = colors;
 
 console.log(first); // red
 console.log(third); // blue
+
+const person = {
+  name: "Tamim",
+  age: 21,
+  signle: true,
+  marid: false,
+  hasJob: false,
+  hasMoney: false,
+  hasBike: false,
+};
+
+const { name, age } = person;
+
+console.log(name); // Tamim
+console.log(age);  // 21
 ```
 
-Default Values:
+**Default Values:**
 
 ```js
 const arr = [10];
@@ -5865,53 +5886,8 @@ let b = 2;
 
 console.log(a); // 2
 console.log(b); // 1
-```
 
-rest Operator (...):
 
-```js
-const nums = [1, 2, 3, 4];
-
-const [first, ...rest] = nums;
-
-console.log(first); // 1
-console.log(rest);  // [2, 3, 4]
-```
-
-### Object Destructuring
-    
-
-Basic Syntax:
-
-```js
-const person = {
-  name: "Tamim",
-  age: 21
-};
-
-const { name, age } = person;
-
-console.log(name); // Tamim
-console.log(age);  // 21
-```
-
-Rename Variables:
-
-```js
-const person = {
-  name: "Tamim",
-  age: 21
-};
-
-const { name: fullName, age: years } = person;
-
-console.log(fullName); // Tamim
-console.log(years);    // 21
-```
-
-Default Values:
-
-```js
 const person = {
   name: "Tamim"
 };
@@ -5922,27 +5898,17 @@ console.log(name); // Tamim
 console.log(age);  // 20
 ```
 
-Nested Destructuring:
+**Rest Operator:**
 
 ```js
-const user = {
-  id: 1,
-  profile: {
-    username: "tamim",
-    email: "tamim@example.com"
-  }
-};
+const nums = [1, 2, 3, 4];
 
-const {
-  profile: { username, email }
-} = user;
+const [first, ...rest] = nums;
 
-console.log(username); // tamim
-```
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4]
 
-Rest Operator in Object:
 
-```js
 const user = {
   name: "Tamim",
   age: 21,
@@ -5955,7 +5921,7 @@ console.log(name);   // Tamim
 console.log(others); // { age: 21, country: "BD" }
 ```
 
-### Nested Destructuring: 
+**Nested Destructruing:**
 
 ```js
 // Nested destructuring example
@@ -5978,21 +5944,15 @@ console.log(firstHobby);  // reading
 console.log(secondHobby); // chess
 ```
 
-### Destructuring in Function Parameters
+**Destructuring in Function Parameters:**
     
-
-Array Parameters:
-
 ```js
 function greet([first, second]) {
     console.log("Hello", first, second);
 }
 greet(["Tamim", "Ahmed"]); // Hello Tamim Ahmed
-```
 
-Object Parameters:
 
-```js
 function displayUser({ name, age }) {
     console.log(`${name} is ${age} years old.`);
 }

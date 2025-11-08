@@ -34,8 +34,9 @@
       - [Truthy and Falsy values:](#truthy-and-falsy-values)
     - [Others Operators](#others-operators)
       - [typeof operator:](#typeof-operator)
-      - [rest operator:](#rest-operator)
-      - [spread operator:](#spread-operator)
+      - [rest and spread operator:](#rest-and-spread-operator)
+        - [Rest Operator](#rest-operator)
+        - [spread operator:](#spread-operator)
       - [Nullish Coalescing operator (??):](#nullish-coalescing-operator-)
       - [|| vs ??:](#-vs-)
     - [Operator Precedence:](#operator-precedence)
@@ -44,9 +45,19 @@
     - [for loop:](#for-loop)
     - [while loop:](#while-loop)
     - [do while loop:](#do-while-loop)
-    - [for..of loop (for iterables: string, array, set, map, NodeList, HTMLCollection):](#forof-loop-for-iterables-string-array-set-map-nodelist-htmlcollection)
-    - [for..in loop (for objects):](#forin-loop-for-objects)
-    - [forEach method (only for array):](#foreach-method-only-for-array)
+    - [for..of loop (for iterables: string, array, set, map):](#forof-loop-for-iterables-string-array-set-map)
+      - [Iterables (string, array, set, map):](#iterables-string-array-set-map)
+        - [behind the scene of for..of:](#behind-the-scene-of-forof)
+          - [On array:](#on-array)
+          - [On String:](#on-string)
+          - [On Set:](#on-set)
+          - [On Map:](#on-map)
+        - [behind the scene of spread operator:](#behind-the-scene-of-spread-operator)
+        - [Behind the scene of destructuring:](#behind-the-scene-of-destructuring)
+    - [for...in loop (for objects):](#forin-loop-for-objects)
+      - [Enumeration:](#enumeration)
+        - [Behind the scenes of for...in loop:](#behind-the-scenes-of-forin-loop)
+      - [Why for...in is not recommended for arrays:](#why-forin-is-not-recommended-for-arrays)
   - [function](#function)
     - [What is the difference between return and no return in a function?](#what-is-the-difference-between-return-and-no-return-in-a-function)
     - [Default Parameter:](#default-parameter)
@@ -84,7 +95,6 @@
     - [Array Destructuring](#array-destructuring)
     - [Object Destructuring](#object-destructuring)
     - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
-  - [Iterables](#iterables)
   - [AutoBoxing](#autoboxing)
   - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
@@ -1222,13 +1232,17 @@ console.log(typeof NaN); // number
 ```
 
 
-#### rest operator:
+#### rest and spread operator:
 
-Rest operator gathers values into an array or object.
+- Rest collects values into an object or array.
+- while Spread expands object or iterables into individual values.
 
-It is used defining things like Function parameters, array destructuring, object destructuring.
+##### Rest Operator
 
-- rest in function parameter:
+It is used in Function parameters, array destructuring, object destructuring.
+
+- function parameter:
+  
 ```js
 
 function multiply(multiplier, ...numbers) {
@@ -1245,7 +1259,7 @@ multiply(2, 1, 2, 3);
 */
 ```
 
-- rest in array destructuring:
+- array destructuring:
 
 ```js
 const [first, ...rest] = [1, 2, 3, 4];
@@ -1253,7 +1267,7 @@ console.log(first); // 1
 console.log(rest);  // [2, 3, 4]
 ```
 
-- rest in object destructuring:
+- object destructuring:
 
 ```js
 const user = { name: "Tamim", age: 21, country: "BD" };
@@ -1263,12 +1277,11 @@ console.log(name); // Tamim
 console.log(rest); // { age: 21, country: "BD" }
 ```
 
-#### spread operator:
-Spreads operator breaks an array or object into individual values. 
+##### spread operator:
 
-It is Used in Function parameter, array literals and object literals.
+It is Used in Function argument, array literals and object literals.
 
-- in function parameter:
+- function argument:
 
 ```js
 function greet(a, b, c) {
@@ -1281,7 +1294,7 @@ greet(...args); // 1 2 3
 console.log(...args) // 1 2 3
 ```
 
-- In Arrays literal:
+- Arrays literal:
 
 ```js
 const num1 = [1, 2];
@@ -1294,7 +1307,7 @@ console.log(Math.max(...all)) // 4
 console.log(Math.min(...all)) // 1
 ```
 
-- In Objects literal:
+- Objects literal:
 
 ```js
 const user1 = { name: "Tamim" };
@@ -3303,14 +3316,14 @@ do {
 } while (i < 5);
 ```
 
-### for..of loop (for iterables: string, array, set, map, NodeList, HTMLCollection):
+### for..of loop (for iterables: string, array, set, map):
 
 ```js
 // with array
 const arr = [1, 2, 3];
 
 for (const element of arr) {
-    console.log(element); //  1 2 3
+    console.log(element); // 1 2 3
 }
 
 // with string
@@ -3319,16 +3332,29 @@ const str = 'hello';
 for (const value of str) {
     console.log(value); // h e l l o
 }
+
+// with Set
+const mySet = new Set([10, 20, 30]);
+
+for (const value of mySet) {
+    console.log(value); // 10 20 30
+}
+
+// with Map
+const myMap = new Map([
+    ['a', 1],
+    ['b', 2],
+    ['c', 3]
+]);
+
+for (const [key, value] of myMap) {
+    console.log(key, value); // a 1, b 2, c 3
+}
 ```
 
-**How for..of loop work behind the scenes:**
+#### Iterables (string, array, set, map): 
 
-An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a built-in method at the key Symbol.iterator. Calling `arr[Symbol.iterator]()` returns an iterator object, which can be used to access the elements one by one using its next() method.
-
-  - Iterator = An object that provides a way to access iterable items one by one using a next() method.
-    - Each time we call `iterator.next()` it returns a object, that has:
-      - value → the current element
-      - done → false if there are more elements, true when iteration is finished
+An object is called iterable if it has a Symbol.iterator method. When we call this arr[Symbol.iterator]() method, it returns an object, we commonly call this object an iterator. This iterator allows us to access the elements one by one using its next() method.
 
 ```js
 const arr = [1, 2, 3];
@@ -3341,23 +3367,25 @@ console.log(iterator.next()); // { value: 3, done: false }
 console.log(iterator.next()); // { value: undefined, done: true }
 ```
 
-So, When you write a for...of loop,
+for...of loop, spread operator (...), and destructuring use this Symbol.iterator behind the scenes.
+
+##### behind the scene of for..of:
+
+###### On array:
 
 ```js
-const arr = [1, 2, 3];**
+const arr = [1, 2, 3];
 
 for (const element of arr) {
     console.log(element); //  1 2 3
 }
 ```
 
-the JavaScript engine automatically transforms it into something like this:**
-
 ```js
-const iterable = [1, 2, 3];
+const arr = [1, 2, 3];
 
 // Get the iterator object
-const iterator = iterable[Symbol.iterator]();
+const iterator = arr[Symbol.iterator]();
 
 // Get the first result
 let result = iterator.next();
@@ -3372,8 +3400,165 @@ while (!result.done) {
 }
 ```
 
+###### On String:
 
-### for..in loop (for objects):
+```js
+const str = "hello";
+
+for (const value of str) {
+    console.log(value); // hello 
+}
+```
+
+```js
+const str = "hello";
+
+// Get the iterator object
+const iterator = str[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); // hello
+  
+  result = iterator.next();
+}
+```
+
+###### On Set: 
+
+```js
+let mySet = new Set([1, 2, 2, 3]);
+
+for (let val of mySet) {
+    console.log(val); // 1 2 3
+}
+```
+
+```js
+let iterable = new Set([1, 2, 2, 3]);
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); // 1 2 3
+  
+  result = iterator.next();
+}
+```
+
+###### On Map:
+
+```js
+let myMap = new Map([
+    ["name", "Alice"],
+    ["age", 22]
+]);
+
+for (let [key, value] of myMap) {
+    console.log(key, ":", value);
+}
+/*
+name : Alice
+age : 22
+*/
+```
+
+```js
+let iterable = new Map([
+    ["name", "Alice"],
+    ["age", 22]
+]);
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  console.log(value); 
+  
+  result = iterator.next();
+}
+
+/*
+name : Alice
+age : 22
+*/
+```
+
+
+##### behind the scene of spread operator:
+
+```js
+const str = "ABC";
+console.log([...str]);  // [ 'A', 'B', 'C' ]
+```
+
+```js
+let iterable = "ABC";
+
+// Get the iterator object
+const iterator = iterable[Symbol.iterator]();
+
+// Get the first result
+let result = iterator.next();
+
+const spread = [];
+
+while (!result.done) {
+  // Extract the current value
+  const value = result.value;
+  
+  spread.push(value)
+
+  result = iterator.next();
+}
+
+console.log(spread) // [ 'A', 'B', 'C' ]
+
+```
+
+##### Behind the scene of destructuring:
+
+```js
+let arr = [1, 2, 3];
+let [a, b] = arr;
+
+console.log(a, b); // 1 2
+```
+
+Destructuring [a, b] = arr internally calls the iterator for each element.
+
+```js
+let iterator = [1, 2, 3];
+
+// Get the iterator object
+const iterator = arr[Symbol.iterator]();
+
+const a = iterator.next().value;
+const b = iterator.next().value;
+
+console.log(a, b); // 1 2
+```
+
+
+### for...in loop (for objects):
 
 ```js
 const obj = {
@@ -3390,16 +3575,62 @@ b 2
 */
 ```
 
-**How for..in loop work behind the scenes:**
-Every object has enumerable properties that can be iterated over.
-- If a property is non-enumerable, that means it is hidden and we cannot loop over it.
-- By default, properties are enumerable (visible).
-- When we use for...in, the JavaScript engine internally:
-  - Gets all enumerable property names (keys) of the object.
-  - Also looks through the prototype chain to include inherited enumerable properties.
-  - Creates an internal list of these property names.
-  - Iterates over this list one by one, assigning each property name to your loop variable.
 
+#### Enumeration:
+
+Enumeration is the internal process in JavaScript where the engine collects the property names (keys) of an object. 
+
+Later, loops or methods filtered those keys based on enumerable true and false and decide what to return (keys, values, or both) or iterate over based on their own rules.
+
+Note:
+
+| Method / Loop                     | Notes                                                            |
+| --------------------------------- | ---------------------------------------------------------------- |
+| `for...in`                        | Loops over all enumerable properties, including prototype chain. |
+| `Object.keys(obj)`                | Returns own enumerable keys as an array.                         |
+| `Object.values(obj)`              | Returns own enumerable values as an array.                       |
+| `Object.entries(obj)`             | Returns own enumerable key-value pairs as an array.              |
+| `Object.getOwnPropertyNames(obj)` | Returns all own properties, enumerable or not.                   |
+
+
+By default, every property of an object has a property descriptor — a special internal object that defines how that property behaves.
+
+```js
+const obj = { name: "Alice" };
+
+console.log(Object.getOwnPropertyDescriptor(obj, "name"));
+/*
+{
+  value: "Alice",
+  writable: true,
+  enumerable: true,
+  configurable: true
+}
+*/
+```
+
+Note: we can forcefully make a object property non-enumerable using Object.defineProperty():
+
+```js
+const obj = { name: "Tamim" };
+
+Object.defineProperty(obj, "age", {
+    value: 20,
+    writable: true,      // can be changed
+    enumerable: false,    // <--- makes it non-enumerable
+    configurable: true  // can be deleted or changed later
+});
+
+console.log(obj.age);      // 20
+console.log(Object.keys(obj)); // ["name"] → "age" is not included
+
+// for...in loop will skip it
+for (const key in obj) {
+    console.log(key); // only "name"
+}
+```
+
+##### Behind the scenes of for...in loop:
 
 So, When you write a for...in loop,
 
@@ -3412,101 +3643,18 @@ for (const key in obj) {
 }
 ```
 
-the JavaScript engine automatically transforms it into something like this:
+There are two main step happen: 
 
-```js
-const object = { name: 'John', age: 30, city: 'NYC' };
+- Enumeration → the process of collecting all enumerable properties (properties with enumerable: true) from an object and its prototype chain (if available).
+- for...in loop → uses those enumerated keys to iterate and execute the loop body.
 
-// Step 1: store all enumerable property names using loop from the object
-const enumerableKeys = []; 
+#### Why for...in is not recommended for arrays:
 
-// Get all own property names of the object (both enumerable + non-enumerable)
-const ownKeys = Object.getOwnPropertyNames(object); 
-console.log("Own property names of object:", ownKeys);
-// 👉 ["name", "age", "city"]
+Since arrays are also objects, you might wonder if we can use for...in with arrays. However, the key thing to remember is that for...in loops iterate over object keys, not the actual values.
 
-for (let i = 0; i < ownKeys.length; i++) {
-    const key = ownKeys[i];
-    console.log("\nChecking property:", key);
+Some unexpected behaviors happens if we use for...in for array:
 
-    // Get the property descriptor of this key
-    const descriptor = Object.getOwnPropertyDescriptor(object, key); 
-    console.log("Descriptor:", descriptor);
-    // Example: { value: "John", writable: true, enumerable: true, configurable: true }
-
-    // Only keep keys that are enumerable (descriptor.enumerable === true)
-    if (descriptor.enumerable) {
-        enumerableKeys.push(key);
-        console.log("Added to enumerableKeys:", key);
-    } else {
-        console.log("Skipped (not enumerable):", key);
-    }
-}
-
-console.log("\nEnumerable keys so far (own props only):", enumerableKeys);
-
-// Step 2: Collect enumerable properties from prototype chain
-let currentPrototype = Object.getPrototypeOf(object); 
-console.log("\nInitial prototype of object:", currentPrototype);
-
-while (currentPrototype !== null) {
-    console.log("\n--- Checking prototype:", currentPrototype, "---");
-
-    // Get all own property names of the current prototype
-    const prototypeKeys = Object.getOwnPropertyNames(currentPrototype); 
-    console.log("Own property names of this prototype:", prototypeKeys);
-
-    for (let i = 0; i < prototypeKeys.length; i++) {
-        const key = prototypeKeys[i];
-        console.log("   Checking prototype property:", key);
-
-        // Get property descriptor of this prototype key
-        const descriptor = Object.getOwnPropertyDescriptor(currentPrototype, key); 
-        console.log("   Descriptor:", descriptor);
-
-        // If the property is enumerable AND not already collected
-        if (descriptor.enumerable && !enumerableKeys.includes(key)) {
-            enumerableKeys.push(key);
-            console.log("   --> Added to enumerableKeys:", key);
-        } else {
-            console.log("   --> Skipped (either not enumerable or already added):", key);
-        }
-    }
-
-    // Move up to the next prototype in the chain
-    currentPrototype = Object.getPrototypeOf(currentPrototype);
-    console.log("Moving up to next prototype:", currentPrototype);
-}
-
-// Step 4: Iterate through all enumerable keys we collected
-console.log("\nFinal enumerableKeys list:", enumerableKeys);
-
-for (let i = 0; i < enumerableKeys.length; i++) {
-    const key = enumerableKeys[i];
-    console.log(`\nLoop iteration for key: "${key}"`);
-
-    // Print key
-    console.log("Key:", key);
-
-    // Print value from the original object
-    console.log("Value:", object[key]); 
-}
-```
-
-**Why for...in is not recommended for arrays:**
-
-- Return string index not number
-
-```js
-const arr = [10, 20, 30];
-
-for (const index in arr) {
-    console.log(typeof index); // "string" not "number"
-    console.log(index + 1); // "01" "11" "21" (string concatenation!)
-}
-```
-
-- Includes Custom Properties as a index
+- it Return string index as a key not the element
 
 ```js
 const arr = [1, 2, 3];
@@ -3516,17 +3664,6 @@ for (const key in arr) {
     console.log(key); // "0" "1" "2" "name"
 }
 ```
-
-- Includes Inherited Properties from Prototype
-
-```js
-Array.prototype.customProp = "inherited";
-const arr = [1, 2, 3];
-
-for (const key in arr) {
-    console.log(key); // "0" "1" "2" "customProp" 
-}
-``` 
 
 - No Guaranteed Order 
 
@@ -3541,89 +3678,6 @@ for (const key in arr) {
     console.log(key);
     // Possible order: "0" "1" "2" "5" "10" "a" "1.5"
 }
-```
-
-### forEach method (only for array):
-
-forEach is an array method in JavaScript that loops through each element of an array and calls a callback function for each element.
-
-```js
-const numbers = [1, 2, 3];
-numbers.forEach(function (num) {
-    console.log(num); // 1 2 3
-});
-
-// or
-
-const num2 = [4, 5, 6];
-num2.forEach(num2 => console.log(num2)) // 4 5 6
-```
-
-```js
-const arr = [4, 5, 6];
-
-function myCallback(value, index, array) {
-  console.log(value, index, array);
-}
-
-arr.forEach(myCallback);
-
-/*
-Output:
-4 0 [4, 5, 6]
-5 1 [4, 5, 6]
-6 2 [4, 5, 6]
-*/
-```
-
-**Behind the scenes:**
-
-```js
-Array.prototype.forEach = function(callback) {
-  for (let i = 0; i < this.length; i++) {
-    // Call the callback function for each element
-    callback(this[i], i, this);
-  }
-};
-```
-Here, 
-- Array = This is the built-in JavaScript constructor for creating arrays.
-
-```js
-const arr = [1, 2, 3];  // shorthand way to create an array
-const arr2 = new Array(1, 2, 3); // create array using constructor
-```
-
-- prototype = Every constructor function in JavaScript has a prototype object to share methods. This is where shared methods (like forEach, map, filter, etc.) are stored. That way, these methods are not recreated for every array but instead reused.
-
-- forEach = This is one of those reusable prototype methods. Any array can use it because arrays inherit it from Array.prototype.
-
-- this = Inside the forEach method, this refers to the array that called the method.
-
-**Manual forEach Simulation**
-
-```js
-function myForEach(array, callback) {
-  for (let i = 0; i < array.length; i++) {
-    callback(array[i], i, array);
-  }
-}
-
-const arr = [4, 5, 6];
-
-function myCallback(value, index, array) {
-  console.log(value, index, array);
-}
-
-myForEach(arr, myCallback);
-
-/*
-Output:
-4 0 [4, 5, 6]
-5 1 [4, 5, 6]
-6 2 [4, 5, 6]
-*/
-
 ```
 
 ## function
@@ -5921,228 +5975,6 @@ function displayUser({ name, age }) {
 
 displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 ```
-
-
-
-
-## Iterables   
-
-An iterable is any object (like Array, String, Set, Map, NodeList, HTMLCollection, etc.) that has a built-in method at the key Symbol.iterator. Calling `arr[Symbol.iterator]()` returns an iterator object, which can be used to access the elements one by one using its next() method.
-
-  - Iterator = An object that provides a way to access iterable items one by one using a next() method.
-    - Each time we call `iterator.next()` it returns a object, that has:
-      - value → the current element
-      - done → false if there are more elements, true when iteration is finished
-
-```js
-const arr = [1, 2, 3];
-
-const iterator = arr[Symbol.iterator](); // get iterator object
-
-console.log(iterator.next()); // { value: 1, done: false }
-console.log(iterator.next()); // { value: 2, done: false }
-console.log(iterator.next()); // { value: 3, done: false }
-console.log(iterator.next()); // { value: undefined, done: true }
-```
-
-JavaScript features like for...of loop, spread operator (...), and destructuring automatically use this Symbol.iterator under the hood.
-
-**behind the scene of for..of:**
-
-On array:
-
-```js
-const arr = [1, 2, 3];
-
-for (const element of arr) {
-    console.log(element); //  1 2 3
-}
-```
-
-```js
-const iterable = [1, 2, 3];
-
-// Get the iterator object
-const iterator = iterable[Symbol.iterator]();
-
-// Get the first result
-let result = iterator.next();
-
-while (!result.done) {
-  // Extract the current value
-  const value = result.value;
-  
-  console.log(value); // 1, 2, 3
-  
-  result = iterator.next();
-}
-```
-
-On String:
-
-```js
-const str = "hello";
-
-for (const value of str) {
-    console.log(value); // hello 
-}
-```
-
-```js
-const iterable = "hello";
-
-// Get the iterator object
-const iterator = iterable[Symbol.iterator]();
-
-// Get the first result
-let result = iterator.next();
-
-while (!result.done) {
-  // Extract the current value
-  const value = result.value;
-  
-  console.log(value); // hello
-  
-  result = iterator.next();
-}
-```
-
-On Set: 
-
-```js
-let mySet = new Set([1, 2, 2, 3]);
-
-for (let val of mySet) {
-    console.log(val); // 1 2 3
-}
-```
-
-```js
-let iterable = new Set([1, 2, 2, 3]);
-
-// Get the iterator object
-const iterator = iterable[Symbol.iterator]();
-
-// Get the first result
-let result = iterator.next();
-
-while (!result.done) {
-  // Extract the current value
-  const value = result.value;
-  
-  console.log(value); // 1 2 3
-  
-  result = iterator.next();
-}
-```
-
-On Map:
-
-```js
-let myMap = new Map([
-    ["name", "Alice"],
-    ["age", 22]
-]);
-
-for (let [key, value] of myMap) {
-    console.log(key, ":", value);
-}
-/*
-name : Alice
-age : 22
-*/
-```
-
-```js
-let iterable = new Map([
-    ["name", "Alice"],
-    ["age", 22]
-]);
-
-// Get the iterator object
-const iterator = iterable[Symbol.iterator]();
-
-// Get the first result
-let result = iterator.next();
-
-while (!result.done) {
-  // Extract the current value
-  const value = result.value;
-  
-  console.log(value); 
-  
-  result = iterator.next();
-}
-
-/*
-name : Alice
-age : 22
-*/
-```
-
-
-**behind the scene of spread operator:**
-
-```js
-const str = "ABC";
-console.log([...str]);  // [ 'A', 'B', 'C' ]
-```
-
-```js
-let iterable = "ABC";
-
-// Get the iterator object
-const iterator = iterable[Symbol.iterator]();
-
-// Get the first result
-let result = iterator.next();
-
-const spread = [];
-
-while (!result.done) {
-  // Extract the current value
-  const value = result.value;
-  
-  spread.push(value)
-
-  result = iterator.next();
-}
-
-console.log(spread) // [ 'A', 'B', 'C' ]
-
-```
-
-**Behind the scene of destructuring:**
-
-```js
-let arr = [1, 2, 3];
-let [a, b] = arr;
-
-console.log(a, b); // 1 2
-```
-
-Destructuring [a, b] = arr internally calls the iterator for each element.
-
-```js
-let iterator = [1, 2, 3];
-
-// Get the iterator object
-const iterator = arr[Symbol.iterator]();
-
-const a = iterator.next().value;
-const b = iterator.next().value;
-
-console.log(a, b); // 1 2
-```
-
-
-Note:
-Even though Array, Set, and Map have a .forEach() method that lets you iterate over their elements, it is not part of the iterable protocol.
-
-- .forEach() is a separate method that executes a callback for each element.
-- It works differently from for...of and does not rely on Symbol.iterator.
-- It is only available on Array, Set, and Map.
-
 
 ## AutoBoxing
 

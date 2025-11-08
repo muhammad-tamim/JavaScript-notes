@@ -1,6 +1,4 @@
 
-
-
 ##  OPP in js
 
 Object-Oriented Programming is a programming paradigm based on the concept of "objects" that contain properties and methods. JavaScript supports OOP through prototypes and, since ES6, through classes.
@@ -5377,3 +5375,179 @@ DOM collection is array like means you can access items with indexes, and can us
 
 
 <hr>
+
+
+
+
+## Test
+
+
+
+
+
+
+
+
+### forEach method (only for array):
+
+forEach is an array method in JavaScript that loops through each element of an array and calls a callback function for each element.
+
+```js
+const numbers = [1, 2, 3];
+numbers.forEach(function (num) {
+    console.log(num); // 1 2 3
+});
+
+// or
+
+const num2 = [4, 5, 6];
+num2.forEach(num2 => console.log(num2)) // 4 5 6
+```
+
+```js
+const arr = [4, 5, 6];
+
+function myCallback(value, index, array) {
+  console.log(value, index, array);
+}
+
+arr.forEach(myCallback);
+
+/*
+Output:
+4 0 [4, 5, 6]
+5 1 [4, 5, 6]
+6 2 [4, 5, 6]
+*/
+```
+
+**Behind the scenes:**
+
+```js
+Array.prototype.forEach = function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    // Call the callback function for each element
+    callback(this[i], i, this);
+  }
+};
+```
+Here, 
+- Array = This is the built-in JavaScript constructor for creating arrays.
+
+```js
+const arr = [1, 2, 3];  // shorthand way to create an array
+const arr2 = new Array(1, 2, 3); // create array using constructor
+```
+
+- prototype = Every constructor function in JavaScript has a prototype object to share methods. This is where shared methods (like forEach, map, filter, etc.) are stored. That way, these methods are not recreated for every array but instead reused.
+
+- forEach = This is one of those reusable prototype methods. Any array can use it because arrays inherit it from Array.prototype.
+
+- this = Inside the forEach method, this refers to the array that called the method.
+
+**Manual forEach Simulation**
+
+```js
+function myForEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
+  }
+}
+
+const arr = [4, 5, 6];
+
+function myCallback(value, index, array) {
+  console.log(value, index, array);
+}
+
+myForEach(arr, myCallback);
+
+/*
+Output:
+4 0 [4, 5, 6]
+5 1 [4, 5, 6]
+6 2 [4, 5, 6]
+*/
+
+```
+
+### Behind the secne of for..in
+
+```js
+const object = { name: 'John', age: 30, city: 'NYC' };
+
+// Step 1: store all enumerable property names using loop from the object
+const enumerableKeys = []; 
+
+// Get all own property names of the object (both enumerable + non-enumerable)
+const ownKeys = Object.getOwnPropertyNames(object); 
+console.log("Own property names of object:", ownKeys);
+// 👉 ["name", "age", "city"]
+
+for (let i = 0; i < ownKeys.length; i++) {
+    const key = ownKeys[i];
+    console.log("\nChecking property:", key);
+
+    // Get the property descriptor of this key
+    const descriptor = Object.getOwnPropertyDescriptor(object, key); 
+    console.log("Descriptor:", descriptor);
+    // Example: { value: "John", writable: true, enumerable: true, configurable: true }
+
+    // Only keep keys that are enumerable (descriptor.enumerable === true)
+    if (descriptor.enumerable) {
+        enumerableKeys.push(key);
+        console.log("Added to enumerableKeys:", key);
+    } else {
+        console.log("Skipped (not enumerable):", key);
+    }
+}
+
+console.log("\nEnumerable keys so far (own props only):", enumerableKeys);
+
+// Step 2: Collect enumerable properties from prototype chain
+let currentPrototype = Object.getPrototypeOf(object); 
+console.log("\nInitial prototype of object:", currentPrototype);
+
+while (currentPrototype !== null) {
+    console.log("\n--- Checking prototype:", currentPrototype, "---");
+
+    // Get all own property names of the current prototype
+    const prototypeKeys = Object.getOwnPropertyNames(currentPrototype); 
+    console.log("Own property names of this prototype:", prototypeKeys);
+
+    for (let i = 0; i < prototypeKeys.length; i++) {
+        const key = prototypeKeys[i];
+        console.log("   Checking prototype property:", key);
+
+        // Get property descriptor of this prototype key
+        const descriptor = Object.getOwnPropertyDescriptor(currentPrototype, key); 
+        console.log("   Descriptor:", descriptor);
+
+        // If the property is enumerable AND not already collected
+        if (descriptor.enumerable && !enumerableKeys.includes(key)) {
+            enumerableKeys.push(key);
+            console.log("   --> Added to enumerableKeys:", key);
+        } else {
+            console.log("   --> Skipped (either not enumerable or already added):", key);
+        }
+    }
+
+    // Move up to the next prototype in the chain
+    currentPrototype = Object.getPrototypeOf(currentPrototype);
+    console.log("Moving up to next prototype:", currentPrototype);
+}
+
+// Step 4: Iterate through all enumerable keys we collected
+console.log("\nFinal enumerableKeys list:", enumerableKeys);
+
+for (let i = 0; i < enumerableKeys.length; i++) {
+    const key = enumerableKeys[i];
+    console.log(`\nLoop iteration for key: "${key}"`);
+
+    // Print key
+    console.log("Key:", key);
+
+    // Print value from the original object
+    console.log("Value:", object[key]); 
+}
+```

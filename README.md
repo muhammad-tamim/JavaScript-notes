@@ -94,6 +94,7 @@
   - [Destructuring](#destructuring)
     - [Array Destructuring](#array-destructuring)
     - [Object Destructuring](#object-destructuring)
+    - [Nested Destructuring:](#nested-destructuring)
     - [Destructuring in Function Parameters](#destructuring-in-function-parameters)
   - [AutoBoxing](#autoboxing)
   - [Strict Mode](#strict-mode)
@@ -5952,6 +5953,29 @@ const { name, ...others } = user;
 
 console.log(name);   // Tamim
 console.log(others); // { age: 21, country: "BD" }
+```
+
+### Nested Destructuring: 
+
+```js
+// Nested destructuring example
+const user = {
+  id: 1,
+  name: 'Alice',
+  address: {
+    city: 'Wonderland',
+    zip: 12345
+  },
+  hobbies: ['reading', 'chess']
+};
+
+const { name, address: { city, zip }, hobbies: [firstHobby, secondHobby] } = user;
+
+console.log(name);        // Alice
+console.log(city);        // Wonderland
+console.log(zip);         // 12345
+console.log(firstHobby);  // reading
+console.log(secondHobby); // chess
 ```
 
 ### Destructuring in Function Parameters

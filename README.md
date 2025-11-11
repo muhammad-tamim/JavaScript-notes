@@ -58,6 +58,7 @@
       - [Enumeration:](#enumeration)
         - [Behind the scenes of for...in loop:](#behind-the-scenes-of-forin-loop)
       - [Why for...in is not recommended for arrays:](#why-forin-is-not-recommended-for-arrays)
+  - [Problem Solving: Loops](#problem-solving-loops)
   - [function](#function)
     - [What is the difference between return and no return in a function?](#what-is-the-difference-between-return-and-no-return-in-a-function)
     - [Default Parameter:](#default-parameter)
@@ -3677,6 +3678,1782 @@ for (const key in arr) {
 }
 ```
 
+## Problem Solving: Loops
+
+**1. 1 to N:**
+
+Given a number N. Print numbers from 1 to N in separate lines.
+
+| Input | Output |
+| ----- | ------ |
+| 5     | 1      |
+|       | 2      |
+|       | 3      |
+|       | 4      |
+|       | 5      |
+
+```js
+for (let i = 1; i <= 5; i++) {
+    console.log(i)
+}
+
+/*
+1
+2
+3
+4
+5
+*/
+```
+
+**2. Even Numbers:**
+
+Given a number N. Print all even numbers between 1 and N inclusive in separate lines.
+
+| Input | Output |
+| ----- | ------ |
+| 10    | 2      |
+|       | 4      |
+|       | 6      |
+|       | 8      |
+|       | 10     |
+| 5     | 2      |
+|       | 4      |
+
+My Solution: 
+
+```js
+const N = 10
+
+for (let i = 1; i <= N; i++) {
+    if (i % 2 === 0) {
+        console.log(i)
+    }
+}
+
+/*
+2
+4
+6
+8
+10
+*/
+```
+
+Better Solution: 
+
+```js
+const N = 10
+
+for (let i = 2; i <= N; i += 2) {
+    console.log(i)
+}
+
+/*
+2
+4
+6
+8
+10
+*/
+```
+
+**3. Even, Odd, Positive and Negative:**
+
+Given some numbers. Count how many of these values are even, odd, positive and negative.
+
+| Input | Output      |
+| ----- | ----------- |
+| -5    | Even: 3     |
+| 0     | Even : 2    |
+| -3    | Positive: 1 |
+| -4    | Negative: 3 |
+| 12    |             |
+
+My Solution: 
+
+```js
+function countEvenOddPositiveNegative(...numbers) {
+    let even = 0
+    let odd = 0
+    let positive = 0
+    let negative = 0
+
+    for (let number of numbers) {
+        if (number % 2 === 0) {
+            even++;
+        }
+        else {
+            odd++
+        }
+
+        if (number > 0) {
+            positive++
+        }
+        else if (number < 0) {
+            negative++
+        }
+    }
+    console.log("Even:", even)
+    console.log("Odd:", odd)
+    console.log("Positive:", positive)
+    console.log("Negative:", negative)
+}
+
+countEvenOddPositiveNegative(-5, 0, -3, -4, 12)
+
+/*
+Even: 3
+Odd: 2
+Positive: 1
+Negative: 3
+*/
+```
+
+**4. Fixed Password:**
+
+Given multiple lines each line contains a number X which is a password. Print "Wrong" if the password is incorrect otherwise, print "Correct" and terminate the program.
+
+Note: The "Correct" password is the number 1999.
+
+| Input | Output  |
+| ----- | ------- |
+| 2200  | Wrong   |
+| 1020  | Wrong   |
+| 1999  | Correct |
+| 1000  |         |
+| 9999  |         |
+
+My Solution: 
+
+```js
+function checkPassword(...numbers) {
+    for (let number of numbers) {
+        if (number === 1999) {
+            console.log("Correct")
+            return;
+        }
+        else {
+            console.log("Wrong")
+        }
+    }
+}
+
+checkPassword(2200, 1020, 1999, 1000, 9999)
+
+/*
+Wrong
+Wrong
+Correct
+*/
+```
+
+**5. Max:**
+
+Given N numbers, find maximum number in these N numbers.
+
+| Input | Output |
+| ----- | ------ |
+| 1     | 8      |
+| 8     |        |
+| 5     |        |
+| 7     |        |
+| 5     |        |
+
+My Solution: 
+
+```js
+function findMax(...numbers) {
+    let max = numbers[0]
+    for (let number of numbers) {
+        if (number >= max) {
+            max = number
+        }
+    }
+    console.log(max)
+}
+
+findMax(1, 8, 5, 7, 5) // 8
+```
+
+Better Solution: 
+
+```js
+function findMax(...numbers) {
+    console.log(Math.max(...numbers))
+}
+
+findMax(1, 8, 5, 7, 5) // 8
+```
+
+**6. Multiplication table:**
+
+Given a number N. Print the multiplication table of the number from 1 to 12
+
+Input/output: 
+
+```
+2
+
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+2 * 6 = 12
+2 * 7 = 14
+2 * 8 = 16
+2 * 9 = 18
+2 * 10 = 20
+2 * 11 = 22
+2 * 12 = 24
+```
+
+My solution: 
+
+```js
+function generateMultiplicationTable(N) {
+    for (let i = 1; i <= 12; i++) {
+        console.log(`${N} * ${i} = ${N * i}`)
+    }
+}
+
+generateMultiplicationTable(2)
+```
+
+**7. Factorial:**
+
+Given some numbers. Print the factorial of that numbers.
+
+Note: 
+
+Factorial, in mathematics, the product of all positive integers less than or equal to a given positive integer and denoted by that integer and an exclamation point.
+
+- Thus, factorial seven is written 7!, meaning 1 * 2 * 3 * 4 * 5 * 6 * 7 = 5040 .
+- Factorial zero is defined as equal to 1.
+
+
+| Input | Output |
+| ----- | ------ |
+| 5     | 120    |
+| 3     | 6      |
+
+
+My Solution: 
+
+```js
+function findFactorial(num) {
+
+    let factorialResult = 1;
+
+    for (let i = 1; i <= num; i++) {
+        factorialResult *= i
+    }
+
+    console.log(factorialResult)
+}
+
+findFactorial(5) // 120
+```
+
+
+**8. One Prime:**
+
+Given a number X. Determine if the number is prime or not.
+
+Note:
+
+A prime number is a number that is greater than 1 and has only two factors which are 1 and itself. Means prime number divisible only by 1 and itself.
+
+Be careful that 1 is not prime
+
+| Input | Output |
+| ----- | ------ |
+| 7     | YES    |
+| 15    | NO     |
+
+My Solution: 
+
+```js
+function findPrimeNumber(num) {
+
+    let isPrime = true;
+
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            isPrime = false
+        }
+    }
+
+    console.log(isPrime ? "YES" : "NO")
+}
+
+findPrimeNumber(7) // YES
+findPrimeNumber(15) // NO
+```
+
+Better Solution: 
+
+```js
+function findPrimeNumber(num) {
+  if (num <= 1) return console.log("NO"); 
+
+  for (let i = 2; i * i <= num; i++) { 
+    if (num % i === 0) {
+      console.log("NO");
+      return; 
+    }
+  }
+
+  console.log("YES");
+}
+
+findPrimeNumber(7);  // YES
+findPrimeNumber(15); // NO
+```
+
+here, 
+i * i <= num = checks only up to √num, because factors repeat after √num:
+
+```
+num = 36,
+
+36 = 1 * 36
+36 = 2 * 18
+36 = 3 * 12
+36 = 4 * 9
+36 = 6 * 6 ---(middle point √36 = 6; Factors beyond 6 just repeat the earlier ones in reverse.)
+36 = 9 * 4
+36 = 12 * 3
+36 = 18 * 2
+36 = 36 * 1
+```
+
+**9. Primes from 1 to n:**
+
+Given a number N. Print all prime numbers between 1 and N inclusive.
+
+| Input | Output     |
+| ----- | ---------- |
+| 10    | 2, 3, 5, 7 |
+
+My Solution: 
+
+```js
+function findPrimeNumbers(num) {
+
+    const primeNumbers = []
+
+    for (let i = 2; i <= num; i++) {
+
+        let isPrime = true;
+
+        for (let j = 2; j * j <= i; j++) {
+            if (i % j === 0) {
+                isPrime = false
+                break
+            }
+        }
+
+        if (isPrime) {
+            primeNumbers.push(i)
+        }
+    }
+
+    console.log(...primeNumbers)
+}
+
+findPrimeNumbers(10); // 2 3 5 7
+```
+
+**10. Palindrome:**
+
+Given a number N. Print 2 lines that contain the following respectively:
+
+- Print N in a reversed order and not leading zeroes.
+- If N is a palindrome number print "YES" otherwise, print "NO.
+
+Note:
+
+- A palindrome number is a number that reads the same forward or backward. For example: 12321, 101 are palindrome numbers, while 1201, 221 are not.
+
+- A leading zero is any 0 digit that comes before the first nonzero digit in a number for example : numbers (005 , 01 , 0123 , 02 , 000250 ) are leading zeroes but ( 5 , 123 , 20 ,2500 ) not leading zeroes numbers .
+
+| Input | Output |
+| ----- | ------ |
+| 12121 | 12121  |
+|       | YES    |
+| 160   | 61     |
+|       | NO     |
+
+My Solution: 
+
+```js
+function palindromeOrNot(N) {
+    const originalNumbers = N
+    const numbersArray = N.toString().split("")
+
+    const reversedArray = []
+
+    for (let number of numbersArray) {
+        reversedArray.unshift(number)
+    }
+
+    const reversedNumber = parseInt(reversedArray.join(""))
+
+    if (originalNumbers === reversedNumber) {
+        console.log(reversedNumber, "\nYES")
+    }
+    else {
+        console.log(reversedNumber, "\nNO")
+    }
+
+}
+
+palindromeOrNot(12121);
+palindromeOrNot(160);
+
+/*
+12121 
+YES
+61 
+NO
+*/
+```
+
+Better Solutions: 
+
+```js
+function palindromeOrNot(N) {
+    const str = N.toString();
+    const reversed = str.split("").reverse().join("");
+    const reversedNum = parseInt(reversed);
+
+    console.log(reversedNum);
+    console.log(str === reversed ? "YES" : "NO");
+}
+
+palindromeOrNot(12121);
+palindromeOrNot(160);
+```
+
+```js
+function palindromeOrNot(N) {
+    let original = N;
+    let reversed = 0;
+
+    while (N > 0) {
+        reversed = reversed * 10 + (N % 10);
+        N = Math.floor(N / 10);
+    }
+
+    console.log(reversed);
+    console.log(original === reversed ? "YES" : "NO");
+}
+
+palindromeOrNot(12121);
+palindromeOrNot(160);
+```
+
+**11. Divisors:**
+
+Given a number N. Print all the divisors of N in ascending order.
+
+Note: 
+
+Divisor of Number is A number that divides the integer exactly (no remainder).
+
+Examples:
+- 3 is a divisor of 12, because 12 ÷ 3 = 4 exactly
+- 4 is a divisor of 12, because 12 ÷ 4 = 3 exactly.
+- 5 is not a divisor of 12, because 12 ÷ 5 = 2 with a remainder of 2.
+
+| Input | Output |
+| ----- | ------ |
+| 6     | 1      |
+|       | 2      |
+|       | 3      |
+|       | 4      |
+|       | 5      |
+|       | 6      |
+| 7     | 1      |
+|       | 7      |
+| 4     | 1      |
+|       | 2      |
+|       | 4      |
+
+My Solution: 
+
+```js
+function findDivisors(N) {
+    for (let i = 1; i <= N; i++) {
+        if (N % i === 0) {
+            console.log(i)
+        }
+    }
+}
+
+findDivisors(6);
+
+/*
+1
+2
+3
+6
+*/
+```
+
+Better Solution: 
+
+```js
+function findDivisors(N) {
+    const divisors = [];
+
+    for (let i = 1; i * i <= N; i++) {
+        if (N % i === 0) {
+            divisors.push(i);
+
+            if (i !== N / i) {
+                divisors.push(N / i);
+            }
+        }
+    }
+
+    divisors.sort((a, b) => a - b);
+
+    for (const d of divisors) {
+        console.log(d);
+    }
+}
+
+findDivisors(6);
+```
+
+**12. GCD and LCM:**
+
+Given two numbers A and B. Print the greatest common divisor and least common multiple between (A, B).
+
+Example: 
+
+GCD(6, 9):
+- divisors of 6 = {1, 2, 3, 6}
+- divisors of 9 = {1, 3, 9}
+common = {1, 3}, largest = 3 ✅
+
+LCM(6, 9): 
+- Multiples of 6 = {6, 12, 18, 24, 30, 36, 42, 48, 54, 60 ....}
+- Multiples of 9 = {9, 18, 27, 36, 45, 54, 63....}
+→ common = {18, 36, 54}, Lowest = 18 ✅
+
+| Input | Output |
+| ----- | ------ |
+| 6 9   | 3 36   |
+| 54 24 |        |
+
+
+My Solution: 
+
+```js
+function findGCDAndLCM(A, B) {
+    const gcd = GCD(A, B)
+    const lcm = LCM(A, B)
+    console.log(gcd, lcm)
+}
+
+function GCD(A, B) {
+
+    const divisorsOfA = []
+    const divisorsOfB = []
+
+    for (let i = 1; i <= A; i++) {
+        if (A % i === 0) {
+            divisorsOfA.push(i)
+        }
+    }
+    for (let i = 1; i <= B; i++) {
+        if (B % i === 0) {
+            divisorsOfB.push(i)
+        }
+    }
+
+    const common = []
+
+    for (let i = 0; i < divisorsOfA.length; i++) {
+        for (let j = 0; j < divisorsOfB.length; j++) {
+            if (divisorsOfA[i] === divisorsOfB[j]) {
+                common.push(divisorsOfA[i])
+            }
+        }
+    }
+
+    const largest = Math.max(...common)
+
+    return largest
+}
+function LCM(A, B) {
+
+    const multiplesOfA = []
+    const multiplesOfB = []
+
+    for (let i = 1; i <= A; i++) {
+        multiplesOfA.push(i * A)
+    }
+    for (let i = 1; i <= B; i++) {
+        multiplesOfB.push(i * B)
+    }
+
+    const common = []
+
+    for (let i = 0; i < multiplesOfA.length; i++) {
+        for (let j = 0; j < multiplesOfB.length; j++) {
+            if (multiplesOfA[i] === multiplesOfB[j]) {
+                common.push(multiplesOfA[i])
+            }
+        }
+    }
+
+    const lowest = Math.min(...common)
+
+    return lowest
+}
+
+findGCDAndLCM(6, 9); // 3 18
+findGCDAndLCM(54, 24); // 6 216
+```
+
+Better Solution: 
+
+Relationship between GCD and LCM:
+
+```
+GCD(a, b) × LCM(a, b) = a × b
+```
+
+```js
+function findGCDAndLCM(A, B) {
+  const gcd = GCD(A, B);
+  const lcm = (A * B) / gcd;
+  console.log(gcd, lcm);
+}
+
+// Euclidean algorithm for GCD
+function GCD(a, b) {
+  while (b !== 0) {
+    const temp = b;
+    b = a % b;
+    a = temp;
+  }
+  return a;
+}
+
+findGCDAndLCM(6, 9);   // 3 18
+findGCDAndLCM(54, 24); // 6 216
+```
+
+**13. Lucky Numbers:**
+
+Given two numbers A and B. Print all lucky numbers between A and B inclusive.
+
+Note: 
+A lucky number is a number that, contains only the digits 4 and 7
+
+example: 4, 7, 44, 47, 74, 77, 444, 474, 777, 744, ...
+
+| Input | Output |
+| ----- | ------ |
+| 4 20  | 4 7    |
+| 8 15  | -1     |
+
+Solutions: 
+
+```js
+function findLuckyNumber(A, B) {
+    let found = false
+    for (let i = A; i <= B; i++) {
+        const str = i.toString()
+
+        const isLucky = [...str].every(ch => ch === '4' || ch === '7')
+
+        if (isLucky) {
+            console.log(i)
+            found = true
+        }
+    }
+    if (!found) {
+        console.log(-1)
+    }
+}
+
+findLuckyNumber(4, 20); // 4 7
+findLuckyNumber(8, 15); // -1
+```
+
+```jsx
+function findLuckyNumber(A, B) {
+    
+    let found = false
+    
+    for (let i = A; i <= B; i++) {
+        let n = i;
+        let isLucky = true
+
+        while (n > 0) {
+            const digit = n % 10;
+
+            if (digit !== 4 && digit !== 7) {
+                isLucky = false
+                break
+            }
+
+            n = Math.floor(n / 10)
+        }
+
+        if (isLucky) {
+            console.log(i)
+            found = true;
+        }
+    }
+
+    if (!found) {
+        console.log(-1)
+    }
+}
+
+findLuckyNumber(4, 20); // 4 7
+findLuckyNumber(8, 15); // -1
+```
+
+```js
+function findLuckyNumber(A, B) {
+
+    let found = false
+    const luckyPattern = /^[47]+$/; // the entire string must be made up of only 4 and 7
+
+    for (let i = A; i <= B; i++) {
+        if (luckyPattern.test(i.toString())) {
+            console.log(i)
+            found = true
+        }
+    }
+
+    if (!found) {
+        console.log(-1)
+    }
+}
+
+findLuckyNumber(4, 20); // 4 7
+findLuckyNumber(8, 15); // -1
+```
+
+**14. Numbers Histogram:**
+
+Given 2 lines of input described as follow:
+
+- The first line contains a symbol S can be (+,−,∗,/).
+- The second line contains N numbers.
+
+| Input     | Output  |
+| --------- | ------- |
+| +         | +++++   |
+| 5 2 4 3 7 | ++      |
+|           | ++++    |
+|           | +++     |
+|           | +++++++ |
+
+My Solution: 
+
+```
+function printHistogram(S, N) {
+    for (let i = 0; i < N.length; i++) {
+        let sign = ''
+        for (let j = 1; j <= N[i]; j++) {
+            sign += S
+        }
+        console.log(sign)
+    }
+}
+
+printHistogram('+', [5, 2, 4, 3, 7]);
+
+/*
++++++
+++
+++++
++++
++++++++
+ */
+```
+
+Better Solution: 
+
+```js
+function printHistogram(S, N) {
+    for (const num of N) {
+        console.log(S.repeat(num));
+    }
+}
+
+printHistogram('+', [5, 2, 4, 3, 7]);
+```
+
+**15. Shape 1:**
+
+```
+4
+
+*
+**
+***
+****
+```
+
+My Solution: 
+
+```js
+function printPyramid(N) {
+
+    for (let i = 1; i <= N; i++) {
+        let star = ''
+        for (let j = 1; j <= i; j++) {
+            star += "*"
+        }
+        console.log(star)
+    }
+}
+
+printPyramid(4);
+```
+
+Better Solutions: 
+
+```js
+function printPyramid(N) {
+  for (let i = 1; i <= N; i++) {
+    console.log('*'.repeat(i));
+  }
+}
+
+printPyramid(4);
+```
+
+```
+4
+
+****
+***
+**
+*
+```
+
+My Solutions: 
+
+```js
+function printPyramid(N) {
+
+    for (let i = 1; i <= N; i++) {
+        let star = ""
+        for (let j = N; j >= i; j--) {
+            star += "*"
+        }
+        console.log(star)
+    }
+}
+
+printPyramid(4);
+```
+
+Better Solution: 
+
+```js
+function printPyramid(N) {
+
+    for (let i = N; i >= 1; i--) {
+        console.log("*".repeat(i))
+    }
+}
+
+printPyramid(4);
+```
+
+```
+4
+
+1
+12
+123
+1234
+```
+
+My Solution: 
+
+```js
+function printNumbersShapes(N) {
+
+    for (let i = 1; i <= N; i++) {
+        const numbers = []
+        for (let j = 1; j <= i; j++) {
+            numbers.push(j)
+        }
+        console.log(...numbers)
+    }
+}
+
+printNumbersShapes(4);
+
+```
+
+Better Solutions: 
+
+```js
+function printNumbersShapes(N) {
+    for (let i = 1; i <= N; i++) {
+        let line = ''
+        for (let j = 1; j <= i; j++) {
+            line += j
+        }
+        console.log(line)
+    }
+}
+
+printNumbersShapes(4);
+
+```
+
+```js
+function printNumbersShapes(N) {
+    const base = '123456789';
+    for (let i = 1; i <= N; i++) {
+        console.log(base.slice(0, i));
+    }
+}
+
+printNumbersShapes(4);
+
+```
+
+
+```
+4
+
+1234
+123
+12
+1
+```
+
+My Solution: 
+
+```js
+function printNumbersShapes(N) {
+
+    for (let i = N; i >= 1; i--) {
+        const numbers = []
+        for (let j = 1; j <= i; j++) {
+            numbers.push(j)
+        }
+        console.log(...numbers)
+    }
+}
+
+printNumbersShapes(4);
+```
+
+Better Solutions:
+
+```js
+function printReverseNumbers(N) {
+    for (let i = N; i >= 1; i--) {
+        let line = ''
+        for (let j = 1; j <= i; j++) {
+            line += j
+        }
+        console.log(line)
+    }
+}
+
+printReverseNumbers(4);
+```
+
+```js
+function printReverseNumbers(N) {
+    const base = '123456789';
+    for (let i = N; i >= 1; i--) {
+        console.log(base.slice(0, i));
+    }
+}
+
+printReverseNumbers(4);
+```
+
+```js
+const printReverseNumbers = N =>
+  Array.from({ length: N }, (_, i) => console.log('123456789'.slice(0, N - i)));
+
+printReverseNumbers(4);
+
+/*
+for (let i = 0; i < N; i++) {
+  console.log('123456789'.slice(0, N - i))
+}
+
+Same as: 
+
+ Array.from({ length: N }, (_, i) => console.log('123456789'.slice(0, N - i)));
+
+*/
+```
+
+**16. Shape2:**
+
+```
+4
+
+   *
+  ***
+ *****
+*******
+```
+
+![image](./images/problem-solving-loops/shape2-pattern1.png)
+
+My Solution: 
+
+```js
+function printShapes(N) {
+    for (let i = 1; i <= N; i++) {
+
+        let sign = ''
+        let star = ''
+
+        for (let j = i; j <= N - 1; j++) {
+            sign += ' '
+        }
+        for (let j = 1; j <= i * 2 - 1; j++) {
+            star += '*'
+        }
+        console.log(sign + star)
+
+    }
+}
+
+printShapes(4);
+```
+
+Better Solutions: 
+
+```js
+function printShapes(N) {
+  for (let i = 1; i <= N; i++) {
+    const spaces = ' '.repeat(N - i);
+    const stars = '*'.repeat(2 * i - 1);
+    console.log(spaces + stars);
+  }
+}
+
+printShapes(4);
+```
+
+```js
+function printShapes(N) {
+  Array.from({ length: N }, (_, i) =>
+    console.log(' '.repeat(N - i - 1) + '*'.repeat(2 * i + 1))
+  );
+}
+
+printShapes(4);
+```
+
+
+```
+4
+
+*******
+ *****
+  ***
+   *
+```
+
+![image](./images/problem-solving-loops/shape2-pattern2.png)
+
+My Solution: 
+
+```js
+function printShapes(N) {
+    for (let i = N; i >= 1; i--) {
+
+        let sign = ''
+        let star = ''
+
+        for (let j = i; j <= N - 1; j++) {
+            sign += ' '
+        }
+        for (let j = i * 2 - 1; j >= 1; j--) {
+            star += '*'
+        }
+        console.log(sign + star)
+
+    }
+}
+
+printShapes(4);
+```
+
+Better Solutions: 
+
+```js
+function printShapes(N) {
+  for (let i = N; i >= 1; i--) {
+    console.log(' '.repeat(N - i) + '*'.repeat(2 * i - 1));
+  }
+}
+
+printShapes(4);
+
+```
+
+```js
+function printShapes(N) {
+  Array.from({ length: N }, (_, i) =>
+    console.log(' '.repeat(i) + '*'.repeat(2 * (N - i) - 1))
+  );
+}
+
+printShapes(4);
+```
+
+
+```
+4
+
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+```
+
+![image](./images/problem-solving-loops/shape2-pattern3.png)
+
+My Solution: 
+
+```js
+function printShapes(N) {
+    for (let i = 1; i <= N; i++) {
+
+        let sign = ''
+        let star = ''
+
+        for (let j = i; j <= N - 1; j++) {
+            sign += ' '
+        }
+        for (let j = 1; j <= i * 2 - 1; j++) {
+            star += '*'
+        }
+        console.log(sign + star)
+    }
+
+    for (let i = N - 1; i >= 1; i--) {
+
+        let sign = ''
+        let star = ''
+
+        for (let j = i; j <= N - 1; j++) {
+            sign += ' '
+        }
+        for (let j = i * 2 - 1; j >= 1; j--) {
+            star += '*'
+        }
+        console.log(sign + star)
+
+    }
+}
+
+printShapes(4);
+```
+
+Better Solutions:
+
+```js
+function printShapes(N) {
+    // 🔹 Upper half
+    for (let i = 1; i <= N; i++) {
+        console.log(' '.repeat(N - i) + '*'.repeat(i * 2 - 1));
+    }
+
+    // 🔹 Lower half
+    for (let i = N - 1; i >= 1; i--) {
+        console.log(' '.repeat(N - i) + '*'.repeat(i * 2 - 1));
+    }
+}
+
+printShapes(4);
+```
+
+```js
+function printShapes(N) {
+    for (let row = 1; row <= 2 * N - 1; row++) {
+        let i = row <= N ? row : 2 * N - row; // mirror row number
+        console.log(' '.repeat(N - i) + '*'.repeat(i * 2 - 1));
+    }
+}
+
+printShapes(4);
+```
+
+```js
+function printDiamond(N) {
+  // Top half
+  Array.from({ length: N }, (_, i) =>
+    console.log(' '.repeat(N - i - 1) + '*'.repeat(2 * (i + 1) - 1))
+  );
+
+  // Bottom half
+  Array.from({ length: N - 1 }, (_, i) =>
+    console.log(' '.repeat(i + 1) + '*'.repeat(2 * (N - i - 2) + 1))
+  );
+}
+
+printDiamond(4);
+```
+
+**17. Digits:**
+
+Given some numbers. Print the digits of that number from right to left separated by space.
+
+| Input  | Output      |
+| ------ | ----------- |
+| 4      |             |
+| 121    | 1 2 1       |
+| 39     | 9 3         |
+| 123456 | 6 5 4 3 2 1 |
+| 1200   | 0 0 2 1     |
+
+My Solutions: 
+
+```js
+function printDigits(...N) {
+    for (let i = 0; i < N.length; i++) {
+        console.log(N[i].toString().split("").reverse().join(""))
+    }
+}
+
+printDigits(121, 39, 123456, 1200);
+
+/*
+121
+93
+654321
+0021
+*/
+```
+
+```js
+function printDigits(...N) {
+    for (let num of N) {
+
+        let numArray = []
+
+        while (num !== 0) {
+            const remainder = num % 10;
+            numArray.push(remainder)
+            num = Math.floor(num / 10)
+        }
+
+        console.log(numArray.join(" "))
+    }
+
+}
+
+printDigits(121, 39, 123456, 1200);
+
+/*
+1 2 1
+9 3
+6 5 4 3 2 1
+0 0 2 1
+*/
+```
+
+**18. Sequence of Numbers and Sum:**
+
+Given multiple lines each line contains two numbers N and M. For each line print a single line contains:
+
+- The numbers between N and M inclusive separated by single space.
+- The message " sum =".
+- The summation of all numbers between N and M inclusive.
+
+Note: The program should be TERMINATED as soon as any of these two numbers is less than or equal to zero and don't print any thing.
+
+| Input | Output          |
+| ----- | --------------- |
+| 5 2   | 2 3 4 5 sum =14 |
+| 5 7   | 5 6 7 sum =18   |
+| 5 -1  |                 |
+| 5 2   | 2 3 4 5 sum =14 |
+| 6 3   | 3 4 5 6 sum =18 |
+| 5 0   |                 |
+
+
+My Solution: 
+
+```js
+function sumOfNumbers(numbers) {
+
+    const pairNumbers = []
+
+    for (let i = 0; i < numbers.length; i = i + 2) {
+        if (!(numbers[i] <= 0) && !(numbers[i + 1] <= 0)) {
+            pairNumbers.push([numbers[i], numbers[i + 1]])
+        }
+    }
+
+    for (let pairNumber of pairNumbers) {
+        const max = Math.max(...pairNumber)
+        const min = Math.min(...pairNumber)
+
+        let numberStr = ''
+        let sum = 0
+        for (let i = min; i <= max; i++) {
+            numberStr += ` ${i}`
+            sum += i;
+        }
+        console.log(`${numberStr} sum =${sum}`)
+    }
+
+}
+
+sumOfNumbers([5, 2, 5, 7, 5, -1]);
+
+/*
+2 3 4 5 sum =14
+5 6 7 sum =18
+*/
+```
+
+Better Solutions: 
+
+```js
+function sumOfNumbers(numbers) {
+  for (let i = 0; i < numbers.length; i += 2) {
+    const N = numbers[i];
+    const M = numbers[i + 1];
+
+    if (N <= 0 || M <= 0) break;
+
+    const start = Math.min(N, M);
+    const end = Math.max(N, M);
+
+    let sum = 0;
+    const sequence = [];
+
+    for (let j = start; j <= end; j++) {
+      sequence.push(j);
+      sum += j;
+    }
+
+    console.log(sequence.join(" ") + " sum =" + sum);
+  }
+}
+
+// Test
+sumOfNumbers([5, 2, 5, 7, 5, -1]);
+```
+
+```js
+function sumOfNumbers(numbers) {
+  for (let i = 0; i < numbers.length; i += 2) {
+    const N = numbers[i];
+    const M = numbers[i + 1];
+
+    if (N <= 0 || M <= 0) break;
+
+    const start = Math.min(N, M);
+    const end = Math.max(N, M);
+    const len = end - start + 1;
+
+    const sequence = Array.from({ length: len }, (_, idx) => start + idx);
+    const sum = sequence.reduce((acc, val) => acc + val, 0);
+
+    console.log(sequence.join(" ") + " sum =" + sum);
+  }
+}
+```
+
+**19. Sum of Consecutive Odd Numbers:**
+
+Given two numbers X and Y. Print the sum of all odd numbers between them, excluding X and Y.
+
+| Input | Output |
+| ----- | ------ |
+| 3     |        |
+| 5 6   | 0      |
+| 10 4  | 21     |
+| 4 9   | 12     |
+
+My Solution: 
+
+```js
+function sumOfOddNumbers(N, ...numbers) {
+
+    for (let i = 0; i < N * 2 - 1; i = i + 2) {
+        let min = Math.min(numbers[i], numbers[i + 1])
+        let max = Math.max(numbers[i], numbers[i + 1])
+        let sum = 0
+
+        for (let j = min + 1; j <= max - 1; j++) {
+            if (j % 2 === 1) {
+                sum += j
+            }
+        }
+        console.log(sum)
+    }
+
+}
+
+sumOfOddNumbers(3, 5, 6, 10, 4, 4, 9);
+
+/*
+0
+21
+12
+*/
+```
+
+**20. Some Sums:**
+
+Given three numbers N, A, B. Print the summation of the numbers between 1 and N whose sum of digits is between A and B inclusive.
+
+| Input    | Output |
+| -------- | ------ |
+| 20 2 5   | 84     |
+| 10 1 2   | 13     |
+| 100 4 16 | 4554   |
+
+My Solution: 
+
+```js
+function sumOfDigits(N, A, B) {
+
+    let sum = 0
+
+    for (let i = 1; i <= N; i++) {
+        let sumOfDigits = 0;
+
+        let t = i
+
+        while (t !== 0) {
+            sumOfDigits += t % 10
+            t = Math.floor(t / 10)
+        }
+
+
+        for (let j = A; j <= B; j++) {
+            if (sumOfDigits === j) {
+                sum += i
+                break
+            }
+        }
+
+    }
+
+    console.log(sum)
+
+}
+
+sumOfDigits(20, 2, 5); // 84
+```
+
+Better Solution: 
+
+```js
+function sumOfDigits(N, A, B) {
+  let sum = 0;
+
+  for (let i = 1; i <= N; i++) {
+    let digitSum = 0;
+    let t = i;
+
+    while (t !== 0) {
+      digitSum += t % 10;
+      t = Math.floor(t / 10);
+    }
+
+    if (digitSum >= A && digitSum <= B) {
+      sum += i;
+    }
+  }
+
+  console.log(sum);
+}
+
+sumOfDigits(20, 2, 5); // 84
+```
+
+**21. PUM:**
+
+Given a number N. Print N lines that describes PUM game.
+
+But here’s the pattern:
+
+- The numbers are consecutive.
+- After every 3 numbers, you skip one number (that’s replaced by the word “PUM”).
+
+| Input | Output       |
+| ----- | ------------ |
+| 7     | 1 2 3 PUM    |
+|       | 5 6 7 PUM    |
+|       | 9 10 11 PUM  |
+|       | 13 14 15 PUM |
+|       | 17 18 19 PUM |
+|       | 21 22 23 PUM |
+|       | 25 26 27 PUM |
+| 3     | 1 2 3 PUM    |
+|       | 5 6 7 PUM    |
+|       | 9 10 11 PUM  |
+
+My Solution: 
+
+```js
+function printPum(N) {
+
+    let number = 0;
+
+    for (let i = 0; i < N; i++) {
+
+        const pumAry = []
+
+        for (let j = 1; j <= 4; j++) {
+            number++
+            pumAry.push(number)
+        }
+
+        pumAry[pumAry.length - 1] = "PUM"
+
+        console.log(pumAry.join(" "))
+    }
+}
+
+printPum(7);
+
+/*
+1 2 3 PUM
+5 6 7 PUM
+9 10 11 PUM
+13 14 15 PUM
+17 18 19 PUM
+21 22 23 PUM
+25 26 27 PUM
+*/
+```
+
+Better Solution: 
+
+```js
+function printPum(N) {
+    let num = 1;
+
+    for (let i = 0; i < N; i++) {
+        console.log(`${num} ${num + 1} ${num + 2} PUM`);
+        num += 4; // skip one number (3 printed + 1 skipped)
+    }
+}
+
+printPum(7);
+```
+
+```js
+function printPum(N) {
+  let num = 1;
+
+  for (let i = 0; i < N; i++) {
+    const line = Array.from({ length: 3 }, (_, j) => num + j).join(" ");
+    console.log(`${line} PUM`);
+    num += 4;
+  }
+}
+```
+
+```js
+const printPum = N => {
+  Array.from({ length: N }, (_, i) => {
+    const start = i * 4 + 1;
+    console.log(`${start} ${start + 1} ${start + 2} PUM`);
+  });
+};
+```
+
+**22. Convert To Decimal 2:**
+
+Given a number N. Print the result of doing the following operation on N:
+
+- Convert N to its binary representation.
+- Count number of ones in the above binary representation.
+- Print the equivalent decimal number that its binary representation has only the number of ones that were counted above. 
+
+For example: (10)decimal = (1010)binary has 2 ones "11", after converting "11" to decimal number it will become 3.
+
+Note: 
+
+Decimal to Binary: 29<sub>10</sub>
+
+![image](./images/problem-solving-loops/decimal-to-binary.png)
+
+Binary to Decimal: 11101<sub>2</sub>
+
+![image](./images/problem-solving-loops/binary-to-decimal.png)
+
+
+| Input | Output |
+| ----- | ------ |
+| 3     |        |
+| 10    | 3      |
+| 7     | 7      |
+| 8     | 1      |
+
+
+My Solution:
+
+```js
+function printDecimal(...numbers) {
+
+    for (let num of numbers) {
+        let temp = num;
+        let binary = []
+        while (temp !== 0) {
+            const remainder = temp % 2;
+            if (remainder === 1) {
+                binary.push(remainder)
+            }
+            temp = Math.floor(temp / 2)
+        }
+
+
+        let power = binary.length - 1
+        let sum = 0
+        for (let b of binary) {
+            sum += 2 ** power
+            power--;
+        }
+        console.log(sum)
+    }
+
+}
+
+printDecimal(10, 7, 8);
+
+/*
+3
+7
+1
+*/
+```
+
+Better Solution: 
+
+```js
+function printDecimal(...numbers) {
+  for (let num of numbers) {
+    const count = num.toString(2).split('1').length - 1; // count '1's
+    const result = parseInt('1'.repeat(count) || '0', 2); // convert back to decimal
+    console.log(result);
+  }
+}
+
+printDecimal(10, 7, 8);
+/*
+3
+7
+1
+*/
+```
+
+| Expression        | Meaning                          | Example Output   |
+| ----------------- | -------------------------------- | ---------------- |
+| `num.toString(2)` | Convert to binary string         | `"1010"`         |
+| `.split('1')`     | Split by `'1'` → removes `'1's`  | `["", "0", "0"]` |
+| `.length - 1`     | Count how many `'1's` were found | `2`              |
+
+
+**23. Easy Fibonacci:**
+
+Given a number N. Print first N numbers of the Fibonacci sequence.
+
+Note: In order to create the Fibonacci sequence use the following function:
+- fib(1) = 0.
+- fib(2) = 1.
+- Then: fib(n) = fib(n - 1) + fib(n - 2). (fib(3) = fib(3 -1 ) + fib(3 - 2) = fib(2) + fib(1) = 1 + 0 = 1 )
+
+| Input | Output |
+| ----- | ------ |
+| 7     | 0      |
+|       | 1      |
+|       | 1      |
+|       | 2      |
+|       | 3      |
+|       | 5      |
+|       | 8      |
+
+My Solution: 
+
+```js
+function printFibonacci(N) {
+
+    const fib = [0, 1]
+
+    for (let i = 2; i < N; i++) {
+        let fib1 = fib[fib.length - 2]
+        let fib2 = fib[fib.length - 1]
+
+        fib.push(fib2 + fib1)
+    }
+    console.log(fib.join(" "))
+}
+
+printFibonacci(7);
+
+/*
+0 1 1 2 3 5 8
+*/
+
+```
+Better Solution: 
+
+```js
+function printFibonacci(N) {
+  const fib = [0, 1];
+
+  for (let i = 2; i < N; i++) {
+    fib.push(fib[i - 1] + fib[i - 2]);
+  }
+
+  console.log(fib.join(" "));
+}
+
+printFibonacci(7);
+```
+
+```js
+function printFibonacci(N) {
+  let a = 0, b = 1;
+
+  for (let i = 1; i <= N; i++) {
+    console.log(a);
+    const next = a + b;
+    a = b;
+    b = next;
+  }
+}
+
+printFibonacci(7);
+```
+
+**24. Three Numbers:**
+
+Given two numbers K and S. Determine how many different values of X,Y and Z such that (0 ≤ X,Y,Z ≤ K) and X+Y+Z=S.
+
+
 ## function
 
 A Function is a block of reusable code that perform a specific task when it is called.
@@ -4362,7 +6139,7 @@ const split = str.split("")
 console.log(split) // [ 'H', 'e', 'l', 'l', 'o' ]
 
 const join = split.join("");
-console.log(join)
+console.log(join) // Hello
 ```
     
 - **trim() - for removing white space before and after:**
@@ -4810,6 +6587,11 @@ for (const key in fruits) {
     reduce((accumulator, currentValue) => ..., initialValue);
     ```
     
+    here, 
+    - Accumulator: The running total or result so far
+    - CurrentValue: THe current element being processed
+    - InititalValue: The starting value of the accumulator (optional: because if we don’t provide an initialValue, JavaScript will automatically use the first element of the array as the starting accumulator.)
+
     ```js
     const numbers = [1, 2, 3, 4];
     
@@ -4834,6 +6616,8 @@ for (const key in fruits) {
     -   currentValue = the current element of the array
     
     ![reduce](images/reduce.png)
+
+
 
 4.  Reordering / Combining
 
@@ -4934,6 +6718,28 @@ const arr2 = arr.every(n => n > 2);
 console.log(arr2) // false
 ```
 
+```
+function findLuckyNumber(A, B) {
+    let found = false
+    for (let i = A; i <= B; i++) {
+        const str = i.toString()
+
+        const isLucky = [...str].every(ch => ch === '4' || ch === '7')
+
+        if (isLucky) {
+            console.log(i)
+            found = true
+        }
+    }
+    if (!found) {
+        console.log(-1)
+    }
+}
+
+findLuckyNumber(4, 20); // 4 7
+findLuckyNumber(8, 15); // -1
+```
+
 - at(index) – Returns element at index; supports negative indexing:
     
 ```js
@@ -4984,6 +6790,49 @@ console.log(flatArr); // Output: [1, 2, 3, 4, 5, 6]
 const arr = [1, [2, [3, [4]]]];
 const flatArr = arr.flat(Infinity);
 console.log(flatArr); // Output: [1, 2, 3, 4]
+```
+
+- Array.form():
+
+Syntax: 
+
+```
+Array.from(arrayLike, mapFunction, thisArg)
+```
+
+You can generate arrays without loops using Array.form() method:
+
+```js
+const numbers = Array.from({ length: 5 }, (_, i) => i + 1);
+console.log(numbers); // [1, 2, 3, 4, 5]
+```
+here, 
+{ length: 5 } - create an empty array with 5 lenth with each element undefined
+
+```js
+const arr = Array.from([1, 2, 3], (x) => x * 2);
+console.log(arr);  // [2, 4, 6]
+```
+
+```js
+const alphabets = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+console.log(alphabets); // ['A', 'B', 'C', ..., 'Z']
+```
+
+```js
+const arr = Array.from(['a', 'b', 'c'], (value, index) => `${index}: ${value}`);
+console.log(arr); // ['0: a', '1: b', '2: c']
+
+```
+
+```js
+const obj = { multiplier: 10 };
+
+const arr = Array.from([1, 2, 3], function (x) {
+  return x * this.multiplier;
+}, obj);
+
+console.log(arr); // [10, 20, 30]
 ```
 
 ## Objects:

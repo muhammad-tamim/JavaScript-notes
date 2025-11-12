@@ -63,13 +63,18 @@
     - [What is the difference between return and no return in a function?](#what-is-the-difference-between-return-and-no-return-in-a-function)
     - [Default Parameter:](#default-parameter)
     - [CallBack Function](#callback-function)
-    - [callback hell:](#callback-hell)
+      - [callback hell:](#callback-hell)
     - [Arrow Function:](#arrow-function)
     - [Difference between arrow function and normal function](#difference-between-arrow-function-and-normal-function)
     - [Anonymous function](#anonymous-function)
+      - [Common Use Cases for Anonymous Functions:](#common-use-cases-for-anonymous-functions)
     - [Recursion](#recursion)
+      - [Call Stack:](#call-stack)
     - [Closure](#closure)
     - [Difference between callback function, recursion and closure](#difference-between-callback-function-recursion-and-closure)
+    - [Pure and Impure functions:](#pure-and-impure-functions)
+  - [Problem Soling: Function](#problem-soling-function)
+  - [Problem Soling: Recursion](#problem-soling-recursion)
   - [string](#string)
     - [Strings are immutable:](#strings-are-immutable)
     - [Quotes:](#quotes)
@@ -5459,17 +5464,17 @@ Given two numbers K and S. Determine how many different values of X,Y and Z such
 A Function is a block of reusable code that perform a specific task when it is called.
 
 ```js
-function calcSum(a, b) {
+function calcSum(a, b) { // -------- Parameter
     console.log(a + b);
 }
 
-calcSum(1, 2); // 3
+calcSum(1, 2); // ------- Argument
 ```
 
 **Note:**
 
-*   1, 2 are arguments
-*   a, b are parameters
+- a, b are parameters
+- 1, 2 are arguments
 
 ### What is the difference between return and no return in a function?
 
@@ -5497,24 +5502,13 @@ console.log(functionResult + 5); // 12
 
 In this example, the function not only does the work, but it also returns the result to us. This means we can store it, reuse it, or do more operations with it.
 
-You can think of it like this:
-
-We order a coffee from a robot. The robot’s job is to make the coffee. But the robot’s owner teaches it something special, When someone orders coffee, don’t just make it — also serve it on the table.
-
-That’s how `return` works in a function.
-
-*   Without `return`, the robot just makes the coffee — but you don’t get it.
-*   With `return`, the robot makes the coffee and gives it to you.
-
-so,
-
-If a function returns a value, you can store it in a variable and use it for further operations. If a function does not return anything, you just call the function, but you can’t use its output for further operations.
+so, If a function returns a value, you can store it in a variable and use it for further operations. If a function does not return anything, you just call the function, but you can’t use its output for further operations.
 
 ### Default Parameter:
 
 In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.
 
-```
+```js
 function showGreet(name = "Guest") {
   console.log("Hello, " + name + "!");
 }
@@ -5524,11 +5518,16 @@ showGreet();        // Output: Hello, Guest!
 
 ### CallBack Function
 
-A callback function is a function that is passed as an argument to another function and is executed by that function at a later time.
+A callback function is a function that is passed as an argument to another function to be executed later by that function.
+
+Note: Any function that receives a function as a parameter or returns a function is called a ***higher-order function**.
+
+Here, 
+- great is a higher order function
+- sayGoodbye is a callback function
 
 ```js
-// A function that takes another function as a callback
-function greet(name, callback) {
+function greet(name, callback) { 
   console.log("Hello " + name);
   callback(); 
 }
@@ -5537,13 +5536,14 @@ function sayGoodbye() {
   console.log("Goodbye!");
 }
 
-greet("Tamim", sayGoodbye); // passing sayGoodbye function as a callback function
+greet("Tamim", sayGoodbye); 
 
-// Output:
-// Hello Tamim
-// Goodbye!
+/* 
+Output:
+Hello Tamim
+Goodbye!
+*/
 ```
-here, SayGoodbye is a callback function, because we pass it into another function and them executed in that function.
 
 ```js
 function calculate(a, b, operation) {
@@ -5554,49 +5554,75 @@ function add(x, y) {
   return x + y;
 }
 
-console.log(calculate(5, 3, add)); // 8
+console.log(calculate(5, 3, add)); // 8 -- here add is a callback function
 
-// 'add' is the callback function because we passed that function as an argument to another function.
 ```
 
-### callback hell:
+We use callback functions in JavaScript every day — in methods like map(), filter(), find(), forEach(), .then(), and addEventListener(), etc.
+
+```js
+const numbers = [1, 2, 3];
+
+numbers.forEach(element => {
+    console.log(element)
+});
+```
+
+Here, forEach is an array method (a function defined on an object), and the arrow function (element => …) is the callback function.
+
+
+```js
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res => res.json())
+    .then(data => console.log(data))
+```
+
+Here, each .then() is a promise method that takes a callback function that runs after the previous asynchronous step is completed.
+
+```js
+document.addEventListener("click", function() {
+  console.log("You clicked the page!");
+});
+```
+
+here, AddEventListener() is a DOM Method that receives an anonymous callback function that executes when the click event occurs.
+
+#### callback hell:
 
 When we write too many nested callback functions that are hard to read and maintain, it is called callback hell.
 
 ```js
-// Example: Simulating steps with nested callbacks
-setTimeout(() => {
-  console.log("Step 1: Start project");
-  
-  setTimeout(() => {
-    console.log("Step 2: Do research");
-    
-    setTimeout(() => {
-      console.log("Step 3: Build features");
-      
-      setTimeout(() => {
-        console.log("Step 4: Test project");
-        
-        setTimeout(() => {
-          console.log("Step 5: Deploy project");
-        }, 1000);
-        
-      }, 1000);
-      
-    }, 1000);
-    
-  }, 1000);
-  
-}, 1000);
+function first(number, callback) {
+    const result = number + 2;
+    callback(result);
+}
+
+function second(number, callback) {
+    const result = number * 2;
+    callback(result);
+}
+
+function third(number, callback) {
+    const result = number - 1;
+    callback(result);
+}
+
+// Callback Hell
+first(1, function (res1) {
+    second(res1, function (res2) {
+        third(res2, function (res3) {
+            console.log("Final Result:", res3); // Final Result: 5
+        });
+    });
+});
 ```
 
 ### Arrow Function:
 
 Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6.
 
-Examples:
 
-```
+```js
 const greet = () => console.log("Hello!");
 greet(); // Output: Hello!
 
@@ -5623,40 +5649,67 @@ console.log(multiply(3, 4)); // Output: 12
 
 ### Difference between arrow function and normal function
 
-- Normal function: Must use return.
-- Arrow function: Can omit {} and return for single-expression functions.
+- **Normal function:** If you want to use the result outside the function, you must return a value.
+- **Arrow function:** Can omit {} and return for single-expression functions.
 
 ```js
-// Normal function
 function multiply(a, b) {
   return a * b;
 }
 
-// Arrow function with implicit return
 const multiplyArrow = (a, b) => a * b;
 ```
 
-- Normal functions: this depends on how the function is called.
-- Arrow functions: this depends on where the function is defined (lexical scope).
+- **Normal functions:** this depends on how the function is called.
+- **Arrow functions:** this depends on where the function is defined (lexical scope - can access variables from outer to inner scope, but not from inner to outer scope).
 
 ```js
 const person = {
-  name: "Alice",
-  greetNormal: function() {
-    setTimeout(function() {
-      console.log("Normal: " + this.name); // undefined, because setTimeout fuciton dont have name property
-    }, 1000);
-  },
-  greetArrow: function() {
-    setTimeout(() => {
-      console.log("Arrow: " + this.name); // Alice
-    }, 1000);
-  }
+    name: "Alice",
+    greetNormal: function () {
+        setTimeout(function () {
+            console.log("Normal: " + this.name);
+        }, 1000);
+    },
+    greetArrow: function () {
+        setTimeout(() => {
+            console.log("Arrow: " + this.name);
+        }, 1000);
+    }
 };
 
-person.greetNormal();
-person.greetArrow();
+
+person.greetNormal(); // undefined
+person.greetArrow();  // Alice
 ```
+here, 
+- Normal function inside setTimeout → this is timer/global, not person.
+- Arrow function inside setTimeout → inherits this from outer function (person) → "Alice"
+
+
+```js
+const person = {
+    name: "Alice",
+
+    // Normal function
+    greetNormal: function () {
+        console.log("Normal: " + this.name);
+    },
+
+    // Arrow function
+    greetArrow: () => {
+        console.log("Arrow: " + this.name);
+    }
+};
+
+person.greetNormal(); // Alice
+person.greetArrow();  // undefined
+```
+here, 
+- Normal function → this is from person.
+- Arrow function → inherits this from outer (global) scope → "undefined"
+
+Note: Arrow functions do not have their own this; they inherit it from the surrounding context.
 
 - Normal function: arguments is available.
 - Arrow function: arguments is not available.
@@ -5669,31 +5722,6 @@ normalFunc(1, 2);
 
 const arrowFunc = (a, b) => console.log(arguments); // ReferenceError
 arrowFunc(1, 2);
-```
-
-- Normal function: Can be used as a constructor
-- Arrow function: Cannot be used as a constructor.
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-
-const p1 = new Person("Alice", 25);
-console.log(p1.name); // Alice
-console.log(p1.age);  // 25
-```
-
-```js
-const PersonArrow = (name, age) => {
-  this.name = name;
-  this.age = age;
-};
-
-const p2 = new PersonArrow("Bob", 30); // ❌ TypeError: PersonArrow is not a constructor
-console.log(p2.name); 
-console.log(p2.age);  
 ```
 
 - normal function are not ideal for callback
@@ -5720,13 +5748,19 @@ console.log(squaredArrow); // [1, 4, 9, 16, 25]
 
 ### Anonymous function
 
-An anonymous function is simply a function without a name since we dint get any name of that function means we cant re-use that funciton.
+An anonymous function is a function without a name. You cannot call it by name or reuse it, unless you assign it to a variable, property, or pass it as a callback.
+
+Note: array function are always anonymous function
 
 ```js
 // Named function
 function sayHello() {
     console.log("Hello!");
 }
+
+(function () {
+    console.log("hola!");
+})();
 
 // Anonymous function (stored in a variable)
 const sayHi = function() {
@@ -5739,7 +5773,7 @@ const sayHey = () => {
 };
 ```
 
-**Common Use Cases for Anonymous Functions:**
+#### Common Use Cases for Anonymous Functions:
 
 - Event Handlers: 
   
@@ -5821,61 +5855,18 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 ```
 
 
-
-
 ### Recursion
 
-Recursion is a technique where a recursive function calls itself.
+Recursion is a technique where a function calls itself.
 
 Note:
-- Recursive function; The actual function that calls itself.
-- Recursion: The process or technique of a function calling itself.
+- Recursive function; The function that calls itself.
+ 
 
-```js
-function a() {
-    const a = 10;
-    console.log('inside a', a);
-}
-function b() {
-    const b = 20;
-    a();
-    console.log('inside b', b);
-}
+Two Main Components of Recursion:
 
-function c() {
-    const c = 30;
-    b();
-    console.log('inside c', c);
-}
-c();
-
-/*
-inside a 10
-inside b 20
-inside c 30
-*/
-```
-
-**what is Call Stack:**
-
-A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:
-
-- new frame creation and stack growing
-- Base case reached and stack un-winding
-
-*   New Frame Creation: Each function call creates a new "stack frame" containing the function's parameters, local variables, and return address
-*   Stack Growth: These frames pile up on top of each other as the recursion goes deeper
-*   Base Case Reached: When the base case is hit, the recursion stops adding new frames
-*   Stack Unwinding: Functions start returning values and their frames are removed from the stack in reverse order
-
-![callstack](images/callStack.png)  
-
-**How the recursion Works:**
-
-A recursive function typically has two main components:
-
-1.  **Base Case:** The part where the recursive function stops the recursion based on a condition. It ensures that the function does not call itself infinitely, which prevents a stack overflow.
-    - **Stack OverFlow:** A stack overflow is an error that happens when the call stack gets full.
+1.  **Base Case:** The condition where the recursive function stops calling itself. It ensures that the function does not call itself infinitely, which prevents a stack overflow.
+    - **Stack OverFlow:** happens when the call stack gets full.
     
     ```js
     function greeting() {
@@ -5926,11 +5917,16 @@ call stack:
 
 ![call-stack-2](./images/call-stack-2)
 
+#### Call Stack:
+
+A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:
+
+- new frame creation and stack growing
+- Base case reached and stack un-winding
     
 ### Closure
 
-A closure is a function technique where an inner function remembers the variables from its outer function, even after that outer function has finished executing.
-
+A closure is a function technique where an inner function remembers the variables from its outer function, even after that outer function has finished executing. This means JavaScript keeps a reference to the outer variables in memory so the inner function can remember and access them.
 
 ```js
 function secretCounter() {
@@ -5989,26 +5985,31 @@ console.log(double(5)); // 10
 console.log(triple(5)); // 15
 ```
 
-explanation: 
+### Difference between callback function, recursion and closure
+- callback function: A function that is passed as an argument to another function and is executed by that function at a later time.
+- recursion: A technique where a function calls itself.
+- closure: A technique where an inner function remembers the variables from its outer function, even after that outer function has finished executing.
 
-When we call
+### Pure and Impure functions: 
 
-```const double = makeMultiplier(2);```
-
-it returns:
+- A pure function has no external variables and does not depend on them.
+- An impure function uses or depends on external variables.
 
 ```js
-function(num) {
-    return num * 2;
-};
-```
-Now double holds this function, and it also remembers that multiplier = 2 (because of closure).
-So when we call double(5), it returns: ```return 5 * 2;```
+// Pure Function
+function add(a, b) {
+  return a + b;
+}
 
-### Difference between callback function, recursion and closure
-- callback function: A function that is passed as an argument to another function
-- recursion: A technique where a function calls itself.
-- closure: A technique where an inner function remembers the variables from its outer function
+// Impure Function (changes external data)
+let total = 0;
+function addToTotal(num) {
+  total += num;
+}
+```
+
+## Problem Soling: Function
+## Problem Soling: Recursion
 
 ## string
 

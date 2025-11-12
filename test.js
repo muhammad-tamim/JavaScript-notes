@@ -1,8 +1,16 @@
-function findMatchCombinator(K, S) {
-    console.log(K, S)
+function secretCounter() {
+    let count = 0;
+
+    return function () {
+        count++;
+        console.log("Count is: " + count);
+    };
 }
 
-findMatchCombinator(2, 1);
+secretCounter();
+secretCounter();
+secretCounter();
 
-/*
-*/
+// counter(); // Count is: 1
+// counter(); // Count is: 2
+// counter(); // Count is: 3

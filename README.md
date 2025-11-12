@@ -82,13 +82,16 @@
   - [string](#string)
     - [Strings are immutable:](#strings-are-immutable)
     - [Quotes:](#quotes)
-    - [String Property:](#string-property)
     - [String Methods:](#string-methods)
-    - [Examples:](#examples)
+    - [Common Property / Methods for string / array:](#common-property--methods-for-string--array)
   - [Problem Solving: String](#problem-solving-string)
   - [array](#array)
-    - [for..of loop](#forof-loop)
-    - [Array Methods](#array-methods)
+    - [Array Methods:](#array-methods)
+      - [Adding / Removing Elements:](#adding--removing-elements)
+      - [Iteration / Transformation (Higher-order functions):](#iteration--transformation-higher-order-functions)
+      - [Others:](#others)
+    - [Common Property / Methods for string / array:](#common-property--methods-for-string--array-1)
+  - [Problem Solving: Array](#problem-solving-array)
   - [Objects:](#objects)
     - [Different ways to make an Object](#different-ways-to-make-an-object)
     - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
@@ -103,6 +106,7 @@
     - [Optional Chaining (?.)](#optional-chaining-)
     - [Date Object:](#date-object)
     - [Math Object:](#math-object)
+  - [Problem Solving: Object](#problem-solving-object)
   - [Destructuring](#destructuring)
   - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
@@ -160,6 +164,7 @@
   - [Time and Space Complexity](#time-and-space-complexity)
   - [Searching](#searching)
   - [Sorting](#sorting)
+- [Part 6: TypeScript](#part-6-typescript)
 
 ---
 
@@ -6149,71 +6154,34 @@ console.log(info);
 console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12
 ```
 
-### String Property:
-
-.length is the only string property, and it’s very commonly used.
-
-```js
-const str = "JavaScript";
-console.log(str.length); // 10
-```
 
 ### String Methods:
 
-- Case Conversion:
-
-  - toUpperCase() - Converts all letters to uppercase.
-  - toLowerCase() - Converts all letters to lowercase.
+- toUpperCase() / toLowerCase() - Converts all letters to uppercase / lowercase.
 
 ```js
 console.log("hello".toUpperCase()); // "HELLO"
 console.log("WORLD".toLowerCase()); // "world"
 console.log('Interface'[0].toLowerCase()); // 'i'
 ```
-    
-- Searching in Strings:
 
-  - includes() - Returns true/false if substring exists.
+-  startsWith() / endsWith() / charAt()
+- 
   - startsWith() - Returns true/false if string starts with substring.
   - endsWith() - Returns true/false if string ends with substring.
-  - indexOf() - Returns index of substring, -1 if not found. 
+  - charAt() - Returns the character at the given index, if out of range returns "".
 
 ```js
-console.log("JavaScript".includes("Script")); // true
 console.log("JavaScript".startsWith("Java")); // true
 console.log("JavaScript".endsWith("Script")); // true
 
-console.log("hello world".indexOf("world")); // 6
-console.log("banana".indexOf("a"));      // 1 → first "a"
-console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
-console.log("banana".indexOf("z"));      // -1 → not found
+const str = "JavaScript";
+console.log(str.charAt(0));   // J  (1st character)
+console.log(str.charAt(4));   // S  (5th character)
+console.log(str.charAt(100)); // "" (out of range)
 ```
     
-- slice(start, end) - Extracts a part of a string and returns it as a new string:
-    
-```js
-const text = "JavaScript";
-
-console.log(text.slice(0, 4));    // "Java" (from index 0 to 3)
-console.log(text.slice(4))        // "Script" (from index 4 to the end)
-console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)
-```
-    
-- split() and join()- 
-    
-- split() → converts a string to array
-- join() → converts an array to string
-
-```js
-const str = "Hello";
-const split = str.split("")
-console.log(split) // [ 'H', 'e', 'l', 'l', 'o' ]
-
-const join = split.join("");
-console.log(join) // Hello
-```
-    
-- removing white space:
+- trim() / trimStart() - trimEnd() / trimLeft() - trimRight():
 
   - trim() - for removing white space before and after
   - trimStart()/trimEnd() or trimLeft()/trimRight()- for removing white space from specific side
@@ -6225,19 +6193,16 @@ console.log(trimmedStr); // Output: "hello world!"
 
 
 const str = "          hello world! ";
-console.log(str) // Output: "          hello world! "
-
 const trimmedStr = str.trimStart();
 const trimmedEndStr = str.trimEnd();
 console.log(trimmedStr); // Output: "hello world! "
 console.log(trimmedEndStr); // Output: "          hello world!"
 ```
     
-- replace(), replaceAll() and repeat():
+- replace(), replaceAll():
 
   - replace() → Replaces the first match of a substring with another string.
   - replaceAll() → Replaces all matches of a substring with another string.
-  - repeat() → Repeats the string a specified number of times.    
 
 ```js
 let str = "purple-color";
@@ -6252,21 +6217,27 @@ So we’re left with only "purple".
 
 console.log("I like cats. cats are sweet".replace("cats", "dogs")); // I like dogs. cats are sweet
 console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I like dogs. dogs are sweet"
-console.log("ha".repeat(3)); // "hahaha"
 ```
-    
-- concat() - Combines two or more strings into one.:
-    
-```js
-const str1 = "Hello";
-const str2 = "World";
-const result = str1.concat(" ", str2);
-console.log(result); // "Hello World"
 
-const result2 = "I".concat(" love", " JavaScript");
-console.log(result2); // "I love JavaScript"
+- repeat() - Repeats the string a specified number of times. 
+
+```js
+console.log("ha".repeat(3)); // "hahaha"
+```    
+
+- localeCompare(compareString) - Compares two strings in current locale order (alphabetically and case-sensitive). it returns: 0 if equal, 1 if string > compareString, -1 if string < compareString 
+
+
+```js
+const a = "apple";
+const b = "banana";
+const c = "Apple";
+
+console.log(a.localeCompare(b)); // -1 → "apple" comes before "banana"
+console.log(b.localeCompare(a)); // 1  → "banana" comes after "apple"
+console.log(a.localeCompare(c)); // 1  → lowercase > uppercase in ASCII order
 ```
-    
+
 - padStart(), padEnd():  
   
   - padStart() → Pads the start of a string until it reaches the target length.
@@ -6285,47 +6256,135 @@ console.log(num.padStart(3, "0")); // "005"
 let word = "Hi";
 console.log(word.padEnd(5, "*")); // "Hi***"
 ```
-
-- string to ascii and ascii to string:
-
-  - charCodeAt() / codePointAt() → Returns the ASCII/Unicode number of a character.
-  - String.fromCharCode() / String.fromCodePoint() → Converts an ASCII/Unicode number to a string.
+- charCodeAt() / codePointAt() → Returns the ASCII/Unicode number of a character.
+ 
+ ```js
+ console.log('a'.charCodeAt(0)); // Output: 97
+console.log('a'.codePointAt(0)); // Output: 97
+ ```
+ 
+- String.fromCharCode() / String.fromCodePoint() → Converts an ASCII/Unicode number to a string.
 
 ```js
-console.log('a'.charCodeAt(0)); // Output: 97
-console.log('a'.codePointAt(0)); // Output: 97
-
 console.log(String.fromCharCode(97)); // Output: 'a'
 console.log(String.fromCodePoint(97)); // Output: 'a'
 ```
 
-### Examples: 
+### Common Property / Methods for string / array:
 
-- String Reverse:
-    
+- .length (property): returns the length of an array or string:
+
 ```js
-const sentence = 'hello';
-let reverse = '';
-for (const letter of sentence) {
-    reverse = letter + reverse;
-}
-console.log(reverse); // olleh
+// String
+const str = "JavaScript";
+console.log(str.length); // 10 → total characters
 
-
-// or using build in methods
-const str = "hello";
-const reversed = str.split("").reverse().join("");
-console.log(reversed); // Output: "olleh"
-
-const split = str.split("");
-console.log(split); // Output: ['h', 'e', 'l', 'l', 'o']
-
-const reversedArray = split.reverse();
-console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
-
-const joined = reversedArray.join("");
-console.log(joined); // Output: "olleh"
+// Array
+const arr = [10, 20, 30, 40];
+console.log(arr.length); // 4 → total items
 ```
+
+- includes() - returns true or false if an element/string exist:
+
+```js
+// String
+const text = "I love JavaScript";
+console.log(text.includes("love")); // true
+console.log(text.includes("Love")); // false (case-sensitive)
+
+// Array
+const numbers = [1, 2, 3, 4];
+console.log(numbers.includes(3));  // true
+console.log(numbers.includes(5));  // false
+```
+
+- indexOf() — Returns the index of the first occurrence, -1 if not found.
+
+```js
+// String
+const msg = "banana";
+console.log(msg.indexOf("a"));     // 1 → first "a"
+console.log(msg.indexOf("a", 2));  // 3 → next "a" after index 2
+console.log(msg.indexOf("z"));     // -1 → not found
+
+// Array
+const arr = [10, 20, 30, 10];
+console.log(arr.indexOf(10));      // 0 → first occurrence
+console.log(arr.indexOf(10, 1));   // 3 → next occurrence after index 1
+console.log(arr.indexOf(50));      // -1 → not found
+```
+
+- lastIndexOf() — Returns the last occurrence index of a substring/element, -1 if not found.
+
+```js
+// String
+const text = "banana";
+console.log(text.lastIndexOf("a")); // 5 → last "a"
+console.log(text.lastIndexOf("n")); // 4
+console.log(text.lastIndexOf("z")); // -1 → not found
+
+// Array
+const nums = [10, 20, 30, 20, 10];
+console.log(nums.lastIndexOf(20)); // 3 → last occurrence
+console.log(nums.lastIndexOf(10)); // 4
+console.log(nums.lastIndexOf(99)); // -1 → not found
+```
+
+- slice(start, end) — Extracts part of a string/array.
+
+```js
+// String
+const str = "JavaScript";
+console.log(str.slice(0, 4));    // "Java"
+console.log(str.slice(-6));      // "Script"
+
+// Array
+const arr = [1, 2, 3, 4, 5];
+console.log(arr.slice(1, 4));    // [2, 3, 4]
+console.log(arr.slice(-2));      // [4, 5]
+```
+
+- split() and join()- 
+  - split() → converts a string to array
+  - join() → converts an array to string
+
+```js
+const str = "Hello";
+const split = str.split("")
+console.log(split) // [ 'H', 'e', 'l', 'l', 'o' ]
+
+const join = split.join("");
+console.log(join) // Hello
+```
+
+- concat() — Joins multiple strings or arrays together:
+
+```js
+// String
+const s1 = "Hello";
+const s2 = "World";
+console.log(s1.concat(" ", s2)); // "Hello World"
+
+// Array
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+console.log(arr1.concat(arr2)); // [1, 2, 3, 4]
+```
+
+- at(index) — Returns the element/character at the given index:
+
+```js
+// String
+const text = "JavaScript";
+console.log(text.at(0));   // "J"
+console.log(text.at(-1));  // "t" (last character)
+
+// Array
+const numbers = [10, 20, 30, 40];
+console.log(numbers.at(0));   // 10
+console.log(numbers.at(-1));  // 40 (last item)
+```
+
 
 ## Problem Solving: String
 
@@ -6352,13 +6411,6 @@ fruits[2] = 'mango';
 console.log(fruits); // [ 'apple', 'orange', 'mango' ]
 ```
 
-**Get the length of an array using length property:**
-
-```js
-let fruits = ["Apple", "Orange", "Plum"];
-console.log(fruits.length); // 3
-```
-
 Since, array are object so it copied by reference, means Assigning an array to another variable does not create a new array. They both point to the same memory address:
 
 ```js
@@ -6371,436 +6423,298 @@ console.log(arr === fruits); // true
 arr.push("Pear"); // modify the array by reference
 
 console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
+console.log(arr); // [ 'Banana', 'Pear' ] - 2 items now
 ```
 
-### for..of loop
+### Array Methods:
 
-One of the oldest ways to cycle array items is the for loop over indexes:
+#### Adding / Removing Elements:
 
-```js
-let arr = ["Apple", "Orange", "Pear"];
+- push/pop and unshift/shift:
 
-for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-}
-```
-
+| Operation                                        | Method    |
+| ------------------------------------------------ | --------- |
+| Adds element to end and returns the new length   | push()    |
+| Remove the last element and returns the element  | pop()     |
+| Adds element to start and returns the new length | unshift() |
+| Remove the first element and returns the element | shift()   |
+    
 ```js
 let fruits = ["Apple", "Orange", "Plum"];
 
-// iterates over array elements
-for (let fruit of fruits) {
-    console.log(fruit);
+console.log(fruits.push('Mango')) // 4
+console.log(fruits); // [ 'Apple', 'Orange', 'Plum', 'Mango' ]
+console.log(fruits.pop()); // Mango
+console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
+
+console.log(fruits.unshift('Mango')) // 4
+console.log(fruits); // [ 'Mango', 'Apple', 'Orange', 'Plum' ]
+console.log(fruits.shift()); // Mango
+console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]   
+```
+    
+**Why push/pop run fast and unshift/shift are slow?**
+    
+![push/pop/unshift/shift](images/image8.png)
+    
+push() and pop() are fast because they work at the end of an array, where JavaScript can simply add or remove an item without affecting the positions of other elements.
+    
+On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.
+    
+- splice(start, deleteCount, ...items) –modifies the original array by adding, removing, or replacing elements and returns removed items:
+    
+```js
+let arr = ["I", "study", "JavaScript"];
+// from index 1 remove 1 element
+console.log(arr.splice(1, 1));  // [ 'study' ]
+console.log(arr); // [ 'I', 'JavaScript' ]
+
+
+let arr2 = ["I", "study", "JavaScript", "right", "now"];
+// remove first 3 elements and replace them with another
+console.log(arr2.splice(0, 3, "Let's", "dance")); // [ 'I', 'study', 'JavaScript' ]
+console.log(arr2) // ["Let's", "dance", "right", "now"]
+
+
+let arr3 = ["I", "study", "JavaScript"];
+// from index 2, delete 0, then insert "complex" and "language"
+console.log(arr3.splice(2, 0, "complex", "language")); // []
+console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
+
+
+let arr4 = [1, 2, 5];
+// from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
+console.log(arr4.splice(-1, 0, 3, 4));[]
+console.log(arr4); // [ 1, 2, 3, 4, 5 ]
+```
+
+Note: 
+- splice(): modifies the original array by adding, removing, or replacing elements.
+- slice(): doesn't modifies the original array, it returns a shallow copy of the original array after sliceing.
+
+
+#### Iteration / Transformation (Higher-order functions):
+
+| Method      | Purpose                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------------ |
+| map()       | Returns a new array by applying a callback function to each element of the original array. |
+| forEach()   | Same as Map() but no return value                                                          |
+| filter()    | Returns a new array of elements for which the callback function returns true               |
+| find()      | Returns the first element for which the callback function returns true, or undefined.      |
+| findIndex() | Returns the index of the first element for which the callback function returns true.       |
+| reduce()    | Uses a callback function to combine all elements into a single value.                      |
+| some()      | Returns true if the callback function returns true for any element.                        |
+| every()     | Returns true if the callback function returns true for all elements.                       |
+
+
+- map(callbackFunction):
+    
+```js
+let arr = [1, 2, 3]
+let arr2 = arr.map(n => n * 2);
+console.log(arr) // [ 1, 2, 3 ]
+console.log(arr2) // [ 2, 4, 6 ]
+```
+    
+```js
+// using map for just printf (not recommended)
+const numbers = [1, 2, 3, 4, 5];
+
+const newNumber = numbers.map(number => console.log(number))
+
+console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
+```
+    
+```js
+// using map for both element and index
+const names = ["tamim", "nasrin", "maria"];
+
+const newNames = names.map((element, index) => console.log(element, index))
+
+/*
+tamim 0
+nasrin 1
+maria 2
+ */
+```
+    
+```js
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+const productNames = products.map(product => product.name);
+console.log(productNames)
+
+// [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
+```
+
+- forEach(callbackFunction): 
+    
+```js
+let arr = [1, 2, 3]
+arr.forEach(n => console.log(n * 2)); // 2 4 6       
+```
+    
+```js
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+products.forEach(product => console.log(product))
+
+/*
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+*/   
+```
+    
+- filter(callbackFunction):
+    
+```js
+let arr = [1, 2, 3, 4]
+let arr2 = arr.filter(n => n % 2 === 0);
+console.log(arr) // [ 1, 2, 3, 4 ]
+console.log(arr2) // [ 2, 4 ]
+```
+    
+```js
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+const filterProducts = products.filter(product => product.price >= 1000)
+console.log(filterProducts);
+
+/*
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+*/
+
+const expensiveProducts = products.filter(product => product.price >= 5000);
+console.log(expensiveProducts); // []
+```
+
+- find(callbackFunction):
+    
+```js
+let arr = [1, 2, 3, 4, 5];
+const result = arr.find(n => n > 2);
+console.log(result); // 3  
+```
+    
+```js
+const products = [
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+    { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
+    { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
+    { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
+    { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
+]
+
+const foundProduct = products.find(product => product.brand === "apple");
+console.log(foundProduct)
+
+/*
+    { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
+*/
+
+const foundColor = products.find(product => product.color === "pink");
+console.log(foundColor) // undefined
+```
+    
+- findIndex(callbackFunction):
+    
+```js
+const users = [
+  { id: 1, name: "Tamim" },
+  { id: 2, name: "Rafi" },
+  { id: 3, name: "Amin" }
+];
+
+// Find index of user with id 2
+const index = users.findIndex(user => user.id === 2);
+console.log(index); // 1
+```
+    
+- reduce(callbackFunction):
+    
+Syntax:
+    
+```js
+reduce((accumulator, currentValue) => ..., initialValue);
+```
+    
+here, 
+- Accumulator: The running total or result so far
+- CurrentValue: THe current element being processed
+- InititalValue: The starting value of the accumulator (optional: because if we don’t provide an initialValue, JavaScript will automatically use the first element of the array as the starting accumulator.)
+
+```js
+const numbers = [1, 2, 3, 4];
+
+// without reduce method
+let acc = 0;
+for (let i = 0; i < numbers.length; i++) {
+    acc = acc + numbers[i];
 }
+console.log(acc); // Output: 10
+
+// with reduce method
+const result = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(result); // Output: 10
 ```
+Here,  
+- accumulator = keeps the result
+- 0 = The staring value of accumulator
+- currentValue = the current element of the array
+    
+![reduce](images/reduce.png)
 
-Technically, because arrays are objects, it is also possible to use for..in, but it gives you the keys (like "0", "1", or even custom properties) instead of the actual values.
-
-```js
-const fruits = ["apple", "banana", "mango"];
-fruits.custom = "extra"; // adding a property to the array
-
-for (const key in fruits) {
-    console.log(key); // 0, 1, 2, custom
-}
-```
-
-### Array Methods
-
-1.  Adding / Removing Elements
-
-    - push/pop and unshift/shift:
-    
-    | Operation                                        | Method    |
-    | ------------------------------------------------ | --------- |
-    | Adds element to end and returns the new length   | push()    |
-    | Remove the last element and returns the element  | pop()     |
-    | Adds element to start and returns the new length | unshift() |
-    | Remove the first element and returns the element | shift()   |
-    
-    ```js
-    let fruits = ["Apple", "Orange", "Plum"];
-    
-    console.log(fruits.push('Mango')) // 4
-    console.log(fruits); // [ 'Apple', 'Orange', 'Plum', 'Mango' ]
-    console.log(fruits.pop()); // Mango
-    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
-    
-    console.log(fruits.unshift('Mango')) // 4
-    console.log(fruits); // [ 'Mango', 'Apple', 'Orange', 'Plum' ]
-    console.log(fruits.shift()); // Mango
-    console.log(fruits); // [ 'Apple', 'Orange', 'Plum' ]
-    ```
-    
-    #### Why push/pop run fast and unshift/shift are slow?
-    
-    ![push/pop/unshift/shift](images/image8.png)
-    
-    push() and pop() are fast because they work at the end of an array, where JavaScript can simply add or remove an item without affecting the positions of other elements.
-    
-    On the other hand, shift() and unshift() are slow because they work at the beginning of the array. When you remove the first item with shift(), JavaScript has to move every remaining element one position to the left. Similarly, when you use unshift() to add an item to the beginning, all existing elements must shift one position to the right. These shifts take more time and processing, especially when the array is large.
-    
-    - splice(start, deleteCount, ...items) – Modify array by remove, add, or replace elements and returns removed items:
-    
-    ```js
-    let arr = ["I", "study", "JavaScript"];
-    // from index 1 remove 1 element
-    console.log(arr.splice(1, 1));  // [ 'study' ]
-    console.log(arr); // [ 'I', 'JavaScript' ]
-    
-    
-    let arr2 = ["I", "study", "JavaScript", "right", "now"];
-    // remove 3 first elements and replace them with another
-    console.log(arr2.splice(0, 3, "Let's", "dance")); // [ 'I', 'study', 'JavaScript' ]
-    console.log(arr2) // ["Let's", "dance", "right", "now"]
-    
-    
-    let arr3 = ["I", "study", "JavaScript"];
-    // from index 2, delete 0, then insert "complex" and "language"
-    console.log(arr3.splice(2, 0, "complex", "language")); // []
-    console.log(arr3); // [ 'I', 'study', 'complex', 'language', 'JavaScript' ]
-    
-    
-    let arr4 = [1, 2, 5];
-    // from index -1 (one step from the end) delete 0 elements, then insert 3 and 4
-    console.log(arr4.splice(-1, 0, 3, 4));[]
-    console.log(arr4); // [ 1, 2, 3, 4, 5 ]
-    ```
-    
-    - slice(start, end) – Returns a shallow copy from start to before end, doesn't change original:
-    
-    ```js
-    let arr = ["t", "e", "s", "t"];
-    
-    console.log(arr.slice(1, 3)); // [ 'e', 's' ]
-    console.log(arr); // [ 't', 'e', 's', 't' ]
-    console.log(arr.slice(-2)); // [ 's', 't' ]
-    console.log(arr.slice()) // [ 't', 'e', 's', 't' ]
-    ```
-    
-    Note:
-    - Use splice() when you want to change the original array (remove/insert/replace).
-    - Use slice() when you want a copy of part of the array, without changing the original.
-
-2. Searching / Location
-
-   - indexOf(item) – Returns the index of the first match, or -1:
-    
-    ```js
-    let arr = [1, 2, 3];
-    
-    console.log(arr.indexOf(2)); // 1
-    console.log(arr.indexOf(4)); // -1
-    ```
-    
-   - lastIndexOf(item) – Returns the index of the last match, or -1:
-    
-    ```js
-    let arr = [1, 2, 2, 3];
-    
-    console.log(arr.lastIndexOf(2)); // 2
-    console.log(arr.lastIndexOf(5)); // -1
-    ```
-    
-   - includes(item) – Returns true if array contains item, or false:
-    
-    ```js
-    let arr = [1, 2, 3];
-    
-    console.log(arr.includes(2)); // true
-    console.log(arr.includes(5)) // false
-    ```
-    
-
-3.  Iteration / Transformation
-
-    | Method      | Purpose                                                    | Returns                         | Modifies Original Array |
-    | ----------- | ---------------------------------------------------------- | ------------------------------- | ----------------------- |
-    | `map()`     | Returns a new array by applying a function to each element | ✅ New array                     | ❌ No                    |
-    | `forEach()` | Executes a function for each element; no return value      | ❌ No return                     | ❌ No                    |
-    | `filter()`  | Filters elements based on a condition                      | ✅ New filtered array            | ❌ No                    |
-    | `find()`    | Finds the **first** element that matches a condition       | ✅ Single element or `undefined` | ❌ No                    |
-
-    - forEach(callback) – Executes a function for each element; no return value:
-    
-    ```js
-    let arr = [1, 2, 3]
-    arr.forEach(n => console.log(n * 2)); // 2 4 6       
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    products.forEach(product => console.log(product))
-    
-    /*
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    */
-    ```
-    
-    - map(callback) – return a new array by applying function to each element:
-    
-    ```js
-    let arr = [1, 2, 3]
-    let arr2 = arr.map(n => n * 2);
-    console.log(arr) // [ 1, 2, 3 ]
-    console.log(arr2) // [ 2, 4, 6 ]
-    ```
-    
-    ```js
-    // using map for just printf (not recommended)
-    const numbers = [1, 2, 3, 4, 5];
-    
-    const newNumber = numbers.map(number => console.log(number))
-    
-    console.log(newNumber) // [ undefined, undefined, undefined, undefined, undefined ]
-    ```
-    
-    ```js
-    // using map for both element and index
-    const names = ["tamim", "nasrin", "maria"];
-    
-    const newNames = names.map((element, index) => console.log(element, index))
-    
-    /*
-    tamim 0
-    nasrin 1
-    maria 2
-     */
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    const productNames = products.map(product => product.name);
-    console.log(productNames)
-    
-    // [ 'iPhone', 'Galaxy S23', 'Pixel 8', 'OnePlus 11', 'Xperia 5' ]
-    ```
-    
-    - filter(callback) – return a new array with elements that pass the test:
-    
-    ```js
-    let arr = [1, 2, 3, 4]
-    let arr2 = arr.filter(n => n % 2 === 0);
-    console.log(arr) // [ 1, 2, 3, 4 ]
-    console.log(arr2) // [ 2, 4 ]
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    const filterProducts = products.filter(product => product.price >= 1000)
-    console.log(filterProducts);
-    
-    /*
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-    */
-    
-    const expensiveProducts = products.filter(product => product.price >= 5000);
-    console.log(expensiveProducts); // []
-    ```
-    
-    - find(callback) – Returns the first element that matches:
-    
-    ```js
-    
-    let arr = [1, 2, 3, 4, 5];
-    const result = arr.find(n => n > 2);
-    console.log(result); // 3
-    ```
-    
-    ```js
-    const products = [
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-        { id: 2, name: "Galaxy S23", color: "black", price: 1000, brand: "samsung" },
-        { id: 3, name: "Pixel 8", color: "white", price: 900, brand: "google" },
-        { id: 4, name: "OnePlus 11", color: "green", price: 800, brand: "oneplus" },
-        { id: 5, name: "Xperia 5", color: "blue", price: 950, brand: "sony" }
-    ]
-    
-    const foundProduct = products.find(product => product.brand === "apple");
-    console.log(foundProduct)
-    
-    /*
-        { id: 1, name: "iPhone", color: "golden", price: 1200, brand: "apple" },
-    */
-    
-    const foundColor = products.find(product => product.color === "pink");
-    console.log(foundColor) // undefined
-    ```
-    
-    - findIndex(callback) – Returns the index of the first element that matches:
-    
-    ```js
-    let arr = [1, 2, 3, 4, 5];
-    const result = arr.findIndex(n => n > 2);
-    console.log(result); // 2
-    ```
-    
-    - reduce()– Reduces array to a single value:
-    
-    Syntax:
-    
-    ```js
-    reduce((accumulator, currentValue) => ..., initialValue);
-    ```
-    
-    here, 
-    - Accumulator: The running total or result so far
-    - CurrentValue: THe current element being processed
-    - InititalValue: The starting value of the accumulator (optional: because if we don’t provide an initialValue, JavaScript will automatically use the first element of the array as the starting accumulator.)
-
-    ```js
-    const numbers = [1, 2, 3, 4];
-    
-    // without reduce method
-    
-    let acc = 0;
-    for (let i = 0; i < numbers.length; i++) {
-        acc = acc + numbers[i];
-    }
-    console.log(acc); // Output: 10
-    
-    // with reduce method
-    
-    const result = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    console.log(result); // Output: 10
-    ```
-    
-    Here,
-    
-    -   accumulator = keeps the result
-    -   0 = The staring value of accumulator
-    -   currentValue = the current element of the array
-    
-    ![reduce](images/reduce.png)
-
-
-
-4.  Reordering / Combining
-
-    - concat(...arrays) – Returns a new array by merging arrays/values:
-    
-    ```js
-    let arr = [1, 2];
-    const arr2 = arr.concat([3, 4], 5);
-    console.log(arr); // [ 1, 2 ]
-    console.log(arr2); // [ 1, 2, 3, 4, 5 ]
-    ```
-    
-    - join(separator) – Returns a string by joining array elements using the given separator:
-    
-    ```js
-    let arr = ["a", "b", "c"];
-    let arr2 = arr.join("-");
-    console.log(arr); // [ 'a', 'b', 'c' ]
-    console.log(arr2); // a-b-c
-    
-    const arr = ['Hello', 'World'];
-    let arr3 = arr.join(" ");
-    console.log(arr); // ['Hello', 'World']
-    console.log(arr3); // Hello World
-    ```
-    
-    - split(separator) – Splits a string into an array using the given separator:
-    
-    ```js
-    let str = "a-b-c";
-    let result = str.split("-");
-    console.log(str);    // "a-b-c"
-    console.log(result); // [ 'a', 'b', 'c' ]
-    
-    const str = 'Hello World';
-    let arr2 = str.split(" ");
-    console.log(str); // Hello World
-    console.log(arr2); // ['Hello', 'World']
-    ```
-    
-    **Note:** join used on arrays to convert them into a string and split used on strings to convert them a array.
-    
-    - reverse() – Reverses the array:
-    
-    ```js
-    let arr = [1, 2, 3];
-    console.log(arr.reverse()) // [ 3, 2, 1 ]
-    ```
-    
-    - sort – return a new sorted array:
-    
-    ```js
-    let arr = [3, 1, 2];
-    console.log(arr.sort())  // default lexicographic: [1,2,3]
-    
-    // but in this case default sort fails:
-    let arr2 = [1, 2, 15];
-    console.log(arr2.sort()) // [ 1, 15, 2 ]
-    ```
-    
-    The order became 1, 15, 2. Incorrect. But why?
-    
-    In JavaScript, the default behavior of sort() is lexicographic (dictionary-like) sorting. This means:
-    
-    -   It converts elements to strings.
-    -   Then it compares those strings using Unicode (UTF-16) code unit values.
-    thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: [1, 15, 2]
-    
-    To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.
-    
-    ```js
-    let arr2 = [1, 2, 15];
-    console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15]
-    ```
-    
-    How it works:
-    
-    `(a, b) => a - b this function returns:`
-    -   Negative number (a - b < 0) → keep a before b
-    -   Positive number (a - b > 0) → place b before a
-    -   Zero (a - b === 0) → leave a and b unchanged
-
-5. Others
-
-- some() –Return true if any element passes the test, else false:
+- some(callbackFunction): 
     
 ```js
-let arr = [1, 2, 3];
-const arr2 = arr.some(n => n > 2);
-console.log(arr2) // true
+const users = [
+  { name: "Tamim", online: false },
+  { name: "Rafi", online: true },
+  { name: "Amin", online: false }
+];
+
+const anyOnline = users.some(user => user.online);
+
+console.log(anyOnline); // true → because Rafi is online
 ```
     
-- every() –Return true if all element passes the test, else false:
+- every(callbackFunction):
     
 ```js
-let arr = [1, 2, 3];
-const arr2 = arr.every(n => n > 2);
-console.log(arr2) // false
+const products = [
+  { name: "Laptop", inStock: true },
+  { name: "Mouse", inStock: true },
+  { name: "Keyboard", inStock: true }
+];
+
+const allInStock = products.every(product => product.inStock);
+
+console.log(allInStock); // true → all items are available
 ```
 
-```
+```js
 function findLuckyNumber(A, B) {
     let found = false
     for (let i = A; i <= B; i++) {
@@ -6822,34 +6736,61 @@ findLuckyNumber(4, 20); // 4 7
 findLuckyNumber(8, 15); // -1
 ```
 
-- at(index) – Returns element at index; supports negative indexing:
+#### Others:
+
+- reverse() – Reverses the array:
     
 ```js
-// With at method
-let fruits = ["Apple", "Orange", "Plum"];
+let arr = [1, 2, 3];
+console.log(arr.reverse()) // [ 3, 2, 1 ]
+```
+- sort – return a new sorted array:
     
-console.log(fruits.at(-1)); // Plum
+```js
+let arr = [3, 1, 2];
+console.log(arr.sort())  // default lexicographic: [1,2,3]
     
-// without at method
-let fruits = ["Apple", "Orange", "Plum"];
-console.log(fruits[fruits.length - 1]); // Plum
+// but in this case default sort fails:
+let arr2 = [1, 2, 15];
+console.log(arr2.sort()) // [ 1, 15, 2 ]
 ```
     
-- Array.isArray(value) – Return true if value is an array, else false:
+The order became 1, 15, 2. Incorrect. But why?
+    
+In JavaScript, the default behavior of sort() is lexicographic (dictionary-like) sorting. This means:
+    
+- It converts elements to strings.
+- Then it compares those strings using Unicode (UTF-16) code unit values.
+   
+thats why, "1" vs "2" → "1" comes first "2" vs "15" → "1" comes before "2" so "15" comes before "2" So the result becomes: [1, 15, 2]
+    
+To fix it, we need to use a custom compare function to sort it by js sort() method. js sort() method used this custom function internally to determine the correct sorting.
     
 ```js
-    
-const arr = [1, 2]
-const result = Array.isArray(arr);
-console.log(result) // true       
+let arr2 = [1, 2, 15];
+console.log(arr2.sort((a, b) => a - b)); // [1, 2, 15] --> ascending order
 ```
+How it works:
     
-- fill(value, start?, end?) – Fills array with value:
+`(a, b) => a - b this function returns:`
+- Negative number (a - b < 0) → keep a before b
+- Positive number (a - b > 0) → place b before a
+- Zero (a - b === 0) → leave a and b unchanged
+
+```js
+let arr2 = [1, 2, 15];
+console.log(arr2.sort((a, b) => b - a)); // [15, 2, 1] --> descending order
+```
+
+
+- fill(value, start, end) – Fills array with value:
     
 ```js
-const arr = [1, 2, 3]
-arr.fill(0, 1);
-console.log(arr) // [ 1, 0, 0 ]
+const arr = [1, 2, 3, 4, 5];
+
+arr.fill(0, 1, 4);
+
+console.log(arr); // [1, 0, 0, 0, 5]
 ```
     
 - flat(depth): Returns a new array after concatenating all the nested arrays up to the given depth:
@@ -6859,7 +6800,7 @@ console.log(arr) // [ 1, 0, 0 ]
 
 const arr = [1, 2, [3, 4]];
 const flatArr = arr.flat();
-console.log(flatArr); // Output: [1, 2, 3, 4]
+console.log(flatArr); // Output: [1, 2, 3, 4] 
 
 // Deeper nesting with depth = 2
 
@@ -6874,13 +6815,23 @@ const flatArr = arr.flat(Infinity);
 console.log(flatArr); // Output: [1, 2, 3, 4]
 ```
 
-- Array.form():
+- Array.isArray(value) – Return true if value is an array, else false:
+    
+```js
+const arr = [1, 2]
+const result = Array.isArray(arr);
+console.log(result) // true       
+```
+
+- Array.form() - creates a new shallow-copied array from an array-like object (such as a NodeList, arguments, or { length: 5 }) or an iterable object (like a String, Array, Set, or Map).
 
 Syntax: 
 
 ```
-Array.from(arrayLike, mapFunction, thisArg)
+Array.from(arrayLike or iterables, mapLikeFunction, thisArg)
 ```
+
+Examples: 
 
 You can generate arrays without loops using Array.form() method:
 
@@ -6889,17 +6840,20 @@ const numbers = Array.from({ length: 5 }, (_, i) => i + 1);
 console.log(numbers); // [1, 2, 3, 4, 5]
 ```
 here, 
-{ length: 5 } - create an empty array with 5 lenth with each element undefined
+- Array.from({ length: 5 }) → Creates an array of length 5 filled with undefined values:
+  - [undefined, undefined, undefined, undefined, undefined]
+- (_, i) => i + 1 → Works like a map function, replacing each undefined with its index + 1.
+ 
+```js
+const alphabets = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+console.log(alphabets); // ['A', 'B', 'C', ..., 'Z']
+```
 
 ```js
 const arr = Array.from([1, 2, 3], (x) => x * 2);
 console.log(arr);  // [2, 4, 6]
 ```
 
-```js
-const alphabets = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-console.log(alphabets); // ['A', 'B', 'C', ..., 'Z']
-```
 
 ```js
 const arr = Array.from(['a', 'b', 'c'], (value, index) => `${index}: ${value}`);
@@ -6916,6 +6870,123 @@ const arr = Array.from([1, 2, 3], function (x) {
 
 console.log(arr); // [10, 20, 30]
 ```
+
+### Common Property / Methods for string / array:
+
+- .length (property): returns the length of an array or string:
+
+```js
+// String
+const str = "JavaScript";
+console.log(str.length); // 10 → total characters
+
+// Array
+const arr = [10, 20, 30, 40];
+console.log(arr.length); // 4 → total items
+```
+
+- includes() - returns true or false if an element/string exist:
+
+```js
+// String
+const text = "I love JavaScript";
+console.log(text.includes("love")); // true
+console.log(text.includes("Love")); // false (case-sensitive)
+
+// Array
+const numbers = [1, 2, 3, 4];
+console.log(numbers.includes(3));  // true
+console.log(numbers.includes(5));  // false
+```
+
+- indexOf() — Returns the index of the first occurrence, -1 if not found.
+
+```js
+// String
+const msg = "banana";
+console.log(msg.indexOf("a"));     // 1 → first "a"
+console.log(msg.indexOf("a", 2));  // 3 → next "a" after index 2
+console.log(msg.indexOf("z"));     // -1 → not found
+
+// Array
+const arr = [10, 20, 30, 10];
+console.log(arr.indexOf(10));      // 0 → first occurrence
+console.log(arr.indexOf(10, 1));   // 3 → next occurrence after index 1
+console.log(arr.indexOf(50));      // -1 → not found
+```
+
+- lastIndexOf() — Returns the last occurrence index of a substring/element, -1 if not found.
+
+```js
+// String
+const text = "banana";
+console.log(text.lastIndexOf("a")); // 5 → last "a"
+console.log(text.lastIndexOf("n")); // 4
+console.log(text.lastIndexOf("z")); // -1 → not found
+
+// Array
+const nums = [10, 20, 30, 20, 10];
+console.log(nums.lastIndexOf(20)); // 3 → last occurrence
+console.log(nums.lastIndexOf(10)); // 4
+console.log(nums.lastIndexOf(99)); // -1 → not found
+```
+
+- slice(start, end) — Extracts part of a string/array.
+
+```js
+// String
+const str = "JavaScript";
+console.log(str.slice(0, 4));    // "Java"
+console.log(str.slice(-6));      // "Script"
+
+// Array
+const arr = [1, 2, 3, 4, 5];
+console.log(arr.slice(1, 4));    // [2, 3, 4]
+console.log(arr.slice(-2));      // [4, 5]
+```
+
+- split() and join()- 
+  - split() → converts a string to array
+  - join() → converts an array to string
+
+```js
+const str = "Hello";
+const split = str.split("")
+console.log(split) // [ 'H', 'e', 'l', 'l', 'o' ]
+
+const join = split.join("");
+console.log(join) // Hello
+```
+
+- concat() — Joins multiple strings or arrays together:
+
+```js
+// String
+const s1 = "Hello";
+const s2 = "World";
+console.log(s1.concat(" ", s2)); // "Hello World"
+
+// Array
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+console.log(arr1.concat(arr2)); // [1, 2, 3, 4]
+```
+
+- at(index) — Returns the element/character at the given index:
+
+```js
+// String
+const text = "JavaScript";
+console.log(text.at(0));   // "J"
+console.log(text.at(-1));  // "t" (last character)
+
+// Array
+const numbers = [10, 20, 30, 40];
+console.log(numbers.at(0));   // 10
+console.log(numbers.at(-1));  // 40 (last item)
+```
+
+## Problem Solving: Array
 
 ## Objects:
 
@@ -7744,6 +7815,8 @@ console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclu
 ```
 
 
+
+## Problem Solving: Object
 
 ## Destructuring
 
@@ -9225,3 +9298,5 @@ person.forEach((value, key) => {
 
 ## Searching 
 ## Sorting
+
+# Part 6: TypeScript

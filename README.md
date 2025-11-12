@@ -19,6 +19,10 @@
   - [Data Types](#data-types)
     - [7 Primitive Data Types:](#7-primitive-data-types)
     - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
+    - [Immutable and Mutable:](#immutable-and-mutable)
+    - [AutoBoxing](#autoboxing)
+      - [Autoboxing with string:](#autoboxing-with-string)
+      - [Autoboxing with Numbers:](#autoboxing-with-numbers)
     - [Type Conversion:](#type-conversion)
   - [Operator](#operator)
     - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
@@ -80,6 +84,8 @@
     - [Quotes:](#quotes)
     - [String Property:](#string-property)
     - [String Methods:](#string-methods)
+    - [Examples:](#examples)
+  - [Problem Solving: String](#problem-solving-string)
   - [array](#array)
     - [for..of loop](#forof-loop)
     - [Array Methods](#array-methods)
@@ -98,7 +104,6 @@
     - [Date Object:](#date-object)
     - [Math Object:](#math-object)
   - [Destructuring](#destructuring)
-  - [AutoBoxing](#autoboxing)
   - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
     - [Common JS Errors:](#common-js-errors)
@@ -863,6 +868,64 @@ In JavaScript, any data that is not a primitive type is considered an object typ
 - array
 - function 
   
+### Immutable and Mutable: 
+
+- Immutable (primitive data types) → cannot be changed after creation (you can only replace it with a new value)
+
+- Mutable (non-primitive data type) → can be changed after creation
+
+```js
+// string (Immutable)
+let str = "hello";
+str[0] = "H"; 
+console.log(str); // "hello" (unchanged)
+
+str = "Hola"; 
+console.log(str); // "Hola"
+
+// array (mutable)
+const arr = [1, 2, 3];
+arr[0] = 10;       // changed
+
+console.log(arr); // [10, 2, 3]
+```
+
+### AutoBoxing
+
+Autoboxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so you can use object methods and properties on them. JavaScript automatically wraps the primitive value in its object temporarily, whenever you access a property or method. After the operation, the object is discarded.
+
+#### Autoboxing with string:
+
+```js
+let str = "hello";
+console.log(str.length); // 5
+console.log(str.toUpperCase()); // "HELLO"
+```
+
+Behind the scenes, Autoboxing convert string to temporary object:
+
+```js
+let temp = new String(str); // temporary object
+temp.length;               // 5
+temp.toUpperCase();        // "HELLO"
+```
+
+#### Autoboxing with Numbers:
+
+```js
+let num = 42;
+
+console.log(num.toString()); // "42"
+console.log(num.toFixed(2)); // "42.00"
+```
+Behind the scenes:
+
+```js
+let tempNum = new Number(num); // temporary object
+tempNum.toString();            // "42"
+tempNum.toFixed(2);            // "42.00"
+```
+
 ### Type Conversion:
 
 With global functions:
@@ -6013,10 +6076,11 @@ function addToTotal(num) {
 
 ## string
 
-A string in JavaScript is a primitive data type that represents text, enclosed in single quotes, double quotes, or backticks. Strings are iterable but immutable, meaning you cannot modify them directly. 
+A string in JavaScript is a primitive data type that represents text, enclosed in single quotes (''), double quotes (""), or backticks (``). Strings are iterables, which means they can be iterated over because they have a Symbol.iterator method.
 
-Also Strings are not objects by default, but when you use object-like features (such as accessing values by index like an array, or calling methods and properties), JavaScript automatically converts them behind the scenes into a temporary String object using autoBoxing.
+Wait, strings are primitive data types, which means they are not objects. So how is a string iterable and how we use methods on it?
 
+Strings are not objects by default, but when we use object-like features (such as accessing values by index, or calling methods and properties), JavaScript automatically converts them behind the scenes into a temporary String object using autoBoxing. This is why strings also include the Symbol.iterator method thats makes it also an iterables.
 
 ### Strings are immutable:
 
@@ -6035,7 +6099,6 @@ let str = "Hello";
 let newStr = "Y" + str.slice(1);
 console.log(newStr); // "Yello"
 ```
-
 
 
 ### Quotes:
@@ -6097,30 +6160,37 @@ console.log(str.length); // 10
 
 ### String Methods:
 
-- **Case Conversion:**
-    
+- Case Conversion:
+
+  - toUpperCase() - Converts all letters to uppercase.
+  - toLowerCase() - Converts all letters to lowercase.
+
 ```js
 console.log("hello".toUpperCase()); // "HELLO"
 console.log("WORLD".toLowerCase()); // "world"
 console.log('Interface'[0].toLowerCase()); // 'i'
 ```
     
-- **Searching in Strings:**
-    
+- Searching in Strings:
+
+  - includes() - Returns true/false if substring exists.
+  - startsWith() - Returns true/false if string starts with substring.
+  - endsWith() - Returns true/false if string ends with substring.
+  - indexOf() - Returns index of substring, -1 if not found. 
+
 ```js
 console.log("JavaScript".includes("Script")); // true
 console.log("JavaScript".startsWith("Java")); // true
 console.log("JavaScript".endsWith("Script")); // true
+
 console.log("hello world".indexOf("world")); // 6
 console.log("banana".indexOf("a"));      // 1 → first "a"
 console.log("banana".indexOf("a", 2));   // 3 → next "a" after index 2
 console.log("banana".indexOf("z"));      // -1 → not found
 ```
     
-- **Extracting Part of a String:**
+- slice(start, end) - Extracts a part of a string and returns it as a new string:
     
-slice(start, end):
-        
 ```js
 const text = "JavaScript";
 
@@ -6129,7 +6199,7 @@ console.log(text.slice(4))        // "Script" (from index 4 to the end)
 console.log(text.slice(-4, -1));  // "rip" (start at the 4th position from the right, end at the 2nd position from the right)
 ```
     
-- **Joining and Splitting:**
+- split() and join()- 
     
 - split() → converts a string to array
 - join() → converts an array to string
@@ -6143,17 +6213,17 @@ const join = split.join("");
 console.log(join) // Hello
 ```
     
-- **trim() - for removing white space before and after:**
-    
+- removing white space:
+
+  - trim() - for removing white space before and after
+  - trimStart()/trimEnd() or trimLeft()/trimRight()- for removing white space from specific side
+
 ```js
 const str = " hello world! ";
 const trimmedStr = str.trim();
 console.log(trimmedStr); // Output: "hello world!"
-```
-    
-- **trimStart()/trimEnd() or trimLeft()/trimRight()- for removing white space from specific side:**
-    
-```js
+
+
 const str = "          hello world! ";
 console.log(str) // Output: "          hello world! "
 
@@ -6163,8 +6233,12 @@ console.log(trimmedStr); // Output: "hello world! "
 console.log(trimmedEndStr); // Output: "          hello world!"
 ```
     
-- **Replacing and Repeating:**
-    
+- replace(), replaceAll() and repeat():
+
+  - replace() → Replaces the first match of a substring with another string.
+  - replaceAll() → Replaces all matches of a substring with another string.
+  - repeat() → Repeats the string a specified number of times.    
+
 ```js
 let str = "purple-color";
 let result = str.replace("-color", "");
@@ -6181,26 +6255,7 @@ console.log("I like cats. cats are sweet".replaceAll('cats', "dogs")); // "I lik
 console.log("ha".repeat(3)); // "hahaha"
 ```
     
-- **includes, startsWith, endsWith:**
-    
-```js
-const message = "Hello, Tamim!";
-console.log(message.includes("Tamim")); // true
-console.log(message.includes("hello")); // false (case-sensitive)
-
-const greeting = "JavaScript is fun!";
-console.log(greeting.startsWith("Java"));   // true
-console.log(greeting.startsWith("Script")); // false
-console.log(greeting.startsWith("Script", 4)); // true (starts checking from index 4)
-
-const fileName = "report.pdf";
-console.log(fileName.endsWith(".pdf"));  // true
-console.log(fileName.endsWith(".txt"));  // false
-console.log("JavaScript".endsWith("Script", 10)); // true
-console.log("JavaScript".endsWith("Java", 4));    // true
-```
-    
-- **concat:**
+- concat() - Combines two or more strings into one.:
     
 ```js
 const str1 = "Hello";
@@ -6212,7 +6267,41 @@ const result2 = "I".concat(" love", " JavaScript");
 console.log(result2); // "I love JavaScript"
 ```
     
-- **String Reverse:**
+- padStart(), padEnd():  
+  
+  - padStart() → Pads the start of a string until it reaches the target length.
+  - padEnd() → Pads the end of a string until it reaches the target length.
+
+```js
+let num = "5";
+console.log(num.padStart(3, "0")); // "005"
+
+/*
+- Original string: "5" (length 1)
+- Target length: 3
+- Pad with "0" at the start until length becomes 3 → "005"
+*/
+
+let word = "Hi";
+console.log(word.padEnd(5, "*")); // "Hi***"
+```
+
+- string to ascii and ascii to string:
+
+  - charCodeAt() / codePointAt() → Returns the ASCII/Unicode number of a character.
+  - String.fromCharCode() / String.fromCodePoint() → Converts an ASCII/Unicode number to a string.
+
+```js
+console.log('a'.charCodeAt(0)); // Output: 97
+console.log('a'.codePointAt(0)); // Output: 97
+
+console.log(String.fromCharCode(97)); // Output: 'a'
+console.log(String.fromCodePoint(97)); // Output: 'a'
+```
+
+### Examples: 
+
+- String Reverse:
     
 ```js
 const sentence = 'hello';
@@ -6237,16 +6326,8 @@ console.log(reversedArray); // Output: ['o', 'l', 'l', 'e', 'h']
 const joined = reversedArray.join("");
 console.log(joined); // Output: "olleh"
 ```
-    
-- **padStart**   
-  
-```js
-    let num = "5";
-    console.log(num.padStart(3, "0")); // "005"
-```
-- Original string: "5" (length 1)
-- Target length: 3
-- Pad with "0" at the start until length becomes 3 → "005"
+
+## Problem Solving: String
 
 ## array 
 An array is a special type of object used to store multiple values of different data types in a single variable, organized as an ordered and indexed collection. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`. In arrays, the variable `arr` is the object, and the index numbers are keys.
@@ -7808,42 +7889,6 @@ function displayUser({ name, age }) {
 }
 
 displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
-```
-
-## AutoBoxing
-
-Autoboxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so you can use object methods and properties on them. JavaScript automatically wraps the primitive value in its object temporarily, whenever you access a property or method. After the operation, the object is discarded.
-
-**Autoboxing with string:**
-
-```js
-let str = "hello";
-console.log(str.length); // 5
-console.log(str.toUpperCase()); // "HELLO"
-```
-
-Behind the scenes, Autoboxing convert string to temporary object:
-
-```js
-let temp = new String(str); // temporary object
-temp.length;               // 5
-temp.toUpperCase();        // "HELLO"
-```
-
-**Autoboxing with Numbers:**
-
-```js
-let num = 42;
-
-console.log(num.toString()); // "42"
-console.log(num.toFixed(2)); // "42.00"
-```
-Behind the scenes:
-
-```js
-let tempNum = new Number(num); // temporary object
-tempNum.toString();            // "42"
-tempNum.toFixed(2);            // "42.00"
 ```
 
 ## Strict Mode

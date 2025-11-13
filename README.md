@@ -5526,6 +5526,68 @@ printFibonacci(7);
 
 Given two numbers K and S. Determine how many different values of X,Y and Z such that (0 ≤ X,Y,Z ≤ K) and X+Y+Z=S.
 
+| Input | Output |
+| ----- | ------ |
+| 2 1   | 3      |
+| 9 4   | 15     |
+
+
+Solutions: 
+
+```js
+function matchCombinator(k, s) {
+    let count = 0;
+
+    for (let x = 0; x <= k; x++) {
+        for (let y = 0; y <= k; y++) {
+            const z = s - (x + y)
+
+            if (z >= 0 && z <= k) {
+                count++;
+            }
+        }
+    }
+    console.log(count)
+
+}
+
+matchCombinator(2, 1) // 3
+```
+
+Explanation: 
+
+| X (outer loop)    | Y (inner loop) | Z = 1 - (X + Y)  | z >= 0 && z <= k           | count = 0; |
+| ----------------- | -------------- | ---------------- | -------------------------- | ---------- |
+| 0 (1st iteration) | 0              | 1 = 1 - (0 + 0)  | (1 >= 0 && 1 <= 2) count++ | count = 1  |
+|                   | 1              | 0 = 1 - (0 + 1)  | (0 >= 0 && 0 <= 2) count++ | count = 2  |
+|                   | 2              | -1 = 1 - (0 + 2) | (-1 >= 0 && -1 <= 2)       |            |
+|                   |                |                  |                            |            |
+| 1 (2nd iteration) | 0              | 0 = 1 - (1 + 0)  | (0 >= 0 && 0 <= 2) count++ | count = 3  |
+|                   | 1              | -1 = 1 - (1 + 1) | (-1 >= 0 && -1 <= 2)       |            |
+|                   | 2              | -2 = 1 - (1 + 2) | (-2 >= 0 && -2 <= 2)       |            |
+|                   |                |                  |                            |            |
+| 2 (3rd iteration) | 0              | -1 = 1 - (2 + 0) | (-1 >= 0 && -1 <= 2)       |            |
+|                   | 1              | -2 = 1 - (2 + 1) | (-2 >= 0 && -2 <= 2)       |            |
+|                   | 2              | -3 = 1 - (2 + 2) | (-3 >= 0 && -3 <= 2)       |            |
+
+
+```js
+function matchCombinatorTripleLoop(K, S) {
+    let count = 0;
+
+    for (let x = 0; x <= K; x++) {
+        for (let y = 0; y <= K; y++) {
+            for (let z = 0; z <= K; z++) {
+                if (x + y + z === S) count++;
+            }
+        }
+    }
+
+    console.log(count);
+}
+
+matchCombinatorTripleLoop(2, 1); // 3
+```
 
 ## function
 

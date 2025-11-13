@@ -1,6 +1,17 @@
-const numbers = Array.from({ length: 5 }, (_, i) => i + 1);
-console.dir(numbers); // [1, 2, 3, 4, 5]
+function matchCombinator(k, s) {
+    let count = 0;
 
-const arr = [1, 2]
+    for (let x = 0; x <= k; x++) {
+        for (let y = 0; y <= k; y++) {
+            const z = s - (x + y)
 
-console.dir(arr)
+            if (z >= 0 && z <= k) {
+                count++;
+            }
+        }
+    }
+    console.log(count)
+
+}
+
+matchCombinator(2, 1) // 3

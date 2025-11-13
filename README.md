@@ -106,9 +106,8 @@
     - [Math Object:](#math-object)
   - [Problem Solving: Object](#problem-solving-object)
   - [Destructuring](#destructuring)
-  - [Error Handling](#error-handling)
+  - [Error Handling:](#error-handling)
     - [Common JS Errors:](#common-js-errors)
-      - [SyntaxError:](#syntaxerror)
       - [ReferenceError](#referenceerror)
       - [TypeError](#typeerror)
   - [Js Modules: Import and export](#js-modules-import-and-export)
@@ -8048,7 +8047,7 @@ displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 ```
 
 
-## Error Handling
+## Error Handling:
 
 try...catch is used to handle errors in JavaScript so your code doesn't crash. Instead of stopping the program when an error happens, you can catch the error and respond gracefully.
 
@@ -8066,16 +8065,6 @@ try {
     let x = y + 10; // Error here
 } catch (err) {
     console.log("Something went wrong!");
-}
-console.log("This line will run");
-```
-
-**err vs err.message vs err.name:**
-
-```js
-try {
-    let x = y + 10; // Error here
-} catch (err) {
     console.log(err.name); // ReferenceError
     console.log(err.message); // y is not defined
     console.log(err); // full error message
@@ -8105,7 +8094,7 @@ Cleanup: This runs no matter what.
 
 ```js
 try {
-    let result = 10 / y;
+    let result = 10 / y; // err
     console.log(result);
 } catch (err) {
     console.log("Error:", err.message);
@@ -8120,90 +8109,85 @@ Cleanup: This runs no matter what.
 
 ### Common JS Errors:
 
-#### SyntaxError: 
+**SyntaxError:**
+ 
 Syntax error happens when JavaScript code is not written correctly.
 
 ```js
-
 // Missing parenthesis:
-console.log("Hello world"
-
-// Unexpected token:
-let a = 10
-let b = 20;
-console.log(a + b)
+console.log("Hello world" // SyntaxError: missing ) after argument list
 
 // Using reserved keywords for variable names:
-let let = 5;
+let let = 5; // SyntaxError: let is disallowed as a lexically bound name
 
 // not using quotes properly for string:
-let greeting = "Hello;
+let greeting = "Hello; 
+// SyntaxError: Invalid or unexpected token
 
 // Invalid object literal:
-let obj = { name: "Tamim", age: }; 
+let obj = { name: "Tamim", age: }; // SyntaxError: Unexpected token '}'
 ```
 
 #### ReferenceError
 Reference Error happens when you use a variable that hasn’t been declared.
 
 ```js
-
 // Undeclared variable:
 console.log(x); // ReferenceError: x is not defined
 
 // Misspelled variable name:
 let username = "Tamim";
-console.log(usernme);
+console.log(usernme); // ReferenceError: usernme is not defined
 
 // Variable used outside its block:
 {
     let a = 5;
 }
-console.log(a);
+console.log(a); // ReferenceError: a is not defined
 
 // Accessing variable before declaration: 
-console.log(y);
+console.log(y); // ReferenceError: Cannot access 'y' before initialization
 let y = 10;
 
 // Function-scoped variable not declared:
 function test() {
     console.log(nonExistent);
 }
-test();
+test(); // ReferenceError: nonExistent is not defined
 ```
 
 #### TypeError
 Type Error happens when a value is used in an invalid way (e.g., calling non-function, accessing property of undefined, etc.)
 
 ```js
-
 // Calling something that's not a function:
 let num = 10;
-num();
+num(); // TypeError: num is not a function
+
 
 // Accessing property of undefined:
 let user;
-console.log(user.name);
+console.log(user.name); // TypeError: Cannot read properties of undefined (reading 'name')
 
-// Using string like an object:
+// Using string like an array:
 let str = "hello";
-str.push("!");
+str.push("!"); // TypeError: str.push is not a function
 
 // Invalid assignment:
 const age = 25;
-age = 30;
+age = 30; // TypeError: Assignment to constant variable.
 
 // Accessing array index of null:
 let arr = null;
-arr[0];
+arr[0]; // TypeError: Cannot read properties of null (reading '0')
 
 // Incorrect method on type:
 let number = 123;
-number.toUpperCase();
+number.toUpperCase(); // TypeError: number.toUpperCase is not a function
 
 // Using array as object incorrectly:
 let nums = [1, 2, 3];
-console.log(nums.name.first);
+console.log(nums.name.first); // TypeError: Cannot read properties of undefined (reading 'first')
 ```
 
 

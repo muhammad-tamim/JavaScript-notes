@@ -4990,6 +4990,67 @@ function printDiamond(N) {
 
 printDiamond(4);
 ```
+**Shape 3:**
+
+Some day, an artist wanted to draw an X mark on the wall in a fashionable way. He wanted to do so by grouping snippets of slashes /, backslashes \, asterisks * and a capital X letter in an N×N square as shown in the sample. Can you help him?
+
+Input/Output:
+
+```
+5
+
+\***/
+*\*/*
+**X**
+*/*\*
+/***\
+```
+
+Explanation: 
+
+|       | j = 0 | j = 1 | j = 2 | j = 3 | j = 4 |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| i = 0 | \     | *     | *     | *     | /     |
+| i = 1 | *     | \     | *     | /     | *     |
+| i = 2 | *     | *     | X     | *     | *     |
+| i = 3 | *     | /     | *     | \     | *     |
+| i = 4 | /     | *     | *     | *     | \     |
+
+X = (i === center && j === center) = (2,2)  
+\ = (i === j) = (0,0) (1,1), (3,3), (4, 4)
+/ = (i + j === n - 1) = (0,4), (1, 3), (3, 1), (4, 0)  
+
+
+Solution: 
+
+```js
+function printDiamondShape(n) {
+    const center = Math.floor(n / 2)
+
+    for (let i = 0; i < n; i++) {
+        let shape = ""
+        for (let j = 0; j < n; j++) {
+
+            if (i === center && j === center) {
+                shape += "X"
+            }
+            else if (i === j) {
+                shape += "\\"
+            }
+            else if (i + j === n - 1) {
+                shape += "/"
+            }
+            else {
+                shape += "*"
+            }
+
+        }
+        console.log(shape)
+    }
+}
+
+printDiamondShape(5)
+```
 
 **Digits:**
 

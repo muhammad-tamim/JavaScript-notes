@@ -8256,11 +8256,9 @@ console.log(sum(2, 3));   // 5
 
 ## Local Storage and Session Storage
 
-localStorage is a Web Storage API feature that allows you to store key-value pairs in the browser with no expiration date. Data stored in localStorage persists even after the browser is closed.
+local and session storage is a Web Storage API feature that allows you to store up to 10MB (5 + 5) key-value pairs in the browser.
 
-Note: LocalStorage stores strings only
-
-So, If you want to store objects, arrays, or any other non-string data types, you need to convert them into strings using JSON.stringify() before storing.
+They stores strings only. So, If you want to store objects, arrays, or any other non-string data types, you need to convert them into strings using JSON.stringify() before storing.
 
 Similarly, when retrieving the data, use JSON.parse() to convert the string back into its original format.
 

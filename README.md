@@ -1348,7 +1348,7 @@ console.log(rest); // { age: 21, country: "BD" }
 
 ##### spread operator:
 
-It is Used in Function argument, array literals and object literals.
+It is Used in Function argument, arrays and objects.
 
 - function argument:
 
@@ -1363,7 +1363,7 @@ greet(...args); // 1 2 3
 console.log(...args) // 1 2 3
 ```
 
-- Arrays literal:
+- In Arrays:
 
 ```js
 const num1 = [1, 2];
@@ -1374,9 +1374,14 @@ console.log(all); // [1, 2, 3, 4]
 console.log(...all) // 1 2 3 4
 console.log(Math.max(...all)) // 4
 console.log(Math.min(...all)) // 1
+
+
+const str = "hello";
+const chars = [...str];
+console.log(chars); // ['h', 'e', 'l', 'l', 'o']
 ```
 
-- Objects literal:
+- In Objects:
 
 ```js
 const user1 = { name: "Tamim" };
@@ -1384,15 +1389,6 @@ const user2 = { age: 21 };
 const merged = { ...user1, ...user2 };
 console.log(merged); // { name: "Tamim", age: 21 }
 ```
-
-Note: A literal means a fixed value written directly in the code. It represents a value exactly as it is, without calculation or computation.
-
-```js
-let age = 25;      // 25 is a number literal
-let name = "Tamim"; // "Tamim" is a string literal
-let numbers = [1, 2, 3]; // [1,2,3] is an array literal
-```
-
 
 #### Nullish Coalescing operator (??):
 
@@ -7978,16 +7974,6 @@ const [x, y = 100] = arr;
 
 console.log(x); // 10
 console.log(y); // 100
-```Swap Variables :
-
-```js
-let a = 1;
-let b = 2;
-
-[a, b] = [b, a];
-
-console.log(a); // 2
-console.log(b); // 1
 
 
 const person = {

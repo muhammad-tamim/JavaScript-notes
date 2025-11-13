@@ -94,16 +94,14 @@
   - [Problem Solving: Array](#problem-solving-array)
   - [Objects:](#objects)
     - [Different ways to make an Object](#different-ways-to-make-an-object)
-    - [Object.keys(), Object.Values() and Object.entries() methods:](#objectkeys-objectvalues-and-objectentries-methods)
-    - [Object.freeze() vs Object.seal()](#objectfreeze-vs-objectseal)
     - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
-    - [Property existence test:](#property-existence-test)
-    - [Objects References and Copying:](#objects-references-and-copying)
-    - [Const objects can be modified?](#const-objects-can-be-modified)
-    - [Cloning and merging, Object.assign and structuredClone():](#cloning-and-merging-objectassign-and-structuredclone)
-    - [Nested cloning:](#nested-cloning)
-    - [Object Methods](#object-methods)
-    - [Optional Chaining (?.)](#optional-chaining-)
+    - [Objects References and cloning and marging:](#objects-references-and-cloning-and-marging)
+      - [Cloning and merging:](#cloning-and-merging)
+    - [Object.keys(), Object.Values() and Object.entries():](#objectkeys-objectvalues-and-objectentries)
+    - [Object.freeze() vs Object.seal():](#objectfreeze-vs-objectseal)
+    - [Check Property existence:](#check-property-existence)
+    - [Create an Object Method:](#create-an-object-method)
+    - [Optional Chaining (?)](#optional-chaining-)
     - [Date Object:](#date-object)
     - [Math Object:](#math-object)
   - [Problem Solving: Object](#problem-solving-object)
@@ -7193,7 +7191,7 @@ console.log(user.name); // John
 ### Different ways to make an Object
 
 ```js
-const pen = {
+const pen = { 
     brand: "Parker",
     color: "blue",
     type: "ballpoint",
@@ -7201,14 +7199,14 @@ const pen = {
 }
 console.log(pen);
 
-const pen2 = new Object(); // new Object() = Creates an empty object by calling the built-in Object constructor
+const pen2 = new Object(); 
 pen2.brand = "Pilot";
 pen2.color = "black";
 pen2.type = "gel";
 pen2.price = 12;
 console.log(pen2);
 
-const pen3 = Object.create({}); // also describe this
+const pen3 = Object.create({}); 
 pen3.brand = "Bic";
 pen3.color = "red";
 pen3.type = "fountain";
@@ -7216,7 +7214,258 @@ pen3.price = 8;
 console.log(pen3);
 ```    
 
-### Object.keys(), Object.Values() and Object.entries() methods:
+### Dot Notation VS Bracket Notation:
+
+- Property Name Has Spaces:
+    
+```js
+const user = {
+    "first name": "Tamim",
+    "last name": "Hossain"
+};
+
+console.log(user["first name"]);  //  "Tamim"
+// console.log(user.first name);  //  SyntaxError
+```
+    
+- Property Name Starts with a Number:
+    
+```js  
+const errorCodes = {
+    "404": "Not Found",
+    "500": "Internal Server Error"
+};
+
+console.log(errorCodes["404"]); //  "Not Found"
+// console.log(errorCodes.404); //  SyntaxError
+```
+    
+- Property Name Has Special Characters:
+    
+```js
+const config = {
+    "api-key": "123abc",
+    "user@domain": "admin"
+};
+
+console.log(config["api-key"]);       //  "123abc"
+console.log(config["user@domain"]);   //  "admin"
+// console.log(config.api-key);       //  Error: undefined - interpreted as subtraction
+```
+    
+- Accessing Property Using a Variable:
+    
+```js
+const key = "username";
+const user = {
+    username: "Tamim"
+};
+
+console.log(user[key]);     //  "Tamim"
+// console.log(user.key);   //  undefined (literally looks for 'key' property)
+```
+    
+- Looping Through Object Keys:
+    
+```js
+const scores = {
+    Alice: 90,
+    Bob: 80,
+    Charlie: 85
+};
+
+for (let name in scores) {
+    console.log(`${name}: ${scores[name]}`);
+}
+/*
+Alice: 90
+Bob: 80
+Charlie: 85
+*/
+
+for (let name in scores) {
+    console.log(`${name}: ${scores.name}`);
+}
+
+/*
+Alice: undefined
+Bob: undefined
+Charlie: undefined
+*/
+```
+    
+- Nested Dynamic Access:
+    
+```js
+const data = {
+    settings: {
+        theme: "dark",
+        layout: "grid"
+    }
+};
+
+const section = "settings";
+const prop = "theme";
+
+console.log(data[section][prop]); //  "dark"
+console.log(data.section.prop) // TypeError: Cannot read properties of undefined
+```
+
+
+### Objects References and cloning and marging:
+
+One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.
+
+That’s easy to understand if we look a bit under the hood of what happens when we copy a value. Let’s start with a primitive, such as a string.  
+Here we put a copy of message into phrase:
+
+```js
+let message = "Hello!";
+let phrase = message;
+```
+
+As a result we have two independent variables, each one storing the string "Hello!".
+
+![string copy image](images/image5.png)
+
+A variable doesn’t hold the object directly. It just holds a reference (or pointer) to where the object is stored in memory.
+
+Let’s look at an example of such a variable:
+
+```js
+let user = {
+  name: "John"
+};
+```
+
+![object image](images/image6.png)
+
+The object is stored somewhere in memory (at the right of the picture), while the user variable (at the left) has a “reference” to it.
+
+When an object variable is copied, the reference is copied, but the object itself is not duplicated:
+
+```js
+let user = { name: "John" };
+
+let admin = user; // copy the reference
+```
+
+Now we have two variables, each storing a reference to the same object:
+
+![object image](images/image7.png)
+
+As you can see, there’s still one object, but now with two variables that reference it. We can use one of that  variables to access the object and modify its contents:
+
+```js
+let user = { name: 'John' };
+
+let admin = user;
+
+admin.name = 'Pete'; // changed by the "admin" reference
+
+console.log(user.name); // 'Pete', 
+console.log(admin.name); // 'Pete', 
+```
+
+An important side effect of storing objects as references is that an object declared as const can be modified:
+
+```js
+const user = {
+    name: "John"
+};
+
+user.name = "Pete";
+
+console.log(user.name); // Pete
+```
+
+#### Cloning and merging:
+
+So, copying an object variable creates one more reference to the same object. But what if we need to duplicate an object? 
+
+```js
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+    clone[key] = user[key];
+
+}
+
+console.log(clone); // { name: "John", age: 30 }
+console.log(user); // { name: "John", age: 30 } 
+
+clone.name = "Pete"; // changed the data in it
+
+console.log(user.name); // still John in the original object
+console.log(clone.name); // but Pete in the clone
+
+console.log(clone); // { name: "Pete", age: 30 }
+console.log(user); // { name: "John", age: 30 }
+```
+
+For the same cloneing thing we can use **structuredClone(object)** method:
+
+```js
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = structuredClone(user)
+
+
+console.log(clone); // { name: "John", age: 30 }
+console.log(user); // { name: "John", age: 30 } 
+
+clone.name = "Pete"; // changed the data in it
+
+console.log(user.name); // still John in the original object
+console.log(clone.name); // but Pete in the clone
+
+console.log(clone); // { name: "Pete", age: 30 }
+console.log(user); // { name: "John", age: 30 }
+```
+
+And for the marging purpuse we can also use an another method called **Object.assign(destination, source)**. It copies the properties of all source objects into the target destination, and then returns it as the result.
+
+
+```js
+let user = {
+    name: "John",
+    age: 30
+};
+
+let family = {
+    member: 3,
+    sister: true
+}
+
+let nationality = {
+    country: "BD"
+}
+
+let clone = Object.assign(user, family, nationality)
+
+console.log(user) // { name: 'John', age: 30, member: 3, sister: true, country: 'BD' }
+console.log(clone) // { name: 'John', age: 30, member: 3, sister: true, country: 'BD' }
+
+clone.member = "200"
+clone.country = "Us"
+
+console.log(user) // { name: 'John', age: 30, member: '200', sister: true, country: 'Us' }
+console.log(clone) // { name: 'John', age: 30, member: '200', sister: true, country: 'Us' }
+```
+
+Note: Object.assign() holds references, means if you change a object in one place, it automatically affects the others.
+
+
+### Object.keys(), Object.Values() and Object.entries():
 
 ```js
 const computer = {
@@ -7245,16 +7494,15 @@ console.log(entries);
 */
 ```
 
-### Object.freeze() vs Object.seal()
+### Object.freeze() vs Object.seal():
 
 **Object.freeze():**
 
-Object.freeze() freezes an object. This means:
+Object.freeze() freezes an object, so the object becomes immutable. This means:
 
 -   You cannot add new properties.
 -   You cannot delete existing properties.
 -   You cannot modify existing property values.
--   The object becomes immutable.
 
 ```js
 const person = {
@@ -7277,6 +7525,7 @@ Note:
 Object.freeze() only freezes the immediate properties. If object properties are objects themselves, those nested objects can still be mutated unless they are frozen separately.
 
 ```js
+// Normal freeze 
 const user = {
     name: "Bob",
     address: {
@@ -7285,20 +7534,47 @@ const user = {
 };
 
 Object.freeze(user);
-user.address.city = "London";
+user.address.city = "London"; // inner object is still mutable
+console.log(user.address.city); // "London" ❌ not frozen deeply
 
-console.log(user.address.city); // "London"
 
-// with deep Freeze
+
+// Manual Deep Freeze (without recursion)
+const deepUser = {
+    name: "Alice",
+    address: {
+        city: "Paris",
+        country: {
+            name: "France"
+        }
+    }
+};
+
+// Step 1: Freeze inner-most object first
+Object.freeze(deepUser.address.country);
+
+// Step 2: Then freeze the next level
+Object.freeze(deepUser.address);
+
+// Step 3: Finally freeze the top-level object
+Object.freeze(deepUser);
+
+// Now all levels are frozen
+deepUser.address.city = "London";             // ❌ ignored
+deepUser.address.country.name = "England";    // ❌ ignored
+
+console.log(deepUser.address.city);           // "Paris"
+console.log(deepUser.address.country.name);   // "France"
+
+
+
+// Deep Freeze (with recursion)
 function deepFreeze(obj) {
-    // Freeze the current object
-    Object.freeze(obj);
+    Object.freeze(obj); // Freeze the current object
 
-    // Loop through all property values
     for (const value of Object.values(obj)) {
-        // If the value is a non-null object, recursively freeze it
         if (value && typeof value === "object") {
-            deepFreeze(value);
+            deepFreeze(value); // recursively freeze nested objects
         }
     }
 
@@ -7306,18 +7582,23 @@ function deepFreeze(obj) {
 }
 
 // Example
-const deepObj = {
-    level1: {
-        level2: {
-            value: 42
+const recursiveUser = {
+    name: "Charlie",
+    address: {
+        city: "Berlin",
+        country: {
+            name: "Germany"
         }
     }
 };
 
-deepFreeze(deepObj);
+deepFreeze(recursiveUser);
 
-deepObj.level1.level2.value = 100;
-console.log(deepObj.level1.level2.value); // 42
+recursiveUser.address.city = "London";           // ❌ ignored
+recursiveUser.address.country.name = "England";  // ❌ ignored
+
+console.log(recursiveUser.address.city);         // "Berlin"
+console.log(recursiveUser.address.country.name); // "Germany"
 ```
 
 **Object.seal():**
@@ -7363,132 +7644,9 @@ console.log(Object.isFrozen(obj2)); // false
 console.log(Object.isSealed(obj2)); // true
 ```
 
-### Dot Notation VS Bracket Notation:
-
-| Situation                                | Dot Notation | Bracket Notation |
-| ---------------------------------------- | ------------ | ---------------- |
-| Property name has **spaces**             | ❌            | ✅                |
-| Property name has **special characters** | ❌            | ✅                |
-| Property name starts with a **number**   | ❌            | ✅                |
-| Property accessed via **variable**       | ❌            | ✅                |
-| Used in a **loop**                       | ❌            | ✅                |
-| Key is from **JSON**                     | ❌            | ✅                |
-| Nested **dynamic access**                | ❌            | ✅                |
-
-example:
-
-- Property Name Has Spaces:
-    
-    ```js
-    const user = {
-      "first name": "Tamim",
-      "last name": "Hossain"
-    };
-    
-    console.log(user["first name"]);  //  "Tamim"
-    // console.log(user.first name);  //  SyntaxError
-    ```
-    
-- Property Name Starts with a Number:
-    
-    ```js  
-    const errorCodes = {
-      "404": "Not Found",
-      "500": "Internal Server Error"
-    };
-    
-    console.log(errorCodes["404"]); //  "Not Found"
-    // console.log(errorCodes.404); //  SyntaxError
-    ```
-    
-- Property Name Has Special Characters:
-    
-    ```js
-    const config = {
-      "api-key": "123abc",
-      "user@domain": "admin"
-    };
-    
-    console.log(config["api-key"]);       //  "123abc"
-    console.log(config["user@domain"]);   //  "admin"
-    // console.log(config.api-key);       //  Error: undefined - interpreted as subtraction
-    ```
-    
-- Accessing Property Using a Variable:
-    
-    ```js
-    const key = "username";
-    const user = {
-      username: "Tamim"
-    };
-    
-    console.log(user[key]);     //  "Tamim"
-    // console.log(user.key);   //  undefined (literally looks for 'key' property)
-    ```
-    
-- Looping Through Object Keys:
-    
-```js
-const scores = {
-    Alice: 90,
-    Bob: 80,
-    Charlie: 85
-};
-
-for (let name in scores) {
-    console.log(`${name}: ${scores[name]}`);
-}
-/*
-Alice: 90
-Bob: 80
-Charlie: 85
-*/
-
-for (let name in scores) {
-    console.log(`${name}: ${scores.name}`);
-}
-
-/*
-Alice: undefined
-Bob: undefined
-Charlie: undefined
-*/
-```
-Note: You must use bracket notation in loops for keys because keys are comes dynamically behind the scenes in for..in loop.
-    
-- Working with JSON Data:
-    
-    ```js
-    const jsonData = {
-      "user-info": {
-        "first name": "Tamim",
-        "last name": "Hossain"
-      }
-    };
-    
-    console.log(jsonData["user-info"]["first name"]); 
-    console.log(user-info.first name) // error
-    ```
-    
-- Nested Dynamic Access:
-    
-```js
-const data = {
-    settings: {
-        theme: "dark",
-        layout: "grid"
-    }
-};
-
-const section = "settings";
-const prop = "theme";
-
-console.log(data[section][prop]); //  "dark"
-console.log(data.section.prop) // TypeError: Cannot read properties of undefined
-```
 
 
-### Property existence test:
+### Check Property existence:
 
 With in operator:
 
@@ -7529,197 +7687,9 @@ const hasName = profile.hasOwnProperty("name");
 console.log(hasName); // Output: true
 ```
 
-### Objects References and Copying:
-
-One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.
-
-That’s easy to understand if we look a bit under the hood of what happens when we copy a value. Let’s start with a primitive, such as a string.  
-Here we put a copy of message into phrase:
-
-```js
-let message = "Hello!";
-let phrase = message;
-```
-
-As a result we have two independent variables, each one storing the string "Hello!".
-
-![string copy image](images/image5.png)
-
-A variable doesn’t hold the object directly. It just holds a reference (or pointer) to where the object is stored in memory.
-
-Let’s look at an example of such a variable:
-
-```js
-let user = {
-  name: "John"
-};
-```
-
-![object image](images/image6.png)
-
-The object is stored somewhere in memory (at the right of the picture), while the user variable (at the left) has a “reference” to it.
-
-**When an object variable is copied, the reference is copied, but the object itself is not duplicated:**
-
-```js
-let user = { name: "John" };
-
-let admin = user; // copy the reference
-```
-
-Now we have two variables, each storing a reference to the same object:
-
-![object image](images/image7.png)
-
-As you can see, there’s still one object, but now with two variables that reference it.  
-We can use one of theat  variables to access the object and modify its contents:
-
-```js
-let user = { name: 'John' };
-
-let admin = user;
-
-admin.name = 'Pete'; // changed by the "admin" reference
-
-console.log(user.name); // 'Pete', 
-console.log(admin.name); // 'Pete', 
-```
-
-### Const objects can be modified?
-
-An important side effect of storing objects as references is that an object declared as const can be modified.
-
-```js
-const user = {
-    name: "John"
-};
-
-user.name = "Pete";
-
-console.log(user.name); // Pete
-```
-
-### Cloning and merging, Object.assign and structuredClone():
-
-So, copying an object variable creates one more reference to the same object.  
-But what if we need to duplicate an object?  
-We can create a new object and replicate the structure of the existing one, by iterating over its properties and copying them on the primitive level.  
-Like this:
-
-```js
-let user = {
-    name: "John",
-    age: 30
-};
-
-let clone = {}; // the new empty object
-
-// let's copy all user properties into it
-for (let key in user) {
-    clone[key] = user[key];
-
-}
-
-console.log(clone); // { name: "John", age: 30 }
-console.log(user); // { name: "John", age: 30 } 
-
-clone.name = "Pete"; // changed the data in it
-
-console.log(user.name); // still John in the original object
-console.log(clone.name); // but Pete in the clone
-
-console.log(clone); // { name: "Pete", age: 30 }
-console.log(user); // { name: "John", age: 30 }
-```
-
-We can also use the method **Object.assign**:
-
-The syntax is:
-
-```js
-Object.assign(dest, ...sources)
-```
-
--   The first argument dest is a target object.
--   Further arguments is a list of source objects.
-
-It copies the properties of all source objects into the target dest, and then returns it as the result.
-
-```js
-let user = { name: "John" };
-let permissions1 = { canView: true };
-let permissions2 = { canEdit: true };
-
-// copies all properties from permissions1 and permissions2 into user
-Object.assign(user, permissions1, permissions2);
-
-// now user = { name: "John", canView: true, canEdit: true }
-console.log(user.name); // John
-console.log(user.canView); // true
-
-permissions2.canEdit = false
-console.log(permissions2.canEdit) // false
-
-console.log(user.canEdit); // true
-
-```
-
-
-```js
-let user = {
-    name: "John",
-    age: 30
-};
-
-let clone = Object.assign({}, user);
-
-console.log(clone.name); // John
-console.log(clone.age); // 30
-```
-
-### Nested cloning:
-
-```js
-let user = {
-    name: "John",
-    sizes: {
-        height: 182,
-        width: 50
-    }
-};
-
-let clone = Object.assign({}, user);
-
-console.log(user.sizes === clone.sizes); // true, same object
-
-user.sizes.width = 60;   // Modify the original object
-console.log(clone.sizes.width); // 60, get the result from the other one
-```
-
-To fix this, we can use **structuredClone(object)**, which creates a deep copy of the object, including all nested properties  :
-
-```js
-let user = {
-    name: "John",
-    sizes: {
-        height: 182,
-        width: 50
-    }
-};
-
-let clone = structuredClone(user);
-
-console.log(user.sizes === clone.sizes); // false, different objects
-
-user.sizes.width = 60;    // change a property from one place
-console.log(clone.sizes.width); // 50, not related
-```
-
-### Object Methods
+### Create an Object Method:
 
 A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.
-
-Example:
 
 ```js
 let user = {
@@ -7782,14 +7752,17 @@ user = null;
 admin.sayHello(); // Tamim
 ```
 
-### Optional Chaining (?.)
+### Optional Chaining (?)
 
-Optional Chaining(?.) is a safe way to access deeply nested properties without getting an error if something is undefined or null.
+Optional Chaining(?) is a safe way to access deeply nested properties without getting an error if something is undefined or null.
 
 Without Optional Chaining:
 
 ```js
 const user = {};
+
+console.log(user.address); // undefined
+
 console.log(user.address.city); // error: Cannot read properties of undefined (reading 'city')
 ```
 
@@ -7800,7 +7773,7 @@ const user = {};
 console.log(user.address?.city); // undefined
 ```
 
-if address is undefined or null optional chaining stops accessing .city and returns undefined instead of throwing an error.
+if address is undefined or null optional chaining stops accessing .city, and since optinal chaing stop accessing city, so you didn't get an error here.
 
 we can also use optional chaining for calling method:
 
@@ -7812,7 +7785,8 @@ const user = {
 };
 
 user.sayHi?.();     // Hi!
-user.sayBye?.();    // Nothing happens, no error or undefined
+user.sayHola?.();    // Nothing happens, no error or undefined
+user.sayHola() // TypeError: user.sayHola is not a function
 ```
 
 ### Date Object:

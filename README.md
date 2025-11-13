@@ -3753,7 +3753,7 @@ for (const key in arr) {
 
 ## Problem Solving: Loops
 
-**1. 1 to N:**
+**1 to N:**
 
 Given a number N. Print numbers from 1 to N in separate lines.
 
@@ -3779,7 +3779,7 @@ for (let i = 1; i <= 5; i++) {
 */
 ```
 
-**2. Even Numbers:**
+**Even Numbers:**
 
 Given a number N. Print all even numbers between 1 and N inclusive in separate lines.
 
@@ -3831,7 +3831,7 @@ for (let i = 2; i <= N; i += 2) {
 */
 ```
 
-**3. Even, Odd, Positive and Negative:**
+**Even, Odd, Positive and Negative:**
 
 Given some numbers. Count how many of these values are even, odd, positive and negative.
 
@@ -3883,7 +3883,7 @@ Negative: 3
 */
 ```
 
-**4. Fixed Password:**
+**Fixed Password:**
 
 Given multiple lines each line contains a number X which is a password. Print "Wrong" if the password is incorrect otherwise, print "Correct" and terminate the program.
 
@@ -3921,7 +3921,7 @@ Correct
 */
 ```
 
-**5. Max:**
+**Max:**
 
 Given N numbers, find maximum number in these N numbers.
 
@@ -3959,7 +3959,7 @@ function findMax(...numbers) {
 findMax(1, 8, 5, 7, 5) // 8
 ```
 
-**6. Multiplication table:**
+**Multiplication table:**
 
 Given a number N. Print the multiplication table of the number from 1 to 12
 
@@ -3994,7 +3994,7 @@ function generateMultiplicationTable(N) {
 generateMultiplicationTable(2)
 ```
 
-**7. Factorial:**
+**Factorial:**
 
 Given some numbers. Print the factorial of that numbers.
 
@@ -4030,7 +4030,7 @@ findFactorial(5) // 120
 ```
 
 
-**8. One Prime:**
+**One Prime:**
 
 Given a number X. Determine if the number is prime or not.
 
@@ -4102,7 +4102,7 @@ num = 36,
 36 = 36 * 1
 ```
 
-**9. Primes from 1 to n:**
+**Primes from 1 to n:**
 
 Given a number N. Print all prime numbers between 1 and N inclusive.
 
@@ -4139,7 +4139,7 @@ function findPrimeNumbers(num) {
 findPrimeNumbers(10); // 2 3 5 7
 ```
 
-**10. Palindrome:**
+**Palindrome:**
 
 Given a number N. Print 2 lines that contain the following respectively:
 
@@ -4228,7 +4228,7 @@ palindromeOrNot(12121);
 palindromeOrNot(160);
 ```
 
-**11. Divisors:**
+**Divisors:**
 
 Given a number N. Print all the divisors of N in ascending order.
 
@@ -4302,7 +4302,7 @@ function findDivisors(N) {
 findDivisors(6);
 ```
 
-**12. GCD and LCM:**
+**GCD and LCM:**
 
 Given two numbers A and B. Print the greatest common divisor and least common multiple between (A, B).
 
@@ -4423,7 +4423,7 @@ findGCDAndLCM(6, 9);   // 3 18
 findGCDAndLCM(54, 24); // 6 216
 ```
 
-**13. Lucky Numbers:**
+**Lucky Numbers:**
 
 Given two numbers A and B. Print all lucky numbers between A and B inclusive.
 
@@ -4518,7 +4518,7 @@ findLuckyNumber(4, 20); // 4 7
 findLuckyNumber(8, 15); // -1
 ```
 
-**14. Numbers Histogram:**
+**Numbers Histogram:**
 
 Given 2 lines of input described as follow:
 
@@ -4569,7 +4569,7 @@ function printHistogram(S, N) {
 printHistogram('+', [5, 2, 4, 3, 7]);
 ```
 
-**15. Shape 1:**
+**Shape 1:**
 
 ```
 4
@@ -4776,7 +4776,7 @@ Same as:
 */
 ```
 
-**16. Shape2:**
+**Shape2:**
 
 ```
 4
@@ -4991,7 +4991,7 @@ function printDiamond(N) {
 printDiamond(4);
 ```
 
-**17. Digits:**
+**Digits:**
 
 Given some numbers. Print the digits of that number from right to left separated by space.
 
@@ -5049,7 +5049,7 @@ printDigits(121, 39, 123456, 1200);
 */
 ```
 
-**18. Sequence of Numbers and Sum:**
+**Sequence of Numbers and Sum:**
 
 Given multiple lines each line contains two numbers N and M. For each line print a single line contains:
 
@@ -5154,7 +5154,7 @@ function sumOfNumbers(numbers) {
 }
 ```
 
-**19. Sum of Consecutive Odd Numbers:**
+**Sum of Consecutive Odd Numbers:**
 
 Given two numbers X and Y. Print the sum of all odd numbers between them, excluding X and Y.
 
@@ -5194,7 +5194,7 @@ sumOfOddNumbers(3, 5, 6, 10, 4, 4, 9);
 */
 ```
 
-**20. Some Sums:**
+**Some Sums:**
 
 Given three numbers N, A, B. Print the summation of the numbers between 1 and N whose sum of digits is between A and B inclusive.
 
@@ -5264,7 +5264,7 @@ function sumOfDigits(N, A, B) {
 sumOfDigits(20, 2, 5); // 84
 ```
 
-**21. PUM:**
+**PUM:**
 
 Given a number N. Print N lines that describes PUM game.
 
@@ -5357,7 +5357,7 @@ const printPum = N => {
 };
 ```
 
-**22. Convert To Decimal 2:**
+**Convert To Decimal 2:**
 
 Given a number N. Print the result of doing the following operation on N:
 
@@ -5449,7 +5449,7 @@ printDecimal(10, 7, 8);
 | `.length - 1`     | Count how many `'1's` were found | `2`              |
 
 
-**23. Easy Fibonacci:**
+**Easy Fibonacci:**
 
 Given a number N. Print first N numbers of the Fibonacci sequence.
 
@@ -5522,7 +5522,7 @@ function printFibonacci(N) {
 printFibonacci(7);
 ```
 
-**24. Three Numbers:**
+**Three Numbers:**
 
 Given two numbers K and S. Determine how many different values of X,Y and Z such that (0 ≤ X,Y,Z ≤ K) and X+Y+Z=S.
 
@@ -5588,6 +5588,7 @@ function matchCombinatorTripleLoop(K, S) {
 
 matchCombinatorTripleLoop(2, 1); // 3
 ```
+
 
 ## function
 

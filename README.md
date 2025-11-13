@@ -8195,20 +8195,22 @@ console.log(nums.name.first); // TypeError: Cannot read properties of undefined 
 
 ### Export:
 
-There are Three main ways to export from a file:
+There are Three main ways to export a file:
 
-1. Named Export: You export multiple values by name
+1. Named Export: export multiple values by name
 
 ```js
 // math.js
 export const PI = 3.14;
+
 export function add(x, y) {
   return x + y;
 }
+
 export const multiply = (x, y) => x * y;
 ```
 
-2. Default Export: You export only one default value form a file. A file can have only one default export
+2. Default Export: export only one default value form a file. A file can have only one default export
 
 ```js
 // greet.js
@@ -8231,9 +8233,9 @@ export default function sayHello(name) {
 ### Import:
 
 ```js
-import { PI, add, multiply } from './math.js';
-import greet from './greet.js';
-import sayHello, { sayHi } from './utils.js';
+import { PI, add, multiply } from './math.js'; // name export
+import greet from './greet.js'; // default export
+import sayHello, { sayHi } from './utils.js'; // default export + name export
 
 console.log(PI);          // 3.14
 console.log(add(2, 3));   // 5

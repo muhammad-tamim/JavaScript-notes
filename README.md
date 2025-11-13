@@ -106,7 +106,6 @@
     - [Math Object:](#math-object)
   - [Problem Solving: Object](#problem-solving-object)
   - [Destructuring](#destructuring)
-  - [Strict Mode](#strict-mode)
   - [Error Handling](#error-handling)
     - [Common JS Errors:](#common-js-errors)
       - [SyntaxError:](#syntaxerror)
@@ -8048,56 +8047,6 @@ function displayUser({ name, age }) {
 displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 ```
 
-## Strict Mode
-
-In JavaScript, "use strict"; is a directive that activates Strict Mode, which is a stricter set of rules for executing your JavaScript code.
-
-It helps you
-
--  Catch common mistakes earlier
--  Prevent silent errors
--  Write cleaner, safer code
-
-**Key Effects of Strict Mode:**
-
-- No undeclared variables
-    
-    ```js
-    // without strict mode
-    x = 5;
-    console.log(x); // 5
-    ```
-    
-    ```js
-    // with strict mode
-    "use strict"
-    
-    x = 5;
-    console.log(x); // ReferenceError: x is not defined
-    ```
-    
-- No duplicate parameter names
-    
-    ```js
-    
-    // without strict mode
-    
-    function sum(a, a) {
-        return a + a;
-    }
-    
-    console.log(sum(2, 2)); // 4
-    ```
-    
-    ```js
-    // with strict mode
-    
-    "use strict";
-    function sum(a, a) { // SyntaxError: Duplicate parameter name not allowed in this context
-        return a + a;
-    }
-    console.log(sum(2, 2));
-    ```
 
 ## Error Handling
 

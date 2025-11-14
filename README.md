@@ -117,14 +117,11 @@
     - [local storage methods:](#local-storage-methods)
     - [Update the Local Storage key and values:](#update-the-local-storage-key-and-values)
   - [Asynchronous and Synchronous JavaScript](#asynchronous-and-synchronous-javascript)
-    - [Synchronous Javascript](#synchronous-javascript)
-    - [Asynchronous JavaScript](#asynchronous-javascript)
     - [Web API:](#web-api)
     - [Event loop:](#event-loop)
     - [setTimeOut() and setInterval()](#settimeout-and-setinterval)
-    - [JSON, promise, fetch, async/await](#json-promise-fetch-asyncawait)
+    - [JSON, fetch, async/await](#json-fetch-asyncawait)
       - [JSON](#json)
-      - [promise](#promise)
       - [fetch](#fetch)
       - [async/await:](#asyncawait)
 - [Part 2: DOM](#part-2-dom)
@@ -179,7 +176,7 @@ JavaScript is a:
     ![](./images/scripting-language)
 
 - Single Threaded
-  - meaning it executes one task at a time in sequence.
+  - Has only one thread (one call stack), meaning it can executes one task at a time.
 
 - Non-blocking 
   - doesn’t wait for asynchronous operation like (setTimeout() or fetch())
@@ -8602,13 +8599,9 @@ In localStorage, key name are immutable and values are mutable, thats means, you
 
 ## Asynchronous and Synchronous JavaScript
 
-### Synchronous Javascript
-
-**Single Threaded:**
-JavaScript is a single-threaded, synchronous language, which means it executes one task at a time, in a specific order from top to bottom.
+JavaScript, by default, is a synchronous programming language, which means it executes code line by line, waiting for each task to finish before moving to the next.
 
 ```js
-
 console.log("Task 1");
 console.log("Task 2");
 console.log("Task 3");
@@ -8640,22 +8633,39 @@ function doSomething() {
 */
 ```
 
-### Asynchronous JavaScript
-By default, JavaScript runs code in a synchronous way — meaning it executes one task at a time, in the order they appear.
+However, many operations in real life take time. If JS waited for them synchronously, it would block the browser or program.
 
-However, JavaScript can also perform asynchronous tasks like setTimeout(), setInterval(), promise, async/await etc.
+To solve this, JS uses asynchronous operations managed by Web APIs, event loop, and callback queue. So, asynchronous methods like fetch(), async/await, setTimeout(), setInterval() etc do not change the synchronous nature of JavaScript — they just work alongside it.
 
-Behind the scenes, when an asynchronous method is called:
+```js
+console.log("1"); // sync
 
-- JavaScript hands it off to the browser (Web API)
-- Then continues to run other code without waiting. Once all synchronous tasks are done, the Event Loop picks up the asynchronous callback and adds it to the call stack to execute.
+setTimeout( () => {   
+    console.log("2 (async)"); // async
+}, 0)
 
-So, asynchronous methods like setTimeout() and setInterval() do not change the single-threaded, synchronous nature of JavaScript — they just work alongside it, using the event loop to manage timing and order.
+console.log("3"); // sync
 
+
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+console.log("4"); // sync
+
+/*
+Output:
+1
+3
+4
+2 (async)
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+*/
+```
 
 ### Web API:
 
-A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things, like:
+A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things that is not part of the js itself, like:
 
 - setTimeout(), setInterval()
 - Make HTTP requests (fetch)
@@ -8664,45 +8674,17 @@ A Web API is a feature provided by the browser (or the environment like Node.js)
 - Use browser storage (localStorage, sessionStorage)
 
 ### Event loop:
-
-The event loop checks if JavaScript is done with all synchronous tasks, and if so, it moves asynchronous tasks (like timers or API calls) back into the code to be run.
-
-**Why Do We Need the Event Loop?**
-
-JavaScript is:
-
-- Single-threaded: can do only one thing at a time
-- Non-blocking: doesn’t wait for slow tasks (setTimeout() or fetch())
+The Event Loop is a mechanism that allows JavaScript to perform asynchronous operations even though it is single-threaded (has only one call stack).
 
 so, After parsing, compiling, and interpreting the code, the JavaScript engine uses these key parts:
-- Call Stack - runs your js code synchronously with FIFO structure
-- Web Apis - Handles async tasks
-- Callback Queue - When async tasks are ready, they’re added here
-- Event Loop - Constantly checks, is the call stack empty? If yes → moves tasks from callback queue into the stack to be run
+- Call Stack - Executes synchronous code line by line with FIFO structure.
+- Web APIs – Handle asynchronous operations features (timers, fetch, events) and send completed callbacks to the callback Queues.
+- Callback Queue - all pending async task added here by event loop
+- Event Loop - Constantly checks, is the call stack empty? If yes → it moves asynchronous tasks from callback queue into the call stack to be run
 
-```js
-console.log("Start");
-
-setTimeout(() => {
-    console.log("Timer done");
-}, 2000);
-
-console.log("End");
-
-/*
-Start
-End
-Timer done
-*/
-```
-
-Behind the Scenes:
-- Start → Call Stack → runs
-- setTimeout() → Web API → starts timer
-- End → Call Stack → runs
-- After 2 sec, callback goes to Callback Queue
-- Event Loop sees the stack, if empty it moves callback to Call Stack → runs "Timer done"
-
+Note: 
+- Web APIs provide the environment and methods for async operations.
+- Event Loop manages the execution order, ensuring async tasks run without blocking the single-threaded call stack.
 
 ### setTimeOut() and setInterval()
 
@@ -8773,6 +8755,16 @@ setInterval(() => {
 ```
 
 ```js
+// With Parameters
+function greet(name) {
+    console.log("Hello, " + name);
+}
+
+// Repeat every 2 seconds
+const intervalId = setInterval(greet, 2000, "Tamim");
+```
+
+```js
 // Count every second
 let count = 1;
 const id = setInterval(() => {
@@ -8794,17 +8786,14 @@ const id = setInterval(() => {
 }, 1000);
 ```
 
-### JSON, promise, fetch, async/await
-
-Before learning about Promises, fetch(), and async/await, it’s important to understand the format of data that APIs usually return. Most APIs return data in JSON format:
+### JSON, fetch, async/await
 
 #### JSON
-JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's always a string With double quotes only ("").
+JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's suppport double quotes only ("").
 
 **JSON.stringify() — Convert JS → JSON string:**
 
 ```js
-
 const user = {
     name: "Tamim",
     age: 21
@@ -8825,7 +8814,10 @@ console.log(obj); // { name: 'Tamim', age: 21 }
 console.log(typeof obj); // object 
 ```
 
-#### promise
+
+#### fetch
+The fetch() method is used to make HTTP requests (GET, POST, PUT, PATCH, DELETE etc.). When we call fetch(), the browser’s Web API immediately returns a Promise.
+
 A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation.
 
 Promise States:
@@ -8833,79 +8825,46 @@ Promise States:
 - Resolved(fulfilled) - if the operation is successful
 - Rejected - if the operation fails
 
-Basic Syntax:
 
-```js
-let promise = new Promise(function (resolve, reject) {
-  // async task
-});
-```
-
-You can use below methods to work with the result of a promise:
+we can use below methods to work with the result of a promise:
 
 .then() - Called when the promise is resolved (fulfilled)
 .catch() - Called when the promise is rejected (error)
 .finally() - must Called, no matter whatever the promise was fulfilled or rejected 
 
-```js
-let promise = new Promise(function (resolve, reject) {
-    let success = true;
-
-    if (success) {
-        resolve("Operation successful!");
-    } else {
-        reject("Operation failed.");
-    }
-});
-
-promise
-    .then((result) => {
-        console.log(result);
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-    .finally(() => {
-        console.log("Promise is settled (fulfilled or rejected).");
-    });
-```
 
 ```js
-// Promise.all([]) --> Waits for all promises to resolve
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(res => res.json()) // convert response JSON into object
+    .then(data => console.log(data));
 
-const moneyRequest = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Request submitted!"), 1000);
-});
-
-const transferMoney = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Money transferred!"), 2000);
-});
-
-const payFee = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Fee paid!"), 1500);
-});
-
-Promise.all([moneyRequest, transferMoney, payFee])
-    .then((results) => {
-        console.log(results);
-    })
-    .catch((error) => {
-        console.log("Error: ", error);
-    });
-
-// [ 'Request submitted!', 'Money transferred!', 'Fee paid!' ]
+/*
+{
+  userId: 1,
+  id: 1,
+  title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+  body: 'quia et suscipit\n' +
+    'suscipit recusandae consequuntur expedita et cum\n' +
+    'reprehenderit molestiae ut ut quas totam\n' +
+    'nostrum rerum est autem sunt rem eveniet architecto'
+}
+*/
 ```
 
-#### fetch
+here, 3 steps happed: 
+1. fetch(url):
+   - starts a network request and immediately returns a Promise (pending).
+2. then(res ⇒ res.json()):
+   - runs when the request is resolved and receives the Response object,
+   - converts it into a JavaScript object, and returns another Promise.
+3. then(data ⇒ console.log(data)):
+   - receives the final object when the .json() Promise resolves logs it to the console.
 
-The fetch() method is used to make HTTP requests (like GET, POST, PUT, PATCH, DElETE etc.) to servers and APIs.It returns a Promise that resolves to the Response object.
 
-**Basic GET Request:**
+
 ```js
 fetch("https://jsonplaceholder.typicode.com/posts/1")
     .then(response => console.log(response))
-    .catch(err => console.log(err))
-
 /*
  Response {
   status: 200,
@@ -8946,40 +8905,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
 }
 */
 ```
-
-```js
-fetch("https://jsonplaceholder.typicode.com/posts/1")
-    .then(res => res.text()) // See the raw JSON text
-    .then(txt => console.log("Raw JSON string:", txt));
-/*
-Raw JSON string: {
-  "userId": 1,
-  "id": 1,
-  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-}
-*/
-```
-convert response JSON into a JavaScript object using response.json()
-
-```js
-fetch("https://jsonplaceholder.typicode.com/posts/1")
-    .then(res => res.json()) // convert response JSON into object
-    .then(data => console.log(data));
-
-/*
-{
-  userId: 1,
-  id: 1,
-  title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-  body: 'quia et suscipit\n' +
-    'suscipit recusandae consequuntur expedita et cum\n' +
-    'reprehenderit molestiae ut ut quas totam\n' +
-    'nostrum rerum est autem sunt rem eveniet architecto'
-}
-*/
-```
-Dynamically Display data:
 
 ```js
 <!DOCTYPE html>
@@ -9084,12 +9009,16 @@ Dynamically Display data:
 
 #### async/await:
 
-async and await are modern JavaScript keywords that allow you to write asynchronous code that looks like synchronous code. They are used to work with Promises more cleanly.
+async and await are modern JavaScript keywords that let you write asynchronous code in a way that looks like synchronous code. They make working with Promises cleaner and easier to read.
 
-- async - Used to declare an async function that returns a Promise if the promise resolved.
+- async - Used to declare an async function that returns a Promise that resolves when the function is finished running.
 - await - Used inside an async function to pause execution until a Promise resolves.If the Promise is rejected, it throws an error that you can catch with try...catch.
+  - await fetch() --> fetch(url) returns a Promise --> await pauses the async function until that fetch Promise resolves --> Once resolved, the variable response becomes a Response object
+  - await response.json(); --> response.json() also returns a Promise --> await waits until that Promise resolves --> Once resolved, data becomes a JavaScript object.
 
-Note: Normally, try...catch only works for synchronous code. However, when you use await, JavaScript pauses execution like it does for synchronous code — that allowing try...catch to catch async errors just like sync ones. This is why try...catch works with await, even though the operation is asynchronous.
+Note:
+
+Normally, try...catch only catches synchronous errors. But when you use await, JavaScript temporarily pauses the function — so the asynchronous error behaves like a synchronous one. That’s why try...catch works perfectly with await even though the operation is asynchronous.
 
 ```js
 // Without arrow function

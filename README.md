@@ -9431,6 +9431,24 @@ if (typeof value === "string") {
 }
 ```
 
+```ts
+const taka = (input: unknown) => {
+    if (typeof input === "number") {
+        console.log(input)
+    }
+    else if (typeof input === "string") {
+        console.log(parseInt(input))
+    }
+    else {
+        console.log("please add a valid input")
+    }
+}
+
+taka(100) // 100
+taka("100") // 100
+taka(null) // please add a valid input
+```
+
 Note: any disables type checking. You can do anything with a variable of type any. TypeScript won’t stop you, even if the operation is unsafe.
 
 ```ts

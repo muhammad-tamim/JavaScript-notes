@@ -1,8 +1,9 @@
-type Scores = Record<string, number>
-
-const studentScore: Scores = {
-    Tamim: 34,
-    20: 100
+const user: {
+    age: 18;
+    name: string;
+    location: string
+} = {
+    age: 18,
+    name: "tamim",
+    location: "barisal"
 }
-
-console.log(studentScore)

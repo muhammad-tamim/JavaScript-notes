@@ -9473,6 +9473,16 @@ let direction: "up" | "down" | "left" | "right";
 
 direction = "up"
 direction = "top" // Type '"top"' is not assignable to type '"up" | "down" | "left" | "right"'.
+
+const user: {
+    age: 18;
+    name: string;
+    location: string
+} = {
+    age: 18,
+    name: "tamim",
+    location: "barisal"
+}
 ```
 
 
@@ -9672,7 +9682,6 @@ let id: number | string;
 
 id = 234
 id = 'id123'
-
 ```
 
 ### Intersection Type:

@@ -161,6 +161,7 @@
   - [TypeScript Introduction:](#typescript-introduction)
     - [What is TypeScript:](#what-is-typescript)
     - [How to run TypeScript:](#how-to-run-typescript)
+    - [Explicit Typing and Type Inference:](#explicit-typing-and-type-inference)
 
 ---
 
@@ -9340,3 +9341,22 @@ so for now if we write a ts code we can direlty run this ts code by :
 ```bash
 node test.ts
 ```
+
+### Explicit Typing and Type Inference: 
+
+Explicit typing is when you tell TypeScript the type yourself.
+
+```ts
+let age: number = 20;
+let name: string = "Tamim";
+let isAdmin: boolean = false;
+```
+
+Type inference is when TypeScript assigns a type automatically based on the value.
+
+```ts
+let age = 20;   // TypeScript infers: number
+let name = "Tamim"; // inferred: string
+let active = true;  // inferred: boolean
+```
+

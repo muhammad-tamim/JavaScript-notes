@@ -162,26 +162,33 @@
     - [What is TypeScript:](#what-is-typescript)
     - [How to run TypeScript:](#how-to-run-typescript)
     - [Explicit Typing and Type Inference:](#explicit-typing-and-type-inference)
-  - [Primitive Types:](#primitive-types)
-    - [TypeScript own extra 5 primitive data types:](#typescript-own-extra-5-primitive-data-types)
+  - [Data types:](#data-types-1)
+    - [Primitive Types:](#primitive-types)
+      - [number](#number)
+      - [string](#string-1)
+      - [bollean](#bollean)
+      - [null](#null)
+      - [undefined](#undefined)
+      - [symbol](#symbol)
+      - [bigint](#bigint)
       - [any:](#any)
       - [unknown:](#unknown)
       - [void:](#void)
       - [never:](#never)
       - [litearl:](#litearl)
-  - [Non-primitive types:](#non-primitive-types)
-    - [Arrays](#arrays)
-    - [Objects](#objects-1)
-    - [Functions](#functions)
-    - [Classes:](#classes)
-    - [Set:](#set-1)
-    - [Map:](#map-1)
-    - [Tuples:](#tuples)
-    - [Enums:](#enums)
-    - [Interface:](#interface)
-    - [Type Alias:](#type-alias)
-    - [Union Type:](#union-type)
-    - [Intersection Type:](#intersection-type)
+    - [Non-primitive types:](#non-primitive-types)
+      - [Arrays](#arrays)
+      - [Objects](#objects-1)
+      - [Functions](#functions)
+      - [Classes:](#classes)
+      - [Set:](#set-1)
+      - [Map:](#map-1)
+      - [Tuples:](#tuples)
+      - [Enums:](#enums)
+      - [Interface:](#interface)
+      - [Type Alias:](#type-alias)
+      - [Union Type:](#union-type)
+      - [Intersection Type:](#intersection-type)
 
 ---
 
@@ -9380,21 +9387,67 @@ let name = "Tamim"; // inferred: string
 let active = true;  // inferred: boolean
 ```
 
-## Primitive Types: 
+## Data types:
+
+### Primitive Types: 
 
 In js we have 7 primitive data types: 
 
-1. number
-2. string
-3. bollean
-4. null
-5. undefined
-6. symbol
-7. bigint
+#### number
+
+```ts
+let age: number = 25;
+let price: number = 99.99;
+console.log(age, price); // 25 99.99
+```
+
+#### string
+
+```ts
+let name: string = "Tamim";
+let greeting: string = `Hello, ${name}!`;
+console.log(greeting); // Hello, Tamim!
+```
+
+#### bollean
+
+```ts
+let isAdmin: boolean = true;
+let isLoggedIn: boolean = false;
+console.log(isAdmin, isLoggedIn); // true false
+```
+
+#### null
+
+```ts
+let emptyValue: null = null;
+console.log(emptyValue); // null
+```
+
+#### undefined
+
+```ts
+let notAssigned: undefined;
+console.log(notAssigned); // undefined
+```
+
+#### symbol
+
+```ts
+const id: symbol = Symbol("id");
+const id2: symbol = Symbol("id");
+console.log(id === id2); // false, symbols are unique
+```
+
+#### bigint
+
+```ts
+let bigNumber: bigint = 123456789012345678901234567890n;
+console.log(bigNumber); // 123456789012345678901234567890n
+```
 
 TypeScript also have this 7 primitive data types, but it's adds more extra 5 data types: 
 
-### TypeScript own extra 5 primitive data types:
 
 #### any: 
 any disables type checking and allows the variable to hold any type:
@@ -9505,9 +9558,9 @@ const user: {
 
 
 
-## Non-primitive types:
+### Non-primitive types:
 
-### Arrays
+#### Arrays
 
 ```ts
 let numbers: number[] = [1, 2, 3]
@@ -9516,7 +9569,7 @@ let names: string[] = ['a', 'b']
 let mix: (string | number)[] = [1, "Hello"] // union array
 ```
 
-### Objects
+#### Objects
 
 ```ts
 let person: {
@@ -9542,7 +9595,7 @@ console.log(person)
 console.log(user)
 ```
 
-### Functions
+#### Functions
 
 ```ts
 function add(a: number, b: number): number {
@@ -9559,7 +9612,7 @@ greet2 = (name) => `Hello, ${name}`;
 console.log(greet2("world"))
 ```
 
-### Classes: 
+#### Classes: 
 Classes are blueprints for creating objects with methods and properties.
 
 ```ts
@@ -9583,7 +9636,7 @@ p1.greet() // hi, i am tamim
 console.log(new Person("nasrin", 2)) // Person { name: 'nasrin', age: 2 }
 ```
 
-### Set: 
+#### Set: 
 A collection of unique values: 
 
 ```ts 
@@ -9595,7 +9648,7 @@ numbersSet.add(2)
 console.log(numbersSet) // Set(2) { 1, 2 }
 ``` 
 
-### Map: 
+#### Map: 
 A collection of key-value pairs, keys can be any type.
 
 ```ts
@@ -9608,7 +9661,8 @@ console.log(userMap.get(1)) // One
 console.log(userMap.get(true)) // Yes
 ```
 
-### Tuples: 
+
+#### Tuples: 
 Tuples are fixed-length arrays with fixed types at each position.
 
 ```ts
@@ -9617,7 +9671,7 @@ let user: [string, number] = ['tamim', 20]
 // let user2: number[] = [1, 2, 3, 4, 5] --> just a normal array
 ```
 
-### Enums: 
+#### Enums: 
 Enums allow you to define a set of named constant values.
 
 ```ts
@@ -9648,7 +9702,7 @@ movePlayer(Direction.Up); // Player moved up
 Note: when you use enum you must convert it to js file using type scipt compilier, you can use it by using 
 `node test.ts` because TypeScript enum is not supported in strip-only mode
 
-### Interface: 
+#### Interface: 
 Defines the shape of an object: 
 
 ```ts
@@ -9680,7 +9734,7 @@ console.log(user1)
 console.log(user2)
 ```
 
-### Type Alias: 
+#### Type Alias: 
 Create a custom type name, can be primitive, union, intersection, object, etc.
 
 ```ts
@@ -9724,7 +9778,7 @@ const add: Add = (num1, num2) => {
 }
 ```
 
-### Union Type: 
+#### Union Type: 
 A value can be one type OR another: 
 
 ```ts
@@ -9749,7 +9803,7 @@ const DashBoard = (role: Role) => {
 }
 ```
 
-### Intersection Type:
+#### Intersection Type:
 
 Combines multiple types; value must satisfy all types.
 

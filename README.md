@@ -169,6 +169,19 @@
       - [void:](#void)
       - [never:](#never)
       - [litearl:](#litearl)
+  - [Non-primitive types:](#non-primitive-types)
+    - [Arrays](#arrays)
+    - [Objects](#objects-1)
+    - [Functions](#functions)
+    - [Classes:](#classes)
+    - [Set:](#set-1)
+    - [Map:](#map-1)
+    - [Tuples:](#tuples)
+    - [Enums:](#enums)
+    - [Interface:](#interface)
+    - [Type Alias:](#type-alias)
+    - [Union Type:](#union-type)
+    - [Intersection Type:](#intersection-type)
 
 ---
 
@@ -9462,3 +9475,218 @@ direction = "up"
 direction = "top" // Type '"top"' is not assignable to type '"up" | "down" | "left" | "right"'.
 ```
 
+
+
+## Non-primitive types:
+
+### Arrays
+
+```ts
+let numbers: number[] = [1, 2, 3]
+let names: string[] = ['a', 'b']
+
+let mix: (string | number)[] = [1, "Hello"] // union array
+```
+
+### Objects
+
+```ts
+let person: {
+    name: string;
+    age: number;
+    isAdmin: boolean
+} = {
+    name: "Tamim",
+    age: 20,
+    isAdmin: true
+}
+
+// Optional Properties
+
+let user: {
+    name: string,
+    age?: number
+} = {
+    name: "Tamim"
+}
+
+console.log(person)
+console.log(user)
+```
+
+### Functions
+
+```ts
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+
+let greet1 = (name: string): string => `Hello, ${name}`;
+console.log(greet("world"))
+
+
+let greet2: (name: string) => string;
+greet2 = (name) => `Hello, ${name}`;
+console.log(greet2("world"))
+```
+
+### Classes: 
+Classes are blueprints for creating objects with methods and properties.
+
+```ts
+class Person {
+    name: string;
+    age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        console.log(`hi, i am ${this.name}`)
+    }
+}
+
+
+const p1 = new Person("tamim", 20)
+p1.greet() // hi, i am tamim
+console.log(new Person("nasrin", 2)) // Person { name: 'nasrin', age: 2 }
+```
+
+### Set: 
+A collection of unique values: 
+
+```ts 
+const numbersSet = new Set<number>();
+numbersSet.add(1)
+numbersSet.add(2)
+numbersSet.add(2)
+
+console.log(numbersSet) // Set(2) { 1, 2 }
+``` 
+
+### Map: 
+A collection of key-value pairs, keys can be any type.
+
+```ts
+const userMap = new Map<number | boolean, string>();
+
+userMap.set(1, "One")
+userMap.set(true, "Yes")
+
+console.log(userMap.get(1)) // One
+console.log(userMap.get(true)) // Yes
+```
+
+### Tuples: 
+Tuples are fixed-length arrays with fixed types at each position.
+
+```ts
+let user: [string, number] = ['tamim', 20]
+
+// let user2: number[] = [1, 2, 3, 4, 5] --> just a normal array
+```
+
+### Enums: 
+Enums allow you to define a set of named constant values.
+
+```ts
+enum Days {
+    saturday,
+    sunday,
+    monday
+}
+
+let dayName: Days = Days.saturday
+console.log(dayName) // saturday
+
+
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+function movePlayer(dir: Direction) {
+    if (dir === Direction.Up) console.log("Player moved up");
+}
+
+movePlayer(Direction.Up); // Player moved up
+```
+
+Note: when you use enum you must convert it to js file using type scipt compilier, you can use it by using 
+`node test.ts` because TypeScript enum is not supported in strip-only mode
+
+### Interface: 
+Defines the shape of an object: 
+
+```ts
+interface User {
+    name: string;
+    age: number;
+    isAdmin?: boolean; // Optional
+}
+
+const user1: User = {
+    name: "tamim",
+    age: 20
+}
+
+
+// without interface
+const user2: {
+    name: string;
+    age: number;
+    isAdmin?: boolean
+} = {
+    name: "nasrin",
+    age: 11,
+    isAdmin: false
+}
+
+
+console.log(user1)
+console.log(user2)
+```
+
+### Type Alias: 
+Create a custom type name, can be primitive, union, intersection, object, etc.
+
+```ts
+type ID = string | number
+let userId: ID = 123;
+userId = "abc234"
+
+type Point = { x: number, y: number }
+const point: Point = { x: 20, y: 30 }
+```
+
+### Union Type: 
+A value can be one type OR another: 
+
+```ts
+let id: number | string;
+
+id = 234
+id = 'id123'
+
+```
+
+### Intersection Type:
+
+Combines multiple types; value must satisfy all types.
+
+```ts
+type Name = { name: string }
+type Age = { age: number }
+
+type Person = Name & Age;
+
+const p1: Person = {
+    name: "tamim",
+    age: 20
+}
+```

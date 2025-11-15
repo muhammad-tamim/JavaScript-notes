@@ -9714,6 +9714,21 @@ let id: number | string;
 
 id = 234
 id = 'id123'
+
+
+type Role = "admin" | "user"
+
+const DashBoard = (role: Role) => {
+    if (role === "admin") {
+        console.log("admin dashboard")
+    }
+    else if (role === "user") {
+        console.log("user dashboard")
+    }
+    else {
+        console.log("Please login")
+    }
+}
 ```
 
 ### Intersection Type:

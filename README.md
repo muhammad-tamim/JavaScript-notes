@@ -162,6 +162,13 @@
     - [What is TypeScript:](#what-is-typescript)
     - [How to run TypeScript:](#how-to-run-typescript)
     - [Explicit Typing and Type Inference:](#explicit-typing-and-type-inference)
+  - [Primitive Types:](#primitive-types)
+    - [TypeScript own extra 5 primitive data types:](#typescript-own-extra-5-primitive-data-types)
+      - [any:](#any)
+      - [unknown:](#unknown)
+      - [void:](#void)
+      - [never:](#never)
+      - [litearl:](#litearl)
 
 ---
 
@@ -9358,5 +9365,100 @@ Type inference is when TypeScript assigns a type automatically based on the valu
 let age = 20;   // TypeScript infers: number
 let name = "Tamim"; // inferred: string
 let active = true;  // inferred: boolean
+```
+
+## Primitive Types: 
+
+In js we have 7 primitive data types: 
+
+1. number
+2. string
+3. bollean
+4. null
+5. undefined
+6. symbol
+7. bigint
+
+TypeScript also have this 7 primitive data types, but it's adds more extra 5 data types: 
+
+### TypeScript own extra 5 primitive data types:
+
+#### any: 
+any disables type checking and allows the variable to hold any type:
+
+```ts
+let data: any = 10;
+data = "Hello";
+data = "true"
+
+let x; // any
+let z = undefined // any
+
+console.log(data) // true
+```
+
+####  unknown: 
+Unknown (safer alternative to any), here you must perform type checking before using it:
+
+```ts
+let value: unknown = 30;
+
+value = "Hello"
+
+console.log(value.toUpperCase()) // value' is of type 'unknown'.
+```  
+
+```ts
+let value: unknown = 30;
+
+value = "Hello"
+
+if (typeof value === "string") {
+    console.log(value.toUpperCase()) // HELLO
+}
+```
+
+Note: any disables type checking. You can do anything with a variable of type any. TypeScript won’t stop you, even if the operation is unsafe.
+
+```ts
+let data: any = 10;
+data = "Hello";
+data = true;
+
+console.log(data.toFixed()); // TypeError: data.toFixed is not a function
+```
+
+#### void: 
+Represents no value, typically used as a return type for functions that don’t return anything:
+
+```ts
+function sayHello(): void {
+    console.log("Hello")
+}
+
+sayHello() // Hello
+```
+
+#### never: 
+represents a function that cannot produce a value at all aways throw an error or infinite loop:
+
+```ts
+function throwError(): never {
+    throw new Error("Oops");
+}
+
+function infiniteLoop(): never {
+    while(true) {}
+}
+```
+
+####  litearl: 
+Literal types allow you to assign exact values instead of general types.
+
+```ts
+let direction: "up" | "down" | "left" | "right";
+
+direction = "up"
+direction = "top" // Type '"top"' is not assignable to type '"up" | "down" | "left" | "right"'.
 ```
 

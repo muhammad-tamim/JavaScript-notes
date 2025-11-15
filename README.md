@@ -9666,12 +9666,44 @@ console.log(user2)
 Create a custom type name, can be primitive, union, intersection, object, etc.
 
 ```ts
-type ID = string | number
-let userId: ID = 123;
-userId = "abc234"
+// Without type alias
+const user1: {
+    id: number;
+    name: string;
+    isAdmin?: boolean; // optional property
+} = {
+    id: 1,
+    name: "Tamim",
+    isAdmin: true
+}
 
-type Point = { x: number, y: number }
-const point: Point = { x: 20, y: 30 }
+// with type alias
+type User = {
+    id: number;
+    name: string;
+    isAdmin?: boolean; // optional property
+};
+
+const user2: User = {
+    id: 2,
+    name: "Nasrin"
+};
+
+const user3: User = {
+    id: 3,
+    name: "Kuddus"
+};
+
+// without type alias
+const sum = (n1: number, n2: number): number => {
+    return n1 + n2
+}
+
+// with type alias
+type Add = (num1: number, num2: number) => number
+const add: Add = (num1, num2) => {
+    return num1 + num2
+}
 ```
 
 ### Union Type: 

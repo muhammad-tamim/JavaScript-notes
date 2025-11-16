@@ -212,6 +212,7 @@
     - [Static:](#static)
     - [Inharitance(1st pillr of OOP):](#inharitance1st-pillr-of-oop)
     - [Polymorphism(2nd pillar of OOP)](#polymorphism2nd-pillar-of-oop)
+    - [Abstruction(3rd piller of OOP)](#abstruction3rd-piller-of-oop)
   - [Type Guards:](#type-guards)
     - [typeof type guards:](#typeof-type-guards)
     - [in Operator Type Guard:](#in-operator-type-guard)
@@ -11018,6 +11019,82 @@ function makeAnimalSpeak(a: Animal) {
 makeAnimalSpeak(new Dog()); // "Dog barks"
 makeAnimalSpeak(new Cat()); // "Cat meows"
 ```
+
+### Abstruction(3rd piller of OOP)
+
+Abstraction means showing only the important information and hiding unnecessary details using:
+- abstract classes
+- abstract methods
+
+```ts
+// using interface
+interface MediaPlayer {
+    play(): void
+    pause(): void
+    stop(): void
+}
+
+class MusicPlayer implements MediaPlayer {
+    play() {
+        console.log("Playing Music....")
+    }
+    pause() {
+        console.log("Music paused....")
+    }
+    stop() {
+        console.log("Music Stopped...")
+    }
+}
+
+const customPlayer = new MusicPlayer()
+customPlayer.play()
+```
+
+```ts
+// using abstract class and methods
+abstract class MediaPlayer {
+    abstract play(): void
+    abstract pause(): void
+    abstract stop(): void
+}
+
+class MusicPlayer extends MediaPlayer {
+    play() {
+        console.log("Playing Music....")
+    }
+    pause() {
+        console.log("Music paused....")
+    }
+    stop() {
+        console.log("Music Stopped...")
+    }
+}
+
+const customPlayer = new MusicPlayer()
+customPlayer.play()
+```
+
+```ts
+abstract class Vehicle {
+    abstract start(): void; // abstract method (no body)
+    
+    stop() {
+        console.log("Vehicle stopped.");
+    }
+}
+
+class Car extends Vehicle {
+    start() {
+        console.log("Car engine started.");
+    }
+}
+
+const c = new Car();
+c.start(); // ✔
+c.stop();  // ✔
+```
+
+
 
 ## Type Guards:
 

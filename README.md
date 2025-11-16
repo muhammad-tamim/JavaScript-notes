@@ -209,6 +209,7 @@
       - [Private:](#private)
       - [All in one mixed example](#all-in-one-mixed-example)
     - [Getter and Setter:](#getter-and-setter)
+    - [Static:](#static)
     - [Inharitance(1st pialr of OPP):](#inharitance1st-pialr-of-opp)
   - [Type Guards:](#type-guards)
     - [typeof type guards:](#typeof-type-guards)
@@ -10816,6 +10817,54 @@ p.price = 150;
 console.log(p.price);  // ✔ 150
 
 p.price = 0;           // ❌ ERROR
+```
+
+### Static: 
+
+In TypeScript, the static keyword is used to create class-level properties and methods. Normally, when you create a class, each object (instance) gets its own copy of properties and methods. But static properties/methods belong to the class itself, not to the object.
+
+
+```ts
+// Without static
+class Counter {
+    count: number = 0;
+
+    increment() {
+        return this.count += 1
+    }
+    decrement() {
+        return this.count -= 1
+    }
+}
+
+const instance1 = new Counter()
+console.log(instance1.increment()) // 1 
+console.log(instance1.increment()) // 2
+console.log(instance1.increment()) // 3
+
+const instance2 = new Counter()
+console.log(instance2.increment()) // 1
+console.log(instance2.increment()) // 2
+```
+
+```ts
+// with static
+class Counter {
+    static count: number = 0;
+
+    static increment() {
+        return Counter.count += 1
+    }
+    static decrement() {
+        return Counter.count -= 1
+    }
+}
+
+console.log(Counter.increment()) // 1 
+console.log(Counter.increment()) // 2
+console.log(Counter.increment()) // 3
+console.log(Counter.increment()) // 4
+console.log(Counter.increment()) // 5
 ```
 
 ### Inharitance(1st pialr of OPP):

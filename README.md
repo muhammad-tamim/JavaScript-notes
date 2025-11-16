@@ -210,7 +210,8 @@
       - [All in one mixed example](#all-in-one-mixed-example)
     - [Getter and Setter:](#getter-and-setter)
     - [Static:](#static)
-    - [Inharitance(1st pialr of OPP):](#inharitance1st-pialr-of-opp)
+    - [Inharitance(1st pillr of OOP):](#inharitance1st-pillr-of-oop)
+    - [Polymorphism(2nd pillar of OOP)](#polymorphism2nd-pillar-of-oop)
   - [Type Guards:](#type-guards)
     - [typeof type guards:](#typeof-type-guards)
     - [in Operator Type Guard:](#in-operator-type-guard)
@@ -10867,7 +10868,9 @@ console.log(Counter.increment()) // 4
 console.log(Counter.increment()) // 5
 ```
 
-### Inharitance(1st pialr of OPP):
+### Inharitance(1st pillr of OOP):
+
+Inheritance allows one class to inherit properties and methods from another class.
 
 ```ts
 class Parent {
@@ -10908,6 +10911,112 @@ student1.getSleep(15)
 
 const teacher1 = new Teacher("y", 20, "dhaka", "Senior Teacher")
 teacher1.takeClass(4)
+```
+### Polymorphism(2nd pillar of OOP)
+Polymorphism means one method can have different behaviors depending on the object that calls it.
+
+```ts
+class Person {
+    getSleep() {
+        console.log(`I am a normal person, I sleep for 8 hours`);
+    }
+}
+
+class Student extends Person {
+    getSleep() {
+        console.log(`i am a student, i sleep 7 hours`);
+    }
+}
+
+class NextLevelDeveloper extends Person {
+    getSleep() {
+        console.log(`I am a next level developer. I sleep for 6 hours`)
+    }
+}
+
+const getSleepingHours = (param: Person) => {
+    param.getSleep()
+}
+
+const person1 = new Person()
+const person2 = new Student()
+const person3 = new NextLevelDeveloper()
+
+getSleepingHours(person1)
+getSleepingHours(person2)
+getSleepingHours(person3) 
+```
+
+```ts
+class Shape {
+    getArea(): number {
+        return 0;
+    }
+}
+
+class Circle extends Shape {
+    radius: number;
+    constructor(radius: number) {
+        super()
+        this.radius = radius
+    }
+
+    getArea(): number {
+        return Math.PI * this.radius * this.radius
+    }
+}
+
+class Rectangle extends Shape {
+    height: number;
+    width: number;
+    constructor(height: number, width: number) {
+        super()
+        this.height = height
+        this.width = width
+    }
+    getArea(): number {
+        return this.height * this.width
+    }
+}
+
+const getArea = (param: Shape) => {
+    console.log(param.getArea())
+}
+
+const shape1 = new Shape()
+const shape2 = new Circle(10)
+const shape3 = new Rectangle(10, 20)
+
+getArea(shape1)
+getArea(shape2)
+getArea(shape3)
+```
+
+```ts
+class Animal {
+    speak() {
+        console.log("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    speak() {
+        console.log("Cat meows");
+    }
+}
+
+function makeAnimalSpeak(a: Animal) {
+    a.speak();
+}
+
+makeAnimalSpeak(new Dog()); // "Dog barks"
+makeAnimalSpeak(new Cat()); // "Cat meows"
 ```
 
 ## Type Guards:

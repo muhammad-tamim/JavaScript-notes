@@ -199,6 +199,7 @@
       - [Constraint With Interfaces \& Type Aliases](#constraint-with-interfaces--type-aliases)
       - [Constraint With keyof (Important!):](#constraint-with-keyof-important)
     - [Conditionl Types:](#conditionl-types)
+    - [Mapped Types:](#mapped-types)
 
 ---
 
@@ -10373,5 +10374,36 @@ type A = IsNumber<number>;   // "YES"
 type B = IsNumber<string>;   // "NO"
 ```
 
+### Mapped Types: 
+Mapped types allow you to create new types by transforming existing types. 
+
 ```ts
+type Person = {
+    name: string;
+    age: number;
+};
+
+type CopyPerson = {
+    [K in keyof Person]: Person[K];
+};
+
+
+type AreaOfNum = {
+    height: number;
+    width: number;
+}
+
+// type AreaOfString = {
+//     height: string;
+//     width: string;
+// }
+
+type Area<T> = {
+    [key in keyof T]: T[key]
+}
+
+const area1: Area<{ height: string; width: number }> = {
+    height: '50',
+    width: 40
+}
 ```

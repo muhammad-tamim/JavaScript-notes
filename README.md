@@ -190,6 +190,7 @@
       - [Union Type:](#union-type)
       - [Intersection Type:](#intersection-type)
   - [Type Assertion:](#type-assertion)
+  - [Generics:](#generics)
 
 ---
 
@@ -9940,3 +9941,165 @@ let str = <string>data;
 console.log(str.toUpperCase());
 ```
 
+## Generics:
+Generics allow you to write reusable code that works with multiple types while keeping strong type safety.
+
+```ts
+type GenericArray<T> = Array<T>
+
+// const strArray: string[] = ['a', 'b', 'c']
+const strArray: GenericArray<string> = ['a', 'b', 'c']
+
+// const numArray: number[] = [1, 2, 3]
+const numArray: GenericArray<number> = [1, 2, 3]
+
+// const boolArray: boolean[] = [true, false, true]
+const boolArray: GenericArray<boolean> = [true, false, true]
+```
+
+```ts
+type Coordinates<X, Y> = [X, Y]
+
+const coordinates1: Coordinates<number, number> = [20, 30]
+const coordinates2: Coordinates<string, string> = ['20', '30']
+```
+
+```ts
+// type GenericArray<T> = Array<T>
+
+// const userList: GenericArray<{ name: string, age: number }> = [
+//     {
+//         name: 'x',
+//         age: 20
+//     },
+//     {
+//         name: 'y',
+//         age: 24,
+//     },
+//     {
+//         name: 'z',
+//         age: 30
+//     }
+// ]
+
+
+type GenericArray<T> = Array<T>
+
+type User = {
+    name: string,
+    age: number
+}
+
+const userList: GenericArray<User> = [
+    {
+        name: 'x',
+        age: 20
+    },
+    {
+        name: 'y',
+        age: 24,
+    },
+    {
+        name: 'z',
+        age: 30
+    }
+]
+```
+
+```ts
+interface Developer<T, X = null> {
+    name: string;
+    salary: number;
+    device: {
+        brand: string;
+        model: string;
+        releasedYear: string
+    };
+    smartWatch: T;
+    bike?: X
+}
+
+interface PoorWatch {
+    heartRate: string;
+    stopWatch: boolean
+}
+
+const poorDeveloper: Developer<PoorWatch> = {
+    name: 'x',
+    salary: 20,
+    device: {
+        brand: 'oppo',
+        model: "a5s",
+        releasedYear: '2005'
+    },
+    smartWatch: {
+        heartRate: '56',
+        stopWatch: true
+    },
+    bike: null
+}
+
+const richDeveloper: Developer<{
+    heartRate: string;
+    stopWatch: boolean;
+    calling: boolean;
+    ai: boolean
+}, { brand: "yamaha" }> = {
+    name: 'x',
+    salary: 20,
+    device: {
+        brand: 'oppo',
+        model: "a5s",
+        releasedYear: '2005'
+    },
+    smartWatch: {
+        heartRate: '56',
+        stopWatch: true,
+        calling: true,
+        ai: true
+    }
+}
+```
+
+```ts
+// const createArrayWithString = (value: string) => [value]
+// const createArrayWithNumber = (value: number) => [value]
+// const createArrayWithUserObj = (value: { id: number, name: string }) => [value]
+
+// const arrString = createArrayWithString('Apple')
+// const arrNumber = createArrayWithNumber(10)
+// const arrObj = createArrayWithUserObj({ id: 3, name: "x" })
+
+const createArrayWithGeneric = <T>(value: T) => [value]
+
+const arrString = createArrayWithGeneric('Apple')
+const arrNumber = createArrayWithGeneric(10)
+const arrObj = createArrayWithGeneric({ id: 3, name: "x" })
+
+
+const createArrayWithTuple = (param1: string, param2: string) => [param1, param2]
+
+const createArrayTupleWithGeneric = <X, Y>(param1: X, param2: Y) => [param1, param2]
+const res1 = createArrayTupleWithGeneric("tamim", false)
+const res2 = createArrayTupleWithGeneric(222, { name: "tamim" })
+
+
+const addStudentToCourse = <T>(studentInfo: T) => {
+    return { course: "Next Level", ...studentInfo }
+};
+
+const student1 = {
+    id: 123,
+    name: "tamim",
+    hasPen: true
+}
+
+const student2 = {
+    id: 32434,
+    name: "zunker",
+    hasCar: true,
+    isMarried: true
+}
+
+const result = addStudentToCourse(student1)
+```

@@ -191,6 +191,11 @@
       - [Intersection Type:](#intersection-type)
   - [Type Assertion:](#type-assertion)
   - [Generics:](#generics)
+    - [Constrain:](#constrain)
+      - [Using Constrain with primitive types:](#using-constrain-with-primitive-types)
+      - [Constraint With Arrays:](#constraint-with-arrays)
+      - [Constraint With Interfaces \& Type Aliases](#constraint-with-interfaces--type-aliases)
+      - [Constraint With keyof (Important!):](#constraint-with-keyof-important)
 
 ---
 
@@ -10102,4 +10107,145 @@ const student2 = {
 }
 
 const result = addStudentToCourse(student1)
+```
+
+### Constrain:
+
+Generic constraints allow you to restrict what types are allowed in a generic. we do this using the keyword extends.
+
+Why Constrain: Because sometimes you want a function to be flexible, but not too flexible.
+
+```ts
+function printName<T extends { name: string }>(person: T) {
+    console.log(person.name)
+}
+
+printName({ name: "tamim", age: 20 }) // Tamim
+printName({ age: 20 }) // Object literal may only specify known properties, and 'age' does not exist in type '{ name: string; }'.
+```
+
+#### Using Constrain with primitive types: 
+
+```ts
+function toArray<T extends string | number>(value: T): T[] {
+    return [value]
+}
+
+toArray("Hello")
+toArray(20)
+toArray(true) //  Argument of type 'boolean' is not assignable to parameter of type 'string | number'.
+```
+
+#### Constraint With Arrays:
+
+```ts
+function getFirst<T extends any[]>(arr: T) {
+    return arr[0]
+}
+
+getFirst([1, 2, 3])
+getFirst(['1', '2'])
+getFirst("Hello") // Argument of type 'string' is not assignable to parameter of type 'any[]'.
+```
+
+#### Constraint With Interfaces & Type Aliases
+
+```ts
+interface Person {
+    name: string;
+}
+
+function greet<T extends Person>(value: T) {
+    console.log("Hello", value.name);
+}
+
+greet({ name: "Tamim", id: 1 });   // ok
+greet({ id: 1 });                  // ❌ error
+```
+
+```ts
+
+type student = { id: number, name: string }
+
+const addStudentToCourse = <T extends student>(studentInfo: T) => {
+    return {
+        course: "Next Lavel",
+        ...studentInfo
+    }
+}
+
+const student1 = {
+    id: 123,
+    name: "tamim",
+    hasPen: true
+}
+
+const student2 = {
+    name: "zunker",
+    hasCar: true,
+    isMarried: true
+}
+
+const result1 = addStudentToCourse(student1)
+const result2 = addStudentToCourse(student2) // error
+```
+
+#### Constraint With keyof (Important!):
+
+```ts
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
+}
+
+const user = {
+    name: "Tamim",
+    age: 20
+};
+
+getProperty(user, "name"); // ok
+getProperty(user, "age");  // ok
+getProperty(user, "location");  // Argument of type '"location"' is not assignable to parameter of type '"name" | "age"'.
+```
+
+```ts
+type User = {
+    id: number,
+    name: string,
+    address: {
+        city: string
+    }
+}
+
+const user: User = {
+    id: 222,
+    name: "mezba",
+    address: {
+        city: "Barisal"
+    }
+}
+
+// const myId = user["id"]
+// const myName = user["name"]
+// const address = user["address"]
+// console.log(myId, myName, address) // 222 mezba { city: 'Barisal' }
+
+const getPropertyFromObj = <X,>(obj: X, key: keyof X) => {
+    return obj[key]
+}
+
+const result = getPropertyFromObj(user, "name")
+console.log(result) // mezba
+
+const product = {
+    brand: "apple"
+}
+const student = {
+    id: 123,
+    class: 5
+}
+
+const result2 = getPropertyFromObj(product, "brand")
+const result3 = getPropertyFromObj(student, "id")
+
+console.log(result2, result3) // apple 123
 ```

@@ -1,15 +1,12 @@
-const taka = (input: unknown) => {
+const taka = (input: number | string): number | string | undefined => {
     if (typeof input === "number") {
-        console.log(input)
+        return input
     }
     else if (typeof input === "string") {
-        console.log(parseInt(input))
-    }
-    else {
-        console.log("please add a valid input")
+        return parseInt(input)
     }
 }
 
-taka(100) // 100
-taka("100") // 100
-taka(null) // please add a valid input
+const result1 = taka(100) as number
+const result2 = taka('100') as number
+console.log(result1, result1) // 100 100

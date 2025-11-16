@@ -207,6 +207,8 @@
       - [public (default):](#public-default)
       - [protected:](#protected)
       - [Private:](#private)
+      - [All in one mixed example](#all-in-one-mixed-example)
+    - [Getter and Setter:](#getter-and-setter)
     - [Inharitance(1st pialr of OPP):](#inharitance1st-pialr-of-opp)
   - [Type Guards:](#type-guards)
     - [typeof type guards:](#typeof-type-guards)
@@ -10712,7 +10714,7 @@ console.log(acc.getBalance());  // ✔ Allowed
 console.log(acc.balance);   // ❌ ERROR — balance is private
 ```
 
-**All in one mixed example:**
+#### All in one mixed example
 
 ```ts
 class BackAccount {
@@ -10740,6 +10742,80 @@ class StudentBankAccount extends BackAccount {
 const myAccount = new BackAccount(111, 'Tamim', 100);
 myAccount.addBalance(100)
 console.log(myAccount)
+```
+
+### Getter and Setter: 
+- A getter is used to read a private/protected property.
+- A setter is used to update/change a private/protected property.
+
+```ts
+class BackAccount {
+    readonly userId: number;
+    protected userName: string;
+    private _userBalance: number;
+
+    constructor(userId: number, userName: string, userBalance: number) {
+        this.userId = userId;
+        this.userName = userName;
+        this._userBalance = userBalance;
+    }
+
+    // setter
+    // addBalance(balance: number) {
+    //     this._userBalance += balance
+    // }
+    set addBalance(balance: number) {
+        this._userBalance += balance
+    }
+
+    // getter
+    // getBalance() {
+    //     return this._userBalance
+    // }
+    get getBalance() {
+        return this._userBalance
+    }
+}
+
+
+const myAccount = new BackAccount(111, 'Tamim', 100);
+// myAccount.addBalance(100)
+// console.log(myAccount.getBalance())
+
+// setter
+myAccount.addBalance = 100
+
+// getter
+console.log(myAccount.getBalance)
+```
+
+```ts
+class Product {
+    private _price: number;
+
+    constructor(price: number) {
+        this._price = price;
+    }
+
+    get price() {
+        return this._price;
+    }
+
+    set price(value: number) {
+        if (value <= 0) {
+            throw new Error("Price must be greater than 0");
+        }
+        this._price = value;
+    }
+}
+
+const p = new Product(100);
+console.log(p.price);  // ✔ 100
+
+p.price = 150;  
+console.log(p.price);  // ✔ 150
+
+p.price = 0;           // ❌ ERROR
 ```
 
 ### Inharitance(1st pialr of OPP):

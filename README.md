@@ -203,7 +203,11 @@
   - [Utility Types:](#utility-types)
   - [OOP in TypeScript:](#oop-in-typescript)
     - [How to create a class:](#how-to-create-a-class)
-    - [Inharitance:](#inharitance)
+    - [Access Modifiers:](#access-modifiers)
+      - [public (default):](#public-default)
+      - [protected:](#protected)
+      - [Private:](#private)
+    - [Inharitance(1st pialr of OPP):](#inharitance1st-pialr-of-opp)
   - [Type Guards:](#type-guards)
     - [typeof type guards:](#typeof-type-guards)
     - [in Operator Type Guard:](#in-operator-type-guard)
@@ -10618,9 +10622,127 @@ console.log(cat.name) // nany
 
 Note: for now you have to compile this code using TSC
 
-### Inharitance:
+### Access Modifiers: 
 
-Inharitance is the 1st pialr of OPP. 
+Access modifiers control visibility of class properties and methods. They determine where a property or method can be accessed.
+
+#### public (default):
+Accessible everywhere: inside class, subclasses, and outside
+
+```ts
+class Person {
+    public name: string;      // public (default)
+    public age: number;       // public
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public introduce() {
+        console.log(`Hi, I am ${this.name} and I am ${this.age} years old.`);
+    }
+}
+
+const p = new Person("Tamim", 20);
+
+console.log(p.name);     // ✔ Accessible
+console.log(p.age);      // ✔ Accessible
+p.introduce();           // ✔ Accessible
+```
+
+#### protected: 
+
+Accessible inside the class and subclasses, Cannot be accessed outside the class
+
+```ts
+class Animal {
+    protected type: string;
+
+    constructor(type: string) {
+        this.type = type;
+    }
+
+    protected makeSound() {
+        console.log(`${this.type} makes a sound.`);
+    }
+}
+
+class Dog extends Animal {
+    public bark() {
+        console.log(`Barking as a ${this.type}`);   // ✔ allowed (protected)
+        this.makeSound();                           // ✔ allowed (protected)
+    }
+}
+
+const d = new Dog("Dog");
+
+d.bark();          // ✔ allowed
+d.type;            // ❌ ERROR — protected
+d.makeSound();     // ❌ ERROR — protected
+```
+
+#### Private: 
+
+Accessible only inside the class, Cannot be accessed outside or by subclasses
+
+```ts
+class BankAccount {
+    private balance: number;
+
+    constructor(initialBalance: number) {
+        this.balance = initialBalance;
+    }
+
+    public deposit(amount: number) {
+        this.balance += amount;
+    }
+
+    public getBalance() {
+        return this.balance;    // ✔ Allowed
+    }
+}
+
+const acc = new BankAccount(1000);
+
+acc.deposit(500);         // ✔ Allowed
+
+console.log(acc.getBalance());  // ✔ Allowed
+
+console.log(acc.balance);   // ❌ ERROR — balance is private
+```
+
+**All in one mixed example:**
+
+```ts
+class BackAccount {
+    readonly userId: number;
+    protected userName: string;
+    private userBalance: number;
+
+    constructor(userId: number, userName: string, userBalance: number) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userBalance = userBalance;
+    }
+    addBalance(balance: number) {
+        this.userBalance += balance
+    }
+}
+
+class StudentBankAccount extends BackAccount {
+    test() {
+        // console.log(this.balance) // Property 'balance' does not exist on type 'StydentBankAccount'.
+        console.log(this.userName)
+    }
+}
+
+const myAccount = new BackAccount(111, 'Tamim', 100);
+myAccount.addBalance(100)
+console.log(myAccount)
+```
+
+### Inharitance(1st pialr of OPP):
 
 ```ts
 class Parent {
@@ -10842,3 +10964,4 @@ function process(x: string | string[]) {
     }
 }
 ```
+

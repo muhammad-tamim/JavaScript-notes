@@ -201,6 +201,8 @@
     - [Conditionl Types:](#conditionl-types)
     - [Mapped Types:](#mapped-types)
   - [Utility Types:](#utility-types)
+  - [OOP in TypeScript:](#oop-in-typescript)
+    - [How to create a class:](#how-to-create-a-class)
 
 ---
 
@@ -10552,3 +10554,59 @@ const numbers: ReadonlyArray<number> = [1, 2, 3];
 numbers.push(4); // ❌ Error
 numbers[0] = 10; // ❌ Error
 ```
+
+## OOP in TypeScript: 
+
+### How to create a class: 
+
+```ts
+class Animal {
+    name: string;
+    species: string;
+    sound: string;
+
+    constructor(name: string, species: string, sound: string) {
+        this.name = name
+        this.species = species
+        this.sound = sound
+    }
+
+    makeSound() {
+        console.log(`The ${this.species} is making sound`)
+    }
+}
+
+const dog = new Animal("Tommy", "dog", "ghaw")
+console.log(dog) // Animal { name: 'Tommy', species: 'dog', sound: 'ghaw' }
+console.log(dog.name) // Tommy
+dog.makeSound()
+
+const cat = new Animal("nany", "cat", "miaw")
+console.log(cat) // Animal { name: 'nany', species: 'cat', sound: 'miaw' }
+console.log(cat.name) // nany
+```
+
+Or using parameter properties: 
+
+```ts
+class Animal {
+
+    constructor(public name: string, public species: string, public sound: string) { }
+
+    makeSound() {
+        console.log(`The ${this.species} is making sound`)
+    }
+}
+
+const dog = new Animal("Tommy", "dog", "ghaw")
+console.log(dog) // Animal { name: 'Tommy', species: 'dog', sound: 'ghaw' }
+console.log(dog.name) // Tommy
+dog.makeSound()
+
+const cat = new Animal("nany", "cat", "miaw")
+console.log(cat) // Animal { name: 'nany', species: 'cat', sound: 'miaw' }
+console.log(cat.name) // nany
+```
+
+Note: for now you have to compile this code using TSC
+

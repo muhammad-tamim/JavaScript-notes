@@ -198,6 +198,7 @@
       - [Constraint With Arrays:](#constraint-with-arrays)
       - [Constraint With Interfaces \& Type Aliases](#constraint-with-interfaces--type-aliases)
       - [Constraint With keyof (Important!):](#constraint-with-keyof-important)
+    - [Conditionl Types:](#conditionl-types)
 
 ---
 
@@ -10333,4 +10334,44 @@ const result2 = getPropertyFromObj(product, "brand")
 const result3 = getPropertyFromObj(student, "id")
 
 console.log(result2, result3) // apple 123
+```
+
+
+### Conditionl Types: 
+
+Conditional types allow you to choose a type based on a condition, similar to an if/else, but inside the type system.
+
+syntax: 
+
+```
+T extends U ? X : Y
+```
+- If T extends (matches) U, return X else Y
+
+```ts
+type A = null;
+type B = undefined
+
+type c = A extends number ? true : B extends undefined ? true : false
+```
+```ts
+type RichPeopleVehicle = {
+    bike: string;
+    car: string;
+    ship: string;
+}
+
+type CheckVehicle<T> = T extends keyof RichPeopleVehicle ? true : false
+
+type HasBike = CheckVehicle<"bike">
+```
+
+```ts
+type IsNumber<T> = T extends number ? "YES" : "NO";
+
+type A = IsNumber<number>;   // "YES"
+type B = IsNumber<string>;   // "NO"
+```
+
+```ts
 ```

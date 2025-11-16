@@ -213,6 +213,7 @@
     - [Inharitance(1st pillr of OOP):](#inharitance1st-pillr-of-oop)
     - [Polymorphism(2nd pillar of OOP)](#polymorphism2nd-pillar-of-oop)
     - [Abstruction(3rd piller of OOP)](#abstruction3rd-piller-of-oop)
+    - [Encapsulation(4th piller of OOP)](#encapsulation4th-piller-of-oop)
   - [Type Guards:](#type-guards)
     - [typeof type guards:](#typeof-type-guards)
     - [in Operator Type Guard:](#in-operator-type-guard)
@@ -11094,7 +11095,68 @@ c.start(); // ✔
 c.stop();  // ✔
 ```
 
+### Encapsulation(4th piller of OOP)
 
+Encapsulation means wrapping data (properties) and behavior (methods) inside a class and protecting them using access modifiers.
+
+```ts
+class BackAccount {
+    readonly userId: number;
+    protected userName: string;
+    private userBalance: number;
+
+    constructor(userId: number, userName: string, userBalance: number) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userBalance = userBalance;
+    }
+    addBalance(balance: number) {
+        this.userBalance += balance
+    }
+}
+
+class StudentBankAccount extends BackAccount {
+    test() {
+        // console.log(this.balance) // Property 'balance' does not exist on type 'StydentBankAccount'.
+        console.log(this.userName)
+    }
+}
+
+const myAccount = new BackAccount(111, 'Tamim', 100);
+myAccount.addBalance(100)
+console.log(myAccount)
+```
+
+```ts
+class BankAccount {
+    private _balance: number = 0;
+
+    deposit(amount: number) {
+        if (amount <= 0) {
+            throw new Error("Deposit must be positive");
+        }
+        this._balance += amount;
+    }
+
+    withdraw(amount: number) {
+        if (amount > this._balance) {
+            throw new Error("Insufficient balance");
+        }
+        this._balance -= amount;
+    }
+
+    get balance() {
+        return this._balance; // getter
+    }
+}
+
+const acc = new BankAccount();
+acc.deposit(1000);
+acc.withdraw(300);
+
+console.log(acc.balance); // ✔ 700
+// acc._balance = 5000;   // ❌ ERROR (private)
+```
 
 ## Type Guards:
 

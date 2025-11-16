@@ -9707,6 +9707,18 @@ Note: when you use enum you must convert it to js file using type scipt compilie
 Defines the shape of an object: 
 
 ```ts
+// without interface
+const user2: {
+    name: string;
+    age: number;
+    isAdmin?: boolean
+} = {
+    name: "nasrin",
+    age: 11,
+    isAdmin: false
+}
+
+// with interface
 interface User {
     name: string;
     age: number;
@@ -9719,20 +9731,73 @@ const user1: User = {
 }
 
 
-// without interface
-const user2: {
+console.log(user1)
+console.log(user2)
+```
+
+```ts
+// with type alias
+type Friends = string[]
+const friends: Friends = ["A", "B", "C"]
+
+// with interface
+interface iFriends {
+    [index: number]: string
+}
+const friends2: iFriends = ["D", "E", "F"]
+```
+
+```ts
+// with type alias
+type Add = (num1: number, num2: number) => number
+const add1: Add = (num1, num2) => num1 + num2
+
+// with interface
+interface iAdd {
+    (number1: number, number2: number): number
+}
+const add2: iAdd = (number1, number2) => number1 + number2
+```
+
+Note: type interface and alias are same things, we can use one of them based on our preference. bur remember we can't use interface for primitive data types. 
+
+Note: interface not suppoer intersection like this, so for this case we must use extends: 
+
+```ts
+type User = {
     name: string;
-    age: number;
-    isAdmin?: boolean
-} = {
-    name: "nasrin",
-    age: 11,
-    isAdmin: false
+    age: number
+}
+
+type Role = {
+    role: 'admin' | 'user'
+}
+
+type UserWithRole = User & Role
+
+const user1: UserWithRole = {
+    name: "x",
+    age: 1,
+    role: 'user'
 }
 
 
-console.log(user1)
-console.log(user2)
+
+interface User2 {
+    name: string;
+    age: number
+}
+
+
+interface IUserWithRole extends User2 {
+    role: 'admin' | 'user'
+}
+
+const user2: IUserWithRole = {
+    name: "x",
+    age: 1,
+    role: 'user'
+}
 ```
 
 #### Type Alias: 
@@ -9778,6 +9843,8 @@ const add: Add = (num1, num2) => {
     return num1 + num2
 }
 ```
+
+
 
 #### Union Type: 
 A value can be one type OR another: 

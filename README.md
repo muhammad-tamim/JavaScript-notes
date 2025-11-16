@@ -204,6 +204,13 @@
   - [OOP in TypeScript:](#oop-in-typescript)
     - [How to create a class:](#how-to-create-a-class)
     - [Inharitance:](#inharitance)
+  - [Type Guards:](#type-guards)
+    - [typeof type guards:](#typeof-type-guards)
+    - [in Operator Type Guard:](#in-operator-type-guard)
+    - [Instanceof Type Guards:](#instanceof-type-guards)
+    - [Equality Narrowing:](#equality-narrowing)
+    - [Truthiness Narrowing:](#truthiness-narrowing)
+    - [Array.isArray() Type Guard:](#arrayisarray-type-guard)
 
 ---
 
@@ -10654,4 +10661,184 @@ student1.getSleep(15)
 
 const teacher1 = new Teacher("y", 20, "dhaka", "Senior Teacher")
 teacher1.takeClass(4)
+```
+
+## Type Guards:
+
+Type guards help TypeScript narrow a variable’s type at runtime.
+
+When a variable can have multiple possible types (union type), TypeScript needs extra information to know what operations are safe. A type guard tells TypeScript At this point, the value is this type.
+
+### typeof type guards:
+
+```ts
+function printValue(v: string | number) {
+    if (typeof v === "string") {
+        console.log(v.toUpperCase()); // string methods allowed
+    } else {
+        console.log(v.toFixed(2)); // number methods allowed
+    }
+}
+```
+
+```ts
+type NumOrStr = number | string
+
+const add = (num1: NumOrStr, num2: NumOrStr) => {
+
+    if (typeof num1 === 'number' && typeof num2 === 'number') {
+        return num1 + num2
+    }
+    else {
+        return num1.toString() + num2.toString()
+    }
+
+}
+
+const result1 = add(2, 2)
+const result2 = add("2", 2)
+
+console.log(result1, result2)
+```
+
+### in Operator Type Guard:
+
+Checks if a property exists in the object: 
+
+```ts
+type Admin = { username: string; isAdmin: true };
+type User  = { username: string };
+
+function checkRole(person: Admin | User) {
+    if ("isAdmin" in person) {
+        console.log("Admin user");
+    } else {
+        console.log("Normal user");
+    }
+}
+```
+
+```ts
+type NormalUser = {
+    name: string;
+}
+
+type AdminUser = {
+    name: string;
+    role: "admin";
+}
+
+const getUserInfo = (user: NormalUser | AdminUser) => {
+
+    if ('role' in user) {
+        console.log(user.name, user.role)
+    }
+    else {
+        console.log(user.name)
+    }
+
+}
+
+getUserInfo({ name: "Normal" })
+```
+
+
+### Instanceof Type Guards: 
+
+Used for classes.
+
+```ts
+class Person {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name
+    }
+    getSleep(hours: number) {
+        console.log(`he sleep ${hours} daily`)
+    }
+}
+
+class Student extends Person {
+    constructor(name: string) {
+        super(name)
+    }
+
+    doStudy(hours: number) {
+        console.log(`he study ${hours} daily`)
+    }
+}
+
+class Teacher extends Person {
+    constructor(name: string) {
+        super(name)
+    }
+
+    takeClass(hours: number) {
+        console.log(`i take ${hours} of class`)
+    }
+}
+
+const isStudent = (user: Person) => {
+    return user instanceof Student
+}
+const isTeacher = (user: Person) => {
+    return user instanceof Teacher
+}
+
+const getUserInfo = (user: Person) => {
+    if (isStudent(user)) {
+        user.doStudy(10)
+    }
+    else if (isTeacher(user)) {
+        user.takeClass(5)
+    }
+    else {
+        user.getSleep(20)
+    }
+}
+
+const person1 = new Person("x miya")
+const student1 = new Student("student kamrul")
+const Teacher1 = new Teacher("teacher lotip")
+
+getUserInfo(person1)
+getUserInfo(student1)
+getUserInfo(Teacher1)
+```
+
+### Equality Narrowing:
+
+Using ===, !== to narrow types.
+
+```ts
+function compare(a: string | number, b: string | number) {
+    if (a === b) {
+        console.log("Same values");
+    }
+}
+```
+
+### Truthiness Narrowing:
+
+TypeScript narrows based on truthy/falsy values.
+
+```ts
+function print(msg?: string) {
+    if (msg) {
+        console.log(msg.toUpperCase());
+    }
+}
+```
+
+### Array.isArray() Type Guard:
+
+```ts
+function process(x: string | string[]) {
+    if (Array.isArray(x)) {
+        console.log("Array:", x.join(", "));
+    } else {
+        console.log("String:", x.toUpperCase());
+    }
+}
 ```

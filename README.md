@@ -203,6 +203,7 @@
   - [Utility Types:](#utility-types)
   - [OOP in TypeScript:](#oop-in-typescript)
     - [How to create a class:](#how-to-create-a-class)
+    - [Inharitance:](#inharitance)
 
 ---
 
@@ -10610,3 +10611,47 @@ console.log(cat.name) // nany
 
 Note: for now you have to compile this code using TSC
 
+### Inharitance:
+
+Inharitance is the 1st pialr of OPP. 
+
+```ts
+class Parent {
+    name: string;
+    age: number;
+    address: string;
+
+    constructor(name: string, age: number, address: string) {
+        this.name = name;
+        this.age = age;
+        this.address = address
+    }
+
+    getSleep(hours: number) {
+        console.log(`${this.name} sleep ${hours} a day`)
+    }
+}
+
+
+class Student extends Parent { }
+
+class Teacher extends Parent {
+    designation: string; // own properties
+
+    constructor(name: string, age: number, address: string, designation: string) {
+        super(name, age, address)
+        this.designation = designation
+    }
+
+    // own methods
+    takeClass(numberOfClass: number) {
+        console.log(`${this.name} ${numberOfClass} hours class nan`)
+    }
+}
+
+const student1 = new Student("x", 20, "barisal")
+student1.getSleep(15)
+
+const teacher1 = new Teacher("y", 20, "dhaka", "Senior Teacher")
+teacher1.takeClass(4)
+```

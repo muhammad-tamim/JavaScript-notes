@@ -137,8 +137,11 @@
   - [The Four Pillars of OOP:](#the-four-pillars-of-oop)
     - [Encapsulation:](#encapsulation)
     - [Abstraction:](#abstraction)
-    - [Difference Between Encapsulation and Abstraction:](#difference-between-encapsulation-and-abstraction)
+      - [Difference Between Encapsulation and Abstraction:](#difference-between-encapsulation-and-abstraction)
     - [Inheritance:](#inheritance)
+    - [Polymorphism:](#polymorphism)
+      - [Using Methods Overriding:](#using-methods-overriding)
+      - [Using Duck Typing:](#using-duck-typing)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -9357,7 +9360,7 @@ console.log(account.getBalance()); // 1300
 ```
 here, User doesn’t need to know how #balance is stored or updated internally. They just call deposit/withdraw.
 
-### Difference Between Encapsulation and Abstraction: 
+#### Difference Between Encapsulation and Abstraction: 
 
 | Encapsulation                     | Abstraction                                    |
 | --------------------------------- | ---------------------------------------------- |
@@ -9399,6 +9402,71 @@ dog.describe();    // This is a Labrador of type Dog
 dog.makeSound();   // Dog makes a sound
 ```
 here, Child class inherits properties and methods from parent and can add its own functionality.
+
+### Polymorphism: 
+Polymorphism is the process that allows a child class to inherit methods from a parent class using the extends keyword, and lets the same method behave differently depending on the child class.
+
+We can do Polymorphism using two ways: 
+1. Methods Overriding: Child class changes parent method behavior.
+2. Duck Typing(Interfae-Based): Different objects implement the same method name.
+
+#### Using Methods Overriding: 
+Child class changes parent method behavior.
+
+```js
+class Animal {
+    makeSound() {
+        console.log("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    makeSound() {
+        console.log("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    makeSound() {
+        console.log("Cat meows");
+    }
+}
+
+const dog = new Dog()
+const cat = new Cat()
+
+dog.makeSound()
+cat.makeSound()
+```
+Here, makeSound() is overridden in each child class. Same method name behaves differently.
+
+#### Using Duck Typing:
+Different objects implement the same method name, allowing them to be used interchangeably.
+
+```js
+class Car {
+    start() {
+        console.log("Car starts");
+    }
+}
+
+class Bike {
+    start() {
+        console.log("Bike starts");
+    }
+}
+
+function startVehicle(vehicle) {
+    vehicle.start(); // works for any object with start()
+}
+
+const car = new Car();
+const bike = new Bike();
+
+startVehicle(car);  // Car starts
+startVehicle(bike); // Bike starts
+```
+Here, any object with a start method can be passed to startVehicle, demonstrating polymorphism without inheritance.
 
 # Part 4: Data Structure
 

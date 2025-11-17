@@ -135,6 +135,7 @@
 - [Part 3: OOP](#part-3-oop)
   - [Private Fields:](#private-fields)
     - [Getter and Setter:](#getter-and-setter)
+  - [Static Keyword:](#static-keyword)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -9163,6 +9164,7 @@ Here,
 
 - class Person { ... }: creates a blueprint for all objects that will be created from it. Internally, JavaScript still uses a constructor function, but in classes the syntax is `constructor(name, age)` instead of `Person(name, age)`.
 
+
 ## Private Fields: 
 - Properties that cannot be accessed outside the class
 - Declared using #
@@ -9232,6 +9234,80 @@ console.log(p.age);   // 30
 
 // console.log(p.#age); // ❌ Error
 ```
+
+## Static Keyword: 
+The static keyword in JavaScript is used to define class-level properties or methods that belong to the class itself, rather than to any instance of the class.
+So, you have to access the static properties and methods only through the class name.
+
+```js
+class MathUtils {
+    // Static property
+    static PI = 3.1416;
+
+    // Static method
+    static square(x) {
+        return x * x;
+    }
+}
+
+console.log(MathUtils.PI);        // 3.1416
+console.log(MathUtils.square(5)); // 25
+
+const obj = new MathUtils();
+console.log(obj.PI);              // undefined → cannot access via instance
+console.log(obj.square);          // undefined → cannot access via instance
+```
+
+**Without Static:**
+ 
+```js
+class Counter {
+    constructor() {
+        this.count = 0; // instance property
+    }
+
+    increment() {
+        return this.count += 1;
+    }
+
+    decrement() {
+        return this.count -= 1;
+    }
+}
+
+const instance1 = new Counter();
+console.log(instance1.increment()); // 1
+console.log(instance1.increment()); // 2
+console.log(instance1.increment()); // 3
+
+const instance2 = new Counter();
+console.log(instance2.increment()); // 1
+console.log(instance2.increment()); // 2
+```
+here, Each instance has its own separate count.
+
+**With Static keyword:**
+
+```js
+class Counter {
+    static count = 0; // static property
+ 
+    static increment() { // static method
+        return Counter.count += 1;
+    }
+
+    static decrement() {
+        return Counter.count -= 1;
+    }
+}
+
+console.log(Counter.increment()); // 1
+console.log(Counter.increment()); // 2
+console.log(Counter.increment()); // 3
+console.log(Counter.increment()); // 4
+console.log(Counter.increment()); // 5
+```
+here, Static property count is shared by the class, not by instances.
 
 # Part 4: Data Structure
 

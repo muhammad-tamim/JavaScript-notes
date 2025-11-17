@@ -93,7 +93,6 @@
     - [Common Property / Methods for string / array:](#common-property--methods-for-string--array-1)
   - [Problem Solving: Array](#problem-solving-array)
   - [Objects:](#objects)
-    - [Different ways to make an Object](#different-ways-to-make-an-object)
     - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
     - [Objects References and cloning and marging:](#objects-references-and-cloning-and-marging)
       - [Cloning and merging:](#cloning-and-merging)
@@ -7245,32 +7244,6 @@ function makeUser(name, age) {
 let user = makeUser("John", 30);
 console.log(user.name); // John
 ```
-
-### Different ways to make an Object
-
-```js
-const pen = { 
-    brand: "Parker",
-    color: "blue",
-    type: "ballpoint",
-    price: 10,
-}
-console.log(pen);
-
-const pen2 = new Object(); 
-pen2.brand = "Pilot";
-pen2.color = "black";
-pen2.type = "gel";
-pen2.price = 12;
-console.log(pen2);
-
-const pen3 = Object.create({}); 
-pen3.brand = "Bic";
-pen3.color = "red";
-pen3.type = "fountain";
-pen3.price = 8;
-console.log(pen3);
-```    
 
 ### Dot Notation VS Bracket Notation:
 

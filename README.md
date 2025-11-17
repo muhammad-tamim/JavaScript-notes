@@ -134,6 +134,7 @@
   - [Events](#events)
 - [Part 3: OOP](#part-3-oop)
   - [Private Fields:](#private-fields)
+    - [Getter and Setter:](#getter-and-setter)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -208,7 +209,7 @@
       - [protected:](#protected)
       - [Private:](#private)
       - [All in one mixed example](#all-in-one-mixed-example)
-    - [Getter and Setter:](#getter-and-setter)
+    - [Getter and Setter:](#getter-and-setter-1)
     - [Static:](#static)
     - [Inharitance(1st pillr of OOP):](#inharitance1st-pillr-of-oop)
     - [Polymorphism(2nd pillar of OOP)](#polymorphism2nd-pillar-of-oop)
@@ -9198,7 +9199,39 @@ console.log(p.name) // John
 // console.log(p.#age); //  Error
 ```
 
+### Getter and Setter: 
+Getter and Setter allow accessing and modifying private fields like normal properties, instead of calling methods.
 
+```js
+class Person {
+    #age; // private field
+
+    constructor(name, age) {
+        this.name = name;
+        this.#age = age;
+    }
+
+    // Getter
+    get age() {
+        return this.#age;
+    }
+
+    // Setter
+    set age(newAge) {
+        this.#age = newAge;
+    }
+}
+
+const p = new Person("John", 25);
+
+console.log(p.name);  // John
+console.log(p.age);   // 25 (uses getter)
+
+p.age = 30;           // uses setter
+console.log(p.age);   // 30
+
+// console.log(p.#age); // ❌ Error
+```
 
 # Part 4: Data Structure
 

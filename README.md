@@ -138,6 +138,7 @@
     - [Encapsulation:](#encapsulation)
     - [Abstraction:](#abstraction)
     - [Difference Between Encapsulation and Abstraction:](#difference-between-encapsulation-and-abstraction)
+    - [Inheritance:](#inheritance)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -9363,6 +9364,41 @@ here, User doesn’t need to know how #balance is stored or updated internally. 
 | Protect/hide object’s data        | Hide complexity, expose only necessary details |
 | getters/setters or public methods | Public methods                                 |
 
+### Inheritance: 
+
+Inheritance is a process that allows a chaild class inherits properties and methods from a parent class using extends keyword and super() method.
+
+here, 
+- extends: Used to create a child class that inherits from a parent class. It sets up the prototype chain so the child class can access parent methods and properties.
+- super(): Used inside the child class constructor to call the parent class constructor.
+  
+```js
+class Animal {
+    constructor(type) {
+        this.type = type;
+    }
+
+    makeSound() {
+        console.log(`${this.type} makes a sound`);
+    }
+}
+
+class Dog extends Animal {
+    constructor(breed) {
+        super("Dog"); // call parent constructor
+        this.breed = breed;
+    }
+
+    describe() {
+        console.log(`This is a ${this.breed} of type ${this.type}`);
+    }
+}
+
+const dog = new Dog("Labrador");
+dog.describe();    // This is a Labrador of type Dog
+dog.makeSound();   // Dog makes a sound
+```
+here, Child class inherits properties and methods from parent and can add its own functionality.
 
 # Part 4: Data Structure
 

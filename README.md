@@ -133,6 +133,7 @@
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
   - [Events](#events)
 - [Part 3: OOP](#part-3-oop)
+  - [Private Fields:](#private-fields)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -9103,6 +9104,101 @@ fetchData();
 ## Events
 
 # Part 3: OOP
+
+Object-Oriented Programming is a programming paradigm based on the objects that contain properties and methods. JavaScript supports OOP through prototypes and, since ES6, through classes.
+
+means OOP is the concept, and Classes, prototypes, objects are the tools used to implement that.
+
+- In most languages → OOP is implemented using classes
+- In older JavaScript → OOP was implemented using prototypes and constructor functions.
+- In modern JavaScript (ES6+) → OOP is implemented using classes, which are actually cleaner syntax built on top of prototypes (the constructor function mechanism is still used under the hood).
+
+Below i put two example of both old and new implemention: 
+
+- Constructor Function + prototype:
+
+```js
+// Constructor function (old OOP style)
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// Adding method using prototype
+Person.prototype.greet = function() {
+    return `Hello, I'm ${this.name}`;
+};
+
+const p1 = new Person("John", 30);
+
+console.log(p1.greet());
+```
+
+here, 
+
+- Person(name, age) constructor function: creates a blueprint for all objects that will be created from it.
+- Person.prototype.greet: adds a method to the constructor’s prototype, so all objects created from Person share this method.
+- new Person("John", 30): Creates a new object, links it to the prototype, runs the constructor, and returns the object.
+
+- Class:
+
+```js
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        return `Hello, I'm ${this.name}`;
+    }
+}
+
+const p1 = new Person("John", 30);
+
+console.log(p1.greet());
+```
+Here, 
+
+- class Person { ... }: creates a blueprint for all objects that will be created from it. Internally, JavaScript still uses a constructor function, but in classes the syntax is `constructor(name, age)` instead of `Person(name, age)`.
+
+## Private Fields: 
+- Properties that cannot be accessed outside the class
+- Declared using #
+
+```js
+class Person {
+    #age; // private field
+
+    constructor(name, age) {
+        this.name = name; // public
+        this.#age = age;  // private
+    }
+
+    // Method to access private field
+    getAge() {
+        return this.#age;
+    }
+
+    // Method to update private field
+    setAge(newAge) {
+        this.#age = newAge;
+    }
+}
+
+const p = new Person("John", 25);
+
+console.log(p.name);    // John (public)
+console.log(p.getAge()); // 25 (private accessed via method)
+
+p.setAge(30);
+console.log(p.getAge()); // 30
+
+console.log(p.name) // John
+// console.log(p.#age); //  Error
+```
+
+
 
 # Part 4: Data Structure
 

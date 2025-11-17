@@ -136,6 +136,8 @@
   - [Static Keyword:](#static-keyword)
   - [The Four Pillars of OOP:](#the-four-pillars-of-oop)
     - [Encapsulation:](#encapsulation)
+    - [Abstraction:](#abstraction)
+    - [Difference Between Encapsulation and Abstraction:](#difference-between-encapsulation-and-abstraction)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -9250,7 +9252,7 @@ Why each is a pillar:
 - Polymorphism → Lets objects behave differently while sharing the same interface.
 
 ### Encapsulation: 
-Encapsulation (in js) is the practice of hiding the internal state (properties) of an object using private fields (#), and providing controlled access through methods or getters/setters. This protects the object’s data and prevents unintended modifications.
+Encapsulation (in js) is the process of hiding the internal state (properties) of an object using private fields (#), and providing controlled access through methods or getters/setters. This protects the object’s data and prevents unintended modifications.
 
 Note: 
 - Private fileds Properties cannot be accessed outside the class and it Declared using #
@@ -9320,6 +9322,47 @@ console.log(p.getAge()); // 30
 console.log(p.name) // John
 // console.log(p.#age); //  Error
 ```
+
+### Abstraction:
+
+Abstraction is the process of hiding implementation details using private field and showing only the necessary functionality to the user.
+
+```js
+class BankAccount {
+    #balance;
+
+    constructor(initialBalance) {
+        this.#balance = initialBalance;
+    }
+
+    deposit(amount) {
+        if (amount > 0) this.#balance += amount;
+    }
+
+    withdraw(amount) {
+        if (amount <= this.#balance) this.#balance -= amount;
+        else console.log("Insufficient funds!");
+    }
+
+    getBalance() {
+        return this.#balance;
+    }
+}
+
+const account = new BankAccount(1000);
+account.deposit(500);
+account.withdraw(200);
+console.log(account.getBalance()); // 1300
+```
+here, User doesn’t need to know how #balance is stored or updated internally. They just call deposit/withdraw.
+
+### Difference Between Encapsulation and Abstraction: 
+
+| Encapsulation                     | Abstraction                                    |
+| --------------------------------- | ---------------------------------------------- |
+| Protect/hide object’s data        | Hide complexity, expose only necessary details |
+| getters/setters or public methods | Public methods                                 |
+
 
 # Part 4: Data Structure
 

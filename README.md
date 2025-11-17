@@ -133,9 +133,9 @@
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
   - [Events](#events)
 - [Part 3: OOP](#part-3-oop)
-  - [Private Fields:](#private-fields)
-    - [Getter and Setter:](#getter-and-setter)
   - [Static Keyword:](#static-keyword)
+  - [The Four Pillars of OOP:](#the-four-pillars-of-oop)
+    - [Encapsulation:](#encapsulation)
 - [Part 4: Data Structure](#part-4-data-structure)
   - [Array](#array-1)
   - [Object](#object)
@@ -210,7 +210,7 @@
       - [protected:](#protected)
       - [Private:](#private)
       - [All in one mixed example](#all-in-one-mixed-example)
-    - [Getter and Setter:](#getter-and-setter-1)
+    - [Getter and Setter:](#getter-and-setter)
     - [Static:](#static)
     - [Inharitance(1st pillr of OOP):](#inharitance1st-pillr-of-oop)
     - [Polymorphism(2nd pillar of OOP)](#polymorphism2nd-pillar-of-oop)
@@ -9164,77 +9164,6 @@ Here,
 
 - class Person { ... }: creates a blueprint for all objects that will be created from it. Internally, JavaScript still uses a constructor function, but in classes the syntax is `constructor(name, age)` instead of `Person(name, age)`.
 
-
-## Private Fields: 
-- Properties that cannot be accessed outside the class
-- Declared using #
-
-```js
-class Person {
-    #age; // private field
-
-    constructor(name, age) {
-        this.name = name; // public
-        this.#age = age;  // private
-    }
-
-    // Method to access private field
-    getAge() {
-        return this.#age;
-    }
-
-    // Method to update private field
-    setAge(newAge) {
-        this.#age = newAge;
-    }
-}
-
-const p = new Person("John", 25);
-
-console.log(p.name);    // John (public)
-console.log(p.getAge()); // 25 (private accessed via method)
-
-p.setAge(30);
-console.log(p.getAge()); // 30
-
-console.log(p.name) // John
-// console.log(p.#age); //  Error
-```
-
-### Getter and Setter: 
-Getter and Setter allow accessing and modifying private fields like normal properties, instead of calling methods.
-
-```js
-class Person {
-    #age; // private field
-
-    constructor(name, age) {
-        this.name = name;
-        this.#age = age;
-    }
-
-    // Getter
-    get age() {
-        return this.#age;
-    }
-
-    // Setter
-    set age(newAge) {
-        this.#age = newAge;
-    }
-}
-
-const p = new Person("John", 25);
-
-console.log(p.name);  // John
-console.log(p.age);   // 25 (uses getter)
-
-p.age = 30;           // uses setter
-console.log(p.age);   // 30
-
-// console.log(p.#age); // ❌ Error
-```
-
 ## Static Keyword: 
 The static keyword in JavaScript is used to define class-level properties or methods that belong to the class itself, rather than to any instance of the class.
 So, you have to access the static properties and methods only through the class name.
@@ -9308,6 +9237,89 @@ console.log(Counter.increment()); // 4
 console.log(Counter.increment()); // 5
 ```
 here, Static property count is shared by the class, not by instances.
+
+## The Four Pillars of OOP:
+
+We call Encapsulation, Abstraction, Inheritance, and Polymorphism the four pillars of OOP, because they form the structural foundation of the OOP paradigm.
+
+Why each is a pillar:
+
+- Encapsulation → Protects an object’s data and keeps it safe.
+- Abstraction → Hides unnecessary details and exposes only what’s needed.
+- Inheritance → Allows code reuse and hierarchy of classes.
+- Polymorphism → Lets objects behave differently while sharing the same interface.
+
+### Encapsulation: 
+Encapsulation (in js) is the practice of hiding the internal state (properties) of an object using private fields (#), and providing controlled access through methods or getters/setters. This protects the object’s data and prevents unintended modifications.
+
+Note: 
+- Private fileds Properties cannot be accessed outside the class and it Declared using #
+- Getter and Setter allow accessing and modifying private fields like normal properties, instead of calling methods.
+
+```js
+class Person {
+    #age; // private field
+
+    constructor(name, age) {
+        this.name = name;
+        this.#age = age;
+    }
+
+    // Getter
+    get age() {
+        return this.#age;
+    }
+
+    // Setter
+    set age(newAge) {
+        this.#age = newAge;
+    }
+}
+
+const p = new Person("John", 25);
+
+console.log(p.name);  // John
+console.log(p.age);   // 25 (uses getter)
+
+p.age = 30;           // uses setter
+console.log(p.age);   // 30
+
+// console.log(p.#age); // ❌ Error
+```
+
+Without getter and setter: 
+
+```js
+class Person {
+    #age; // private field
+
+    constructor(name, age) {
+        this.name = name; // public
+        this.#age = age;  // private
+    }
+
+    // Method to access private field
+    getAge() {
+        return this.#age;
+    }
+
+    // Method to update private field
+    setAge(newAge) {
+        this.#age = newAge;
+    }
+}
+
+const p = new Person("John", 25);
+
+console.log(p.name);    // John (public)
+console.log(p.getAge()); // 25 (private accessed via method)
+
+p.setAge(30);
+console.log(p.getAge()); // 30
+
+console.log(p.name) // John
+// console.log(p.#age); //  Error
+```
 
 # Part 4: Data Structure
 

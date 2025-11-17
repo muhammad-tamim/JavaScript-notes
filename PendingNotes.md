@@ -1,3 +1,39 @@
+## Primitive Types
+
+- string
+- number
+- boolean
+- bigint
+- symbol
+- null
+- undefined
+- void
+- never
+
+## Non-Primitive Types
+
+- objects
+- arrays
+- functions
+- interfaces
+- classes
+- enums
+- tuples
+
+## Other 
+
+- any
+- unknown
+- union
+- intersection
+- literal types
+- generics
+- utility types
+- type alias
+- keyof
+- typeof
+
+
 
 ##  OPP in js
 

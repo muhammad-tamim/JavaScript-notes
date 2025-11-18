@@ -184,6 +184,7 @@
   - [Function:](#function-1)
     - [void:](#void)
     - [never:](#never)
+  - [object:](#object-1)
 
 ---
 
@@ -9932,4 +9933,41 @@ function throwError(): never {
 function infiniteLoop(): never {
     while(true) {}
 }
+```
+
+## object:
+
+```ts
+let person: {
+    name: string;
+    age: number;
+    isAdmin: boolean
+} = {
+    name: "Tamim",
+    age: 20,
+    isAdmin: true
+}
+
+// Optional Properties
+
+let user: {
+    name: string,
+    age?: number
+} = {
+    name: "Tamim"
+}
+
+console.log(person)
+console.log(user)
+
+// Readonly Properties
+let admin: {
+    readonly id: number;
+    name: string;
+} = {
+    id: 1,
+    name: "Tamim"
+};
+
+// admin.id = 2; // Cannot assign to 'id' because it is a read-only property.
 ```

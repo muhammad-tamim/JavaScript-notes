@@ -168,6 +168,7 @@
 - [Part 6: TypeScript](#part-6-typescript)
   - [TypeScript Introduction:](#typescript-introduction)
     - [What is TypeScript:](#what-is-typescript)
+    - [TypeScript Features:](#typescript-features)
     - [How to run TypeScript:](#how-to-run-typescript)
     - [Explicit Typing and Type Inference:](#explicit-typing-and-type-inference)
   - [Data types:](#data-types-1)
@@ -9655,11 +9656,17 @@ person.forEach((value, key) => {
 
 ### What is TypeScript:
 
-TypeScript is a superset of JavaScript means its includes everthing from javaScript plus add extra type featues on top of it. 
-
+TypeScript is a superset of JavaScript means its includes everthing from javaScript plus add extra type featues on top of it.
 ![image](./images/typeScript/TypeScript-introduction/hello-world.webp)
 
 Note: TypeScript is a compiled language, meaning TypeScript code is first converted into JavaScript before execution.
+
+### TypeScript Features: 
+- Static Typing: Allows you to define types for variables, functions, objects, etc.
+- Static Type Checking: TypeScript detects type errors before runtime, both while writing code (through the editor) and during compilation with tsc.
+- Code Suggestions & IntelliSense: TypeScript improves your editor experience with autocompletion and better hints.
+- Type Inference: TypeScript can automatically understand (infer) types even when you don’t explicitly declare them.
+  
 
 ### How to run TypeScript:
 

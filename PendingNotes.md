@@ -1,6 +1,3 @@
-- function
-  - void
-  - never
 - object
   - Optional Properties
   - Readonly Properties
@@ -230,23 +227,6 @@ let user: {
 
 console.log(person)
 console.log(user)
-```
-
-#### Functions
-
-```ts
-function add(a: number, b: number): number {
-    return a + b;
-}
-
-
-let greet1 = (name: string): string => `Hello, ${name}`;
-console.log(greet("world"))
-
-
-let greet2: (name: string) => string;
-greet2 = (name) => `Hello, ${name}`;
-console.log(greet2("world"))
 ```
 
 #### Classes: 

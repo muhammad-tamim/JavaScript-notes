@@ -172,14 +172,18 @@
     - [How to run TypeScript:](#how-to-run-typescript)
     - [Explicit Typing and Type Inference:](#explicit-typing-and-type-inference)
   - [number, bigint, boolean, string, symbol, null, undefined:](#number-bigint-boolean-string-symbol-null-undefined)
-  - [any and unknown](#any-and-unknown)
+  - [any, unknown](#any-unknown)
+    - [any](#any)
+    - [unknown](#unknown)
   - [literal, union, enum, and as const:](#literal-union-enum-and-as-const)
     - [Literal:](#literal)
     - [union:](#union)
     - [enum:](#enum)
     - [as const:](#as-const)
     - [Difference between literal, union, enum and as const:](#difference-between-literal-union-enum-and-as-const)
-  - [](#)
+  - [Function:](#function-1)
+    - [void:](#void)
+    - [never:](#never)
 
 ---
 
@@ -9597,6 +9601,7 @@ person.forEach((value, key) => {
 ## Sorting
 
 # Part 6: TypeScript
+
 ## TypeScript Introduction:
 
 ### What is TypeScript:
@@ -9711,6 +9716,7 @@ let age = 20;   // TypeScript infers: number
 let name = "Tamim"; // inferred: string
 let active = true;  // inferred: boolean
 ```
+
 ## number, bigint, boolean, string, symbol, null, undefined: 
 
 ```ts
@@ -9747,7 +9753,10 @@ console.log(emptyValue); // null
 let notAssigned: undefined = undefined;
 console.log(notAssigned); // undefined
 ```
-## any and unknown
+
+## any, unknown
+
+### any
 
 any is disables the TypeScript type checking. Means we can assign any value to it, and TypeScript won’t give errors like a normal js.
 
@@ -9761,7 +9770,7 @@ something = [1, 2, 3]; // array
 
 console.log(something);
 ```
-
+### unknown
 unknown is like any, but safer. here we can assign any value to an unknown variable, but you cannot use it directly without type checking. You must check the type first, using typeof, Array.isArray(), or other type guards.
 
 ```ts
@@ -9775,6 +9784,7 @@ value = 10.23435;         // number
 
 console.log(typeof value === 'number' && value.toFixed(2)) // 10.23
 ```
+
 ## literal, union, enum, and as const:
 
 ### Literal:
@@ -9878,4 +9888,48 @@ const person = {
 - Union: Allows a variable to be one of several specified types or values.
 - Enum: A collection of named constants under a single type.
 - as const: Converts a value (primitive, array, or object) into a literal type + readonly.
-##
+
+## Function: 
+
+```ts
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+let greet1 = (name: string): string => {
+    return `Hello, ${name}`;
+}
+```
+
+### void:
+void is used for functions that do not return anything. You can’t return any value (except undefined optionally).
+
+```ts
+function sayHello(): void {
+    console.log("Hello")
+}
+
+sayHello() // Hello
+```
+
+```ts
+function optionalReturn(): void {
+    // return undefined;
+    return;
+}
+
+console.log(optionalReturn())
+```
+
+### never: 
+Represents a function that cannot produce a value at all awalys throw an error or infinite loop:
+
+```ts
+function throwError(): never {
+    throw new Error("Oops");
+}
+
+function infiniteLoop(): never {
+    while(true) {}
+}
+```

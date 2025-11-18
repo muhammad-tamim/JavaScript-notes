@@ -175,6 +175,7 @@
   - [any, unknown](#any-unknown)
     - [any](#any)
     - [unknown](#unknown)
+  - [Type Assertion:](#type-assertion)
   - [literal, union, enum, and as const:](#literal-union-enum-and-as-const)
     - [Literal:](#literal)
     - [union:](#union)
@@ -9792,6 +9793,34 @@ value = 10.23435;         // number
 // console.log(value.toFixed(2)); // 'value' is of type 'unknown'.
 
 console.log(typeof value === 'number' && value.toFixed(2)) // 10.23
+```
+
+## Type Assertion: 
+
+Sometimes TypeScript doesn’t know the exact type and cannot infers type correctly. Type assertion lets you override TypeScript's type and force a value to be treated as a specific type. 
+
+we used type assertion: 
+- When we know more about the type than TypeScript
+- for third party packages that dones support ts
+
+We can perform type using using `as` keyword: 
+
+```ts
+let someValue: any = "Hello TypeScript";
+let strLength: number = (someValue as string).length;
+
+console.log(strLength); // 17
+```
+
+```ts
+type User = {
+    name: string;
+    age: number;
+};
+
+let data = {} as User;
+data.name = "Tamim";
+data.age = 20;
 ```
 
 ## literal, union, enum, and as const:

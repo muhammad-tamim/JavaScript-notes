@@ -1,5 +1,4 @@
 
-- Type Assertion
 - Type Guards
   - Typeof
   - in Operator
@@ -18,7 +17,6 @@
   
 
 ## Data types:
-
 
 ### Non-primitive types:
 
@@ -53,57 +51,8 @@ console.log(new Person("nasrin", 2)) // Person { name: 'nasrin', age: 2 }
 
 
 
-## Type Assertion: 
 
-Sometimes TypeScript doesn’t know the exact type and infers too loosely (like unknown, any, or union types). Type assertion lets you override TypeScript's type and force a value to be treated as a specific type. we used type assertion for third party packages also where they dont have type support.
 
-Two Ways to write type assertion: 
-
-- as syntax(recomended):
-
-```ts
-let data: unknown = "TypeScript";
-let str = data as string;
-console.log(str.toUpperCase());
-
-type User = {
-    name: string;
-    age: number;
-};
-
-let data = {} as User;
-data.name = "Tamim";
-data.age = 20;
-
-let anything: any;
-
-anything = 22.000;
-
-(anything as number).toFixed(1)
-
-const taka = (input: number | string): number | string | undefined => {
-    if (typeof input === "number") {
-        return input
-    }
-    else if (typeof input === "string") {
-        return parseInt(input)
-    }
-}
-
-const result1 = taka(100) as number
-const result2 = taka('100') as number
-console.log(result1, result1) // 100 100
-```
-
-- angel bracket syntax(<>)
-
-Note: This syntax is not allowed in jsx(react) files
-
-```ts
-let data: unknown = "TypeScript";
-let str = <string>data;
-console.log(str.toUpperCase());
-```
 
 ## Generics:
 Generics allow you to write reusable code that works with multiple types while keeping strong type safety.

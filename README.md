@@ -175,7 +175,6 @@
   - [any, unknown](#any-unknown)
     - [any](#any)
     - [unknown](#unknown)
-  - [Type Assertion:](#type-assertion)
   - [literal, union, enum, and as const:](#literal-union-enum-and-as-const)
     - [Literal:](#literal)
     - [union:](#union)
@@ -194,6 +193,14 @@
     - [type alias](#type-alias)
     - [interface](#interface)
     - [intersection:](#intersection)
+  - [Type Assertion:](#type-assertion)
+  - [Type Guards](#type-guards)
+    - [Typeof:](#typeof)
+    - [in Operator:](#in-operator)
+    - [Instanceof:](#instanceof)
+    - [Equality Narrowing:](#equality-narrowing)
+    - [Truthiness Narrowing:](#truthiness-narrowing)
+    - [Array.isArray():](#arrayisarray)
 
 ---
 
@@ -9795,33 +9802,6 @@ value = 10.23435;         // number
 console.log(typeof value === 'number' && value.toFixed(2)) // 10.23
 ```
 
-## Type Assertion: 
-
-Sometimes TypeScript doesn’t know the exact type and cannot infers type correctly. Type assertion lets you override TypeScript's type and force a value to be treated as a specific type. 
-
-we used type assertion: 
-- When we know more about the type than TypeScript
-- for third party packages that dones support ts
-
-We can perform type using using `as` keyword: 
-
-```ts
-let someValue: any = "Hello TypeScript";
-let strLength: number = (someValue as string).length;
-
-console.log(strLength); // 17
-```
-
-```ts
-type User = {
-    name: string;
-    age: number;
-};
-
-let data = {} as User;
-data.name = "Tamim";
-data.age = 20;
-```
 
 ## literal, union, enum, and as const:
 
@@ -10297,3 +10277,225 @@ Type '{ name: string; }' is not assignable to type 'Person'.
   Property 'age' is missing in type '{ name: string; }' but required in type 'Age'.
 */
 ```
+
+## Type Assertion: 
+
+Sometimes TypeScript doesn’t know the exact type and cannot infers type correctly. Type assertion lets you override TypeScript's type and force a value to be treated as a specific type. 
+
+we used type assertion: 
+- When we know more about the type than TypeScript
+- for third party packages that dones support ts
+
+We can perform type using using `as` keyword: 
+
+```ts
+let someValue: any = "Hello TypeScript";
+let strLength: number = (someValue as string).length;
+
+console.log(strLength); // 17
+```
+
+```ts
+type User = {
+    name: string;
+    age: number;
+};
+
+let data = {} as User;
+data.name = "Tamim";
+data.age = 20;
+```
+
+## Type Guards
+Type guards help TypeScript narrow a variable’s type at runtime.
+
+When a variable can have multiple possible types (union type), TypeScript needs extra information to know what operations are safe. A type guard tells TypeScript At this point, the value is this type.
+
+### Typeof:
+
+```ts
+function printValue(v: string | number) {
+    if (typeof v === "string") {
+        console.log(v.toUpperCase()); // string methods allowed
+    } else {
+        console.log(v.toFixed(2)); // number methods allowed
+    }
+}
+
+printValue(20) // 20.00
+```
+
+```ts
+type NumOrStr = number | string
+
+const add = (num1: NumOrStr, num2: NumOrStr) => {
+
+    if (typeof num1 === 'number' && typeof num2 === 'number') {
+        return num1 + num2
+    }
+    else {
+        return num1.toString() + num2.toString()
+    }
+
+}
+
+const result1 = add(2, 2)
+const result2 = add("2", 2)
+
+console.log(result1, result2) // 4 22
+```
+
+### in Operator:
+Checks if a property exists in the object:
+
+```ts
+type Admin = { username: string; isAdmin: true };
+type User = { username: string };
+
+function checkRole(person: Admin | User) {
+    if ("isAdmin" in person) {
+        console.log("Admin user");
+    } else {
+        console.log("Normal user");
+    }
+}
+
+checkRole({ username: "Tamim", isAdmin: true }) // Admin user
+```
+### Instanceof:
+
+the instanceof operator is used to check whether an object is an instance of a specific class or not.
+
+```js
+object instanceof Class
+```
+- object → the variable you want to check
+- Class → the constructor/class you are checking against
+- Returns true if the object is created from that class or a subclass, otherwise false
+
+```ts
+class Dog {
+  bark() { console.log("Woof!"); }
+}
+
+class Cat {
+  meow() { console.log("Meow!"); }
+}
+
+function speak(animal: Dog | Cat) {
+  if (animal instanceof Dog) {
+    animal.bark();
+  } else {
+    animal.meow();
+  }
+}
+
+speak(new Dog()); // Woof!
+speak(new Cat()); // Meow!
+```
+
+```ts
+class Person {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name
+    }
+    getSleep(hours: number) {
+        console.log(`he sleep ${hours} daily`)
+    }
+}
+
+class Student extends Person {
+    constructor(name: string) {
+        super(name)
+    }
+
+    doStudy(hours: number) {
+        console.log(`he study ${hours} daily`)
+    }
+}
+
+class Teacher extends Person {
+    constructor(name: string) {
+        super(name)
+    }
+
+    takeClass(hours: number) {
+        console.log(`i take ${hours} of class`)
+    }
+}
+
+const isStudent = (user: Person) => {
+    return user instanceof Student
+}
+const isTeacher = (user: Person) => {
+    return user instanceof Teacher
+}
+
+const getUserInfo = (user: Person) => {
+    if (isStudent(user)) {
+        user.doStudy(10)
+    }
+    else if (isTeacher(user)) {
+        user.takeClass(5)
+    }
+    else {
+        user.getSleep(20)
+    }
+}
+
+const person1 = new Person("x miya")
+const student1 = new Student("student kamrul")
+const Teacher1 = new Teacher("teacher lotip")
+
+getUserInfo(person1) // he sleep 20 daily 
+getUserInfo(student1) // he study 10 daily
+getUserInfo(Teacher1) // i take 5 of class
+```
+  
+### Equality Narrowing:
+
+Using ===, !== to narrow types.
+
+```ts
+function compare(a: string | number, b: string | number) {
+    if (a === b) {
+        console.log("Same values");
+    }
+    else{
+        console.log("Different values")
+    }
+}
+
+compare('2', 2) // Different values
+```
+
+### Truthiness Narrowing:
+TypeScript narrows based on truthy/falsy values.
+
+```ts
+function print(msg?: string) {
+    if (msg) {
+        console.log(msg.toUpperCase());
+    }
+    else {
+        console.log("Please write something")
+    }
+}
+print() // Please write something
+```
+### Array.isArray():
+
+```ts
+function process(x: string | string[]) {
+    if (Array.isArray(x)) {
+        console.log("Array");
+    } else {
+        console.log("String");
+    }
+}
+
+process(['a', 'b']) // Array
+```
+  

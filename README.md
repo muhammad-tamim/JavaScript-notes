@@ -166,6 +166,11 @@
   - [Searching](#searching)
   - [Sorting](#sorting)
 - [Part 6: TypeScript](#part-6-typescript)
+  - [TypeScript Introduction:](#typescript-introduction)
+    - [What is TypeScript:](#what-is-typescript)
+    - [TypeScript Features:](#typescript-features)
+    - [How to run TypeScript:](#how-to-run-typescript)
+    - [Explicit Typing and Type Inference:](#explicit-typing-and-type-inference)
   - [number, bigint, boolean, string, symbol, null, undefined:](#number-bigint-boolean-string-symbol-null-undefined)
   - [any and unknown](#any-and-unknown)
   - [literal, union, enum, and as const:](#literal-union-enum-and-as-const)
@@ -174,6 +179,7 @@
     - [enum:](#enum)
     - [as const:](#as-const)
     - [Difference between literal, union, enum and as const:](#difference-between-literal-union-enum-and-as-const)
+  - [](#)
 
 ---
 
@@ -9591,6 +9597,120 @@ person.forEach((value, key) => {
 ## Sorting
 
 # Part 6: TypeScript
+## TypeScript Introduction:
+
+### What is TypeScript:
+
+TypeScript is a superset of JavaScript means its includes everthing from javaScript plus add extra type featues on top of it.
+![image](./images/typeScript/TypeScript-introduction/hello-world.webp)
+
+Note: TypeScript is a compiled language, meaning TypeScript code is first converted into JavaScript before execution.
+
+### TypeScript Features: 
+- Static Typing: Allows you to define types for variables, functions, objects, etc.
+- Static Type Checking: TypeScript detects type errors before runtime, both while writing code (through the editor) and during compilation with tsc.
+- Code Suggestions & IntelliSense: TypeScript improves your editor experience with autocompletion and better hints.
+- Type Inference: TypeScript can automatically understand (infer) types even when you don’t explicitly declare them.
+  
+
+### How to run TypeScript:
+
+Step 1: Install Node.js for linux using NVM with NPM: 
+
+![image](./images/typeScript/TypeScript-introduction/noode.js-installing.png)
+
+Note: 
+
+When we used js we don't need to worry about node version, but when we used typescript we need to control our version, because if we used node version 19.9.0 and anoter computer if we used node version 24.4.1 or another version the same typescript might not work, for this issue we have to contorl node vresion. for that there are two  some way available using NVM or Docker. For now Im using NVM
+
+For installing a differnt node verison: 
+
+```bash
+nvm i 19.9.0
+```
+
+- For check all install Node Version:
+
+```bash
+nvm ls
+```
+
+- For switching a different install node version: 
+
+```bash
+nvm use 24.4.1
+```
+
+Step 2: Install TypeScript:
+
+If you run this command, then you need to install the TypeScript for every porject:
+
+```bash
+npm install typescript --save-dev
+```
+
+If you run this command, then you need to install the TypeScript once for your computer.
+
+```bash
+npm install -g typescript
+```
+
+step 3: Convert your ts file to js:
+
+test.ts:
+
+```ts
+const firstName: string = "Muhammad";
+const lastName: string = "Tamim";
+
+console.log(firstName + " " + lastName)
+
+console.log(firstName)
+```
+
+```bash
+tsc test.ts
+```
+
+Now you see a test.js file added with:
+
+```js
+var firstName = "Muhammad";
+var lastName = "Tamim";
+console.log(firstName + " " + lastName);
+
+```
+
+
+Now you can use `node test.js` to see the output: 
+
+Note: we need to conver the ts file to js file because node dones't understand the TS code, it only understand the js code.
+
+but when node relesed their 22.6.0  they experimentally intoduce typescript suppor using typeStripg. TypeStrping means node.js remove all ts to you code and then your code is gonna be js code, then node.js run this js code. and latyer they enable this experieceml feture to buidling feature for later versions. But still node.js not fully suppor this feture. for some typescipt that need transformation , we have to use a node.js flag for this. So the best practice using typectipt compiler to conver the ts code to js and then print the output.
+
+so for now if we write a ts code we can direlty run this ts code by : 
+
+```bash
+node test.ts
+```
+
+### Explicit Typing and Type Inference: 
+
+Explicit typing is when you tell TypeScript the type yourself.
+
+```ts
+let age: number = 20;
+let name: string = "Tamim";
+let isAdmin: boolean = false;
+```
+
+Type inference is when TypeScript assigns a type automatically based on the value.
+
+```ts
+let age = 20;   // TypeScript infers: number
+let name = "Tamim"; // inferred: string
+let active = true;  // inferred: boolean
+```
 ## number, bigint, boolean, string, symbol, null, undefined: 
 
 ```ts
@@ -9655,7 +9775,6 @@ value = 10.23435;         // number
 
 console.log(typeof value === 'number' && value.toFixed(2)) // 10.23
 ```
-
 ## literal, union, enum, and as const:
 
 ### Literal:
@@ -9759,28 +9878,4 @@ const person = {
 - Union: Allows a variable to be one of several specified types or values.
 - Enum: A collection of named constants under a single type.
 - as const: Converts a value (primitive, array, or object) into a literal type + readonly.
-
-- function
-  - void
-  - never
-- object
-  - Optional Properties
-  - Readonly Properties
-- array and tuple
-- Type Alias, interface and intersection types
-- Type Assertion
-- Type Guards
-  - Typeof
-  - in Operator
-  - Instanceof
-  - Equality Narrowing
-  - Truthiness Narrowing
-  - Array.isArray()
-  - User-defined type guards
-- Generics
-  - Constrain
-    - with keyof 
-  - conditional Types
-  - Mapped Types
-- utility types 
-- OOP in TS:
+##

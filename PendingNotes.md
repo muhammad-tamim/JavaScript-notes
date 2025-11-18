@@ -1,5 +1,3 @@
-
-- array and tuple
 - Type Alias, interface and intersection types
 - Type Assertion
 - Type Guards
@@ -45,16 +43,6 @@ const user: {
 
 ### Non-primitive types:
 
-#### Arrays
-
-```ts
-let numbers: number[] = [1, 2, 3]
-let names: string[] = ['a', 'b']
-
-let mix: (string | number)[] = [1, "Hello"] // union array
-```
-
-
 
 #### Classes: 
 Classes are blueprints for creating objects with methods and properties.
@@ -80,154 +68,9 @@ p1.greet() // hi, i am tamim
 console.log(new Person("nasrin", 2)) // Person { name: 'nasrin', age: 2 }
 ```
 
-#### Set: 
-A collection of unique values: 
-
-```ts 
-const numbersSet = new Set<number>();
-numbersSet.add(1)
-numbersSet.add(2)
-numbersSet.add(2)
-
-console.log(numbersSet) // Set(2) { 1, 2 }
-``` 
-
-#### Map: 
-A collection of key-value pairs, keys can be any type.
-
-```ts
-const userMap = new Map<number | boolean, string>();
-
-userMap.set(1, "One")
-userMap.set(true, "Yes")
-
-console.log(userMap.get(1)) // One
-console.log(userMap.get(true)) // Yes
-```
 
 
-#### Tuples: 
-Tuples are fixed-length arrays with fixed types at each position.
 
-```ts
-let user: [string, number] = ['tamim', 20]
-
-// let user2: number[] = [1, 2, 3, 4, 5] --> just a normal array
-```
-
-#### Enums: 
-Enums allow you to define a set of named constant values. Means enums is a custom type that allows you to group related constant values under a single name. 
-
-```ts
-enum Days {
-    saturday,
-    sunday,
-    monday
-}
-
-let dayName: Days = Days.saturday
-console.log(dayName) // saturday
-
-
-enum Direction {
-    Up,
-    Down,
-    Left,
-    Right
-}
-
-function movePlayer(dir: Direction) {
-    if (dir === Direction.Up) console.log("Player moved up");
-}
-
-movePlayer(Direction.Up); // Player moved up
-```
-
-```ts
-enum Category {
-    Food = "food",
-    Clothes = "clothes",
-    Gadget = "gadget"
-}
-
-const product = {
-    id: 101,
-    type: Category.Gadget
-}
-
-console.log(product.type); // "gadget"
-```
-
-```ts
-enum StatusCode {
-    OK = 200,
-    BAD_REQUEST = 400,
-    NOT_FOUND = 404
-}
-
-function handleResponse(code: StatusCode) {
-    if (code === StatusCode.OK) console.log("Success");
-}
-```
-
-
-##### Enum Vs Union Types: 
-
-Somethimes you don't need enums , a union might be better: 
-
-```ts
-enum Direction {
-    Up,
-    Down
-}
-
-type Direction = "Up" | "Down";
-```
-
-Note: when you use enum you must convert it to js file using type scipt compilier, you can use it by using 
-`node test.ts` because TypeScript enum is not supported in strip-only mode
-
-##### as const alternative of Enum:
-
-```ts 
-const UserRole = {
-    Admin: "Admin",
-    Editor: "Editor",
-    Viewer: "Viewer"
-} as const;
-
-const canEdit = (role: keyof typeof UserRole) => {
-    if (role === UserRole.Admin || role === UserRole.Editor) {
-        return true
-    }
-    else {
-        return false
-    }
-}
-
-const isEditPermissable = canEdit(UserRole.Admin)
-console.log(isEditPermissable) // true
-```
-
-```ts
-const UserRole = {
-    Admin: "ADMIN",
-    Editor: "EDITOR",
-    Viewer: "VIEWER"
-} as const;
-
-const canEdit = (role: (typeof UserRole)[keyof typeof UserRole]) => {
-    if (role === UserRole.Admin || role === UserRole.Editor) {
-        return true
-    }
-    else {
-        return false
-    }
-}
-
-const isEditPermissable = canEdit(UserRole.Admin)
-console.log(isEditPermissable) // true
-```
 
 #### Interface: 
 Defines the shape of an object: 
@@ -372,30 +215,7 @@ const add: Add = (num1, num2) => {
 
 
 
-#### Union Type: 
-A value can be one type OR another: 
 
-```ts
-let id: number | string;
-
-id = 234
-id = 'id123'
-
-
-type Role = "admin" | "user"
-
-const DashBoard = (role: Role) => {
-    if (role === "admin") {
-        console.log("admin dashboard")
-    }
-    else if (role === "user") {
-        console.log("user dashboard")
-    }
-    else {
-        console.log("Please login")
-    }
-}
-```
 
 #### Intersection Type:
 

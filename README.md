@@ -180,11 +180,15 @@
     - [union:](#union)
     - [enum:](#enum)
     - [as const:](#as-const)
+      - [Diference between as const and readonly:](#diference-between-as-const-and-readonly)
     - [Difference between literal, union, enum and as const:](#difference-between-literal-union-enum-and-as-const)
   - [Function:](#function-1)
     - [void:](#void)
     - [never:](#never)
   - [object:](#object-1)
+  - [array and tuple](#array-and-tuple)
+    - [array:](#array-2)
+    - [tuple:](#tuple)
 
 ---
 
@@ -9882,6 +9886,44 @@ const person = {
 
 // person.name = "Alex"; // Cannot assign to 'name' because it is a read-only property.
 ```
+#### Diference between as const and readonly:
+
+| Feature       | `readonly`                 | `as const`                    |
+| ------------- | -------------------------- | ----------------------------- |
+| Scope         | Single property or element | Whole object, array, or tuple |
+| Literal types | stays general types        | converts to literal types     |
+
+```ts
+let user: {
+    readonly id: number;
+    name: string
+} = {
+    id: 1,
+    name: "Tamim"
+};
+
+// Hover over `user` in VS Code or use `typeof`
+type UserType = typeof user;
+
+/*
+type UserType = {
+    readonly id: number;
+    name: string;
+}
+*/
+
+
+let userConst = { id: 1, name: "Tamim" } as const;
+
+type UserConstType = typeof userConst;
+
+/*
+type UserConstType = {
+    readonly id: 1;
+    readonly name: "Tamim";
+}
+*/
+```
 
 ### Difference between literal, union, enum and as const:
 
@@ -9970,4 +10012,48 @@ let admin: {
 };
 
 // admin.id = 2; // Cannot assign to 'id' because it is a read-only property.
+
+// as const
+let userConst = {
+    name: "Tamim",
+    age: 20
+} as const;
+
+userConst.name = "Muhamamd" // Cannot assign to 'name' because it is a read-only property.
+```
+
+## array and tuple
+
+### array: 
+
+```ts
+let numbers: number[] = [1, 2, 3]
+let names: string[] = ['a', 'b']
+
+let mix: (string | number)[] = [1, "Hello"] // union array
+```
+
+### tuple:
+
+Tuples are fixed-length arrays with fixed types for each element.
+
+```ts
+let user: [string, number] = ['tamim', 20]
+let user: [number, number] = [20, 20]
+
+// let user2: number[] = [20, 20] --> just a normal array
+
+// tuple with optional element
+let user: [string, number?];
+
+user = ["Tamim"];      
+user = ["Tamim", 20];  
+
+// tuple with readonly and as const
+let coords: readonly [number, number] = [10, 20];
+
+// coords[0] = 30; // Cannot assign to '0' because it is a read-only property.
+
+let coords2: [number, number] = [10, 20] as const;
+// coords[0] = 30; // Cannot assign to '0' because it is a read-only property.
 ```

@@ -168,6 +168,12 @@
 - [Part 6: TypeScript](#part-6-typescript)
   - [number, bigint, boolean, string, symbol, null, undefined:](#number-bigint-boolean-string-symbol-null-undefined)
   - [any and unknown](#any-and-unknown)
+  - [literal, union, enum, and as const:](#literal-union-enum-and-as-const)
+    - [Literal:](#literal)
+    - [union:](#union)
+    - [enum:](#enum)
+    - [as const:](#as-const)
+    - [Difference between literal, union, enum and as const:](#difference-between-literal-union-enum-and-as-const)
 
 ---
 
@@ -9650,3 +9656,131 @@ value = 10.23435;         // number
 console.log(typeof value === 'number' && value.toFixed(2)) // 10.23
 ```
 
+## literal, union, enum, and as const:
+
+### Literal:
+Represent exact value a variable can hold.
+
+Note: Works only on primitive values:
+
+```ts
+let direction: 'left';
+
+// direction = 'right'; // Type '"right"' is not assignable to type '"left"'.
+
+direction = 'left'
+```
+
+```ts
+let dice: 1 | 2 | 3 | 4 | 5 | 6; // union numbers literal
+
+dice = 3;
+dice = 6;
+dice = 7; // Type '7' is not assignable to type '1 | 2 | 3 | 4 | 5 | 6'.
+```
+
+### union: 
+Combine multiple literal types or general types into one variable. It is written using the pipe (|) symbol.
+
+```ts
+let direction: "left" | "right"; // literal union
+direction = "left";
+direction = "right"
+// direction = "UP" // Type '"UP"' is not assignable to type '"left" | "right"'.
+```
+
+```ts
+let id: number | string; // general union
+
+id = 234
+id = 'id123'
+// id = true // Type 'boolean' is not assignable to type 'string | number'.
+```
+
+### enum: 
+Enum is a collection of named constants grouped under a single type, which can have numeric (default) or string values.
+
+```ts
+enum Days {
+    saturday, // 0
+    sunday, // 1
+    monday // 2
+}
+
+let dayName: Days = Days.saturday
+console.log(dayName) // 0
+
+// Note: If you don’t assign values, TypeScript gives automatic numeric values starting from 0.
+```
+
+```ts
+enum Direction {
+    Left = "left",
+    Right = "right",
+    Up = "up",
+    Down = "down"
+}
+
+let move: Direction = Direction.Left;
+console.log(move) // left
+```
+
+### as const:
+Automatically turns a value into literal type + readonly.
+
+Note: as const works for primitives, arrays, and objects.
+
+```ts
+let direction: "left";
+// direction = "right" // Type '"right"' is not assignable to type '"left"'.
+
+let direction2 = "left" as const;
+direction2 = "right"; // Type '"right"' is not assignable to type '"left"'.
+```
+
+```ts
+const directions = ["left", "right", "up", "down"] as const;
+
+// directions.push("forward"); // Property 'push' does not exist on type 'readonly ["left", "right", "up", "down"]'.
+```
+
+```ts
+const person = {
+    name: "Tamim",
+    age: 20
+} as const;
+
+// person.name = "Alex"; // Cannot assign to 'name' because it is a read-only property.
+```
+
+### Difference between literal, union, enum and as const:
+
+- Literal: Restricts a variable to one exact value.
+- Union: Allows a variable to be one of several specified types or values.
+- Enum: A collection of named constants under a single type.
+- as const: Converts a value (primitive, array, or object) into a literal type + readonly.
+
+- function
+  - void
+  - never
+- object
+  - Optional Properties
+  - Readonly Properties
+- array and tuple
+- Type Alias, interface and intersection types
+- Type Assertion
+- Type Guards
+  - Typeof
+  - in Operator
+  - Instanceof
+  - Equality Narrowing
+  - Truthiness Narrowing
+  - Array.isArray()
+  - User-defined type guards
+- Generics
+  - Constrain
+    - with keyof 
+  - conditional Types
+  - Mapped Types
+- utility types 
+- OOP in TS:

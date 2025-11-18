@@ -1,4 +1,5 @@
-## TypeScript Introduction:
+  
+# TypeScript Introduction:
 
 ### What is TypeScript:
 

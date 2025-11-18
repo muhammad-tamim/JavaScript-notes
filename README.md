@@ -201,6 +201,11 @@
     - [Equality Narrowing:](#equality-narrowing)
     - [Truthiness Narrowing:](#truthiness-narrowing)
     - [Array.isArray():](#arrayisarray)
+  - [Generics](#generics)
+    - [Constrain](#constrain)
+      - [with keyof:](#with-keyof)
+    - [conditional Types:](#conditional-types)
+    - [Mpped Types:](#mpped-types)
 
 ---
 
@@ -10499,3 +10504,429 @@ function process(x: string | string[]) {
 process(['a', 'b']) // Array
 ```
   
+
+## Generics
+Generics allow you to write reusable code that works with multiple types while keeping strong type safety.
+
+Instead of using any, which removes type checking, generics let you pass types as parameters.
+
+```ts
+// with any
+function getFirstElement(arr: any[]) {
+    return arr[0];
+}
+
+const num = getFirstElement([1, 2, 3]);   // Type is any
+const str = getFirstElement(["a", "b"]);  // Type is any
+
+console.log(num, str) // 1 a
+
+
+// with generics
+function getFirstElement2<T>(arr: T[]): T {
+    return arr[0];
+}
+
+const num2 = getFirstElement([1, 2, 3]);   // Type is number
+const str2 = getFirstElement(["a", "b"]);  // Type is string
+
+console.log(num2, str2) // 1 a
+```
+
+```ts
+function merge<T, U>(obj1: T, obj2: U): T & U {
+    return { ...obj1, ...obj2 };
+}
+
+const result = merge({ name: "Tamim" }, { age: 20 });
+console.log(result) // { name: 'Tamim', age: 20 }
+```
+
+```ts
+// Generic in Interfaces
+
+interface Box<T> {
+    value: T;
+}
+
+const numberBox: Box<number> = { value: 123 };
+const stringBox: Box<string> = { value: "Hello" };
+
+console.log(numberBox) // { value: 123 }
+console.log(stringBox) // { value: 'Hello' }
+```
+
+```ts
+// Generic with type alias
+
+type Coordinates<X, Y> = [X, Y]
+
+const coordinates1: Coordinates<number, number> = [20, 30]
+const coordinates2: Coordinates<string, string> = ['20', '30']
+
+console.log(coordinates1) // [20, 30]
+```
+
+```ts
+type GenericArray<T> = Array<T>
+
+
+// const strArray: string[] = ['a', 'b', 'c']
+const strArray: GenericArray<string> = ['a', 'b', 'c']
+
+// const numArray: number[] = [1, 2, 3]
+const numArray: GenericArray<number> = [1, 2, 3]
+
+// const boolArray: boolean[] = [true, false, true]
+const boolArray: GenericArray<boolean> = [true, false, true]
+```
+Note:  Array[T] === T[]
+
+```ts
+// type GenericArray<T> = Array<T>
+
+// const userList: GenericArray<{ name: string, age: number }> = [
+//     {
+//         name: 'x',
+//         age: 20
+//     },
+//     {
+//         name: 'y',
+//         age: 24,
+//     },
+//     {
+//         name: 'z',
+//         age: 30
+//     }
+// ]
+
+
+type GenericArray<T> = Array<T>
+
+type User = {
+    name: string,
+    age: number
+}
+
+const userList: GenericArray<User> = [
+    {
+        name: 'x',
+        age: 20
+    },
+    {
+        name: 'y',
+        age: 24,
+    },
+    {
+        name: 'z',
+        age: 30
+    }
+]
+```
+
+```ts
+interface Developer<T, X = null> { // X = null (Default value)
+    name: string;
+    salary: number;
+    device: {
+        brand: string;
+        model: string;
+        releasedYear: string
+    };
+    smartWatch: T;
+    bike?: X
+}
+
+interface PoorWatch {
+    heartRate: string;
+    stopWatch: boolean
+}
+
+const poorDeveloper: Developer<PoorWatch> = {
+    name: 'x',
+    salary: 20,
+    device: {
+        brand: 'oppo',
+        model: "a5s",
+        releasedYear: '2005'
+    },
+    smartWatch: {
+        heartRate: '56',
+        stopWatch: true
+    },
+    bike: null
+}
+
+const richDeveloper: Developer<{
+    heartRate: string;
+    stopWatch: boolean;
+    calling: boolean;
+    ai: boolean
+}, { brand: "yamaha" }> = {
+    name: 'x',
+    salary: 20,
+    device: {
+        brand: 'oppo',
+        model: "a5s",
+        releasedYear: '2005'
+    },
+    smartWatch: {
+        heartRate: '56',
+        stopWatch: true,
+        calling: true,
+        ai: true
+    }
+}
+```
+
+```ts
+// const createArrayWithString = (value: string) => [value]
+// const createArrayWithNumber = (value: number) => [value]
+// const createArrayWithUserObj = (value: { id: number, name: string }) => [value]
+
+// const arrString = createArrayWithString('Apple')
+// const arrNumber = createArrayWithNumber(10)
+// const arrObj = createArrayWithUserObj({ id: 3, name: "x" })
+
+const createArrayWithGeneric = <T>(value: T) => [value]
+
+const arrString = createArrayWithGeneric('Apple')
+const arrNumber = createArrayWithGeneric(10)
+const arrObj = createArrayWithGeneric({ id: 3, name: "x" })
+
+
+const createArrayWithTuple = (param1: string, param2: string) => [param1, param2]
+
+const createArrayTupleWithGeneric = <X, Y>(param1: X, param2: Y) => [param1, param2]
+const res1 = createArrayTupleWithGeneric("tamim", false)
+const res2 = createArrayTupleWithGeneric(222, { name: "tamim" })
+
+
+const addStudentToCourse = <T>(studentInfo: T) => {
+    return { course: "Next Level", ...studentInfo }
+};
+
+const student1 = {
+    id: 123,
+    name: "tamim",
+    hasPen: true
+}
+
+const student2 = {
+    id: 32434,
+    name: "zunker",
+    hasCar: true,
+    isMarried: true
+}
+
+const result = addStudentToCourse(student1)
+```
+
+### Constrain
+Generic constraints allow you to restrict what types are allowed in a generic. we do this using extends keyword.
+
+```ts
+function printName<T extends { name: string }>(person: T) {
+    console.log(person.name)
+}
+
+printName({ name: "tamim", age: 20 }) // Tamim
+printName({ age: 20 }) // Object literal may only specify known properties, and 'age' does not exist in type '{ name: string; }'.
+```
+
+```ts
+function toArray<T extends string | number>(value: T): T[] {
+    return [value]
+}
+
+toArray("Hello")
+toArray(20)
+toArray(true) //  Argument of type 'boolean' is not assignable to parameter of type 'string | number'.
+```
+
+```ts
+function getFirst<T extends any[]>(arr: T) {
+    return arr[0]
+}
+
+getFirst([1, 2, 3])
+getFirst(['1', '2'])
+getFirst("Hello") // Argument of type 'string' is not assignable to parameter of type 'any[]'.
+```
+
+```ts
+interface Person {
+    name: string;
+}
+
+function greet<T extends Person>(value: T) {
+    console.log("Hello", value.name);
+}
+
+greet({ name: "Tamim", id: 1 });   // ok
+greet({ id: 1 });                  // ❌ error
+```
+
+
+```ts
+type student = { id: number, name: string }
+
+const addStudentToCourse = <T extends student>(studentInfo: T) => {
+    return {
+        course: "Next Lavel",
+        ...studentInfo
+    }
+}
+
+const student1 = {
+    id: 123,
+    name: "tamim",
+    hasPen: true
+}
+
+const student2 = {
+    name: "zunker",
+    hasCar: true,
+    isMarried: true
+}
+
+const result1 = addStudentToCourse(student1)
+const result2 = addStudentToCourse(student2) // error
+```
+
+#### with keyof: 
+keyof is an operator that extracts all keys of a type as a union of string literal types.
+
+```ts
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
+}
+
+const user = {
+    name: "Tamim",
+    age: 20
+};
+
+getProperty(user, "name"); // Tamim
+getProperty(user, "age");  // 20
+getProperty(user, "location");  // Argument of type '"location"' is not assignable to parameter of type '"name" | "age"'.
+```
+
+```ts
+type User = {
+    id: number,
+    name: string,
+    address: {
+        city: string
+    }
+}
+
+const user: User = {
+    id: 222,
+    name: "mezba",
+    address: {
+        city: "Barisal"
+    }
+}
+
+// const myId = user["id"]
+// const myName = user["name"]
+// const address = user["address"]
+// console.log(myId, myName, address) // 222 mezba { city: 'Barisal' }
+
+const getPropertyFromObj = <X,>(obj: X, key: keyof X) => {
+    return obj[key]
+}
+
+const result = getPropertyFromObj(user, "name")
+console.log(result) // mezba
+
+const product = {
+    brand: "apple"
+}
+const student = {
+    id: 123,
+    class: 5
+}
+
+const result2 = getPropertyFromObj(product, "brand")
+const result3 = getPropertyFromObj(student, "id")
+
+console.log(result2, result3) // apple 123
+```
+### conditional Types:
+
+Conditional types allow you to choose a type based on a condition, similar to an if/else, but inside the type system.
+
+syntax: 
+
+```
+T extends U ? X : Y
+```
+- If T extends (matches) U, return X else Y
+
+```ts
+type A = null;
+type B = undefined
+
+type c = A extends number ? true : B extends undefined ? true : false
+```
+```ts
+type RichPeopleVehicle = {
+    bike: string;
+    car: string;
+    ship: string;
+}
+
+type CheckVehicle<T> = T extends keyof RichPeopleVehicle ? true : false
+
+type HasBike = CheckVehicle<"bike">
+```
+
+```ts
+type IsNumber<T> = T extends number ? "YES" : "NO";
+
+type A = IsNumber<number>;   // "YES"
+type B = IsNumber<string>;   // "NO"
+```
+
+### Mpped Types:
+
+Mapped types allow you to create new types by transforming existing types. 
+
+```ts
+type Person = {
+  name: string;
+  age: number;
+};
+
+// Make all properties optional
+type PartialPerson = {
+  [K in keyof Person]?: Person[K];
+};
+```
+here, 
+- [K in keyof Person] → iterate over all keys of Person.
+- Person[K] → type of that property.
+- ? → make it optional.
+
+```ts
+type AreaOfNum = {
+    height: number;
+    width: number;
+}
+
+// type AreaOfString = {
+//     height: string;
+//     width: string;
+// }
+
+type Area<T> = {
+    [key in keyof T]: T[key]
+}
+
+const area1: Area<{ height: string; width: number }> = {
+    height: '50',
+    width: 40
+}
+```

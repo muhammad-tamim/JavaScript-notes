@@ -189,6 +189,10 @@
   - [array and tuple](#array-and-tuple)
     - [array:](#array-2)
     - [tuple:](#tuple)
+  - [type alias, interface and intersection:](#type-alias-interface-and-intersection)
+    - [type alias](#type-alias)
+    - [interface](#interface)
+    - [intersection:](#intersection)
 
 ---
 
@@ -10056,4 +10060,211 @@ let coords: readonly [number, number] = [10, 20];
 
 let coords2: [number, number] = [10, 20] as const;
 // coords[0] = 30; // Cannot assign to '0' because it is a read-only property.
+```
+
+
+## type alias, interface and intersection:
+
+### type alias 
+The type keyword is used to create an alias for any type—primitive, object, union, tuple, etc. Means a type alias allows you to define a custom type that can be reused throughout your code.
+
+```ts
+// Without type alias
+const user1: {
+    id: number;
+    name: string;
+    isAdmin?: boolean; 
+} = {
+    id: 1,
+    name: "Tamim",
+    isAdmin: true
+}
+
+// with type alias
+type User = {
+    id: number;
+    name: string;
+    isAdmin?: boolean; // optional property
+};
+
+const user2: User = {
+    id: 2,
+    name: "Nasrin"
+};
+
+const user3: User = {
+    id: 3,
+    name: "Kuddus"
+};
+```
+
+```ts
+// without type alias
+const sum = (n1: number, n2: number): number => {
+    return n1 + n2
+}
+
+// with type alias
+type Add = (num1: number, num2: number) => number
+
+const sum2: Add = (num1, num2) => {
+    return num1 + num2
+}
+
+const sum3: Add = function (num1, num2) {
+    return num1 + num2;
+};
+```
+
+```ts
+// Union type alias
+type ID = string | number;
+
+const userId1: ID = "abc123";
+const userId2: ID = 101;
+```
+
+### interface 
+
+Defines the shape of an object: 
+
+```ts
+// without interface
+const user1: {
+    name: string;
+    age: number;
+    isAdmin?: boolean
+} = {
+    name: "nasrin",
+    age: 11,
+    isAdmin: false
+}
+
+// with interface
+interface User {
+    name: string;
+    age: number;
+    isAdmin?: boolean; 
+}
+const user2: User = {
+    name: "tamim",
+    age: 20
+}
+
+// with type alias
+type User = {
+    name: string;
+    age: number;
+    isAdmin?: boolean; 
+}
+const user3: User = {
+    name: "tamim",
+    age: 20
+}
+```
+
+
+```ts
+// with type alias
+type Friends = string[]
+const friends: Friends = ["A", "B", "C"]
+
+// with interface
+interface iFriends {
+    [i: number]: string 
+}
+const friends2: iFriends = ["D", "E", "F"]
+
+interface INumberArray {
+  [index: number]: number;
+}
+
+const nums: INumberArray = [1, 2, 3];
+```
+
+here, 
+- [index: number] --> the key type
+- :number --> the value type
+
+Note: for array interface is little bit comple because interfaces do not have built-in syntax for arrays menas 
+Interfaces describe objects, not arrays.
+
+
+```ts
+// with type alias
+type Add = (num1: number, num2: number) => number
+const add1: Add = (num1, num2) => num1 + num2
+
+// with interface
+interface iAdd {
+    (number1: number, number2: number): number
+}
+const add2: iAdd = (number1, number2) => number1 + number2
+```
+
+Note: interface not suppoer intersection, so for intersection we must use extends keywords.
+- extends keywords inherit all properties from another interface. 
+
+```ts
+type User = {
+    name: string;
+    age: number
+}
+
+type Role = {
+    role: 'admin' | 'user'
+}
+
+type UserWithRole = User & Role
+
+const user1: UserWithRole = {
+    name: "x",
+    age: 1,
+    role: 'user'
+}
+
+
+interface User2 {
+    name: string;
+    age: number
+}
+
+
+interface IUserWithRole extends User2 {
+    role: 'admin' | 'user'
+}
+
+const user2: IUserWithRole = {
+    name: "x",
+    age: 1,
+    role: 'user'
+}
+```
+
+**Tips:**
+- Use interface → for object structure and class
+- Use type alias → for everything else
+
+### intersection: 
+Combines multiple type alias. Unline union here the value must be satisfy all type alias that are combained by intersection.
+
+```ts
+type Name = { name: string }
+type Age = { age: number }
+
+type Person = Name & Age;
+
+const p1: Person = {
+    name: "tamim",
+    age: 20
+}
+
+const p2: Person = {
+    name: "Muhammad",
+}
+
+/*
+Type '{ name: string; }' is not assignable to type 'Person'.
+  Property 'age' is missing in type '{ name: string; }' but required in type 'Age'.
+*/
 ```

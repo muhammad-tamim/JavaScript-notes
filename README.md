@@ -9113,7 +9113,7 @@ fetchData();
 
 # Part 3: OOP
 
-Object-Oriented Programming is a programming paradigm based on the objects that contain properties and methods. JavaScript supports OOP through prototypes and, since ES6, through classes.
+Object-Oriented Programming is a programming paradigm(a way of structuring programs) based on the objects that contain properties and methods. JavaScript supports OOP through prototypes and, since ES6, through classes.
 
 means OOP is the concept, and Classes, prototypes, objects are the tools used to implement that.
 

@@ -184,6 +184,21 @@
       - [replaceChild():](#replacechild)
       - [replaceWith():](#replacewith)
   - [Events](#events)
+    - [Event Basic:](#event-basic)
+      - [What is events:](#what-is-events)
+      - [Event Object:](#event-object)
+      - [preventDefault():](#preventdefault)
+    - [Adding Events:](#adding-events)
+      - [addEventListener():](#addeventlistener)
+      - [removeEventListener():](#removeeventlistener)
+      - [onClick vs addEventListener():](#onclick-vs-addeventlistener)
+    - [Common Events:](#common-events)
+    - [Event Flow:](#event-flow)
+      - [UseCapture paramenter:](#usecapture-paramenter)
+      - [stopPropagation():](#stoppropagation)
+      - [stopImmediatePropagation():](#stopimmediatepropagation)
+      - [Event Delegation:](#event-delegation)
+    - [Event Examples:](#event-examples)
 - [Part 3: OOP](#part-3-oop)
   - [Static Keyword:](#static-keyword)
   - [The Four Pillars of OOP:](#the-four-pillars-of-oop)
@@ -11480,6 +11495,929 @@ Can insert nodes or strings directly.
 ```
 
 ## Events
+
+### Event Basic:
+
+#### What is events:
+Events are signals that something has happened — like a button click, key press, page load, etc. You can "listen" for these events and run code in response.
+
+#### Event Object:
+Every event has an associated event object that contains information about the event.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="myBtn">Click Me</button>
+
+    <script>
+        document.getElementById('myBtn').addEventListener('click', function (event) {
+            console.log(event); // Event object - PointerEvent {isTrusted: true, …}
+            console.log(event.type); // click
+            console.log(event.target); // Button element - <button id="myBtn">Click Me</button>
+        });
+    </script>
+</body>
+
+</html>
+```
+
+#### preventDefault():
+Stops the browser’s default behavior.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <a href="https://example.com" id="link">Click Me</a>
+
+    <script>
+        document.getElementById("link").addEventListener("click", (event) => {
+            event.preventDefault(); // Prevents redirect
+            alert("Default action prevented!");
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+
+
+
+### Adding Events:
+
+#### addEventListener():
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btns">Click Me</button>
+
+    <script>
+        document.getElementById("btns").addEventListener("click", function () {
+            alert("Button clicked");
+        });
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<h1 id="heading-text">Event Handler</h1>
+<button id="btn-update-heading">Update Heading</button> <br><br>
+
+<h1 id="heading-text2">Event Handler</h1>
+<button id="btn-update-heading2">Update Heading</button> <br><br>
+
+<p id="no-name">No Name</p>
+<input type="text" id="input-field">
+<button id="btn">Update</button>
+
+<script>
+    document.getElementById("btn-update-heading").addEventListener("click", function () {
+        const h1 = document.getElementsByTagName("h1");
+        h1[0].innerText = "I am change by the event handler";
+    })
+
+    document.getElementById("btn-update-heading2").addEventListener("click", function () {
+        const originalHeading = document.getElementById("heading-text2");
+        originalHeading.innerText = "I am changed by the event handler";
+    })
+
+    document.getElementById("btn").addEventListener("click", () => {
+        const getInputFieldValue = document.getElementById("input-field").value;
+        const setName = document.getElementById("no-name");
+        setName.innerText = getInputFieldValue;
+    })
+</script>
+</body>
+
+</html>
+```
+
+#### removeEventListener():
+To remove the event listener, you need to use the same function reference for both addEventListener() and removeEventListener().
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btns">Click Me</button>
+
+    <script>
+        /*
+        document.getElementById("btns").addEventListener("click", function () {
+            alert("Button clicked");
+        });
+        document.getElementById("btns").removeEventListener("click", function () {
+            alert("Button clicked");
+        });
+        */
+        // The above removeEventListener will not work because the function reference is different.
+        // To remove the event listener, you need to use the same function reference for both cases.
+        const alertFunction = () => {
+            alert("Button clicked");
+        };
+        document.getElementById("btns").addEventListener("click", alertFunction);
+        document.getElementById("btns").removeEventListener("click", alertFunction);
+    </script>
+</body>
+
+</html>
+```
+
+#### onClick vs addEventListener():
+
+With onclick perperty you can't add multiple event handler function. If you assign more than one evet handler to onclick, it overwrites the previous one.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btn" onclick="alert('Inline clicked')">Click Me</button>
+
+    <script>
+        const btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+            console.log("First handler");
+        };
+
+        btn.onclick = function () {
+            console.log("Second handler"); // Only this one runs
+        };
+    </script>
+
+</body>
+
+</html>
+```
+
+But, with addEventListener() methods you can add multiple event handler function.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+    <button id="btn">Click Me</button>
+
+    <script>
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("click", function () {
+            console.log("First handler");
+        });
+
+        btn.addEventListener("click", function () {
+            console.log("Second handler");
+        });
+    </script>
+</body>
+
+</html>
+```
+
+Add a events on a button with onClick event handler and addEventListener() method:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Option 1 -->
+    <button onclick="console.log(3)">Click Me</button>
+    <button onclick="console.log(7)">Click Me</button>
+    <button onclick="console.log('I am Clicked')">Click Me</button>
+
+    <!-- option 2 -->
+    <button onclick="makeYellow()">Make Yellow</button>
+    <button onclick="makeRed()">Make Red</button>
+
+    <!-- option 3 -->
+    <button id="btn-make-blue">Make Blue</button>
+    <button id="btn-make-purple">Make Purple</button>
+
+    <!-- option 4 -->
+    <button id="btn-make-green">Make Green</button>
+    <button id="btn-make-pink">Make Pink</button>
+
+    <script>
+        // option 2
+        function makeYellow() {
+            document.body.style.backgroundColor = "yellow";
+        }
+        function makeRed() {
+            document.body.style.backgroundColor = "red";
+        }
+
+        // option 3
+        const btnMakeBlue = document.getElementById("btn-make-blue");
+        btnMakeBlue.onclick = function () {
+            document.body.style.backgroundColor = "blue";
+        }
+
+        const btnMakePurple = document.getElementById("btn-make-purple");
+        btnMakePurple.onclick = function () {
+            document.body.style.backgroundColor = "purple";
+        }
+
+        // option 4 (best practice)
+        document.getElementById("btn-make-green").addEventListener("click", function () {
+            document.body.style.backgroundColor = "green";
+        });
+
+        document.getElementById("btn-make-pink").addEventListener("click", () => {
+            document.body.style.backgroundColor = "pink";
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### Common Events:
+
+-   **Mouse Events**
+    -   `click` – Single click on an element
+    -   `dblclick` – Double click
+    -   `mousedown` – Mouse button pressed
+    -   `mouseup` – Mouse button released
+    -   `mousemove` – Mouse moves over an element
+    -   `mouseenter` – Mouse enters an element (no bubbling)
+    -   `mouseleave` – Mouse leaves an element (no bubbling)
+    -   `mouseover` – Mouse moves onto an element
+    -   `mouseout` – Mouse moves off an element
+    -   `contextmenu` – Right-click opens context menu
+-   **Keyboard Events**
+    -   `keydown` – Key is pressed
+    -   `keypress` – Key is pressed (deprecated)
+    -   `keyup` – Key is released
+-   **Form Events**
+    -   `submit` – Form is submitted
+    -   `reset` – Form is reset
+    -   `change` – Form element value changes
+    -   `input` – User input changes (real-time)
+    -   `focus` – Element gains focus
+    -   `blur` – Element loses focus
+    -   `focusin` – Focus enters a descendant (bubbles)
+    -   `focusout` – Focus leaves a descendant (bubbles)
+-   **Clipboard Events**
+    -   `copy` – User copies content
+    -   `cut` – User cuts content
+    -   `paste` – User pastes content
+-   **Drag and Drop Events**
+    -   `drag` – Element is being dragged
+    -   `dragstart` – Dragging starts
+    -   `dragend` – Dragging ends
+    -   `dragenter` – Dragged item enters drop target
+    -   `dragleave` – Dragged item leaves drop target
+    -   `dragover` – Dragged item is over drop target
+    -   `drop` – Dragged item is dropped
+-   **Touch Events (Mobile)**
+    -   `touchstart` – Finger touches screen
+    -   `touchend` – Finger is lifted off screen
+    -   `touchmove` – Finger moves on screen
+    -   `touchcancel` – Touch is canceled
+-   **Pointer Events**
+    -   `pointerdown` – Pointer is pressed
+    -   `pointerup` – Pointer is released
+    -   `pointermove` – Pointer moves
+    -   `pointerover` – Pointer enters element
+    -   `pointerout` – Pointer leaves element
+    -   `pointerenter` – Pointer enters (no bubbling)
+    -   `pointerleave` – Pointer leaves (no bubbling)
+    -   `pointercancel` – Pointer action canceled
+-   **Focus Events**
+    -   `focus` – Element gets focus
+    -   `blur` – Element loses focus
+    -   `focusin` – Focus enters child (bubbles)
+    -   `focusout` – Focus leaves child (bubbles)
+-   **Window Events**
+    -   `load` – Page or resource loaded
+    -   `unload` – Page is unloading (deprecated)
+    -   `beforeunload` – User tries to leave page
+    -   `resize` – Window is resized
+    -   `scroll` – User scrolls page or element
+    -   `error` – Error loading resource
+    -   `hashchange` – URL hash (#) changes
+    -   `popstate` – History changes (back/forward)
+-   **Media Events**
+    -   `play` – Media playback starts
+    -   `pause` – Media is paused
+    -   `ended` – Media has finished playing
+    -   `volumechange` – Volume is changed
+    -   `timeupdate` – Current playback time updates
+    -   `durationchange` – Media duration changes
+    -   `loadeddata` – Media data loaded
+    -   `loadedmetadata` – Media metadata loaded
+    -   `seeking` – Seeking begins
+    -   `seeked` – Seeking ends
+    -   `stalled` – Media data stalled
+    -   `suspend` – Loading is suspended
+    -   `waiting` – Waiting for data
+-   **Animation Events**
+    -   `animationstart` – CSS animation starts
+    -   `animationend` – CSS animation ends
+    -   `animationiteration` – Animation repeats
+-   **Transition Events**
+    -   `transitionstart` – CSS transition starts
+    -   `transitionend` – CSS transition ends
+    -   `transitionrun` – Transition is running
+    -   `transitioncancel` – Transition canceled
+-   **Wheel Events**
+    -   `wheel` – Mouse wheel is used
+-   **Composition Events**
+    -   `compositionstart` – Text input starts (IME)
+    -   `compositionupdate` – Text input updates
+    -   `compositionend` – Text input ends
+-   **Other Events**
+    -   `DOMContentLoaded` – HTML loaded and parsed
+    -   `visibilitychange` – Tab becomes hidden or visible
+    -   `online` – Browser goes online
+    -   `offline` – Browser goes offline
+    -   `message` – Message received (e.g., from iframe)
+    -   `storage` – Local/session storage changed
+    -   `animationcancel` – Animation is canceled
+    -   `toggle` – \`details\` element is toggled
+
+
+### Event Flow:
+Event Flow describes how events travel through the DOM tree. When you click, type, or interact with a webpage, the event doesn’t go straight to the target element. It flows through three phases:
+
+1.  Capturing: Event starts from the root and goes down.
+2.  Target: The actual element that triggered the event.
+3.  Bubbling: Event goes back up to the root.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        })
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        })
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button")
+        })
+    </script>
+</body>
+
+</html>
+```
+![image](images/eventFlowOutput.png)
+
+When You click the button, the event flow would be:
+
+1.  Capturing: document → outer div → inner div → button
+2.  Target: button (the actual target)
+3.  Bubbling: button → inner div → outer div → document
+
+#### UseCapture paramenter:
+In the event flow phase, the useCapture parameter controls when the event handler runs:
+- If useCapture is set to true, the event listener executes during the capturing phase 
+- If useCapture is set to false (default), the listener runs during the bubbling phase 
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        }, true)
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        })
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button")
+        })
+        /*
+        Outer Div
+        Button
+        Inner Div
+        */
+    </script>
+</body>
+
+</html>
+```
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        })
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        }, true)
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button")
+        })
+        /*
+        Inner Div
+        Button
+        Outer Div
+        */
+    </script>
+</body>
+
+</html>
+```
+
+#### stopPropagation():
+event.stopPropagation() method used to stop the event from bubbling up.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div")
+        });
+
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div")
+        });
+
+        document.getElementById("button").addEventListener("click", (event) => {
+            console.log("Button");
+            event.stopPropagation(); // Stop the event here
+        });
+
+        // output: Button
+    </script>
+</body>
+
+</html>
+
+```
+
+#### stopImmediatePropagation():
+Does everything stopPropagation() does, plus It also stops other listeners on the same element from executing.
+
+with stopPropagation()
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div");
+        });
+
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div");
+        });
+
+        // Two handlers on the same button
+        document.getElementById("button").addEventListener("click", (event) => {
+            console.log("Button Handler 1");
+            event.stopPropagation();
+        });
+
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button Handler 2");
+        });
+
+        /*
+        Button Handler 1
+        Button Handler 2
+        */
+    </script>
+</body>
+
+</html>
+```
+
+With stopImmediatePropagation():
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="outer">
+        <div id="inner">
+            <button id="button">Click me</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("outer").addEventListener("click", () => {
+            console.log("Outer Div");
+        });
+
+        document.getElementById("inner").addEventListener("click", () => {
+            console.log("Inner Div");
+        });
+
+        // Two handlers on the same button
+        document.getElementById("button").addEventListener("click", (event) => {
+            console.log("Button Handler 1");
+            event.stopImmediatePropagation();
+        });
+
+        document.getElementById("button").addEventListener("click", () => {
+            console.log("Button Handler 2");
+        });
+
+        /*
+        Button Handler 1
+        */
+    </script>
+</body>
+
+</html>
+```
+
+
+#### Event Delegation:
+Event Delegation is a technique where you attach a single event listener to a parent element instead of attaching listeners to each child element individually. This takes advantage of event bubbling, where an event on a child element "bubbles up" to its parent.
+
+Without Delegation:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <script>
+        const items = document.querySelectorAll("li");
+        // items.forEach(item => {
+        //     item.addEventListener("click", function () {
+        //         alert("You clicked " + item.textContent);
+        //     });
+        // });
+        // or
+        for (const item of items) {
+            item.addEventListener("click", () => {
+                alert(`You clicked ${item.innerText}`); 
+            })
+        }
+    </script>
+</body>
+
+</html>
+```
+Problems:
+- You must manually attach listeners to every li.
+- Won’t work for new li that added dynamically.
+
+With Delegation:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <script>
+        const list = document.getElementById("list");
+
+        list.addEventListener("click", (e) => {
+            console.log(e.target.tagName) // LI
+            if (e.target.tagName === "LI") {
+                alert("You Clicked " + event.target.innerText);
+            }
+        })
+
+    </script>
+</body>
+
+</html>
+```
+
+- Capturing Phase : document → html → body → ul → li (clicked)
+- Target Phase : li (Item 2)
+- Bubbling Phase : li → ul → body → html → document
+
+
+Witout Delegation (Won’t work for new li that added dynamically):
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul id="todo-list">
+        <li>Task 1</li>
+    </ul>
+    <button id="add-task">Add Task</button>
+
+    <script>
+        const list = document.getElementById("todo-list");
+        const addTask = document.getElementById("add-task");
+
+        addTask.addEventListener("click", function () {
+            const li = document.createElement("li");
+            li.textContent = "New Task";
+            list.appendChild(li);
+        });
+
+        const items = document.querySelectorAll("li");
+        items.forEach(item => {
+            item.addEventListener("click", function () {
+                alert("You clicked " + item.textContent);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+With Delegations:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <ul id="todo-list">
+        <li>Task 1</li>
+    </ul>
+    <button id="add-task">Add Task</button>
+
+    <script>
+        const list = document.getElementById("todo-list");
+        const addTask = document.getElementById("add-task");
+
+        addTask.addEventListener("click", function () {
+            const li = document.createElement("li");
+            li.innerText = "New Task";
+            list.appendChild(li);
+        });
+
+        list.addEventListener("click", function (e) {
+            if (e.target.tagName === "LI") {
+                alert("Clicked: " + e.target.textContent);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+
+
+
+### Event Examples:
+
+create a comment box and display comment:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .comment {
+            border: 2px solid blue;
+            background-color: lightcyan;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Awesome comment box. write What in you mind!!!</h1>
+
+    <section>
+        <h2>All comments Here:</h2>
+
+        <div id="comment-container">
+            <p class="comment">This is the first comment.</p>
+            <p class="comment">This is the second comment.</p>
+            <p class="comment">This is the third comment.</p>
+        </div>
+
+        <textarea name="" id="comment-text-box" cols="60" rows="5"></textarea>
+        <br>
+        <button id="btn-post-comment">Post Comment</button>
+    </section>
+
+    <script>
+        // step 1: set a event handler to the button
+        document.getElementById("btn-post-comment").addEventListener("click", () => {
+            // step 2: get the text, written in the comment text area
+            const commentTextBox = document.getElementById("comment-text-box");
+            const newComment = commentTextBox.value;
+            // step 3: get the parent node where to publish comment
+            const commentContainer = document.getElementById("comment-container");
+            //step 4: create a comment paragraph and add the "comment" class to it for style
+            const commentElement = document.createElement('p');
+            commentElement.classList.add("comment");
+            // step 5: set the text get form the newComment
+            commentElement.innerText = newComment;
+            // step 6: append the new p tag to the parent node
+            commentContainer.appendChild(commentElement);
+            // step 7: clean the text area
+            commentTextBox.value = "";
+        })
+    </script>
+</body>
+
+</html>
+```
+![image](images/comments.png)
+
+
+Simple delete confirmation button:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .comment {
+            border: 2px solid blue;
+            background-color: lightcyan;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="secret-info">My Secret Info</h1>
+
+    <input type="text" id="input-delete" placeholder="write delete">
+    <button id="btn-delete" disabled>Delete</button>
+
+    <script>
+        document.getElementById("input-delete").addEventListener("keyup", (event) => {
+
+            const text = event.target.value;
+            console.log(text);
+            const btnDelete = document.getElementById("btn-delete");
+
+            if (text === "delete") {
+                btnDelete.removeAttribute("disabled");
+                const secretInfo = document.getElementById("secret-info");
+                secretInfo.style.display = "none";
+            }
+            else {
+                btnDelete.setAttribute("disabled", true);
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+![image](images/deleteConfirmation.png)
+
 
 # Part 3: OOP
 

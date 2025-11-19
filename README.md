@@ -139,7 +139,14 @@
     - [lastChild vs lastElementChild:](#lastchild-vs-lastelementchild)
     - [nextSibling vs nextElementSibling:](#nextsibling-vs-nextelementsibling)
     - [previousSibling vs previousElementSibling:](#previoussibling-vs-previouselementsibling)
-  - [Elements selecting methods](#elements-selecting-methods)
+  - [Elements Selecting Methods](#elements-selecting-methods)
+    - [getElementById():](#getelementbyid)
+    - [getElementsByClassName():](#getelementsbyclassname)
+    - [getElementsByTagName():](#getelementsbytagname)
+    - [getElementsByName():](#getelementsbyname)
+    - [querySelector():](#queryselector)
+    - [querySelectorAll():](#queryselectorall)
+    - [Examples:](#examples)
   - [Content Manipulation](#content-manipulation)
   - [Element Attributes and Element Properties](#element-attributes-and-element-properties)
   - [CSS and Class Styling](#css-and-class-styling)
@@ -9624,7 +9631,593 @@ Same as above, but but accesses the previous sibling instead of next.
 
 ![image](images/DOM Traversing/previousSibling-vs-previousElementSibling.png)
 
-## Elements selecting methods
+## Elements Selecting Methods
+
+### getElementById():
+Selects a single element by its id attribute:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <h1 id="title">Hello World</h1>
+
+    <script>
+        const element = document.getElementById("title");
+        console.log(element); // Output: <h1 id="title">Hello World</h1>
+        console.log(element.tagName); // Output: H1
+        console.log(element.id); // Output: title
+        console.log(element.className); // Output: (empty string, since no class is assigned)
+        console.log(element.innerText) // output: Hello World
+        console.log(element.innerHTML); // Output: Hello World
+        console.log(element.textContent); // Output: Hello World
+        console.log(element.outerHTML); // Output: <h1 id="title">Hello World
+    </script>
+</body>
+
+</html>
+```
+### getElementsByClassName():
+Selects all elements with the given class name:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <p class="note">Note 1</p>
+    <p class="note">Note 2</p>
+
+    <script>
+        const elements = document.getElementsByClassName("note");
+        console.log(elements); // Output: HTMLCollection(2) [p.note, p.note]
+        for (let el of elements) {
+            console.log(el.innerHTML); // Output: Note 1, Note 2
+        }
+    </script>
+
+</body>
+
+</html>
+```
+
+### getElementsByTagName():
+Selects all elements with the specified tag name:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+
+    <script>
+        const items = document.getElementsByTagName("li");
+        console.log(items) // HTMLCollection(2) [li, li]
+        for (let item of items) {
+            console.log(item.innerHTML); // Output: Apple, Banana
+        }
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+    </header>
+
+    <main>
+        <h1>My Awesome DOM de baba</h1>
+        <ul>
+            <li>Jalali set</li>
+            <li>Shafayet</li>
+            <li>Bonobash</li>
+        </ul>
+    </main>
+
+    <script>
+        console.log(document.getElementsByTagName('h1'));
+
+        const heading = document.getElementsByTagName('h1');
+        console.log(heading);
+
+        const liCollection = document.getElementsByTagName('li');
+        for (const li of liCollection) {
+            console.log(li);
+        }
+        for (const li of liCollection) {
+            console.log(li.innerText);
+        }
+        const allHeadings = document.getElementsByTagName("h1");
+        for (const h1 of allHeadings) {
+            console.log(h1.innerText);
+        }
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/getElementBYTagNameOutput.png)
+
+### getElementsByName():
+Selects elements with a specific name attribute. Mostly used with input, code, textarea, or select :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <input type="text" name="username" value="Muhammad">
+    <input type="text" name="username" value="Tamim">
+
+    <script>
+        const inputs = document.getElementsByName("username");
+        console.log(inputs); // NodeList(2) [input, input]
+        console.log(inputs[0]); // This will log the first input element 
+        console.log(inputs[1]); // This will log the second input element
+        for (let input of inputs) {
+            console.log(input); // This will log each input element 
+        }
+        inputs.forEach(input => input.value = "Tamim");
+    </script>
+
+</body>
+
+</html>
+```
+
+### querySelector():
+Selects the first element that matches a CSS selector:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+
+    <div>
+        <p>One</p>
+        <p>Two</p>
+    </div>
+
+    <input type="text" name="userName" value="Tamim">
+    <input type="text" name="age">
+
+    <script>
+        const firstCard = document.querySelector(".card");
+        console.log(firstCard.textContent); // Output: Card 1
+
+        const paragraph = document.querySelector("div > p");
+        console.log(paragraph.innerHTML) // Output: One
+
+        const input = document.querySelector("input[name='userName']");
+        console.log(input.value); // Output: Tamim
+
+        const input2 = document.querySelector("input[name='age']");
+        input2.value = "25"; // Set value to 25
+    </script>
+
+</body>
+
+</html>
+```
+
+### querySelectorAll():
+Selects all elements that match a CSS selector:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Elements selecting methods</title>
+</head>
+
+<body>
+    <p class="note">Note A</p>
+    <p class="note">Note B</p>
+
+    <div>
+        <p>One</p>
+        <p>Two</p>
+    </div>
+
+    <script>
+        const notes = document.querySelectorAll(".note");
+        notes.forEach(note => console.log(note.innerHTML)); // Output: Note A, Note B
+
+        const paragraphs = document.querySelectorAll("div > p");
+        console.log(paragraphs); // NodeList(2) [p, p]
+        for (const paragraph of paragraphs) {
+            console.log(paragraph.innerHTML); // Output: One, Two
+        }
+    </script>
+
+</body>
+
+</html>
+```
+
+
+
+### Examples:
+
+**All methods at a time:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        const liCollection = document.getElementsByTagName('li');
+        console.log(liCollection);
+        for (const li of liCollection) {
+            console.log(li.innerText);
+        }
+
+        // option -1: getElementByTagName
+        const allHeadings = document.getElementsByTagName('h1');
+        for (const h1 of allHeadings) {
+            console.log(h1.innerText);
+        }
+
+        // option -2: getElementById
+        const fruitsTitle = document.getElementById('fruits-title');
+        fruitsTitle.innerText = "Fruits changed by JS";
+
+        // option -3: getElementsByClassName
+        const places = document.getElementsByClassName('important-places');
+        for (const place of places) {
+            console.log(place.innerText);
+        }
+
+        // option -4: querySelector
+        const placesContainer = document.querySelector('#places-container');
+        console.log(placesContainer);
+
+        // option -5: querySelectorAll
+        const someLi = document.querySelectorAll('.fruits-container li');
+        console.log(someLi);
+        for (const li of someLi) {
+            console.log(li.innerText);
+        }
+    </script>
+</body>
+
+</html>
+```
+    
+![image](images/allElementSelectiongMethods.png)
+
+**change all the HTML elements in the page:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <p id="demo">This is the original text.</p>
+    <button id="changeTextBtn">Click Me</button>
+
+    <script>
+        document.getElementById("changeTextBtn").addEventListener("click", function () {
+            document.getElementById("demo").innerText = "The text has been changed by js";
+            // or
+            /* document.getElementById("demo").innerContent = "The text has been changed by js";
+             Note: we basically use innerText more than the innerContent 
+            */
+        });
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/elementChanges.png)
+
+**change the HTML attributes in the page:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <img id="myImage" src="myImage.jpg" width="200px">
+    <button id="btn">Click Me</button>
+
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            // update the attributes
+            document.getElementById("myImage").src = "hasuApa.jpg";
+            document.getElementById("myImage").width = "400";
+
+            // set a new attribute and value
+            document.getElementById("myImage").setAttribute("height", "400");
+        })
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/changeAttributeOutput.png)
+
+**remove existing HTML elements:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").remove();
+        });
+    </script>
+</body>
+
+</html>
+```
+![image](images/elements-selecting-methods/remove-attribute-1.png)
+![image](images/elements-selecting-methods/remove-attribute-2.png)
+
+**add new HTML elements and attributes:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="divContainer1">
+
+    </div>
+
+    <button id="btn1">Click</button>
+
+    <div id="divContainer2">
+
+    </div>
+
+    <button id="btn2">Click</button>
+
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function () {
+            const newParagraph = document.createElement("p");
+            newParagraph.innerText = "this is a new paragraph created by JS";
+            document.getElementById("divContainer1").appendChild(newParagraph);
+
+        });
+        // alternatively you can use temple literal (backticks ``)
+        document.getElementById("btn2").addEventListener("click", function () {
+            document.getElementById("divContainer2").innerHTML += `
+        <p>This a new paragraph created by backticks</p>
+        `;
+        });
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/createNewElement.png)
+
+
+
+**change all the CSS styles in the page:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+    <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue;">
+        <p>Click the button to change my color!</p>
+    </div>
+
+    <button id="btn">Click</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("myDiv").style.backgroundColor = "yellow";
+        });
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/changeCSS.png)
+
+**add, remove, or toggle a CSS class on a DOM element:**
+
+```html 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>classList Example</title>
+    <style>
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">Hello World</h1>
+    <h1 class="hidden">This is hidden</h1>
+
+    <button id="addBtn">Add Class</button>
+    <button id="removeBtn">Remove Class</button>
+    <button id="toggleBtn">Toggle Class</button>
+
+    <script>
+        const heading = document.getElementById("title");
+        const hiddenHeading = document.querySelector("h1.hidden");
+
+        // Add class
+        document.getElementById("addBtn").addEventListener("click", () => {
+            heading.classList.add("active"); // adds green + bold
+        });
+
+        // Remove class
+        document.getElementById("removeBtn").addEventListener("click", () => {
+            hiddenHeading.classList.remove("hidden"); // ensures it's visible
+        });
+
+        // Toggle class
+        document.getElementById("toggleBtn").addEventListener("click", () => {
+            heading.classList.toggle("highlight"); // yellow bg on/off
+        });
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/add-remove-toggle.png)
+
 ## Content Manipulation
 ## Element Attributes and Element Properties
 ## CSS and Class Styling

@@ -124,7 +124,7 @@
       - [fetch](#fetch)
       - [async/await:](#asyncawait)
 - [Part 2: DOM](#part-2-dom)
-  - [Introduction To the DOM:](#introduction-to-the-dom)
+  - [Introduction To the DOM](#introduction-to-the-dom)
     - [DOM Collection:](#dom-collection)
     - [Document Object:](#document-object)
     - [DOM VS BOM:](#dom-vs-bom)
@@ -137,7 +137,7 @@
       - [previousSibling vs previousElementSibling:](#previoussibling-vs-previouselementsibling)
     - [DOM Manipulation:](#dom-manipulation)
       - [innerHTML vs outerHTML vs textContent vs innerText:](#innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
-  - [Elements Selecting Methods:](#elements-selecting-methods)
+  - [Elements Selecting Methods](#elements-selecting-methods)
     - [getElementById():](#getelementbyid)
     - [getElementsByClassName():](#getelementsbyclassname)
     - [getElementsByTagName():](#getelementsbytagname)
@@ -145,14 +145,13 @@
     - [querySelector():](#queryselector)
     - [querySelectorAll():](#queryselectorall)
     - [Examples:](#examples)
-  - [Element Attributes and Element Properties](#element-attributes-and-element-properties)
-    - [Element Attributes:](#element-attributes)
+  - [DOM Properties and Methods:](#dom-properties-and-methods)
+    - [Methods:](#methods)
       - [getAttribute(), setAttribute(), removeAttribute() and hasAttribute():](#getattribute-setattribute-removeattribute-and-hasattribute)
-      - [attributes property:](#attributes-property)
-    - [Element properties:](#element-properties)
+    - [properties:](#properties)
       - [id, className, classList:](#id-classname-classlist)
-    - [tagName vs nodeName:](#tagname-vs-nodename)
-    - [nodeType and nodeValue:](#nodetype-and-nodevalue)
+      - [tagName vs nodeName:](#tagname-vs-nodename)
+      - [nodeType and nodeValue:](#nodetype-and-nodevalue)
       - [Form Element Properties:](#form-element-properties)
   - [CSS and Class Styling](#css-and-class-styling)
     - [CSS Styling:](#css-styling)
@@ -9150,7 +9149,7 @@ fetchData();
 ```
 
 # Part 2: DOM
-## Introduction To the DOM:
+## Introduction To the DOM
 
 DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML document as a hierarchical tree structure, where each element is a node arranged in levels (root node → parent node → child node → element node → attribute node). It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.
 
@@ -9768,7 +9767,7 @@ DOM manipulation is updating the DOM by adding, removing, or changing elements.
 </html>
 ```
 
-## Elements Selecting Methods:
+## Elements Selecting Methods
 
 ### getElementById():
 Selects a single element by its id attribute:
@@ -10356,9 +10355,9 @@ Selects all elements that match a CSS selector:
 ![image](images/add-remove-toggle.png)
 
 
-## Element Attributes and Element Properties
+## DOM Properties and Methods:
 
-### Element Attributes:
+### Methods:
 
 #### getAttribute(), setAttribute(), removeAttribute() and hasAttribute():
 
@@ -10402,48 +10401,8 @@ Selects all elements that match a CSS selector:
 </html>
 ```
 
-#### attributes property:
-Returns a NamedNodeMap of all attributes on the element.
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Traversing</title>
-</head>
-
-<body>
-
-    <a id="link" href="https://example.com">Visit</a>
-
-
-    <script>
-        const a = document.getElementById("link");
-
-        console.log(a.attributes); // NamedNodeMap {0: id, 1: href, id: id, href: href, length: 2}
-
-        for (let attr of a.attributes) {
-            console.log(attr.name + " = " + attr.value);
-        }
-
-        /*
-        id = link
-        href = https://example.com
-        */
-    </script>
-
-</body>
-
-</html>
-```
-
-
-
-
-### Element properties:
+### properties:
 
 #### id, className, classList:
 
@@ -10484,7 +10443,7 @@ Returns a NamedNodeMap of all attributes on the element.
 </html>
 ```
 
-### tagName vs nodeName:</h3>
+#### tagName vs nodeName:
 Both give the tag name of an element, but nodeName works for any node, tagName only for elements node
 
 ```html
@@ -10528,7 +10487,8 @@ Both give the tag name of an element, but nodeName works for any node, tagName o
 </html>
 ```
 
-### nodeType and nodeValue:
+
+#### nodeType and nodeValue:
 
 ```html
 <!DOCTYPE html>

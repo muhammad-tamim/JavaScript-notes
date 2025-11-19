@@ -159,6 +159,12 @@
     - [nodeType and nodeValue:](#nodetype-and-nodevalue)
       - [Form Element Properties:](#form-element-properties)
   - [CSS and Class Styling](#css-and-class-styling)
+    - [CSS Styling:](#css-styling)
+    - [Style Property:](#style-property)
+    - [cssText property:](#csstext-property)
+    - [Class Styling:](#class-styling)
+      - [className Property:](#classname-property)
+      - [classList methods:](#classlist-methods)
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
   - [Events](#events)
 - [Part 3: OOP](#part-3-oop)
@@ -10520,6 +10526,247 @@ Both give the tag name of an element, but nodeName works for any node, tagName o
 ```
 
 ## CSS and Class Styling
+### CSS Styling:
+
+### Style Property:
+style property is used to get or set inline styles of an HTML element using JavaScript.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="box" style="color: red;">Hello</div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        console.log(box.style.color); // "red"
+        box.style.backgroundColor = "yellow";
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        const sections = document.querySelectorAll("section")
+        /*
+        if we need classes just write it document.querySelectorAll(.className)
+        if we need ids just write it document.querySelectorAll(#idName)
+        */
+        console.log(sections);
+        for (const section of sections) {
+            console.log(section);
+        }
+        for (const section of sections) {
+            section.style.border = "2px solid red";
+            section.style.borderRadius = '8px';
+            section.style.padding = "20px";
+            section.style.margin = "10px";
+            section.style.backgroundColor = "skyBlue";
+        }
+        const placesContainer = document.getElementById("places-container");
+        placesContainer.style.backgroundColor = "yellow";
+
+        // add and remove css class
+        placesContainer.classList.add("text-center");
+        placesContainer.classList.remove("large-text");
+
+    </script>
+</body>
+
+</html>
+```
+
+![image](images/cssStyling.png")
+
+Note: JS follow camelCase css names:
+
+| CSS Name           | JavaScript Style Name |
+| ------------------ | --------------------- |
+| `background-color` | `backgroundColor`     |
+| `font-size`        | `fontSize`            |
+| `z-index`          | `zIndex`              |
+| `border-radius`    | `borderRadius`        |
+
+
+### cssText property:
+-   Lets you set multiple styles at once as a string.
+-   Overwrites all existing inline styles.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="box" style="color: red;">Hello</div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        box.style.cssText = "color: white; background: black; padding: 10px;";
+    </script>
+</body>
+
+</html>
+```
+
+
+### Class Styling:
+
+#### className Property:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="card" class="text-6xl bg-red-500">Hello</div>
+
+
+    <script>
+        const card = document.getElementById("card");
+
+        // Accessing and modifying class
+        console.log(card.className);      // "text-6xl bg-red-500"
+        card.className = "text-2xl bg-green-500";     // Replaces all classes
+    </script>
+</body>
+
+</html>
+```
+
+#### classList methods:
+classList gives you a powerful interface to manage individual classes.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+        <title>Element Properties</title>
+    </head>
+
+    <body>
+        <div id="card" class="text-6xl bg-red-500">Hello</div>
+
+
+        <script>
+            const card = document.getElementById("card");
+
+            // Add class
+            card.classList.add("text-white");
+
+            // Remove class
+            card.classList.remove("text-6xl");
+
+            // Check if a class exists
+            console.log(card.classList.contains("text-white")); // true
+
+            // replace class
+            card.classList.replace("bg-red-500", "bg-blue-500");
+        </script>
+    </body>
+
+    </html>
+</body>
+
+</html>
+```
+
 ## Creating, Adding and Removing Element Methods
 ## Events
 

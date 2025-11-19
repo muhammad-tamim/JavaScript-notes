@@ -6564,7 +6564,7 @@ console.log(nums.lastIndexOf(10)); // 4
 console.log(nums.lastIndexOf(99)); // -1 → not found
 ```
 
-- slice(start, end) — Extracts part of a string/array.
+- slice(start, end) — Extracts a portion of an array/string and returns a new array.
 
 ```js
 // String
@@ -7165,7 +7165,7 @@ console.log(nums.lastIndexOf(10)); // 4
 console.log(nums.lastIndexOf(99)); // -1 → not found
 ```
 
-- slice(start, end) — Extracts part of a string/array.
+- slice(start, end) — Extracts a portion of an array/string and returns a new array.
 
 ```js
 // String

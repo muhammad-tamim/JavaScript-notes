@@ -8884,7 +8884,7 @@ const id = setInterval(() => {
 ### JSON, fetch, async/await
 
 #### JSON
-JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially in APIs. JSON looks like JavaScript objects, but it's suppport double quotes only ("").
+JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially between in server and clients. JSON uses JavaScript object syntax but here keys are always in double quotes ("").
 
 **JSON.stringify() — Convert JS → JSON string:**
 

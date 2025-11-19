@@ -207,6 +207,17 @@
     - [conditional Types:](#conditional-types)
     - [Mpped Types:](#mpped-types)
   - [Utility Types:](#utility-types)
+  - [OOP:](#oop)
+    - [Classes:](#classes)
+    - [Static Keyword:](#static-keyword-1)
+    - [The Four Pillars of OOP:](#the-four-pillars-of-oop-1)
+      - [Encapsulation:](#encapsulation-1)
+      - [Abstraction:](#abstraction-1)
+        - [Difference Between Encapsulation and Abstraction:](#difference-between-encapsulation-and-abstraction-1)
+      - [Inheritance:](#inheritance-1)
+      - [Polymorphism:](#polymorphism-1)
+        - [Using Methods Overriding:](#using-methods-overriding-1)
+        - [Using Duck Typing:](#using-duck-typing-1)
 
 ---
 
@@ -10931,6 +10942,7 @@ const area1: Area<{ height: string; width: number }> = {
     width: 40
 }
 ```
+
 ## Utility Types: 
 TypeScript provides several built-in utility types that help you transform existing types and create new types from them.
 
@@ -11073,4 +11085,627 @@ const numbers: ReadonlyArray<number> = [1, 2, 3];
 
 numbers.push(4); // ❌ Error
 numbers[0] = 10; // ❌ Error
+```
+
+## OOP:
+
+### Classes: 
+
+```ts
+class Person {
+    name: string;
+    age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        console.log(`hi, i am ${this.name}`)
+    }
+}
+
+
+const p1 = new Person("tamim", 20)
+p1.greet() // hi, i am tamim
+console.log(new Person("nasrin", 2)) // Person { name: 'nasrin', age: 2 }
+```
+
+Note: In JavaScript, we don’t need to declare class properties because they are automatically created when assigned in the constructor. In TypeScript, however, we must declare class properties explicitly unless we use an access modifier like public, private, or protected in the constructor, which automatically declares and assigns them:
+
+```ts
+class Person {
+
+    constructor(public name: string, public age: number) { }
+
+    greet() {
+        return `Hello, I'm ${this.name}`;
+    }
+}
+
+
+const p1 = new Person("tamim", 20)
+
+console.log(p1.greet()); // hello, I'm tamim
+```
+
+### Static Keyword:
+
+```ts
+class MathUtils {
+    // Static property
+    static PI: number = 3.1416;
+
+    // Static method
+    static square(x: number): number {
+        return x * x;
+    }
+}
+
+console.log(MathUtils.PI);        // 3.1416
+console.log(MathUtils.square(5)); // 25
+
+const obj = new MathUtils();
+// console.log(obj.PI);
+// Property 'PI' does not exist on type 'MathUtils'. Did you mean to access the static member 'MathUtils.PI' instead?
+```
+
+**Without Static:** 
+
+```ts
+class Counter {
+    count: number = 0;
+
+    increment() {
+        return this.count += 1
+    }
+    decrement() {
+        return this.count -= 1
+    }
+}
+
+const instance1 = new Counter()
+console.log(instance1.increment()) // 1 
+console.log(instance1.increment()) // 2
+console.log(instance1.increment()) // 3
+
+const instance2 = new Counter()
+console.log(instance2.increment()) // 1
+console.log(instance2.increment()) // 2
+```
+here, Each instance has its own separate count.
+ 
+**with static:**
+
+```ts
+class Counter {
+    static count: number = 0;
+
+    static increment() {
+        return Counter.count += 1
+    }
+    static decrement() {
+        return Counter.count -= 1
+    }
+}
+
+console.log(Counter.increment()) // 1 
+console.log(Counter.increment()) // 2
+console.log(Counter.increment()) // 3
+console.log(Counter.increment()) // 4
+console.log(Counter.increment()) // 5
+```
+### The Four Pillars of OOP:
+
+
+#### Encapsulation: 
+
+Encapsulation (in js) is the process of hiding the internal state (properties) of an object using private fields (#), and providing controlled access through methods or getters/setters. This protects the object’s data and prevents unintended modifications.
+
+Note:
+- Private fileds Properties cannot be accessed outside the class and it Declared using #
+- Getter and Setter allow accessing and modifying private fields like normal properties, instead of calling methods.
+
+Encapsulation in js and ts are same, just change in js we have just public and private field. in ts the thoes field called access modifies. and here we have 3 access modifiers:
+- Public: Accessible everywhere: inside class, subclasses, and outside
+- private: Accessible only inside the class, Cannot be accessed outside or by subclasses
+- protected(extra): Accessible inside the class and subclasses, Cannot be accessed outside the class
+
+```ts
+class Person {
+  public name: string;     // public field
+  private ageValue: number; // private field (TS private)
+  protected country: string; // protected field (extra example)
+
+  constructor(name: string, age: number, country: string) {
+    this.name = name;
+    this.ageValue = age;
+    this.country = country;
+  }
+
+  // Getter
+  get age(): number {
+    return this.ageValue;
+  }
+
+  // Setter
+  set age(newAge: number) {
+    this.ageValue = newAge;
+  }
+}
+
+const p = new Person("John", 25, "USA");
+
+console.log(p.name);  // John (public)
+console.log(p.age);   // 25 (via getter)
+
+p.age = 30;           // via setter
+console.log(p.age);   // 30
+
+// console.log(p.ageValue);   ❌ Error: private
+// console.log(p.country);    ❌ Error: protected
+```
+
+Without getter and setter:
+
+```ts
+class Person {
+  public name: string;        // public field
+  private ageValue: number;   // private field
+  protected country: string;  // protected field
+
+  constructor(name: string, age: number, country: string) {
+    this.name = name;
+    this.ageValue = age;
+    this.country = country;
+  }
+
+  // Public method to get private age
+  public getAge(): number {
+    return this.ageValue;
+  }
+
+  // Public method to set private age
+  public setAge(newAge: number): void {
+    this.ageValue = newAge;
+  }
+}
+
+const p = new Person("John", 25, "USA");
+
+console.log(p.name);    // John (public)
+console.log(p.getAge()); // 25
+
+p.setAge(30);           // modify via method
+console.log(p.getAge()); // 30
+
+// console.log(p.ageValue);  ❌ Error: private
+// console.log(p.country);   ❌ Error: protected
+```
+
+```ts
+class BackAccount {
+    readonly userId: number;
+    protected userName: string;
+    private userBalance: number;
+
+    constructor(userId: number, userName: string, userBalance: number) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userBalance = userBalance;
+    }
+    addBalance(balance: number) {
+        this.userBalance += balance
+    }
+}
+
+class StudentBankAccount extends BackAccount {
+    test() {
+        // console.log(this.balance) // Property 'balance' does not exist on type 'StydentBankAccount'.
+        console.log(this.userName)
+    }
+}
+
+const myAccount = new BackAccount(111, 'Tamim', 100);
+myAccount.addBalance(100)
+console.log(myAccount)
+```
+
+```ts
+class BankAccount {
+    private _balance: number = 0;
+
+    deposit(amount: number) {
+        if (amount <= 0) {
+            throw new Error("Deposit must be positive");
+        }
+        this._balance += amount;
+    }
+
+    withdraw(amount: number) {
+        if (amount > this._balance) {
+            throw new Error("Insufficient balance");
+        }
+        this._balance -= amount;
+    }
+
+    get balance() {
+        return this._balance; // getter
+    }
+}
+
+const acc = new BankAccount();
+acc.deposit(1000);
+acc.withdraw(300);
+
+console.log(acc.balance); // ✔ 700
+// acc._balance = 5000;   // ❌ ERROR (private)
+```
+
+#### Abstraction: 
+Abstraction is the process of hiding implementation details using private field and showing only the necessary functionality to the user.
+
+```ts
+class BankAccount {
+  private balance: number;  // TS private field
+
+  constructor(initialBalance: number) {
+    this.balance = initialBalance;
+  }
+
+  deposit(amount: number): void {
+    if (amount > 0) {
+      this.balance += amount;
+    }
+  }
+
+  withdraw(amount: number): void {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+    } else {
+      console.log("Insufficient funds!");
+    }
+  }
+
+  getBalance(): number {
+    return this.balance;
+  }
+}
+
+const account = new BankAccount(1000);
+account.deposit(500);
+account.withdraw(200);
+console.log(account.getBalance()); // 1300
+```
+here, User doesn’t need to know how #balance is stored or updated internally. They just call deposit/withdraw.
+
+```ts
+// using interface
+interface MediaPlayer {
+    play(): void
+    pause(): void
+    stop(): void
+}
+
+class MusicPlayer implements MediaPlayer {
+    play() {
+        console.log("Playing Music....")
+    }
+    pause() {
+        console.log("Music paused....")
+    }
+    stop() {
+        console.log("Music Stopped...")
+    }
+}
+
+const customPlayer = new MusicPlayer()
+customPlayer.play()
+```
+
+```ts
+// using abstract class and methods
+abstract class MediaPlayer {
+    abstract play(): void
+    abstract pause(): void
+    abstract stop(): void
+}
+
+class MusicPlayer extends MediaPlayer {
+    play() {
+        console.log("Playing Music....")
+    }
+    pause() {
+        console.log("Music paused....")
+    }
+    stop() {
+        console.log("Music Stopped...")
+    }
+}
+
+const customPlayer = new MusicPlayer()
+customPlayer.play()
+```
+
+```ts
+abstract class Vehicle {
+    abstract start(): void; // abstract method (no body)
+    
+    stop() {
+        console.log("Vehicle stopped.");
+    }
+}
+
+class Car extends Vehicle {
+    start() {
+        console.log("Car engine started.");
+    }
+}
+
+const c = new Car();
+c.start(); // ✔
+c.stop();  // ✔
+```
+
+##### Difference Between Encapsulation and Abstraction: 
+
+| Encapsulation                     | Abstraction                                    |
+| --------------------------------- | ---------------------------------------------- |
+| Protect/hide object’s data        | Hide complexity, expose only necessary details |
+| getters/setters or public methods | Public methods                                 |
+
+
+#### Inheritance: 
+
+Inheritance is a process that allows a chaild class inherits properties and methods from a parent class using extends keyword and super() method.
+
+here, 
+- extends: Used to create a child class that inherits from a parent class. It sets up the prototype chain so the child class can access parent methods and properties.
+- super(): Used inside the child class constructor to call the parent class constructor.
+  
+```js
+class Animal {
+  public type: string;
+
+  constructor(type: string) {
+    this.type = type;
+  }
+
+  makeSound(): void {
+    console.log(`${this.type} makes a sound`);
+  }
+}
+
+class Dog extends Animal {
+  public breed: string;
+
+  constructor(breed: string) {
+    super("Dog"); // call parent constructor
+    this.breed = breed;
+  }
+
+  describe(): void {
+    console.log(`This is a ${this.breed} of type ${this.type}`);
+  }
+}
+
+const dog = new Dog("Labrador");
+dog.describe();    // This is a Labrador of type Dog
+dog.makeSound();   // Dog makes a sound
+```
+here, Child class inherits properties and methods from parent and can add its own functionality.
+
+```ts
+class Parent {
+    name: string;
+    age: number;
+    address: string;
+
+    constructor(name: string, age: number, address: string) {
+        this.name = name;
+        this.age = age;
+        this.address = address
+    }
+
+    getSleep(hours: number) {
+        console.log(`${this.name} sleep ${hours} a day`)
+    }
+}
+
+
+class Student extends Parent { }
+
+class Teacher extends Parent {
+    designation: string; // own properties
+
+    constructor(name: string, age: number, address: string, designation: string) {
+        super(name, age, address)
+        this.designation = designation
+    }
+
+    // own methods
+    takeClass(numberOfClass: number) {
+        console.log(`${this.name} ${numberOfClass} hours class nan`)
+    }
+}
+
+const student1 = new Student("x", 20, "barisal")
+student1.getSleep(15)
+
+const teacher1 = new Teacher("y", 20, "dhaka", "Senior Teacher")
+teacher1.takeClass(4)
+```
+
+#### Polymorphism: 
+Polymorphism is the process that allows a child class to inherit methods from a parent class using the extends keyword, and lets the same method behave differently depending on the child class.
+
+We can do Polymorphism using two ways: 
+1. Methods Overriding: Child class changes parent method behavior.
+2. Duck Typing(Interfae-Based): Different objects implement the same method name.
+
+##### Using Methods Overriding: 
+Child class changes parent method behavior.
+
+```js
+class Animal {
+  makeSound(): void {
+    console.log("Animal makes a sound");
+  }
+}
+
+class Dog extends Animal {
+  makeSound(): void {
+    console.log("Dog barks");
+  }
+}
+
+class Cat extends Animal {
+  makeSound(): void {
+    console.log("Cat meows");
+  }
+}
+
+const dog: Dog = new Dog();
+const cat: Cat = new Cat();
+
+dog.makeSound(); // Dog barks
+cat.makeSound(); // Cat meows
+```
+Here, makeSound() is overridden in each child class. Same method name behaves differently.
+
+##### Using Duck Typing:
+Different objects implement the same method name, allowing them to be used interchangeably.
+
+```js
+interface Vehicle {
+  start(): void;
+}
+
+class Car implements Vehicle {
+  start(): void {
+    console.log("Car starts");
+  }
+}
+
+class Bike implements Vehicle {
+  start(): void {
+    console.log("Bike starts");
+  }
+}
+
+function startVehicle(vehicle: Vehicle): void {
+  vehicle.start(); // works for any object with start()
+}
+
+const car = new Car();
+const bike = new Bike();
+
+startVehicle(car);  // Car starts
+startVehicle(bike); // Bike starts
+```
+Here, any object with a start method can be passed to startVehicle, demonstrating polymorphism without inheritance.
+
+```ts
+class Person {
+    getSleep() {
+        console.log(`I am a normal person, I sleep for 8 hours`);
+    }
+}
+
+class Student extends Person {
+    getSleep() {
+        console.log(`i am a student, i sleep 7 hours`);
+    }
+}
+
+class NextLevelDeveloper extends Person {
+    getSleep() {
+        console.log(`I am a next level developer. I sleep for 6 hours`)
+    }
+}
+
+const getSleepingHours = (param: Person) => {
+    param.getSleep()
+}
+
+const person1 = new Person()
+const person2 = new Student()
+const person3 = new NextLevelDeveloper()
+
+getSleepingHours(person1)
+getSleepingHours(person2)
+getSleepingHours(person3) 
+```
+
+```ts
+class Shape {
+    getArea(): number {
+        return 0;
+    }
+}
+
+class Circle extends Shape {
+    radius: number;
+    constructor(radius: number) {
+        super()
+        this.radius = radius
+    }
+
+    getArea(): number {
+        return Math.PI * this.radius * this.radius
+    }
+}
+
+class Rectangle extends Shape {
+    height: number;
+    width: number;
+    constructor(height: number, width: number) {
+        super()
+        this.height = height
+        this.width = width
+    }
+    getArea(): number {
+        return this.height * this.width
+    }
+}
+
+const getArea = (param: Shape) => {
+    console.log(param.getArea())
+}
+
+const shape1 = new Shape()
+const shape2 = new Circle(10)
+const shape3 = new Rectangle(10, 20)
+
+getArea(shape1)
+getArea(shape2)
+getArea(shape3)
+```
+
+```ts
+class Animal {
+    speak() {
+        console.log("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    speak() {
+        console.log("Cat meows");
+    }
+}
+
+function makeAnimalSpeak(a: Animal) {
+    a.speak();
+}
+
+makeAnimalSpeak(new Dog()); // "Dog barks"
+makeAnimalSpeak(new Cat()); // "Cat meows"
 ```

@@ -128,14 +128,16 @@
     - [DOM Collection:](#dom-collection)
     - [Document Object:](#document-object)
     - [DOM VS BOM:](#dom-vs-bom)
-  - [DOM Traversing](#dom-traversing)
-    - [parentNode vs parentElement:](#parentnode-vs-parentelement)
-    - [childNodes vs children:](#childnodes-vs-children)
-    - [firstChild vs firstElementChild:](#firstchild-vs-firstelementchild)
-    - [lastChild vs lastElementChild:](#lastchild-vs-lastelementchild)
-    - [nextSibling vs nextElementSibling:](#nextsibling-vs-nextelementsibling)
-    - [previousSibling vs previousElementSibling:](#previoussibling-vs-previouselementsibling)
-  - [Elements Selecting Methods](#elements-selecting-methods)
+    - [DOM Traversing:](#dom-traversing)
+      - [parentNode vs parentElement:](#parentnode-vs-parentelement)
+      - [childNodes vs children:](#childnodes-vs-children)
+      - [firstChild vs firstElementChild:](#firstchild-vs-firstelementchild)
+      - [lastChild vs lastElementChild:](#lastchild-vs-lastelementchild)
+      - [nextSibling vs nextElementSibling:](#nextsibling-vs-nextelementsibling)
+      - [previousSibling vs previousElementSibling:](#previoussibling-vs-previouselementsibling)
+    - [DOM Manipulation:](#dom-manipulation)
+      - [innerHTML vs outerHTML vs textContent vs innerText:](#innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
+  - [Elements Selecting Methods:](#elements-selecting-methods)
     - [getElementById():](#getelementbyid)
     - [getElementsByClassName():](#getelementsbyclassname)
     - [getElementsByTagName():](#getelementsbytagname)
@@ -143,8 +145,6 @@
     - [querySelector():](#queryselector)
     - [querySelectorAll():](#queryselectorall)
     - [Examples:](#examples)
-  - [Content Manipulation](#content-manipulation)
-    - [innerHTML vs outerHTML vs textContent vs innerText:](#innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
   - [Element Attributes and Element Properties](#element-attributes-and-element-properties)
     - [Element Attributes:](#element-attributes)
       - [getAttribute(), setAttribute(), removeAttribute() and hasAttribute():](#getattribute-setattribute-removeattribute-and-hasattribute)
@@ -9440,17 +9440,10 @@ The document object is your entry point to the entire DOM. It represents the who
 
 ![image](images/Part2-DOM/Introduction-to-the-dom/DOM-vs-BOM.png)
       
+### DOM Traversing:
+DOM traversing is navigating the DOM tree through parent, child, and sibling relationships to reach different nodes.
 
-## DOM Traversing
-DOM traversing means navigating the DOM tree from one node to another using relationships like parent, child, and sibling.
-
-It allows you to:
-
--   Find elements relative to a selected element
--   Move between nodes (parents, children, siblings)
--   Manipulate structure dynamically (add/remove/update nodes)
-
-### parentNode vs parentElement:
+#### parentNode vs parentElement:
 
 Both parentNode and parentElement are used to access the parent of a node in the DOM, But:
 
@@ -9492,9 +9485,9 @@ Both parentNode and parentElement are used to access the parent of a node in the
 </html>
 ```
 
-![image](images/DOM Traversing/parentNode-vs-parentElement.png)
+![image](images/DOM-Traversing/parentNode-vs-parentElement.png)
 
-### childNodes vs children:
+#### childNodes vs children:
 
 -   childNodes: Returns all types of nodes.
 -   children: returns only element nodes.
@@ -9535,9 +9528,9 @@ Both parentNode and parentElement are used to access the parent of a node in the
 </html>
 ```
 
-![image](images/DOM Traversing/childNodes-vs-children.png)
+![image](images/DOM-Traversing/childNodes-vs-children.png)
 
-### firstChild vs firstElementChild:
+#### firstChild vs firstElementChild:
 
 -   firstChild: Returns the first child node, which may be: (text, element etc)
 -   firstElementChild: Returns only the first element child.
@@ -9573,9 +9566,9 @@ Both parentNode and parentElement are used to access the parent of a node in the
 </html>
 ```
 
-![image](images/DOM Traversing/firstChild-vs-firstElementChild:.png)
+![image](images/DOM-Traversing/firstChild-vs-firstElementChild.png)
 
-### lastChild vs lastElementChild:
+#### lastChild vs lastElementChild:
 Same as above but accesses the last child node instead.
 
 ```html
@@ -9610,9 +9603,9 @@ Same as above but accesses the last child node instead.
 </html>
 ```
 
-![image](images/DOM Traversing/lastChild-vs-lastElementChild.png)
+![image](images/DOM-Traversing/lastChild-vs-lastElementChild.png)
 
-### nextSibling vs nextElementSibling:
+#### nextSibling vs nextElementSibling:
 
 -   nextSibling: Returns the next sibling node.
 -   nextElementSibling: return only next sibling element node
@@ -9649,9 +9642,9 @@ Same as above but accesses the last child node instead.
 </html>
 ```
 
-![image](images/DOM Traversing/nextSibling-vs-nextElementSibling:.png)
+![image](images/DOM-Traversing/nextSibling-vs-nextElementSibling.png)
 
-### previousSibling vs previousElementSibling:
+#### previousSibling vs previousElementSibling:
 Same as above, but but accesses the previous sibling instead of next.
 
 ```html
@@ -9686,9 +9679,96 @@ Same as above, but but accesses the previous sibling instead of next.
 </html>
 ```
 
-![image](images/DOM Traversing/previousSibling-vs-previousElementSibling.png)
+![image](images/DOM-Traversing/previousSibling-vs-previousElementSibling.png)
 
-## Elements Selecting Methods
+### DOM Manipulation:
+
+DOM manipulation is updating the DOM by adding, removing, or changing elements.
+
+```html 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title">Hello World</h1>
+    <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+
+    <script>
+        const title = document.getElementById("title");
+        const list = document.getElementById("list");
+
+        // 1. Change element text
+        title.innerText = "DOM Manipulation Example";
+
+        // 2. Add a new element
+        const newItem = document.createElement("li");
+        newItem.innerText = "Orange";
+        list.appendChild(newItem);
+
+        // 3. Remove an element
+        list.removeChild(list.firstElementChild); // removes "Apple"
+
+        // 4. Update style
+        title.style.color = "blue";
+    </script>
+</body>
+
+</html>
+```
+
+![image](/images/Part2-DOM/Introduction-to-the-dom/DOM-Manipulation.png)
+
+
+#### innerHTML vs outerHTML vs textContent vs innerText:
+
+| Property      | Returns...                                 | Includes Tags | Includes Hidden Text | Editable |
+| ------------- | ------------------------------------------ | ------------- | -------------------- | -------- |
+| `innerHTML`   | HTML content **inside** the element        | Yes           | Yes                  | Yes      |
+| `outerHTML`   | Full HTML **including the element itself** | Yes           | Yes                  | Yes      |
+| `textContent` | All text (even hidden) without HTML        | No            | Yes                  | Yes      |
+| `innerText`   | Only **visible** text (like in UI)         | No            | No (ignores hidden)  | Yes      |
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div id="demo">
+        Hello <span style="display:none">Hidden</span> World
+    </div>
+
+    <script>
+        const el = document.getElementById("demo");
+
+        console.log(el.innerHTML);   // "Hello <span style="display:none">Hidden</span> World"
+        console.log(el.outerHTML); // "<div id="demo">Hello <span style="display:none">Hidden</span> World</div>"
+        console.log(el.textContent); // "Hello Hidden World"
+        console.log(el.innerText);   // "Hello World"
+    </script>
+
+</body>
+
+</html>
+```
+
+## Elements Selecting Methods:
 
 ### getElementById():
 Selects a single element by its id attribute:
@@ -10275,47 +10355,6 @@ Selects all elements that match a CSS selector:
 
 ![image](images/add-remove-toggle.png)
 
-## Content Manipulation
-
-### innerHTML vs outerHTML vs textContent vs innerText:
-
-| Property      | Returns...                                 | Includes Tags | Includes Hidden Text  | Editable |
-| ------------- | ------------------------------------------ | ------------- | --------------------- | -------- |
-| `innerHTML`   | HTML content **inside** the element        | ✅ Yes         | ✅ Yes                 | ✅ Yes    |
-| `outerHTML`   | Full HTML **including the element itself** | ✅ Yes         | ✅ Yes                 | ✅ Yes    |
-| `textContent` | All text (even hidden) without HTML        | ❌ No          | ✅ Yes                 | ✅ Yes    |
-| `innerText`   | Only **visible** text (like in UI)         | ❌ No          | ❌ No (ignores hidden) | ✅ Yes    |
-
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Traversing</title>
-</head>
-
-<body>
-
-    <div id="demo">
-        Hello <span style="display:none">Hidden</span> World
-    </div>
-
-    <script>
-        const el = document.getElementById("demo");
-
-        console.log(el.innerHTML);   // "Hello <span style="display:none">Hidden</span> World"
-        console.log(el.outerHTML); // "<div id="demo">Hello <span style="display:none">Hidden</span> World</div>"
-        console.log(el.textContent); // "Hello Hidden World"
-        console.log(el.innerText);   // "Hello World"
-    </script>
-
-</body>
-
-</html>
-```
 
 ## Element Attributes and Element Properties
 

@@ -155,8 +155,8 @@
       - [Form Element Properties:](#form-element-properties)
   - [CSS and Class Styling](#css-and-class-styling)
     - [CSS Styling:](#css-styling)
-    - [Style Property:](#style-property)
-    - [cssText property:](#csstext-property)
+      - [Style Property:](#style-property)
+      - [cssText property:](#csstext-property)
     - [Class Styling:](#class-styling)
       - [className Property:](#classname-property)
       - [classList methods:](#classlist-methods)
@@ -10569,7 +10569,7 @@ Both give the tag name of an element, but nodeName works for any node, tagName o
 ## CSS and Class Styling
 ### CSS Styling:
 
-### Style Property:
+#### Style Property:
 style property is used to get or set inline styles of an HTML element using JavaScript.
 
 ```html
@@ -10676,7 +10676,7 @@ style property is used to get or set inline styles of an HTML element using Java
 </html>
 ```
 
-![image](images/cssStyling.png")
+![image](images/cssStyling.png)
 
 Note: JS follow camelCase css names:
 
@@ -10688,7 +10688,7 @@ Note: JS follow camelCase css names:
 | `border-radius`    | `borderRadius`        |
 
 
-### cssText property:
+#### cssText property:
 -   Lets you set multiple styles at once as a string.
 -   Overwrites all existing inline styles.
 

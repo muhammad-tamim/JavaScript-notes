@@ -160,20 +160,20 @@
     - [Class Styling:](#class-styling)
       - [className Property:](#classname-property)
       - [classList methods:](#classlist-methods)
-  - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
-    - [Creating Elements:](#creating-elements)
+  - [Element Creating, Adding and Removing  Methods](#element-creating-adding-and-removing--methods)
+    - [Elements Creating Methods:](#elements-creating-methods)
       - [createElement():](#createelement)
       - [createTextNode():](#createtextnode)
       - [createDocumentFragment():](#createdocumentfragment)
       - [cloneNode():](#clonenode)
-    - [Adding Elements:](#adding-elements)
+    - [Element Adding Methods:](#element-adding-methods)
       - [appendChild():](#appendchild)
       - [insertBefore():](#insertbefore)
       - [insertAdjacentElement():](#insertadjacentelement)
       - [insertAdjacentHTML():](#insertadjacenthtml)
       - [insertAdjacentText():](#insertadjacenttext)
       - [before(), parpend(), append(), after():](#before-parpend-append-after)
-    - [Removing Elements:](#removing-elements)
+    - [Elements Removing Methods:](#elements-removing-methods)
       - [removeChild():](#removechild)
       - [remove():](#remove)
       - [replaceChild():](#replacechild)
@@ -10808,9 +10808,9 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-## Creating, Adding and Removing Element Methods
+## Element Creating, Adding and Removing  Methods
 
-### Creating Elements:
+### Elements Creating Methods:
 
 #### createElement():
 
@@ -11111,7 +11111,7 @@ classList gives you a powerful interface to manage individual classes.
 ```
 
 
-### Adding Elements:
+### Element Adding Methods:
 
 #### appendChild():
 - Adds a node as the last child of a parent.
@@ -11375,7 +11375,7 @@ Can insert nodes or strings directly.
 
 
 
-### Removing Elements:
+### Elements Removing Methods:
 
 #### removeChild():
 -   Removes a child node from its parent.
@@ -11472,6 +11472,7 @@ Can insert nodes or strings directly.
 
 </html>
 ```
+
 #### replaceWith():
 - Replaces an element directly.
 

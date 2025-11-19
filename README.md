@@ -150,6 +150,14 @@
   - [Content Manipulation](#content-manipulation)
     - [innerHTML vs outerHTML vs textContent vs innerText:](#innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
   - [Element Attributes and Element Properties](#element-attributes-and-element-properties)
+    - [Element Attributes:](#element-attributes)
+      - [getAttribute(), setAttribute(), removeAttribute() and hasAttribute():](#getattribute-setattribute-removeattribute-and-hasattribute)
+      - [attributes property:](#attributes-property)
+    - [Element properties:](#element-properties)
+      - [id, className, classList:](#id-classname-classlist)
+    - [tagName vs nodeName:](#tagname-vs-nodename)
+    - [nodeType and nodeValue:](#nodetype-and-nodevalue)
+      - [Form Element Properties:](#form-element-properties)
   - [CSS and Class Styling](#css-and-class-styling)
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
   - [Events](#events)
@@ -10262,6 +10270,255 @@ Selects all elements that match a CSS selector:
 ```
 
 ## Element Attributes and Element Properties
+
+### Element Attributes:
+
+#### getAttribute(), setAttribute(), removeAttribute() and hasAttribute():
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <a id="link" href="https://example.com">Visit</a>
+
+    <input type="checkbox" checked>
+
+    <script>
+        const a = document.getElementById("link");
+
+        console.log(a.getAttribute("href"));  // "https://example.com"
+        a.setAttribute("target", "_blank");
+        console.log(a.getAttribute("target")); // "_blank"
+
+        a.removeAttribute("target");
+        console.log(a.hasAttribute("target")); // false
+        console.log(a.hasAttribute("href"));  // true
+
+
+        const chk = document.querySelector("input");
+
+        console.log(chk.hasAttribute("checked")); // true
+        chk.removeAttribute("checked");
+
+    </script>
+
+</body>
+
+</html>
+```
+
+#### attributes property:
+Returns a NamedNodeMap of all attributes on the element.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <a id="link" href="https://example.com">Visit</a>
+
+
+    <script>
+        const a = document.getElementById("link");
+
+        console.log(a.attributes); // NamedNodeMap {0: id, 1: href, id: id, href: href, length: 2}
+
+        for (let attr of a.attributes) {
+            console.log(attr.name + " = " + attr.value);
+        }
+
+        /*
+        id = link
+        href = https://example.com
+        */
+    </script>
+
+</body>
+
+</html>
+```
+
+
+
+
+### Element properties:
+
+#### id, className, classList:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+
+    <div id="box" class="text-red-500 bg-green-600 border-10 border-blue-500 p-6">Hello Worlds</div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        console.log(box.id); // box
+        console.log(box.className); // text-red-500 bg-green-600 border-10 border-blue-500 p-6
+        console.log(box.classList); 
+        // DOMTokenList(5) ['text-red-500', 'bg-green-600', 'border-10', 'border-blue-500', 'p-6' value: 'text-red-500 bg-green-600 border-10 border-blue-500 p-6']
+
+        // classList methods
+        box.classList.add("text-6xl");
+        box.classList.remove("text-red-500");
+        console.log(box.classList.contains("text-6xl")); // true
+        console.log(box.classList.contains("text-red-500")); // false
+    </script>
+
+</body>
+
+</html>
+```
+
+### tagName vs nodeName:</h3>
+Both give the tag name of an element, but nodeName works for any node, tagName only for elements node
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="myDiv">
+        Hello, <span>World!</span>
+    </div>
+
+    <script>
+        const divElement = document.getElementById("myDiv");
+
+        // tagName and nodeName of the element
+        console.log(divElement.tagName);     // DIV
+        console.log(divElement.nodeName);   // DIV
+
+        // Let's look at a text node
+        const textNode = divElement.firstChild;
+
+        console.log(textNode.nodeName);       // #text
+        console.log(textNode.tagName); // This will be undefined
+
+        // Let's check the <span> tag inside the div
+        const spanElement = divElement.querySelector("span");
+        console.log(spanElement.tagName);   // SPAN
+        console.log(spanElement.nodeName); // SPAN
+    </script>
+</body>
+
+</html>
+```
+
+### nodeType and nodeValue:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <div id="box" class="text-red-500 bg-green-600 border-10 border-blue-500 p-6"></div>
+
+    <script>
+        console.log(box.nodeType);   // 1 (Element note)
+
+        const textNode = document.createTextNode("Hello");
+        console.log(textNode.nodeType);   // 3 (text node)
+        console.log(textNode.nodeValue); // "Hello"
+    </script>
+</body>
+
+</html>
+```
+
+```
+1 → Element Node (<tag>)
+
+3 → Text Node ("Text inside tag")
+
+8 → Comment Node (<!-- comment -->)
+
+9 → Document Node (document)
+```
+
+#### Form Element Properties:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <input id="nameInput" value="Tamim">
+    <input type="checkbox" id="subscribe" checked>
+    <select id="options">
+        <option selected>One</option>
+        <option>Two</option>
+    </select>
+
+    <script>
+        const input = document.getElementById("nameInput");
+        console.log(input.value); // "Tamim"
+
+        const checkbox = document.getElementById("subscribe");
+        console.log(checkbox.checked); // true
+
+        const select = document.getElementById("options");
+        console.log(select.value); // "One"
+    </script>
+</body>
+
+</html>
+```
+
 ## CSS and Class Styling
 ## Creating, Adding and Removing Element Methods
 ## Events

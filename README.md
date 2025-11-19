@@ -124,14 +124,10 @@
       - [fetch](#fetch)
       - [async/await:](#asyncawait)
 - [Part 2: DOM](#part-2-dom)
-  - [Introduction To the DOM](#introduction-to-the-dom)
-    - [What is DOM:](#what-is-dom)
-    - [DOM Tree Structure:](#dom-tree-structure)
-    - [Parent, Child, and Sibling Relationships:](#parent-child-and-sibling-relationships)
+  - [Introduction To the DOM:](#introduction-to-the-dom)
     - [DOM Collection:](#dom-collection)
     - [Document Object:](#document-object)
     - [DOM VS BOM:](#dom-vs-bom)
-    - [Q\&A](#qa)
   - [DOM Traversing](#dom-traversing)
     - [parentNode vs parentElement:](#parentnode-vs-parentelement)
     - [childNodes vs children:](#childnodes-vs-children)
@@ -9154,15 +9150,9 @@ fetchData();
 ```
 
 # Part 2: DOM
-## Introduction To the DOM
+## Introduction To the DOM:
 
-### What is DOM:
-
-DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML as a hierarchical tree structure where each element is a node. It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.
-
-### DOM Tree Structure:
-
-The DOM represents your document as a tree structure. Every HTML element becomes a "node" in this tree.
+DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML document as a hierarchical tree structure, where each element is a node arranged in levels (root node → parent node → child node → element node → attribute node). It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.
 
 ![image](images/Example-of-DOM-Node-Tree.png) 
 
@@ -9173,23 +9163,6 @@ The DOM represents your document as a tree structure. Every HTML element becomes
 Note:
 - Node: The generic term for any item in the DOM tree
 - Element Node: A specific type of node that represents HTML tags
-
-### Parent, Child, and Sibling Relationships:
-
-| 🔢 Category  | 🏷️ Property               | 🔍 Description                                                         |
-| ----------- | ------------------------ | --------------------------------------------------------------------- |
-| **Parent**  | `parentNode`             | Returns the parent **node** of the current node                       |
-|             | `parentElement`          | Returns the parent **element**, or `null` if parent is not an element |
-| **Child**   | `children`               | Returns a list of child **elements only**                             |
-|             | `childNodes`             | Returns all child **nodes** (elements, text, comments, etc.)          |
-|             | `firstElementChild`      | Returns the **first child element**                                   |
-|             | `firstChild`             | Returns the **first child node** (could be text)                      |
-|             | `lastElementChild`       | Returns the **last child element**                                    |
-|             | `lastChild`              | Returns the **last child node** (could be text)                       |
-| **Sibling** | `nextElementSibling`     | Returns the **next sibling element**                                  |
-|             | `nextSibling`            | Returns the **next sibling node** (can be text)                       |
-|             | `previousElementSibling` | Returns the **previous sibling element**                              |
-|             | `previousSibling`        | Returns the **previous sibling node** (can be text)                   |
 
 Example 1: 
 
@@ -9216,16 +9189,16 @@ Example 1:
         const secondChild = document.getElementById('second-child');
         const lastChild = document.getElementById('last-child');
 
-        // Parent relationships
+        // Parent 
         console.log(firstChild.parentNode);        // The div element
         console.log(firstChild.parentElement);     // Also the div element
 
-        // Child relationships
+        // Child 
         console.log(parent.children);              // All child elements (gives a HTML Collections)
         console.log(parent.firstElementChild);     // First p element
         console.log(parent.lastElementChild);      // The span element
 
-        // Sibling relationships
+        // Sibling 
         console.log(firstChild.nextElementSibling);    // Second p element
         console.log(firstChild.previousElementSibling); // null (no previous sibling)
         console.log(secondChild.nextElementSibling);   // Span element
@@ -9257,12 +9230,6 @@ Example 2:
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to my DOM</h1>
-        <p>Lorem ipsum dolor sit imamet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
-            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
-            dolore vitae?</p>
-    </header>
     <main id="main-container">
         <section>
             <h1>My Awesome DOM de baba</h1>
@@ -9295,15 +9262,15 @@ Example 2:
 
     <script>
         const placesContainer = document.getElementById("places-container");
-        console.log(placesContainer);
-        console.log(placesContainer.childNodes);
-        console.log(placesContainer.firstChild);
-        console.log(placesContainer.childNodes[1]);
-        console.log(placesContainer.childNodes[3]);
-        console.log(placesContainer.childNodes[3].childNodes[5]);
+        console.log(placesContainer); // entire section element
+        console.log(placesContainer.childNodes); // NodeList of all child nodes
+        console.log(placesContainer.firstChild); // text node 
+        console.log(placesContainer.childNodes[1]); // h1 element
+        console.log(placesContainer.childNodes[3]); // ul element
+        console.log(placesContainer.childNodes[3].childNodes[5]); // li element with text "Kataban"
 
         const placesUL = document.querySelector("#places-container");
-        console.log(placesUL);
+        console.log(placesUL); // entire section element
         const newLI = document.createElement("li");
         newLI.innerText = "Brand new place to go";
         placesUL.appendChild(newLI);
@@ -9311,9 +9278,9 @@ Example 2:
         newLI2.innerText = "another dynamic li";
         placesUL.appendChild(newLI2);
 
-        console.log(placesUL);
-        console.log(placesUL.parentNode);
-        console.log(placesUL.parentNode.parentNode);
+        console.log(placesUL); // entire section element with new li elements added
+        console.log(placesUL.parentNode); // main element
+        console.log(placesUL.parentNode.parentNode); // body element
     </script>
 </body>
 
@@ -9334,16 +9301,67 @@ Common DOM Collection Types:
 | ---------------- | ---------------------------------------------------------------------------- |
 | `NodeList`       | Is a collection of nodes (can include elements, text nodes, comments, etc.). |
 | `HTMLCollection` | An HTMLCollection contains only HTML elements (not text nodes or comments).  |
-| `childNodes`     | NodeList of **all types** of child nodes                                     |
+| `childNodes`     | NodeList of all types of child nodes                                         |
 | `NamedNodeMap`   | Collection of attribute nodes of an element                                  |
 | `DOMTokenList`   | Collection of classes                                                        |
 
-![image](src="images/node-list.png)         
-![image](images/html-collection.png)
+```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Collections Example</title>
+</head>
+
+<body>
+
+    <div id="box" class="red big" data-info="sample">
+        <p>Hello World</p>
+        <!-- This is a comment -->
+        Text node here
+        <span>Span Element</span>
+    </div>
+
+    <ul class="items">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <script>
+        const box = document.getElementById("box");
+
+        // 1. NodeList (querySelectorAll returns NodeList)
+        const nodeList = document.querySelectorAll("li");
+        console.log("NodeList:", nodeList);
+
+        // 2. HTMLCollection (getElementsByClassName returns HTMLCollection)
+        const htmlCollection = document.getElementsByClassName("items");
+        console.log("HTMLCollection:", htmlCollection);
+
+        // 3. childNodes (all nodes: elements, text nodes, comments)
+        const allChildNodes = box.childNodes;
+        console.log("childNodes:", allChildNodes);
+
+        // 4. NamedNodeMap (attributes of an element)
+        const attributesMap = box.attributes;
+        console.log("NamedNodeMap (attributes):", attributesMap);
+
+        // 5. DOMTokenList (classList returns collection of class names)
+        const classListTokens = box.classList;
+        console.log("DOMTokenList (classList):", classListTokens);
+    </script>
+
+</body>
+
+</html>
+```
+
+![image](./images/Part2-DOM/Introduction-to-the-dom/DOM-Collection.png)
 
 ### Document Object:
-The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it.
+The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it:
 
 ```html
 <!DOCTYPE html>
@@ -9378,9 +9396,7 @@ The document object is your entry point to the entire DOM. It represents the who
 </html>
 ```
 
-![image](images/document object.png)
-
-
+![image](images/document-object.png)
 
 
 ### DOM VS BOM:
@@ -9419,17 +9435,11 @@ The document object is your entry point to the entire DOM. It represents the who
 
 </html>
 ```
-<img src="images/welbome-to-BOM.png">
-<img src="images/welcome-to-DOM.png">
+
+![image](images/welbome-to-BOM.png)
+
+![image](images/Part2-DOM/Introduction-to-the-dom/DOM-vs-BOM.png)
       
-
-### Q&A
-
-- **hierarchical:** Hierarchical means things are arranged like a tree, where:
-  - One item is at the top (called the root).
-  - Other items are under it, like branches and sub-branches.
-  - Each item can have children and a parent.  
-
 
 ## DOM Traversing
 DOM traversing means navigating the DOM tree from one node to another using relationships like parent, child, and sibling.

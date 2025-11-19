@@ -179,17 +179,16 @@
       - [replaceChild():](#replacechild)
       - [replaceWith():](#replacewith)
   - [Events](#events)
-    - [Event Basic:](#event-basic)
-      - [What is events:](#what-is-events)
-      - [Event Object:](#event-object)
+    - [Event Object:](#event-object)
       - [preventDefault():](#preventdefault)
-    - [Adding Events:](#adding-events)
+    - [Events Handling Methods:](#events-handling-methods)
       - [addEventListener():](#addeventlistener)
       - [removeEventListener():](#removeeventlistener)
       - [onClick vs addEventListener():](#onclick-vs-addeventlistener)
     - [Common Events:](#common-events)
     - [Event Flow:](#event-flow)
-      - [UseCapture paramenter:](#usecapture-paramenter)
+    - [Event Flow Controlling:](#event-flow-controlling)
+      - [UseCapture parameter:](#usecapture-parameter)
       - [stopPropagation():](#stoppropagation)
       - [stopImmediatePropagation():](#stopimmediatepropagation)
       - [Event Delegation:](#event-delegation)
@@ -11505,13 +11504,9 @@ Can insert nodes or strings directly.
 ```
 
 ## Events
+An event is an action or occurrence (like a click, keypress, or mouse move) that happens in the browser, and the DOM lets you detect and respond to it.
 
-### Event Basic:
-
-#### What is events:
-Events are signals that something has happened — like a button click, key press, page load, etc. You can "listen" for these events and run code in response.
-
-#### Event Object:
+### Event Object:
 Every event has an associated event object that contains information about the event.
 
 ```html
@@ -11529,7 +11524,7 @@ Every event has an associated event object that contains information about the e
 
     <script>
         document.getElementById('myBtn').addEventListener('click', function (event) {
-            console.log(event); // Event object - PointerEvent {isTrusted: true, …}
+            console.log(event); // Event object 
             console.log(event.type); // click
             console.log(event.target); // Button element - <button id="myBtn">Click Me</button>
         });
@@ -11570,7 +11565,7 @@ Stops the browser’s default behavior.
 
 
 
-### Adding Events:
+### Events Handling Methods:
 
 #### addEventListener():
 
@@ -11832,92 +11827,18 @@ Add a events on a button with onClick event handler and addEventListener() metho
     -   `blur` – Element loses focus
     -   `focusin` – Focus enters a descendant (bubbles)
     -   `focusout` – Focus leaves a descendant (bubbles)
--   **Clipboard Events**
-    -   `copy` – User copies content
-    -   `cut` – User cuts content
-    -   `paste` – User pastes content
--   **Drag and Drop Events**
-    -   `drag` – Element is being dragged
-    -   `dragstart` – Dragging starts
-    -   `dragend` – Dragging ends
-    -   `dragenter` – Dragged item enters drop target
-    -   `dragleave` – Dragged item leaves drop target
-    -   `dragover` – Dragged item is over drop target
-    -   `drop` – Dragged item is dropped
--   **Touch Events (Mobile)**
-    -   `touchstart` – Finger touches screen
-    -   `touchend` – Finger is lifted off screen
-    -   `touchmove` – Finger moves on screen
-    -   `touchcancel` – Touch is canceled
--   **Pointer Events**
-    -   `pointerdown` – Pointer is pressed
-    -   `pointerup` – Pointer is released
-    -   `pointermove` – Pointer moves
-    -   `pointerover` – Pointer enters element
-    -   `pointerout` – Pointer leaves element
-    -   `pointerenter` – Pointer enters (no bubbling)
-    -   `pointerleave` – Pointer leaves (no bubbling)
-    -   `pointercancel` – Pointer action canceled
--   **Focus Events**
-    -   `focus` – Element gets focus
-    -   `blur` – Element loses focus
-    -   `focusin` – Focus enters child (bubbles)
-    -   `focusout` – Focus leaves child (bubbles)
--   **Window Events**
-    -   `load` – Page or resource loaded
-    -   `unload` – Page is unloading (deprecated)
-    -   `beforeunload` – User tries to leave page
-    -   `resize` – Window is resized
-    -   `scroll` – User scrolls page or element
-    -   `error` – Error loading resource
-    -   `hashchange` – URL hash (#) changes
-    -   `popstate` – History changes (back/forward)
--   **Media Events**
-    -   `play` – Media playback starts
-    -   `pause` – Media is paused
-    -   `ended` – Media has finished playing
-    -   `volumechange` – Volume is changed
-    -   `timeupdate` – Current playback time updates
-    -   `durationchange` – Media duration changes
-    -   `loadeddata` – Media data loaded
-    -   `loadedmetadata` – Media metadata loaded
-    -   `seeking` – Seeking begins
-    -   `seeked` – Seeking ends
-    -   `stalled` – Media data stalled
-    -   `suspend` – Loading is suspended
-    -   `waiting` – Waiting for data
--   **Animation Events**
-    -   `animationstart` – CSS animation starts
-    -   `animationend` – CSS animation ends
-    -   `animationiteration` – Animation repeats
--   **Transition Events**
-    -   `transitionstart` – CSS transition starts
-    -   `transitionend` – CSS transition ends
-    -   `transitionrun` – Transition is running
-    -   `transitioncancel` – Transition canceled
--   **Wheel Events**
-    -   `wheel` – Mouse wheel is used
--   **Composition Events**
-    -   `compositionstart` – Text input starts (IME)
-    -   `compositionupdate` – Text input updates
-    -   `compositionend` – Text input ends
--   **Other Events**
-    -   `DOMContentLoaded` – HTML loaded and parsed
-    -   `visibilitychange` – Tab becomes hidden or visible
-    -   `online` – Browser goes online
-    -   `offline` – Browser goes offline
-    -   `message` – Message received (e.g., from iframe)
-    -   `storage` – Local/session storage changed
-    -   `animationcancel` – Animation is canceled
-    -   `toggle` – \`details\` element is toggled
 
 
 ### Event Flow:
 Event Flow describes how events travel through the DOM tree. When you click, type, or interact with a webpage, the event doesn’t go straight to the target element. It flows through three phases:
 
-1.  Capturing: Event starts from the root and goes down.
+1.  Event Capturing: Event capturing is the first phase of Event Flow, where the event travels from the document down to the target element before it reaches the target.
 2.  Target: The actual element that triggered the event.
-3.  Bubbling: Event goes back up to the root.
+3.  Event Bubbling: Event bubbling is the last phase of Event Flow, where the event travels back up (propagates) from the target element to the document after reaching the target.
+
+Note: 
+- document is the root node of the DOM tree.
+- propagates means bottom to top
 
 ```html
 <!DOCTYPE html>
@@ -11939,6 +11860,12 @@ Event Flow describes how events travel through the DOM tree. When you click, typ
         document.getElementById("button").addEventListener("click", () => {
             console.log("Button")
         })
+
+        /*
+        Button
+        Inner Div
+        Outer Div
+        */
     </script>
 </body>
 
@@ -11950,12 +11877,14 @@ When You click the button, the event flow would be:
 
 1.  Capturing: document → outer div → inner div → button
 2.  Target: button (the actual target)
-3.  Bubbling: button → inner div → outer div → document
+3.  Bubbling: button → inner div → outer div  → document 
+### Event Flow Controlling: 
 
-#### UseCapture paramenter:
-In the event flow phase, the useCapture parameter controls when the event handler runs:
-- If useCapture is set to true, the event listener executes during the capturing phase 
-- If useCapture is set to false (default), the listener runs during the bubbling phase 
+#### UseCapture parameter:
+The useCapture parameter controls when the event handler runs:
+- If useCapture is set to true, the event listener runs during the event capturing phase 
+- If useCapture is set to false (default), the event listener runs during the event bubbling phase 
+
 
 ```html
 <!DOCTYPE html>
@@ -11970,7 +11899,7 @@ In the event flow phase, the useCapture parameter controls when the event handle
     <script>
         document.getElementById("outer").addEventListener("click", () => {
             console.log("Outer Div")
-        }, true)
+        }, true) // or { capture: true }
         document.getElementById("inner").addEventListener("click", () => {
             console.log("Inner Div")
         })
@@ -11987,6 +11916,7 @@ In the event flow phase, the useCapture parameter controls when the event handle
 
 </html>
 ```
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -12003,7 +11933,7 @@ In the event flow phase, the useCapture parameter controls when the event handle
         })
         document.getElementById("inner").addEventListener("click", () => {
             console.log("Inner Div")
-        }, true)
+        }, { capture: true })
         document.getElementById("button").addEventListener("click", () => {
             console.log("Button")
         })
@@ -12017,9 +11947,10 @@ In the event flow phase, the useCapture parameter controls when the event handle
 
 </html>
 ```
+
 
 #### stopPropagation():
-event.stopPropagation() method used to stop the event from bubbling up.
+stopPropagation() method used to stop the event from bubbling up.
 
 ```html
 <!DOCTYPE html>
@@ -12054,7 +11985,7 @@ event.stopPropagation() method used to stop the event from bubbling up.
 ```
 
 #### stopImmediatePropagation():
-Does everything stopPropagation() does, plus It also stops other listeners on the same element from executing.
+same like stopPropagation(), plus It also stops other listeners on the same element from executing.
 
 with stopPropagation()
 
@@ -12141,7 +12072,8 @@ With stopImmediatePropagation():
 
 
 #### Event Delegation:
-Event Delegation is a technique where you attach a single event listener to a parent element instead of attaching listeners to each child element individually. This takes advantage of event bubbling, where an event on a child element "bubbles up" to its parent.
+Event Delegation is a technique where you attach a single event listener to a parent element instead of attaching listeners to each child element individually. It works because of event bubbling
+
 
 Without Delegation:
 
@@ -12164,7 +12096,7 @@ Without Delegation:
     </ul>
 
     <script>
-        const items = document.querySelectorAll("li");
+        const items = document.querySelectorAll("li");→ HTML
         // items.forEach(item => {
         //     item.addEventListener("click", function () {
         //         alert("You clicked " + item.textContent);
@@ -12209,7 +12141,7 @@ With Delegation:
         const list = document.getElementById("list");
 
         list.addEventListener("click", (e) => {
-            console.log(e.target.tagName) // LI
+            // console.log(e.target.tagName) // LI
             if (e.target.tagName === "LI") {
                 alert("You Clicked " + event.target.innerText);
             }
@@ -12221,9 +12153,15 @@ With Delegation:
 </html>
 ```
 
-- Capturing Phase : document → html → body → ul → li (clicked)
-- Target Phase : li (Item 2)
-- Bubbling Phase : li → ul → body → html → document
+Note: Here we set the event listener on the parent (ul) tag, so all its children are covered by the event listener range. Whenever we click any element within this range, we can get the clicked element using the e.target property.
+
+Now, suppose we click the second <li>: so the event flow is: 
+
+- Capturing Phase: document → html → body → ul (event set here)
+- Target Phase: li (Item 2 — event reaches target)
+- Bubbling Phase: li (Item 2) → ul (event listener runs here) → body → html → document
+
+Here, we check e.target.tagName === "LI" because the event runs for every child under the <ul>. If we have other elements inside the <ul> (like <span> or <p>), the event would still trigger when clicking them, but we only want to respond to <li> elements.
 
 
 Witout Delegation (Won’t work for new li that added dynamically):
@@ -12308,8 +12246,6 @@ With Delegations:
 
 </html>
 ```
-
-
 
 
 ### Event Examples:

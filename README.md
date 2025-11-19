@@ -148,6 +148,7 @@
     - [querySelectorAll():](#queryselectorall)
     - [Examples:](#examples)
   - [Content Manipulation](#content-manipulation)
+    - [innerHTML vs outerHTML vs textContent vs innerText:](#innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
   - [Element Attributes and Element Properties](#element-attributes-and-element-properties)
   - [CSS and Class Styling](#css-and-class-styling)
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
@@ -10219,6 +10220,47 @@ Selects all elements that match a CSS selector:
 ![image](images/add-remove-toggle.png)
 
 ## Content Manipulation
+
+### innerHTML vs outerHTML vs textContent vs innerText:
+
+| Property      | Returns...                                 | Includes Tags | Includes Hidden Text  | Editable |
+| ------------- | ------------------------------------------ | ------------- | --------------------- | -------- |
+| `innerHTML`   | HTML content **inside** the element        | ✅ Yes         | ✅ Yes                 | ✅ Yes    |
+| `outerHTML`   | Full HTML **including the element itself** | ✅ Yes         | ✅ Yes                 | ✅ Yes    |
+| `textContent` | All text (even hidden) without HTML        | ❌ No          | ✅ Yes                 | ✅ Yes    |
+| `innerText`   | Only **visible** text (like in UI)         | ❌ No          | ❌ No (ignores hidden) | ✅ Yes    |
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversing</title>
+</head>
+
+<body>
+
+    <div id="demo">
+        Hello <span style="display:none">Hidden</span> World
+    </div>
+
+    <script>
+        const el = document.getElementById("demo");
+
+        console.log(el.innerHTML);   // "Hello <span style="display:none">Hidden</span> World"
+        console.log(el.outerHTML); // "<div id="demo">Hello <span style="display:none">Hidden</span> World</div>"
+        console.log(el.textContent); // "Hello Hidden World"
+        console.log(el.innerText);   // "Hello World"
+    </script>
+
+</body>
+
+</html>
+```
+
 ## Element Attributes and Element Properties
 ## CSS and Class Styling
 ## Creating, Adding and Removing Element Methods

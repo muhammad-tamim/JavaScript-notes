@@ -166,6 +166,23 @@
       - [className Property:](#classname-property)
       - [classList methods:](#classlist-methods)
   - [Creating, Adding and Removing Element Methods](#creating-adding-and-removing-element-methods)
+    - [Creating Elements:](#creating-elements)
+      - [createElement():](#createelement)
+      - [createTextNode():](#createtextnode)
+      - [createDocumentFragment():](#createdocumentfragment)
+      - [cloneNode():](#clonenode)
+    - [Adding Elements:](#adding-elements)
+      - [appendChild():](#appendchild)
+      - [insertBefore():](#insertbefore)
+      - [insertAdjacentElement():](#insertadjacentelement)
+      - [insertAdjacentHTML():](#insertadjacenthtml)
+      - [insertAdjacentText():](#insertadjacenttext)
+      - [before(), parpend(), append(), after():](#before-parpend-append-after)
+    - [Removing Elements:](#removing-elements)
+      - [removeChild():](#removechild)
+      - [remove():](#remove)
+      - [replaceChild():](#replacechild)
+      - [replaceWith():](#replacewith)
   - [Events](#events)
 - [Part 3: OOP](#part-3-oop)
   - [Static Keyword:](#static-keyword)
@@ -10768,6 +10785,700 @@ classList gives you a powerful interface to manage individual classes.
 ```
 
 ## Creating, Adding and Removing Element Methods
+
+### Creating Elements:
+
+#### createElement():
+
+-   Creates a new element node.
+-   Does not automatically add it to the DOM — you must insert it manually.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <script>
+        const div = document.createElement("div");
+        div.innerText = "Hello World";
+        // div.textContent = "Hello WOrld"
+        div.className = "bg-blue-500 text-white p-4 rounded-lg shadow-lg";
+        document.body.appendChild(div); // Adds to the page
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+    <script>
+        // where to add
+        const placesList = document.getElementById("places-list");
+        // what to add
+        const li = document.createElement("li");
+        li.innerText = "pahertoli";
+        // add the child
+        placesList.appendChild(li);
+    </script>
+</body>
+
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to my DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, natus! Dolorem voluptate provident rem
+            eligendi eaque, odit fugiat sed tenetur corporis vel, laudantium veniam accusantium sunt adipisci blanditiis
+            dolore vitae?</p>
+    </header>
+    <main id="main-container">
+        <section>
+            <h1>My Awesome DOM de baba</h1>
+            <ul>
+                <li>Jalali Set</li>
+                <li>Shafayet</li>
+                <li>bonobash</li>
+                <li>DOM de re baba</li>
+            </ul>
+        </section>
+        <section class="fruits-container">
+            <h1 id="fruits-title" class="some-class random-class blue-bg">Fruits I like</h1>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Carrot</li>
+            </ul>
+        </section>
+        <section id="places-container" class="large-text">
+            <h1 id="places-title">Places I like to visit</h1>
+            <ul id="places-list">
+                <li class="important-places">Soondarban</li>
+                <li class="important-places">bandorban</li>
+                <li class="important-places">Kataban</li>
+                <li class="other-place">shalbon</li>
+            </ul>
+        </section>
+    </main>
+
+
+
+    <script>
+        const mainContainer = document.getElementById("main-container");
+
+        const section = document.createElement("section");
+        const h1 = document.createElement("h1");
+        h1.innerText = "Favorite Food list";
+        section.appendChild(h1);
+
+        const ul = document.createElement("ul");
+        section.appendChild(ul);
+
+        const li1 = document.createElement("li");
+        li1.innerText = "biriyani";
+        ul.appendChild(li1);
+
+        const li2 = document.createElement("li");
+        li2.innerText = "kaschi";
+        ul.appendChild(li2);
+
+        const li3 = document.createElement("li");
+        li3.innerText = "morogPolaw";
+        ul.appendChild(li3);
+
+        mainContainer.appendChild(section);
+        console.log(document.getElementsByTagName("section.innerHTML"));
+
+        // Set Inner HTML Directly
+        const sectionDress = document.createElement("section");
+        sectionDress.innerHTML = `
+        <h1>My Dress Section </h2>
+            <ul>
+                <li>T-shirt</li>    
+                <li>longi</li>    
+                <li>sendel genji</li>    
+            </ul>
+        `
+        mainContainer.appendChild(sectionDress)
+    </script>
+</body>
+
+</html>
+```
+
+#### createTextNode():
+- Creates a text node (just text, no HTML).
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <script>
+        const p = document.createElement("p");
+        const text = document.createTextNode("This is a text node");
+        p.appendChild(text);
+        document.body.appendChild(p);
+    </script>
+</body>
+
+</html>
+```
+
+#### createDocumentFragment():
+- A lightweight container for temporary DOM storage.
+- Useful for inserting many nodes at once.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul id="myList"></ul>
+
+    <script>
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 1; i <= 3; i++) {
+            let li = document.createElement("li");
+            li.innerText = `Item ${i}`;
+            fragment.appendChild(li);
+        }
+
+        document.getElementById("myList").appendChild(fragment);
+
+    </script>
+</body>
+
+</html>
+```
+
+#### cloneNode():
+-   Creates a copy of an element.
+-   cloneNode(true) → deep clone (includes children).
+-   cloneNode(false) → shallow clone (element only).
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="original">
+        <h2>Hello</h2>
+        <p>This is a paragraph.</p>
+    </div>
+
+    <script>
+        const original = document.getElementById("original");
+
+        // Shallow Clone (no children)
+        const shallowClone = original.cloneNode(false);
+        document.body.appendChild(shallowClone); // nothing show in the page
+        console.log("Shallow Clone:", shallowClone.outerHTML);
+        /*
+        Shallow Clone: <div id="original"></div>
+        */
+
+        // Deep Clone (includes children)
+        const deepClone = original.cloneNode(true);
+        document.body.appendChild(deepClone);
+        console.log("Deep Clone:", deepClone.outerHTML);
+        /*
+        Deep Clone: <div id="original">
+            <h2>Hello</h2>
+            <p>This is a paragraph.</p>
+        </div>
+        */
+    </script>
+</body>
+
+</html>
+```
+
+
+### Adding Elements:
+
+#### appendChild():
+- Adds a node as the last child of a parent.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+    </ul>
+
+    <script>
+        const li = document.createElement("li");
+        li.innerText = "Hi";
+        document.querySelector("ul").appendChild(li);
+    </script>
+</body>
+
+</html>
+```
+
+#### insertBefore():
+- Inserts a node before a reference node.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+    </ul>
+
+    <script>
+        const ul = document.querySelector("ul");
+        const li = document.createElement("li");
+        li.innerText = "Hi";
+        ul.insertBefore(li, ul.firstChild);
+    </script>
+</body>
+
+</html>
+```
+
+#### insertAdjacentElement():
+-   Inserts an element relative to another element.
+-   Position Options:
+    -   "beforebegin" → before element itself
+    -   "afterbegin" → inside element, before first child
+    -   "beforeend" → inside element, after last child
+    -   "afterend" → after element itself
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="target">
+        <p>Target Element</p>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+
+        // beforebegin
+        const beforeBeginEl = document.createElement("div");
+        beforeBeginEl.textContent = '1. beforebegin';
+        target.insertAdjacentElement("beforebegin", beforeBeginEl);
+
+        // afterbegin
+        const afterBeginEl = document.createElement("div");
+        afterBeginEl.textContent = '2. afterbegin';
+        target.insertAdjacentElement("afterbegin", afterBeginEl);
+
+        // beforeend
+        const beforeEndEl = document.createElement("div");
+        beforeEndEl.textContent = '3. beforeend';
+        target.insertAdjacentElement("beforeend", beforeEndEl);
+
+        // afterend
+        const afterEndEl = document.createElement("div");
+        afterEndEl.textContent = '4. afterend';
+        target.insertAdjacentElement("afterend", afterEndEl);
+    </script>
+</body>
+
+</html>
+```
+
+#### insertAdjacentHTML():
+-   Same as insertAdjacentElement(), but here you can inset HTML directly at a position:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="target">
+        <p>Target Element</p>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+
+        // beforebegin
+        target.insertAdjacentHTML("beforebegin", "<div>1. beforebegin</div>");
+
+        // afterbegin
+        target.insertAdjacentHTML("afterbegin", "<div>2. afterbegin</div>");
+
+        // beforeend
+        target.insertAdjacentHTML("beforeend", "<div>3. beforeend</div>");
+
+        // afterend
+        target.insertAdjacentHTML("afterend", "<div>4. afterend</div>");
+    </script>
+</body>
+
+</html>
+```
+
+#### insertAdjacentText():
+-   Same as insertAdjacentElement() and insertAdjacentHTML(), but here you just inset plain text at a position:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="target">
+        <p>Target Element</p>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+
+        // beforebegin
+        target.insertAdjacentText("beforebegin", "1. beforebegin");
+
+        // afterbegin
+        target.insertAdjacentText("afterbegin", "2. afterbegin");
+
+        // beforeend
+        target.insertAdjacentText("beforeend", "3. beforeend");
+
+        // afterend
+        target.insertAdjacentText("afterend", "4. afterend");
+    </script>
+</body>
+
+</html>
+```
+![image](images/image11-insertAdjancentText().png)
+
+#### before(), parpend(), append(), after():
+Can insert nodes or strings directly.
+
+-   before() → before element itself
+-   prepend() → inside element, before first child
+-   append() → inside element, after last child
+-   after() → after element itself
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+</head>
+
+<body>
+    <ul id="ul">
+        <li>Item</li>
+    </ul>
+    <br><br>
+    <br><br>
+    <ol id="ol">
+        <li>Item</li>
+    </ol>
+
+    <script>
+        const UlList = document.querySelector("ul");
+
+        // create string directly
+        UlList.before("Before Item");
+        UlList.prepend("First Item ");
+        UlList.append("Last Item");
+        UlList.after("After Item");
+
+
+        const olList = document.querySelector("ol");
+
+        // Create elements directly
+        const beforeItem = document.createElement("li");
+        beforeItem.textContent = "Before Item";
+        olList.before(beforeItem);
+
+        const firstItem = document.createElement("li");
+        firstItem.textContent = "First Item";
+        olList.prepend(firstItem);
+
+        const lastItem = document.createElement("li");
+        lastItem.textContent = "Last Item";
+        olList.append(lastItem);
+
+        const afterItem = document.createElement("li");
+        afterItem.textContent = "After Item";
+        olList.after(afterItem);
+
+
+    </script>
+</body>
+
+</html>
+```
+![image](images/before()-after().png)
+
+
+
+
+### Removing Elements:
+
+#### removeChild():
+-   Removes a child node from its parent.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+        <li>World</li>
+    </ul>
+
+    <script>
+        const list = document.querySelector("ul");
+        const lastItem = list.lastElementChild;
+        list.removeChild(lastItem);
+    </script>
+</body>
+
+</html>
+```
+
+#### remove():   
+- Removes the element directly.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+        <li>World</li>
+    </ul>
+
+    <script>
+        document.querySelector("ul").remove();
+    </script>
+</body>
+
+</html>
+```
+
+#### replaceChild():
+-  Replaces one child with another.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <ul>
+        <li>Hello</li>
+        <li>World</li>
+    </ul>
+
+    <script>
+        const list = document.querySelector("ul");
+        const oldItem = list.lastElementChild;
+        const newItem = document.createElement("li");
+        newItem.textContent = "New Item";
+        list.replaceChild(newItem, oldItem);
+    </script>
+</body>
+
+</html>
+```
+#### replaceWith():
+- Replaces an element directly.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Properties</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <p>Hello World</p>
+
+    <script>
+        const p = document.querySelector("p");
+        const h = document.createElement("h1");
+        h.innerText = "Hello World 2";
+
+        p.replaceWith(h);
+    </script>
+</body>
+
+</html>
+```
+
 ## Events
 
 # Part 3: OOP

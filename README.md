@@ -5962,56 +5962,79 @@ function multiply(a, b) {
 const multiplyArrow = (a, b) => a * b;
 ```
 
-- **Normal functions:** this depends on how the function is called.
-- **Arrow functions:** this depends on where the function is defined (lexical scope - can access variables from outer to inner scope, but not from inner to outer scope).
+- **Normal functions:** Have their own this and its depend on the function call.
+- **Arrow functions:** Does NOT have its own this. Inherits this from the surrounding scope.
+
+Normal function:
 
 ```js
 const person = {
-    name: "Alice",
-    greetNormal: function () {
-        setTimeout(function () {
-            console.log("Normal: " + this.name);
-        }, 1000);
-    },
-    greetArrow: function () {
-        setTimeout(() => {
-            console.log("Arrow: " + this.name);
-        }, 1000);
+  name: "Tamim",
+
+  showInfo() {
+    console.log("Outer this:", this.name); // Tamim
+
+    function inner() {
+      console.log("Inner this:", this.name); 
+      // ❌ undefined (because this = global)
     }
+
+    inner();
+  }
 };
 
-
-person.greetNormal(); // undefined
-person.greetArrow();  // Alice
+person.showInfo();
 ```
-here, 
-- Normal function inside setTimeout → this is timer/global, not person.
-- Arrow function inside setTimeout → inherits this from outer function (person) → "Alice"
-
+Arrow function:
 
 ```js
 const person = {
-    name: "Alice",
+  name: "Tamim",
+  age: 20,
 
-    // Normal function
-    greetNormal: function () {
-        console.log("Normal: " + this.name);
-    },
+  showInfo() {
+    console.log("Outer this:", this.name); // Tamim
 
-    // Arrow function
-    greetArrow: () => {
-        console.log("Arrow: " + this.name);
-    }
+    const inner = () => {
+      console.log("Inner this:", this.name); // Also Tamim
+    };
+
+    inner();
+  }
 };
 
-person.greetNormal(); // Alice
-person.greetArrow();  // undefined
+person.showInfo();
 ```
-here, 
-- Normal function → this is from person.
-- Arrow function → inherits this from outer (global) scope → "undefined"
 
-Note: Arrow functions do not have their own this; they inherit it from the surrounding context.
+- Normal Function: have prototype property, can be used as a constructor.
+- Arrow Function: do not have prototype property, cannot be used as a constructor.
+
+Normal Function:
+```js
+function Person(name) {
+  this.name = name;
+}
+
+console.log(Person.prototype);
+// ✔ { constructor: Person }
+
+const p = new Person("Tamim");
+console.log(p.name);  // ✔ Works
+```
+
+Arrow Function:
+
+```js
+const Person = (name) => {
+  this.name = name;
+};
+
+console.log(Person.prototype); 
+// ❌ undefined → NO prototype
+
+const p = new Person("Tamim");  
+// ❌ Error: Person is not a constructor
+```
 
 - Normal function: arguments is available.
 - Arrow function: arguments is not available.

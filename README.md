@@ -119,10 +119,12 @@
     - [Web API:](#web-api)
     - [Event loop:](#event-loop)
     - [setTimeOut() and setInterval()](#settimeout-and-setinterval)
-    - [JSON, fetch, async/await](#json-fetch-asyncawait)
+    - [JSON, promise(fetch, async/await):](#json-promisefetch-asyncawait)
       - [JSON](#json)
-      - [fetch](#fetch)
-      - [async/await:](#asyncawait)
+      - [Primise:](#primise)
+        - [Chaining Promises:](#chaining-promises)
+        - [async/await:](#asyncawait)
+        - [fetch](#fetch)
 - [Part 2: DOM](#part-2-dom)
   - [Introduction To the DOM](#introduction-to-the-dom)
     - [DOM Collection:](#dom-collection)
@@ -8904,7 +8906,7 @@ const id = setInterval(() => {
 }, 1000);
 ```
 
-### JSON, fetch, async/await
+### JSON, promise(fetch, async/await):
 
 #### JSON
 JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially between in server and clients. JSON uses JavaScript object syntax but here keys are always in double quotes ("").
@@ -8933,23 +8935,140 @@ console.log(typeof obj); // object
 ```
 
 
-#### fetch
-The fetch() method is used to make HTTP requests (GET, POST, PUT, PATCH, DELETE etc.). When we call fetch(), the browser’s Web API immediately returns a Promise.
+#### Primise: 
 
 A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation.
 
 Promise States:
-- Pending - operation initial stage
-- Resolved(fulfilled) - if the operation is successful
+- Pending - operation initial stage, where the asynchronous operation is still running.
+- Resolved(fulfilled) - The operation completed successfully, and the Promise is now resolved with a value.
 - Rejected - if the operation fails
 
+```js
+const myPromise = new Promise((resolve, reject) => {
+  const success = true;
+  if (success) {
+    resolve('Operation was successful!');
+  } else {
+    reject('Something went wrong.');
+  }
+});
+```
 
-we can use below methods to work with the result of a promise:
+Handling Promises with .then(), .catch(), and .finally():
 
-.then() - Called when the promise is resolved (fulfilled)
-.catch() - Called when the promise is rejected (error)
+.then() - .then() is used to handle a fulfilled Promise and access its result.
+.catch() - .catch() is used to handle a rejected Promise and catch any errors that may occur.
 .finally() - must Called, no matter whatever the promise was fulfilled or rejected 
 
+```js
+const myPromise = new Promise((resolve, reject) => {
+  const success = true;
+
+  if (success) {
+    resolve('Operation was successful!');
+  } else {
+    reject('Something went wrong.');
+  }
+});
+
+myPromise
+  .then(result => {
+    console.log(result); // This will run if the Promise is fulfilled
+  })
+  .catch(error => {
+    console.error(error); // This will run if the Promise is rejected
+  })
+  .finally(() => {
+    console.log('The promise has completed'); // This will run when the Promise is settled
+  });
+```
+
+##### Chaining Promises:
+One of the great features of Promises is that they allow you to chain multiple asynchronous operations together. When you chain Promises, each .then() block waits for the previous one to complete before it runs.
+
+```js
+const { setTimeout: delay } = require('node:timers/promises');
+
+const promise = delay(1000).then(() => 'First task completed');
+
+promise
+  .then(result => {
+    console.log(result); // 'First task completed'
+    return delay(1000).then(() => 'Second task completed'); // Return a second Promise
+  })
+  .then(result => {
+    console.log(result); // 'Second task completed'
+  })
+  .catch(error => {
+    console.error(error); // If any Promise is rejected, catch the error
+  });
+```
+
+##### async/await:
+One of the best ways to work with Promises in modern JavaScript is using async/await. This allows you to write asynchronous code that looks synchronous, making it much easier to read and maintain.
+
+- async - Used to declare an async function that returns a Promise that resolves when the function is finished running.
+- await - Used inside an async function to pause execution until a Promise resolves.If the Promise is rejected, it throws an error that you can catch with try...catch.
+  - await fetch() --> fetch(url) returns a Promise --> await pauses the async function until that fetch Promise resolves --> Once resolved, the variable response becomes a Response object
+  - await response.json(); --> response.json() also returns a Promise --> await waits until that Promise resolves --> Once resolved, data becomes a JavaScript object.
+
+Note:
+
+Normally, try...catch only catches synchronous errors. But when you use await, JavaScript temporarily pauses the function — so the asynchronous error behaves like a synchronous one. That’s why try...catch works perfectly with await even though the operation is asynchronous.
+
+```js
+// conceptual code
+async function performTasks() {
+  try {
+    const result1 = await promise1;
+    console.log(result1); // 'First task completed'
+
+    const result2 = await promise2;
+    console.log(result2); // 'Second task completed'
+  } catch (error) {
+    console.error(error); // Catches any rejection or error
+  }
+}
+
+performTasks();
+
+```
+
+```js
+// Without arrow function
+async function fetchData() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+```
+
+```js
+// With arrow function
+const fetchData = async () => {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const data = await response.json();
+        console.log(data);
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+```
+
+##### fetch
+The fetch() method is used to make HTTP requests (GET, POST, PUT, PATCH, DELETE etc.). When we call fetch(), the browser’s Web API immediately returns a Promise.
 
 ```js
 fetch("https://jsonplaceholder.typicode.com/posts/1")
@@ -9125,50 +9244,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
 
 ![](images/Asynchronous-and-Synchronous-JavaScript-images/fetch-ouput-3.png)
 
-#### async/await:
 
-async and await are modern JavaScript keywords that let you write asynchronous code in a way that looks like synchronous code. They make working with Promises cleaner and easier to read.
-
-- async - Used to declare an async function that returns a Promise that resolves when the function is finished running.
-- await - Used inside an async function to pause execution until a Promise resolves.If the Promise is rejected, it throws an error that you can catch with try...catch.
-  - await fetch() --> fetch(url) returns a Promise --> await pauses the async function until that fetch Promise resolves --> Once resolved, the variable response becomes a Response object
-  - await response.json(); --> response.json() also returns a Promise --> await waits until that Promise resolves --> Once resolved, data becomes a JavaScript object.
-
-Note:
-
-Normally, try...catch only catches synchronous errors. But when you use await, JavaScript temporarily pauses the function — so the asynchronous error behaves like a synchronous one. That’s why try...catch works perfectly with await even though the operation is asynchronous.
-
-```js
-// Without arrow function
-async function fetchData() {
-    try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
-        const data = await response.json();
-        console.log(data);
-    }
-    catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-fetchData();
-```
-
-```js
-// With arrow function
-const fetchData = async () => {
-    try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
-        const data = await response.json();
-        console.log(data);
-    }
-    catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-fetchData();
-```
 
 # Part 2: DOM
 ## Introduction To the DOM

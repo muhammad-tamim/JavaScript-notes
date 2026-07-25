@@ -1,296 +1,296 @@
 <h1 align="center">JavaScript Notes</h1>
 
 
-- [Part 1: JS Fundamental](#part-1-js-fundamental)
-  - [An Introduction to Javascript](#an-introduction-to-javascript)
-    - [What is JavaScript:](#what-is-javascript)
-    - [JavaScript History:](#javascript-history)
-    - [Why Did JavaScript Need a Standard Version:](#why-did-javascript-need-a-standard-version)
-    - [JavaScript Engines:](#javascript-engines)
-    - [Hello World](#hello-world)
-    - [Why JavaScript is one of the most hated language:](#why-javascript-is-one-of-the-most-hated-language)
-  - [Variables](#variables)
-    - [Difference between var, let and const:](#difference-between-var-let-and-const)
-    - [Hoisting](#hoisting)
-    - [Scope](#scope)
-    - [Scope Chain](#scope-chain)
-    - [Variable naming conventions:](#variable-naming-conventions)
-    - [How to write a long variable name](#how-to-write-a-long-variable-name)
-  - [Data Types](#data-types)
-    - [7 Primitive Data Types:](#7-primitive-data-types)
-    - [1 Non-Primitive Data Types:](#1-non-primitive-data-types)
-    - [Immutable and Mutable:](#immutable-and-mutable)
-    - [AutoBoxing](#autoboxing)
-      - [Autoboxing with string:](#autoboxing-with-string)
-      - [Autoboxing with Numbers:](#autoboxing-with-numbers)
-    - [Type Conversion:](#type-conversion)
-  - [Operator](#operator)
-    - [Arithmetic Operators (+, -, \*, /, %, \*\*):](#arithmetic-operators-------)
-    - [Assignment Operators (=, +=, -=, \*=, /=):](#assignment-operators------)
-    - [Increment / Decrement Operators (--, ++):](#increment--decrement-operators----)
-    - [Comparison Operator (\>, \<, \>=, \<=, ==, ===, !=, !==):](#comparison-operator--------)
-      - [String comparison:](#string-comparison)
-        - [How to convert letter to unicode or Ascii values:](#how-to-convert-letter-to-unicode-or-ascii-values)
-        - [How to convert Ascii values to letter:](#how-to-convert-ascii-values-to-letter)
-      - [Difference between == and ===:](#difference-between--and-)
-    - [Logical Operators (\&\&, ||, ! ,, !!):](#logical-operators-----)
-    - [Conditional Operators (if, else, else if, ? :, switch case):](#conditional-operators-if-else-else-if---switch-case)
-      - [Truthy and Falsy values:](#truthy-and-falsy-values)
-    - [Others Operators](#others-operators)
-      - [typeof operator:](#typeof-operator)
-      - [rest and spread operator:](#rest-and-spread-operator)
-        - [Rest Operator](#rest-operator)
-        - [spread operator:](#spread-operator)
-      - [Nullish Coalescing operator (??):](#nullish-coalescing-operator-)
-      - [|| vs ??:](#-vs-)
-    - [Operator Precedence:](#operator-precedence)
-  - [Loops](#loops)
-    - [for loop:](#for-loop)
-    - [while loop:](#while-loop)
-    - [do while loop:](#do-while-loop)
-    - [for..of loop (for iterables: string, array, set, map):](#forof-loop-for-iterables-string-array-set-map)
-      - [Iterables (string, array, set, map):](#iterables-string-array-set-map)
-        - [behind the scene of for..of:](#behind-the-scene-of-forof)
-          - [On array:](#on-array)
-          - [On String:](#on-string)
-          - [On Set:](#on-set)
-          - [On Map:](#on-map)
-        - [behind the scene of spread operator:](#behind-the-scene-of-spread-operator)
-        - [Behind the scene of destructuring:](#behind-the-scene-of-destructuring)
-    - [for...in loop (for objects):](#forin-loop-for-objects)
-      - [Enumeration:](#enumeration)
-        - [Behind the scenes of for...in loop:](#behind-the-scenes-of-forin-loop)
-      - [Why for...in is not recommended for arrays:](#why-forin-is-not-recommended-for-arrays)
-  - [function](#function)
-    - [What is the difference between return and no return in a function?](#what-is-the-difference-between-return-and-no-return-in-a-function)
-    - [Default Parameter:](#default-parameter)
-    - [CallBack Function](#callback-function)
-      - [callback hell:](#callback-hell)
-    - [Arrow Function:](#arrow-function)
-    - [Difference between arrow function and normal function](#difference-between-arrow-function-and-normal-function)
-    - [Anonymous function](#anonymous-function)
-      - [Common Use Cases for Anonymous Functions:](#common-use-cases-for-anonymous-functions)
-    - [Recursion](#recursion)
-      - [Call Stack:](#call-stack)
-    - [Closure](#closure)
-    - [Difference between callback function, recursion and closure](#difference-between-callback-function-recursion-and-closure)
-    - [Pure and Impure functions:](#pure-and-impure-functions)
-  - [string](#string)
-    - [Strings are immutable:](#strings-are-immutable)
-    - [Quotes:](#quotes)
-    - [String Methods:](#string-methods)
-    - [Common Property / Methods for string / array:](#common-property--methods-for-string--array)
-  - [Objects](#objects)
-    - [Dot Notation VS Bracket Notation:](#dot-notation-vs-bracket-notation)
-    - [Objects References and cloning and marging:](#objects-references-and-cloning-and-marging)
-      - [Cloning and merging:](#cloning-and-merging)
-    - [Object.keys(), Object.Values() and Object.entries():](#objectkeys-objectvalues-and-objectentries)
-    - [Object.freeze() vs Object.seal():](#objectfreeze-vs-objectseal)
-    - [Check Property existence:](#check-property-existence)
-    - [Create an Object Method:](#create-an-object-method)
-    - [Optional Chaining (?)](#optional-chaining-)
-    - [Date Object:](#date-object)
-    - [Math Object:](#math-object)
-  - [array](#array)
-    - [Array Methods:](#array-methods)
-      - [Adding / Removing Elements:](#adding--removing-elements)
-      - [Iteration / Transformation (Higher-order functions):](#iteration--transformation-higher-order-functions)
-      - [Others:](#others)
-    - [Common Property / Methods for string / array:](#common-property--methods-for-string--array-1)
-  - [Destructuring](#destructuring)
-  - [Error Handling](#error-handling)
-    - [Common JS Errors:](#common-js-errors)
-      - [ReferenceError](#referenceerror)
-      - [TypeError](#typeerror)
-  - [Js Modules: Import and export](#js-modules-import-and-export)
-    - [Export:](#export)
-    - [Import:](#import)
-  - [Local Storage and Session Storage](#local-storage-and-session-storage)
-    - [local storage methods:](#local-storage-methods)
-    - [Update the Local Storage key and values:](#update-the-local-storage-key-and-values)
-  - [Asynchronous and Synchronous JavaScript](#asynchronous-and-synchronous-javascript)
-    - [Web API:](#web-api)
-    - [Event loop:](#event-loop)
-    - [setTimeOut() and setInterval()](#settimeout-and-setinterval)
-    - [JSON, promise(fetch, async/await):](#json-promisefetch-asyncawait)
-      - [JSON](#json)
-      - [Primise:](#primise)
-        - [Chaining Promises:](#chaining-promises)
-        - [async/await:](#asyncawait)
-        - [fetch](#fetch)
-  - [RegEx](#regex)
-    - [Flags:](#flags)
-    - [Methods:](#methods)
-    - [Character Classes \[ \]:](#character-classes--)
-    - [Metacharacters:](#metacharacters)
-    - [Assertions:](#assertions)
-    - [Groups:](#groups)
-    - [Quantifiers:](#quantifiers)
-- [Part 2: DOM](#part-2-dom)
-  - [Introduction To the DOM](#introduction-to-the-dom)
-    - [DOM Collection:](#dom-collection)
-    - [Document Object:](#document-object)
-    - [DOM VS BOM:](#dom-vs-bom)
-    - [DOM Traversing:](#dom-traversing)
-      - [parentNode vs parentElement:](#parentnode-vs-parentelement)
-      - [childNodes vs children:](#childnodes-vs-children)
-      - [firstChild vs firstElementChild:](#firstchild-vs-firstelementchild)
-      - [lastChild vs lastElementChild:](#lastchild-vs-lastelementchild)
-      - [nextSibling vs nextElementSibling:](#nextsibling-vs-nextelementsibling)
-      - [previousSibling vs previousElementSibling:](#previoussibling-vs-previouselementsibling)
-    - [DOM Manipulation:](#dom-manipulation)
-      - [innerHTML vs outerHTML vs textContent vs innerText:](#innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
-  - [Elements Selecting Methods](#elements-selecting-methods)
-    - [getElementById():](#getelementbyid)
-    - [getElementsByClassName():](#getelementsbyclassname)
-    - [getElementsByTagName():](#getelementsbytagname)
-    - [getElementsByName():](#getelementsbyname)
-    - [querySelector():](#queryselector)
-    - [querySelectorAll():](#queryselectorall)
-    - [Examples:](#examples)
-  - [DOM Properties and Methods:](#dom-properties-and-methods)
-    - [Methods:](#methods-1)
-      - [getAttribute(), setAttribute(), removeAttribute() and hasAttribute():](#getattribute-setattribute-removeattribute-and-hasattribute)
-    - [properties:](#properties)
-      - [id, className, classList:](#id-classname-classlist)
-      - [tagName vs nodeName:](#tagname-vs-nodename)
-      - [nodeType and nodeValue:](#nodetype-and-nodevalue)
-      - [Form Element Properties:](#form-element-properties)
-  - [CSS and Class Styling](#css-and-class-styling)
-    - [CSS Styling:](#css-styling)
-      - [Style Property:](#style-property)
-      - [cssText property:](#csstext-property)
-    - [Class Styling:](#class-styling)
-      - [className Property:](#classname-property)
-      - [classList methods:](#classlist-methods)
-  - [Element Creating, Adding and Removing  Methods](#element-creating-adding-and-removing--methods)
-    - [Elements Creating Methods:](#elements-creating-methods)
-      - [createElement():](#createelement)
-      - [createTextNode():](#createtextnode)
-      - [createDocumentFragment():](#createdocumentfragment)
-      - [cloneNode():](#clonenode)
-    - [Element Adding Methods:](#element-adding-methods)
-      - [appendChild():](#appendchild)
-      - [insertBefore():](#insertbefore)
-      - [insertAdjacentElement():](#insertadjacentelement)
-      - [insertAdjacentHTML():](#insertadjacenthtml)
-      - [insertAdjacentText():](#insertadjacenttext)
-      - [before(), parpend(), append(), after():](#before-parpend-append-after)
-    - [Elements Removing Methods:](#elements-removing-methods)
-      - [removeChild():](#removechild)
-      - [remove():](#remove)
-      - [replaceChild():](#replacechild)
-      - [replaceWith():](#replacewith)
-  - [Events](#events)
-    - [Event Object:](#event-object)
-      - [preventDefault():](#preventdefault)
-    - [Events Handling Methods:](#events-handling-methods)
-      - [addEventListener():](#addeventlistener)
-      - [removeEventListener():](#removeeventlistener)
-      - [onClick vs addEventListener():](#onclick-vs-addeventlistener)
-    - [Common Events:](#common-events)
-    - [Event Flow:](#event-flow)
-    - [Event Flow Controlling:](#event-flow-controlling)
-      - [UseCapture parameter:](#usecapture-parameter)
-      - [stopPropagation():](#stoppropagation)
-      - [stopImmediatePropagation():](#stopimmediatepropagation)
-      - [Event Delegation:](#event-delegation)
-    - [Event Examples:](#event-examples)
-- [Part 3: OOP](#part-3-oop)
-  - [Static Keyword:](#static-keyword)
-  - [The Four Pillars of OOP:](#the-four-pillars-of-oop)
-    - [Encapsulation:](#encapsulation)
-    - [Abstraction:](#abstraction)
-      - [Difference Between Encapsulation and Abstraction:](#difference-between-encapsulation-and-abstraction)
-    - [Inheritance:](#inheritance)
-    - [Polymorphism:](#polymorphism)
-      - [Using Methods Overriding:](#using-methods-overriding)
-      - [Using Duck Typing:](#using-duck-typing)
-- [Part 4: Problem Solving:](#part-4-problem-solving)
-  - [Variables, Data Types and Operators:](#variables-data-types-and-operators)
-      - [Say Hello to JS:](#say-hello-to-js)
-      - [Basic Data Types:](#basic-data-types)
-      - [Simple Calculator:](#simple-calculator)
-      - [Difference:](#difference)
-      - [Area of a Circle:](#area-of-a-circle)
-      - [Summation from 1 to N:](#summation-from-1-to-n)
-      - [Two Numbers:](#two-numbers)
-      - [Welcome for you with conditions:](#welcome-for-you-with-conditions)
-      - [Multiples:](#multiples)
-      - [Max and Min:](#max-and-min)
-      - [The Brothers:](#the-brothers)
-      - [Capital or Small Or Digit:](#capital-or-small-or-digit)
-      - [Char:](#char)
-      - [Calculator:](#calculator)
-      - [Digits Summation:](#digits-summation)
-      - [First Digit:](#first-digit)
-      - [The Last 2 Digits:](#the-last-2-digits)
-      - [Coordinated of a Point:](#coordinated-of-a-point)
-      - [Age in Days:](#age-in-days)
-      - [Interval:](#interval)
-      - [Two Intervals:](#two-intervals)
-      - [Sort Numbers:](#sort-numbers)
-      - [Float or Int:](#float-or-int)
-      - [Mathematical Expression:](#mathematical-expression)
-      - [Comparison:](#comparison)
-      - [Hard Compare:](#hard-compare)
-      - [Winter Sale:](#winter-sale)
-      - [Memo and Momo:](#memo-and-momo)
-      - [Next Alphabet:](#next-alphabet)
-      - [Ali Baba and Puzzles:](#ali-baba-and-puzzles)
-      - [Interval Sweep:](#interval-sweep)
-      - [Katryoshka:](#katryoshka)
-      - [Lucky Numbers:](#lucky-numbers)
-  - [Loops](#loops-1)
-      - [1 to N:](#1-to-n)
-      - [Even Numbers:](#even-numbers)
-      - [Even, Odd, Positive and Negative:](#even-odd-positive-and-negative)
-      - [Fixed Password:](#fixed-password)
-      - [Max:](#max)
-      - [Multiplication table:](#multiplication-table)
-      - [Factorial:](#factorial)
-      - [One Prime:](#one-prime)
-      - [Primes from 1 to n:](#primes-from-1-to-n)
-      - [Palindrome:](#palindrome)
-      - [Divisors:](#divisors)
-      - [GCD and LCM:](#gcd-and-lcm)
-      - [Lucky Numbers:](#lucky-numbers-1)
-      - [Numbers Histogram:](#numbers-histogram)
-      - [Shape 1:](#shape-1)
-      - [Shape2:](#shape2)
-      - [Shape 3:](#shape-3)
-      - [Digits:](#digits)
-      - [Sequence of Numbers and Sum:](#sequence-of-numbers-and-sum)
-      - [Sum of Consecutive Odd Numbers:](#sum-of-consecutive-odd-numbers)
-      - [Some Sums:](#some-sums)
-      - [PUM:](#pum)
-      - [Convert To Decimal 2:](#convert-to-decimal-2)
-      - [Easy Fibonacci:](#easy-fibonacci)
-      - [Three Numbers:](#three-numbers)
-  - [Arrays:](#arrays)
-      - [Summation:](#summation)
-      - [Searching:](#searching)
-      - [Replacement:](#replacement)
-      - [Positions in array:](#positions-in-array)
-      - [Lowest Number:](#lowest-number)
-      - [Reversing:](#reversing)
-      - [Palindrome Array:](#palindrome-array)
-      - [Sorting:](#sorting)
-      - [Lucky Array:](#lucky-array)
-      - [Max Subarray:](#max-subarray)
-      - [Replace MinMax:](#replace-minmax)
-      - [Check Code:](#check-code)
-      - [Fibonacci:](#fibonacci)
-      - [Minimize Number:](#minimize-number)
+- [1. Part 1: JS Fundamental](#1-part-1-js-fundamental)
+  - [1.1. An Introduction to Javascript](#11-an-introduction-to-javascript)
+    - [1.1.1. What is JavaScript:](#111-what-is-javascript)
+    - [1.1.2. JavaScript History:](#112-javascript-history)
+    - [1.1.3. Why Did JavaScript Need a Standard Version:](#113-why-did-javascript-need-a-standard-version)
+    - [1.1.4. JavaScript Engines:](#114-javascript-engines)
+    - [1.1.5. Hello World](#115-hello-world)
+    - [1.1.6. Why JavaScript is one of the most hated language:](#116-why-javascript-is-one-of-the-most-hated-language)
+  - [1.2. Variables](#12-variables)
+    - [1.2.1. Difference between var, let and const:](#121-difference-between-var-let-and-const)
+    - [1.2.2. Hoisting](#122-hoisting)
+    - [1.2.3. Scope](#123-scope)
+    - [1.2.4. Scope Chain](#124-scope-chain)
+    - [1.2.5. Variable naming conventions:](#125-variable-naming-conventions)
+    - [1.2.6. How to write a long variable name](#126-how-to-write-a-long-variable-name)
+  - [1.3. Data Types](#13-data-types)
+    - [1.3.1. 7 Primitive Data Types:](#131-7-primitive-data-types)
+    - [1.3.2. 1 Non-Primitive Data Types:](#132-1-non-primitive-data-types)
+    - [1.3.3. Immutable and Mutable:](#133-immutable-and-mutable)
+    - [1.3.4. AutoBoxing](#134-autoboxing)
+      - [1.3.4.1. Autoboxing with string:](#1341-autoboxing-with-string)
+      - [1.3.4.2. Autoboxing with Numbers:](#1342-autoboxing-with-numbers)
+    - [1.3.5. Type Conversion:](#135-type-conversion)
+  - [1.4. Operator](#14-operator)
+    - [1.4.1. Arithmetic Operators (+, -, \*, /, %, \*\*):](#141-arithmetic-operators-------)
+    - [1.4.2. Assignment Operators (=, +=, -=, \*=, /=):](#142-assignment-operators------)
+    - [1.4.3. Increment / Decrement Operators (--, ++):](#143-increment--decrement-operators----)
+    - [1.4.4. Comparison Operator (\>, \<, \>=, \<=, ==, ===, !=, !==):](#144-comparison-operator--------)
+      - [1.4.4.1. String comparison:](#1441-string-comparison)
+        - [1.4.4.1.1. How to convert letter to unicode or Ascii values:](#14411-how-to-convert-letter-to-unicode-or-ascii-values)
+        - [1.4.4.1.2. How to convert Ascii values to letter:](#14412-how-to-convert-ascii-values-to-letter)
+      - [1.4.4.2. Difference between == and ===:](#1442-difference-between--and-)
+    - [1.4.5. Logical Operators (\&\&, ||, ! ,, !!):](#145-logical-operators-----)
+    - [1.4.6. Conditional Operators (if, else, else if, ? :, switch case):](#146-conditional-operators-if-else-else-if---switch-case)
+      - [1.4.6.1. Truthy and Falsy values:](#1461-truthy-and-falsy-values)
+    - [1.4.7. Others Operators](#147-others-operators)
+      - [1.4.7.1. typeof operator:](#1471-typeof-operator)
+      - [1.4.7.2. rest and spread operator:](#1472-rest-and-spread-operator)
+        - [1.4.7.2.1. Rest Operator](#14721-rest-operator)
+        - [1.4.7.2.2. spread operator:](#14722-spread-operator)
+      - [1.4.7.3. Nullish Coalescing operator (??):](#1473-nullish-coalescing-operator-)
+      - [1.4.7.4. || vs ??:](#1474--vs-)
+    - [1.4.8. Operator Precedence:](#148-operator-precedence)
+  - [1.5. Loops](#15-loops)
+    - [1.5.1. for loop:](#151-for-loop)
+    - [1.5.2. while loop:](#152-while-loop)
+    - [1.5.3. do while loop:](#153-do-while-loop)
+    - [1.5.4. for..of loop (for iterables: string, array, set, map):](#154-forof-loop-for-iterables-string-array-set-map)
+      - [1.5.4.1. Iterables (string, array, set, map):](#1541-iterables-string-array-set-map)
+        - [1.5.4.1.1. behind the scene of for..of:](#15411-behind-the-scene-of-forof)
+          - [1.5.4.1.1.1. On array:](#154111-on-array)
+          - [1.5.4.1.1.2. On String:](#154112-on-string)
+          - [1.5.4.1.1.3. On Set:](#154113-on-set)
+          - [1.5.4.1.1.4. On Map:](#154114-on-map)
+        - [1.5.4.1.2. behind the scene of spread operator:](#15412-behind-the-scene-of-spread-operator)
+        - [1.5.4.1.3. Behind the scene of destructuring:](#15413-behind-the-scene-of-destructuring)
+    - [1.5.5. for...in loop (for objects):](#155-forin-loop-for-objects)
+      - [1.5.5.1. Enumeration:](#1551-enumeration)
+        - [1.5.5.1.1. Behind the scenes of for...in loop:](#15511-behind-the-scenes-of-forin-loop)
+      - [1.5.5.2. Why for...in is not recommended for arrays:](#1552-why-forin-is-not-recommended-for-arrays)
+  - [1.6. function](#16-function)
+    - [1.6.1. What is the difference between return and no return in a function?](#161-what-is-the-difference-between-return-and-no-return-in-a-function)
+    - [1.6.2. Default Parameter:](#162-default-parameter)
+    - [1.6.3. CallBack Function](#163-callback-function)
+      - [1.6.3.1. callback hell:](#1631-callback-hell)
+    - [1.6.4. Arrow Function:](#164-arrow-function)
+    - [1.6.5. Difference between arrow function and normal function](#165-difference-between-arrow-function-and-normal-function)
+    - [1.6.6. Anonymous function](#166-anonymous-function)
+      - [1.6.6.1. Common Use Cases for Anonymous Functions:](#1661-common-use-cases-for-anonymous-functions)
+    - [1.6.7. Recursion](#167-recursion)
+      - [1.6.7.1. Call Stack:](#1671-call-stack)
+    - [1.6.8. Closure](#168-closure)
+    - [1.6.9. Difference between callback function, recursion and closure](#169-difference-between-callback-function-recursion-and-closure)
+    - [1.6.10. Pure and Impure functions:](#1610-pure-and-impure-functions)
+  - [1.7. string](#17-string)
+    - [1.7.1. Strings are immutable:](#171-strings-are-immutable)
+    - [1.7.2. Quotes:](#172-quotes)
+    - [1.7.3. String Methods:](#173-string-methods)
+    - [1.7.4. Common Property / Methods for string / array:](#174-common-property--methods-for-string--array)
+  - [1.8. Objects](#18-objects)
+    - [1.8.1. Dot Notation VS Bracket Notation:](#181-dot-notation-vs-bracket-notation)
+    - [1.8.2. Objects References and cloning and marging:](#182-objects-references-and-cloning-and-marging)
+      - [1.8.2.1. Cloning and merging:](#1821-cloning-and-merging)
+    - [1.8.3. Object.keys(), Object.Values() and Object.entries():](#183-objectkeys-objectvalues-and-objectentries)
+    - [1.8.4. Object.freeze() vs Object.seal():](#184-objectfreeze-vs-objectseal)
+    - [1.8.5. Check Property existence:](#185-check-property-existence)
+    - [1.8.6. Create an Object Method:](#186-create-an-object-method)
+    - [1.8.7. Optional Chaining (?)](#187-optional-chaining-)
+    - [1.8.8. Date Object:](#188-date-object)
+    - [1.8.9. Math Object:](#189-math-object)
+  - [1.9. array](#19-array)
+    - [1.9.1. Array Methods:](#191-array-methods)
+      - [1.9.1.1. Adding / Removing Elements:](#1911-adding--removing-elements)
+      - [1.9.1.2. Iteration / Transformation (Higher-order functions):](#1912-iteration--transformation-higher-order-functions)
+      - [1.9.1.3. Others:](#1913-others)
+    - [1.9.2. Common Property / Methods for string / array:](#192-common-property--methods-for-string--array)
+  - [1.10. Destructuring](#110-destructuring)
+  - [1.11. Error Handling](#111-error-handling)
+    - [1.11.1. Common JS Errors:](#1111-common-js-errors)
+      - [1.11.1.1. ReferenceError](#11111-referenceerror)
+      - [1.11.1.2. TypeError](#11112-typeerror)
+  - [1.12. Js Modules: Import and export](#112-js-modules-import-and-export)
+    - [1.12.1. Export:](#1121-export)
+    - [1.12.2. Import:](#1122-import)
+  - [1.13. Local Storage and Session Storage](#113-local-storage-and-session-storage)
+    - [1.13.1. local storage methods:](#1131-local-storage-methods)
+    - [1.13.2. Update the Local Storage key and values:](#1132-update-the-local-storage-key-and-values)
+  - [1.14. Asynchronous and Synchronous JavaScript](#114-asynchronous-and-synchronous-javascript)
+    - [1.14.1. Web API:](#1141-web-api)
+    - [1.14.2. Event loop:](#1142-event-loop)
+    - [1.14.3. setTimeOut() and setInterval()](#1143-settimeout-and-setinterval)
+    - [1.14.4. JSON, promise(fetch, async/await):](#1144-json-promisefetch-asyncawait)
+      - [1.14.4.1. JSON](#11441-json)
+      - [1.14.4.2. Primise:](#11442-primise)
+        - [1.14.4.2.1. Chaining Promises:](#114421-chaining-promises)
+        - [1.14.4.2.2. async/await:](#114422-asyncawait)
+        - [1.14.4.2.3. fetch](#114423-fetch)
+  - [1.15. RegEx](#115-regex)
+    - [1.15.1. Flags:](#1151-flags)
+    - [1.15.2. Methods:](#1152-methods)
+    - [1.15.3. Character Classes \[ \]:](#1153-character-classes--)
+    - [1.15.4. Metacharacters:](#1154-metacharacters)
+    - [1.15.5. Assertions:](#1155-assertions)
+    - [1.15.6. Groups:](#1156-groups)
+    - [1.15.7. Quantifiers:](#1157-quantifiers)
+- [2. Part 2: DOM](#2-part-2-dom)
+  - [2.1. Introduction To the DOM](#21-introduction-to-the-dom)
+    - [2.1.1. DOM Collection:](#211-dom-collection)
+    - [2.1.2. Document Object:](#212-document-object)
+    - [2.1.3. DOM VS BOM:](#213-dom-vs-bom)
+    - [2.1.4. DOM Traversing:](#214-dom-traversing)
+      - [2.1.4.1. parentNode vs parentElement:](#2141-parentnode-vs-parentelement)
+      - [2.1.4.2. childNodes vs children:](#2142-childnodes-vs-children)
+      - [2.1.4.3. firstChild vs firstElementChild:](#2143-firstchild-vs-firstelementchild)
+      - [2.1.4.4. lastChild vs lastElementChild:](#2144-lastchild-vs-lastelementchild)
+      - [2.1.4.5. nextSibling vs nextElementSibling:](#2145-nextsibling-vs-nextelementsibling)
+      - [2.1.4.6. previousSibling vs previousElementSibling:](#2146-previoussibling-vs-previouselementsibling)
+    - [2.1.5. DOM Manipulation:](#215-dom-manipulation)
+      - [2.1.5.1. innerHTML vs outerHTML vs textContent vs innerText:](#2151-innerhtml-vs-outerhtml-vs-textcontent-vs-innertext)
+  - [2.2. Elements Selecting Methods](#22-elements-selecting-methods)
+    - [2.2.1. getElementById():](#221-getelementbyid)
+    - [2.2.2. getElementsByClassName():](#222-getelementsbyclassname)
+    - [2.2.3. getElementsByTagName():](#223-getelementsbytagname)
+    - [2.2.4. getElementsByName():](#224-getelementsbyname)
+    - [2.2.5. querySelector():](#225-queryselector)
+    - [2.2.6. querySelectorAll():](#226-queryselectorall)
+    - [2.2.7. Examples:](#227-examples)
+  - [2.3. DOM Properties and Methods:](#23-dom-properties-and-methods)
+    - [2.3.1. Methods:](#231-methods)
+      - [2.3.1.1. getAttribute(), setAttribute(), removeAttribute() and hasAttribute():](#2311-getattribute-setattribute-removeattribute-and-hasattribute)
+    - [2.3.2. properties:](#232-properties)
+      - [2.3.2.1. id, className, classList:](#2321-id-classname-classlist)
+      - [2.3.2.2. tagName vs nodeName:](#2322-tagname-vs-nodename)
+      - [2.3.2.3. nodeType and nodeValue:](#2323-nodetype-and-nodevalue)
+      - [2.3.2.4. Form Element Properties:](#2324-form-element-properties)
+  - [2.4. CSS and Class Styling](#24-css-and-class-styling)
+    - [2.4.1. CSS Styling:](#241-css-styling)
+      - [2.4.1.1. Style Property:](#2411-style-property)
+      - [2.4.1.2. cssText property:](#2412-csstext-property)
+    - [2.4.2. Class Styling:](#242-class-styling)
+      - [2.4.2.1. className Property:](#2421-classname-property)
+      - [2.4.2.2. classList methods:](#2422-classlist-methods)
+  - [2.5. Element Creating, Adding and Removing  Methods](#25-element-creating-adding-and-removing--methods)
+    - [2.5.1. Elements Creating Methods:](#251-elements-creating-methods)
+      - [2.5.1.1. createElement():](#2511-createelement)
+      - [2.5.1.2. createTextNode():](#2512-createtextnode)
+      - [2.5.1.3. createDocumentFragment():](#2513-createdocumentfragment)
+      - [2.5.1.4. cloneNode():](#2514-clonenode)
+    - [2.5.2. Element Adding Methods:](#252-element-adding-methods)
+      - [2.5.2.1. appendChild():](#2521-appendchild)
+      - [2.5.2.2. insertBefore():](#2522-insertbefore)
+      - [2.5.2.3. insertAdjacentElement():](#2523-insertadjacentelement)
+      - [2.5.2.4. insertAdjacentHTML():](#2524-insertadjacenthtml)
+      - [2.5.2.5. insertAdjacentText():](#2525-insertadjacenttext)
+      - [2.5.2.6. before(), parpend(), append(), after():](#2526-before-parpend-append-after)
+    - [2.5.3. Elements Removing Methods:](#253-elements-removing-methods)
+      - [2.5.3.1. removeChild():](#2531-removechild)
+      - [2.5.3.2. remove():](#2532-remove)
+      - [2.5.3.3. replaceChild():](#2533-replacechild)
+      - [2.5.3.4. replaceWith():](#2534-replacewith)
+  - [2.6. Events](#26-events)
+    - [2.6.1. Event Object:](#261-event-object)
+      - [2.6.1.1. preventDefault():](#2611-preventdefault)
+    - [2.6.2. Events Handling Methods:](#262-events-handling-methods)
+      - [2.6.2.1. addEventListener():](#2621-addeventlistener)
+      - [2.6.2.2. removeEventListener():](#2622-removeeventlistener)
+      - [2.6.2.3. onClick vs addEventListener():](#2623-onclick-vs-addeventlistener)
+    - [2.6.3. Common Events:](#263-common-events)
+    - [2.6.4. Event Flow:](#264-event-flow)
+    - [2.6.5. Event Flow Controlling:](#265-event-flow-controlling)
+      - [2.6.5.1. UseCapture parameter:](#2651-usecapture-parameter)
+      - [2.6.5.2. stopPropagation():](#2652-stoppropagation)
+      - [2.6.5.3. stopImmediatePropagation():](#2653-stopimmediatepropagation)
+      - [2.6.5.4. Event Delegation:](#2654-event-delegation)
+    - [2.6.6. Event Examples:](#266-event-examples)
+- [3. Part 3: OOP](#3-part-3-oop)
+  - [3.1. Static Keyword:](#31-static-keyword)
+  - [3.2. The Four Pillars of OOP:](#32-the-four-pillars-of-oop)
+    - [3.2.1. Encapsulation:](#321-encapsulation)
+    - [3.2.2. Abstraction:](#322-abstraction)
+      - [3.2.2.1. Difference Between Encapsulation and Abstraction:](#3221-difference-between-encapsulation-and-abstraction)
+    - [3.2.3. Inheritance:](#323-inheritance)
+    - [3.2.4. Polymorphism:](#324-polymorphism)
+      - [3.2.4.1. Using Methods Overriding:](#3241-using-methods-overriding)
+      - [3.2.4.2. Using Duck Typing:](#3242-using-duck-typing)
+- [4. Part 4: Problem Solving:](#4-part-4-problem-solving)
+  - [4.1. Variables, Data Types and Operators:](#41-variables-data-types-and-operators)
+      - [4.1.0.1. Say Hello to JS:](#4101-say-hello-to-js)
+      - [4.1.0.2. Basic Data Types:](#4102-basic-data-types)
+      - [4.1.0.3. Simple Calculator:](#4103-simple-calculator)
+      - [4.1.0.4. Difference:](#4104-difference)
+      - [4.1.0.5. Area of a Circle:](#4105-area-of-a-circle)
+      - [4.1.0.6. Summation from 1 to N:](#4106-summation-from-1-to-n)
+      - [4.1.0.7. Two Numbers:](#4107-two-numbers)
+      - [4.1.0.8. Welcome for you with conditions:](#4108-welcome-for-you-with-conditions)
+      - [4.1.0.9. Multiples:](#4109-multiples)
+      - [4.1.0.10. Max and Min:](#41010-max-and-min)
+      - [4.1.0.11. The Brothers:](#41011-the-brothers)
+      - [4.1.0.12. Capital or Small Or Digit:](#41012-capital-or-small-or-digit)
+      - [4.1.0.13. Char:](#41013-char)
+      - [4.1.0.14. Calculator:](#41014-calculator)
+      - [4.1.0.15. Digits Summation:](#41015-digits-summation)
+      - [4.1.0.16. First Digit:](#41016-first-digit)
+      - [4.1.0.17. The Last 2 Digits:](#41017-the-last-2-digits)
+      - [4.1.0.18. Coordinated of a Point:](#41018-coordinated-of-a-point)
+      - [4.1.0.19. Age in Days:](#41019-age-in-days)
+      - [4.1.0.20. Interval:](#41020-interval)
+      - [4.1.0.21. Two Intervals:](#41021-two-intervals)
+      - [4.1.0.22. Sort Numbers:](#41022-sort-numbers)
+      - [4.1.0.23. Float or Int:](#41023-float-or-int)
+      - [4.1.0.24. Mathematical Expression:](#41024-mathematical-expression)
+      - [4.1.0.25. Comparison:](#41025-comparison)
+      - [4.1.0.26. Hard Compare:](#41026-hard-compare)
+      - [4.1.0.27. Winter Sale:](#41027-winter-sale)
+      - [4.1.0.28. Memo and Momo:](#41028-memo-and-momo)
+      - [4.1.0.29. Next Alphabet:](#41029-next-alphabet)
+      - [4.1.0.30. Ali Baba and Puzzles:](#41030-ali-baba-and-puzzles)
+      - [4.1.0.31. Interval Sweep:](#41031-interval-sweep)
+      - [4.1.0.32. Katryoshka:](#41032-katryoshka)
+      - [4.1.0.33. Lucky Numbers:](#41033-lucky-numbers)
+  - [4.2. Loops](#42-loops)
+      - [4.2.0.1. 1 to N:](#4201-1-to-n)
+      - [4.2.0.2. Even Numbers:](#4202-even-numbers)
+      - [4.2.0.3. Even, Odd, Positive and Negative:](#4203-even-odd-positive-and-negative)
+      - [4.2.0.4. Fixed Password:](#4204-fixed-password)
+      - [4.2.0.5. Max:](#4205-max)
+      - [4.2.0.6. Multiplication table:](#4206-multiplication-table)
+      - [4.2.0.7. Factorial:](#4207-factorial)
+      - [4.2.0.8. One Prime:](#4208-one-prime)
+      - [4.2.0.9. Primes from 1 to n:](#4209-primes-from-1-to-n)
+      - [4.2.0.10. Palindrome:](#42010-palindrome)
+      - [4.2.0.11. Divisors:](#42011-divisors)
+      - [4.2.0.12. GCD and LCM:](#42012-gcd-and-lcm)
+      - [4.2.0.13. Lucky Numbers:](#42013-lucky-numbers)
+      - [4.2.0.14. Numbers Histogram:](#42014-numbers-histogram)
+      - [4.2.0.15. Shape 1:](#42015-shape-1)
+      - [4.2.0.16. Shape2:](#42016-shape2)
+      - [4.2.0.17. Shape 3:](#42017-shape-3)
+      - [4.2.0.18. Digits:](#42018-digits)
+      - [4.2.0.19. Sequence of Numbers and Sum:](#42019-sequence-of-numbers-and-sum)
+      - [4.2.0.20. Sum of Consecutive Odd Numbers:](#42020-sum-of-consecutive-odd-numbers)
+      - [4.2.0.21. Some Sums:](#42021-some-sums)
+      - [4.2.0.22. PUM:](#42022-pum)
+      - [4.2.0.23. Convert To Decimal 2:](#42023-convert-to-decimal-2)
+      - [4.2.0.24. Easy Fibonacci:](#42024-easy-fibonacci)
+      - [4.2.0.25. Three Numbers:](#42025-three-numbers)
+  - [4.3. Arrays:](#43-arrays)
+      - [4.3.0.1. Summation:](#4301-summation)
+      - [4.3.0.2. Searching:](#4302-searching)
+      - [4.3.0.3. Replacement:](#4303-replacement)
+      - [4.3.0.4. Positions in array:](#4304-positions-in-array)
+      - [4.3.0.5. Lowest Number:](#4305-lowest-number)
+      - [4.3.0.6. Reversing:](#4306-reversing)
+      - [4.3.0.7. Palindrome Array:](#4307-palindrome-array)
+      - [4.3.0.8. Sorting:](#4308-sorting)
+      - [4.3.0.9. Lucky Array:](#4309-lucky-array)
+      - [4.3.0.10. Max Subarray:](#43010-max-subarray)
+      - [4.3.0.11. Replace MinMax:](#43011-replace-minmax)
+      - [4.3.0.12. Check Code:](#43012-check-code)
+      - [4.3.0.13. Fibonacci:](#43013-fibonacci)
+      - [4.3.0.14. Minimize Number:](#43014-minimize-number)
 
 ---
 
 
-# Part 1: JS Fundamental
+# 1. Part 1: JS Fundamental
 
-## An Introduction to Javascript
+## 1.1. An Introduction to Javascript
 
-### What is JavaScript:
+### 1.1.1. What is JavaScript:
 
 JavaScript is a: 
 - scripting language 
@@ -321,7 +321,7 @@ JavaScript is a:
   - Because it supports core OOP concepts such as:
     - Encapsulation, Inheritance, Polymorphism, Abstraction
 
-### JavaScript History:
+### 1.1.2. JavaScript History:
 In 1995, Brendan Eich, a developer at Netscape Communications Corporation, created JavaScript. Eich initially joined Netscape with the intention of implementing the Scheme programming language in the browser. However, Netscape’s management wanted the Scheme language syntax resemble and look similar to Java. As a result, Eich decided to designed a new language that combined:
 
 - The functionality of Scheme programming language
@@ -346,7 +346,7 @@ He completed the first version of the language called Mocha in just 10 days in M
     So, ECMAScript is the official name of the JavaScript standard and ES1, ES2, ES6 etc. are its version numbers.
 
 
-### Why Did JavaScript Need a Standard Version:
+### 1.1.3. Why Did JavaScript Need a Standard Version:
 When JavaScript was first created in 1995 by Netscape, it was only implemented in their browser Netscape Navigator. Shortly, Microsoft launched its own browser, Internet Explorer, and included its own version of JavaScript called JScript. As a result, two distinct versions of JavaScript were emerged in the market:
 
 - JavaScript in Netscape Navigator
@@ -356,7 +356,7 @@ so, Different browsers had slightly different implementations of JavaScript. Som
 
 To solve this problem, Netscape submitted JavaScript to ECMA International in June 1997, so they could create a standardized specification of the language. This standard was named ECMAScript.
 
-### JavaScript Engines:
+### 1.1.4. JavaScript Engines:
 A JavaScript engine is a program built into web browsers (and platforms like Node.js) that is responsible for executing JavaScript code.
 
 It takes the JavaScript you write and processes it in the following steps:
@@ -411,7 +411,7 @@ Ast format:
    - JIT Compilation (if applicable)
      - JIT(Just In Time) Compilation is a process where the JS engine detects frequently executed “hot” code and convert it into machine code using JIT compiler. On future executions, the engine can skip parsing, compiling to bytecode, and interpreting, and instead run the precompiled hot code directly for better performance.
 
-### Hello World
+### 1.1.5. Hello World
 
 ```console.log("Hello World");```
 
@@ -434,7 +434,7 @@ The statement sends to the JavaScript Engine
   - Find the largest number in an array
 - Method: when a function is stored as a property of an object, it’s called a method.
 
-### Why JavaScript is one of the most hated language:
+### 1.1.6. Why JavaScript is one of the most hated language:
 
 1. Weird Type Conversions: 
 
@@ -539,7 +539,7 @@ const sayHi = function() {}
 const sayHi = () => {}
 ```
 
-## Variables
+## 1.2. Variables
 A variable is a “named storage” for data. We can declare variables to store data by using keywords:
 
 Note: A keyword is a reserved word that has a special meaning in the language. 
@@ -564,7 +564,7 @@ message = 'Hello Universe'
 ```
 **Note:** initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.
 
-### Difference between var, let and const:
+### 1.2.1. Difference between var, let and const:
 
 <table>
 <tr>
@@ -729,10 +729,10 @@ console.log(window.a); // undefined
 </tr>
 </table>
 
-### Hoisting
+### 1.2.2. Hoisting
 Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their scope during parsing and compiling the AST to Bytecode phase, before the code is executed by interpreter or JIT compiler(if applicable).
 
-### Scope
+### 1.2.3. Scope
 Scope determines where variables can be accessed in your code. There are 4 types of scopes in js:
 
 1. Block Scope:  
@@ -805,7 +805,7 @@ outerFunction();
 console.log(innerVar1); // ReferenceError: innerVar1 is not defined
 ```
 
-### Scope Chain
+### 1.2.4. Scope Chain
 When you try to access a variable:
 - JavaScript first looks in the current scope
 - If not found, it goes to the outer scope
@@ -837,13 +837,13 @@ console.log(num);
 */
 ```
 
-### Variable naming conventions:
+### 1.2.5. Variable naming conventions:
 - Names must start with a letter, underscore _, or dollar sign $
 - Names can contain letters, digits, _, and $ — but no spaces or symbols
 - Names are Case-sensitive
 - Names Cannot contain JavaScript reserved keywords
 
-### How to write a long variable name
+### 1.2.6. How to write a long variable name
 - Snake Case = `let my_current_home_address = "Barisal";`
 - Camel Case (recommended) = `let myCurrentHomeAddress = "Barisal";`
 - Pascal Case = `let MyCurrentHomeAddress = "Barisal";`
@@ -851,7 +851,7 @@ console.log(num);
 
 
 
-## Data Types
+## 1.3. Data Types
 
 A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)
 
@@ -868,7 +868,7 @@ There are 8 data types in JavaScript:
 
 ![image](./images/data-types/data_types_in_javascript.webp)
 
-### 7 Primitive Data Types:
+### 1.3.1. 7 Primitive Data Types:
 
 1. Number 
 Represents both integers and floating-point numbers. 
@@ -980,7 +980,7 @@ let b = Symbol(name);
 console.log(a === b); // false
 ```
 
-### 1 Non-Primitive Data Types:
+### 1.3.2. 1 Non-Primitive Data Types:
 
 8. Object  
    
@@ -990,7 +990,7 @@ In JavaScript, any data that is not a primitive type is considered an object typ
 - array
 - function 
   
-### Immutable and Mutable: 
+### 1.3.3. Immutable and Mutable: 
 
 - Immutable (primitive data types) → cannot be changed after creation (you can only replace it with a new value)
 
@@ -1012,11 +1012,11 @@ arr[0] = 10;       // changed
 console.log(arr); // [10, 2, 3]
 ```
 
-### AutoBoxing
+### 1.3.4. AutoBoxing
 
 Autoboxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so you can use object methods and properties on them. JavaScript automatically wraps the primitive value in its object temporarily, whenever you access a property or method. After the operation, the object is discarded.
 
-#### Autoboxing with string:
+#### 1.3.4.1. Autoboxing with string:
 
 ```js
 let str = "hello";
@@ -1032,7 +1032,7 @@ temp.length;               // 5
 temp.toUpperCase();        // "HELLO"
 ```
 
-#### Autoboxing with Numbers:
+#### 1.3.4.2. Autoboxing with Numbers:
 
 ```js
 let num = 42;
@@ -1048,7 +1048,7 @@ tempNum.toString();            // "42"
 tempNum.toFixed(2);            // "42.00"
 ```
 
-### Type Conversion:
+### 1.3.5. Type Conversion:
 
 With global functions:
 
@@ -1112,11 +1112,11 @@ console.log(12.3456789.toPrecision(5)); // "12.346"
 
 ```
 
-## Operator
+## 1.4. Operator
 
 An Operator is a special symbol that tells the program to performs a specific operation on one or more values.
 
-### Arithmetic Operators (+, -, *, /, %, **):
+### 1.4.1. Arithmetic Operators (+, -, *, /, %, **):
 
 ```js
 console.log(2 + 3); // 5
@@ -1164,7 +1164,7 @@ console.log(6 - '2'); // 4, converts '2' to a number
 console.log('6' / '2'); // 3, converts both operands to numbers
 ```
 
-### Assignment Operators (=, +=, -=, *=, /=):
+### 1.4.2. Assignment Operators (=, +=, -=, *=, /=):
 
 ```js
 let x = 10;
@@ -1174,7 +1174,7 @@ x *= 3;  // x = x * 3
 x /= 2;  // x = x / 2
 ```
 
-### Increment / Decrement Operators (--, ++):
+### 1.4.3. Increment / Decrement Operators (--, ++):
 
 **Pre Increment / Decrement:**
 
@@ -1198,7 +1198,7 @@ Note:
 - Pre-increment (++i): First increments the value of i, then assigns it.
 - Post-increment (i++): First assigns the value of i, then increments it.
 
-### Comparison Operator (>, <, >=, <=, ==, ===, !=, !==):
+### 1.4.4. Comparison Operator (>, <, >=, <=, ==, ===, !=, !==):
 
 ```js
 console.log(5 > 3);     // true
@@ -1211,7 +1211,7 @@ console.log(5 != '5');  // false
 console.log(5 !== '5'); // true
 ```
 
-#### String comparison:
+#### 1.4.4.1. String comparison:
 
 To see whether a string is greater than another, JavaScript uses the so-called lexicographical algorithm.
 
@@ -1228,21 +1228,21 @@ console.log('Bc' < 'Bce'); // true
 ```
 <img src="images/ascii.png" alt="ascii vaues">
 
-##### How to convert letter to unicode or Ascii values:
+##### 1.4.4.1.1. How to convert letter to unicode or Ascii values:
 
 ```js
 console.log('a'.charCodeAt(0)); // Output: 97
 console.log('a'.codePointAt(0)); // Output: 97
 ```
 
-##### How to convert Ascii values to letter:
+##### 1.4.4.1.2. How to convert Ascii values to letter:
 
 ```js
 console.log(String.fromCharCode(97)); // Output: 'a'
 console.log(String.fromCodePoint(97)); // Output: 'a'
 ```
 
-#### Difference between == and ===:
+#### 1.4.4.2. Difference between == and ===:
 
 ```js
 console.log(0 == false); // 0 == 0 true
@@ -1260,7 +1260,7 @@ console.log('' === ''); // true
 ```
 
 
-### Logical Operators (&&, ||, ! ,, !!):
+### 1.4.5. Logical Operators (&&, ||, ! ,, !!):
 
 ```js
 let age = 25;
@@ -1313,7 +1313,7 @@ console.log(!!undefined); // false
 console.log(!!NaN); // false
 ```
 
-### Conditional Operators (if, else, else if, ? :, switch case):
+### 1.4.6. Conditional Operators (if, else, else if, ? :, switch case):
 
 ```js
 let age = 20;
@@ -1375,7 +1375,7 @@ switch (color) {
 // switch checks one variable against multiple cases and runs the matched block.
 ```
 
-#### Truthy and Falsy values:
+#### 1.4.6.1. Truthy and Falsy values:
 
 In JavaScript, any value used in a conditional statement gets automatically converted to true or false.
 
@@ -1401,9 +1401,9 @@ if (undefined) console.log('Falsy');
 if (NaN) console.log('Falsy');
 ```
 
-### Others Operators
+### 1.4.7. Others Operators
 
-#### typeof operator:
+#### 1.4.7.1. typeof operator:
 
 ```js
 console.log(typeof 0); // "number"
@@ -1419,12 +1419,12 @@ console.log(typeof NaN); // number
 ```
 
 
-#### rest and spread operator:
+#### 1.4.7.2. rest and spread operator:
 
 - Rest collects values into an object or array.
 - while Spread expands object or iterables into individual values.
 
-##### Rest Operator
+##### 1.4.7.2.1. Rest Operator
 
 It is used in Function parameters, array destructuring, object destructuring.
 
@@ -1464,7 +1464,7 @@ console.log(name); // Tamim
 console.log(rest); // { age: 21, country: "BD" }
 ```
 
-##### spread operator:
+##### 1.4.7.2.2. spread operator:
 
 It is Used in Function argument, arrays and objects.
 
@@ -1508,7 +1508,7 @@ const merged = { ...user1, ...user2 };
 console.log(merged); // { name: "Tamim", age: 21 }
 ```
 
-#### Nullish Coalescing operator (??):
+#### 1.4.7.3. Nullish Coalescing operator (??):
 
 The nullish coalescing operator (??) is used to provide a default value when a variable is null or undefined.
 
@@ -1554,7 +1554,7 @@ let result = a ?? b ?? c ?? d ?? "Fallback";
 console.log(result); // "Hello"
 ```
 
-#### || vs ??:
+#### 1.4.7.4. || vs ??:
 
 ```js
 let value1 = 0;
@@ -1576,7 +1576,7 @@ let result = (null || undefined) ?? "Default";
 ```
 
 
-### Operator Precedence:
+### 1.4.8. Operator Precedence:
 
 | Operator      | Precedence                | Associativity |
 | ------------- | ------------------------- | ------------- |
@@ -1597,9 +1597,9 @@ console.log(4 + 2 - 2 * 4 / 2) //  2
 ```
 
 
-## Loops
+## 1.5. Loops
 
-### for loop:
+### 1.5.1. for loop:
 
 ```js
 for (let i = 0; i < 5; i++) {
@@ -1626,7 +1626,7 @@ for (let i = 1; i <= 10; i++) {
 */
 ```
 
-### while loop:
+### 1.5.2. while loop:
 
 ```js
 let i = 0;
@@ -1636,7 +1636,7 @@ while (i < 5) {
 }
 ```
 
-### do while loop:
+### 1.5.3. do while loop:
 
 ```js
 let i = 0;
@@ -1646,7 +1646,7 @@ do {
 } while (i < 5);
 ```
 
-### for..of loop (for iterables: string, array, set, map):
+### 1.5.4. for..of loop (for iterables: string, array, set, map):
 
 ```js
 // with array
@@ -1682,7 +1682,7 @@ for (const [key, value] of myMap) {
 }
 ```
 
-#### Iterables (string, array, set, map): 
+#### 1.5.4.1. Iterables (string, array, set, map): 
 
 An object is called iterable if it has a Symbol.iterator method. When we call this arr[Symbol.iterator]() method, it returns an object, we commonly call this object an iterator. This iterator allows us to access the elements one by one using its next() method.
 
@@ -1699,9 +1699,9 @@ console.log(iterator.next()); // { value: undefined, done: true }
 
 for...of loop, spread operator (...), and destructuring use this Symbol.iterator behind the scenes.
 
-##### behind the scene of for..of:
+##### 1.5.4.1.1. behind the scene of for..of:
 
-###### On array:
+###### 1.5.4.1.1.1. On array:
 
 ```js
 const arr = [1, 2, 3];
@@ -1730,7 +1730,7 @@ while (!result.done) {
 }
 ```
 
-###### On String:
+###### 1.5.4.1.1.2. On String:
 
 ```js
 const str = "hello";
@@ -1759,7 +1759,7 @@ while (!result.done) {
 }
 ```
 
-###### On Set: 
+###### 1.5.4.1.1.3. On Set: 
 
 ```js
 let mySet = new Set([1, 2, 2, 3]);
@@ -1788,7 +1788,7 @@ while (!result.done) {
 }
 ```
 
-###### On Map:
+###### 1.5.4.1.1.4. On Map:
 
 ```js
 let myMap = new Map([
@@ -1833,7 +1833,7 @@ age : 22
 ```
 
 
-##### behind the scene of spread operator:
+##### 1.5.4.1.2. behind the scene of spread operator:
 
 ```js
 const str = "ABC";
@@ -1864,7 +1864,7 @@ console.log(spread) // [ 'A', 'B', 'C' ]
 
 ```
 
-##### Behind the scene of destructuring:
+##### 1.5.4.1.3. Behind the scene of destructuring:
 
 ```js
 let arr = [1, 2, 3];
@@ -1888,7 +1888,7 @@ console.log(a, b); // 1 2
 ```
 
 
-### for...in loop (for objects):
+### 1.5.5. for...in loop (for objects):
 
 ```js
 const obj = {
@@ -1906,7 +1906,7 @@ b 2
 ```
 
 
-#### Enumeration:
+#### 1.5.5.1. Enumeration:
 
 Enumeration is the internal process in JavaScript where the engine collects the property names (keys) of an object. 
 
@@ -1960,7 +1960,7 @@ for (const key in obj) {
 }
 ```
 
-##### Behind the scenes of for...in loop:
+##### 1.5.5.1.1. Behind the scenes of for...in loop:
 
 So, When you write a for...in loop,
 
@@ -1978,7 +1978,7 @@ There are two main step happen:
 - Enumeration → the process of collecting all enumerable properties (properties with enumerable: true) from an object and its prototype chain (if available).
 - for...in loop → uses those enumerated keys to iterate and execute the loop body.
 
-#### Why for...in is not recommended for arrays:
+#### 1.5.5.2. Why for...in is not recommended for arrays:
 
 Since arrays are also objects, you might wonder if we can use for...in with arrays. However, the key thing to remember is that for...in loops iterate over object keys, not the actual values.
 
@@ -2010,7 +2010,7 @@ for (const key in arr) {
 }
 ```
 
-## function
+## 1.6. function
 
 A Function is a block of reusable code that perform a specific task when it is called.
 
@@ -2027,7 +2027,7 @@ calcSum(1, 2); // ------- Argument
 - a, b are parameters
 - 1, 2 are arguments
 
-### What is the difference between return and no return in a function?
+### 1.6.1. What is the difference between return and no return in a function?
 
 ```js
 function calcSum(a, b) {
@@ -2055,7 +2055,7 @@ In this example, the function not only does the work, but it also returns the re
 
 so, If a function returns a value, you can store it in a variable and use it for further operations. If a function does not return anything, you just call the function, but you can’t use its output for further operations.
 
-### Default Parameter:
+### 1.6.2. Default Parameter:
 
 In JavaScript, default parameters allow you to set default values for function parameters. If no arguments is passed when the function is called, the default parameter will be used.
 
@@ -2067,7 +2067,7 @@ showGreet("Tamim"); // Output: Hello, Tamim!
 showGreet();        // Output: Hello, Guest!
 ```
 
-### CallBack Function
+### 1.6.3. CallBack Function
 
 A callback function is a function that is passed as an argument to another function to be executed later by that function.
 
@@ -2138,7 +2138,7 @@ document.addEventListener("click", function() {
 
 here, AddEventListener() is a DOM Method that receives an anonymous callback function that executes when the click event occurs.
 
-#### callback hell:
+#### 1.6.3.1. callback hell:
 
 When we write too many nested callback functions that are hard to read and maintain, it is called callback hell.
 
@@ -2168,7 +2168,7 @@ first(1, function (res1) {
 });
 ```
 
-### Arrow Function:
+### 1.6.4. Arrow Function:
 
 Arrow functions are a shorter way to write functions in JavaScript. They were introduced in ES6.
 
@@ -2198,7 +2198,7 @@ const multiply = (a, b) => {
 console.log(multiply(3, 4)); // Output: 12
 ```
 
-### Difference between arrow function and normal function
+### 1.6.5. Difference between arrow function and normal function
 
 - **Normal function:** If you want to use the result outside the function, you must return a value.
 - **Arrow function:** Can omit {} and return for single-expression functions.
@@ -2320,7 +2320,7 @@ console.log(squaredArrow); // [1, 4, 9, 16, 25]
 ```
 
 
-### Anonymous function
+### 1.6.6. Anonymous function
 
 An anonymous function is a function without a name. You cannot call it by name or reuse it, unless you assign it to a variable, property, or pass it as a callback.
 
@@ -2347,7 +2347,7 @@ const sayHey = () => {
 };
 ```
 
-#### Common Use Cases for Anonymous Functions:
+#### 1.6.6.1. Common Use Cases for Anonymous Functions:
 
 - Event Handlers: 
   
@@ -2429,7 +2429,7 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 ```
 
 
-### Recursion
+### 1.6.7. Recursion
 
 Recursion is a technique where a function calls itself.
 
@@ -2491,14 +2491,14 @@ call stack:
 
 ![call-stack-2](./images/call-stack-2)
 
-#### Call Stack:
+#### 1.6.7.1. Call Stack:
 
 A call stack is a data structure that keeps track of function calls in a Last-In-First-Out (LIFO) manner. When a recursive function calls itself, here's what happens:
 
 - new frame creation and stack growing
 - Base case reached and stack un-winding
     
-### Closure
+### 1.6.8. Closure
 
 A closure is a function technique where an inner function remembers the variables from its outer function, even after that outer function has finished executing. This means JavaScript keeps a reference to the outer variables in memory so the inner function can remember and access them.
 
@@ -2559,12 +2559,12 @@ console.log(double(5)); // 10
 console.log(triple(5)); // 15
 ```
 
-### Difference between callback function, recursion and closure
+### 1.6.9. Difference between callback function, recursion and closure
 - callback function: A function that is passed as an argument to another function and is executed by that function at a later time.
 - recursion: A technique where a function calls itself.
 - closure: A technique where an inner function remembers the variables from its outer function, even after that outer function has finished executing.
 
-### Pure and Impure functions: 
+### 1.6.10. Pure and Impure functions: 
 
 - A pure function has no external variables and does not depend on them.
 - An impure function uses or depends on external variables.
@@ -2582,7 +2582,7 @@ function addToTotal(num) {
 }
 ```
 
-## string
+## 1.7. string
 
 A string in JavaScript is a primitive data type that represents text, enclosed in single quotes (''), double quotes (""), or backticks (``). Strings are iterables, which means they can be iterated over because they have a Symbol.iterator method.
 
@@ -2590,7 +2590,7 @@ Wait, strings are primitive data types, which means they are not objects. So how
 
 Strings are not objects by default, but when we use object-like features (such as accessing values by index, or calling methods and properties), JavaScript automatically converts them behind the scenes into a temporary String object using autoBoxing. This is why strings also include the Symbol.iterator method thats makes it also an iterables.
 
-### Strings are immutable:
+### 1.7.1. Strings are immutable:
 
 
 ```js
@@ -2608,7 +2608,7 @@ console.log(newStr); // "Yello"
 ```
 
 
-### Quotes:
+### 1.7.2. Quotes:
 
 JavaScript supports three types of quotes for working with strings.
 
@@ -2657,7 +2657,7 @@ console.log(`5 + 7 = ${5 + 7}`); // 5 + 7 = 12
 ```
 
 
-### String Methods:
+### 1.7.3. String Methods:
 
 - toUpperCase() / toLowerCase() - Converts all letters to uppercase / lowercase.
 
@@ -2771,7 +2771,7 @@ console.log(String.fromCharCode(97)); // Output: 'a'
 console.log(String.fromCodePoint(97)); // Output: 'a'
 ```
 
-### Common Property / Methods for string / array:
+### 1.7.4. Common Property / Methods for string / array:
 
 - .length (property): returns the length of an array or string:
 
@@ -2885,7 +2885,7 @@ console.log(numbers.at(0));   // 10
 console.log(numbers.at(-1));  // 40 (last item)
 ```
 
-## Objects
+## 1.8. Objects
 
 An object is a unordered collection of key-value pairs (property). where key is a string or symbol, and value can be anything.
 
@@ -2963,7 +2963,7 @@ let user = makeUser("John", 30);
 console.log(user.name); // John
 ```
 
-### Dot Notation VS Bracket Notation:
+### 1.8.1. Dot Notation VS Bracket Notation:
 
 - Property Name Has Spaces:
     
@@ -3061,7 +3061,7 @@ console.log(data.section.prop) // TypeError: Cannot read properties of undefined
 ```
 
 
-### Objects References and cloning and marging:
+### 1.8.2. Objects References and cloning and marging:
 
 One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.
 
@@ -3128,7 +3128,7 @@ user.name = "Pete";
 console.log(user.name); // Pete
 ```
 
-#### Cloning and merging:
+#### 1.8.2.1. Cloning and merging:
 
 So, copying an object variable creates one more reference to the same object. But what if we need to duplicate an object? 
 
@@ -3214,7 +3214,7 @@ console.log(clone) // { name: 'John', age: 30, member: '200', sister: true, coun
 Note: Object.assign() holds references, means if you change a object in one place, it automatically affects the others.
 
 
-### Object.keys(), Object.Values() and Object.entries():
+### 1.8.3. Object.keys(), Object.Values() and Object.entries():
 
 ```js
 const computer = {
@@ -3243,7 +3243,7 @@ console.log(entries);
 */
 ```
 
-### Object.freeze() vs Object.seal():
+### 1.8.4. Object.freeze() vs Object.seal():
 
 **Object.freeze():**
 
@@ -3395,7 +3395,7 @@ console.log(Object.isSealed(obj2)); // true
 
 
 
-### Check Property existence:
+### 1.8.5. Check Property existence:
 
 With in operator:
 
@@ -3436,7 +3436,7 @@ const hasName = profile.hasOwnProperty("name");
 console.log(hasName); // Output: true
 ```
 
-### Create an Object Method:
+### 1.8.6. Create an Object Method:
 
 A method is a function that is defined as a property of an object. It represents an action that the object can perform and can access the object’s data using the this keyword.
 
@@ -3501,7 +3501,7 @@ user = null;
 admin.sayHello(); // Tamim
 ```
 
-### Optional Chaining (?)
+### 1.8.7. Optional Chaining (?)
 
 Optional Chaining(?) is a safe way to access deeply nested properties without getting an error if something is undefined or null.
 
@@ -3538,7 +3538,7 @@ user.sayHola?.();    // Nothing happens, no error or undefined
 user.sayHola() // TypeError: user.sayHola is not a function
 ```
 
-### Date Object:
+### 1.8.8. Date Object:
 
 Date is a built-in object in JavaScript that represents a single moment in time — down to the millisecond. Under the hood, it stores time as the number of milliseconds since January 1, 1970 (UTC) (called the Unix Epoch).
 
@@ -3625,7 +3625,7 @@ console.log(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
 // 10/31/2025, 3:09:40 AM (New York = UTC-4)
 ```
 
-### Math Object:
+### 1.8.9. Math Object:
 
 Math Properties:
 
@@ -3664,7 +3664,7 @@ console.log(Math.floor(Math.random() * 100)); // Random integer between 0 (inclu
 
 
 
-## array 
+## 1.9. array 
 An array is a ordered collection of key-value pairs. where keys are auto generated as index(0, 1, 2) and value can by anything as element. So internally we can called an array is a special type of object. That’s why arrays use square bracket notation like `arr[0]` to access elements — this syntax actually comes from object property access: `obj[key]`.
 
 **Array Declaration:**
@@ -3702,9 +3702,9 @@ console.log(fruits); // [ 'Banana', 'Pear' ] - 2 items now
 console.log(arr); // [ 'Banana', 'Pear' ] - 2 items now
 ```
 
-### Array Methods:
+### 1.9.1. Array Methods:
 
-#### Adding / Removing Elements:
+#### 1.9.1.1. Adding / Removing Elements:
 
 - push/pop and unshift/shift:
 
@@ -3769,7 +3769,7 @@ Note:
 - slice(): doesn't modifies the original array, it returns a shallow copy of the original array after sliceing.
 
 
-#### Iteration / Transformation (Higher-order functions):
+#### 1.9.1.2. Iteration / Transformation (Higher-order functions):
 
 | Method      | Purpose                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------ |
@@ -4120,7 +4120,7 @@ findLuckyNumber(4, 20); // 4 7
 findLuckyNumber(8, 15); // -1
 ```
 
-#### Others:
+#### 1.9.1.3. Others:
 
 - reverse() – Reverses the array:
     
@@ -4275,7 +4275,7 @@ const arr = Array.from([1, 2, 3], function (x) {
 console.log(arr); // [10, 20, 30]
 ```
 
-### Common Property / Methods for string / array:
+### 1.9.2. Common Property / Methods for string / array:
 
 - .length (property): returns the length of an array or string:
 
@@ -4389,7 +4389,7 @@ console.log(numbers.at(0));   // 10
 console.log(numbers.at(-1));  // 40 (last item)
 ```
 
-## Destructuring
+## 1.10. Destructuring
 
 Destructuring means breaking apart arrays or objects and assigning their values to variables in a clean and short way.
 
@@ -4525,7 +4525,7 @@ function displayUser({ name, age }) {
 displayUser({ name: "Tamim", age: 21 }); // Tamim is 21 years old.
 ```
 
-## Error Handling
+## 1.11. Error Handling
 
 try...catch is used to handle errors in JavaScript so your code doesn't crash. Instead of stopping the program when an error happens, you can catch the error and respond gracefully.
 
@@ -4585,7 +4585,7 @@ Cleanup: This runs no matter what.
 */
 ```
 
-### Common JS Errors:
+### 1.11.1. Common JS Errors:
 
 **SyntaxError:**
  
@@ -4606,7 +4606,7 @@ let greeting = "Hello;
 let obj = { name: "Tamim", age: }; // SyntaxError: Unexpected token '}'
 ```
 
-#### ReferenceError
+#### 1.11.1.1. ReferenceError
 Reference Error happens when you use a variable that hasn’t been declared.
 
 ```js
@@ -4634,7 +4634,7 @@ function test() {
 test(); // ReferenceError: nonExistent is not defined
 ```
 
-#### TypeError
+#### 1.11.1.2. TypeError
 Type Error happens when a value is used in an invalid way (e.g., calling non-function, accessing property of undefined, etc.)
 
 ```js
@@ -4669,9 +4669,9 @@ console.log(nums.name.first); // TypeError: Cannot read properties of undefined 
 ```
 
 
-## Js Modules: Import and export
+## 1.12. Js Modules: Import and export
 
-### Export:
+### 1.12.1. Export:
 
 There are Three main ways to export a file:
 
@@ -4708,7 +4708,7 @@ export default function sayHello(name) {
 }
 ```
 
-### Import:
+### 1.12.2. Import:
 
 ```js
 import { PI, add, multiply } from './math.js'; // name export
@@ -4732,7 +4732,7 @@ import {add as sum} from './math.js';
 console.log(sum(2, 3));   // 5
 ```
 
-## Local Storage and Session Storage
+## 1.13. Local Storage and Session Storage
 
 local and session storage is a Web Storage API feature that allows you to store up to 10MB (5 + 5) key-value pairs in the browser.
 
@@ -4745,7 +4745,7 @@ localStorage and sessionStorage use the same methods and approach. The only diff
 - localStorage → persists until manually cleared
 - sessionStorage → cleared when the tab or browser is closed
 
-### local storage methods:
+### 1.13.1. local storage methods:
 
 - setItem(key, value): 
 Stores a key-value pair (as string) in local storage.
@@ -4955,7 +4955,7 @@ Returns the key name at the specified index.
 </html>
 ```
 
-### Update the Local Storage key and values:
+### 1.13.2. Update the Local Storage key and values:
 
 In localStorage, key name are immutable and values are mutable, thats means, you can't change the key name directly. If you want to change the key name, you must:
 - Get the value of the old name
@@ -5078,7 +5078,7 @@ In localStorage, key name are immutable and values are mutable, thats means, you
 ![](images/local-storage/local-storage-output-3.png)
 
 
-## Asynchronous and Synchronous JavaScript
+## 1.14. Asynchronous and Synchronous JavaScript
 
 JavaScript, by default, is a synchronous programming language, which means it executes code line by line, waiting for each task to finish before moving to the next.
 
@@ -5144,7 +5144,7 @@ Output:
 */
 ```
 
-### Web API:
+### 1.14.1. Web API:
 
 A Web API is a feature provided by the browser (or the environment like Node.js) that JavaScript can use to do extra things that is not part of the js itself, like:
 
@@ -5154,7 +5154,7 @@ A Web API is a feature provided by the browser (or the environment like Node.js)
 - Work with the DOM
 - Use browser storage (localStorage, sessionStorage)
 
-### Event loop:
+### 1.14.2. Event loop:
 The Event Loop is a mechanism that allows JavaScript to perform asynchronous operations even though it is single-threaded (has only one call stack).
 
 so, After parsing, compiling, and interpreting the code, the JavaScript engine uses these key parts:
@@ -5167,7 +5167,7 @@ Note:
 - Web APIs provide the environment and methods for async operations.
 - Event Loop manages the execution order, ensuring async tasks run without blocking the single-threaded call stack.
 
-### setTimeOut() and setInterval()
+### 1.14.3. setTimeOut() and setInterval()
 
 **setTimeOut():**
 
@@ -5267,9 +5267,9 @@ const id = setInterval(() => {
 }, 1000);
 ```
 
-### JSON, promise(fetch, async/await):
+### 1.14.4. JSON, promise(fetch, async/await):
 
-#### JSON
+#### 1.14.4.1. JSON
 JSON stands for JavaScript Object Notation — it's a lightweight data format used to store and exchange data, especially between in server and clients. JSON uses JavaScript object syntax but here keys are always in double quotes ("").
 
 **JSON.stringify() — Convert JS → JSON string:**
@@ -5296,7 +5296,7 @@ console.log(typeof obj); // object
 ```
 
 
-#### Primise: 
+#### 1.14.4.2. Primise: 
 
 A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation.
 
@@ -5345,7 +5345,7 @@ myPromise
   });
 ```
 
-##### Chaining Promises:
+##### 1.14.4.2.1. Chaining Promises:
 One of the great features of Promises is that they allow you to chain multiple asynchronous operations together. When you chain Promises, each .then() block waits for the previous one to complete before it runs.
 
 ```js
@@ -5366,7 +5366,7 @@ promise
   });
 ```
 
-##### async/await:
+##### 1.14.4.2.2. async/await:
 One of the best ways to work with Promises in modern JavaScript is using async/await. This allows you to write asynchronous code that looks synchronous, making it much easier to read and maintain.
 
 - async - Used to declare an async function that returns a Promise that resolves when the function is finished running.
@@ -5428,7 +5428,7 @@ const fetchData = async () => {
 fetchData();
 ```
 
-##### fetch
+##### 1.14.4.2.3. fetch
 The fetch() method is used to make HTTP requests (GET, POST, PUT, PATCH, DELETE etc.). When we call fetch(), the browser’s Web API immediately returns a Promise.
 
 ```js
@@ -5607,7 +5607,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
 
 
 
-## RegEx
+## 1.15. RegEx
 RegEx (Regular Expression) is a pattern used to match character combinations in strings.
     
 Syntax:
@@ -5616,7 +5616,7 @@ Syntax:
 const regex = /patterns/flags;
 ```
 
-### Flags: 
+### 1.15.1. Flags: 
 Flags modify how a pattern behaves.
 
 - g (global flag):
@@ -5666,7 +5666,7 @@ console.log(regex.test(text)); // true
 ```
 
 
-### Methods:
+### 1.15.2. Methods:
 
 - test():
 Checks whether a pattern exists in a string
@@ -5722,7 +5722,7 @@ console.log("one two three".split(/\s+/)); // [ 'one', 'two', 'three' ]
 
 
 
-### Character Classes [ ]:
+### 1.15.3. Character Classes [ ]:
 A character class matches any character from a set within brackets:
 
 - [a]	 Matches the character between the brackets
@@ -5745,7 +5745,7 @@ console.log(/[a-z]/.test("g")); // true
 console.log(/[0-9]/.test("5")); // true
 ```
 
-### Metacharacters:
+### 1.15.4. Metacharacters:
 Regex metacharacters are special characters that give extra meaning to a pattern,
 
 - \d	Matches Digits
@@ -5780,7 +5780,7 @@ let result = text.match(pattern);
 console.log(result) // [ ' ', '%', '!' ]
 ```
 
-### Assertions:
+### 1.15.5. Assertions:
 Regular Expression assertions test whether a specific condition is true at a certain position in the string, without including any characters in the match.
 
 - ^	(String boundary) Matches the beginning of a string
@@ -5894,7 +5894,7 @@ let result = pattern.test(text);
 console.log(result) // false
 ```
 
-### Groups:
+### 1.15.6. Groups:
 A group allows you to treat multiple characters as a single unit.
 
 
@@ -5949,7 +5949,7 @@ Acts like logical OR.
 console.log(/(cat|dog)/.test("dog")); // true
 ```
 
-### Quantifiers:
+### 1.15.7. Quantifiers:
 Quantifiers define the numbers of characters or expressions to match.
 
 | Quantifier | Meaning         |
@@ -5984,8 +5984,8 @@ let result = text.match(pattern);
 console.log(result) // [ 'l', 'looo', 'l', 'l', 'lo', 'l' ]
 ```
 
-# Part 2: DOM
-## Introduction To the DOM
+# 2. Part 2: DOM
+## 2.1. Introduction To the DOM
 
 DOM (Document Object Model) is a programming interface provided by the browser that represents an HTML document as a hierarchical tree structure, where each element is a node arranged in levels (root node → parent node → child node → element node → attribute node). It allows JavaScript to access, manipulate, and update the html elements, structure, and style of a web page dynamically.
 
@@ -6124,7 +6124,7 @@ Example 2:
 
 ![image](images/differentTypeOfnodeOutput.png)
 
-### DOM Collection: 
+### 2.1.1. DOM Collection: 
 A DOM Collection is a special array-like object that holds a group of nodes or elements from the Document Object Model (DOM).
 
 DOM collection is array like means you can access items with indexes, and can use .length properties but since it's not actually array so, you can't use map(), filter(), find() etc, unless converted.
@@ -6195,7 +6195,7 @@ Common DOM Collection Types:
 
 ![image](./images/Part2-DOM/Introduction-to-the-dom/DOM-Collection.png)
 
-### Document Object:
+### 2.1.2. Document Object:
 The document object is your entry point to the entire DOM. It represents the whole HTML document and provides methods to access and manipulate everything within it:
 
 ```html
@@ -6234,7 +6234,7 @@ The document object is your entry point to the entire DOM. It represents the who
 ![image](images/document-object.png)
 
 
-### DOM VS BOM:
+### 2.1.3. DOM VS BOM:
 
 | DOM                                          | BOM                                            |
 | -------------------------------------------- | ---------------------------------------------- |
@@ -6275,10 +6275,10 @@ The document object is your entry point to the entire DOM. It represents the who
 
 ![image](images/Part2-DOM/Introduction-to-the-dom/DOM-vs-BOM.png)
       
-### DOM Traversing:
+### 2.1.4. DOM Traversing:
 DOM traversing is navigating the DOM tree through parent, child, and sibling relationships to reach different nodes.
 
-#### parentNode vs parentElement:
+#### 2.1.4.1. parentNode vs parentElement:
 
 Both parentNode and parentElement are used to access the parent of a node in the DOM, But:
 
@@ -6322,7 +6322,7 @@ Both parentNode and parentElement are used to access the parent of a node in the
 
 ![image](images/DOM-Traversing/parentNode-vs-parentElement.png)
 
-#### childNodes vs children:
+#### 2.1.4.2. childNodes vs children:
 
 -   childNodes: Returns all types of nodes.
 -   children: returns only element nodes.
@@ -6365,7 +6365,7 @@ Both parentNode and parentElement are used to access the parent of a node in the
 
 ![image](images/DOM-Traversing/childNodes-vs-children.png)
 
-#### firstChild vs firstElementChild:
+#### 2.1.4.3. firstChild vs firstElementChild:
 
 -   firstChild: Returns the first child node, which may be: (text, element etc)
 -   firstElementChild: Returns only the first element child.
@@ -6403,7 +6403,7 @@ Both parentNode and parentElement are used to access the parent of a node in the
 
 ![image](images/DOM-Traversing/firstChild-vs-firstElementChild.png)
 
-#### lastChild vs lastElementChild:
+#### 2.1.4.4. lastChild vs lastElementChild:
 Same as above but accesses the last child node instead.
 
 ```html
@@ -6440,7 +6440,7 @@ Same as above but accesses the last child node instead.
 
 ![image](images/DOM-Traversing/lastChild-vs-lastElementChild.png)
 
-#### nextSibling vs nextElementSibling:
+#### 2.1.4.5. nextSibling vs nextElementSibling:
 
 -   nextSibling: Returns the next sibling node.
 -   nextElementSibling: return only next sibling element node
@@ -6479,7 +6479,7 @@ Same as above but accesses the last child node instead.
 
 ![image](images/DOM-Traversing/nextSibling-vs-nextElementSibling.png)
 
-#### previousSibling vs previousElementSibling:
+#### 2.1.4.6. previousSibling vs previousElementSibling:
 Same as above, but but accesses the previous sibling instead of next.
 
 ```html
@@ -6516,7 +6516,7 @@ Same as above, but but accesses the previous sibling instead of next.
 
 ![image](images/DOM-Traversing/previousSibling-vs-previousElementSibling.png)
 
-### DOM Manipulation:
+### 2.1.5. DOM Manipulation:
 
 DOM manipulation is updating the DOM by adding, removing, or changing elements.
 
@@ -6563,7 +6563,7 @@ DOM manipulation is updating the DOM by adding, removing, or changing elements.
 ![image](/images/Part2-DOM/Introduction-to-the-dom/DOM-Manipulation.png)
 
 
-#### innerHTML vs outerHTML vs textContent vs innerText:
+#### 2.1.5.1. innerHTML vs outerHTML vs textContent vs innerText:
 
 | Property      | Returns...                                 | Includes Tags | Includes Hidden Text | Editable |
 | ------------- | ------------------------------------------ | ------------- | -------------------- | -------- |
@@ -6603,9 +6603,9 @@ DOM manipulation is updating the DOM by adding, removing, or changing elements.
 </html>
 ```
 
-## Elements Selecting Methods
+## 2.2. Elements Selecting Methods
 
-### getElementById():
+### 2.2.1. getElementById():
 Selects a single element by its id attribute:
 
 ```html
@@ -6636,7 +6636,7 @@ Selects a single element by its id attribute:
 
 </html>
 ```
-### getElementsByClassName():
+### 2.2.2. getElementsByClassName():
 Selects all elements with the given class name:
 
 ```html
@@ -6666,7 +6666,7 @@ Selects all elements with the given class name:
 </html>
 ```
 
-### getElementsByTagName():
+### 2.2.3. getElementsByTagName():
 Selects all elements with the specified tag name:
 
 ```html
@@ -6746,7 +6746,7 @@ Selects all elements with the specified tag name:
 
 ![image](images/getElementBYTagNameOutput.png)
 
-### getElementsByName():
+### 2.2.4. getElementsByName():
 Selects elements with a specific name attribute. Mostly used with input, code, textarea, or select :
 
 ```html
@@ -6779,7 +6779,7 @@ Selects elements with a specific name attribute. Mostly used with input, code, t
 </html>
 ```
 
-### querySelector():
+### 2.2.5. querySelector():
 Selects the first element that matches a CSS selector:
 
 ```html
@@ -6823,7 +6823,7 @@ Selects the first element that matches a CSS selector:
 </html>
 ```
 
-### querySelectorAll():
+### 2.2.6. querySelectorAll():
 Selects all elements that match a CSS selector:
 
 ```html
@@ -6863,7 +6863,7 @@ Selects all elements that match a CSS selector:
 
 
 
-### Examples:
+### 2.2.7. Examples:
 
 **All methods at a time:**
 
@@ -7191,11 +7191,11 @@ Selects all elements that match a CSS selector:
 ![image](images/add-remove-toggle.png)
 
 
-## DOM Properties and Methods:
+## 2.3. DOM Properties and Methods:
 
-### Methods:
+### 2.3.1. Methods:
 
-#### getAttribute(), setAttribute(), removeAttribute() and hasAttribute():
+#### 2.3.1.1. getAttribute(), setAttribute(), removeAttribute() and hasAttribute():
 
 ```html
 <!DOCTYPE html>
@@ -7238,9 +7238,9 @@ Selects all elements that match a CSS selector:
 ```
 
 
-### properties:
+### 2.3.2. properties:
 
-#### id, className, classList:
+#### 2.3.2.1. id, className, classList:
 
 ```html
 <!DOCTYPE html>
@@ -7279,7 +7279,7 @@ Selects all elements that match a CSS selector:
 </html>
 ```
 
-#### tagName vs nodeName:
+#### 2.3.2.2. tagName vs nodeName:
 Both give the tag name of an element, but nodeName works for any node, tagName only for elements node
 
 ```html
@@ -7324,7 +7324,7 @@ Both give the tag name of an element, but nodeName works for any node, tagName o
 ```
 
 
-#### nodeType and nodeValue:
+#### 2.3.2.3. nodeType and nodeValue:
 
 ```html
 <!DOCTYPE html>
@@ -7364,7 +7364,7 @@ Both give the tag name of an element, but nodeName works for any node, tagName o
 9 → Document Node (document)
 ```
 
-#### Form Element Properties:
+#### 2.3.2.4. Form Element Properties:
 
 ```html
 <!DOCTYPE html>
@@ -7402,10 +7402,10 @@ Both give the tag name of an element, but nodeName works for any node, tagName o
 </html>
 ```
 
-## CSS and Class Styling
-### CSS Styling:
+## 2.4. CSS and Class Styling
+### 2.4.1. CSS Styling:
 
-#### Style Property:
+#### 2.4.1.1. Style Property:
 style property is used to get or set inline styles of an HTML element using JavaScript.
 
 ```html
@@ -7524,7 +7524,7 @@ Note: JS follow camelCase css names:
 | `border-radius`    | `borderRadius`        |
 
 
-#### cssText property:
+#### 2.4.1.2. cssText property:
 -   Lets you set multiple styles at once as a string.
 -   Overwrites all existing inline styles.
 
@@ -7555,9 +7555,9 @@ Note: JS follow camelCase css names:
 ```
 
 
-### Class Styling:
+### 2.4.2. Class Styling:
 
-#### className Property:
+#### 2.4.2.1. className Property:
 
 ```html
 <!DOCTYPE html>
@@ -7588,7 +7588,7 @@ Note: JS follow camelCase css names:
 </html>
 ```
 
-#### classList methods:
+#### 2.4.2.2. classList methods:
 classList gives you a powerful interface to manage individual classes.
 
 ```html
@@ -7644,11 +7644,11 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-## Element Creating, Adding and Removing  Methods
+## 2.5. Element Creating, Adding and Removing  Methods
 
-### Elements Creating Methods:
+### 2.5.1. Elements Creating Methods:
 
-#### createElement():
+#### 2.5.1.1. createElement():
 
 -   Creates a new element node.
 -   Does not automatically add it to the DOM — you must insert it manually.
@@ -7832,7 +7832,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### createTextNode():
+#### 2.5.1.2. createTextNode():
 - Creates a text node (just text, no HTML).
 
 ```html
@@ -7861,7 +7861,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### createDocumentFragment():
+#### 2.5.1.3. createDocumentFragment():
 - A lightweight container for temporary DOM storage.
 - Useful for inserting many nodes at once.
 
@@ -7895,7 +7895,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### cloneNode():
+#### 2.5.1.4. cloneNode():
 -   Creates a copy of an element.
 -   cloneNode(true) → deep clone (includes children).
 -   cloneNode(false) → shallow clone (element only).
@@ -7947,9 +7947,9 @@ classList gives you a powerful interface to manage individual classes.
 ```
 
 
-### Element Adding Methods:
+### 2.5.2. Element Adding Methods:
 
-#### appendChild():
+#### 2.5.2.1. appendChild():
 - Adds a node as the last child of a parent.
 
 ```html
@@ -7977,7 +7977,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### insertBefore():
+#### 2.5.2.2. insertBefore():
 - Inserts a node before a reference node.
 
 ```html
@@ -8006,7 +8006,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### insertAdjacentElement():
+#### 2.5.2.3. insertAdjacentElement():
 -   Inserts an element relative to another element.
 -   Position Options:
     -   "beforebegin" → before element itself
@@ -8060,7 +8060,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### insertAdjacentHTML():
+#### 2.5.2.4. insertAdjacentHTML():
 -   Same as insertAdjacentElement(), but here you can inset HTML directly at a position:
 
 ```html
@@ -8101,7 +8101,7 @@ classList gives you a powerful interface to manage individual classes.
 </html>
 ```
 
-#### insertAdjacentText():
+#### 2.5.2.5. insertAdjacentText():
 -   Same as insertAdjacentElement() and insertAdjacentHTML(), but here you just inset plain text at a position:
 
 ```html
@@ -8143,7 +8143,7 @@ classList gives you a powerful interface to manage individual classes.
 ```
 ![image](images/image11-insertAdjancentText().png)
 
-#### before(), parpend(), append(), after():
+#### 2.5.2.6. before(), parpend(), append(), after():
 Can insert nodes or strings directly.
 
 -   before() → before element itself
@@ -8211,9 +8211,9 @@ Can insert nodes or strings directly.
 
 
 
-### Elements Removing Methods:
+### 2.5.3. Elements Removing Methods:
 
-#### removeChild():
+#### 2.5.3.1. removeChild():
 -   Removes a child node from its parent.
 
 ```html
@@ -8245,7 +8245,7 @@ Can insert nodes or strings directly.
 </html>
 ```
 
-#### remove():   
+#### 2.5.3.2. remove():   
 - Removes the element directly.
 
 ```html
@@ -8275,7 +8275,7 @@ Can insert nodes or strings directly.
 </html>
 ```
 
-#### replaceChild():
+#### 2.5.3.3. replaceChild():
 -  Replaces one child with another.
 
 ```html
@@ -8309,7 +8309,7 @@ Can insert nodes or strings directly.
 </html>
 ```
 
-#### replaceWith():
+#### 2.5.3.4. replaceWith():
 - Replaces an element directly.
 
 ```html
@@ -8340,10 +8340,10 @@ Can insert nodes or strings directly.
 </html>
 ```
 
-## Events
+## 2.6. Events
 An event is an action or occurrence (like a click, keypress, or mouse move) that happens in the browser, and the DOM lets you detect and respond to it.
 
-### Event Object:
+### 2.6.1. Event Object:
 Every event has an associated event object that contains information about the event.
 
 ```html
@@ -8371,7 +8371,7 @@ Every event has an associated event object that contains information about the e
 </html>
 ```
 
-#### preventDefault():
+#### 2.6.1.1. preventDefault():
 Stops the browser’s default behavior.
 
 ```html
@@ -8402,9 +8402,9 @@ Stops the browser’s default behavior.
 
 
 
-### Events Handling Methods:
+### 2.6.2. Events Handling Methods:
 
-#### addEventListener():
+#### 2.6.2.1. addEventListener():
 
 ```html
 <!DOCTYPE html>
@@ -8471,7 +8471,7 @@ Stops the browser’s default behavior.
 </html>
 ```
 
-#### removeEventListener():
+#### 2.6.2.2. removeEventListener():
 To remove the event listener, you need to use the same function reference for both addEventListener() and removeEventListener().
 
 ```html
@@ -8509,7 +8509,7 @@ To remove the event listener, you need to use the same function reference for bo
 </html>
 ```
 
-#### onClick vs addEventListener():
+#### 2.6.2.3. onClick vs addEventListener():
 
 With onclick perperty you can't add multiple event handler function. If you assign more than one evet handler to onclick, it overwrites the previous one.
 
@@ -8638,7 +8638,7 @@ Add a events on a button with onClick event handler and addEventListener() metho
 </html>
 ```
 
-### Common Events:
+### 2.6.3. Common Events:
 
 -   **Mouse Events**
     -   `click` – Single click on an element
@@ -8666,7 +8666,7 @@ Add a events on a button with onClick event handler and addEventListener() metho
     -   `focusout` – Focus leaves a descendant (bubbles)
 
 
-### Event Flow:
+### 2.6.4. Event Flow:
 Event Flow describes how events travel through the DOM tree. When you click, type, or interact with a webpage, the event doesn’t go straight to the target element. It flows through three phases:
 
 1.  Event Capturing: Event capturing is the first phase of Event Flow, where the event travels from the document down to the target element before it reaches the target.
@@ -8715,9 +8715,9 @@ When You click the button, the event flow would be:
 1.  Capturing: document → outer div → inner div → button
 2.  Target: button (the actual target)
 3.  Bubbling: button → inner div → outer div  → document 
-### Event Flow Controlling: 
+### 2.6.5. Event Flow Controlling: 
 
-#### UseCapture parameter:
+#### 2.6.5.1. UseCapture parameter:
 The useCapture parameter controls when the event handler runs:
 - If useCapture is set to true, the event listener runs during the event capturing phase 
 - If useCapture is set to false (default), the event listener runs during the event bubbling phase 
@@ -8786,7 +8786,7 @@ The useCapture parameter controls when the event handler runs:
 ```
 
 
-#### stopPropagation():
+#### 2.6.5.2. stopPropagation():
 stopPropagation() method used to stop the event from bubbling up.
 
 ```html
@@ -8821,7 +8821,7 @@ stopPropagation() method used to stop the event from bubbling up.
 
 ```
 
-#### stopImmediatePropagation():
+#### 2.6.5.3. stopImmediatePropagation():
 same like stopPropagation(), plus It also stops other listeners on the same element from executing.
 
 with stopPropagation()
@@ -8908,7 +8908,7 @@ With stopImmediatePropagation():
 ```
 
 
-#### Event Delegation:
+#### 2.6.5.4. Event Delegation:
 Event Delegation is a technique where you attach a single event listener to a parent element instead of attaching listeners to each child element individually. It works because of event bubbling
 
 
@@ -9085,7 +9085,7 @@ With Delegations:
 ```
 
 
-### Event Examples:
+### 2.6.6. Event Examples:
 
 create a comment box and display comment:
 
@@ -9202,7 +9202,7 @@ Simple delete confirmation button:
 ![image](images/deleteConfirmation.png)
 
 
-# Part 3: OOP
+# 3. Part 3: OOP
 
 Object-Oriented Programming is a programming paradigm(a way of structuring programs) based on the objects that contain properties and methods. JavaScript supports OOP through prototypes and, since ES6, through classes.
 
@@ -9261,7 +9261,7 @@ Here,
 
 - class Person { ... }: creates a blueprint for all objects that will be created from it. Internally, JavaScript still uses a constructor function, but in classes the syntax is `constructor(name, age)` instead of `Person(name, age)`.
 
-## Static Keyword: 
+## 3.1. Static Keyword: 
 The static keyword in JavaScript is used to define class-level properties or methods that belong to the class itself, rather than to any instance of the class.
 So, you have to access the static properties and methods only through the class name.
 
@@ -9335,7 +9335,7 @@ console.log(Counter.increment()); // 5
 ```
 here, Static property count is shared by the class, not by instances.
 
-## The Four Pillars of OOP:
+## 3.2. The Four Pillars of OOP:
 
 We call Encapsulation, Abstraction, Inheritance, and Polymorphism the four pillars of OOP, because they form the structural foundation of the OOP paradigm.
 
@@ -9346,7 +9346,7 @@ Why each is a pillar:
 - Inheritance → Allows code reuse and hierarchy of classes.
 - Polymorphism → Lets objects behave differently while sharing the same interface.
 
-### Encapsulation: 
+### 3.2.1. Encapsulation: 
 Encapsulation (in js) is the process of hiding the internal state (properties) of an object using private fields (#), and providing controlled access through methods or getters/setters. This protects the object’s data and prevents unintended modifications.
 
 Note: 
@@ -9418,7 +9418,7 @@ console.log(p.name) // John
 // console.log(p.#age); //  Error
 ```
 
-### Abstraction:
+### 3.2.2. Abstraction:
 
 Abstraction is the process of hiding implementation details using private field and showing only the necessary functionality to the user.
 
@@ -9451,14 +9451,14 @@ console.log(account.getBalance()); // 1300
 ```
 here, User doesn’t need to know how #balance is stored or updated internally. They just call deposit/withdraw.
 
-#### Difference Between Encapsulation and Abstraction: 
+#### 3.2.2.1. Difference Between Encapsulation and Abstraction: 
 
 | Encapsulation                     | Abstraction                                    |
 | --------------------------------- | ---------------------------------------------- |
 | Protect/hide object’s data        | Hide complexity, expose only necessary details |
 | getters/setters or public methods | Public methods                                 |
 
-### Inheritance: 
+### 3.2.3. Inheritance: 
 
 Inheritance is a process that allows a chaild class inherits properties and methods from a parent class using extends keyword and super() method.
 
@@ -9494,14 +9494,14 @@ dog.makeSound();   // Dog makes a sound
 ```
 here, Child class inherits properties and methods from parent and can add its own functionality.
 
-### Polymorphism: 
+### 3.2.4. Polymorphism: 
 Polymorphism is the process that allows a child class to inherit methods from a parent class using the extends keyword, and lets the same method behave differently depending on the child class.
 
 We can do Polymorphism using two ways: 
 1. Methods Overriding: Child class changes parent method behavior.
 2. Duck Typing(Interfae-Based): Different objects implement the same method name.
 
-#### Using Methods Overriding: 
+#### 3.2.4.1. Using Methods Overriding: 
 Child class changes parent method behavior.
 
 ```js
@@ -9531,7 +9531,7 @@ cat.makeSound()
 ```
 Here, makeSound() is overridden in each child class. Same method name behaves differently.
 
-#### Using Duck Typing:
+#### 3.2.4.2. Using Duck Typing:
 Different objects implement the same method name, allowing them to be used interchangeably.
 
 ```js
@@ -9560,11 +9560,11 @@ startVehicle(bike); // Bike starts
 Here, any object with a start method can be passed to startVehicle, demonstrating polymorphism without inheritance
 
 
-# Part 4: Problem Solving:
+# 4. Part 4: Problem Solving:
 
-## Variables, Data Types and Operators:
+## 4.1. Variables, Data Types and Operators:
 
-#### Say Hello to JS:
+#### 4.1.0.1. Say Hello to JS:
 
 Given a name S. Print "Hello, (name)" without parentheses.
 
@@ -9581,7 +9581,7 @@ console.log("Hello,", s); // Hello, programmer
 console.log(`hello, ${s}`); // Hello, programmer
 ```
 
-#### Basic Data Types:
+#### 4.1.0.2. Basic Data Types:
 
 You are given four numbers and one string in a single line of input. Your task is to print each value on a new line, in the same order as the input.
 
@@ -9671,7 +9671,7 @@ a
 */
 ```
 
-#### Simple Calculator:
+#### 4.1.0.3. Simple Calculator:
 
 Given two numbers X and Y. Print the summation and multiplication and subtraction of these 2 numbers.
 
@@ -9699,7 +9699,7 @@ console.log(`${num1} - ${num2} = ${num1 - num2}`)
 */
 ```
 
-#### Difference:
+#### 4.1.0.4. Difference:
 
 Given four numbers A, B, C and D. Print the result of the following equation:
 
@@ -9724,7 +9724,7 @@ const equationResult = calculateEquation(1, 2, 3, 4);
 console.log(equationResult) // -10
 ```
 
-#### Area of a Circle:
+#### 4.1.0.5. Area of a Circle:
 
 Given a number R calculate the area of a circle using the following formula:
 
@@ -9751,7 +9751,7 @@ console.log(result) // 12.566370612
 
 
 
-#### Summation from 1 to N:
+#### 4.1.0.6. Summation from 1 to N:
 
 Given a number N. Print the summation of the numbers that is between 1 and N (inclusive).
 
@@ -9786,7 +9786,7 @@ console.log(summationFrom1toN(3));  // 6
 // Note: sum of all numbers from 1 to N using the formula: N*(N+1)/2
 ```
 
-#### Two Numbers:
+#### 4.1.0.7. Two Numbers:
 
 Given 2 numbers A and B. Print floor, ceil and round of A/B
 
@@ -9823,7 +9823,7 @@ round 10 / 3 = 3
  */
 ```
 
-#### Welcome for you with conditions:
+#### 4.1.0.8. Welcome for you with conditions:
 
 Given two numbers A and B. Print "Yes" if A is greater than or equal to B. Otherwise print "No".
 
@@ -9849,7 +9849,7 @@ function greaterThanOrEqual(A, B) {
 greaterThanOrEqual(10, 9);
 ```
 
-#### Multiples:
+#### 4.1.0.9. Multiples:
 
 Given two numbers A and B. Print "Multiples" if A is multiple of B or vice versa. Otherwise print "No Multiples".
 
@@ -9879,7 +9879,7 @@ function findMultiplesOrNot(A, B) {
 findMultiplesOrNot(9, 3); // Multiples
 ```
 
-#### Max and Min:
+#### 4.1.0.10. Max and Min:
 
 Given 3 numbers A, B and C, Print the minimum and the maximum numbers.
 
@@ -9936,7 +9936,7 @@ function findMaxAndMin(A, B, C) {
 findMaxAndMin(1, 2, 3);     // 1 3
 ```
 
-#### The Brothers:
+#### 4.1.0.11. The Brothers:
 
 Given two person names. Each person has {"the first name" + "the second name"}. Determine whether they are brothers or not.
 
@@ -10003,7 +10003,7 @@ findBrothersOrNot("ali kamel", "ali salah");  // NOT
 // Note: .at(-1) method can directly access the last element of an array.
 ```
 
-#### Capital or Small Or Digit:
+#### 4.1.0.12. Capital or Small Or Digit:
 
 Given a letter X. Determine whether X is Digit or Alphabet and if it is Alphabet determine if it is Capital Case or Small Case.
 
@@ -10124,7 +10124,7 @@ findCapitalSmallOrDigit(9);
 findCapitalSmallOrDigit("a");
 ```
 
-#### Char:
+#### 4.1.0.13. Char:
 
 Given a letter X. If the letter is lowercase print the letter after converting it from lowercase letter to uppercase letter. Otherwise print the letter after converting it from uppercase letter to lowercase letter
 
@@ -10172,7 +10172,7 @@ toggleCase("a"); // A
 toggleCase("A"); // a
 ```
 
-#### Calculator:
+#### 4.1.0.14. Calculator:
 
 Given a mathematical expression. The expression will be one of the following expressions: A+B, A−B, A∗B and A/B. Print the result of the mathematical expression.
 
@@ -10227,7 +10227,7 @@ calculateExpression(7, '+', 54);  // 61
 calculateExpression(17, '*', 10); // 170
 ```
 
-#### Digits Summation:
+#### 4.1.0.15. Digits Summation:
 
 Given two numbers N and M. Print the summation of their last digits.
 
@@ -10285,7 +10285,7 @@ function digitsSummation(N, M) {
 console.log(digitsSummation(13, 12)); // 5
 ```
 
-#### First Digit:
+#### 4.1.0.16. First Digit:
 
 Given a number X. Print "EVEN" if the first digit of X is even number. Otherwise print "ODD".
 
@@ -10366,7 +10366,7 @@ Note:
 
 
 
-#### The Last 2 Digits:
+#### 4.1.0.17. The Last 2 Digits:
 
 Given 4 numbers A, B, C and D. Print the last 2 digits from their Multiplication.
 
@@ -10394,7 +10394,7 @@ last2Digits(3, 9, 9, 9); // 87
 ```
 
 
-#### Coordinated of a Point:
+#### 4.1.0.18. Coordinated of a Point:
 
 Given two numbers X, Y which donate coordinates of a point in 2D plan. Determine in which quarter does it belong.
 
@@ -10474,7 +10474,7 @@ findCoordinates(4.5, -2.2); // Q4
 findCoordinates(0.1, 0.1);  // Q1
 ```
 
-#### Age in Days:
+#### 4.1.0.19. Age in Days:
 
 Given a Number N corresponding to a person's age (in days). Print his age in years, months and days, followed by its respective message "years", "months", "days".
 
@@ -10530,7 +10530,7 @@ findAgeInDays(400);
 */
 ```
 
-#### Interval:
+#### 4.1.0.20. Interval:
 
 Given a number X. Determine in which of the following intervals the number X belongs to:
 
@@ -10584,7 +10584,7 @@ findInterval(100.0); // Interval (75,100]
 findInterval(-25.2); // Out of Intervals
 ```
 
-#### Two Intervals:
+#### 4.1.0.21. Two Intervals:
 
 Given the boundaries of 2 intervals. Print the boundaries of their intersection.
 
@@ -10668,7 +10668,7 @@ Logic:
 If the left boundary ≤ right boundary → intersection exists
 Otherwise → no intersection (print -1)
 
-#### Sort Numbers:
+#### 4.1.0.22. Sort Numbers:
 
 Given three numbers A, B, C. Print these numbers in ascending order followed by a blank line and then the values in the sequence as they were read.
 
@@ -10775,7 +10775,7 @@ function sortNumbers(A, B, C) {
 sortNumbers(3, -2, 1);
 ```
 
-#### Float or Int:
+#### 4.1.0.23. Float or Int:
 
 Given a number N. Determine whether N is float number or integer number.
 
@@ -10812,7 +10812,7 @@ FindFloatOrInt(234.000); // int 234
 FindFloatOrInt(534.958); // float 534 0.958
 ```
 
-#### Mathematical Expression:
+#### 4.1.0.24. Mathematical Expression:
 
 Given a mathematical expression. The expression will be one of the following expressions:
 
@@ -10894,7 +10894,7 @@ findExpressionRightOrWrong(3, '-', 1, '=', 2);   // Yes
 findExpressionRightOrWrong(2, '*', 10, '=', 19); // 20
 ```
 
-#### Comparison:
+#### 4.1.0.25. Comparison:
 
 Given a comparison symbol S between two numbers A and B. Determine whether it is Right or Wrong.
 
@@ -10973,7 +10973,7 @@ comparisonRightOrWrong(9, '<', 1); // Wrong
 comparisonRightOrWrong(4, '=', 4); // Right
 ```
 
-#### Hard Compare:
+#### 4.1.0.26. Hard Compare:
 
 Given 4 numbers A,B,C and D. If AB > CD print "YES" otherwise, print "NO".
 
@@ -11023,7 +11023,7 @@ comparison(5, 2, 5, 2); // NO
 
 Note: $\log(x^y)$ = y.log(x) = ** = Math.pow()
 
-#### Winter Sale:
+#### 4.1.0.27. Winter Sale:
 
 The winter sale began, and Mrs. Sarah wants to buy a T-shirt for her son. The T-shirt has a ticket that indicates a discount of X% and its price P after the discount. She now wants to know the price before the discount to know if the discount was worthy. Help her!
 
@@ -11077,7 +11077,7 @@ getMarkedPrice(15, 20); // 23.53
 ```
 ![image](./images/problemSolving-variablesDataTypesAndOperators/MarkedPrice.jpg)
 
-#### Memo and Momo:
+#### 4.1.0.28. Memo and Momo:
 
 Memo and Momo are playing a game. Memo will choose a positive number a, and Momo will choose a positive number b.
 
@@ -11117,7 +11117,7 @@ findDivisible(15, 7, 3); // Memo
 findDivisible(22, 10, 2); // Both
 ```
 
-#### Next Alphabet:
+#### 4.1.0.29. Next Alphabet:
 
 Given a lowercase alphabet character C. You have to print the next character in the alphabet.
 
@@ -11150,7 +11150,7 @@ function findNextAlphabet(C) {
 findNextAlphabet('a'); // b
 ```
 
-#### Ali Baba and Puzzles:
+#### 4.1.0.30. Ali Baba and Puzzles:
 
 One day, Ali Baba had an easy puzzle that he couldn't solve. The puzzle consisted of 4 numbers and his task was to check whether he could get the fourth number using arithmetic operators (+,−,×) between the other three numbers; so that each operator is used only once.
 
@@ -11237,7 +11237,7 @@ findArithmeticResult(9, 5, 3, 7); // YES
 findArithmeticResult(1, 2, 3, 1); // NO
 ```
 
-#### Interval Sweep:
+#### 4.1.0.31. Interval Sweep:
 
 Given two numbers a and b. You have to answer with "YES" if there is a non-empty interval consisting of numbers from l to r
 (l,l+1,l+2,...,r) with a odd numbers and b even numbers, or "NO" otherwise.
@@ -11293,7 +11293,7 @@ findInterval(3, 1); // NO
 
 Since consecutive interval alternate between even and odd, the difference between their counts can never exceed 1.
 
-#### Katryoshka:
+#### 4.1.0.32. Katryoshka:
 
 The Egyptian football team will be in Russia for the World Cup. Of course, they all would like to buy souvenirs for their families. Luckily, they met the king of souvenirs Matryoshka who is famous for his masterpiece Katryoshka. He makes it using different wooden pieces: eyes, mouths and bodies. He can form a nice Katryoshka using one of the following combinations:
 
@@ -11380,7 +11380,7 @@ findLargestNumberOfKatryoshkas(0, 11, 2);  // 0
 findLargestNumberOfKatryoshkas(90, 24, 89); // 57
 ```
 
-#### Lucky Numbers:
+#### 4.1.0.33. Lucky Numbers:
 
 A number of two digits is lucky if one of its digits is divisible by the other.
 
@@ -11411,9 +11411,9 @@ findDivisibleOrNot(39); // YES
 findDivisibleOrNot(64); // NO
 ```
 
-## Loops
+## 4.2. Loops
 
-#### 1 to N:
+#### 4.2.0.1. 1 to N:
 
 Given a number N. Print numbers from 1 to N in separate lines.
 
@@ -11439,7 +11439,7 @@ for (let i = 1; i <= 5; i++) {
 */
 ```
 
-#### Even Numbers:
+#### 4.2.0.2. Even Numbers:
 
 Given a number N. Print all even numbers between 1 and N inclusive in separate lines.
 
@@ -11491,7 +11491,7 @@ for (let i = 2; i <= N; i += 2) {
 */
 ```
 
-#### Even, Odd, Positive and Negative:
+#### 4.2.0.3. Even, Odd, Positive and Negative:
 
 Given some numbers. Count how many of these values are even, odd, positive and negative.
 
@@ -11543,7 +11543,7 @@ Negative: 3
 */
 ```
 
-#### Fixed Password:
+#### 4.2.0.4. Fixed Password:
 
 Given multiple lines each line contains a number X which is a password. Print "Wrong" if the password is incorrect otherwise, print "Correct" and terminate the program.
 
@@ -11581,7 +11581,7 @@ Correct
 */
 ```
 
-#### Max:
+#### 4.2.0.5. Max:
 
 Given N numbers, find maximum number in these N numbers.
 
@@ -11619,7 +11619,7 @@ function findMax(...numbers) {
 findMax(1, 8, 5, 7, 5) // 8
 ```
 
-#### Multiplication table:
+#### 4.2.0.6. Multiplication table:
 
 Given a number N. Print the multiplication table of the number from 1 to 12
 
@@ -11654,7 +11654,7 @@ function generateMultiplicationTable(N) {
 generateMultiplicationTable(2)
 ```
 
-#### Factorial:
+#### 4.2.0.7. Factorial:
 
 Given some numbers. Print the factorial of that numbers.
 
@@ -11690,7 +11690,7 @@ findFactorial(5) // 120
 ```
 
 
-#### One Prime:
+#### 4.2.0.8. One Prime:
 
 Given a number X. Determine if the number is prime or not.
 
@@ -11762,7 +11762,7 @@ num = 36,
 36 = 36 * 1
 ```
 
-#### Primes from 1 to n:
+#### 4.2.0.9. Primes from 1 to n:
 
 Given a number N. Print all prime numbers between 1 and N inclusive.
 
@@ -11799,7 +11799,7 @@ function findPrimeNumbers(num) {
 findPrimeNumbers(10); // 2 3 5 7
 ```
 
-#### Palindrome:
+#### 4.2.0.10. Palindrome:
 
 Given a number N. Print 2 lines that contain the following respectively:
 
@@ -11888,7 +11888,7 @@ palindromeOrNot(12121);
 palindromeOrNot(160);
 ```
 
-#### Divisors:
+#### 4.2.0.11. Divisors:
 
 Given a number N. Print all the divisors of N in ascending order.
 
@@ -11962,7 +11962,7 @@ function findDivisors(N) {
 findDivisors(6);
 ```
 
-#### GCD and LCM:
+#### 4.2.0.12. GCD and LCM:
 
 Given two numbers A and B. Print the greatest common divisor and least common multiple between (A, B).
 
@@ -12083,7 +12083,7 @@ findGCDAndLCM(6, 9);   // 3 18
 findGCDAndLCM(54, 24); // 6 216
 ```
 
-#### Lucky Numbers:
+#### 4.2.0.13. Lucky Numbers:
 
 Given two numbers A and B. Print all lucky numbers between A and B inclusive.
 
@@ -12178,7 +12178,7 @@ findLuckyNumber(4, 20); // 4 7
 findLuckyNumber(8, 15); // -1
 ```
 
-#### Numbers Histogram:
+#### 4.2.0.14. Numbers Histogram:
 
 Given 2 lines of input described as follow:
 
@@ -12229,7 +12229,7 @@ function printHistogram(S, N) {
 printHistogram('+', [5, 2, 4, 3, 7]);
 ```
 
-#### Shape 1:
+#### 4.2.0.15. Shape 1:
 
 ```
 4
@@ -12436,7 +12436,7 @@ Same as:
 */
 ```
 
-#### Shape2:
+#### 4.2.0.16. Shape2:
 
 ```
 4
@@ -12650,7 +12650,7 @@ function printDiamond(N) {
 
 printDiamond(4);
 ```
-#### Shape 3:
+#### 4.2.0.17. Shape 3:
 
 Some day, an artist wanted to draw an X mark on the wall in a fashionable way. He wanted to do so by grouping snippets of slashes /, backslashes \, asterisks * and a capital X letter in an N×N square as shown in the sample. Can you help him?
 
@@ -12712,7 +12712,7 @@ function printDiamondShape(n) {
 printDiamondShape(5)
 ```
 
-#### Digits:
+#### 4.2.0.18. Digits:
 
 Given some numbers. Print the digits of that number from right to left separated by space.
 
@@ -12770,7 +12770,7 @@ printDigits(121, 39, 123456, 1200);
 */
 ```
 
-#### Sequence of Numbers and Sum:
+#### 4.2.0.19. Sequence of Numbers and Sum:
 
 Given multiple lines each line contains two numbers N and M. For each line print a single line contains:
 
@@ -12875,7 +12875,7 @@ function sumOfNumbers(numbers) {
 }
 ```
 
-#### Sum of Consecutive Odd Numbers:
+#### 4.2.0.20. Sum of Consecutive Odd Numbers:
 
 Given two numbers X and Y. Print the sum of all odd numbers between them, excluding X and Y.
 
@@ -12915,7 +12915,7 @@ sumOfOddNumbers(3, 5, 6, 10, 4, 4, 9);
 */
 ```
 
-#### Some Sums:
+#### 4.2.0.21. Some Sums:
 
 Given three numbers N, A, B. Print the summation of the numbers between 1 and N whose sum of digits is between A and B inclusive.
 
@@ -12985,7 +12985,7 @@ function sumOfDigits(N, A, B) {
 sumOfDigits(20, 2, 5); // 84
 ```
 
-#### PUM:
+#### 4.2.0.22. PUM:
 
 Given a number N. Print N lines that describes PUM game.
 
@@ -13078,7 +13078,7 @@ const printPum = N => {
 };
 ```
 
-#### Convert To Decimal 2:
+#### 4.2.0.23. Convert To Decimal 2:
 
 Given a number N. Print the result of doing the following operation on N:
 
@@ -13170,7 +13170,7 @@ printDecimal(10, 7, 8);
 | `.length - 1`     | Count how many `'1's` were found | `2`              |
 
 
-#### Easy Fibonacci:
+#### 4.2.0.24. Easy Fibonacci:
 
 Given a number N. Print first N numbers of the Fibonacci sequence.
 
@@ -13243,7 +13243,7 @@ function printFibonacci(N) {
 printFibonacci(7);
 ```
 
-#### Three Numbers:
+#### 4.2.0.25. Three Numbers:
 
 Given two numbers K and S. Determine how many different values of X,Y and Z such that (0 ≤ X,Y,Z ≤ K) and X+Y+Z=S.
 
@@ -13311,9 +13311,9 @@ matchCombinatorTripleLoop(2, 1); // 3
 ```
 
 
-## Arrays:
+## 4.3. Arrays:
 
-#### Summation:
+#### 4.3.0.1. Summation:
 Given a array of numbers. Print the absolute summation of these numbers.
 
 absolute value : means to remove any negative sign in front of a number. EX: |-5| = 5 , |7| = 7
@@ -13354,7 +13354,7 @@ console.log(summation([7, 2, 1, 3]));   // 13
 console.log(summation([-1, 2, -3]));   // 2
 ```
 
-#### Searching:
+#### 4.3.0.2. Searching:
 Given an array of numbers. Determine if the number X exists in array or not and print its position (0-index). Print the position of X in the first time you find it. If it doesn't exist print -1.
 
 Note: X may be found once or more than once and may not be found.
@@ -13409,7 +13409,7 @@ console.log(findIdx([1, 3, 0, 4, 5], 10)); // -1
 console.log(findIdx([2, 3, 2, 1], 2)); // 0
 ```
 
-#### Replacement:
+#### 4.3.0.3. Replacement:
 Given an array A of N numbers. Print the array after doing the following operations:
 - Replace every positive number by 1.
 - Replace every negative number by 2.
@@ -13467,7 +13467,7 @@ function replacePosAndNeg(arr) {
 console.log(replacePosAndNeg([1, -2, 0, 3, 4])); // [ 1, 2, 0, 1, 1 ]
 ```
 
-#### Positions in array:
+#### 4.3.0.4. Positions in array:
 Given an array A of N numbers. Print all array positions that store a number less than or equal to 10 and the number stored in that position.
 
 | Input        | Output   |
@@ -13516,7 +13516,7 @@ A[3] = 0
 */
 ```
 
-#### Lowest Number:
+#### 4.3.0.5. Lowest Number:
 Given an array of numbers. Print the lowest number and its position (1 index).
 
 Note: if there are more than one answer print first one's position.
@@ -13569,7 +13569,7 @@ findLowestNumberAndPosition([1, 2, 3]);       // 1 1
 findLowestNumberAndPosition([5, 6, 2, 3, 2]); // 2 3
 ```
 
-#### Reversing:
+#### 4.3.0.6. Reversing:
 Given an array of numbers. Print the array in a reversed order.
 
 Note:
@@ -13622,7 +13622,7 @@ console.log(reversingArray([5, 1, 3, 2]).join(" ")); // 2 3 1 5
 console.log(reversingArray([1, 2, 3, 4, 5]).join(" ")); // 5 4 3 2 1 
 ```
 
-#### Palindrome Array:
+#### 4.3.0.7. Palindrome Array:
 Given an array of numbers. Determine if it's palindrome or not.
 
 Note:
@@ -13713,7 +13713,7 @@ console.log(isPalindrome([1, 2, 3, 4]));    // NO
 ```
 
 
-#### Sorting:
+#### 4.3.0.8. Sorting:
 Given an array of numbers. Print the numbers after sorting them.
 
 Note:
@@ -13777,7 +13777,7 @@ selectionSortAscending([3, 1, 2]) // [1, 2, 3]
 selectionSortAscending([5, 2, 7, 3]) // [2, 3, 5, 7]
 ```
 
-#### Lucky Array:
+#### 4.3.0.9. Lucky Array:
 Given an array A of numbers. Determine if the array is lucky or not.
 
 Note: the array is lucky if the frequency (number of occurrence) of the minimum element is odd.
@@ -13846,7 +13846,7 @@ findLuckyArray([8, 8, 9, 5, 9]) // Lucky
 findLuckyArray([3, 3, 3, 5, 3]) // Unlucky
 ```
 
-#### Max Subarray:
+#### 4.3.0.10. Max Subarray:
 Given an arrays, Print the maximum number of every sub-array separated by space.
 
 Note: A sub-array of array is an array composed from a contiguous block of the original array's elements.
@@ -13939,7 +13939,7 @@ findMaxSubArray([1, 6, 3, 7]); // 1 6 6 7 6 6 7 3 7 7
 findMaxSubArray([3, 1, 2]);   // 3 3 3 1 2 2
 ```
 
-#### Replace MinMax:
+#### 4.3.0.11. Replace MinMax:
 Given an array of numbers. Print the array after doing the following operations:
 - Find minimum number in these numbers.
 - Find maximum number in these numbers.
@@ -14008,7 +14008,7 @@ function replaceMinMax(arr) {
 replaceMinMax([4, 1, 3, 10, 8]); // [4, 10, 3, 1, 8]
 ```
 
-#### Check Code:
+#### 4.3.0.12. Check Code:
 Given two numbers A, B and a code S consisting of digits (0,1,2,...,9) and a symbol '-'. Determine if the code follows the following rules or not:
 - The position A + 1 in the code is the symbol '-'.
 - All other characters are one of the following digits: (0,1,2,...,9).
@@ -14074,7 +14074,7 @@ checkCode(1, 1, [1, 2, '-']);            // No
 checkCode(1, 2, [7, 4, 4, 4]);            // No
 ```
 
-#### Fibonacci:
+#### 4.3.0.13. Fibonacci:
 Given a number N. Print the Fibonacci number of N. 
 
 Note: In order to create the Fibonacci sequence use the following function:
@@ -14142,7 +14142,7 @@ function Fibonacci(n) {
 - Time complexity: O(n)
 - Space complexity: O(1)
 
-#### Minimize Number:
+#### 4.3.0.14. Minimize Number:
 Given a number N and an array A of N positive numbers. Print maximum possible operations that can be performed. The operation is as follows: if all numbers are even then divide each of them by 2 otherwise, you can not perform any more operations. 
 
 | Input    | Output |

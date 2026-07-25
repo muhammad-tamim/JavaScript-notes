@@ -10,12 +10,13 @@
     - [1.1.5. Hello World](#115-hello-world)
     - [1.1.6. Why JavaScript is one of the most hated language:](#116-why-javascript-is-one-of-the-most-hated-language)
   - [1.2. Variables](#12-variables)
-    - [1.2.1. Difference between var, let and const:](#121-difference-between-var-let-and-const)
-    - [1.2.2. Hoisting](#122-hoisting)
-    - [1.2.3. Scope](#123-scope)
-    - [1.2.4. Scope Chain](#124-scope-chain)
-    - [1.2.5. Variable naming conventions:](#125-variable-naming-conventions)
-    - [1.2.6. How to write a long variable name](#126-how-to-write-a-long-variable-name)
+    - [1.2.1. Variable Declaration, Initialization and Assignment:](#121-variable-declaration-initialization-and-assignment)
+    - [1.2.2. Difference between var, let and const:](#122-difference-between-var-let-and-const)
+    - [1.2.3. Hoisting](#123-hoisting)
+    - [1.2.4. Scope](#124-scope)
+    - [1.2.5. Scope Chain](#125-scope-chain)
+    - [1.2.6. Variable naming conventions:](#126-variable-naming-conventions)
+    - [1.2.7. How to write a long variable name](#127-how-to-write-a-long-variable-name)
   - [1.3. Data Types](#13-data-types)
     - [1.3.1. 7 Primitive Data Types:](#131-7-primitive-data-types)
     - [1.3.2. 1 Non-Primitive Data Types:](#132-1-non-primitive-data-types)
@@ -587,31 +588,39 @@ while(condition) {}
 ```
 
 ## 1.2. Variables
-A variable is a “named storage” for data. We can declare variables to store data by using keywords:
-
-Note: A keyword is a reserved word that has a special meaning in the language. 
-
+A variable is a “named storage” for data. We can declare variables to store data by using `var, let and const` keywords:
 - var: the old way to declare variables 
 - let: the modern way to declare variables 
 - const: declares constant variables
 
-**Variable Declaration:**
+Note: A keyword is a reserved word that has a special meaning in the language. 
 
-`let message;`
+### 1.2.1. Variable Declaration, Initialization and Assignment:
 
-**Variable Initialization:**
+Note: initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.
 
-`let message = 'Hello World';`
+- Variable Declaration:
 
-**Variable assignment:**
+```js
+let message;
+```
+
+- Variable Initialization:
+
+```js
+let message = 'Hello World';
+```
+
+- Variable assignment:
 
 ```js
 let message = 'Hello World';
 message = 'Hello Universe'
 ```
-**Note:** initialization gives a variable its first value, while assignment gives a variable a new value after it has been initialized.
 
-### 1.2.1. Difference between var, let and const:
+### 1.2.2. Difference between var, let and const:
+
+scroll right to see more ---------------------->
 
 <table>
 <tr>
@@ -776,10 +785,10 @@ console.log(window.a); // undefined
 </tr>
 </table>
 
-### 1.2.2. Hoisting
+### 1.2.3. Hoisting
 Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their scope during parsing and compiling the AST to Bytecode phase, before the code is executed by interpreter or JIT compiler(if applicable).
 
-### 1.2.3. Scope
+### 1.2.4. Scope
 Scope determines where variables can be accessed in your code. There are 4 types of scopes in js:
 
 1. Block Scope:  
@@ -852,7 +861,7 @@ outerFunction();
 console.log(innerVar1); // ReferenceError: innerVar1 is not defined
 ```
 
-### 1.2.4. Scope Chain
+### 1.2.5. Scope Chain
 When you try to access a variable:
 - JavaScript first looks in the current scope
 - If not found, it goes to the outer scope
@@ -884,17 +893,16 @@ console.log(num);
 */
 ```
 
-### 1.2.5. Variable naming conventions:
-- Names must start with a letter, underscore _, or dollar sign $
-- Names can contain letters, digits, _, and $ — but no spaces or symbols
+### 1.2.6. Variable naming conventions:
+- Names must start with a letter, underscore (`_`), or dollar sign (`$`)
+- Names can contain letters, digits, underscores (`_`), and dollar signs (`$`) — but no spaces or symbols
 - Names are Case-sensitive
-- Names Cannot contain JavaScript reserved keywords
+- Names Cannot contain keywords
 
-### 1.2.6. How to write a long variable name
+### 1.2.7. How to write a long variable name
 - Snake Case = `let my_current_home_address = "Barisal";`
 - Camel Case (recommended) = `let myCurrentHomeAddress = "Barisal";`
 - Pascal Case = `let MyCurrentHomeAddress = "Barisal";`
-
 
 
 

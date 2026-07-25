@@ -436,16 +436,20 @@ The statement sends to the JavaScript Engine
 
 ### 1.1.6. Why JavaScript is one of the most hated language:
 
-1. Weird Type Conversions: 
+- Weird Type Conversions: 
 
 ```js
+// summation between string and number always results in a string, while subtraction, multiplication and division always result in a number.
 console.log(1 + "2");   // "12"  (number + string = string)
+console.log("2" + 1);   // "21"  (string + number = string)               
 console.log("2" - 1);   // 1     (string - number = number)
-console.log("2" + 1);   // "21"  (string + number = string)
+console.log(5 - "2");   // 3     (number - string = number)
+console.log("2" * 2);   // 4     (string * number = number)
+console.log("2" / 2);   // 1     (string / number = number)
 ```
 
 ```js
-console.log(true + false); // 1
+console.log(true + false); // 1 + 0 = 1
 console.log(1 < 2 < 3);    // true
 console.log(3 < 2 < 1);    // true but 3 < 2 → false, 2 < 1 → false
 ```
@@ -457,52 +461,50 @@ console.log({} + []) // 0
 console.log({} + {}) // NaN
 ```
 
-2. The == Disaster: 
+- The `==` Disaster: 
 
 ```jsx
-console.log(0 == false);   // true
-console.log('' == false);  // true
-console.log(null == undefined); // true
-console.log([] == false);  // true
-console.log([] == 0);      // true
-console.log([] == ![]);    // true 😵
+console.log(0 == false);   // true, since 0 is falsy
+console.log('' == false);  // true, since empty string is falsy
+console.log(null == undefined); // true, since both are falsy
+console.log([] == false);  // true, since empty array is falsy
+console.log([] == 0);      // true, since empty array is falsy
 ```
 
 ```jsx
-console.log(0 == "0") // true
-console.log(0 == []) // true
-console.log("0" == []) // true
+console.log(0 == "0") // true, since 0 is falsy and "0" is falsy
+console.log(0 == []) // true, since 0 is falsy and [] is falsy
+console.log("0" == []) // true, since "0" is falsy and [] is falsy
 ```
 
-3. null and undefined Confusion:
+- `null` and `undefined` Confusion:
 
-JavaScript has two different “nothing” values — null and undefined.
+JavaScript has two different “nothing” values — `null` and `undefined`.
 
 ```jsx
-console.log(typeof null); // "object" ❌ (bug from 1995!)
-console.log(typeof undefined); // "undefined"
-console.log(null === undefined) // false
+console.log(typeof null); // "object" ❌ (bug from 1995!), but null is a primitive data type
+console.log(typeof undefined); // "undefined", since undefined is a primitive data type
+console.log(null === undefined) // false, since null is an object and undefined is a primitive data type
 ```
-Even the creator of JavaScript admitted this was a mistake, but it’s too late to fix now — it would break 
-millions of websites.
+Even the creator of JavaScript admitted this was a mistake, but it’s too late to fix now — it would break millions of websites.
 
 Note: 
 - Undefined = a variable has no value assigned 
 - Null = a variable has been intentionally assigned empty
 
-1. NaN Has an Identity Crisis
+- `NaN` Has an Identity Crisis:
 
 ```js
-typeof NaN; // "number" - Wait what? “Not-a-Number” is a number?!
+console.log(typeof NaN); // "number" - Wait what? “Not-a-Number” is a number?!
 
-console.log(NaN == NaN)
-console.log(NaN === NaN)
+console.log(NaN == NaN) // false, but it should be true 
+console.log(NaN === NaN) // false, but it should be true
 ```
 Note: NaN is the only value in JavaScript that is not equal to itself.
 
-5. The “this” Keyword Madness:
+- The `this` Keyword Madness:
 
-this loses its context when the method is called separately. That’s why people call it one of the most confusing parts of JavaScript.
+`this` loses its context when the method is called separately. That’s why people call it one of the most confusing parts of JavaScript.
 
 ```jsx
 const user = {
@@ -531,12 +533,57 @@ Because this depends on how the function is called, not where it’s written. �
 That’s why developers say:
 👉 Always use ===, not ==.
 
-6. Too Many Ways to Say “Hi”: 
+- Too Many Ways to write same things: 
+
+  - For Creating Function: 
 
 ```jsx
 function sayHi() {}
 const sayHi = function() {}
 const sayHi = () => {}
+```
+
+  - For Creating Object:
+
+```js
+// Object literal
+const user = {};
+
+// Constructor function
+const user = new Object();
+
+// Class
+class User {}
+const user = new User();
+```
+
+  - For Creating Array:
+
+```js
+const numbers = [];
+
+const numbers = new Array();
+
+const numbers = Array.of(1, 2, 3);
+```
+
+  - For Creating Loops: 
+
+```js
+// for loop
+for (let i = 0; i < arr.length; i++) {}
+
+// for...of
+for (const item of arr) {}
+
+// forEach()
+arr.forEach(item => {});
+
+// map()
+arr.map(item => item);
+
+// while()
+while(condition) {}
 ```
 
 ## 1.2. Variables

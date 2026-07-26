@@ -19,11 +19,18 @@
     - [1.2.7. How to write a long variable name](#127-how-to-write-a-long-variable-name)
   - [1.3. Data Types](#13-data-types)
     - [1.3.1. 7 Primitive Data Types:](#131-7-primitive-data-types)
+      - [1.3.1.1. `Number`:](#1311-number)
+      - [1.3.1.2. `BigInt`:](#1312-bigint)
+      - [1.3.1.3. `String`:](#1313-string)
+      - [1.3.1.4. `Boolean`:](#1314-boolean)
+      - [1.3.1.5. `Null`:](#1315-null)
+      - [1.3.1.6. `Undefined`:](#1316-undefined)
+        - [1.3.1.6.1. When we got undefined:](#13161-when-we-got-undefined)
+      - [1.3.1.7. `Symbol`](#1317-symbol)
     - [1.3.2. 1 Non-Primitive Data Types:](#132-1-non-primitive-data-types)
+      - [1.3.2.1. Object:](#1321-object)
     - [1.3.3. Immutable and Mutable:](#133-immutable-and-mutable)
     - [1.3.4. AutoBoxing](#134-autoboxing)
-      - [1.3.4.1. Autoboxing with string:](#1341-autoboxing-with-string)
-      - [1.3.4.2. Autoboxing with Numbers:](#1342-autoboxing-with-numbers)
     - [1.3.5. Type Conversion:](#135-type-conversion)
   - [1.4. Operator](#14-operator)
     - [1.4.1. Arithmetic Operators (+, -, \*, /, %, \*\*):](#141-arithmetic-operators-------)
@@ -908,24 +915,22 @@ console.log(num);
 
 ## 1.3. Data Types
 
-A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.)
+A data type defines the kind of value a variable can hold (like a Number, String, Boolean, etc.) 
 
-JavaScript is a dynamically typed language, which means:
-- You don’t have to declare the type of a variable.
-- The type is determined automatically based on the value you assign.
+Note: JavaScript is a dynamically typed language, which means we don’t need to declare the data type of a variable. The type is determined automatically based on the value we assign.
 
 ```js
 let message = "hello"; // string
 message = 123456;      // number
 ```
 
-There are 8 data types in JavaScript:
+There are two main categories of data types in JavaScript and they have 8 different data types in total:
 
-![image](./images/data-types/data_types_in_javascript.webp)
+![image](./images/data-types/data-types.png)
 
 ### 1.3.1. 7 Primitive Data Types:
 
-1. Number 
+#### 1.3.1.1. `Number`: 
 Represents both integers and floating-point numbers. 
     
 ```js
@@ -934,10 +939,10 @@ let money = 25.5345;
 
 console.log("Age:", age); // Outputs: Age: 25
 console.log("Money:", money.toFixed(2)); // Outputs: Money: 25.53
+console.log("Money:", money); // Outputs: Money: 25.5345
 ```
 
-2. BigInt
-
+#### 1.3.1.2. `BigInt`:
 JavaScript Numbers are only accurate up to 15 digits, but BigInt can represent an integer of any size, limited only by available memory.
 
 There are two ways to create a BigInt:
@@ -945,67 +950,70 @@ There are two ways to create a BigInt:
 ```js
 // Using an integer literal with an n suffix:
 let x = 12345123451234512345n
+
 // Using the BigInt() constructor with a string:
 let y = BigInt("12345123451234512345");
 
 console.log(x, y) // 12345123451234512345n 12345123451234512345n
 ```
 
-3. String
+#### 1.3.1.3. `String`:
+We will learn about string in detail in the below chapters.
 
-4. Boolean 
-   
+#### 1.3.1.4. `Boolean`: 
 Represents true or false.
 
 ```js
-let isMarried = false;
-let isSingle = true;
+let isMarried = false; // false means 0 in number
+let isSingle = true; // true means 1 in number
 ```
 
-5. Null  
-   
+#### 1.3.1.5. `Null`:  
 Represents intentional "no value".
 
 ```js
-let data = null;
+let data = "some data";
+console.log(data) // some data
+
+data = null;
+
 console.log(data) // null
 ```
 
-6. Undefined  
-   
-It is a primitive data type and default value given by JavaScript when JavaScript expects a value but doesn’t find one:
+#### 1.3.1.6. `Undefined`:  
+It is a default value given by JavaScript when JavaScript expects a value but doesn’t find one:
 
-**When we got undefined:**
+##### 1.3.1.6.1. When we got undefined:
 
-- a variable Declared but not initialized
+- A variable is declared but not initialized:
 
 ```js
 let a;
 console.log(a); // undefined
 ```
 
-- Function without a return value
+- A function without a return value:
 
 ```js
 function greet() {}
 console.log(greet()); // undefined
 ```
 
-- Accessing a non-existing object property
+- Accessing a non-existing object property: 
 
 ```js
 let obj = { name: "Alice" };
 console.log(obj.age); // undefined
 ```
 
-- Accessing an array element that doesn’t exist
+- Accessing a non-existing array element:
 
 ```js
 let arr = [1, 2, 3];
 console.log(arr[5]); // undefined
 ```
 
-- IF Function parameters are not provided
+- If a function parameters are not provided:
 
 ```js
 function sum(a, b) {
@@ -1021,8 +1029,7 @@ let x = undefined;
 console.log(x); // undefined
 ```
 
-7. Symbol
-
+#### 1.3.1.7. `Symbol`
 Represents a unique and immutable value, mainly used to create unique identifiers for object properties.
 
 ```js
@@ -1033,22 +1040,17 @@ const name = "tamim";
 let a = Symbol(name);
 let b = Symbol(name);
 console.log(a === b); // false
+console.log(a, b); // Symbol(tamim) Symbol(tamim)
 ```
 
 ### 1.3.2. 1 Non-Primitive Data Types:
 
-8. Object  
-   
-In JavaScript, any data that is not a primitive type is considered an object type. The three most commonly used object types are:
-
-- object
-- array
-- function 
+#### 1.3.2.1. Object:
+All non-primitive values in JavaScript are within objects data types. So JavaScript has only one non-primitive data type called Object and its has several sub-types like array, function, set, map etc.  
   
 ### 1.3.3. Immutable and Mutable: 
 
 - Immutable (primitive data types) → cannot be changed after creation (you can only replace it with a new value)
-
 - Mutable (non-primitive data type) → can be changed after creation
 
 ```js
@@ -1069,9 +1071,9 @@ console.log(arr); // [10, 2, 3]
 
 ### 1.3.4. AutoBoxing
 
-Autoboxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so you can use object methods and properties on them. JavaScript automatically wraps the primitive value in its object temporarily, whenever you access a property or method. After the operation, the object is discarded.
+AutoBoxing in JavaScript is the automatic conversion of primitive data types (like string, number, boolean) into temporary object so we can use object methods and properties on them.
 
-#### 1.3.4.1. Autoboxing with string:
+- AutoBoxing with string:
 
 ```js
 let str = "hello";
@@ -1079,15 +1081,7 @@ console.log(str.length); // 5
 console.log(str.toUpperCase()); // "HELLO"
 ```
 
-Behind the scenes, Autoboxing convert string to temporary object:
-
-```js
-let temp = new String(str); // temporary object
-temp.length;               // 5
-temp.toUpperCase();        // "HELLO"
-```
-
-#### 1.3.4.2. Autoboxing with Numbers:
+- AutoBoxing with Numbers:
 
 ```js
 let num = 42;
@@ -1095,17 +1089,10 @@ let num = 42;
 console.log(num.toString()); // "42"
 console.log(num.toFixed(2)); // "42.00"
 ```
-Behind the scenes:
-
-```js
-let tempNum = new Number(num); // temporary object
-tempNum.toString();            // "42"
-tempNum.toFixed(2);            // "42.00"
-```
 
 ### 1.3.5. Type Conversion:
 
-With global functions:
+- With global functions:
 
 ```js
 console.log(parseInt("123"));       // 123
@@ -1150,7 +1137,7 @@ console.log(Boolean([]));          // true (empty array is truthy)
 console.log(Boolean({}));          // true (empty object is truthy)
 ```
 
-with methods:
+- with methods:
 
 ```js
 console.log((123).toString());       // "123"
@@ -1164,7 +1151,6 @@ console.log((12.3456).toFixed(2)); // "12.35"
 
 console.log(12.3456.toPrecision(4)); // "12.35"
 console.log(12.3456789.toPrecision(5)); // "12.346"
-
 ```
 
 ## 1.4. Operator
